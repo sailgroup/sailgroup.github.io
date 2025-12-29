@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="SAIL - Spectroscopy and Artificial Intelligence Lab at Kookmin University">
+    <meta name="theme-color" content="#0a0014">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SAIL - Spectroscopy and Artificial Intelligence Lab">
+    <meta property="og:description" content="AI와 화학을 융합하여 신소재 개발을 가속화하는 연구실">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sailgroup.github.io">
+    
+    <title>SAIL - Spectroscopy and Artificial Intelligence Lab</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: linear-gradient(180deg, #0a0014 0%, #1a0a2e 50%, #0d1a2d 100%);
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .title {
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            margin-right: -0.4em;
+            color: #fff;
+            text-shadow: 0 0 80px rgba(167, 139, 250, 0.5);
+            animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .subtitle {
+            font-size: clamp(0.55rem, 1.5vw, 0.85rem);
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            margin-right: -0.35em;
+            color: rgba(167, 139, 250, 0.6);
+            text-transform: uppercase;
+            margin-top: 1rem;
+            animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .enter-btn {
+            margin-top: 3.5rem;
+            padding: 1.1em 3em;
+            font-family: inherit;
+            font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.12), rgba(139, 92, 246, 0.04));
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 60px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: fadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+            opacity: 0;
+            transform: translateY(25px);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #a78bfa, #ec4899, #a78bfa);
+            background-size: 200% 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        .enter-btn::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            background: linear-gradient(135deg, #1a0a2e, #0d1a2d);
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .enter-btn:hover {
+            border-color: transparent;
+            box-shadow: 0 0 50px rgba(167, 139, 250, 0.35);
+            transform: scale(1.04);
+        }
+
+        .enter-btn:hover::before {
+            opacity: 1;
+        }
+
+        .enter-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 0 25px rgba(167, 139, 250, 0.25);
+        }
+
+        .enter-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.4);
+        }
+
+        .enter-btn:focus:not(:focus-visible) {
+            box-shadow: none;
+        }
+
+        .enter-btn:focus-visible {
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.5);
+        }
+
+        .credit {
+            position: fixed;
+            bottom: 1.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            font-size: clamp(0.6rem, 1vw, 0.68rem);
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+            animation: fadeIn 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        .credit a {
+            color: rgba(167, 139, 250, 0.45);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .credit a:hover {
+            color: rgba(167, 139, 250, 0.85);
+        }
+
+        .credit a:focus {
+            outline: none;
+            color: rgba(167, 139, 250, 0.85);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 600px) {
+            .subtitle {
+                letter-spacing: 0.25em;
+                margin-right: -0.25em;
+            }
+            
+            .enter-btn {
+                padding: 1em 2.5em;
+            }
+
+            .credit {
+                bottom: 1.2rem;
+            }
+        }
+
+        /* 가로 모드 대응 */
+        @media (max-height: 500px) {
+            .title {
+                font-size: clamp(2rem, 8vw, 4rem);
+            }
+            
+            .subtitle {
+                margin-top: 0.5rem;
+            }
+            
+            .enter-btn {
+                margin-top: 2rem;
+            }
+        }
+
+        /* 접근성: 모션 감소 선호 */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="c" aria-hidden="true"></canvas>
+
+    <main class="content">
+        <h1 class="title">SAIL</h1>
+        <p class="subtitle">Spectroscopy & Artificial Intelligence Lab</p>
+        <button class="enter-btn" onclick="window.location.href='https://sailabjfjoung.wixsite.com/sail'" aria-label="SAIL 웹사이트로 이동">Enter</button>
+    </main>
+
+    <footer class="credit">
+        Design & code by <a href="https://github.com/chanjoongx/sailgroup.github.io" target="_blank" rel="noopener noreferrer">chanjoongx</a>
+    </footer>
+
+    <script>
+    (function() {
+        'use strict';
+
+        const canvas = document.getElementById('c');
+        const ctx = canvas.getContext('2d');
+
+        let w, h;
+        let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        function resize() {
+            w = window.innerWidth;
+            h = window.innerHeight;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(dpr, dpr);
+        }
+
+        // 스펙트럼 웨이브 (기존 색감)
+        const waves = [
+            { color: 'rgba(167, 139, 250, 0.4)', amp: 60, freq: 0.008, speed: 0.02, y: 0.5 },
+            { color: 'rgba(236, 72, 153, 0.3)', amp: 45, freq: 0.012, speed: 0.025, y: 0.52 },
+            { color: 'rgba(59, 130, 246, 0.3)', amp: 50, freq: 0.01, speed: 0.018, y: 0.48 },
+            { color: 'rgba(139, 92, 246, 0.2)', amp: 70, freq: 0.006, speed: 0.015, y: 0.5 }
+        ];
+
+        let time = 0;
+
+        // 파티클 생성 (기존 스타일)
+        const particles = [];
+        const particleCount = 100;
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: Math.random() * 2 + 0.5,
+                speedX: Math.random() * 0.3 + 0.1,
+                opacity: Math.random() * 0.5 + 0.1
+            });
+        }
+
+        function drawWave(wave, t) {
+            ctx.beginPath();
+            ctx.moveTo(0, h);
+
+            for (let x = 0; x <= w; x += 3) {
+                const y = h * wave.y + 
+                    Math.sin(x * wave.freq + t * wave.speed) * wave.amp +
+                    Math.sin(x * wave.freq * 2.5 + t * wave.speed * 1.5) * wave.amp * 0.3;
+                ctx.lineTo(x, y);
+            }
+
+            ctx.lineTo(w, h);
+            ctx.closePath();
+
+            const grad = ctx.createLinearGradient(0, h * 0.3, 0, h);
+            grad.addColorStop(0, wave.color);
+            grad.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad;
+            ctx.fill();
+        }
+
+        function drawParticles() {
+            ctx.fillStyle = 'rgba(167, 139, 250, 0.6)';
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.speedX;
+                if (p.x > w + 10) p.x = -10;
+                
+                ctx.globalAlpha = p.opacity;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+
+            drawParticles();
+
+            waves.forEach(function(wave) {
+                drawWave(wave, time);
+            });
+
+            time += 1;
+            requestAnimationFrame(animate);
+        }
+
+        resize();
+        window.addEventListener('resize', function() {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            resize();
+        });
+
+        animate();
+    })();
+    </script>
+</body>
+</html>
