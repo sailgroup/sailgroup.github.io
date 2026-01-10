@@ -159,35 +159,6 @@
             box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.5);
         }
 
-        .credit {
-            position: fixed;
-            bottom: 1.8rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            font-size: clamp(0.6rem, 1vw, 0.68rem);
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.2);
-            white-space: nowrap;
-            animation: fadeIn 1s ease-out 1s forwards;
-            opacity: 0;
-        }
-
-        .credit a {
-            color: rgba(167, 139, 250, 0.45);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .credit a:hover {
-            color: rgba(167, 139, 250, 0.85);
-        }
-
-        .credit a:focus {
-            outline: none;
-            color: rgba(167, 139, 250, 0.85);
-        }
-
         @keyframes fadeUp {
             to {
                 opacity: 1;
@@ -215,10 +186,6 @@
             
             .enter-btn {
                 padding: 1em 2.5em;
-            }
-
-            .credit {
-                bottom: 1.2rem;
             }
         }
 
@@ -255,10 +222,6 @@
         <p class="subtitle">Spectroscopy & Artificial Intelligence Lab</p>
         <button class="enter-btn" onclick="window.location.href='https://sailabjfjoung.wixsite.com/sail'" aria-label="SAIL 웹사이트로 이동">Enter</button>
     </main>
-
-    <footer class="credit">
-        Design & code by <a href="https://github.com/chanjoongx/sailgroup.github.io" target="_blank" rel="noopener noreferrer">chanjoongx</a>
-    </footer>
 
     <script>
     (function() {
