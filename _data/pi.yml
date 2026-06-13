@@ -1,0 +1,55 @@
+# Principal investigator. Source: live lab site (sailabjfjoung.wixsite.com/sail),
+# extracted Phase 0. Names verbatim; "name" is the highlight form used in author lists.
+name: Joonyoung F. Joung
+name_full: Joonyoung Francis Joung
+name_ko: 정준영
+title: Assistant Professor
+department: Department of Applied Chemistry
+college: College of Science and Technology
+institution: Kookmin University
+email: jjoung@kookmin.ac.kr
+phone: "+82-2-910-4731"
+office: Rm 229, College of Law
+photo: pi.jpg
+scholar: https://scholar.google.com/citations?user=0uuwTRQAAAAJ
+orcid: https://orcid.org/0000-0002-5976-2048
+
+bio: >-
+  Joonyoung F. Joung is an Assistant Professor in the Department of Applied
+  Chemistry at Kookmin University. He completed his Ph.D. in physical chemistry
+  at Korea University with Sungnam Park, then worked as a postdoctoral research
+  associate at Korea University and as a postdoctoral associate in the Department
+  of Chemical Engineering at MIT with Connor W. Coley. His work combines
+  spectroscopy, physical chemistry, and machine learning for molecular property
+  prediction, reaction prediction, and molecular design.
+
+education:
+  - degree: Ph.D. in Physical Chemistry
+    institution: Korea University
+    advisor: Prof. Sungnam Park
+    date: "2020.08"
+  - degree: B.S. in Chemistry
+    institution: Inha University
+    date: "2015.02"
+
+appointments:
+  - role: Assistant Professor
+    org: Department of Applied Chemistry, Kookmin University
+    period: 2025.03–present
+  - role: Postdoctoral Associate
+    org: Department of Chemical Engineering, MIT
+    advisor: Prof. Connor W. Coley
+    period: 2022.09–2025.02
+  - role: Postdoctoral Research Associate
+    org: Department of Chemistry, Korea University
+    advisor: Prof. Sungnam Park
+    period: 2020.09–2022.07
+  - role: Research Professor
+    org: Research Institute for Natural Science, Korea University
+    period: ""
+
+related_labs:
+  - name: Coley Research Group, MIT
+    url: https://coley.mit.edu/
+  - name: Sungnam Park Group, Korea University
+    url: https://ultrafastspec.wixsite.com/spark

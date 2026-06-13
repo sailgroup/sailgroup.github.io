@@ -1,0 +1,41 @@
+# Current members. Source: live lab site, extracted Phase 0. Exactly as listed;
+# no invented bios, interests, or links. Photos staged in _source/images and copied
+# to assets/images during build. Ordered by role, then join date.
+- name: Heejeong Kim
+  name_ko: 김희정
+  role: Postdoctoral Researcher
+  email: he2ja@ewha.ac.kr
+  photo: heejeong-kim.jpg
+  slug: heejeong-kim
+
+- name: Jihwan Kim
+  name_ko: 김지환
+  role: M.S. Student
+  email: jihwan2098@kookmin.ac.kr
+  photo: jihwan-kim.jpg
+  slug: jihwan-kim
+  joined: "2025-09-11"
+
+- name: Seonbin Kim
+  name_ko: 김선빈
+  role: M.S. Student
+  email: ccpaulcc@kookmin.ac.kr
+  photo: seonbin-kim.jpg
+  slug: seonbin-kim
+  joined: "2026-02-01"
+
+- name: Hyejeong Jeon
+  name_ko: 전혜정
+  role: Undergraduate Researcher (UROP)
+  email: jeonhyejeong@kookmin.ac.kr
+  photo: hyejeong-jeon.jpg
+  slug: hyejeong-jeon
+  joined: "2025-07-14"
+
+- name: Siyeol In
+  name_ko: 인시열
+  role: Undergraduate Researcher (UROP)
+  email: insy13@naver.com
+  photo: siyeol-in.jpg
+  slug: siyeol-in
+  joined: "2025-12-15"

@@ -1,0 +1,16 @@
+# Home hero and contact block. Source: live lab site, extracted Phase 0.
+# Copy is factual and matches the lab's four research areas; no marketing phrasing.
+hero:
+  title: Spectroscopy and AI Lab
+  lead: >-
+    We develop machine learning methods for molecular property prediction,
+    chemical reaction prediction, de novo molecular design, and the construction
+    of chemical databases.
+
+contact:
+  institution: Kookmin University
+  department: Department of Applied Chemistry
+  address_en: 77 Jeongneung-ro, Seongbuk-gu, Seoul 02707, Republic of Korea
+  address_ko: (02707) 서울특별시 성북구 정릉로 77 국민대학교
+  email: jjoung@kookmin.ac.kr
+  phone: "+82-2-910-4731"

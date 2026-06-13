@@ -1,0 +1,110 @@
+# Research overview and four areas. Source: live lab site /research, fetched
+# Phase 0. Area bodies are reproduced verbatim (English and Korean). The overview
+# is stated factually (the source's "pioneering / complex problems" marketing
+# phrasing is dropped per the copy guidelines); meaning is preserved.
+#
+# figure / figure_* (added Phase 7): each area carries a real figure from one of
+# the lab's own papers (publisher of record by DOI), not invented art. Caption
+# links the paper. Reaction reuses the FlowER figure also shown on the home page.
+overview:
+  en: >-
+    The Spectroscopy and AI Lab (SAIL), led by Joonyoung F. Joung, integrates
+    artificial intelligence with chemistry to study chemical reaction prediction
+    and the discovery of new materials.
+  ko: >-
+    국민대학교 응용화학부 SAIL 연구실(Spectroscopy and AI Lab)은 인공지능과 화학을
+    융합하여 화학 반응 예측과 신소재 개발을 연구합니다.
+
+areas:
+  - title: Prediction of Physicochemical Properties
+    title_ko: 물리화학적 특성 예측
+    body: >-
+      We leverage machine learning models and quantum chemical calculations
+      (e.g., DFT) to predict critical physicochemical properties of molecules,
+      such as optical properties, energy levels, and solubility. These predictions
+      not only aid in discovering desired materials or pharmaceuticals but also
+      support the optimization of separation processes by providing insights into
+      solubility behavior.
+    body_ko: >-
+      머신러닝 모델과 양자화학 계산(예: DFT)을 활용하여 분자의 광학적 특성, 분자의
+      에너지 준위나 용해도와 같은 물리화학적 특성을 예측합니다. 이러한 예측은 신소재나
+      약물을 개발하는 데 도움을 줄 뿐만 아니라, 용해도에 대한 통찰을 제공함으로써 분리
+      공정의 최적화에도 기여할 수 있습니다.
+    figure: research-properties.jpg
+    figure_w: 1000
+    figure_h: 728
+    figure_alt: >-
+      Deep learning model relating chromophore and solvent structure to optical
+      properties
+    figure_journal: JACS Au
+    figure_year: 2021
+    figure_doi: 10.1021/jacsau.1c00035
+
+  - title: Chemical Reaction Prediction
+    title_ko: 화학 반응 예측
+    body: >-
+      Chemical reaction prediction has traditionally relied on expert knowledge
+      and reaction rules, making it difficult to anticipate unexpected byproducts
+      or impurities. We develop models that predict products either in an
+      end-to-end manner or by learning mechanistic pathways. This helps to explain
+      impurity formation and ultimately discover novel reactions.
+    body_ko: >-
+      화학 반응 예측은 지금까지 화학자의 경험에 의존해 왔으며, 예기치 못한 생성물이나
+      불순물은 반복 실험으로 확인해 왔습니다. 본 연구실은 머신러닝 기반 예측 모델을 통해
+      반응물로부터 생성물을 직접 예측하거나, 메커니즘 수준에서 반응 경로를 학습하도록
+      하여 불순물 형성 원인을 설명하고 새로운 반응 발견으로 확장하는 것을 목표로 합니다.
+    figure: home-architecture.png
+    figure_w: 1244
+    figure_h: 560
+    figure_alt: >-
+      Electron-flow matching model architecture for reaction mechanism prediction
+    figure_journal: Nature
+    figure_year: 2025
+    figure_doi: 10.1038/s41586-025-09426-9
+
+  - title: De Novo Molecular Design
+    title_ko: De Novo 분자 설계
+    body: >-
+      Traditional approaches to molecular design rely heavily on trial-and-error
+      experimentation, even when the desired properties are known. At SAIL, we
+      develop machine learning-based de novo design techniques that generate
+      candidate molecules expected to exhibit target properties. This accelerates
+      material discovery while reducing cost and effort. In addition to generative
+      modeling, we leverage quantum chemical methods such as DFT to understand how
+      molecular structure determines properties. This allows us to extract design
+      principles grounded in theory and propose new molecular structures with
+      improved performance.
+    body_ko: >-
+      기존의 분자 설계는 원하는 특성을 만족하는 분자를 직접 설계하기 어려워 반복 실험에
+      의존해 왔습니다. 본 연구실은 머신러닝을 활용해 목표 특성을 만족할 수 있는 분자 구조를
+      자동으로 생성하는 de novo 설계 모델을 개발하여, 후보 물질 탐색의 효율을 극대화합니다.
+      또한, 단순한 생성 모델을 넘어서 DFT 등 양자화학계산 방법을 통해 분자의 구조가 특성에
+      미치는 영향을 분석하고, 이론적으로 정립된 설계 원리를 도출함으로써 새로운 구조를
+      제안할 수 있는 기반을 마련하고 있습니다.
+    figure: research-denovo.jpg
+    figure_w: 1000
+    figure_h: 479
+    figure_alt: >-
+      Generative deep learning model that designs molecules for target properties
+    figure_journal: ACS Cent. Sci.
+    figure_year: 2025
+    figure_doi: 10.1021/acscentsci.4c00656
+
+  - title: Database Development
+    title_ko: 데이터베이스 구축
+    body: >-
+      Reliable AI models require high-quality data. We build structured databases
+      by extracting information from experiments and literature, and use these data
+      for training and benchmarking models.
+    body_ko: >-
+      인공지능 연구를 위한 고품질 데이터는 필수적입니다. 본 연구실은 화학 실험 및 문헌에서
+      화학 정보를 수집·정리하여 데이터베이스를 구축하고, 이를 통해 모델 학습과 새로운 소재
+      발견의 기반을 마련합니다.
+    figure: research-database.jpg
+    figure_w: 1000
+    figure_h: 249
+    figure_alt: >-
+      Experimental optical-property data: absorption, emission, and lifetime
+    figure_journal: Sci. Data
+    figure_year: 2020
+    figure_doi: 10.1038/s41597-020-00634-8

@@ -1,0 +1,23 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Local content archive + image staging (kept locally, not published)
+_source/
+
+# Node tooling (Puppeteer QA / screenshots)
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# One-off harvest/render tooling (local only, not part of the site)
+harvest.js
+harvest_results.json
+render_thumbs.py
+
+# OS
+.DS_Store
+Thumbs.db
+*.log

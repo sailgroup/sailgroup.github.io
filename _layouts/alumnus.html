@@ -1,0 +1,20 @@
+---
+layout: default
+---
+{%- assign a = site.data.alumni | where: "slug", page.slug | first -%}
+{%- unless a -%}{%- assign a = page -%}{%- endunless -%}
+<section class="section">
+  <div class="container container-narrow member-card">
+    <p class="eyebrow"><a class="link" href="{{ '/alumni/' | relative_url }}">Alumni</a></p>
+    {%- if a.photo and a.photo != "" -%}
+    <img class="member-card__photo" src="{{ '/assets/images/' | append: a.photo | relative_url }}" alt="{{ a.name }}">
+    {%- endif -%}
+    <h1 class="profile__name">{{ a.name }}{% if a.name_ko %} <span class="ko">{{ a.name_ko }}</span>{% endif %}</h1>
+    <p class="profile__title">{{ a.role }}</p>
+    <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University</p>
+    {%- if a.note and a.note != "" -%}<p class="member-card__meta">{{ a.note }}</p>{%- endif -%}
+    {%- if a.email and a.email != "" -%}<p style="margin-top:var(--space-md)"><a class="btn btn--ghost btn--sm" href="mailto:{{ a.email }}">{% include icon.html name="mail" %} {{ a.email }}</a></p>{%- endif -%}
+    {%- assign body = content | strip -%}
+    {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ content }}</div>{%- endif -%}
+  </div>
+</section>

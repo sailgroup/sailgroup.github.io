@@ -1,0 +1,26 @@
+{%- assign p = include.p -%}
+{%- assign hasimg = false -%}{%- if p.image and p.image != "" -%}{%- assign hasimg = true -%}{%- endif -%}
+{%- assign hasdoi = false -%}{%- if p.doi and p.doi != "" -%}{%- assign hasdoi = true -%}{%- endif -%}
+{%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
+{%- assign authors = p.authors | replace: 'Joonyoung Francis Joung', '<strong class="pi">Joonyoung Francis Joung</strong>' | replace: 'Joonyoung F. Joung', '<strong class="pi">Joonyoung F. Joung</strong>' -%}
+<article class="pub{% unless hasimg %} pub--nofig{% endunless %}" data-themes="{{ p.themes | join: '|' }}" data-year="{{ p.year }}">
+  {%- if hasimg -%}
+  <img class="pub__figure" src="{{ '/assets/images/pubs/' | append: p.image | relative_url }}" alt="" loading="lazy">
+  {%- endif -%}
+  <div class="pub__body">
+    <h3 class="pub__title">{{ p.title }}</h3>
+    <p class="pub__authors">{{ authors }}</p>
+    <p class="pub__meta"><span class="pub__journal">{{ p.journal }}</span>{% if p.ref and p.ref != "" %} {{ p.ref }}{% endif %} ({{ p.year }})</p>
+    {%- if p.themes and p.themes.size > 0 -%}
+    <div class="tag-list pub__themes">
+      {%- for t in p.themes -%}<span class="tag tag--accent">{{ t }}</span>{%- endfor -%}
+    </div>
+    {%- endif -%}
+    {%- if hasdoi or haspre -%}
+    <div class="pub__foot">
+      {%- if hasdoi -%}<a class="btn btn--ghost btn--sm" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="external" %} DOI</a>{%- endif -%}
+      {%- if haspre -%}<a class="btn btn--ghost btn--sm" href="{{ p.preprint_url }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="doc" %} Preprint</a>{%- endif -%}
+    </div>
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,35 @@
+---
+layout: default
+title: Research
+permalink: /research/
+---
+<div class="container container-narrow page-head">
+  <p class="eyebrow">Research</p>
+  <h1>Research</h1>
+  <p class="lead">{{ site.data.research.overview.en }}</p>
+</div>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="research-areas">
+      {%- for area in site.data.research.areas -%}
+      {%- assign has_fig = false -%}
+      {%- if area.figure and area.figure != "" -%}{%- assign has_fig = true -%}{%- endif -%}
+      <article class="research-area{% if has_fig %} research-area--figured{% endif %}">
+        <div class="area research-area__text">
+          <h2>{{ area.title }}</h2>
+          <p>{{ area.body }}</p>
+        </div>
+        {%- if has_fig -%}
+        <figure class="research-area__figure">
+          <img src="{{ '/assets/images/' | append: area.figure | relative_url }}" alt="{{ area.figure_alt | strip_newlines | strip }}" width="{{ area.figure_w }}" height="{{ area.figure_h }}" loading="lazy">
+          {%- if area.figure_journal and area.figure_doi -%}
+          <figcaption>From our work in <a href="https://doi.org/{{ area.figure_doi }}" target="_blank" rel="noopener noreferrer">{{ area.figure_journal }}</a> ({{ area.figure_year }}).</figcaption>
+          {%- endif -%}
+        </figure>
+        {%- endif -%}
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

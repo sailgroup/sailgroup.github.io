@@ -1,0 +1,36 @@
+---
+layout: default
+title: Publications
+permalink: /publications/
+scripts: [pubs]
+---
+<div class="container container-narrow page-head">
+  <p class="eyebrow">Publications</p>
+  <h1>Publications</h1>
+  <p class="lead">{{ site.data.publications | size }} peer-reviewed papers, newest first. The principal investigator is highlighted in each author list.</p>
+</div>
+
+<section class="section section--tight">
+  <div class="container">
+    {%- assign all_themes = "" | split: "" -%}
+    {%- for p in site.data.publications -%}{%- for t in p.themes -%}{%- assign all_themes = all_themes | push: t -%}{%- endfor -%}{%- endfor -%}
+    {%- assign all_themes = all_themes | uniq | sort -%}
+    <div class="pub-toolbar" role="group" aria-label="Filter publications by topic">
+      <button class="pub-filter is-active" data-theme="" aria-pressed="true">All</button>
+      {%- for t in all_themes -%}
+      <button class="pub-filter" data-theme="{{ t }}" aria-pressed="false">{{ t }}</button>
+      {%- endfor -%}
+    </div>
+
+    {%- assign byyear = site.data.publications | group_by: "year" -%}
+    {%- assign years = byyear | sort: "name" | reverse -%}
+    {%- for yr in years -%}
+    <section class="year-group">
+      <h2 class="year-label">{{ yr.name }} <span>{{ yr.items | size }}{% if yr.items.size == 1 %} paper{% else %} papers{% endif %}</span></h2>
+      <div class="pub-list">
+        {%- for p in yr.items -%}{% include pub-item.html p=p %}{%- endfor -%}
+      </div>
+    </section>
+    {%- endfor -%}
+  </div>
+</section>

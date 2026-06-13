@@ -1,0 +1,19 @@
+---
+layout: default
+---
+{%- assign m = site.data.members | where: "slug", page.slug | first -%}
+{%- unless m -%}{%- assign m = page -%}{%- endunless -%}
+<section class="section">
+  <div class="container container-narrow member-card">
+    <p class="eyebrow"><a class="link" href="{{ '/members/' | relative_url }}">Members</a></p>
+    {%- if m.photo -%}
+    <img class="member-card__photo" src="{{ '/assets/images/' | append: m.photo | relative_url }}" alt="{{ m.name }}">
+    {%- endif -%}
+    <h1 class="profile__name">{{ m.name }}{% if m.name_ko %} <span class="ko">{{ m.name_ko }}</span>{% endif %}</h1>
+    <p class="profile__title">{{ m.role }}</p>
+    <p class="member-card__meta">Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University{% if m.joined %} &middot; Joined {{ m.joined | date: "%B %Y" }}{% endif %}</p>
+    <p style="margin-top:var(--space-md)"><a class="btn btn--ghost btn--sm" href="mailto:{{ m.email }}">{% include icon.html name="mail" %} {{ m.email }}</a></p>
+    {%- assign body = content | strip -%}
+    {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ content }}</div>{%- endif -%}
+  </div>
+</section>

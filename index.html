@@ -1,0 +1,91 @@
+---
+layout: default
+---
+<section class="hero">
+  <div class="container hero__inner">
+    <p class="eyebrow">Joonyoung F. Joung Lab &middot; Kookmin University</p>
+    <h1>{{ site.data.home.hero.title }}</h1>
+    <p class="lead">{{ site.data.home.hero.lead }}</p>
+    <div class="hero__actions">
+      <a class="btn btn--solid" href="{{ '/research/' | relative_url }}">Research</a>
+      <a class="btn btn--ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
+      <a class="btn btn--ghost" href="{{ '/pi/' | relative_url }}">People</a>
+    </div>
+    <figure class="hero__figure">
+      <img src="{{ '/assets/images/home-architecture.png' | relative_url }}"
+           alt="Generative electron-flow model architecture for chemical reaction prediction"
+           width="1244" height="560" loading="eager" decoding="async" fetchpriority="high">
+      <figcaption>Electron-flow matching for reaction prediction, from our work in <a href="https://doi.org/10.1038/s41586-025-09426-9" target="_blank" rel="noopener noreferrer">Nature</a> (2025).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Research</p>
+      <h2>What we work on</h2>
+      <p class="lead">{{ site.data.research.overview.en }}</p>
+    </div>
+    <div class="card-grid">
+      {%- for area in site.data.research.areas -%}
+      <article class="area">
+        <h3>{{ area.title }}</h3>
+        <p>{{ area.body | truncatewords: 28 }}</p>
+      </article>
+      {%- endfor -%}
+    </div>
+    <p style="margin-top:var(--space-lg)"><a class="link" href="{{ '/research/' | relative_url }}">More about our research</a></p>
+  </div>
+</section>
+
+{%- assign covers = site.data.covers -%}
+{%- if covers and covers.size > 0 -%}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Highlights</p><h2>Journal covers</h2></div>
+    <div class="covers">
+      {%- for c in covers -%}
+      <figure class="cover">
+        <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        <figcaption>{{ c.journal }}, {{ c.year }}</figcaption>
+      </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Publications</p><h2>Recent work</h2></div>
+    <div class="pub-list">
+      {%- for p in site.data.publications limit: 5 -%}
+        {% include pub-item.html p=p %}
+      {%- endfor -%}
+    </div>
+    <p style="margin-top:var(--space-lg)"><a class="link" href="{{ '/publications/' | relative_url }}">All {{ site.data.publications | size }} publications</a></p>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Contact</p><h2>Find us</h2></div>
+    <dl class="contact-grid">
+      <div>
+        <dt>Address</dt>
+        <dd>{{ site.data.home.contact.address_en }}</dd>
+        <dt>Email</dt>
+        <dd><a class="link" href="mailto:{{ site.data.home.contact.email }}">{{ site.data.home.contact.email }}</a></dd>
+        <dt>Phone</dt>
+        <dd>{{ site.data.home.contact.phone }}</dd>
+      </div>
+      <div>
+        <dt>Principal investigator</dt>
+        <dd><a class="link" href="{{ '/pi/' | relative_url }}">{{ site.data.pi.name }}</a> ({{ site.data.pi.name_ko }})<br>{{ site.data.pi.title }}, {{ site.data.pi.department }}</dd>
+        <dt>Affiliation</dt>
+        <dd>{{ site.data.pi.college }}, {{ site.data.pi.institution }}</dd>
+      </div>
+    </dl>
+  </div>
+</section>

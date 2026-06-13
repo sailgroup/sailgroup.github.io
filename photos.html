@@ -1,0 +1,66 @@
+---
+layout: default
+title: Photos
+permalink: /photos/
+scripts: [photos]
+---
+<div class="container container-narrow page-head">
+  <p class="eyebrow">Gallery</p>
+  <h1>Photos</h1>
+  <p class="lead">Life in the Spectroscopy and AI Lab at Kookmin University: conferences, poster sessions, and group outings. Select a photo for the full image and caption.</p>
+</div>
+
+<section class="section section--tight">
+  <div class="container">
+    <ul class="gallery">
+      {%- for p in site.data.photos -%}
+      <li>
+        <button class="gallery__item" type="button" data-index="{{ forloop.index0 }}"
+                aria-label="View larger{% if p.title and p.title != '' %}: {{ p.title | escape }}{% endif %}{% if p.caption and p.caption != '' %}. {{ p.caption | escape }}{% endif %}">
+          <img src="{{ '/assets/images/' | append: p.image | relative_url }}" alt="{{ p.alt | default: p.title | escape }}" loading="lazy">
+          {%- if p.title and p.title != "" -%}<span class="gallery__cap">{{ p.title }}</span>{%- endif -%}
+        </button>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Highlights</p><h2>Journal covers</h2></div>
+    <div class="covers">
+      {%- for c in site.data.covers -%}
+      <figure class="cover">
+        <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        <figcaption>{{ c.journal }}, {{ c.year }}</figcaption>
+      </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script id="photos-data" type="application/json">[{%- for p in site.data.photos -%}{"src":{{ '/assets/images/' | append: p.image | relative_url | jsonify }},"title":{{ p.title | default: '' | jsonify }},"caption":{{ p.caption | default: '' | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]</script>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox__overlay" data-close></div>
+  <button class="lightbox__close" type="button" data-close aria-label="Close (Esc)">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" data-prev aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--next" type="button" data-next aria-label="Next photo">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+  <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+      <figcaption class="lightbox__cap">
+        <p class="lightbox__title"></p>
+        <p class="lightbox__desc"></p>
+        <p class="lightbox__count"></p>
+      </figcaption>
+    </figure>
+  </div>
+</div>

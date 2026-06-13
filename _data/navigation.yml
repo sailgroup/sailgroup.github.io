@@ -1,0 +1,27 @@
+# Primary navigation. Order and labels match the site spec:
+# HOME / RESEARCH / MEMBERS (PI, Members, Alumni) / PUBLICATIONS / GROUP GUIDE / PHOTOS
+- name: Home
+  url: /
+
+- name: Research
+  url: /research/
+
+- name: Members
+  url: /members/
+  children:
+    - name: Principal Investigator
+      url: /pi/
+    - name: Members
+      url: /members/
+    - name: Alumni
+      url: /alumni/
+
+- name: Publications
+  url: /publications/
+
+- name: Group Guide
+  url: https://docs.google.com/document/d/1ZdWAx0zq7Zv7_HgpjHrudxxzuV2inVjLmPZd-ciXWLo
+  external: true
+
+- name: Photos
+  url: /photos/

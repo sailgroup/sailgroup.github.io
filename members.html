@@ -1,0 +1,38 @@
+---
+layout: default
+title: Members
+permalink: /members/
+---
+<div class="container container-narrow page-head">
+  <p class="eyebrow">People</p>
+  <h1>Members</h1>
+  <p class="lead">Current members of the Spectroscopy and AI Lab.</p>
+</div>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="person-grid">
+      {%- for m in site.data.members -%}
+      <div class="person">
+        {%- if m.photo and m.photo != "" -%}
+          {%- if m.slug and m.slug != "" -%}
+          <a href="{{ '/members/' | append: m.slug | append: '/' | relative_url }}">
+            <img class="person__photo" src="{{ '/assets/images/' | append: m.photo | relative_url }}" alt="{{ m.name }}" loading="lazy">
+          </a>
+          {%- else -%}
+          <img class="person__photo" src="{{ '/assets/images/' | append: m.photo | relative_url }}" alt="{{ m.name }}" loading="lazy">
+          {%- endif -%}
+        {%- else -%}
+        <div class="person__ph" aria-hidden="true">{{ m.name | slice: 0 }}</div>
+        {%- endif -%}
+        <p class="person__name">{%- if m.slug and m.slug != "" -%}<a href="{{ '/members/' | append: m.slug | append: '/' | relative_url }}">{{ m.name }}</a>{%- else -%}{{ m.name }}{%- endif -%}</p>
+        <p class="person__ko">{{ m.name_ko }}</p>
+        <p class="person__role">{{ m.role }}</p>
+        {%- if m.email and m.email != "" -%}
+        <p class="person__links"><a href="mailto:{{ m.email }}" aria-label="Email {{ m.name }}">{% include icon.html name="mail" %}</a></p>
+        {%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

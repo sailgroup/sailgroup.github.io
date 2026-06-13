@@ -1,0 +1,76 @@
+# --- Site identity ---------------------------------------------------------
+title: Spectroscopy and AI Lab
+short_name: SAIL
+tagline: SAIL at Kookmin University
+description: >-
+  SAIL (Spectroscopy and AI Lab) at Kookmin University, led by Joonyoung F.
+  Joung. We develop machine learning methods for molecular property prediction,
+  chemical reaction prediction, de novo molecular design, and chemical databases.
+url: "https://sail.kookmin.ac.kr"
+baseurl: ""
+lang: en
+timezone: Asia/Seoul
+logo: /assets/images/sail-logo.png
+
+# --- Build -----------------------------------------------------------------
+markdown: kramdown
+permalink: pretty
+sass:
+  style: compressed
+
+collections:
+  members:
+    output: true
+    permalink: /members/:name/
+  alumni:
+    output: true
+    permalink: /alumni/:name/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/og-image.png
+  - scope:
+      path: ""
+      type: members
+    values:
+      layout: member
+  - scope:
+      path: ""
+      type: alumni
+    values:
+      layout: alumnus
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - _source/
+  - vendor/
+  - node_modules/
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - README.md
+  - CLAUDE.md
+  - DECISIONS.md
+  - PROGRESS.md
+  - CONTENT_INVENTORY.md
+  - REVIEW.md
+  - "*.ps1"
+  - "*.log"
+
+# --- SEO --------------------------------------------------------------------
+twitter:
+  card: summary_large_image
+author:
+  name: Joonyoung F. Joung
+social:
+  name: Spectroscopy and AI Lab
+  links:
+    - https://scholar.google.com/citations?user=0uuwTRQAAAAJ
+    - https://orcid.org/0000-0002-5976-2048

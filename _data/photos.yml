@@ -1,0 +1,99 @@
+# Lab photos. Source: live Wix gallery (sailabjfjoung.wixsite.com/sail/photos),
+# extracted Phase 6 with the gallery's own titles + descriptions (verbatim, bilingual).
+# Images re-fetched through Wix's fit transform (bounded <=1600px) for the web; originals
+# remain on Wix. Order matches the live gallery (newest first). No captions invented.
+
+- image: photos/photo-01.jpg
+  title: "2026.04.10. 선빈 생일 회식"
+  caption: "술들고 행복한 선빈 / Happy Birthday Seonbin!"
+  alt: "2026.04.10. 선빈 생일 회식"
+- image: photos/photo-02.jpg
+  title: "2026.04.10. 선빈 생일 회식"
+  caption: "아웃백에서"
+  alt: "2026.04.10. 선빈 생일 회식"
+- image: photos/photo-03.jpg
+  title: "2026.04.10. 선빈 생일 기념 방탈출"
+  caption: "키이스케이프 스테이션 - 머니머니부동산"
+  alt: "2026.04.10. 선빈 생일 기념 방탈출"
+- image: photos/photo-04.jpg
+  title: "2026.04.06. 벚꽃핀 학교에서"
+  alt: "2026.04.06. 벚꽃핀 학교에서"
+- image: photos/photo-05.jpg
+  title: "ACS Spring 2026, Atlanta, GA"
+  caption: "Joonyoung and Jihwan attended ACS"
+  alt: "ACS Spring 2026, Atlanta, GA"
+- image: photos/photo-06.jpg
+  title: "ACS Spring 2026, Atlanta, GA"
+  caption: "Joonyoung gave a talk at ACS"
+  alt: "ACS Spring 2026, Atlanta, GA"
+- image: photos/photo-07.jpg
+  title: "ACS Spring 2026, Atlanta, GA"
+  caption: "Jihwan presented a poster"
+  alt: "ACS Spring 2026, Atlanta, GA"
+- image: photos/photo-08.jpg
+  title: "Universal studio orlando, FL"
+  caption: "Joonyoung and Jihwan at Gringotts wizarding bank"
+  alt: "Universal studio orlando, FL"
+- image: photos/photo-09.jpg
+  title: "Universal studio orlando, FL"
+  caption: "Jihwan transferred to Hogwarts"
+  alt: "Universal studio orlando, FL"
+- image: photos/photo-10.jpg
+  title: "Universal studio orlando, FL"
+  caption: "Joonyoung and Jihwan at Hogwarts"
+  alt: "Universal studio orlando, FL"
+- image: photos/photo-11.jpg
+  title: "Universal studio orlando, FL"
+  caption: "Wizard Jihwan"
+  alt: "Universal studio orlando, FL"
+- image: photos/photo-12.jpg
+  title: "Universal studio orlando, FL"
+  caption: "Joonyoung and Jihwan at Diagon Alley"
+  alt: "Universal studio orlando, FL"
+- image: photos/photo-13.jpg
+  title: "Universal studio orlando, FL"
+  caption: "Hunter Jihwan"
+  alt: "Universal studio orlando, FL"
+- image: photos/photo-14.jpg
+  title: "2026.03.05"
+  alt: "2026.03.05"
+- image: photos/photo-15.jpg
+  title: "2026.03.05"
+  alt: "2026.03.05"
+- image: photos/photo-16.jpg
+  title: "2026.03.05"
+  alt: "2026.03.05"
+- image: photos/photo-17.jpg
+  title: "2026.03.05"
+  alt: "2026.03.05"
+- image: photos/photo-18.jpg
+  title: "2026.02.16. 설 맞이 방탈출"
+  caption: "황금열쇠 - Back화점 - 방탈출 성공"
+  alt: "2026.02.16. 설 맞이 방탈출"
+- image: photos/photo-19.jpg
+  title: "2025.11.26. 지환 생일파티 @ BUTO"
+  caption: "지환이 생일파티 @ BUTO / Happy Birthday Jihwan!"
+  alt: "2025.11.26. 지환 생일파티 @ BUTO"
+- image: photos/photo-20.jpg
+  title: "2025.11.21. (찬중없는) 찬중 생일 파티"
+  caption: "찬중 없는 찬중 생일 파티, / Happy Birthday Chanjoong!"
+  alt: "2025.11.21. (찬중없는) 찬중 생일 파티"
+- image: photos/photo-21.jpg
+  title: "2025.11.18. 삼양사 발표 및 견학"
+  caption: "대전 삼양사 중앙연구소에서의 세미나 및 견학"
+  alt: "2025.11.18. 삼양사 발표 및 견학"
+- image: photos/photo-22.jpg
+  title: "2025.11.18. 삼양사 발표 및 견학"
+  caption: "대전 삼양사 중앙연구소에서의 세미나 및 견학"
+  alt: "2025.11.18. 삼양사 발표 및 견학"
+- image: photos/photo-23.jpg
+  title: "2025.10.24. 제136회 대한화학회 창원 포스터 발표"
+  caption: "Predicting the refractive index of multi-component mixtures using a graph-based machine learning model / - 김찬중, 김지환"
+  alt: "2025.10.24. 제136회 대한화학회 창원 포스터 발표"
+- image: photos/photo-24.jpg
+  title: "2025.10.24. 제136회 대한화학회 창원 포스터 발표"
+  caption: "Machine learning-based prediction of solubility in pure and mixed solvent systems across temperatures / - 전혜정, 김찬중, 이진우, 이효진, 김지환"
+  alt: "2025.10.24. 제136회 대한화학회 창원 포스터 발표"
+- image: photos/photo-25.jpg
+  title: "2025.10.22-24. 제136회 대한화학회 창원"
+  alt: "2025.10.22-24. 제136회 대한화학회 창원"

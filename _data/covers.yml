@@ -1,0 +1,28 @@
+# Journal covers from issues that contain the lab's work, mapped to publication id.
+# Images identified from the source site's home gallery (original resolution staged
+# in _source/images, copied to assets/images during build). The NJC cover names the
+# paper directly; the others are matched by journal, volume, and date.
+- image: cover-17-njc-2020.png
+  w: 1654
+  h: 2166
+  publication_id: 17
+  journal: New Journal of Chemistry
+  year: 2020
+- image: cover-25-jacsau-2021.jpg
+  w: 2453
+  h: 3262
+  publication_id: 25
+  journal: JACS Au
+  year: 2021
+- image: cover-30-jcim-2022.jpg
+  w: 2453
+  h: 3262
+  publication_id: 30
+  journal: Journal of Chemical Information and Modeling
+  year: 2022
+- image: cover-35-acscentsci-2025.jpg
+  w: 2453
+  h: 3262
+  publication_id: 35
+  journal: ACS Central Science
+  year: 2025

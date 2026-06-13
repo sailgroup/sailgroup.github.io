@@ -1,0 +1,58 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner container">
+    <div class="brand-group">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="SAIL, Spectroscopy and AI Lab, home">
+        <img src="{{ '/assets/images/sail-logo.png' | relative_url }}"
+             alt="SAIL, Spectroscopy and AI Lab" width="224" height="57">
+      </a>
+      <span class="brand-sep" aria-hidden="true"></span>
+      <a class="brand-kmu" href="https://english.kookmin.ac.kr/" target="_blank" rel="noopener noreferrer" aria-label="Kookmin University">
+        <img src="{{ '/assets/images/kmu-emblem.png' | relative_url }}" alt="Kookmin University" width="80" height="80">
+      </a>
+    </div>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul id="site-menu" class="nav-list">
+        {%- for item in site.data.navigation -%}
+          {%- assign active = "" -%}
+          {%- if item.url == "/" -%}
+            {%- if page.url == "/" -%}{%- assign active = "yes" -%}{%- endif -%}
+          {%- elsif page.url contains item.url -%}
+            {%- assign active = "yes" -%}
+          {%- endif -%}
+          {%- if item.children -%}
+            {%- for c in item.children -%}
+              {%- if page.url contains c.url -%}{%- assign active = "yes" -%}{%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+
+          {%- if item.children -%}
+            <li class="nav-item has-children">
+              <a href="{{ item.url | relative_url }}"{% if active != "" %} aria-current="page"{% endif %}>{{ item.name }}</a>
+              <ul class="subnav">
+                {%- for c in item.children -%}
+                  {%- assign cactive = "" -%}
+                  {%- if page.url contains c.url -%}{%- assign cactive = "yes" -%}{%- endif -%}
+                  <li><a href="{{ c.url | relative_url }}"{% if cactive != "" %} aria-current="page"{% endif %}>{{ c.name }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </li>
+          {%- elsif item.external -%}
+            <li class="nav-item">
+              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
+            </li>
+          {%- else -%}
+            <li class="nav-item">
+              <a href="{{ item.url | relative_url }}"{% if active != "" %} aria-current="page"{% endif %}>{{ item.name }}</a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+</header>

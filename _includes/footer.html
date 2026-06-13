@@ -1,0 +1,37 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p class="footer-mark">S<span class="hl">AI</span>L</p>
+        <p>Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University.</p>
+        <a class="footer-kmu" href="https://english.kookmin.ac.kr/" target="_blank" rel="noopener noreferrer" aria-label="Kookmin University">
+          <img src="{{ '/assets/images/kookmin-logo.png' | relative_url }}" alt="Kookmin University" width="379" height="56" loading="lazy">
+        </a>
+      </div>
+
+      <div>
+        <p class="footer-title">Contact</p>
+        <address>
+          {{ site.data.home.contact.address_en }}<br>
+          <a href="mailto:{{ site.data.home.contact.email }}">{{ site.data.home.contact.email }}</a><br>
+          {{ site.data.home.contact.phone }}
+        </address>
+      </div>
+
+      <div>
+        <p class="footer-title">Links</p>
+        <ul class="footer-list">
+          <li><a href="{{ '/research/' | relative_url }}">Research</a></li>
+          <li><a href="{{ '/publications/' | relative_url }}">Publications</a></li>
+          <li><a href="{{ '/pi/' | relative_url }}">People</a></li>
+          <li><a href="https://english.kookmin.ac.kr/" target="_blank" rel="noopener noreferrer">Kookmin University</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <span>&copy; <span id="footer-year">{{ site.time | date: '%Y' }}</span> Spectroscopy and AI Lab</span>
+      <span>Kookmin University &middot; Seoul, Republic of Korea</span>
+    </div>
+  </div>
+</footer>
