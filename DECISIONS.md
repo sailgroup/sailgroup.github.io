@@ -474,6 +474,35 @@ proof and a headless-Chrome CDP functional test (filter 41→2→41, lightbox
 open/Esc, mobile nav toggle, generated member page, valid JSON-LD, 0 JS errors)
 in `REVIEW.md` §10.
 
+## D25 — Unified people identity: one people.yml + status + stable /people/<slug>/ URL
+
+The PI noted that a person's URL encoded their status (`/members/<slug>/` vs
+`/alumni/<slug>/`), so graduating someone changed their URL and broke every news
+link pointing to them — requiring manual edits. Fixed by decoupling URL from
+status:
+
+- `_data/members.yml` + `_data/alumni.yml` are merged into one `_data/people.yml`;
+  each person has `status: current | alumni`. The Members and Alumni pages filter
+  `site.data.people` by status. Graduating someone is now a one-field change
+  (`current` → `alumni`) — no file move, no cut-paste.
+- Every person has ONE canonical page at `/people/<slug>/`, independent of status.
+- `generate_pages.rb` emits the old `/members/<slug>/` and `/alumni/<slug>/`
+  addresses as meta-refresh **redirects** (canonical + noindex) to
+  `/people/<slug>/`, for every person. So existing news links, bookmarks, and
+  search results keep working — and keep working after a status change. News
+  links never need updating.
+- Updated: the `person` layout (replacing member/alumnus layouts), the grids,
+  `person-card.html` (links to `/people/`), the author-highlight roster
+  (`site.data.people`), and the validator (requires a valid `status`).
+  README/CONTRIBUTING now document people.yml + status; person links use
+  `/people/<slug>/`.
+
+Verified: build green (validator + html-proofer, no broken links); 11 person
+pages + 22 redirects generated; redirects follow through to `/people/` (CDP);
+Members grid 5 / Alumni grid 6; member_pubs still render (Heejeong 37, Seonbin 1);
+axe clean. All current member/alumni data (incl. the PI's latest GitHub links)
+preserved via a js-yaml merge.
+
 ## D24 — PI-feedback round (Phase 13): AND filter, structured citation, data-driven themes, badge layout, Heejeong's record
 
 Five PI-feedback items, each verified before deploy:
