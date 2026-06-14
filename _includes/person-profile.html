@@ -5,7 +5,7 @@ note. Pass: person (the data object), kind ("member" | "alumnus"), body (the
 optional prose body from the page, usually empty).
 {%- endcomment -%}
 {%- assign x = include.person -%}
-<section class="section">
+<section class="section section--tight">
   <div class="container container-narrow member-card">
     {%- if include.kind == "alumnus" -%}
     <p class="eyebrow"><a class="link" href="{{ '/alumni/' | relative_url }}">Alumni</a></p>
