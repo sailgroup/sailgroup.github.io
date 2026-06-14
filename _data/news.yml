@@ -29,7 +29,15 @@
   body: "Our new lab website was designed and developed by Chanjoong, replacing the previous Wix site with sail.kookmin.ac.kr. Thank you, Chanjoong, for your hard work and dedication!"
   link: "/"
   link_text: "Visit the site"
-
+  
+- date: "2026-03-08"
+  display_date: ""
+  category: event
+  title: "Chanjoong selected for the Global PBL Program"
+  body: "Congratulations to Chanjoong on being selected for the Global PBL Program! He will soon be heading to Irvine, CA, for this exciting opportunity. We wish him all the best!"
+  link: "/alumni/chanjoong-kim/"
+  link_text: "Alumni page"
+  
 - date: "2026-03-03"
   display_date: ""
   category: people
