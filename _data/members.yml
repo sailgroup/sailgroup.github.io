@@ -30,6 +30,7 @@
   slug: heejeong-kim
   joined: "2026-03-03"
   scholar: https://scholar.google.com/citations?user=q9ZRzPAAAAAJ
+  github: https://github.com/he2ja
   author_aliases: ["H Kim"]   # the abbreviated form used in her papers (matched + bold)
 
 - name: Jihwan Kim
@@ -48,10 +49,11 @@
   photo: seonbin-kim.jpg
   slug: seonbin-kim
   joined: "2026-02-01"
+  github: https://github.com/seonn00
 
 - name: Hyejeong Jeon
   name_ko: 전혜정
-  role: Undergraduate Researcher (UROP)
+  role: Undergraduate Researcher
   email: jeonhyejeong@kookmin.ac.kr
   photo: hyejeong-jeon.jpg
   slug: hyejeong-jeon
@@ -60,7 +62,7 @@
 
 - name: Siyeol In
   name_ko: 인시열
-  role: Undergraduate Researcher (UROP)
+  role: Undergraduate Researcher
   email: insy13@naver.com
   photo: siyeol-in.jpg
   slug: siyeol-in
