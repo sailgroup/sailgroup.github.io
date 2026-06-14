@@ -195,6 +195,9 @@ p { text-wrap: pretty; }
 .section--tight { padding-block: var(--space-xl); }
 
 .section-head { margin-bottom: var(--space-lg); }
+/* When a section-head carries a lead paragraph, match the hero's lead-to-figure
+   gap so the two intro blocks on the home page breathe the same way. */
+.section-head:has(.lead) { margin-bottom: clamp(2rem, 5vw, 3.75rem); }
 .section-head h2 { margin-top: 0.5rem; }
 .section-head .lead { margin-top: 0.75rem; max-width: none; } /* spans full content width, matching the hero lead */
 
