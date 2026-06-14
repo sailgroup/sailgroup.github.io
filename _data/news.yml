@@ -22,6 +22,14 @@
 #   link_text    OPTIONAL. Link label. Defaults to "Details".
 # ---------------------------------------------------------------------------
 
+- date: "2026-06-14"
+  display_date: ""
+  category: event
+  title: "New SAIL website launches"
+  body: "The lab website was redesigned and moved to sail.kookmin.ac.kr, replacing the previous Wix site."
+  link: "/"
+  link_text: "Visit the site"
+
 - date: "2026-02-01"
   display_date: ""
   category: people

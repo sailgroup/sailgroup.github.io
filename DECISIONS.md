@@ -397,3 +397,19 @@ Build-of-record note: the blanket `"*.js"` exclude that had silently dropped the
 `assets/js/*.js` (the cause of the earlier "filter chips not selectable" report) stays
 removed; this round re-confirmed `pubs.js`, `nav.js`, and `photos.js` are present in the build
 and that clicking a topic chip actually filters (CDP test, REVIEW.md Phase 10).
+
+**Same-day follow-ups (PI):**
+- *Header Kookmin emblem links home.* The top-left Kookmin emblem used to open
+  `english.kookmin.ac.kr` in a new tab; the PI asked it to go to the site home like the SAIL
+  wordmark. It now points to `/`. Kookmin's site is still linked from the footer (the wordmark
+  and the "Kookmin University" entry under Links), so the external path is not lost.
+- *DOI badge swapped to the official logo.* The supplied DOI image had a dark ring around the
+  circle that looked heavy against the white cards. Replaced with the official DOI Foundation
+  mark from Wikimedia Commons (`File:DOI_logo.svg`, brand amber `#fcb425`, no border) saved as
+  `assets/images/doi.svg`; the two `<img>` references (list footer and detail page) now point to
+  the SVG and the old `doi.png` was removed. SVG keeps the badge crisp at 24px and 38px. arXiv
+  and ChemRxiv badges are unchanged.
+- *News: website launch.* Added a 2026-06-14 `event` entry ("New SAIL website launches") to
+  `_data/news.yml`, noting the move to sail.kookmin.ac.kr from the previous Wix site. Confirmed
+  to the PI that the news feed is a plain YAML file any lab member can edit on GitHub (the file
+  header documents every field).

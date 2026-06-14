@@ -18,7 +18,7 @@
     {%- endif -%}
     {%- if hasdoi or haspre -%}
     <div class="pub__foot">
-      {%- if hasdoi -%}<a class="pub-badge" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.png' | relative_url }}" alt="DOI" height="24"></a>{%- endif -%}
+      {%- if hasdoi -%}<a class="pub-badge" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.svg' | relative_url }}" alt="DOI" width="24" height="24"></a>{%- endif -%}
       {%- if haspre -%}
         {%- assign pl = p.preprint_url | downcase -%}
         {%- if pl contains 'chemrxiv' -%}{%- assign prefile = 'chemrxiv.png' -%}{%- assign prealt = 'ChemRxiv' -%}{%- else -%}{%- assign prefile = 'arxiv.png' -%}{%- assign prealt = 'arXiv' -%}{%- endif -%}

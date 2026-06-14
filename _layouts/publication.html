@@ -31,7 +31,7 @@ layout: default
         {%- if hasdoi or haspre -%}
         <div class="paper__links">
           {%- if hasdoi -%}
-          <a class="paper__doi" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.png' | relative_url }}" alt="DOI" height="38"></a>
+          <a class="paper__doi" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.svg' | relative_url }}" alt="DOI" width="38" height="38"></a>
           {%- endif -%}
           {%- if haspre -%}
             {%- assign pl = p.preprint_url | downcase -%}
