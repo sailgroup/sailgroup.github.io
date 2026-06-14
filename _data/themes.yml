@@ -17,7 +17,7 @@
 #   name   REQUIRED. The label shown on the chip and the tag.
 #   color  REQUIRED. Hex color, e.g. "#1864ab".
 # ---------------------------------------------------------------------------
-- name: Clinical prediction RENAMED
+- name: Clinical outcome prediction
   color: "#b02a5b"
 - name: De novo molecule generation
   color: "#6741d9"
