@@ -72,7 +72,9 @@
   title: "Defining Chemical Problems for Artificial Intelligence Models"
   authors: "Joonyoung F. Joung*"
   journal: "Bull. Korean Chem. Soc."
-  ref: "47 (3), 317-327"
+  vol: 47
+  issue: 3
+  pages: "317-327"
   year: 2026
   doi: "https://doi.org/10.1002/bkcs.70113"
   preprint_url: ""
@@ -128,7 +130,8 @@
   title: "Higher-level Strategies for Computer-Aided Retrosynthesis"
   authors: "Jihye Roh, Joonyoung F. Joung, Kevin Yu, Zhengkai Tu, G. Logan Bartholomew, Omar A. Santiago-Reyes, Mun Hong Fong, Richmond Sarpong, Sarah E. Reisman, Connor W. Coley*"
   journal: "ACS Cent. Sci."
-  ref: "12, 345-357"
+  vol: 12
+  pages: "345-357"
   year: 2026
   doi: "https://doi.org/10.1021/acscentsci.5c02014"
   preprint_url: "https://doi.org/10.26434/chemrxiv-2025-21zvt"
@@ -177,7 +180,8 @@
   title: "Exploring Materials Data through Collaboration: 2024 KRICT ChemDX Hackathon"
   authors: "Su-Hyun Yoo*, Andre K. Y. Low, Jose Recatala-Gomez, Harikrishna Sahu, Chiho Kim, Joonyoung F. Joung, Hoje Chun, Katerina A. Christofidou, Joshua Berry, Michail Minotakis, Kisung Kang, Kwangsoo Kim, Gaheun Shin, Hyunwoo Jang, Sanghyuk Lee, Minkyu Park, Byung-Hyun Kim, Kihyun Shin, Jungho Shin, Aloysius Soon, Joshua Schrier*, Woosun Jang*"
   journal: "J. Mater. Inf."
-  ref: "5, 54"
+  vol: 5
+  pages: "54"
   year: 2025
   doi: "https://doi.org/10.20517/jmi.2025.65"
   preprint_url: ""
@@ -223,7 +227,8 @@
   title: "Electron flow matching for generative reaction mechanism prediction"
   authors: "Joonyoung F. Joung†, Mun Hong Fong†, Nicholas Casetti, Jordan P. Liles, Ne S. Dassanayake, Connor W. Coley*"
   journal: "Nature"
-  ref: "645, 115-123"
+  vol: 645
+  pages: "115-123"
   year: 2025
   doi: "https://doi.org/10.1038/s41586-025-09426-9"
   preprint_url: "https://doi.org/10.48550/arXiv.2502.12979"
@@ -268,7 +273,9 @@
   title: "ASKCOS: an open source software suite for synthesis planning"
   authors: "Zhengkai Tu, Sourabh J. Choure, Mun Hong Fong, Jihye Roh, Itai Levin, Kevin Yu, Joonyoung F. Joung, Nathan Morgan, Shih-Cheng Li, Xiaoqi Sun, Huiqian Lin, Mark Murnin, Jordan P. Liles, Thomas J. Struble, Michael E. Fortunato, Mengjie Liu, William H. Green, Klavs F. Jensen, Connor W. Coley*"
   journal: "Acc. Chem. Res."
-  ref: "58 (11), 1764-1775"
+  vol: 58
+  issue: 11
+  pages: "1764-1775"
   year: 2025
   doi: "https://doi.org/10.1021/acs.accounts.5c00155"
   preprint_url: "https://doi.org/10.48550/arXiv.2501.01835"
@@ -341,7 +348,9 @@
   title: "Generative deep learning-based efficient design of organic molecules with tailored properties"
   authors: "Minhi Han†, Joonyoung F. Joung†, Minseok Jeong, Dong Hoon Choi, Sungnam Park*"
   journal: "ACS Cent. Sci."
-  ref: "11 (2), 219-227"
+  vol: 11
+  issue: 2
+  pages: "219-227"
   year: 2025
   doi: "https://doi.org/10.1021/acscentsci.4c00656"
   preprint_url: ""
@@ -387,7 +396,9 @@
   title: "Reproducing Reaction Mechanisms with Machine-Learning Models Trained on a Large-Scale Mechanistic Dataset"
   authors: "Joonyoung F. Joung, Mun Hong Fong, Jihye Roh, Zhengkai Tu, John Bradshaw, Connor W. Coley*"
   journal: "Angew. Chem. Int. Ed."
-  ref: "63 (43), e202411296"
+  vol: 63
+  issue: 43
+  pages: "e202411296"
   year: 2024
   doi: "https://doi.org/10.1002/anie.202411296"
   preprint_url: "https://doi.org/10.48550/arXiv.2403.04580"
@@ -429,7 +440,9 @@
   title: "Universal surface tailoring of perovskite nanocrystals via organic pseudohalide ligands applicable to green and blue light-emitting diodes"
   authors: "Jaewan Ko, Hyeondoo Je, Kitae Kim, Taejun Eom, Joonyoung F. Joung, Sungnam Park, Joona Bang*, Dong Hoon Choi*"
   journal: "J. Mater. Chem. C"
-  ref: "10 (48), 18226-18233"
+  vol: 10
+  issue: 48
+  pages: "18226-18233"
   year: 2022
   doi: "https://doi.org/10.1039/D2TC04194D"
   preprint_url: ""
@@ -475,7 +488,9 @@
   title: "Reliable experimental method for determination of photoacidity revealed by quantum chemical calculations"
   authors: "Joonyoung F. Joung†, Minseok Jeong†, Sungnam Park*"
   journal: "Phys. Chem. Chem. Phys."
-  ref: "24 (36), 21714-21721"
+  vol: 24
+  issue: 36
+  pages: "21714-21721"
   year: 2022
   doi: "https://doi.org/10.1039/D2CP03308A"
   preprint_url: ""
@@ -518,7 +533,8 @@
   title: "Deep learning for development of organic optoelectronic devices: Efficient prescreening of hosts and emitters in deep-blue fluorescent OLED"
   authors: "Minseok Jeong†, Joonyoung F. Joung†, Jinhyo Hwang†, Minhi Han†, Chang Woo Koh, Dong Hoon Choi*, Sungnam Park*"
   journal: "npj Comput. Mater."
-  ref: "8, 147"
+  vol: 8
+  pages: "147"
   year: 2022
   doi: "https://doi.org/10.1038/s41524-022-00834-3"
   preprint_url: ""
@@ -558,7 +574,9 @@
   title: "Beyond Woodward-Fieser Rules: Design Principles of Property-Oriented Chromophores Based on Explainable Deep Learning Optical Spectroscopy"
   authors: "Joonyoung F. Joung†, Minhi Han†, Minseok Jeong, Sungnam Park*"
   journal: "J. Chem. Inf. Model."
-  ref: "62 (12), 2933-2942"
+  vol: 62
+  issue: 12
+  pages: "2933-2942"
   year: 2022
   doi: "https://doi.org/10.1021/acs.jcim.2c00173"
   preprint_url: ""
@@ -607,7 +625,8 @@
   title: "Pyridine-NBD: A homocysteine-selective fluorescent probe for glioblastoma (GBM) diagnosis based on a blood test"
   authors: "Youngwoong Kim, Jong Min An, Jaehoon Kim, Tamrin Chowdhury, Hyeon Jong Yu, Kyung-Min Kim, Ho Kang, Chul-Kee Park, Joonyoung F. Joung*, Sungnam Park*, Dokyoung Kim*"
   journal: "Anal. Chim. Acta"
-  ref: "1202, 339678"
+  vol: 1202
+  pages: "339678"
   year: 2022
   doi: "https://doi.org/10.1016/j.aca.2022.339678"
   preprint_url: ""
@@ -655,7 +674,9 @@
   title: "Locoregional Recurrence Prediction Using a Deep Neural Network of Radiological and Radiotherapy Images"
   authors: "Kyumin Han, Joonyoung F. Joung, Minhi Han, Wonmo Sung*, Young-nam Kang*"
   journal: "J. Pers. Med."
-  ref: "12 (2), 143"
+  vol: 12
+  issue: 2
+  pages: "143"
   year: 2022
   doi: "https://doi.org/10.3390/jpm12020143"
   preprint_url: ""
@@ -695,7 +716,9 @@
   title: "Fullerene-Based Triads with Controlled Alkyl Spacer Length as Photoactive Materials for Single-Component Organic Solar Cells"
   authors: "Young Woong Lee, Jiwoo Yeop, Hyojin Lim, Won-Woo Park, Joonyoung F. Joung, Sungnam Park, Oh-Hoon Kwon*, Jin Young Kim*, Han Young Woo*"
   journal: "ACS Appl. Mater. Interfaces"
-  ref: "13 (26), 43174-43185"
+  vol: 13
+  issue: 26
+  pages: "43174-43185"
   year: 2021
   doi: "https://doi.org/10.1021/acsami.1c14901"
   preprint_url: ""
@@ -749,7 +772,9 @@
   title: "Rational Molecular Design of Azaacene-based Narrowband Green-emitting Fluorophores: Modulation of Spectral Bandwidth and Vibronic Transitions"
   authors: "Jung Min Ha†, Hye Beom Shin†, Joonyoung F. Joung†, Won Jae Chung, Ji-Eun Jeong, Sangin Kim, Seon Hyoung Hur, Suk-Young Bae, Jun-Yun Kim, Jun Yeob Lee*, Sungnam Park*, Han Young Woo*"
   journal: "ACS Appl. Mater. Interfaces"
-  ref: "13 (22), 26227-26236"
+  vol: 13
+  issue: 22
+  pages: "26227-26236"
   year: 2021
   doi: "https://doi.org/10.1021/acsami.1c04981"
   preprint_url: ""
@@ -798,7 +823,9 @@
   title: "Deep Learning Optical Spectroscopy Based on Experimental Database: Potential Applications to Molecular Design"
   authors: "Joonyoung F. Joung†, Minhi Han†, Jinhyo Hwang, Minseok Jeong, Dong Hoon Choi, Sungnam Park*"
   journal: "JACS Au"
-  ref: "1 (4), 427-438"
+  vol: 1
+  issue: 4
+  pages: "427-438"
   year: 2021
   doi: "https://doi.org/10.1021/jacsau.1c00035"
   preprint_url: ""
@@ -848,7 +875,9 @@
   title: "Ligand-Assisted Direct Photolithography of Perovskite Nanocrystals Encapsulated with Multifunctional Polymer Ligands for Stable, Full-Colored, High-Resolution Displays"
   authors: "Jaewan Ko, Kyungyeon Ma, Joonyoung F. Joung, Sungnam Park, Joona Bang*"
   journal: "Nano Lett."
-  ref: "21 (5), 2288-2295"
+  vol: 21
+  issue: 5
+  pages: "2288-2295"
   year: 2021
   doi: "https://doi.org/10.1021/acs.nanolett.1c00134"
   preprint_url: ""
@@ -889,7 +918,8 @@
   title: "Light-directed trapping of metastable intermediates in a self-assembly process"
   authors: "Joonsik Seo†, Joonyoung F. Joung†, Sungnam Park*, Young Ji Son, Jaegeun Noh, Jong-Man Kim*"
   journal: "Nat. Commun."
-  ref: "11, 6260"
+  vol: 11
+  pages: "6260"
   year: 2020
   doi: "https://doi.org/10.1038/s41467-020-20172-6"
   preprint_url: ""
@@ -930,7 +960,9 @@
   title: "Direct Photolithographic Patterning of Colloidal Quantum Dots Enabled by UV-Crosslinkable & Hole-Transporting Polymer Ligand"
   authors: "Jaewan Ko, Jun Hyuk Chang, Byeong Guk Jeong, Hyung Jong Kim, Joonyoung F. Joung, Sungnam Park, Dong Hoon Choi*, Wan Ki Bae*, Joona Bang*"
   journal: "ACS Appl. Mater. Interfaces"
-  ref: "12 (37), 42153-42160"
+  vol: 12
+  issue: 37
+  pages: "42153-42160"
   year: 2020
   doi: "https://doi.org/10.1021/acsami.0c11988"
   preprint_url: ""
@@ -978,7 +1010,8 @@
   title: "Experimental database of optical properties of organic compounds"
   authors: "Joonyoung F. Joung†, Minhi Han†, Minseok Jeong, Sungnam Park*"
   journal: "Sci. Data"
-  ref: "7, 295"
+  vol: 7
+  pages: "295"
   year: 2020
   doi: "https://doi.org/10.1038/s41597-020-00634-8"
   preprint_url: ""
@@ -1009,7 +1042,9 @@
   title: "Green-, Red-, and NIR-Emitting Polymer Dot Probes for Simultaneous Multicolor Cell Imaging with a Single Excitation Wavelength"
   authors: "Ji-Eun Jeong, Mohammad Afsar Uddin, Hwa Sook Ryu, Hee-Chang Kim, Minsu Kang, Joonyoung F. Joung, Sungnam Park, Sang-Hee Shim, Han Young Woo*"
   journal: "Chem. Mater."
-  ref: "32 (15), 6685-6696"
+  vol: 32
+  issue: 15
+  pages: "6685-6696"
   year: 2020
   doi: "https://doi.org/10.1021/acs.chemmater.0c02172"
   preprint_url: ""
@@ -1057,7 +1092,9 @@
   title: "Penta-fluorophenol: A Smiles rearrangement-inspired cysteine-selective fluorescent probe for imaging of human glioblastoma"
   authors: "Jong Min An, Sangrim Kang, Eugene Huh, Yejin Kim, Dahae Lee, Hyejung Jo, Joonyoung F. Joung, Veronica Jihyun Kim, Ji Yeoun Lee, Yun Sik Dho, Yuna Jung, Junho K. Hur, Chan Park, Junyang Jung, Youngbuhm Huh, Ja-Lok Ku, Sojin Kim, Tamrin Chowdhury, Sungnam Park*, Jae Seung Kang*, Myung Sook Oh*, Chul-Kee Park*, Dokyoung Kim*"
   journal: "Chem. Sci."
-  ref: "11 (22), 5658-5668"
+  vol: 11
+  issue: 22
+  pages: "5658-5668"
   year: 2020
   doi: "https://doi.org/10.1039/D0SC01085E"
   preprint_url: ""
@@ -1097,7 +1134,8 @@
   title: "Chemically resistant and thermally stable quantum dots prepared by shell encapsulation with cross-linkable block copolymer ligands"
   authors: "Jaewan Ko, Byeong Guk Jeong, Jun Hyuk Chang, Joonyoung F. Joung, Suk-Young Yoon, Doh C. Lee, Sungnam Park, June Huh, Heesun Yang, Wan Ki Bae*, Se Gyu Jang*, Joona Bang*"
   journal: "NPG Asia Mater."
-  ref: "12, 19"
+  vol: 12
+  pages: "19"
   year: 2020
   doi: "https://doi.org/10.1038/s41427-020-0200-4"
   preprint_url: ""
@@ -1145,7 +1183,9 @@
   title: "A new visible light triggered Arrhenius photobase and its photo-induced reactions"
   authors: "Joonyoung F. Joung†, Jeeun Lee†, Joungin Hwang, Kihang Choi*, Sungnam Park*"
   journal: "New J. Chem."
-  ref: "44 (3), 668-673"
+  vol: 44
+  issue: 3
+  pages: "668-673"
   year: 2020
   doi: "https://doi.org/10.1039/C9NJ05404A"
   preprint_url: ""
@@ -1184,7 +1224,9 @@
   title: "Macrocyclic Diacetylene-Terthiophene Cocrystal: Molecular Self-Assembly, Topochemical Polymerization and Energy Transfer"
   authors: "Kwangmin Bae, Jung-Moo Heo, Mohammed Khazi, Joonyoung F. Joung, Sungnam Park, Youngmee Kim, Jong-Man Kim*"
   journal: "Cryst. Growth Des."
-  ref: "20 (1), 434-441"
+  vol: 20
+  issue: 1
+  pages: "434-441"
   year: 2020
   doi: "https://doi.org/10.1021/acs.cgd.9b01351"
   preprint_url: ""
@@ -1233,7 +1275,9 @@
   title: "Covalently Linked, Perylene diimide Polydiacetylene Nanofibers Display Enhanced Stability and Photocurrent with Reversible FRET Phenomenon"
   authors: "Joonsik Seo, Chra Kantha, Joonyoung F. Joung, Sungnam Park, Raz Jelinek, Jong-Man Kim*"
   journal: "Small"
-  ref: "15 (19), 1901342"
+  vol: 15
+  issue: 19
+  pages: "1901342"
   year: 2019
   doi: "https://doi.org/10.1002/smll.201901342"
   preprint_url: ""
@@ -1275,7 +1319,8 @@
   title: "2-(Benzothiazol-2-yl)pyren-1-ol, a new excited state intramolecular proton transfer-based fluorescent sensor for nitroaromatic compounds"
   authors: "Ying Hu†, Joonyoung F. Joung†, Ji-Eun Jeong, Yerin Jeong, Han Young Woo, Yuanbin She, Sungnam Park*, Juyoung Yoon*"
   journal: "Sens. Actuators B Chem."
-  ref: "280, 298-305"
+  vol: 280
+  pages: "298-305"
   year: 2019
   doi: "https://doi.org/10.1016/j.snb.2018.10.043"
   preprint_url: ""
@@ -1324,7 +1369,9 @@
   title: "Synthesis, Structure, and Photoluminescence Properties of a Metal-Organic Framework with Hexagonal Channels: Selective Turn-On Sensing for Mg2+ Ion"
   authors: "Sunhwi Eom, Sora Park, Jeong Hwa Song, Woo Ram Lee, Han Geul Lee, Dong Won Kang, Joonyoung Francis Joung, Sungnam Park, Dohyun Moon, Chang Seop Hong*"
   journal: "Eur. J. Inorg. Chem."
-  ref: "2019 (2), 330-335"
+  vol: 2019
+  issue: 2
+  pages: "330-335"
   year: 2019
   doi: "https://doi.org/10.1002/ejic.201801291"
   preprint_url: ""
@@ -1358,7 +1405,9 @@
   title: "A naphthoimidazolium-cholesterol derivative as a ratiometric fluorescence based chemosensor for the chiral recognition of carboxylates"
   authors: "Xin Zhang†, Gyeongju Ko†, Joonyoung F. Joung†, Meng Li, K.M.K. Swamy, Yerin Jeong, Dayoung Lee, Yifan Liu, Songyi Lee*, Sungnam Park*, Tony D. James*, Juyoung Yoon*"
   journal: "Chem. Commun."
-  ref: "54 (94), 13264-13267"
+  vol: 54
+  issue: 94
+  pages: "13264-13267"
   year: 2018
   doi: "https://doi.org/10.1039/C8CC06262E"
   preprint_url: ""
@@ -1394,7 +1443,9 @@
   title: "Fluorescent Organic Glass with Unique Optical and Mechanical Properties"
   authors: "Kahoe Ku, Joonyoung F. Joung, Heeyeon Park, Myeong-Geun Kim, Sungnam Park, Woong Kim*"
   journal: "Adv. Funct. Mater."
-  ref: "28 (39), 1081394"
+  vol: 28
+  issue: 39
+  pages: "1081394"
   year: 2018
   doi: "https://doi.org/10.1002/adfm.201801394"
   preprint_url: ""
@@ -1432,7 +1483,9 @@
   title: "Elucidating the Role of Molecule-Electrode Interfacial Defects in Charge Tunneling Characteristics of Large-area Junctions"
   authors: "Gyu Don Kong, Junji Jin, Martin M. Thuo, Hyunsun Song, Joonyoung F. Joung, Sungnam Park, Hyo Jae Yoon*"
   journal: "J. Am. Chem. Soc."
-  ref: "140 (38), 12303-12307"
+  vol: 140
+  issue: 38
+  pages: "12303-12307"
   year: 2018
   doi: "https://doi.org/10.1021/jacs.8b08146"
   preprint_url: ""
@@ -1485,7 +1538,8 @@
   title: "Topochemical polymerization of macrocyclic diacetylene with a naphthalene moiety for a tubular-shaped polydiacetylene chromophore"
   authors: "Chra Kantha, Hansol Kim, Youngmee Kim, Jung Moo Heo, Joonyoung F. Joung, Sungnam Park, Jong-Man Kim*"
   journal: "Dyes Pigm."
-  ref: "154, 199-204"
+  vol: 154
+  pages: "199-204"
   year: 2018
   doi: "https://doi.org/10.1016/j.dyepig.2018.02.039"
   preprint_url: ""
@@ -1516,7 +1570,9 @@
   title: "Cationic Effect on the Equilibria and Kinetics of the Excited-State Proton Transfer Reaction of a Photoacid in Aqueous Solutions"
   authors: "Joonyoung F. Joung†, Sangin Kim, Sungnam Park*"
   journal: "J. Phys. Chem. B"
-  ref: "122 (19), 5087-5093"
+  vol: 122
+  issue: 19
+  pages: "5087-5093"
   year: 2018
   doi: "https://doi.org/10.1021/acs.jpcb.8b00588"
   preprint_url: ""
@@ -1561,7 +1617,9 @@
   title: "Ionic effect on the excited-state proton transfer reactions in aqueous solutions"
   authors: "Joonyoung F. Joung, Sangin Kim, Sungnam Park*"
   journal: "Phys. Chem. Chem. Phys."
-  ref: "19 (37), 25509-25517"
+  vol: 19
+  issue: 37
+  pages: "25509-25517"
   year: 2017
   doi: "https://doi.org/10.1039/C7CP04392A"
   preprint_url: ""
@@ -1602,7 +1660,8 @@
   title: "Iridium Complex Bearing Urea Groups as a Phosphorescent Chemosensor for Chiral Anion Recognition"
   authors: "Ying Hu, Yinan Li, Joonyoung F. Joung, Jun Yin, Sungnam Park, Juyoung Yoon*, Myung Ho Hyun*"
   journal: "Sens. Actuators B Chem."
-  ref: "241, 224-229"
+  vol: 241
+  pages: "224-229"
   year: 2017
   doi: "https://doi.org/10.1016/j.snb.2016.10.076"
   preprint_url: ""
@@ -1630,7 +1689,9 @@
   title: "Chromogenic Tubular Polydiacetylenes from Topochemical Polymerization of Self-Assembled Macrocyclic Diacetylenes"
   authors: "Jung-Moo Heo, Youngmee Kim, Seulki Han, Joonyoung F. Joung, Sang-hwa Lee, Sejin Han, Jaegeun Noh, Jaeyoun Kim, Sungnam Park, Haiwon Lee, Yoon Mi Choi, Young-Sik Jung, Jong-Man Kim*"
   journal: "Macromolecules"
-  ref: "50 (3), 900-913"
+  vol: 50
+  issue: 3
+  pages: "900-913"
   year: 2017
   doi: "https://doi.org/10.1021/acs.macromol.6b02493"
   preprint_url: ""
@@ -1677,7 +1738,9 @@
   title: "Photoinduced Reversible Phase Transition of Azobenzene-Containing Polydiacetylene Crystals"
   authors: "Woohyun Baek, Jung-Moo Heo, Seungwhan Oh, Sang-hwa Lee, Jaeyong Kim, Joonyoung F. Joung, Sungnam Park, Hesson Chung, Jong-Man Kim*"
   journal: "Chem. Commun."
-  ref: "52 (97), 14059-14062"
+  vol: 52
+  issue: 97
+  pages: "14059-14062"
   year: 2016
   doi: "https://doi.org/10.1039/C6CC08606C"
   preprint_url: ""
@@ -1696,7 +1759,9 @@
   title: "Electronic relaxation dynamics of PCDA-PDA studied by transient absorption spectroscopy"
   authors: "Joonyoung F. Joung, Junwoo Baek, Youngseo Kim, Songyi Lee, Myung Hwa Kim, Juyoung Yoon*, Sungnam Park*"
   journal: "Phys. Chem. Chem. Phys."
-  ref: "18 (33), 23096-23104"
+  vol: 18
+  issue: 33
+  pages: "23096-23104"
   year: 2016
   doi: "https://doi.org/10.1039/C6CP03858A"
   preprint_url: ""
@@ -1745,7 +1810,9 @@
   title: "Origin of the Reversible Thermochromic Properties of Polydiacetylenes Revealed by Ultrafast Spectroscopy"
   authors: "Junwoo Baek†, Joonyoung F. Joung†, Songyi Lee†, Hanju Rhee, Myung Hwa Kim, Sungnam Park*, Juyoung Yoon*"
   journal: "J. Phys. Chem. Lett."
-  ref: "7 (2), 259-265"
+  vol: 7
+  issue: 2
+  pages: "259-265"
   year: 2016
   doi: "https://doi.org/10.1021/acs.jpclett.5b02671"
   preprint_url: ""
@@ -1786,7 +1853,9 @@
   title: "Effect of NaCl Salts on the Activation Energy of Excited-State Proton Transfer Reaction of Coumarin 183"
   authors: "Joonyoung F. Joung, Sangin Kim, Sungnam Park*"
   journal: "J. Phys. Chem. B"
-  ref: "119 (50), 15509-15515"
+  vol: 119
+  issue: 50
+  pages: "15509-15515"
   year: 2015
   doi: "https://doi.org/10.1021/acs.jpcb.5b09905"
   preprint_url: ""

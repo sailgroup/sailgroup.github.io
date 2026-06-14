@@ -9,16 +9,13 @@
   <div class="pub__body">
     <h3 class="pub__title">{% if p.id and p.id != "" %}<a class="pub__link" href="{{ '/publications/' | append: p.id | append: '/' | relative_url }}">{{ p.title }}</a>{% elsif p.doi and p.doi != "" %}<a class="pub__link" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
     <p class="pub__authors">{% include pi-authors.html authors=p.authors highlight=include.highlight %}</p>
-    <p class="pub__meta"><span class="pub__journal">{{ p.journal }}</span>{% if p.ref and p.ref != "" %} {{ p.ref }}{% endif %} ({{ p.year }})</p>
-    {%- if p.themes and p.themes.size > 0 -%}
-    <div class="tag-list pub__themes">
-      {%- for t in p.themes -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endfor -%}
-    </div>
-    {%- endif -%}
-    {%- if hasdoi or haspre -%}
+    <p class="pub__meta"><span class="pub__journal">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
+    {%- assign hastags = false -%}{%- if p.themes and p.themes.size > 0 -%}{%- assign hastags = true -%}{%- endif -%}
+    {%- if hasdoi or haspre or hastags -%}
     <div class="pub__foot">
       {%- if hasdoi -%}<a class="pub-badge" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.svg' | relative_url }}" alt="DOI" width="24" height="24"></a>{%- endif -%}
       {%- if haspre -%}{% include preprint-badge.html url=p.preprint_url class="pub-badge" height="24" %}{%- endif -%}
+      {%- if hastags -%}<div class="tag-list pub__themes">{%- for t in p.themes -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endfor -%}</div>{%- endif -%}
     </div>
     {%- endif -%}
   </div>

@@ -1,0 +1,35 @@
+# themes.yml
+# ---------------------------------------------------------------------------
+# The research-topic tags used on the Publications page (the filter chips and the
+# colored tags on each paper). This is the single place to edit them.
+#
+# HOW TO EDIT (no coding needed, edit this file on GitHub):
+#   - Reorder:  move a block up/down — the filter chips follow this order.
+#   - Rename:   change `name`. IMPORTANT: also update that name in every paper's
+#               `themes:` in publications.yml (they must match exactly). The build
+#               will fail with a clear message if a paper uses a name not listed here.
+#   - Recolor:  change `color` to any hex value. Use a reasonably dark color so the
+#               tag text stays readable on its light background.
+#   - Add:      copy a block, give it a new name + color. Then tag papers with it.
+#   - Remove:   delete a block (after removing that name from every paper).
+#
+# FIELDS
+#   name   REQUIRED. The label shown on the chip and the tag.
+#   color  REQUIRED. Hex color, e.g. "#1864ab".
+# ---------------------------------------------------------------------------
+- name: Clinical outcome prediction
+  color: "#b02a5b"
+- name: De novo molecule generation
+  color: "#6741d9"
+- name: Excited-state reaction
+  color: "#c92a2a"
+- name: Experimental dataset
+  color: "#0b7285"
+- name: Molecular property prediction
+  color: "#1864ab"
+- name: Optical property analysis
+  color: "#862e9c"
+- name: Quantum chemical modeling
+  color: "#846800"
+- name: Reaction pathway prediction
+  color: "#1f7a33"

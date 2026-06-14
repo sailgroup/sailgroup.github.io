@@ -25,7 +25,7 @@ layout: default
     <div class="paper__head{% if hasimg %} paper__head--figured{% endif %}">
       <div class="paper__head-main">
         <h1 class="paper__title">{{ p.title }}</h1>
-        <p class="paper__meta"><span class="pub__journal">{{ p.journal }}</span>{% if p.ref and p.ref != "" %}, {{ p.ref }}{% endif %} ({{ p.year }})</p>
+        <p class="paper__meta"><span class="pub__journal">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
         <p class="paper__authors">{% include pi-authors.html authors=p.authors %}</p>
         {%- if hasdoi or haspre -%}
         <div class="paper__links">

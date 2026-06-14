@@ -29,11 +29,15 @@ module SAIL
 
       validate_people(site.data["members"], "members.yml", "member")
       validate_people(site.data["alumni"],  "alumni.yml",  "alumnus")
+      validate_themes(site.data["themes"])
       validate_publications(site.data["publications"])
       validate_news(site.data["news"])
       validate_covers(site.data["covers"], site.data["publications"])
       validate_research(site.data["research"])
       validate_photos(site.data["photos"])
+      (site.data["member_pubs"] || {}).each do |slug, pubs|
+        validate_person_pubs(pubs, "member_pubs/#{slug}.yml")
+      end
 
       @warns.each { |w| Jekyll.logger.warn "Data check:", w }
       return if @errors.empty?
@@ -160,6 +164,34 @@ module SAIL
         logos = @site.data["journal_logos"] || {}
         if !blank?(p["journal"]) && !logos.key?(p["journal"])
           warn("publications.yml id #{id}: journal \"#{p["journal"]}\" has no entry in journal_logos.yml (no logo will show).")
+        end
+        # Every theme a paper uses must be defined in themes.yml.
+        theme_names = (@site.data["themes"] || []).map { |t| t["name"] }
+        (p["themes"] || []).each do |t|
+          err("#{at}: theme \"#{t}\" is not in _data/themes.yml (add it there or fix the spelling).") unless theme_names.include?(t)
+        end
+      end
+    end
+
+    # --- themes -------------------------------------------------------------
+    def validate_themes(list)
+      return if list.nil?
+      unless list.is_a?(Array)
+        err("themes.yml: expected a list of themes.")
+        return
+      end
+      seen = {}
+      list.each_with_index do |t, i|
+        at = blank?(t["name"]) ? "themes.yml entry #{i + 1}" : "themes.yml \"#{t["name"]}\""
+        err("#{at}: missing required field `name`.") if blank?(t["name"])
+        if blank?(t["color"])
+          err("#{at}: missing required field `color` (a hex like \"#1864ab\").")
+        elsif !(t["color"].to_s =~ /\A#[0-9a-fA-F]{6}\z/)
+          err("#{at}: `color: #{t["color"]}` must be a 6-digit hex like \"#1864ab\".")
+        end
+        unless blank?(t["name"])
+          err("#{at}: duplicate theme name.") if seen[t["name"]]
+          seen[t["name"]] = true
         end
       end
     end

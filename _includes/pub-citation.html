@@ -1,0 +1,2 @@
+{%- comment -%}Volume/issue/pages for a paper, formatted **vol** (issue), pages. Falls back to free-text `ref` (e.g. "Advance Article"). Emits a leading space when non-empty, nothing when empty. Pass p=<paper>.{%- endcomment -%}
+{%- assign p = include.p -%}{%- if p.vol -%}{{ " " }}<strong>{{ p.vol }}</strong>{% if p.issue and p.issue != "" %} ({{ p.issue }}){% endif %}{% if p.pages and p.pages != "" %}, {{ p.pages }}{% endif %}{%- elsif p.ref and p.ref != "" -%}{{ " " }}{{ p.ref }}{%- endif -%}

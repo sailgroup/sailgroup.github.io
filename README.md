@@ -19,6 +19,7 @@ Live: https://sail.kookmin.ac.kr
 | 동문 | `_data/alumni.yml` |
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
+| 주제(테마) | `_data/themes.yml` — 필터 칩의 개수·색·이름·순서를 한 곳에서 편집 |
 
 저자 목록의 PI 이름 `Joonyoung F. Joung` 은 자동으로 굵게 표시됩니다.
 
@@ -29,10 +30,12 @@ Live: https://sail.kookmin.ac.kr
   authors: "Joonyoung F. Joung*, Jihwan Kim"   # 필수
   journal: "Nature"            # 필수
   year: 2026                   # 필수 (따옴표 없는 숫자)
-  ref: "12, 345"               # 선택: 권/페이지
+  vol: 12                      # 선택: 권 (굵게 표시됨)
+  issue: 3                     # 선택: 호 (없으면 생략, 괄호로 표시)
+  pages: "345-357"             # 선택: 페이지 → "12 (3), 345-357"
   doi: "https://doi.org/10.1038/..."           # 선택
   preprint_url: "https://arxiv.org/abs/..."    # 선택 (arXiv/ChemRxiv 자동 판별)
-  themes: ["Reaction pathway prediction"]      # 선택: 주제 필터 태그
+  themes: ["Reaction pathway prediction"]      # 선택: _data/themes.yml 에 있는 이름만
   image: "pub-42.jpg"          # 선택: assets/images/pubs/ 에 업로드
   abstract: "English abstract."                # 선택
   abstract_ko: "한국어 초록."                   # 선택 (초록으로 표시)

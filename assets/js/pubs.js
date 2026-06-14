@@ -25,7 +25,8 @@
 
     pubs.forEach(function (p) {
       var themes = (p.getAttribute("data-themes") || "").split("|");
-      var show = none || themes.some(function (t) { return active[t]; });
+      // AND: a paper shows only if it carries every selected theme.
+      var show = none || selected.every(function (t) { return themes.indexOf(t) !== -1; });
       p.classList.toggle("is-hidden", !show);
     });
 

@@ -366,28 +366,8 @@ p { text-wrap: pretty; }
 }
 .tag--accent { color: var(--orange-deep); background: var(--orange-wash); border-color: #f6d9c2; }
 
-/* Per-topic colors, shared by the publication tags and the filter chips. */
-$themes: (
-  "clinical-outcome-prediction":   #b02a5b,
-  "de-novo-molecule-generation":   #6741d9,
-  "excited-state-reaction":        #c92a2a,
-  "experimental-dataset":          #0b7285,
-  "molecular-property-prediction": #1864ab,
-  "optical-property-analysis":     #862e9c,
-  "quantum-chemical-modeling":     #846800,
-  "reaction-pathway-prediction":   #1f7a33,
-);
-@each $slug, $c in $themes {
-  .tag--#{$slug} {
-    color: $c;
-    background: rgba($c, 0.10);
-    border-color: rgba($c, 0.30);
-  }
-  .pub-filter[data-theme-slug="#{$slug}"] { --c: #{$c}; }
-  .pub-filter[data-theme-slug="#{$slug}"].is-active {
-    background: $c; border-color: $c; color: #fff;
-  }
-}
+/* Per-topic colors are generated from _data/themes.yml into an inline <style>
+   (see _includes/theme-styles.html), so they can be edited without touching SCSS. */
 
 /* --- Prose ---------------------------------------------------------------- */
 .prose > * + * { margin-top: 1.1rem; }
@@ -544,7 +524,7 @@ $themes: (
 }
 .pub__meta { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.25rem; }
 .pub__journal { font-style: italic; color: var(--ink-2); }
-.pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem; margin-top: 0.7rem; }
+.pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.7rem; }
 .pub-badge { display: inline-flex; }
 .pub-badge img { height: 24px; width: auto; transition: transform 0.15s ease; }
 .pub-badge:hover img { transform: translateY(-2px); }
