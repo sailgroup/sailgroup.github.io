@@ -22,7 +22,5 @@ Pass: person (the data object), base ("members" | "alumni").
   <p class="person__ko" lang="ko">{{ x.name_ko }}</p>
   <p class="person__role">{{ x.role }}</p>
   {%- if x.note and x.note != "" -%}<p class="person__note">{{ x.note }}</p>{%- endif -%}
-  {%- if x.email and x.email != "" -%}
-  <p class="person__links"><a href="mailto:{{ x.email }}" aria-label="Email {{ x.name }}">{% include icon.html name="mail" %}</a></p>
-  {%- endif -%}
+  {%- include social-links.html person=x variant="compact" -%}
 </div>

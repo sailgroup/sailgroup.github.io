@@ -22,6 +22,7 @@ permalink: /pi/
           <span>{% include icon.html name="phone" %} {{ pi.phone }}</span>
           <a href="{{ pi.scholar }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="scholar" %} Google Scholar</a>
           <a href="{{ pi.orcid }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="orcid" %} ORCID</a>
+          {%- if pi.github and pi.github != "" -%}<a href="{{ pi.github }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="github" %} GitHub</a>{%- endif -%}
         </div>
       </div>
 

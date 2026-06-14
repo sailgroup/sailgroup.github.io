@@ -465,7 +465,7 @@ $themes: (
 .person__name a:hover { color: var(--orange-deep); }
 .person__role { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.15rem; }
 .person__ko { font-size: var(--fs-xs); color: var(--muted); }
-.person__links { margin-top: 0.5rem; display: flex; justify-content: center; gap: 0.6rem; }
+.person__links { margin-top: 0.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
 .person__links a { color: var(--muted); }
 .person__links a:hover { color: var(--orange-ink); }
 
