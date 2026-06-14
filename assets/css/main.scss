@@ -25,7 +25,7 @@
   /* Brand orange */
   --orange:      #f89858;   /* exact logo accent */
   --orange-2:    #ef8743;   /* slightly deeper, for fills/hover */
-  --orange-ink:  #b9560f;   /* AA-contrast orange for text on white */
+  --orange-ink:  #ad4f0a;   /* AA-contrast orange for text on white and tinted backgrounds */
   --orange-deep: #9e4a0c;   /* hover for orange text */
   --orange-wash: #fdf1e7;   /* faint orange tint background */
 
@@ -331,8 +331,7 @@ p { text-wrap: pretty; }
   margin-top: 0.85rem; text-align: center;
   font-size: var(--fs-sm); color: var(--muted);
 }
-.hero__figure figcaption a { color: var(--orange-ink); }
-.hero__figure figcaption a:hover { text-decoration: underline; }
+.hero__figure figcaption a { color: var(--orange-ink); text-decoration: underline; }
 
 /* --- Buttons -------------------------------------------------------------- */
 .btn {
@@ -376,7 +375,7 @@ $themes: (
   "molecular-property-prediction": #1864ab,
   "optical-property-analysis":     #862e9c,
   "quantum-chemical-modeling":     #846800,
-  "reaction-pathway-prediction":   #2b8a3e,
+  "reaction-pathway-prediction":   #1f7a33,
 );
 @each $slug, $c in $themes {
   .tag--#{$slug} {
@@ -737,8 +736,7 @@ body.no-scroll { overflow: hidden; }
   margin-top: 0.6rem; text-align: center;
   font-size: var(--fs-xs); color: var(--muted);
 }
-.research-area__figure figcaption a { color: var(--orange-ink); }
-.research-area__figure figcaption a:hover { text-decoration: underline; }
+.research-area__figure figcaption a { color: var(--orange-ink); text-decoration: underline; }
 
 /* --- Member personal card ------------------------------------------------- */
 .member-card { text-align: center; }

@@ -17,7 +17,7 @@ scripts: [photos]
       <li>
         <button class="gallery__item" type="button" data-index="{{ forloop.index0 }}"
                 aria-label="View larger{% if p.title and p.title != '' %}: {{ p.title | escape }}{% endif %}{% if p.caption and p.caption != '' %}. {{ p.caption | escape }}{% endif %}">
-          <img src="{{ '/assets/images/' | append: p.image | relative_url }}" alt="{{ p.alt | default: p.title | escape }}" loading="lazy">
+          <img src="{{ '/assets/images/' | append: p.image | relative_url }}" alt="" loading="lazy">
           {%- if p.title and p.title != "" -%}<span class="gallery__cap">{{ p.title }}</span>{%- endif -%}
         </button>
       </li>
