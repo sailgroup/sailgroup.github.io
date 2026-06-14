@@ -474,6 +474,35 @@ proof and a headless-Chrome CDP functional test (filter 41→2→41, lightbox
 open/Esc, mobile nav toggle, generated member page, valid JSON-LD, 0 JS errors)
 in `REVIEW.md` §10.
 
+## D23 — Members/alumni can list their own external publications (Phase 12)
+
+A member or alumnus often has papers that are not in the lab's
+`publications.yml` (e.g. a postdoctoral researcher's work from a previous
+position). Each person entry now takes an optional `publications:` list (title,
+authors, journal, year; optional doi/preprint_url). The member page shows these
+**merged with** the lab papers auto-matched by author name, de-duplicated by
+DOI/title, newest first.
+
+Why this shape:
+- **One place to edit, lab list stays clean.** The papers live in the person's
+  own `members.yml`/`alumni.yml` entry, not in `publications.yml`, so the lab
+  Publications page keeps showing only lab papers, and a contributor edits a
+  single entry to manage their own list.
+- **No broken links.** An external paper has no generated detail page, so
+  `pub-item.html` links its title to the DOI (or renders plain text) instead of a
+  dead `/publications/<id>/`. The page owner's name is bold (reusing the existing
+  `.pi` highlight; no new CSS), via an optional `highlight` arg on
+  `pi-authors.html`.
+- **Validated.** `validate_data.rb` checks each personal entry (required fields,
+  integer year, URL-shaped doi/preprint, image exists) so a mistake fails the
+  build with a clear message.
+
+The feature is dormant until a person adds the field: with no current member
+listing personal papers, every rendered page is byte-identical to before
+(proven by artifact diff). Rendering was verified by temporarily adding a paper
+to the postdoc's entry (title linked to its DOI, her name bold, single-column,
+no broken internal link) then removing it. See `REVIEW.md` §12.
+
 ### Autonomous decisions (Phase 11, no human gate — rationale one line each)
 
 - **Generate pages instead of auto-creating stubs.** Cleaner single source of

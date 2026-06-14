@@ -410,3 +410,17 @@ The site was never touched (the build aborts before deploy). The logic review
 also hardened the validator to reject a quoted `year` and an unquoted news `date`
 with a clear message — both would otherwise mix value types and crash the year-
 group / date sort rather than fail cleanly.
+
+## 12. Per-member external publications (2026-06-14, D23)
+
+Members/alumni can now list their own papers (not on the lab Publications page)
+via an optional `publications:` field. Verified on real CI builds:
+
+| Check | Result |
+| --- | --- |
+| Existing pages unchanged (feature dormant) | all 61 page bodies byte-identical to the deployed site (artifact diff) |
+| Renders when data added (temp paper on the postdoc) | "Publications" section shows the paper; title links to its **DOI** (`target=_blank`), not a dead `/publications/` link; owner's name **bold**; single-column `pub--nofig`; journal as text |
+| Merge + order | personal papers merge with name-matched lab papers, de-duped by DOI/title, newest first |
+| Validation | required fields / integer year / URL doi / image existence checked per entry; build fails clearly on a mistake |
+
+The test entry was removed before deploy.
