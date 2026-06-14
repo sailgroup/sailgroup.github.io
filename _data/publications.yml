@@ -521,7 +521,6 @@
   preprint_url: ""
   themes:
     - "Quantum chemical modeling"
-    - "Excited-state dynamics"
     - "Spectroscopic analysis"
   image: "pub-32.jpg"
   abstract: >
@@ -1214,7 +1213,6 @@
   doi: "https://doi.org/10.1039/C9NJ05404A"
   preprint_url: ""
   themes:
-    - "Excited-state dynamics"
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-17.jpg"
@@ -1350,7 +1348,6 @@
   doi: "https://doi.org/10.1016/j.snb.2018.10.043"
   preprint_url: ""
   themes:
-    - "Excited-state dynamics"
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-14.jpg"
@@ -1603,7 +1600,6 @@
   doi: "https://doi.org/10.1021/acs.jpcb.8b00588"
   preprint_url: ""
   themes:
-    - "Excited-state dynamics"
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-8.jpg"
@@ -1651,7 +1647,6 @@
   doi: "https://doi.org/10.1039/C7CP04392A"
   preprint_url: ""
   themes:
-    - "Excited-state dynamics"
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-7.jpg"
@@ -1794,7 +1789,6 @@
   doi: "https://doi.org/10.1039/C6CP03858A"
   preprint_url: ""
   themes:
-    - "Excited-state dynamics"
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-3.jpg"
@@ -1846,7 +1840,6 @@
   doi: "https://doi.org/10.1021/acs.jpclett.5b02671"
   preprint_url: ""
   themes:
-    - "Excited-state dynamics"
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-2.jpg"
@@ -1890,7 +1883,6 @@
   doi: "https://doi.org/10.1021/acs.jpcb.5b09905"
   preprint_url: ""
   themes:
-    - "Excited-state dynamics"
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-1.jpg"
