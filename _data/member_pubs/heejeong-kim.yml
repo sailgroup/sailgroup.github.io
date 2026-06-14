@@ -1,0 +1,148 @@
+# Heejeong Kim — publications from before joining SAIL (Juyoung Yoon group, Ewha
+# Womans University), from her Google Scholar profile. Shown on /members/heejeong-kim/.
+# This file keeps members.yml clean for a long list; the member page reads it by slug.
+# Fields per entry: title, authors, journal, year (doi optional).
+- title: "Activity-based NIR fluorescent probes based on the versatile hemicyanine scaffold: design strategy, biomedical applications, and outlook"
+  authors: "H Li, H Kim, F Xu, J Han, Q Yao, J Wang, K Pu, X Peng, J Yoon"
+  journal: "Chemical Society Reviews"
+  year: 2022
+- title: "Fluorescent dyes based on rhodamine derivatives for bioimaging and therapeutics: recent progress, challenges, and prospects"
+  authors: "S Zeng, X Liu, YS Kafuti, H Kim, J Wang, X Peng, H Li, J Yoon"
+  journal: "Chemical Society Reviews"
+  year: 2023
+- title: "Recent advances in fluorescent and colorimetric chemosensors for the detection of chemical warfare agents: a legacy of the 21st century"
+  authors: "V Kumar, H Kim, B Pandey, TD James, J Yoon, EV Anslyn"
+  journal: "Chemical Society Reviews"
+  year: 2023
+- title: "Activity-based smart AIEgens for detection, bioimaging, and therapeutics: recent progress and outlook"
+  authors: "H Li, H Kim, J Han, VN Nguyen, X Peng, J Yoon"
+  journal: "Aggregate"
+  year: 2021
+- title: "Rational design of a highly selective near-infrared two-photon fluorogenic probe for imaging orthotopic hepatocellular carcinoma chemotherapy"
+  authors: "X Wu, R Wang, S Qi, N Kwon, J Han, H Kim, H Li, F Yu, J Yoon"
+  journal: "Angewandte Chemie International Edition"
+  year: 2021
+- title: "An ER-targeted, viscosity-sensitive hemicyanine dye for the diagnosis of nonalcoholic fatty liver and photodynamic cancer therapy by activating pyroptosis pathway"
+  authors: "S Zeng, Y Wang, C Chen, H Kim, X Liu, M Jiang, Y Yu, YS Kafuti, Q Chen, et al."
+  journal: "Angewandte Chemie International Edition"
+  year: 2024
+- title: "Reactivity differences enable ROS for selective ablation of bacteria"
+  authors: "X Wu, M Yang, JS Kim, R Wang, G Kim, J Ha, H Kim, Y Cho, KT Nam, et al."
+  journal: "Angewandte Chemie International Edition"
+  year: 2022
+- title: "Mitochondria-targeted smart AIEgens: Imaging and therapeutics"
+  authors: "H Li, H Kim, C Zhang, S Zeng, Q Chen, L Jia, J Wang, X Peng, J Yoon"
+  journal: "Coordination Chemistry Reviews"
+  year: 2022
+- title: "Supramolecular agents for combination of photodynamic therapy and other treatments"
+  authors: "N Kwon, H Kim, X Li, J Yoon"
+  journal: "Chemical Science"
+  year: 2021
+- title: "Photodynamic and photothermal therapies for bacterial infection treatment"
+  authors: "H Kim, YR Lee, H Jeong, J Lee, X Wu, H Li, J Yoon"
+  journal: "Smart Molecules"
+  year: 2023
+- title: "Tumor selective metabolic reprogramming as a prospective PD-L1 depression strategy to reactivate immunotherapy"
+  authors: "Y Liu, Z Zhou, J Hou, W Xiong, H Kim, J Chen, C Zheng, X Jiang, J Yoon, et al."
+  journal: "Advanced Materials"
+  year: 2022
+- title: "Recent advances and prospects in organic molecule-based phototheranostic agents for enhanced cancer phototherapy"
+  authors: "YY Zhao, H Kim, VN Nguyen, S Jang, WJ Jang, J Yoon"
+  journal: "Coordination Chemistry Reviews"
+  year: 2024
+- title: "Rational design and application of an indolium-derived heptamethine cyanine with record-long second near-infrared emission"
+  authors: "X Ma, Y Huang, SAA Abedi, H Kim, TTB Davin, X Liu, WC Yang, Y Sun, et al."
+  journal: "CCS Chemistry"
+  year: 2022
+- title: "Activation of apoptosis by rationally constructing NIR amphiphilic AIEgens: surmounting the shackle of mitochondrial membrane potential for amplified tumor ablation"
+  authors: "H Li, Y Lu, J Chung, J Han, H Kim, Q Yao, G Kim, X Wu, S Long, X Peng, et al."
+  journal: "Chemical Science"
+  year: 2021
+- title: "Activatable Near-Infrared Versatile Fluorescent and Chemiluminescent Dyes Based on the Dicyanomethylene-4H-pyran Scaffold: From Design to Imaging"
+  authors: "H Li, J Wang, H Kim, X Peng, J Yoon"
+  journal: "Angewandte Chemie International Edition"
+  year: 2024
+- title: "Enhancing biosafety in photodynamic therapy: progress and perspectives"
+  authors: "YY Zhao, L Lu, H Jeong, H Kim, X Li, H Zhang, J Yoon"
+  journal: "Chemical Society Reviews"
+  year: 2025
+- title: "Recent progress on photodynamic therapy and photothermal therapy"
+  authors: "H Kim, M Yang, N Kwon, M Cho, J Han, R Wang, S Qi, H Li, VN Nguyen, et al."
+  journal: "Bulletin of the Korean Chemical Society"
+  year: 2023
+- title: "A renal clearable nano-assembly with förster resonance energy transfer amplified superoxide radical and heat generation to overcome hypoxia resistance in phototherapeutics"
+  authors: "YY Zhao, X Zhang, Y Xu, Z Chen, B Hwang, H Kim, H Liu, X Li, J Yoon"
+  journal: "Angewandte Chemie International Edition"
+  year: 2024
+- title: "Recent advances and challenges in monitoring chromium ions using fluorescent probes"
+  authors: "S Liu, L Zhang, H Kim, J Sun, J Yoon"
+  journal: "Coordination Chemistry Reviews"
+  year: 2024
+- title: "Supramolecular phthalocyanine assemblies-enhanced synergistic photodynamic and photothermal therapy guided by photoacoustic imaging"
+  authors: "YY Zhao, X Zhang, Z Chen, Y Xu, H Kim, H Jeong, YR Lee, J Lee, X Li, et al."
+  journal: "Aggregate"
+  year: 2024
+- title: "A Hypoxia-Triggered Bioreduction of Hydrophilic Type I Photosensitizer for Switchable In Vivo Photoacoustic Imaging and High-Specificity Cancer Phototherapy"
+  authors: "YY Zhao, Y Xu, X Zhang, Z Chen, H Kim, X Li, J Yoon"
+  journal: "Angewandte Chemie"
+  year: 2025
+- title: "Acid-Responsive Nanoporphyrin Evolution for Near-Infrared Fluorescence-Guided Photo-Ablation of Biofilm"
+  authors: "M Yang, Z Özdemir, H Kim, S Nah, E Andris, X Li, Z Wimmer, J Yoon"
+  journal: "Advanced Healthcare Materials"
+  year: 2022
+- title: "Structure-oriented design strategy to construct NIR AIEgens to selectively combat gram (+) multidrug-resistant bacteria in vivo"
+  authors: "H Li, M Yang, JS Kim, J Ha, J Han, H Kim, Y Cho, J Wang, KT Nam, et al."
+  journal: "Biomaterials"
+  year: 2022
+- title: "Reasonably constructed NIR fluorescent probes based on dicyanoisophorone skeleton for imaging ONOO− in living cells"
+  authors: "J Chung, H Kim, H Li, J Yoon"
+  journal: "Dyes and Pigments"
+  year: 2021
+- title: "Rational Design of an Activatable Near-Infrared Fluorogenic Platform for In Vivo Orthotopic Tumor Imaging and Resection"
+  authors: "X Wu, Y Deng, R Wang, H Kim, G Kim, Y Xu, KT Hong, JS Lee, JJ Hu, et al."
+  journal: "Angewandte Chemie International Edition"
+  year: 2025
+- title: "Molecular structural evolution of near-infrared cationic aggregation-induced emission luminogens: preclinical antimicrobial pathogens activities and tissues regeneration"
+  authors: "H Li, L Zhang, J Han, D Kim, H Kim, J Ha, J Wang, J Yoon"
+  journal: "CCS Chemistry"
+  year: 2022
+- title: "An O2-Independent Copper(II) Phototherapeutic Agent for Photoactivating H2O2 to Enhance Antitumor Immunotherapy"
+  authors: "YY Zhao, Y Xu, J Wen, H Jeong, H Kim, X Li, J Yoon"
+  journal: "Journal of the American Chemical Society"
+  year: 2025
+- title: "A One Stone Three Birds Paradigm of Photon-Driven Pyroptosis Dye for Amplifying Tumor Immunotherapy"
+  authors: "S Zeng, C Chen, D Yu, M Jiang, X Li, X Liu, Z Guo, Y Hao, D Zhou, H Kim, et al."
+  journal: "Advanced Science"
+  year: 2025
+- title: "A Nanotherapeutic Agent for Synergistic Tumor Therapy: Co-Activation of Photochemical-Biological Effects"
+  authors: "J Liu, Y Liu, S Zhi, Y Yang, H Kim, D Wu, G Wang, TD James, J Yoon, et al."
+  journal: "Angewandte Chemie"
+  year: 2025
+- title: "Recent developments of small-molecule fluorescent probes for the detection of hydroxyl radical in biological systems"
+  authors: "SS Zhang, H Kim, Y Zhou, H Kang, J Yoon"
+  journal: "TrAC Trends in Analytical Chemistry"
+  year: 2025
+- title: "Lipid droplets-targetable fluorescent probe for monitoring polarity changes during ferroptosis"
+  authors: "Y Zhou, B Huang, Y Wang, H Kim, M Yan, J Yoon"
+  journal: "Dyes and Pigments"
+  year: 2025
+- title: "Supramolecular Synthesis of Dithienylethene-Albumin Complexes for Enhanced Photoswitching In Photoacoustic Imaging-Guided Near-Infrared Photothermal Therapy"
+  authors: "X Tan, Y Wang, H Li, Y Duan, B Wen, J Zhao, H Kim, JY Lee, L Zhou, et al."
+  journal: "Small"
+  year: 2025
+- title: "Thermoelectric and pyroelectric cancer therapy"
+  authors: "H Kim, C Kim, S Hur, G Song, HC Song, H Kang, J Yoon"
+  journal: "Coordination Chemistry Reviews"
+  year: 2026
+- title: "Covalent organic frameworks for ferroptosis cancer therapy"
+  authors: "C Shi, X Lou, Q Li, H Kim, J Shin, X Zhuang, Z Yang, J Jiang, H Kang, H Li, et al."
+  journal: "Coordination Chemistry Reviews"
+  year: 2026
+- title: "Transferrin-Mediated Nanophotosensitizer to Enhance Phototherapy with Photoacoustic Imaging Under Hypoxia"
+  authors: "M Yang, Y Nah, D Oh, X Li, H Kim, S Park, J Lim, A Chen, C Kim, et al."
+  journal: "CCS Chemistry"
+  year: 2025
+- title: "Metal-organic frameworks for Cuproptosis-based Cancer therapy"
+  authors: "Y Li, H Niu, K Kim, H Kim, Y Liu, M Wen, H Kang, Y Zhao, J Yoon, et al."
+  journal: "Coordination Chemistry Reviews"
+  year: 2026

@@ -17,6 +17,8 @@ Pass the person object: {% include member-pubs.html person=m %}
   {%- if hit -%}{%- assign mine = mine | push: p -%}{%- endif -%}
 {%- endfor -%}
 {%- if person.publications -%}{%- for p in person.publications -%}{%- assign mine = mine | push: p -%}{%- endfor -%}{%- endif -%}
+{%- comment -%}For a long list, a member's papers can live in _data/member_pubs/<slug>.yml instead of inline.{%- endcomment -%}
+{%- if person.slug and site.data.member_pubs and site.data.member_pubs[person.slug] -%}{%- for p in site.data.member_pubs[person.slug] -%}{%- assign mine = mine | push: p -%}{%- endfor -%}{%- endif -%}
 {%- if mine.size > 0 -%}
 {%- assign seen = "" -%}
 {%- assign uniq = "" | split: "" -%}
