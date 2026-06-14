@@ -26,25 +26,6 @@
 #   3. id 39 preprint URL on Wix was malformed ("https://10.26434/...");
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
-
-- id: 42
-  title: "Test"
-  authors: "Jihwan Kim, Chanjoong Kim, Seonbin Kim, Siyeol In, Heejeong Kim, Joonyoung F. Joung*"
-  journal: "Chem. Soc. Rev."
-  ref: "Advance Article"
-  year: 2026
-  doi: "https://doi.org/10.1039/D6CS00079G"
-  preprint_url: ""
-  themes:
-    - "Reaction pathway prediction"
-    - "Molecular property prediction"
-    - "Quantum chemical modeling"
-    - "Experimental dataset"
-  image: "pub-41.jpg"
-  abstract: >
-    Test
-  abstract_ko: >
-    테스트
   
 - id: 41
   title: "An overview of reaction outcome prediction with physics-based and data-driven methods"
