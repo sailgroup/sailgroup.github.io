@@ -1,0 +1,17 @@
+{%- comment -%}Journal-covers highlights section (home + photos pages). Renders nothing when there are no covers.{%- endcomment -%}
+{%- assign covers = site.data.covers -%}
+{%- if covers and covers.size > 0 -%}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Highlights</p><h2>Journal covers</h2></div>
+    <div class="covers">
+      {%- for c in covers -%}
+      <figure class="cover">
+        <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        <figcaption>{{ c.journal }}, {{ c.year }}</figcaption>
+      </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}

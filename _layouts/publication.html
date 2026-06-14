@@ -4,7 +4,6 @@ layout: default
 {%- assign p = site.data.publications | where: "id", page.pid | first -%}
 {%- unless p -%}{%- assign p = page -%}{%- endunless -%}
 {%- assign logo = site.data.journal_logos[p.journal] -%}
-{%- assign authors = p.authors | replace: 'Joonyoung Francis Joung', '<strong class="pi">Joonyoung Francis Joung</strong>' | replace: 'Joonyoung F. Joung', '<strong class="pi">Joonyoung F. Joung</strong>' -%}
 {%- assign hasimg = false -%}{%- if p.image and p.image != "" -%}{%- assign hasimg = true -%}{%- endif -%}
 {%- assign hasdoi = false -%}{%- if p.doi and p.doi != "" -%}{%- assign hasdoi = true -%}{%- endif -%}
 {%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
@@ -27,17 +26,13 @@ layout: default
       <div class="paper__head-main">
         <h1 class="paper__title">{{ p.title }}</h1>
         <p class="paper__meta"><span class="pub__journal">{{ p.journal }}</span>{% if p.ref and p.ref != "" %}, {{ p.ref }}{% endif %} ({{ p.year }})</p>
-        <p class="paper__authors">{{ authors }}</p>
+        <p class="paper__authors">{% include pi-authors.html authors=p.authors %}</p>
         {%- if hasdoi or haspre -%}
         <div class="paper__links">
           {%- if hasdoi -%}
           <a class="paper__doi" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.svg' | relative_url }}" alt="DOI" width="38" height="38"></a>
           {%- endif -%}
-          {%- if haspre -%}
-            {%- assign pl = p.preprint_url | downcase -%}
-            {%- if pl contains 'chemrxiv' -%}{%- assign prefile = 'chemrxiv.png' -%}{%- assign prealt = 'ChemRxiv' -%}{%- else -%}{%- assign prefile = 'arxiv.png' -%}{%- assign prealt = 'arXiv' -%}{%- endif -%}
-          <a class="paper__pre" href="{{ p.preprint_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ prealt }} preprint"><img src="{{ '/assets/images/' | append: prefile | relative_url }}" alt="{{ prealt }}" height="38"></a>
-          {%- endif -%}
+          {%- if haspre -%}{% include preprint-badge.html url=p.preprint_url class="paper__pre" height="38" %}{%- endif -%}
         </div>
         {%- endif -%}
       </div>

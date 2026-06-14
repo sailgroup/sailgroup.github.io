@@ -1,0 +1,4 @@
+{%- comment -%}Preprint logo link. Chooses arXiv vs ChemRxiv from the URL. Pass: url, class, height.{%- endcomment -%}
+{%- assign pl = include.url | downcase -%}
+{%- if pl contains 'chemrxiv' -%}{%- assign prefile = 'chemrxiv.png' -%}{%- assign prealt = 'ChemRxiv' -%}{%- else -%}{%- assign prefile = 'arxiv.png' -%}{%- assign prealt = 'arXiv' -%}{%- endif -%}
+<a class="{{ include.class }}" href="{{ include.url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ prealt }} preprint"><img src="{{ '/assets/images/' | append: prefile | relative_url }}" alt="{{ prealt }}" height="{{ include.height }}"></a>

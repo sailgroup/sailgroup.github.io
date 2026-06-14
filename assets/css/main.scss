@@ -316,7 +316,6 @@ p { text-wrap: pretty; }
    spans that full content width (R1), just matched to the rest of the page. */
 .hero h1 { margin-top: 0.9rem; }
 .hero .lead { margin-top: 1.25rem; max-width: none; }
-.hero__wordmark .hl { color: var(--orange-ink); }
 .hero__figure { margin: clamp(2rem, 5vw, 3.75rem) auto 0; max-width: 880px; }
 .hero__figure img {
   display: block; width: 100%; height: auto;
@@ -349,12 +348,6 @@ p { text-wrap: pretty; }
 .btn:hover { transform: translateY(-1px); }
 .btn--solid { background: var(--ink); color: #fff; }
 .btn--solid:hover { background: #000; }
-.btn--accent { background: var(--orange); border-color: var(--orange); color: #2a1606; }
-.btn--accent:hover { background: var(--orange-2); border-color: var(--orange-2); }
-.btn--ghost { border-color: var(--line-2); color: var(--ink-2); font-weight: 500; }
-.btn--ghost:hover { border-color: var(--orange); color: var(--orange-deep); background: var(--orange-wash); }
-.btn--sm { padding: 0.4rem 0.85rem; font-size: var(--fs-xs); }
-.btn .icon { width: 1em; height: 1em; }
 
 /* --- Tags ----------------------------------------------------------------- */
 .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -540,11 +533,6 @@ $themes: (
   border: 1px solid var(--line);
   background: var(--bg-alt);
 }
-.pub__figure--empty {
-  display: grid; place-items: center;
-  color: var(--line-2);
-  font-size: 0.7rem; letter-spacing: 0.04em;
-}
 .pub__title { font-family: var(--font-serif); font-size: var(--fs-md); line-height: 1.32; font-weight: 600; }
 .pub__authors { font-size: var(--fs-sm); color: var(--ink-2); margin-top: 0.3rem; }
 .pub__authors .pi {
@@ -701,7 +689,6 @@ body.no-scroll { overflow: hidden; }
 .footer-kmu { display: inline-block; margin-top: var(--space-md); opacity: 0.85; transition: opacity 0.15s ease; }
 .footer-kmu:hover { opacity: 1; }
 .footer-kmu img { height: 30px; width: auto; display: block; }
-.footer h2.footer-title { font-family: var(--font-sans); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.1em; color: #8f867c; font-weight: 600; margin-bottom: 0.9rem; }
 .footer-title { font-family: var(--font-sans); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.1em; color: #8f867c; font-weight: 600; margin-bottom: 0.9rem; }
 .footer-list { display: grid; gap: 0.5rem; font-size: var(--fs-sm); }
 .footer-list a:hover, .footer address a:hover { color: var(--orange); }

@@ -26,19 +26,7 @@ scripts: [photos]
   </div>
 </section>
 
-<section class="section section--alt">
-  <div class="container">
-    <div class="section-head"><p class="eyebrow">Highlights</p><h2>Journal covers</h2></div>
-    <div class="covers">
-      {%- for c in site.data.covers -%}
-      <figure class="cover">
-        <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
-        <figcaption>{{ c.journal }}, {{ c.year }}</figcaption>
-      </figure>
-      {%- endfor -%}
-    </div>
-  </div>
-</section>
+{% include journal-covers.html %}
 
 <script id="photos-data" type="application/json">[{%- for p in site.data.photos -%}{"src":{{ '/assets/images/' | append: p.image | relative_url | jsonify }},"title":{{ p.title | default: '' | jsonify }},"caption":{{ p.caption | default: '' | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]</script>
 
