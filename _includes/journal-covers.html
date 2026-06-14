@@ -7,7 +7,13 @@
     <div class="covers">
       {%- for c in covers -%}
       <figure class="cover">
+        {%- if c.publication_id -%}
+        <a class="cover__link" href="{{ '/publications/' | append: c.publication_id | append: '/' | relative_url }}" aria-label="View the paper: {{ c.journal }}, {{ c.year }}">
+          <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        </a>
+        {%- else -%}
         <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        {%- endif -%}
         <figcaption>{{ c.journal }}, {{ c.year }}</figcaption>
       </figure>
       {%- endfor -%}

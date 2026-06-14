@@ -532,6 +532,7 @@ p { text-wrap: pretty; }
 /* --- Journal covers ------------------------------------------------------- */
 .covers { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 .cover { display: block; }
+.cover__link { display: block; }
 .cover img {
   width: 100%;
   border-radius: var(--radius-sm);
