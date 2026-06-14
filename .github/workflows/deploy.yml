@@ -41,6 +41,19 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      # Fail the build on a broken internal link, image, or script reference
+      # (e.g. a typo'd path, or assets/js/*.js accidentally excluded again).
+      # External URLs (DOIs, Scholar, ORCID) are not checked here -- they are
+      # slow/flaky in CI and verified separately.
+      - name: Check internal links and images
+        run: |
+          gem install html-proofer --no-document
+          htmlproofer _site \
+            --disable-external \
+            --ignore-empty-alt \
+            --allow-hash-href \
+            --no-enforce-https
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
