@@ -1,0 +1,18 @@
+{%- comment -%}
+Page-specific JSON-LD, in addition to the generic tags jekyll-seo-tag emits.
+Home -> ResearchOrganization (the lab); /pi/ -> Person (the PI); each
+/publications/<id>/ -> ScholarlyArticle (the paper). All values come from the
+same _data files the pages render from, so the structured data cannot drift
+from the visible content. Invisible to sighted users (machine metadata).
+{%- endcomment -%}
+{%- if page.url == "/" -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","name":{{ site.title | jsonify }},"alternateName":{{ site.short_name | jsonify }},"url":{{ site.url | jsonify }},"logo":"{{ site.url }}/assets/images/sail-logo.png","parentOrganization":{"@type":"CollegeOrUniversity","name":"Kookmin University","url":"https://english.kookmin.ac.kr/"},"sameAs":[{{ site.data.pi.scholar | jsonify }},{{ site.data.pi.orcid | jsonify }}]}</script>
+{%- elsif page.url == "/pi/" -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":{{ site.data.pi.name | jsonify }},"alternateName":{{ site.data.pi.name_ko | jsonify }},"jobTitle":{{ site.data.pi.title | jsonify }},"email":"mailto:{{ site.data.pi.email }}","url":"{{ site.url }}/pi/","affiliation":{"@type":"CollegeOrUniversity","name":{{ site.data.pi.institution | jsonify }}},"worksFor":{"@type":"ResearchOrganization","name":{{ site.title | jsonify }}},"sameAs":[{{ site.data.pi.scholar | jsonify }},{{ site.data.pi.orcid | jsonify }}]}</script>
+{%- elsif page.pid -%}
+{%- assign p = site.data.publications | where: "id", page.pid | first -%}
+{%- if p -%}
+{%- assign authnames = p.authors | replace: '*', '' | replace: '†', '' | split: ',' -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":{{ p.title | jsonify }},"datePublished":"{{ p.year }}","isPartOf":{"@type":"Periodical","name":{{ p.journal | jsonify }}},"publisher":{"@type":"ResearchOrganization","name":{{ site.title | jsonify }}},"url":"{{ site.url }}{{ page.url }}","author":[{%- for n in authnames -%}{"@type":"Person","name":{{ n | strip | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- if p.doi and p.doi != "" -%},"sameAs":{{ p.doi | jsonify }}{%- endif -%}{%- if p.abstract and p.abstract != "" -%},"abstract":{{ p.abstract | strip | jsonify }}{%- endif -%}}</script>
+{%- endif -%}
+{%- endif -%}

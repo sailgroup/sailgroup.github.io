@@ -19,7 +19,7 @@ Pass: person (the data object), base ("members" | "alumni").
   <div class="person__ph" aria-hidden="true">{{ x.name | slice: 0 }}</div>
   {%- endif -%}
   <p class="person__name">{%- if x.slug and x.slug != "" -%}<a href="{{ url }}">{{ x.name }}</a>{%- else -%}{{ x.name }}{%- endif -%}</p>
-  <p class="person__ko">{{ x.name_ko }}</p>
+  <p class="person__ko" lang="ko">{{ x.name_ko }}</p>
   <p class="person__role">{{ x.role }}</p>
   {%- if x.note and x.note != "" -%}<p class="person__note">{{ x.note }}</p>{%- endif -%}
   {%- if x.email and x.email != "" -%}

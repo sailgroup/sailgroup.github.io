@@ -15,7 +15,7 @@ optional prose body from the page, usually empty).
     {%- if x.photo and x.photo != "" -%}
     <img class="member-card__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}">
     {%- endif -%}
-    <h1 class="profile__name">{{ x.name }}{% if x.name_ko %} <span class="ko">{{ x.name_ko }}</span>{% endif %}</h1>
+    <h1 class="profile__name">{{ x.name }}{% if x.name_ko %} <span class="ko" lang="ko">{{ x.name_ko }}</span>{% endif %}</h1>
     <p class="profile__title">{{ x.role }}</p>
     {%- if include.kind == "alumnus" -%}
     <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University</p>
