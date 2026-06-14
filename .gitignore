@@ -17,6 +17,18 @@ harvest.js
 harvest_results.json
 render_thumbs.py
 
+# One-off abstract pipeline: fetch/scrape/inject/QA (local only, not part of the site)
+fetch-abstracts.js
+fetch-crossref.js
+fetch-openalex.js
+refetch-openalex2.js
+scrape-abstracts.js
+scrape-retry.js
+scrape-33.js
+inject-abstracts.js
+fix-unicode.js
+qa.js
+
 # OS
 .DS_Store
 Thumbs.db

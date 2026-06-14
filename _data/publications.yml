@@ -39,6 +39,34 @@
     - "Reaction pathway prediction"
     - "Quantum chemical modeling"
   image: "pub-41.jpg"
+  abstract: >
+    The prediction of reaction outcomes is a longstanding challenge in
+    chemistry, with the ability to do so serving as a direct reflection of our
+    understanding of chemical reactivity. Accurately predicting reaction
+    products is crucial not only for synthetic planning but also for designing
+    reaction pathways and experiments in silico. This review explores the
+    diverse methodologies used to predict reaction outcomes, which can be
+    broadly divided into two main categories. Some approaches predict reaction
+    products and their likelihoods in a single step, while others break the
+    task into two distinct parts: candidate enumeration and the subsequent
+    prediction of product likelihoods. We examine both data-driven methods,
+    such as graph-based and sequence-generation models, and physics-based
+    methods, including potential energy surface exploration and reactive
+    molecular dynamics. In addition, we discuss quantitative predictions of
+    reaction selectivity, regioselectivity, stereoselectivity, and yield. This
+    review summarizes trends and advances in reaction outcome prediction and
+    briefly outlines future directions for the field.
+  abstract_ko: >
+    반응 결과(reaction outcome)를 예측하는 것은 화학에서 오랜 과제이며, 그 예측
+    능력은 화학 반응성에 대한 우리의 이해 수준을 직접적으로 보여준다. 반응 생성물을 정확히
+    예측하는 일은 합성 경로 설계뿐 아니라 반응 경로와 실험을 인 실리코(in silico)로
+    설계하는 데에도 매우 중요하다. 이 리뷰는 반응 결과 예측에 사용되는 다양한 방법론을
+    살펴보며, 이들은 크게 두 갈래로 나눌 수 있다. 일부 접근법은 반응 생성물과 그 가능성을 한
+    번에 예측하는 반면, 다른 접근법은 후보 생성물 열거와 그에 이은 생성물 가능성 예측이라는 두
+    단계로 작업을 나눈다. 우리는 그래프 기반 모델과 서열 생성 모델 같은 데이터 기반 방법과,
+    퍼텐셜 에너지 표면 탐색과 반응성 분자동역학을 포함한 물리 기반 방법을 모두 검토한다. 또한
+    반응의 선택성, 위치선택성, 입체선택성, 수율의 정량적 예측에 대해서도 논의한다. 이 리뷰는
+    반응 결과 예측의 흐름과 진전을 정리하고, 이 분야의 향후 방향을 간략히 제시한다.
 
 - id: 40
   title: "Defining Chemical Problems for Artificial Intelligence Models"
@@ -52,6 +80,49 @@
     - "Molecular property prediction"
     - "Reaction pathway prediction"
   image: "pub-40.jpg"
+  abstract: >
+    Artificial intelligence has become an increasingly important tool in
+    chemistry, yet its impact is often constrained by how chemical problems
+    are defined for machine learning. In this Personal Account, I argue that
+    dataset construction plays a central role in AI-driven chemistry, not
+    merely as a preparatory step but as a means of formalizing new chemical
+    learning problems. I summarize recent efforts to build
+    machine-learning-ready datasets in three domains: molecular property
+    prediction, property-conditioned molecular design, and reaction mechanism
+    prediction. Experimentally measured optical property datasets were curated
+    to explicitly incorporate environmental context, enabling models to learn
+    structure-environment-property relationships that reflect real
+    experimental conditions and to support inverse design of functional
+    chromophores. For chemical reactivity, large-scale mechanistic datasets
+    were constructed through rule-based imputation of elementary steps,
+    transforming overall reactions into supervised learning problems for
+    mechanism prediction. Limitations of sequence-based reaction models
+    motivated the development of FlowER, which represents reactions as
+    electron redistribution processes using bond-electron matrices and
+    enforces mass conservation by construction, allowing direct integration
+    with quantum chemical validation. Together, these studies illustrate a
+    unifying perspective in which datasets, representations, models, and
+    downstream workflows are designed jointly, guided by chemical intuition.
+    By framing dataset construction as an act of problem definition, this
+    Account highlights how chemists can shape the scope and direction of
+    artificial intelligence as a tool for chemical discovery.
+  abstract_ko: >
+    인공지능은 화학에서 점점 더 중요한 도구가 되었지만, 그 영향력은 화학 문제를 기계학습용으로
+    어떻게 정의하느냐에 따라 제약을 받는 경우가 많다. 이 개인 단평(Personal
+    Account)에서 저자는 데이터셋 구축이 AI 기반 화학에서 단순한 준비 단계가 아니라
+    새로운 화학 학습 문제를 정식화하는 수단으로서 중심적인 역할을 한다고 주장한다. 저자는 분자
+    물성 예측, 물성 조건부 분자 설계, 반응 메커니즘 예측이라는 세 영역에서 기계학습에 바로
+    활용할 수 있는 데이터셋을 구축한 최근의 노력을 정리한다. 실험으로 측정한 광학 물성
+    데이터셋은 환경적 맥락을 명시적으로 반영하도록 정리되어, 모델이 실제 실험 조건을 반영하는
+    구조-환경-물성 관계를 학습하고 기능성 발색단의 역설계를 지원할 수 있게 하였다. 화학
+    반응성에 대해서는 규칙 기반으로 기본 단계(elementary step)를 보완하여 대규모
+    메커니즘 데이터셋을 구축하였고, 이를 통해 전체 반응을 메커니즘 예측을 위한 지도학습 문제로
+    변환하였다. 서열 기반 반응 모델의 한계는 FlowER의 개발로 이어졌는데, 이 모델은
+    결합-전자 행렬(bond-electron matrix)을 이용해 반응을 전자 재분배 과정으로
+    표현하고 질량 보존을 구조적으로 강제하여 양자화학적 검증과 직접 통합할 수 있다. 이들 연구는
+    종합적으로, 데이터셋·표현·모델·후속 워크플로를 화학적 직관에 따라 함께 설계하는 통합적
+    관점을 보여준다. 데이터셋 구축을 문제 정의의 행위로 바라봄으로써, 이 단평은 화학자가 화학적
+    발견의 도구로서 인공지능의 범위와 방향을 어떻게 형성할 수 있는지를 강조한다.
 
 - id: 39
   title: "Higher-level Strategies for Computer-Aided Retrosynthesis"
@@ -64,6 +135,43 @@
   themes:
     - "Reaction pathway prediction"
   image: "pub-39.jpg"
+  abstract: >
+    Retrosynthesis is a core technique in organic chemistry that simplifies
+    target molecules into more readily available components. Computer-aided
+    synthesis planning (CASP) automates this process by recursively proposing
+    immediate precursors to identify multistep synthetic pathways. However,
+    CASP typically struggles for complex molecules that require longer
+    synthetic pathways and present a greater number of possible
+    disconnections. Here, we introduce a new higher-level framework for
+    computer-aided retrosynthesis. Our approach abstracts detailed
+    substructures in pathway intermediates not appearing in the target
+    product, allowing the algorithm to emphasize higher-level strategies while
+    postponing the consideration of specific functional group choices, thus
+    reducing the effective width and depth of the search space. This framework
+    achieves higher top-k accuracy in single-step retrosynthesis and
+    identifies multistep routes for more targets than the original approach.
+    Through case studies on complex drugs and natural products, we demonstrate
+    how routes proposed by our framework provide a powerful basis for
+    developing full synthesis plans, particularly in challenging cases where
+    the original approach fails, while enabling chemists to leverage their
+    expertise to refine the synthesis design. Ultimately, focusing on
+    higher-level strategies enables an effective and intuitive approach for
+    challenging targets in computer-aided retrosynthesis.
+  abstract_ko: >
+    역합성(retrosynthesis)은 표적 분자를 더 쉽게 구할 수 있는 구성 요소로
+    단순화하는 유기화학의 핵심 기법이다. 컴퓨터 보조 합성 계획(CASP)은 직전 전구체를
+    재귀적으로 제안하여 다단계 합성 경로를 찾아냄으로써 이 과정을 자동화한다. 그러나 CASP는
+    더 긴 합성 경로가 필요하고 가능한 분해(disconnection)의 수가 많은 복잡한 분자에
+    대해서는 대체로 어려움을 겪는다. 여기서 우리는 컴퓨터 보조 역합성을 위한 새로운 상위
+    수준(higher-level) 프레임워크를 제안한다. 우리의 접근법은 표적 생성물에 나타나지
+    않는 경로 중간체의 세부 부분구조를 추상화하여, 알고리즘이 구체적인 작용기 선택에 대한 고려를
+    미루면서 상위 수준 전략에 집중하도록 함으로써 탐색 공간의 실질적인 너비와 깊이를 줄인다. 이
+    프레임워크는 단일 단계 역합성에서 더 높은 top-k 정확도를 달성하며, 기존 접근법보다 더
+    많은 표적에 대해 다단계 경로를 찾아낸다. 복잡한 의약품과 천연물에 대한 사례 연구를 통해,
+    우리는 이 프레임워크가 제안하는 경로가 특히 기존 접근법이 실패하는 까다로운 사례에서 전체
+    합성 계획을 세우는 강력한 기반이 되며, 동시에 화학자가 자신의 전문성을 활용해 합성 설계를
+    다듬을 수 있게 함을 보인다. 궁극적으로 상위 수준 전략에 집중하는 것은 컴퓨터 보조
+    역합성에서 까다로운 표적에 대한 효과적이고 직관적인 접근을 가능하게 한다.
 
 - id: 38
   title: "Exploring Materials Data through Collaboration: 2024 KRICT ChemDX Hackathon"
@@ -77,6 +185,39 @@
     - "Molecular property prediction"
     - "Quantum chemical modeling"
   image: "pub-38.jpg"
+  abstract: >
+    Data-driven research is in the spotlight across many science and
+    engineering fields, including materials science, with the expectation that
+    effective utilization of data, supported by modern artificial intelligence
+    techniques, can lead to breakthroughs in addressing key scientific
+    questions. The Korea Research Institute of Chemical Technology (KRICT)
+    Chemical Data Explorer platform (ChemDX), our web-based and integrated
+    platform including various data explorer and artificial intelligence
+    modules, aims to enhance accessibility of chemical data for digital
+    materials discovery. In this article, we highlight the results of the 2024
+    KRICT ChemDX Hackathon, an event to support data-driven research in
+    chemistry and materials science. Hackathon participants explored the
+    ChemDX platform and developed projects ranging from machine learning
+    models and data visualization tools to user interface improvements. These
+    projects demonstrated the versatility and potential of data-driven
+    research with the aid of the ChemDX platform, in bridging data-driven
+    experimental and computational research. The feedback and outcomes from
+    this hackathon demonstrate the impressive potential of interdisciplinary
+    data-driven research, guide further improvements to the platform, and
+    enhance its usability and outreach.
+  abstract_ko: >
+    데이터 기반 연구는 재료과학을 비롯한 여러 과학·공학 분야에서 주목받고 있으며, 현대 인공지능
+    기법의 도움을 받아 데이터를 효과적으로 활용하면 핵심 과학 문제 해결에서 돌파구를 마련할 수
+    있으리라는 기대를 받고 있다. 한국화학연구원(KRICT)의 화학 데이터 탐색
+    플랫폼(ChemDX)은 다양한 데이터 탐색기와 인공지능 모듈을 포함하는 웹 기반 통합
+    플랫폼으로, 디지털 재료 발견을 위해 화학 데이터의 접근성을 높이는 것을 목표로 한다. 이
+    글에서 우리는 화학 및 재료과학 분야의 데이터 기반 연구를 지원하기 위한 행사인 2024
+    KRICT ChemDX 해커톤의 결과를 소개한다. 해커톤 참가자들은 ChemDX 플랫폼을
+    탐색하고 기계학습 모델, 데이터 시각화 도구에서 사용자 인터페이스 개선에 이르는 다양한
+    프로젝트를 개발하였다. 이들 프로젝트는 ChemDX 플랫폼의 도움을 받은 데이터 기반 연구가
+    실험 연구와 계산 연구를 잇는 데 있어 지니는 다재다능함과 잠재력을 보여주었다. 이 해커톤의
+    피드백과 성과는 학제 간 데이터 기반 연구의 인상적인 잠재력을 보여주는 한편, 플랫폼의 추가
+    개선 방향을 제시하고 그 사용성과 활용도를 높여 준다.
 
 - id: 37
   title: "Electron flow matching for generative reaction mechanism prediction"
@@ -89,6 +230,39 @@
   themes:
     - "Reaction pathway prediction"
   image: "pub-37.jpg"
+  abstract: >
+    Central to our understanding of chemical reactivity is the principle of
+    mass conservation, which is fundamental for ensuring physical consistency,
+    balancing equations and guiding reaction design. However, data-driven
+    computational models for tasks such as reaction product prediction rarely
+    abide by this most basic constraint. Here, we recast the problem of
+    reaction prediction as a problem of electron redistribution using the
+    modern deep generative framework of flow matching, explicitly conserving
+    both mass and electrons through the bond-electron (BE) matrix
+    representation. Our model, FlowER, overcomes limitations inherent in
+    previous approaches by enforcing exact mass conservation, resolving
+    hallucinatory failure modes, recovering mechanistic reaction sequences for
+    unseen substrate scaffolds and generalizing effectively to out-of-domain
+    reaction classes with extremely data-efficient fine-tuning. FlowER also
+    enables downstream estimation of thermodynamic or kinetic feasibility and
+    manifests a degree of chemical intuition in reaction prediction tasks.
+    This inherently interpretable framework represents an important step in
+    bridging the gap between predictive accuracy and mechanistic understanding
+    in data-driven reaction outcome prediction.
+  abstract_ko: >
+    화학 반응성에 대한 우리의 이해에서 핵심은 질량 보존 법칙이며, 이는 물리적 일관성을 보장하고
+    반응식의 균형을 맞추며 반응 설계를 이끄는 데 근본이 된다. 그러나 반응 생성물 예측과 같은
+    작업을 위한 데이터 기반 계산 모델은 이 가장 기본적인 제약을 따르는 경우가 드물다. 여기서
+    우리는 흐름 정합(flow matching)이라는 현대적 심층 생성 프레임워크를 이용해 반응
+    예측 문제를 전자 재분배 문제로 재정의하고, 결합-전자(BE) 행렬 표현을 통해 질량과 전자를
+    모두 명시적으로 보존한다. 우리의 모델 FlowER는 정확한 질량 보존을 강제함으로써 기존
+    접근법에 내재된 한계를 극복하여, 환각적(hallucinatory) 오류 양상을 해소하고,
+    학습에 사용되지 않은 기질 골격에 대해서도 메커니즘적 반응 서열을 복원하며, 매우 데이터
+    효율적인 미세조정만으로 영역 밖(out-of-domain) 반응 부류에까지 효과적으로
+    일반화한다. 또한 FlowER는 열역학적·속도론적 실현 가능성의 후속 추정을 가능하게 하고,
+    반응 예측 작업에서 어느 정도의 화학적 직관을 드러낸다. 본질적으로 해석 가능한 이
+    프레임워크는 데이터 기반 반응 결과 예측에서 예측 정확도와 메커니즘적 이해 사이의 간극을
+    메우는 중요한 진전을 보여준다.
 
 - id: 36
   title: "ASKCOS: an open source software suite for synthesis planning"
@@ -101,6 +275,67 @@
   themes:
     - "Reaction pathway prediction"
   image: "pub-36.jpg"
+  abstract: >
+    The advancement of machine learning and the availability of large-scale
+    reaction datasets have accelerated the development of data-driven models
+    for computer-aided synthesis planning (CASP) in the past decade. In this
+    Account, we describe the range of data-driven methods and models that have
+    been incorporated into the newest version of ASKCOS, an open-source
+    software suite for synthesis planning that we have been developing since
+    2016. This ongoing effort has been driven by the importance of bridging
+    the gap between research and development, making research advances
+    available through a freely available practical tool. ASKCOS integrates
+    modules for retrosynthetic planning, modules for the complementary
+    capabilities of condition prediction and reaction product prediction, and
+    several supplementary modules and utilities with various roles in
+    synthesis planning. For retrosynthetic planning, we have developed an
+    Interactive Path Planner (IPP) for user-guided search as well as a Tree
+    Builder for automatic planning with two well-known tree search algorithms,
+    Monte Carlo Tree Search (MCTS) and Retro*. Four one-step retrosynthesis
+    models covering template-based and template-free strategies form the basis
+    of retrosynthetic predictions and can be used simultaneously to combine
+    their advantages and propose diverse suggestions. Strategies for assessing
+    the feasibility of proposed reaction steps and evaluating the full
+    pathways are built on top of several pioneering efforts that we have made
+    in the subtasks of reaction condition recommendation, pathway scoring and
+    clustering, and the prediction of reaction outcomes including the major
+    product, impurities, site selectivity, and regioselectivity. In addition,
+    we have also developed auxiliary capabilities in ASKCOS based on our past
+    and ongoing work for solubility prediction and quantum mechanical
+    descriptor prediction, which can provide more insight into the suitability
+    of proposed reaction solvents or the hypothetical selectivity of desired
+    transformations. For each of these capabilities, we highlight its
+    relevance in the context of synthesis planning and present a comprehensive
+    overview of how it is built on top of not only our work but also other
+    recent advancements in the field. ASKCOS has assisted hundreds of
+    medicinal, synthetic, and process chemists in their day-to-day tasks by
+    complementing expert decision making and route ideation. It is our belief
+    that CASP tools are an important part of modern chemistry research and
+    offer ever-increasing utility and accessibility.
+  abstract_ko: >
+    기계학습의 발전과 대규모 반응 데이터셋의 가용성은 지난 10년간 컴퓨터 보조 합성
+    계획(CASP)을 위한 데이터 기반 모델의 개발을 가속하였다. 이 단평(Account)에서
+    우리는 2016년부터 개발해 온 오픈소스 합성 계획 소프트웨어 모음인 ASKCOS의 최신
+    버전에 통합된 다양한 데이터 기반 방법과 모델을 소개한다. 이러한 지속적인 노력은 연구와 개발
+    사이의 간극을 메우고, 누구나 무료로 쓸 수 있는 실용적 도구를 통해 연구 성과를 제공하는
+    것의 중요성에서 비롯되었다. ASKCOS는 역합성 계획 모듈, 반응 조건 예측과 반응 생성물
+    예측이라는 상호 보완적 기능 모듈, 그리고 합성 계획에서 다양한 역할을 하는 여러 보조 모듈과
+    유틸리티를 통합한다. 역합성 계획을 위해 우리는 사용자 주도 탐색을 위한 대화형 경로
+    계획기(IPP)와, 잘 알려진 두 가지 트리 탐색 알고리즘인 몬테카를로 트리 탐색(MCTS)
+    및 Retro*를 이용한 자동 계획용 트리 빌더를 개발하였다. 주형
+    기반(template-based)과 주형 비의존(template-free) 전략을 아우르는 네
+    가지 단일 단계 역합성 모델이 역합성 예측의 기반을 이루며, 이들을 동시에 사용해 각자의
+    장점을 결합하고 다양한 제안을 내놓을 수 있다. 제안된 반응 단계의 실현 가능성을 평가하고
+    전체 경로를 평가하는 전략은 반응 조건 추천, 경로 점수화 및 군집화, 그리고
+    주생성물·불순물·자리 선택성·위치선택성을 포함한 반응 결과 예측이라는 하위 과제에서 우리가
+    이룬 여러 선구적 노력 위에 구축되었다. 또한 우리는 용해도 예측과 양자역학적
+    기술자(descriptor) 예측에 관한 과거와 현재의 연구를 바탕으로 ASKCOS의 보조
+    기능도 개발하였는데, 이는 제안된 반응 용매의 적합성이나 원하는 변환의 가상 선택성에 대해 더
+    많은 통찰을 제공할 수 있다. 우리는 이들 각 기능에 대해 합성 계획의 맥락에서의 의의를
+    짚고, 그것이 우리 연구뿐 아니라 이 분야의 다른 최근 발전 위에 어떻게 구축되었는지를
+    포괄적으로 개관한다. ASKCOS는 전문가의 의사결정과 경로 구상을 보완함으로써 수백 명의
+    의약·합성·공정 화학자의 일상 업무를 도와 왔다. 우리는 CASP 도구가 현대 화학 연구의
+    중요한 일부이며 갈수록 더 큰 유용성과 접근성을 제공한다고 믿는다.
 
 - id: 35
   title: "Generative deep learning-based efficient design of organic molecules with tailored properties"
@@ -114,6 +349,39 @@
     - "De novo molecule generation"
     - "Optical property analysis"
   image: "pub-35.jpg"
+  abstract: >
+    Innovative approaches to design molecules with tailored properties are
+    required in various research areas. Deep learning methods can accelerate
+    the discovery of new materials by leveraging molecular structure-property
+    relationships. In this study, we successfully developed a generative deep
+    learning (Gen-DL) model that was trained on a large experimental database
+    (DBexp) including 71,424 molecule/solvent pairs and was able to design
+    molecules with target properties in various solvents. The Gen-DL model can
+    generate molecules with specified optical properties, such as electronic
+    absorption/emission peak position and bandwidth, extinction coefficient,
+    photoluminescence (PL) quantum yield, and PL lifetime. The Gen-DL model
+    was shown to leverage the essential design principles of conjugation
+    effects, Stokes shifts, and solvent effects when it generated molecules
+    with target optical properties. Additionally, the Gen-DL model was
+    demonstrated to generate practically useful molecules developed for
+    real-world applications. Accordingly, the Gen-DL model can be a promising
+    tool for the discovery and design of novel molecules with tailored
+    properties in various research areas, such as organic photovoltaics
+    (OPVs), organic light-emitting diodes (OLEDs), organic photodiodes (OPDs),
+    bioimaging dyes, and so on.
+  abstract_ko: >
+    원하는 물성을 갖도록 분자를 설계하는 혁신적 접근법은 여러 연구 분야에서 요구된다. 딥러닝
+    방법은 분자의 구조-물성 관계를 활용하여 새로운 물질의 발견을 가속할 수 있다. 이 연구에서
+    우리는 71,424개의 분자/용매 쌍을 포함하는 대규모 실험 데이터베이스(DBexp)로
+    학습되어 다양한 용매에서 목표 물성을 갖는 분자를 설계할 수 있는 생성형 딥러닝(Gen-DL)
+    모델을 성공적으로 개발하였다. Gen-DL 모델은 전자 흡수/방출 피크 위치와 대역폭, 흡광
+    계수, 광발광(PL) 양자 수율, PL 수명과 같은 지정된 광학 물성을 갖는 분자를 생성할 수
+    있다. Gen-DL 모델은 목표 광학 물성을 갖는 분자를 생성할 때 공액 효과, 스토크스
+    이동, 용매 효과라는 핵심 설계 원리를 활용하는 것으로 나타났다. 또한 Gen-DL 모델은
+    실제 응용을 위해 개발된 실용적으로 유용한 분자를 생성함을 보였다. 따라서 Gen-DL 모델은
+    유기 태양전지(OPV), 유기 발광 다이오드(OLED), 유기 광다이오드(OPD),
+    바이오이미징 염료 등 다양한 연구 분야에서 원하는 물성을 갖는 새로운 분자를 발견하고 설계하는
+    유망한 도구가 될 수 있다.
 
 - id: 34
   title: "Reproducing Reaction Mechanisms with Machine-Learning Models Trained on a Large-Scale Mechanistic Dataset"
@@ -127,6 +395,35 @@
     - "Reaction pathway prediction"
     - "Experimental dataset"
   image: "pub-34.jpg"
+  abstract: >
+    Mechanistic understanding of organic reactions can facilitate reaction
+    development, impurity prediction, and in principle, reaction discovery.
+    While several machine learning models have sought to address the task of
+    predicting reaction products, their extension to predicting reaction
+    mechanisms has been impeded by the lack of a corresponding mechanistic
+    dataset. In this study, we construct such a dataset by imputing
+    intermediates between experimentally reported reactants and products using
+    expert reaction templates and train several machine learning models on the
+    resulting dataset of 5,184,184 elementary steps. We explore the
+    performance and capabilities of these models, focusing on their ability to
+    predict reaction pathways and recapitulate the roles of catalysts and
+    reagents. Additionally, we demonstrate the potential of mechanistic models
+    in predicting impurities, often overlooked by conventional models. We
+    conclude by evaluating the generalizability of mechanistic models to new
+    reaction types, revealing challenges related to dataset diversity,
+    consecutive predictions, and violations of atom conservation.
+  abstract_ko: >
+    유기 반응에 대한 메커니즘적 이해는 반응 개발, 불순물 예측, 그리고 원리적으로는 반응 발견에
+    도움을 줄 수 있다. 여러 기계학습 모델이 반응 생성물 예측 과제를 다루어 왔지만, 이를 반응
+    메커니즘 예측으로 확장하는 일은 그에 상응하는 메커니즘 데이터셋의 부재로 인해 가로막혀 왔다.
+    이 연구에서 우리는 전문가 반응 주형(template)을 사용하여 실험적으로 보고된 반응물과
+    생성물 사이의 중간체를 보완함으로써 그러한 데이터셋을 구축하고, 그 결과로 얻은
+    5,184,184개의 기본 단계(elementary step) 데이터셋으로 여러 기계학습
+    모델을 학습시킨다. 우리는 이들 모델이 반응 경로를 예측하고 촉매와 시약의 역할을 재현하는
+    능력에 초점을 맞추어 그 성능과 역량을 살펴본다. 또한 기존 모델이 흔히 간과하는 불순물
+    예측에서 메커니즘 모델이 지니는 잠재력을 보인다. 끝으로 새로운 반응 유형에 대한 메커니즘
+    모델의 일반화 가능성을 평가하여, 데이터셋 다양성, 연속 예측, 원자 보존 위반과 관련된
+    과제들을 드러낸다.
 
 - id: 33
   title: "Universal surface tailoring of perovskite nanocrystals via organic pseudohalide ligands applicable to green and blue light-emitting diodes"
@@ -139,6 +436,40 @@
   themes:
     - "Optical property analysis"
   image: "pub-33.jpg"
+  abstract: >
+    Proper management of surface defects in perovskite nanocrystals (PeNCs)
+    has resulted in near-unity photoluminescence quantum yield and the
+    development of high-performance light-emitting diodes (LEDs). However,
+    most PeNCs still suffer from incomplete surface passivation, which results
+    in non-ideal efficiencies. Herein, we devise a simple surface tailoring of
+    CsPbBr3 NCs with organic pseudohalide ligands, didodecyldimethylammonium
+    tetrafluoroborate (DDA-BF4). Results suggest that the DDA cation and BF4
+    anion simultaneously coordinated on the CsPbBr3 NC surfaces, thereby
+    dramatically improving optical properties and colloidal stability. With
+    this passivation, surface-tailored CsPbBr3 NCs were applied to green LEDs,
+    which showed significantly higher external quantum efficiencies than LEDs
+    with untreated PeNCs and stable electroluminescence (EL) at a wavelength
+    of 516 nm. Also, when this method was applied to sky-blue LEDs based on
+    CsPbBr3-xClx NCs (EL at 484 nm), similar improvement in device performance
+    was observed. We believe that organic pseudohalide treatment provides a
+    universal methodology that can be applicable to green and blue PeNC-based
+    LEDs, providing a promising platform for future displays and lighting
+    technologies.
+  abstract_ko: >
+    페로브스카이트 나노결정(PeNC)의 표면 결함을 적절히 관리하면 거의 100%에 가까운 광발광
+    양자 수율과 고성능 발광 다이오드(LED)를 구현할 수 있다. 그러나 대부분의 PeNC는
+    여전히 불완전한 표면 패시베이션 문제를 안고 있어 이상적이지 못한 효율을 보인다. 여기서
+    우리는 유기 유사할로젠(pseudohalide) 리간드인 다이도데실다이메틸암모늄
+    테트라플루오로보레이트(DDA-BF4)를 이용해 CsPbBr3 나노결정의 표면을 간단히 처리하는
+    방법을 고안하였다. 그 결과 DDA 양이온과 BF4 음이온이 CsPbBr3 나노결정 표면에
+    동시에 배위하여 광학 특성과 콜로이드 안정성을 크게 향상시키는 것으로 나타났다. 이
+    패시베이션을 적용한 표면 처리 CsPbBr3 나노결정을 녹색 LED에 적용한 결과, 처리하지
+    않은 PeNC를 사용한 LED보다 외부 양자 효율이 현저히 높았고 516 nm 파장에서
+    안정적인 전계발광(EL)을 보였다. 또한 이 방법을 CsPbBr3-xClx 나노결정 기반의
+    하늘색 LED(EL 484 nm)에 적용했을 때에도 유사한 소자 성능 향상이 관찰되었다.
+    우리는 유기 유사할로젠 처리가 녹색 및 청색 PeNC 기반 LED에 두루 적용할 수 있는
+    보편적 방법론을 제공하며, 미래의 디스플레이와 조명 기술을 위한 유망한 플랫폼이 될 것이라
+    본다.
 
 - id: 32
   title: "Reliable experimental method for determination of photoacidity revealed by quantum chemical calculations"
@@ -195,6 +526,33 @@
     - "Molecular property prediction"
     - "Experimental dataset"
   image: "pub-31.jpg"
+  abstract: >
+    The highest occupied molecular orbital (HOMO) and lowest unoccupied
+    molecular orbital (LUMO) energies, which are key factors in optoelectronic
+    devices, must be accurately estimated for newly designed materials. Here,
+    we developed a deep learning (DL) model that was trained with an
+    experimental database containing the HOMO and LUMO energies of 3026
+    organic molecules in solvents or solids and was capable of predicting the
+    HOMO and LUMO energies of molecules with the mean absolute errors of 0.058
+    eV. Additionally, we demonstrated that our DL model was efficiently used
+    to virtually screen optimal host and emitter molecules for organic
+    light-emitting diodes (OLEDs). Deep-blue fluorescent OLEDs, which were
+    fabricated with emitter and host molecules selected via DL prediction,
+    exhibited narrow emission (bandwidth = 36 nm) at 412 nm and an external
+    quantum efficiency of 6.58%. Our DL-assisted virtual screening method can
+    be further applied to the development of component materials in
+    optoelectronics.
+  abstract_ko: >
+    광전자 소자에서 핵심 인자인 최고점유분자궤도(HOMO)와 최저비점유분자궤도(LUMO) 에너지는
+    새로 설계된 물질에 대해 정확하게 추정되어야 한다. 여기서 우리는 용매 또는 고체 상태의 유기
+    분자 3026종의 HOMO와 LUMO 에너지를 담은 실험 데이터베이스로 학습되어, 분자의
+    HOMO와 LUMO 에너지를 평균 절대 오차 0.058 eV로 예측할 수 있는 딥러닝(DL)
+    모델을 개발하였다. 또한 우리는 이 DL 모델이 유기 발광 다이오드(OLED)를 위한 최적의
+    호스트와 발광체(emitter) 분자를 가상 스크리닝하는 데 효과적으로 사용됨을 보였다. DL
+    예측으로 선택한 발광체와 호스트 분자로 제작한 짙은 청색(deep-blue) 형광 OLED는
+    412 nm에서 좁은 방출(대역폭 = 36 nm)과 6.58%의 외부 양자 효율을 나타냈다.
+    우리의 DL 보조 가상 스크리닝 방법은 광전자공학의 구성 소재 개발에 더욱 폭넓게 적용될 수
+    있다.
 
 - id: 30
   title: "Beyond Woodward-Fieser Rules: Design Principles of Property-Oriented Chromophores Based on Explainable Deep Learning Optical Spectroscopy"
@@ -208,6 +566,42 @@
     - "Molecular property prediction"
     - "Optical property analysis"
   image: "pub-30.jpg"
+  abstract: >
+    An adequate understanding of molecular structure-property relationships is
+    important for developing new molecules with desired properties. Although
+    deep learning optical spectroscopy (DLOS) has been successfully applied to
+    predict the optical and photophysical properties of organic chromophores,
+    how specific functional groups and solvents affect the optical properties
+    is not clearly understood. Here, we employed an explainable DLOS method by
+    applying the integrated gradients method to DLOS. The integrated gradients
+    method allows us to obtain attributions, indicating how much the
+    functional group contributes to the optical properties including the
+    absorption wavelength and bandwidth, extinction coefficients, emission
+    wavelength and bandwidth, photoluminescence quantum yield, and lifetime.
+    The attributions of 54 functional groups and 9 solvent molecules to seven
+    optical properties are quantified and can be used to estimate the optical
+    properties of chromophores as in the Woodward-Fieser rule. Unlike the
+    Woodward-Fieser rule for only the absorption wavelength, the attributions
+    obtained in this work can be applied to estimate all seven optical
+    properties, which makes a significant extension of the Woodward-Fieser
+    rules. In addition, we demonstrated a strategy for utilizing the
+    attributions in the design of molecules and in tuning the optical
+    properties of the molecules. The design of molecular structures using
+    attributions can revolutionize the development of optimal molecules.
+  abstract_ko: >
+    분자의 구조-물성 관계를 충분히 이해하는 것은 원하는 물성을 갖는 새로운 분자를 개발하는 데
+    중요하다. 딥러닝 광분광법(DLOS)은 유기 발색단의 광학적·광물리적 물성을 예측하는 데
+    성공적으로 적용되어 왔지만, 특정 작용기와 용매가 광학 물성에 어떻게 영향을 미치는지는 명확히
+    이해되지 않았다. 여기서 우리는 통합 기울기(integrated gradients) 방법을
+    DLOS에 적용하여 설명 가능한 DLOS 기법을 도입하였다. 통합 기울기 방법을 통해 우리는
+    흡수 파장과 대역폭, 흡광 계수, 방출 파장과 대역폭, 광발광 양자 수율, 수명을 포함한 광학
+    물성에 작용기가 얼마나 기여하는지를 나타내는 기여도(attribution)를 얻을 수 있다.
+    54개 작용기와 9개 용매 분자가 일곱 가지 광학 물성에 대해 갖는 기여도를 정량화하였으며,
+    이는 우드워드-피저(Woodward-Fieser) 규칙처럼 발색단의 광학 물성을 추정하는 데
+    사용할 수 있다. 흡수 파장에만 적용되는 우드워드-피저 규칙과 달리, 이 연구에서 얻은
+    기여도는 일곱 가지 광학 물성 모두를 추정하는 데 적용할 수 있어 우드워드-피저 규칙을 크게
+    확장한다. 또한 우리는 이 기여도를 분자 설계와 분자의 광학 물성 조절에 활용하는 전략을
+    보였다. 기여도를 이용한 분자 구조 설계는 최적 분자의 개발에 혁신을 가져올 수 있다.
 
 - id: 29
   title: "Pyridine-NBD: A homocysteine-selective fluorescent probe for glioblastoma (GBM) diagnosis based on a blood test"
@@ -220,6 +614,42 @@
   themes:
     - "Clinical outcome prediction"
   image: "pub-29.jpg"
+  abstract: >
+    The precise in vitro diagnosis requires high selectivity and sensitivity
+    for a diagnostic agent. In this respect, fluorescent diagnostic probes
+    have attracted attention in various clinical fields. Herein, we disclosed
+    a tailor-made fluorescent homocysteine probe (NPO-Pyr) based on
+    pyridine-thiol coordination and amine-addition. To date, homocysteine
+    (Hcy) has been recognized as an excellent biomarker for various diseases,
+    but there still remain some limitations in detecting Hcy due to its
+    structural similarity to Cys. In this study, we developed a new
+    fluorescent diagnostic probe for monitoring Hcy by incorporating a
+    4-hydroxy-pyridine moiety into the skeleton of the NBD fluorophore. The
+    incorporated pyridine moiety could coordinate with the thiol group at Hcy,
+    followed by the amine-addition reaction (12 kJ/mol). Based on this
+    rationale, NPO-Pyr responded to Hcy and exhibited turn-on properties with
+    high selectivity and sensitivity (LOD: 0.084 ppm) and a fast response time
+    (<5 min). Furthermore, NPO-Pyr could predict the formation of glioblastoma
+    (GBM) at an early stage through sensing Hcy in blood plasma (vs. healthy
+    group, ****P < 0.0001). Our findings have significant importance across
+    various fields from basic science to clinical translation, and we strongly
+    believe that NPO-Pyr has the potential to fully replace the current
+    complex GBM diagnostic process as a simpler in vitro agent.
+  abstract_ko: >
+    정밀한 체외(in vitro) 진단을 위해서는 진단 시약의 높은 선택성과 민감도가 요구된다.
+    이러한 점에서 형광 진단 탐침은 다양한 임상 분야에서 주목받아 왔다. 여기서 우리는
+    피리딘-싸이올 배위와 아민 첨가 반응에 기반한 맞춤형 형광 호모시스테인 탐침(NPO-Pyr)을
+    공개하였다. 지금까지 호모시스테인(Hcy)은 여러 질환의 우수한 생체표지자로 인식되어 왔으나,
+    시스테인(Cys)과 구조가 유사하여 Hcy 검출에는 여전히 한계가 있었다. 이 연구에서 우리는
+    NBD 형광단의 골격에 4-하이드록시피리딘 부위를 도입하여 Hcy를 모니터링하는 새로운 형광
+    진단 탐침을 개발하였다. 도입된 피리딘 부위는 Hcy의 싸이올기와 배위한 뒤 아민 첨가
+    반응(12 kJ/mol)을 일으킬 수 있다. 이러한 원리에 따라 NPO-Pyr는 Hcy에
+    반응하여 높은 선택성과 민감도(검출한계 0.084 ppm), 빠른 응답 시간(5분 미만)으로
+    신호가 켜지는(turn-on) 특성을 나타냈다. 나아가 NPO-Pyr는 혈장 내 Hcy를
+    감지함으로써 교모세포종(GBM)의 형성을 초기 단계에서 예측할 수 있었다(건강군 대비
+    ****P < 0.0001). 우리의 연구 결과는 기초 과학에서 임상 응용에 이르는 다양한
+    분야에서 중요한 의의를 가지며, 우리는 NPO-Pyr가 더 간단한 체외 시약으로서 현재의
+    복잡한 GBM 진단 과정을 완전히 대체할 잠재력이 있다고 확신한다.
 
 - id: 28
   title: "Locoregional Recurrence Prediction Using a Deep Neural Network of Radiological and Radiotherapy Images"
@@ -232,6 +662,34 @@
   themes:
     - "Clinical outcome prediction"
   image: "pub-28.jpg"
+  abstract: >
+    Radiation therapy (RT) is an important and potentially curative modality
+    for head and neck squamous cell carcinoma (HNSCC). Locoregional recurrence
+    (LR) of HNSCC after RT ranges from 15% to 50% depending on the primary
+    site and stage. In addition, the 5-year survival rate of patients with LR
+    is low. To classify high-risk patients who might develop LR, a deep
+    learning model for predicting LR needs to be established. In this work,
+    157 patients with HNSCC who underwent RT were analyzed. Based on the
+    National Cancer Institute's multi-institutional TCIA data set containing
+    FDG-PET/CT/dose, a 3D deep learning model was proposed to predict LR
+    without time-consuming segmentation or feature extraction. Our model
+    achieved an averaged area under the curve (AUC) of 0.856. Adding clinical
+    factors into the model improved the AUC to an average of 0.892, with the
+    highest AUC of up to 0.974. The 3D deep learning model could perform
+    individualized risk quantification of LR in patients with HNSCC without
+    time-consuming tumor segmentation.
+  abstract_ko: >
+    방사선 치료(RT)는 두경부 편평세포암(HNSCC)에 대한 중요하고 완치 가능성이 있는
+    치료법이다. RT 후 HNSCC의 국소영역 재발(LR)은 원발 부위와 병기에 따라 15%에서
+    50%에 이른다. 게다가 LR이 발생한 환자의 5년 생존율은 낮다. LR이 발생할 수 있는
+    고위험 환자를 분류하기 위해서는 LR을 예측하는 딥러닝 모델을 구축할 필요가 있다. 이
+    연구에서는 RT를 받은 HNSCC 환자 157명을 분석하였다. FDG-PET/CT/선량 정보를
+    담은 미국 국립암연구소(NCI)의 다기관 TCIA 데이터셋을 바탕으로, 시간이 많이 드는
+    분할(segmentation)이나 특징 추출 없이 LR을 예측하는 3차원 딥러닝 모델을
+    제안하였다. 우리 모델은 평균 곡선하면적(AUC) 0.856을 달성하였다. 모델에 임상 인자를
+    추가하자 AUC가 평균 0.892로, 최고 0.974까지 향상되었다. 이 3차원 딥러닝 모델은
+    시간이 많이 드는 종양 분할 없이도 HNSCC 환자의 LR 위험을 개인별로 정량화할 수
+    있었다.
 
 - id: 27
   title: "Fullerene-Based Triads with Controlled Alkyl Spacer Length as Photoactive Materials for Single-Component Organic Solar Cells"
@@ -244,6 +702,48 @@
   themes:
     - "Optical property analysis"
   image: "pub-27.jpg"
+  abstract: >
+    Two kinds of dumbbell-shaped acceptor-donor-acceptor (A-D-A)-type triad
+    single-component (SC) photovoltaic molecules based on a
+    benzodithiophene-rhodanine (BDTRh) core and [6,6]-phenyl-C61 butyric acid
+    (PC61BA) termini, BDTRh-C2-PC61BA and BDTRh-C10-PC61BA, were synthesized
+    by modulating the alkyl (C2 and C10) spacer lengths. Both SC photovoltaic
+    structures had similar UV-vis spectra in solution, but BDTRh-C10-PC61BA
+    showed a significantly higher absorption coefficient as a thin film. In
+    films, a more facile intermolecular photo-induced charge transfer was
+    observed for BDTRh-C10-PC61BA in the broad-band transient absorption
+    measurements. BDTRh-C10-PC61BA also exhibited a higher hole mobility (by
+    25 times) and less bimolecular recombination than BDTRh-C2-PC61BA. By
+    plotting the normalized external quantum efficiency data, a higher
+    charge-transfer state was measured for BDTRh-C10-PC61BA, reducing its
+    voltage loss. A higher power conversion efficiency of ~2% was obtained for
+    BDTRh-C10-PC61BA, showing higher open-circuit voltage, short-circuit
+    current density, and fill factor than those of BDTRh-C2-PC61BA devices.
+    The different carrier dynamics, voltage loss, and optical and
+    photoelectrical characteristics depending on the spacer length were
+    interpreted in terms of the film morphology. The longer decyl spacer in
+    BDTRh-C10-PC61BA afforded a significantly enhanced intermolecular ordering
+    of the p-type core compared to BDTRh-C2-PC61BA, suggesting that the alkyl
+    spacer length plays a critical role in controlling the intermolecular
+    packing interaction.
+  abstract_ko: >
+    벤조다이싸이오펜-로다닌(BDTRh) 코어와 [6,6]-페닐-C61 뷰티르산(PC61BA)
+    말단을 기반으로 하는 아령 모양의 받개-주개-받개(A-D-A)형 삼중체(triad) 단일
+    성분(SC) 광전지 분자 두 종류, BDTRh-C2-PC61BA와
+    BDTRh-C10-PC61BA를 알킬(C2 및 C10) 스페이서 길이를 조절하여 합성하였다.
+    두 SC 광전지 구조는 용액에서 유사한 자외선-가시광선 스펙트럼을 보였으나, 박막 상태에서는
+    BDTRh-C10-PC61BA가 현저히 높은 흡수 계수를 나타냈다. 광대역 과도 흡수 측정에서
+    박막의 BDTRh-C10-PC61BA는 분자 간 광유도 전하 이동이 더 수월하게 일어났다.
+    또한 BDTRh-C10-PC61BA는 BDTRh-C2-PC61BA보다 높은 정공
+    이동도(25배)와 더 적은 이분자 재결합을 보였다. 정규화된 외부 양자 효율 데이터를 도시한
+    결과, BDTRh-C10-PC61BA에서 더 높은 전하 이동 상태가 측정되어 전압 손실이
+    줄어들었다. BDTRh-C10-PC61BA는 약 2%의 더 높은 전력 변환 효율을 얻었으며,
+    BDTRh-C2-PC61BA 소자보다 높은 개방 전압, 단락 전류 밀도, 충전율(fill
+    factor)을 보였다. 스페이서 길이에 따른 서로 다른 전하 운반자 동역학, 전압 손실,
+    광학적·광전기적 특성은 박막 형태(morphology)의 관점에서 해석되었다.
+    BDTRh-C10-PC61BA의 더 긴 데실 스페이서는 BDTRh-C2-PC61BA에 비해
+    p형 코어의 분자 간 정렬을 크게 향상시켰으며, 이는 알킬 스페이서 길이가 분자 간 패킹
+    상호작용을 제어하는 데 결정적 역할을 함을 시사한다.
 
 - id: 26
   title: "Rational Molecular Design of Azaacene-based Narrowband Green-emitting Fluorophores: Modulation of Spectral Bandwidth and Vibronic Transitions"
@@ -257,6 +757,42 @@
     - "Optical property analysis"
     - "Quantum chemical modeling"
   image: "pub-26.jpg"
+  abstract: >
+    A series of green-emitting fluorophores based on a tetra-azaacene core is
+    synthesized by introducing nitrile substituents at different positions.
+    Their molecular structure-optical property relationship [i.e., vibronic
+    transitions in photoluminescence (PL) and electroluminescence (EL)
+    spectra] is investigated to obtain a sharp emission where the vibronic
+    peak ν0-0 should be intensified by suppressing ν0-n (n = 1, 2, 3...)
+    transitions. The intensity ratios (I0-1/I0-0) of the ν0-1 and ν0-0
+    vibronic transitions in the PL spectra of DBBNP, DBBNP2CN1, and DBBNP2CN2
+    in hexane are 1.13, 0.80, and 0.67, respectively. Theoretical calculations
+    explain that the CN substitution at positions 8 and 13 in DBBNP2CN2
+    induces a uniform charge distribution and reduces the Huang-Rhys factors
+    (HRFs) of the vibrational normal modes coupled to the electronic
+    transition. The organic light-emitting diode (OLED) fabricated with
+    DBBNP2CN2 shows a narrower green EL emission at 518 nm with a smaller
+    bandwidth (50 nm) than those of devices adopting DBBNP or DBBNP2CN1. The
+    careful modification of the molecular structures and positions of
+    substituents enables us to reduce the HRFs of vibrations to achieve a
+    narrow emission bandwidth with decreased I0-1/I0-0, which suggests a
+    design strategy to develop narrowband organic fluorophores to improve the
+    color purity for wide-gamut OLED displays.
+  abstract_ko: >
+    여러 위치에 나이트릴 치환기를 도입하여 테트라아자아센(tetra-azaacene) 코어 기반의
+    녹색 발광 형광체 시리즈를 합성하였다. 이들의 분자 구조-광학 물성 관계[즉, 광발광(PL)
+    및 전계발광(EL) 스펙트럼에서의 진동전자(vibronic) 전이]를 조사하여, ν0-n(n
+    = 1, 2, 3...) 전이를 억제하고 진동전자 피크 ν0-0를 강화함으로써 날카로운 방출을
+    얻고자 하였다. 헥세인 중 DBBNP, DBBNP2CN1, DBBNP2CN2의 PL
+    스펙트럼에서 ν0-1과 ν0-0 진동전자 전이의 세기 비(I0-1/I0-0)는 각각 1.13,
+    0.80, 0.67이었다. 이론 계산에 따르면 DBBNP2CN2의 8번과 13번 위치에 도입된
+    CN 치환은 균일한 전하 분포를 유도하고 전자 전이에 결합된 진동 정규 모드의 황-리스
+    인자(HRF)를 감소시킨다. DBBNP2CN2로 제작한 유기 발광 다이오드(OLED)는
+    DBBNP나 DBBNP2CN1을 사용한 소자보다 좁은 대역폭(50 nm)으로 518 nm에서
+    더 좁은 녹색 EL 방출을 보였다. 분자 구조와 치환기 위치를 세심하게 조절함으로써 진동의
+    HRF를 줄여 I0-1/I0-0가 감소된 좁은 방출 대역폭을 달성할 수 있었으며, 이는 넓은
+    색역(wide-gamut)의 OLED 디스플레이를 위한 색 순도 향상을 목표로 좁은 대역의
+    유기 형광체를 개발하는 설계 전략을 제시한다.
 
 - id: 25
   title: "Deep Learning Optical Spectroscopy Based on Experimental Database: Potential Applications to Molecular Design"
@@ -270,6 +806,43 @@
     - "Molecular property prediction"
     - "Optical property analysis"
   image: "pub-25.jpg"
+  abstract: >
+    Accurate and reliable prediction of the optical and photophysical
+    properties of organic compounds is important in various research fields.
+    Here, we developed deep learning (DL) optical spectroscopy using a DL
+    model and experimental database to predict seven optical and photophysical
+    properties of organic compounds, namely, the absorption peak position and
+    bandwidth, extinction coefficient, emission peak position and bandwidth,
+    photoluminescence quantum yield (PLQY), and emission lifetime. Our DL
+    model included the chromophore-solvent interaction to account for the
+    effect of local environments on the optical and photophysical properties
+    of organic compounds and was trained using an experimental database of
+    30,094 chromophore/solvent combinations. Our DL optical spectroscopy made
+    it possible to reliably and quickly predict the aforementioned properties
+    of organic compounds in solution, gas phase, film, and powder with the
+    root mean squared errors of 26.6 and 28.0 nm for absorption and emission
+    peak positions, 603 and 532 cm-1 for absorption and emission bandwidths,
+    and 0.209, 0.371, and 0.262 for the logarithm of the extinction
+    coefficient, PLQY, and emission lifetime, respectively. Finally, we
+    demonstrated how a blue emitter with desired optical and photophysical
+    properties could be efficiently virtually screened and developed by DL
+    optical spectroscopy. DL optical spectroscopy can be efficiently used for
+    developing chromophores and fluorophores in various research areas.
+  abstract_ko: >
+    유기 화합물의 광학적·광물리적 물성을 정확하고 신뢰성 있게 예측하는 것은 다양한 연구 분야에서
+    중요하다. 여기서 우리는 딥러닝(DL) 모델과 실험 데이터베이스를 이용한 딥러닝 광분광법을
+    개발하여 유기 화합물의 일곱 가지 광학적·광물리적 물성, 즉 흡수 피크 위치와 대역폭, 흡광
+    계수, 방출 피크 위치와 대역폭, 광발광 양자 수율(PLQY), 방출 수명을 예측하였다.
+    우리의 DL 모델은 국소 환경이 유기 화합물의 광학적·광물리적 물성에 미치는 영향을 반영하기
+    위해 발색단-용매 상호작용을 포함하였으며, 30,094개의 발색단/용매 조합으로 이루어진 실험
+    데이터베이스로 학습되었다. 우리의 딥러닝 광분광법은 용액, 기체상, 박막, 분말 상태의 유기
+    화합물에 대해 앞서 언급한 물성들을, 흡수 및 방출 피크 위치에 대해 각각 26.6 nm와
+    28.0 nm, 흡수 및 방출 대역폭에 대해 각각 603 cm-1과 532 cm-1, 흡광
+    계수·PLQY·방출 수명의 로그 값에 대해 각각 0.209, 0.371, 0.262의
+    평균제곱근오차로 신뢰성 있게 그리고 빠르게 예측할 수 있게 하였다. 끝으로 우리는 원하는
+    광학적·광물리적 물성을 갖는 청색 발광체를 딥러닝 광분광법으로 효율적으로 가상 스크리닝하고
+    개발할 수 있음을 보였다. 딥러닝 광분광법은 다양한 연구 분야에서 발색단과 형광체를 개발하는
+    데 효율적으로 활용될 수 있다.
 
 - id: 24
   title: "Ligand-Assisted Direct Photolithography of Perovskite Nanocrystals Encapsulated with Multifunctional Polymer Ligands for Stable, Full-Colored, High-Resolution Displays"
@@ -282,6 +855,35 @@
   themes:
     - "Optical property analysis"
   image: "pub-24.jpg"
+  abstract: >
+    Micropatterns with high stability, definition, and resolution are an
+    absolute requirement in advanced display technology. Herein, patternable
+    perovskite nanocrystals (PNCs) with excellent stability were prepared by
+    exchanging pristine ligands with multifunctional polymer ligands,
+    poly(2-cinnamoyloxyethyl methacrylate). The polymer backbone contains a
+    cinnamoyl group that has been widely employed as a photo-cross-linker
+    under 365 nm UV irradiation. Also, the terminal group is readily
+    adjustable among NH3Cl, NH3Br, and NH3I, allowing us to obtain
+    multicolored PNCs via instant anion exchange. Furthermore, the resulting
+    ligand-exchanged PNCs exhibited enhanced stability toward polar solvents
+    without any undesirable influence on the structural or optical properties
+    of the PNCs. Using anion-exchanged PNCs, RGB microarrays with a subpixel
+    size of 10 μm × 40 μm were successfully demonstrated. Our results
+    highlight the versatility and feasibility of a simplified patterning
+    strategy for nanomaterials, which can be generally applied in the
+    fabrication of various optoelectronic devices.
+  abstract_ko: >
+    높은 안정성, 선명도, 해상도를 갖춘 마이크로패턴은 첨단 디스플레이 기술의 필수 요건이다.
+    여기서 우리는 본래의 리간드를 다기능 고분자 리간드인 폴리(2-신나모일옥시에틸
+    메타크릴레이트)로 교환하여 우수한 안정성을 갖는 패턴 가능한 페로브스카이트 나노결정(PNC)을
+    제조하였다. 이 고분자 골격은 365 nm 자외선 조사 하에서 광가교제로 널리 사용되어 온
+    신나모일기를 포함한다. 또한 말단기를 NH3Cl, NH3Br, NH3I 사이에서 쉽게 조절할
+    수 있어, 즉각적인 음이온 교환을 통해 여러 색의 PNC를 얻을 수 있다. 나아가 이렇게
+    리간드를 교환한 PNC는 구조적·광학적 물성에 바람직하지 않은 영향을 주지 않으면서 극성
+    용매에 대한 안정성이 향상되었다. 음이온 교환 PNC를 이용하여 부화소 크기 10 μm ×
+    40 μm의 RGB 마이크로어레이를 성공적으로 구현하였다. 우리의 결과는 나노물질을 위한
+    단순화된 패터닝 전략의 다재다능함과 실현 가능성을 부각하며, 이는 다양한 광전자 소자 제작에
+    폭넓게 적용될 수 있다.
 
 - id: 23
   title: "Light-directed trapping of metastable intermediates in a self-assembly process"
@@ -295,6 +897,34 @@
     - "Optical property analysis"
     - "Quantum chemical modeling"
   image: "pub-23.jpg"
+  abstract: >
+    Self-assembly is a dynamic process that often takes place through a
+    stepwise pathway involving formation of kinetically favored metastable
+    intermediates prior to generation of a thermodynamically preferred
+    supramolecular framework. Although trapping intermediates in these
+    pathways can provide significant information about both their nature and
+    the overall self-assembly process, it is a challenging venture without
+    altering temperature, concentrations, chemical compositions and
+    morphologies. Herein, we report a highly efficient and potentially general
+    method for trapping metastable intermediates in self-assembly processes
+    that is based on a photopolymerization strategy. By employing a chiral
+    perylene-diimide possessing a diacetylene containing an alkyl chain, we
+    demonstrated that the metastable intermediates, including nanoribbons,
+    nanocoils and nanohelices, can be effectively trapped by using UV-promoted
+    polymerization before they form thermodynamic tubular structures. The
+    strategy developed in this study should be applicable to naturally and
+    synthetically abundant alkyl-chain-containing self-assembling systems.
+  abstract_ko: >
+    자기조립(self-assembly)은 열역학적으로 선호되는 초분자 골격이 생성되기에 앞서
+    속도론적으로 유리한 준안정 중간체가 형성되는 단계적 경로를 통해 흔히 일어나는 동적 과정이다.
+    이러한 경로에서 중간체를 포착하면 그 본질과 전체 자기조립 과정 모두에 대한 중요한 정보를
+    얻을 수 있지만, 온도·농도·화학 조성·형태를 바꾸지 않고 이를 수행하기는 어렵다. 여기서
+    우리는 광중합 전략에 기반하여 자기조립 과정의 준안정 중간체를 포착하는, 매우 효율적이며
+    잠재적으로 보편적인 방법을 보고한다. 알킬 사슬을 포함하는 다이아세틸렌을 가진 키랄
+    페릴렌-다이이미드를 사용하여, 나노리본·나노코일·나노헬릭스를 포함한 준안정 중간체가 열역학적
+    관 모양 구조를 형성하기 전에 자외선 촉진 중합을 통해 효과적으로 포착될 수 있음을 보였다.
+    이 연구에서 개발한 전략은 자연적으로나 합성적으로 풍부한, 알킬 사슬을 포함하는 자기조립
+    시스템에 적용될 수 있을 것이다.
 
 - id: 22
   title: "Direct Photolithographic Patterning of Colloidal Quantum Dots Enabled by UV-Crosslinkable & Hole-Transporting Polymer Ligand"
@@ -307,6 +937,42 @@
   themes:
     - "Optical property analysis"
   image: "pub-22.jpg"
+  abstract: >
+    Quantum dot (QD)-based displays call for non-destructive, high-throughput,
+    and high-resolution patterning techniques with micrometer precision. In
+    particular, self-emissive QD-based displays demand fine patterns of
+    conductive QD films with thickness exhibiting uniformity at the nanometer
+    scale. To meet these requirements, we functionalized QDs with
+    photo-patternable and semiconducting
+    poly(vinyltriphenylamine-random-azidostyrene) (PTPA-N3-SH) ligands in
+    which hole-transporting triphenylamine and UV-crosslinkable azide (-N3)
+    groups are integrated. The hybridized QD films undergo chemical
+    crosslinking upon UV irradiation without a loss in luminescence
+    efficiency, enabling micrometer-scale QD patterns (pitch size down to ~10
+    μm) via direct photolithography. In addition, the conjugated moieties in
+    the ligands render the crosslinked QD films to be implemented in
+    electrically driven light-emitting diodes (LEDs). As the ultimate
+    achievement, a patterned QD-LED was demonstrated with a maximum luminance
+    of 11,720 cd/m2 and a maximum external quantum efficiency (EQE) of 6.25%.
+    The present study offers a simple platform to fabricate conductive
+    nanoparticle films with micrometer-scale patterns, and thus we anticipate
+    that this system will expedite the realization of QD-based displays and
+    will also be applicable to the manufacture of nanoparticles for other
+    electronic devices.
+  abstract_ko: >
+    양자점(QD) 기반 디스플레이는 마이크로미터 정밀도를 갖는 비파괴적·고처리량·고해상도 패터닝
+    기술을 필요로 한다. 특히 자발광 QD 기반 디스플레이는 나노미터 수준의 두께 균일성을 갖는
+    전도성 QD 박막의 미세 패턴을 요구한다. 이러한 요건을 충족하기 위해 우리는 정공 수송성
+    트라이페닐아민과 자외선 가교성 아자이드(-N3) 기가 통합된 광패턴화 가능 반도체성
+    폴리(바이닐트라이페닐아민-random-아자이도스타이렌)(PTPA-N3-SH) 리간드로 QD를
+    기능화하였다. 이렇게 혼성화된 QD 박막은 발광 효율 손실 없이 자외선 조사 시 화학적으로
+    가교되어, 직접 광리소그래피를 통해 마이크로미터 수준(피치 크기 약 10 μm까지)의 QD
+    패턴을 구현할 수 있다. 또한 리간드의 공액 부위 덕분에 가교된 QD 박막을 전기 구동 발광
+    다이오드(LED)에 적용할 수 있다. 최종 성과로, 최대 휘도 11,720 cd/m2와 최대
+    외부 양자 효율(EQE) 6.25%를 갖는 패턴화된 QD-LED를 구현하였다. 이 연구는
+    마이크로미터 수준의 패턴을 갖는 전도성 나노입자 박막을 제작하는 간단한 플랫폼을 제공하며,
+    따라서 이 시스템이 QD 기반 디스플레이의 실현을 앞당기고 다른 전자 소자용 나노입자 제조에도
+    적용될 수 있을 것으로 기대한다.
 
 - id: 21
   title: "Experimental database of optical properties of organic compounds"
@@ -320,6 +986,24 @@
     - "Experimental dataset"
     - "Optical property analysis"
   image: "pub-21.jpg"
+  abstract: >
+    Experimental databases on the optical properties of organic chromophores
+    are important for the implementation of data-driven chemistry using
+    machine learning. Herein, we present a series of experimental data
+    including various optical properties such as the first absorption and
+    emission maximum wavelengths and their bandwidths (full width at half
+    maximum), extinction coefficient, photoluminescence quantum yield, and
+    fluorescence lifetime. A database of 20,236 data points was developed by
+    collecting the optical properties of organic compounds already reported in
+    the literature. A dataset of 7,016 unique organic chromophores in 365
+    solvents or in the solid state is available in CSV format.
+  abstract_ko: >
+    유기 발색단의 광학 물성에 관한 실험 데이터베이스는 기계학습을 이용한 데이터 기반 화학을
+    구현하는 데 중요하다. 여기서 우리는 첫 번째 흡수 및 방출 최대 파장과 그
+    대역폭(반치전폭), 흡광 계수, 광발광 양자 수율, 형광 수명 등 다양한 광학 물성을 포함하는
+    일련의 실험 데이터를 제시한다. 문헌에 이미 보고된 유기 화합물의 광학 물성을 수집하여
+    20,236개 데이터 점으로 이루어진 데이터베이스를 구축하였다. 365종의 용매 또는 고체
+    상태에 있는 7,016개 고유 유기 발색단으로 구성된 데이터셋을 CSV 형식으로 제공한다.
 
 - id: 20
   title: "Green-, Red-, and NIR-Emitting Polymer Dot Probes for Simultaneous Multicolor Cell Imaging with a Single Excitation Wavelength"
@@ -332,6 +1016,42 @@
   themes:
     - "Optical property analysis"
   image: "pub-20.jpg"
+  abstract: >
+    We report newly synthesized fluorescence resonance energy transfer
+    (FRET)-based green-, red-, and near-infrared (NIR)-emitting polymer dot
+    (Pdot) probes. Fluorescent Pdots (~60 nm) were prepared with a
+    green-emissive conjugated polymer (PPDT-P, donor) alone or by mixing the
+    donor with a red- or NIR-emitting fluorophore (T-DCS or ITIC, acceptor),
+    where an optically inert matrix polymer [poly(styrene-co-maleic
+    anhydride)] was mixed together to minimize the aggregation-caused
+    quenching by diluting the fluorophores and to provide surface
+    functionalization for further bioconjugation with antibodies for active
+    targeting. Highly fluorescent green-emissive PPDT-P Pdots were prepared
+    with a photoluminescence (PL) quantum efficiency of ~30%, and the
+    FRET-mediated red and NIR PL was intensified by 5.3-8.5 times (with high
+    FRET ratios of ~9) via the efficient energy transfer (FRET efficiency of
+    80-98%) and antenna effect, compared with the signals obtained via direct
+    excitation of the fluorophores in Pdots. All three types of Pdot/antibody
+    conjugates were simultaneously immunostained to COS-7 cells (showing
+    minimal cross-reactivity), reducing the tedious sequential immunostaining
+    process to a single step. Finally, we obtained high-contrast three-color
+    cell images with little spectral leakthrough by exciting all the probes
+    simultaneously at a single wavelength at 405 nm without the need for a
+    complicated or expensive multiple-excitation setup.
+  abstract_ko: >
+    우리는 형광 공명 에너지 전이(FRET)에 기반하여 새로 합성한 녹색·적색·근적외선(NIR)
+    발광 고분자 점(Pdot) 탐침을 보고한다. 형광 Pdot(약 60 nm)은 녹색 발광 공액
+    고분자(PPDT-P, 주개)만으로, 또는 주개를 적색이나 NIR 발광 형광단(T-DCS 또는
+    ITIC, 받개)과 혼합하여 제조하였으며, 이때 광학적으로 비활성인 기질
+    고분자[폴리(스타이렌-co-말레산 무수물)]를 함께 섞어 형광단을 희석함으로써 응집에 의한
+    소광을 최소화하고, 능동 표적화를 위한 항체와의 추가 생체접합을 위해 표면을 기능화하였다.
+    광발광(PL) 양자 효율 약 30%의 강한 녹색 발광 PPDT-P Pdot을 제조하였으며,
+    FRET를 매개로 한 적색 및 NIR PL은 효율적인 에너지 전이(FRET 효율
+    80-98%)와 안테나 효과를 통해, Pdot 내 형광단의 직접 여기로 얻은 신호 대비
+    5.3-8.5배(높은 FRET 비 약 9) 증대되었다. 세 종류의 Pdot/항체 접합체를
+    COS-7 세포에 동시에 면역염색하여(교차 반응성은 최소) 번거로운 순차적 면역염색 과정을 한
+    단계로 줄였다. 끝으로, 복잡하거나 비싼 다중 여기 장치 없이 405 nm 단일 파장에서 모든
+    탐침을 동시에 여기함으로써 스펙트럼 누출이 거의 없는 고대비 3색 세포 이미지를 얻었다.
 
 - id: 19
   title: "Penta-fluorophenol: A Smiles rearrangement-inspired cysteine-selective fluorescent probe for imaging of human glioblastoma"
@@ -344,6 +1064,34 @@
   themes:
     - "Quantum chemical modeling"
   image: "pub-19.jpg"
+  abstract: >
+    Two of the most critical factors for the survival of glioblastoma (GBM)
+    patients are precision diagnosis and the tracking of treatment progress.
+    At the moment, various sophisticated and specific diagnostic procedures
+    are being used, but there are relatively few simple diagnosis methods.
+    This work introduces a sensing probe based on a turn-on type fluorescence
+    response that can measure the cysteine (Cys) level, which is recognized as
+    a new biomarker of GBM, in human-derived cells and within on-site human
+    clinical biopsy samples. The Cys-initiated chemical reactions of the probe
+    cause a significant fluorescence response with high selectivity, high
+    sensitivity, a fast response time, and a two-photon excitable excitation
+    pathway, which allows the imaging of GBM in both mouse models and human
+    tissue samples. The probe can distinguish the GBM cells and disease sites
+    in clinical samples from individual patients. Besides, the probe has no
+    short- or long-term toxicity and immune response. The present findings
+    hold promise for application of the probe to a relatively simple and
+    straightforward following of GBM at clinical sites.
+  abstract_ko: >
+    교모세포종(GBM) 환자의 생존에 가장 중요한 두 가지 요소는 정밀 진단과 치료 경과의
+    추적이다. 현재 다양하고 정교하며 특이적인 진단 절차가 사용되고 있지만, 간단한 진단 방법은
+    상대적으로 적다. 이 연구는 GBM의 새로운 생체표지자로 인식되는 시스테인(Cys) 수치를
+    사람 유래 세포와 현장의 사람 임상 생검 시료에서 측정할 수 있는, 신호가
+    켜지는(turn-on) 형광 반응 기반의 감지 탐침을 소개한다. 이 탐침의 Cys 개시 화학
+    반응은 높은 선택성, 높은 민감도, 빠른 응답 시간, 이광자 여기 경로를 갖는 뚜렷한 형광
+    반응을 일으켜 마우스 모델과 사람 조직 시료 모두에서 GBM의 이미징을 가능하게 한다. 이
+    탐침은 개별 환자의 임상 시료에서 GBM 세포와 병변 부위를 구별할 수 있다. 또한 이 탐침은
+    단기 또는 장기 독성과 면역 반응이 없다. 본 연구 결과는 임상 현장에서 비교적 간단하고
+    직접적으로 GBM을 추적하는 데 이 탐침을 적용할 수 있는 가능성을 보여준다.
 
 - id: 18
   title: "Chemically resistant and thermally stable quantum dots prepared by shell encapsulation with cross-linkable block copolymer ligands"
@@ -356,6 +1104,42 @@
   themes:
     - "Optical property analysis"
   image: "pub-18.jpg"
+  abstract: >
+    Endowing quantum dots (QDs) with robustness and durability has been one of
+    the most important issues in this field, since the major limitations of
+    QDs in practical applications are their thermal and oxidative
+    instabilities. In this work, we propose a facile and effective passivation
+    method to enhance the photochemical stability of QDs using polymeric
+    double shell structures from thiol-terminated poly(methyl
+    methacrylate-b-glycidyl methacrylate) (P(MMA-b-GMA)-SH) block copolymer
+    ligands. To generate a densely cross-linked network, the cross-linking
+    reaction of GMA epoxides in the PGMA block was conducted using a Lewis
+    acid catalyst under an ambient environment to avoid affecting the
+    photophysical properties of the pristine QDs. This provides QDs
+    encapsulated with robust double layers consisting of a highly transparent
+    PMMA outer shell and an oxidation-protective cross-linked inner shell.
+    Consequently, the resulting QDs exhibited exceptional tolerance to heat
+    and oxidants when dispersed in organic solvents or QD-nanocomposite films,
+    as demonstrated under various harsh conditions with respect to temperature
+    and oxidant species. The present approach not only provides simple yet
+    effective chemical means to enhance the thermochemical stability of QDs,
+    but also offers a promising platform for the hybridization of QDs with
+    polymeric materials for developing robust light-emitting or
+    light-harvesting devices.
+  abstract_ko: >
+    양자점(QD)에 견고함과 내구성을 부여하는 것은 이 분야에서 가장 중요한 과제 중 하나였는데,
+    실제 응용에서 QD의 주요 한계가 열적·산화적 불안정성이기 때문이다. 이 연구에서 우리는
+    싸이올 말단 폴리(메틸 메타크릴레이트-b-글리시딜
+    메타크릴레이트)(P(MMA-b-GMA)-SH) 블록 공중합체 리간드로 만든 고분자 이중 껍질
+    구조를 이용하여 QD의 광화학적 안정성을 높이는 간단하고 효과적인 부동태화 방법을 제안한다.
+    조밀하게 가교된 그물 구조를 만들기 위해, 본래 QD의 광물리적 물성에 영향을 주지 않도록
+    상온 환경에서 루이스 산 촉매를 사용하여 PGMA 블록 내 GMA 에폭사이드의 가교 반응을
+    수행하였다. 이를 통해 매우 투명한 PMMA 바깥 껍질과 산화 방지용 가교 안쪽 껍질로
+    이루어진 견고한 이중층으로 캡슐화된 QD를 얻었다. 그 결과, 얻어진 QD는 유기 용매에
+    분산되거나 QD-나노복합체 박막 형태일 때 온도와 산화제 종류에 관한 다양한 가혹 조건에서
+    입증된 바와 같이 열과 산화제에 대해 뛰어난 내성을 보였다. 본 접근법은 QD의 열화학적
+    안정성을 높이는 간단하면서도 효과적인 화학적 수단을 제공할 뿐 아니라, 견고한 발광 또는
+    광포집 소자 개발을 위해 QD를 고분자 재료와 혼성화하는 유망한 플랫폼을 제시한다.
 
 - id: 17
   title: "A new visible light triggered Arrhenius photobase and its photo-induced reactions"
@@ -369,6 +1153,32 @@
     - "Excited-state reaction"
     - "Quantum chemical modeling"
   image: "pub-17.jpg"
+  abstract: >
+    Arrhenius photobases are of potential use for excited-state hydroxide ion
+    dissociation (ESHID), photo-induced pOH jump experiments, and
+    base-catalyzed reactions. However, previously studied Arrhenius photobases
+    have to be excited by UV light and undergo ESHID reactions only in protic
+    solvents. These characteristics have become a disadvantage to their
+    application in many fields of research. In this work, we have designed and
+    synthesized a new Arrhenius photobase (NO2-Acr-OH), the ESHID reaction of
+    which is readily triggered by visible light excitation. In contrast to
+    previously studied Arrhenius photobases, NO2-Acr-OH undergoes ESHID
+    reactions in protic solvents as well as in polar aprotic solvents.
+    Solvent-dependent photo-induced reactions of NO2-Acr-OH are
+    comprehensively studied by time-resolved fluorescence spectroscopy.
+    Molecular designs for visible-light-triggered acridinol-based Arrhenius
+    photobases with a large ΔpKb value are proposed.
+  abstract_ko: >
+    아레니우스 광염기(Arrhenius photobase)는 들뜬상태 수산화 이온
+    해리(ESHID), 광유도 pOH 점프 실험, 염기 촉매 반응에 활용될 잠재력이 있다. 그러나
+    지금까지 연구된 아레니우스 광염기는 자외선으로 들뜨게 해야 하고 양성자성 용매에서만 ESHID
+    반응을 일으킨다. 이러한 특성은 여러 연구 분야에서의 응용에 단점이 되어 왔다. 이 연구에서
+    우리는 가시광선 여기로 ESHID 반응이 쉽게 유발되는 새로운 아레니우스
+    광염기(NO2-Acr-OH)를 설계하고 합성하였다. 기존에 연구된 아레니우스 광염기와 달리
+    NO2-Acr-OH는 양성자성 용매뿐 아니라 극성 비양성자성 용매에서도 ESHID 반응을
+    일으킨다. NO2-Acr-OH의 용매 의존적 광유도 반응을 시간 분해 형광 분광법으로
+    종합적으로 조사하였다. 큰 ΔpKb 값을 갖는 아크리디놀(acridinol) 기반의 가시광선
+    유발 아레니우스 광염기에 대한 분자 설계를 제안한다.
 
 - id: 16
   title: "Macrocyclic Diacetylene-Terthiophene Cocrystal: Molecular Self-Assembly, Topochemical Polymerization and Energy Transfer"
@@ -381,6 +1191,43 @@
   themes:
     - "Optical property analysis"
   image: "pub-16.jpg"
+  abstract: >
+    The macrocyclic structure offers direction-control self-assembly to
+    generate columnar supramolecular architectures with a
+    guest-molecule-accessible interior cavity. Owing to the π-π stacking
+    characteristic and photopolymerizable feature of the diacetylenic
+    template, macrocyclic diacetylenes (MCDAs) have emerged as an intriguing
+    molecular design for constructing arrays of covalently connected
+    nanochannels. The energy transfer mechanism by engineering host-guest
+    cocrystals of self-assembling π-electron-rich motifs has been widely
+    accepted for devising organic electronics. A highly fluorescent and
+    polymerizable cocrystal of macrocyclic diacetylene-terthiophene (MCDA-3T)
+    was constructed. Single-crystal X-ray diffraction analysis reveals
+    well-ordered columnar assembly of MCDA with stacking geometry close to
+    ideal packing parameters preferred for the topochemical polymerization.
+    Inspection of the extended crystal packing pattern and elemental analysis
+    confirms the inclusion of the 3T guest in outer space positioned along the
+    parallel-packed MCDA columns, resulting in an array of nanochannels.
+    UV-induced polymerization of the MCDA-3T cocrystal transforms it into
+    covalently cross-linked PDAs and displays Förster resonance energy
+    transfer behavior between fluorescent 3T and the conjugated PDA polymer.
+    The energy transfer phenomenon observed with the tubular PDA and
+    oligothiophenes should be useful in the design of new energy-harvesting
+    functional supramolecules.
+  abstract_ko: >
+    거대고리(macrocyclic) 구조는 방향이 제어된 자기조립을 통해 손님 분자가 접근 가능한
+    내부 공동을 갖는 기둥 모양 초분자 구조를 형성한다. 다이아세틸렌 골격의 π-π 적층 특성과
+    광중합 가능 특징 덕분에 거대고리 다이아세틸렌(MCDA)은 공유 결합으로 연결된 나노채널
+    배열을 구성하는 흥미로운 분자 설계로 부상하였다. 자기조립하는 π-전자 풍부 모티프의
+    숙주-손님 공결정을 설계하여 얻는 에너지 전이 메커니즘은 유기 전자소자 고안에 널리 받아들여져
+    왔다. 강한 형광과 중합성을 갖는 거대고리 다이아세틸렌-터싸이오펜(MCDA-3T) 공결정을
+    구성하였다. 단결정 X선 회절 분석 결과, MCDA는 위상화학적 중합에 선호되는 거의 이상적인
+    적층 기하와 패킹 변수를 갖는 잘 정렬된 기둥형 집합을 이룬다. 확장된 결정 패킹 양상의
+    검토와 원소 분석을 통해, 평행하게 쌓인 MCDA 기둥을 따라 바깥 공간에 3T 손님이
+    포함되어 나노채널 배열을 형성함을 확인하였다. MCDA-3T 공결정의 자외선 유도 중합은 공유
+    가교된 PDA로 전환되며, 형광성 3T와 공액 PDA 고분자 사이에 푀르스터 공명 에너지
+    전이(FRET) 거동을 나타낸다. 관 모양 PDA와 올리고싸이오펜에서 관찰된 에너지 전이
+    현상은 새로운 에너지 포집 기능성 초분자의 설계에 유용할 것이다.
 
 - id: 15
   title: "Covalently Linked, Perylene diimide Polydiacetylene Nanofibers Display Enhanced Stability and Photocurrent with Reversible FRET Phenomenon"
@@ -393,6 +1240,36 @@
   themes:
     - "Optical property analysis"
   image: "pub-15.jpg"
+  abstract: >
+    Because of their unique structural and optical properties, 1D perylene
+    diimide (PDI) derivatives have gained attention for use in optoelectronic
+    devices. However, PDI-containing self-assembled supramolecular systems
+    often are of limited use because they have supramolecular architectures
+    that are held together by weak noncovalent π-π stacking, hydrogen bonding,
+    and hydrophobic interactions. As a result, they are intrinsically unstable
+    under solution-processing conditions. To overcome this limitation, a
+    polydiacetylene (PDA)-based strategy is developed to construct a
+    solvent-resistant and stable PDI assembly. For this purpose, first the
+    monomer PDI-BisDA is generated, in which two polymerizable diacetylene
+    (DA) units are covalently linked to a PDI core. Importantly, 254 nm UV
+    irradiation of self-assembled PDI-BisDA nanofibers forms solvent-resistant
+    and stable PDI-PDA fibers. Owing to the presence of PDA, the generated
+    polymer fibers display an increased photocurrent. In addition, the
+    existence of PDA and PDI moieties in the fiber leads to the occurrence of
+    switchable on-off fluorescence resonance energy transfer (FRET) between
+    the PDI and reversibly thermochromic PDA chromophores.
+  abstract_ko: >
+    독특한 구조적·광학적 물성 덕분에 1차원 페릴렌 다이이미드(PDI) 유도체는 광전자 소자
+    응용에서 주목받아 왔다. 그러나 PDI를 포함하는 자기조립 초분자 시스템은 약한 비공유 π-π
+    적층, 수소 결합, 소수성 상호작용으로 결합된 초분자 구조를 가지기 때문에 활용에 한계가 있는
+    경우가 많다. 그 결과 이들은 용액 공정 조건에서 본질적으로 불안정하다. 이 한계를 극복하기
+    위해, 용매에 강하고 안정한 PDI 집합체를 구성하는 폴리다이아세틸렌(PDA) 기반 전략을
+    개발하였다. 이를 위해 먼저 두 개의 중합 가능한 다이아세틸렌(DA) 단위가 PDI 코어에
+    공유 결합된 단량체 PDI-BisDA를 합성하였다. 특히 자기조립된 PDI-BisDA
+    나노섬유에 254 nm 자외선을 조사하면 용매에 강하고 안정한 PDI-PDA 섬유가 형성된다.
+    PDA의 존재 덕분에 생성된 고분자 섬유는 증가된 광전류를 나타낸다. 또한 섬유 내 PDA와
+    PDI 부위의 공존은 PDI와 가역적 열변색성 PDA 발색단 사이에 켜고 끌 수 있는 형광
+    공명 에너지 전이(FRET)가 일어나게 한다.
 
 - id: 14
   title: "2-(Benzothiazol-2-yl)pyren-1-ol, a new excited state intramolecular proton transfer-based fluorescent sensor for nitroaromatic compounds"
@@ -406,6 +1283,42 @@
     - "Excited-state reaction"
     - "Quantum chemical modeling"
   image: "pub-14.jpg"
+  abstract: >
+    2-(Benzothiazol-2-yl)pyren-1-ol (P3-NS) was developed as an excited-state
+    intramolecular proton transfer (ESIPT)-based sensor for nitroaromatic
+    compounds (NACs). Results of studies of its photophysical and optical
+    properties show that P3-NS exists in various, solvent-dependent isomeric
+    forms arising from rotation about the C-C bond connecting the
+    benzothiazole and pyren-1-ol rings and the location of the pyrene-OH
+    proton. The results of density functional theory (DFT) calculations
+    enabled identification of the major structures of P3-NS dissolved in
+    different solvents. Upon electronic excitation in nonpolar or weakly polar
+    solvents, P3-NS undergoes an ESIPT reaction to form a product that only
+    weakly fluoresces. In contrast, P3-NS exists in a strongly fluorescent
+    deprotonated form in highly polar solvents. The results of time-dependent
+    DFT calculations indicate that fluorescence quenching of the product
+    generated by the ESIPT reaction of P3-NS is caused by intersystem crossing
+    at a conical intersection between the S1 and T2 states. The anionic form
+    of P3-NS, present in highly polar solvents, was shown to be a fluorescence
+    sensor for nitroaromatic compounds (NACs). Fluorescence quenching by NACs
+    occurs by protonation of the anionic form of P3-NS (static quenching) and
+    by photoinduced electron transfer from the anionic form to NACs (dynamic
+    quenching).
+  abstract_ko: >
+    2-(벤조싸이아졸-2-일)피렌-1-올(P3-NS)을 나이트로방향족 화합물(NAC)을 위한
+    들뜬상태 분자내 양성자 전이(ESIPT) 기반 센서로 개발하였다. 광물리적·광학적 물성 연구
+    결과, P3-NS는 벤조싸이아졸과 피렌-1-올 고리를 연결하는 C-C 결합 주위의 회전과
+    피렌-OH 양성자의 위치에서 비롯된 다양한 용매 의존적 이성질체 형태로 존재한다.
+    밀도범함수이론(DFT) 계산을 통해 서로 다른 용매에 녹은 P3-NS의 주요 구조를 규명할 수
+    있었다. 비극성 또는 약극성 용매에서 전자가 들뜨면 P3-NS는 ESIPT 반응을 일으켜
+    약하게만 형광을 내는 생성물을 형성한다. 반면 강극성 용매에서는 P3-NS가 강한 형광을 내는
+    탈양성자화 형태로 존재한다. 시간 의존 DFT 계산 결과, ESIPT 반응으로 생성된
+    P3-NS 생성물의 형광 소광은 S1과 T2 상태 사이의 원뿔형 교차점(conical
+    intersection)에서 일어나는 계간 전이(intersystem crossing)에 의한
+    것으로 나타났다. 강극성 용매에 존재하는 P3-NS의 음이온 형태는 나이트로방향족
+    화합물(NAC)에 대한 형광 센서임이 밝혀졌다. NAC에 의한 형광 소광은 P3-NS 음이온
+    형태의 양성자화(정적 소광)와 음이온 형태에서 NAC로의 광유도 전자 전이(동적 소광)에 의해
+    일어난다.
 
 - id: 13
   title: "Synthesis, Structure, and Photoluminescence Properties of a Metal-Organic Framework with Hexagonal Channels: Selective Turn-On Sensing for Mg2+ Ion"
@@ -418,6 +1331,28 @@
   themes:
     - "Optical property analysis"
   image: "pub-13.jpg"
+  abstract: >
+    A three-dimensional Cd2+ framework (1) with wide one-dimensional hexagonal
+    channels was prepared based on a tripodal tricarboxylate ligand possessing
+    nitrogen donor atoms. The Cd atoms form a chain structure bridged by
+    carboxylates and aqua ligands. Upon Mg2+ ion capture, the fluorescence
+    emission of this porous material was 5.2 times greater than its Mg2+-free
+    fluorescence. To the best of our knowledge, such enhancement has not been
+    previously reported for metal-organic framework sensory systems. The
+    sensing performance of 1 is reversible over repeated cycles of Mg2+
+    inclusion and release, revealing the reusability of this material. In the
+    presence of other tested metal ions, Mg2+ ions were selectively detected
+    owing to the operation of this turn-on mechanism. Thus, this platform is a
+    promising sensor material for selective Mg2+ ion recognition.
+  abstract_ko: >
+    질소 주개 원자를 갖는 삼발이형 트라이카복실레이트 리간드를 바탕으로 넓은 1차원 육방 채널을
+    갖는 3차원 Cd2+ 골격(1)을 제조하였다. Cd 원자는 카복실레이트와 아쿠아 리간드로
+    가교된 사슬 구조를 이룬다. Mg2+ 이온을 포획하면 이 다공성 물질의 형광 방출이 Mg2+가
+    없을 때보다 5.2배 커졌다. 우리가 아는 한, 이러한 증대는 금속-유기 골격체 감지
+    시스템에서 이전에 보고된 바 없다. 1의 감지 성능은 Mg2+의 포함과 방출을 반복하는 주기에
+    걸쳐 가역적이어서 이 물질의 재사용성을 보여준다. 시험한 다른 금속 이온이 있을 때에도 이
+    신호가 켜지는(turn-on) 메커니즘의 작동 덕분에 Mg2+ 이온이 선택적으로 검출되었다.
+    따라서 이 플랫폼은 선택적 Mg2+ 이온 인식을 위한 유망한 센서 물질이다.
 
 - id: 12
   title: "A naphthoimidazolium-cholesterol derivative as a ratiometric fluorescence based chemosensor for the chiral recognition of carboxylates"
@@ -431,6 +1366,29 @@
     - "Optical property analysis"
     - "Quantum chemical modeling"
   image: "pub-12.jpg"
+  abstract: >
+    Fluorescent chemosensors for sensing chiral molecules have been actively
+    studied in recent years. In the current study, we report a
+    naphthoimidazolium-cholesterol derivative (NI-chol 1) as a
+    fluorescence-based chemosensor for chiral recognition, in which the
+    naphthoimidazolium serves not only as a fluorophore but also as a
+    recognition moiety for anions via imidazolium (C-H)+-anion binding, and
+    the cholesterol unit acts as a chiral barrier. In particular, NI-chol 1
+    displayed unique and distinct ratiometric changes with Boc-D-Phe; on the
+    other hand, Boc-L-Phe induced a negligible change. Furthermore, a distinct
+    downfield shift (from 9.64 ppm to 9.96 ppm) of the imidazolium C-H peak
+    was observed for Boc-D-Phe (5 eq.) with severe broadening, which indicates
+    strong ionic hydrogen bonding between the C-H proton and the carboxylate.
+  abstract_ko: >
+    키랄 분자를 감지하는 형광 화학센서는 최근 활발히 연구되어 왔다. 이 연구에서 우리는 키랄
+    인식을 위한 형광 기반 화학센서로서 나프토이미다졸륨-콜레스테롤 유도체(NI-chol 1)를
+    보고한다. 여기서 나프토이미다졸륨은 형광단일 뿐 아니라 이미다졸륨 (C-H)+-음이온 결합을
+    통한 음이온 인식 부위로도 작용하며, 콜레스테롤 단위는 키랄 장벽 역할을 한다. 특히
+    NI-chol 1은 Boc-D-Phe에 대해 독특하고 뚜렷한 비율계측(ratiometric)
+    변화를 보인 반면, Boc-L-Phe는 거의 변화를 일으키지 않았다. 나아가
+    Boc-D-Phe(5 당량)에 대해 이미다졸륨 C-H 피크가 심한 넓어짐과 함께 뚜렷하게 낮은
+    자기장 쪽으로 이동(9.64 ppm에서 9.96 ppm으로)하는 것이 관찰되었으며, 이는
+    C-H 양성자와 카복실레이트 사이의 강한 이온성 수소 결합을 나타낸다.
 
 - id: 11
   title: "Fluorescent Organic Glass with Unique Optical and Mechanical Properties"
@@ -443,6 +1401,32 @@
   themes:
     - "Optical property analysis"
   image: "pub-11.jpg"
+  abstract: >
+    Conventional organic glasses such as molecular and polymeric glasses
+    either lack processability or have ill-defined properties. Here, a novel
+    organic glass is reported having well-defined fluorescent properties and
+    high compatibility with various fabrication processes. The fluorescent
+    organic glass (FOG) is synthesized by simply heating benzyl alcohol with a
+    small amount of aqueous sulfuric acid. Owing to its outstanding optical
+    properties, FOG is placed beyond the domain of conventional organic
+    glasses in the Abbe diagram. Moreover, excellent rheological properties
+    render it amenable to molding, blowing, and nanopatterning processes.
+    Finally, based on extensive characterization, it is proposed that a FOG is
+    composed of a 1,2,3,4-tetraphenyl-1,3-butadiene core and poly(phenylene
+    methylene) branches, which are responsible for molecular fluorescence and
+    polymeric processability, respectively. The demonstration may contribute
+    significantly to the development of organic glasses with unprecedented
+    properties for various applications.
+  abstract_ko: >
+    분자 유리나 고분자 유리와 같은 기존 유기 유리는 가공성이 부족하거나 물성이 불명확하다.
+    여기서 우리는 잘 정의된 형광 물성과 다양한 제작 공정과의 높은 호환성을 갖는 새로운 유기
+    유리를 보고한다. 이 형광 유기 유리(FOG)는 벤질 알코올을 소량의 황산 수용액과 함께
+    단순히 가열하여 합성한다. 뛰어난 광학적 물성 덕분에 FOG는 아베(Abbe) 도표에서 기존
+    유기 유리의 영역을 벗어난 곳에 위치한다. 게다가 우수한 유변학적 물성 덕분에 성형,
+    취입(blowing), 나노패터닝 공정에 적용할 수 있다. 끝으로 광범위한 특성 분석을
+    바탕으로, FOG가 분자 형광을 담당하는 1,2,3,4-테트라페닐-1,3-뷰타다이엔 코어와
+    고분자적 가공성을 담당하는 폴리(페닐렌 메틸렌) 가지로 구성된다고 제안한다. 이 실증은 다양한
+    응용을 위한 전례 없는 물성의 유기 유리 개발에 크게 기여할 수 있다.
 
 - id: 10
   title: "Elucidating the Role of Molecule-Electrode Interfacial Defects in Charge Tunneling Characteristics of Large-area Junctions"
@@ -455,6 +1439,47 @@
   themes:
     - "Quantum chemical modeling"
   image: "pub-10.jpg"
+  abstract: >
+    Interfacial chemistry at organic-inorganic contact critically determines
+    the function of a wide range of molecular and organic electronic devices
+    and other systems. The chemistry is, however, difficult to understand due
+    to the lack of easily accessible in-operando spectroscopic techniques that
+    permit access to interfacial structure on a molecular scale. Herein, we
+    compare two analogous junctions formed with identical organic thin films
+    and different liquid top-contacts (water droplet vs eutectic gallium
+    indium alloy) and elucidate the puzzling interfacial characteristics.
+    Specifically, we fine-tune the surface topography of the organic surface
+    using mixed self-assembled monolayers (SAMs): a single-component SAM
+    composed of rectifier (2,2'-bipyridyl-terminated n-undecanethiolate,
+    denoted as SC11BIPY) is systematically diluted with nonrectifying
+    n-alkanethiolates of different lengths (denoted as SCn, where n = 8, 10,
+    12, 14, 16, 18). Characterization of the resulting mixed SAMs in
+    wettability and tunneling currents with the two separate liquid
+    top-contacts allows us to investigate the role of phase segregation and
+    gauche defects in the SAM//liquid interfaces. The results reported here
+    show that the difference in length between SC11BIPY and SCn is translated
+    into nanoscopic pits and gauche-conformer defects on the surface, and the
+    difference in contact force (hydrostatic vs user pressures), and hence
+    conformity of contact, accounts for the difference in wettability and
+    rectification behaviors. Our work provides an insight into the role of
+    molecule-electrode interfacial defects in the performance of
+    molecular-scale electronic devices.
+  abstract_ko: >
+    유기-무기 접촉부의 계면 화학은 다양한 분자 및 유기 전자소자와 그 밖의 시스템의 기능을
+    결정적으로 좌우한다. 그러나 분자 수준에서 계면 구조에 접근할 수 있는 손쉬운 작동
+    중(in-operando) 분광 기법이 부족하여 이 화학을 이해하기는 어렵다. 여기서 우리는
+    동일한 유기 박막과 서로 다른 액체 상부 접촉(물방울 대 갈륨-인듐 공융 합금)으로 형성한 두
+    유사 접합을 비교하여 난해한 계면 특성을 규명한다. 구체적으로, 혼합 자기조립
+    단분자막(SAM)을 이용하여 유기 표면의 표면 형상을 미세 조정하였다. 즉,
+    정류기(2,2'-바이피리딜 말단 n-운데케인싸이올레이트, SC11BIPY로 표기)로 구성된
+    단일 성분 SAM을 서로 다른 길이의 비정류성 n-알케인싸이올레이트(SCn, n = 8,
+    10, 12, 14, 16, 18로 표기)로 체계적으로 희석하였다. 이렇게 얻은 혼합 SAM의
+    젖음성과, 두 가지 액체 상부 접촉에서의 터널링 전류를 분석함으로써 SAM//액체 계면에서
+    상분리와 가우슈(gauche) 결함의 역할을 조사할 수 있다. 본 연구 결과는
+    SC11BIPY와 SCn 사이의 길이 차이가 표면의 나노 규모 구덩이와 가우슈 형태 결함으로
+    이어지며, 접촉력의 차이(정수압 대 사용자 압력)와 그에 따른 접촉의 정합성이 젖음성과 정류
+    거동의 차이를 설명함을 보여준다. 우리의 연구는 분자 규모 전자소자의 성능에서 분자-전극 계면
+    결함이 하는 역할에 대한 통찰을 제공한다.
 
 - id: 9
   title: "Topochemical polymerization of macrocyclic diacetylene with a naphthalene moiety for a tubular-shaped polydiacetylene chromophore"
@@ -468,6 +1493,24 @@
     - "Optical property analysis"
     - "Quantum chemical modeling"
   image: "pub-9.jpg"
+  abstract: >
+    Tubular-shaped chromophores have great potential in chemical and material
+    sciences. A naphthalene-containing macrocyclic diacetylene (MCDA-Naph) was
+    synthesized to access covalently linked organic nanotubes (ONTs) through
+    topochemical polymerization. Single-crystal X-ray analysis revealed that
+    MCDA-Naph adopts the desired tubular array with favorable molecular
+    orientation. UV irradiation of the molecularly stacked MCDA-Naph resulted
+    in 1,4-addition polymerization and the generation of conjugated ene-yne
+    chromophores. Density functional theory (DFT) provided evidence for
+    tubular polydiacetylene nanotubes.
+  abstract_ko: >
+    관 모양 발색단은 화학 및 재료 과학에서 큰 잠재력을 지닌다. 위상화학적 중합을 통해 공유
+    결합으로 연결된 유기 나노튜브(ONT)에 접근하기 위해 나프탈렌을 포함하는 거대고리
+    다이아세틸렌(MCDA-Naph)을 합성하였다. 단결정 X선 분석 결과, MCDA-Naph는
+    유리한 분자 배향을 갖는 원하는 관 모양 배열을 채택함이 밝혀졌다. 분자 수준으로 적층된
+    MCDA-Naph에 자외선을 조사하자 1,4-첨가 중합이 일어나 공액 엔-인(ene-yne)
+    발색단이 생성되었다. 밀도범함수이론(DFT)은 관 모양 폴리다이아세틸렌 나노튜브에 대한 증거를
+    제공하였다.
 
 - id: 8
   title: "Cationic Effect on the Equilibria and Kinetics of the Excited-State Proton Transfer Reaction of a Photoacid in Aqueous Solutions"
@@ -481,6 +1524,38 @@
     - "Excited-state reaction"
     - "Quantum chemical modeling"
   image: "pub-8.jpg"
+  abstract: >
+    Dissolved ions have a significant effect on the chemical equilibria and
+    kinetics in aqueous solutions by changing the physical properties and
+    hydrogen bond network of water. In this work, the ionic effects on the
+    excited-state proton transfer (ESPT) reactions of Coumarin 183 (C183) in
+    aqueous ionic solutions are comprehensively studied in terms of pKa, pKa*,
+    activation energies, and kinetic isotope effect (KIE). The acid
+    dissociation constants (pKa and pKa*) of C183 in the ground and excited
+    states are determined by UV-visible absorption and steady-state
+    fluorescence spectroscopy. The activation energies (Ea) and KIE for the
+    ESPT reaction of C183 are directly obtained by time-resolved fluorescence
+    spectroscopy. The changes in pKa, pKa*, Ea, and KIE values of C183 are
+    found to be dependent on the charge density of cations. The secondary KIE
+    is more substantially influenced by the dissolved ions than the primary
+    KIE. Furthermore, the ionic effects on the equilibrium (pKa and pKa*) and
+    kinetic (Ea and KIE) parameters of C183 are found to be well explained by
+    the free-energy reactivity relation. Our current results are very
+    important in understanding the ionic effects on the equilibria and ESPT
+    kinetics of photoacids in aqueous ionic solutions.
+  abstract_ko: >
+    용해된 이온은 물의 물리적 성질과 수소 결합 그물 구조를 바꿈으로써 수용액 내 화학 평형과
+    반응속도에 큰 영향을 미친다. 이 연구에서는 수용성 이온 용액에서 쿠마린 183(C183)의
+    들뜬상태 양성자 전이(ESPT) 반응에 대한 이온 효과를 pKa, pKa*, 활성화 에너지,
+    동위원소 반응속도 효과(KIE)의 관점에서 종합적으로 조사하였다. 바닥상태와 들뜬상태에서
+    C183의 산 해리 상수(pKa와 pKa*)는 자외선-가시광선 흡수 및 정상상태 형광
+    분광법으로 결정하였다. C183의 ESPT 반응에 대한 활성화 에너지(Ea)와 KIE는 시간
+    분해 형광 분광법으로 직접 얻었다. C183의 pKa, pKa*, Ea, KIE 값의 변화는
+    양이온의 전하 밀도에 의존하는 것으로 나타났다. 이차 KIE는 일차 KIE보다 용해된 이온의
+    영향을 더 크게 받는다. 나아가 C183의 평형(pKa와 pKa*) 및 반응속도(Ea와
+    KIE) 매개변수에 대한 이온 효과는 자유 에너지 반응성 관계로 잘 설명됨을 확인하였다. 본
+    연구 결과는 수용성 이온 용액에서 광산(photoacid)의 평형과 ESPT 반응속도에 대한
+    이온 효과를 이해하는 데 매우 중요하다.
 
 - id: 7
   title: "Ionic effect on the excited-state proton transfer reactions in aqueous solutions"
@@ -494,6 +1569,34 @@
     - "Excited-state reaction"
     - "Quantum chemical modeling"
   image: "pub-7.jpg"
+  abstract: >
+    Proton dissociation (PD) reactions of weak acids and proton transfer (PT)
+    processes in aqueous solutions are strongly influenced by ions. However, a
+    detailed molecular picture that describes how ions affect the rates of PD
+    and PT processes is still missing. Here, we utilize time-resolved
+    fluorescence spectroscopy combined with quantum chemical calculations to
+    investigate the excited-state proton transfer (ESPT) reaction of a
+    photoacid in aqueous metal chloride solutions. The activation energy (Ea)
+    for the ESPT of the photoacid increases with increasing charge density of
+    cations. The local hydrogen bond (H-bond) structure of the photoacid in
+    the ionic hydration shell is strongly related to both the Ea and the
+    charge density of cations. Most importantly, the proton's positive charge
+    in the transition state, which is delocalized through the H-bonded water
+    channel, is more destabilized with an increase in the charge density of
+    cations, leading to a higher Ea. Our experimental and computational
+    results allow us to elucidate the underlying mechanism for the ionic
+    effect on PD and the subsequent PT process at the molecular level.
+  abstract_ko: >
+    약산의 양성자 해리(PD) 반응과 수용액 내 양성자 전이(PT) 과정은 이온의 영향을 강하게
+    받는다. 그러나 이온이 PD와 PT 과정의 속도에 어떻게 영향을 미치는지를 기술하는 상세한
+    분자 수준의 그림은 여전히 없다. 여기서 우리는 시간 분해 형광 분광법과 양자화학 계산을
+    결합하여 금속 염화물 수용액에서 광산(photoacid)의 들뜬상태 양성자 전이(ESPT)
+    반응을 조사한다. 광산의 ESPT에 대한 활성화 에너지(Ea)는 양이온의 전하 밀도가 커질수록
+    증가한다. 이온 수화 껍질 내 광산의 국소 수소 결합(H-결합) 구조는 Ea 및 양이온의 전하
+    밀도 모두와 밀접하게 관련된다. 무엇보다도, H-결합으로 연결된 물 채널을 통해 비편재화된
+    전이 상태에서 양성자의 양전하는 양이온의 전하 밀도가 커질수록 더 불안정해져 더 높은 Ea로
+    이어진다. 우리의 실험 및 계산 결과는 PD와 그에 뒤따르는 PT 과정에 대한 이온 효과의
+    근본 메커니즘을 분자 수준에서 규명할 수 있게 한다.
 
 - id: 6
   title: "Iridium Complex Bearing Urea Groups as a Phosphorescent Chemosensor for Chiral Anion Recognition"
@@ -506,6 +1609,22 @@
   themes:
     - "Optical property analysis"
   image: "pub-6.jpg"
+  abstract: >
+    Luminescent chemosensors for chiral molecules have drawn significant
+    attention. In this study, a new iridium complex 1 bearing two urea groups
+    and ethyl naphthalene groups was synthesized as a phosphorescent
+    chemosensor for chiral anion recognition. Addition of t-Boc amino acids
+    induced phosphorescence enhancement with the maximum emission at 560 nm. A
+    KD/KL value as large as 5.0 was observed for iridium complex 1 with
+    phenylglycine. Two urea groups provide a preorganized binding site for the
+    carboxylates, whereas two ethyl naphthalenes act as chiral barriers.
+  abstract_ko: >
+    키랄 분자를 위한 발광 화학센서는 큰 주목을 받아 왔다. 이 연구에서는 두 개의 우레아기와
+    에틸 나프탈렌기를 갖는 새로운 이리듐 착물 1을 키랄 음이온 인식을 위한 인광 화학센서로
+    합성하였다. t-Boc 아미노산을 첨가하자 최대 방출 560 nm에서 인광이 증대되었다.
+    이리듐 착물 1과 페닐글리신에 대해 KD/KL 값이 5.0에 이르는 것으로 관찰되었다. 두
+    우레아기는 카복실레이트에 대한 사전 조직화된 결합 부위를 제공하며, 두 에틸 나프탈렌은 키랄
+    장벽으로 작용한다.
 
 - id: 5
   title: "Chromogenic Tubular Polydiacetylenes from Topochemical Polymerization of Self-Assembled Macrocyclic Diacetylenes"
@@ -519,6 +1638,40 @@
     - "Optical property analysis"
     - "Quantum chemical modeling"
   image: "pub-5.jpg"
+  abstract: >
+    Tubular materials formed by self-assembly of small organic molecules find
+    great utility in chemical and material science. Conventional tubular
+    structures often lack stability because noncovalent molecular interactions
+    are responsible for their conformational integrities. Herein we report the
+    development of covalently linked chromogenic organic nanotubes which are
+    prepared by using topochemical polymerization of self-assembled
+    macrocyclic diacetylenes (MCDAs). Crystal structures of five MCDAs having
+    different diameters were elucidated, and four of these substances were
+    transformed to tubular polydiacetylenes (PDA) by UV-induced
+    polymerization. Surprisingly, MCDA-1 was found to self-assemble in stacks
+    with a tilt angle of 62.1°, which significantly deviates from the optimal
+    value for polymerization of 45°. This observation suggests that geometric
+    parameters derived using linear diacetylene (DA) models might not be
+    strictly applicable to polymerization of MCDA systems. Blue-phase PDAs
+    obtained by polymerization of MCDA-1 and MCDA-3 have different
+    thermochromic and solvatochromic properties, which enable them to be
+    utilized for colorimetric differentiation of aromatic solvents including
+    isomeric xylenes. The observations made and information obtained in this
+    study should enhance the understanding and design of stimulus-responsive
+    rigid organic nanotubes.
+  abstract_ko: >
+    작은 유기 분자의 자기조립으로 형성된 관 모양 물질은 화학 및 재료 과학에서 큰 유용성을
+    지닌다. 기존의 관 모양 구조는 비공유 분자 상호작용이 그 형태적 완결성을 담당하기 때문에
+    안정성이 부족한 경우가 많다. 여기서 우리는 자기조립된 거대고리 다이아세틸렌(MCDA)의
+    위상화학적 중합을 이용하여 제조한, 공유 결합으로 연결된 발색성 유기 나노튜브의 개발을
+    보고한다. 서로 다른 지름을 갖는 다섯 가지 MCDA의 결정 구조를 규명하였으며, 이 중 네
+    가지를 자외선 유도 중합으로 관 모양 폴리다이아세틸렌(PDA)으로 전환하였다. 놀랍게도
+    MCDA-1은 기울기 각도 62.1°로 적층되어 자기조립하는 것으로 나타났는데, 이는 중합에
+    최적인 값 45°에서 크게 벗어난다. 이 관찰은 선형 다이아세틸렌(DA) 모형으로 유도한
+    기하학적 변수가 MCDA 시스템의 중합에 엄밀하게 적용되지 않을 수 있음을 시사한다.
+    MCDA-1과 MCDA-3의 중합으로 얻은 청색상 PDA는 서로 다른 열변색성과 용매변색성을
+    가지며, 덕분에 이성질 자일렌을 포함한 방향족 용매를 색으로 구별하는 데 활용할 수 있다. 이
+    연구에서 얻은 관찰과 정보는 자극 응답성 강체 유기 나노튜브의 이해와 설계를 향상시킬 것이다.
 
 - id: 4
   title: "Photoinduced Reversible Phase Transition of Azobenzene-Containing Polydiacetylene Crystals"
@@ -531,6 +1684,13 @@
   themes:
     - "Optical property analysis"
   image: "pub-4.jpg"
+  abstract: >
+    An azobenzene-containing supramolecular polydiacetylene (PDA) crystal
+    undergoes a photoinduced reversible blue-to-red phase transition
+    accompanied by crystal tearing.
+  abstract_ko: >
+    아조벤젠을 포함하는 초분자 폴리다이아세틸렌(PDA) 결정은 결정의 찢어짐을 동반하는 광유도
+    가역적 청색-적색 상전이를 겪는다.
 
 - id: 3
   title: "Electronic relaxation dynamics of PCDA-PDA studied by transient absorption spectroscopy"
@@ -544,6 +1704,42 @@
     - "Excited-state reaction"
     - "Optical property analysis"
   image: "pub-3.jpg"
+  abstract: >
+    Photo-curable polymers originating from 10,12-pentacosadiynoic acid
+    (PCDA-PDA) are commonly used polydiacetylenes (PDAs). PCDA-PDA exhibits
+    thermochromic properties, undergoing a unique colorimetric transition from
+    blue to red as the temperature is increased from low to high. In this
+    work, we have carefully studied the temperature-dependent optical
+    properties of PCDA-PDA by using UV-visible absorption, FTIR, Raman, and
+    transient absorption (TA) spectroscopy in combination with quantum
+    chemical calculations. Temperature-dependent UV-visible absorption spectra
+    indicate that PCDA-PDA exhibits reversible thermochromic properties up to
+    60 °C and its thermochromic properties become irreversible above 60 °C.
+    Such distinct thermochromic properties are also manifested in TA signals,
+    so that the electronically excited PCDA-PDA relaxes to the ground state
+    via an intermediate state at 20 °C (blue form) but relaxes directly back
+    to the ground state at 80 °C (red form). The electronic relaxation
+    dynamics of PCDA-PDA are comprehensively analyzed based on different
+    kinetic models by using the global fitting analysis method. The
+    intermediate state in the blue form of PCDA-PDA is clearly found to be
+    responsible for fluorescence quenching. FTIR and Raman spectroscopy and
+    quantum chemical calculations confirm that the H-bonds between the
+    carboxylic acid groups in PCDA-PDA are broken at high temperatures,
+    leading to an irreversible structural change of PCDA-PDA.
+  abstract_ko: >
+    10,12-펜타코사다이뉴산에서 유래한 광경화성 고분자(PCDA-PDA)는 널리 사용되는
+    폴리다이아세틸렌(PDA)이다. PCDA-PDA는 온도가 낮은 값에서 높은 값으로 올라감에 따라
+    청색에서 적색으로 변하는 독특한 색 전이를 겪는 열변색성을 나타낸다. 이 연구에서 우리는
+    자외선-가시광선 흡수, FTIR, 라만, 과도 흡수(TA) 분광법을 양자화학 계산과 결합하여
+    PCDA-PDA의 온도 의존적 광학 물성을 면밀히 조사하였다. 온도 의존 자외선-가시광선 흡수
+    스펙트럼에 따르면 PCDA-PDA는 60 °C까지는 가역적 열변색성을 보이고 60 °C
+    이상에서는 열변색성이 비가역적으로 된다. 이러한 뚜렷한 열변색성은 TA 신호에도 나타나,
+    전자가 들뜬 PCDA-PDA는 20 °C(청색 형태)에서는 중간 상태를 거쳐 바닥상태로
+    이완되지만 80 °C(적색 형태)에서는 바닥상태로 직접 되돌아간다. PCDA-PDA의 전자
+    이완 동역학은 전역 맞춤(global fitting) 분석법을 이용하여 여러 반응속도 모형을
+    바탕으로 종합적으로 분석하였다. PCDA-PDA 청색 형태의 중간 상태가 형광 소광을 담당함이
+    분명히 밝혀졌다. FTIR 및 라만 분광법과 양자화학 계산은 PCDA-PDA 내 카복실산기
+    사이의 수소 결합이 고온에서 끊어져 PCDA-PDA의 비가역적 구조 변화로 이어짐을 확인한다.
 
 - id: 2
   title: "Origin of the Reversible Thermochromic Properties of Polydiacetylenes Revealed by Ultrafast Spectroscopy"
@@ -557,6 +1753,34 @@
     - "Excited-state reaction"
     - "Optical property analysis"
   image: "pub-2.jpg"
+  abstract: >
+    Polydiacetylenes (PDAs) with thermochromic properties undergo colorimetric
+    transitions when the external temperature is varied. This capability has
+    the potential to enable these materials to be used as temperature sensors.
+    These thermochromic properties of PDAs stem from their
+    temperature-dependent optical properties. In this work, we studied the
+    temperature-dependent optical properties of Bis-PDA-Ph, which exhibits
+    reversible thermochromic properties, and PCDA-PDA, which exhibits
+    irreversible thermochromic properties, by UV-visible absorption and
+    femtosecond transient absorption spectroscopy. Our results indicate that
+    the electronic relaxation of PDAs occurs via an intermediate state in
+    cases where the material exhibits reversible thermochromic properties,
+    whereas the excited PDAs relax directly back to the ground state when
+    irreversible thermochromic properties are observed. The existence of this
+    intermediate state in the electronic relaxation of PDAs thus plays an
+    important role in determining their thermochromic properties. These
+    results are very important for both understanding and strategically
+    modulating the thermochromic properties of PDAs.
+  abstract_ko: >
+    열변색성을 갖는 폴리다이아세틸렌(PDA)은 외부 온도가 변하면 색 전이를 겪는다. 이 능력은
+    이들 물질을 온도 센서로 활용할 수 있게 하는 잠재력을 지닌다. PDA의 이러한 열변색성은
+    온도 의존적 광학 물성에서 비롯된다. 이 연구에서 우리는 가역적 열변색성을 보이는
+    Bis-PDA-Ph와 비가역적 열변색성을 보이는 PCDA-PDA의 온도 의존적 광학 물성을
+    자외선-가시광선 흡수 및 펨토초 과도 흡수 분광법으로 조사하였다. 우리의 결과는 물질이 가역적
+    열변색성을 보이는 경우 PDA의 전자 이완이 중간 상태를 거쳐 일어나는 반면, 비가역적
+    열변색성이 관찰될 때에는 들뜬 PDA가 바닥상태로 직접 되돌아감을 보여준다. 따라서 PDA의
+    전자 이완에서 이 중간 상태의 존재는 열변색성을 결정하는 데 중요한 역할을 한다. 이 결과는
+    PDA의 열변색성을 이해하고 전략적으로 조절하는 데 모두 매우 중요하다.
 
 - id: 1
   title: "Effect of NaCl Salts on the Activation Energy of Excited-State Proton Transfer Reaction of Coumarin 183"
@@ -570,3 +1794,33 @@
     - "Excited-state reaction"
     - "Quantum chemical modeling"
   image: "pub-1.jpg"
+  abstract: >
+    Coumarin 183 (C183) was used as a photoacid to study excited-state proton
+    transfer (ESPT) reactions. Here, we studied the effect of ions on the ESPT
+    of C183 in aqueous NaCl solutions using steady-state fluorescence
+    spectroscopy and the time-correlated single photon counting (TCSPC)
+    method. The acid dissociation equilibrium of excited-state C183 and the
+    activation energy for the ESPT of C183 were determined as a function of
+    NaCl concentration. The change in the equilibrium constant was found to be
+    correlated with the solvation energy of deprotonated C183.
+    Frequency-resolved TCSPC signals measured at several temperatures were
+    analyzed by using a global fitting analysis method, which enabled us to
+    extract all the rate constants involving the ESPT reaction and the spectra
+    of individual species. The activation energy for the ESPT reaction of C183
+    was highly dependent on NaCl concentration. Quantum chemical calculations
+    were used to calculate the local hydrogen-bond (H-bond) configurations
+    around C183 in aqueous NaCl solutions. It was found that the activation
+    energy for the ESPT was determined by the local H-bond configurations
+    around C183, which were significantly influenced by the dissolved ions.
+  abstract_ko: >
+    들뜬상태 양성자 전이(ESPT) 반응을 연구하기 위해 쿠마린 183(C183)을
+    광산(photoacid)으로 사용하였다. 여기서 우리는 정상상태 형광 분광법과 시간 상관 단일
+    광자 계수(TCSPC) 방법을 이용하여 NaCl 수용액에서 C183의 ESPT에 대한 이온의
+    효과를 조사하였다. 들뜬상태 C183의 산 해리 평형과 C183의 ESPT에 대한 활성화
+    에너지를 NaCl 농도의 함수로 결정하였다. 평형 상수의 변화는 탈양성자화된 C183의 용매화
+    에너지와 상관관계가 있음이 밝혀졌다. 여러 온도에서 측정한 주파수 분해 TCSPC 신호를 전역
+    맞춤(global fitting) 분석법으로 분석하여 ESPT 반응에 관여하는 모든 속도
+    상수와 각 화학종의 스펙트럼을 추출할 수 있었다. C183의 ESPT 반응에 대한 활성화
+    에너지는 NaCl 농도에 크게 의존하였다. 양자화학 계산을 이용하여 NaCl 수용액에서
+    C183 주위의 국소 수소 결합(H-결합) 배열을 계산하였다. ESPT에 대한 활성화 에너지는
+    용해된 이온의 영향을 크게 받는 C183 주위의 국소 H-결합 배열에 의해 결정됨이 밝혀졌다.
