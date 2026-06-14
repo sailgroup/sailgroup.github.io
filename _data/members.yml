@@ -51,5 +51,4 @@
 # TEMP-README-TEST (removed after verification)
 - name: Zzz Testperson
   name_ko: 테스트
-  role: Test Member
   slug: zzz-testperson
