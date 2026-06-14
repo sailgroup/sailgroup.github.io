@@ -34,7 +34,7 @@
   display_date: ""
   category: people
   title: "Heejeong Kim joins the lab"
-  body: "Heejeong Kim (김희정) joins SAIL as a postdoctoral researcher in the Department of Applied Chemistry."
+  body: "Heejeong Kim (김희정) joins SAIL as a postdoctoral researcher."
   link: "/members/heejeong-kim/"
   link_text: "Member page"
 
@@ -42,7 +42,7 @@
   display_date: ""
   category: people
   title: "Seonbin Kim joins the lab"
-  body: "Seonbin Kim (김선빈) joins SAIL as an M.S. student in the Department of Applied Chemistry."
+  body: "Seonbin Kim (김선빈) joins SAIL as an M.S. student."
   link: "/members/seonbin-kim/"
   link_text: "Member page"
 
@@ -78,14 +78,38 @@
   link: "/members/siyeol-in/"
   link_text: "Member page"
 
+- date: "2025-12-15"
+  display_date: ""
+  category: people
+  title: "Hanbyul Baik joins the lab"
+  body: "Hanbyul Baik (백한별) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/alumni/hanbyul-baik/"
+  link_text: "Alumni page"
+
+- date: "2025-12-15"
+  display_date: ""
+  category: people
+  title: "Yongpyo Cho joins the lab"
+  body: "Yongpyo Cho (조용표) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/alumni/yongpyo-cho/"
+  link_text: "Alumni page"
+  
 - date: "2025-09-11"
   display_date: ""
   category: people
   title: "Jihwan Kim joins the lab"
-  body: "Jihwan Kim (김지환) joins SAIL as an M.S. student in the Department of Applied Chemistry."
+  body: "Jihwan Kim (김지환) joins SAIL as an M.S. student."
   link: "/members/jihwan-kim/"
   link_text: "Member page"
-
+  
+- date: "2025-09-04"
+  display_date: "2026"
+  category: publication
+  title: "FlowER has been publised at Nature!"
+  body: "\"Electron flow matching for generative reaction mechanism prediction.\""
+  link: "/publications/37/"
+  link_text: "Read the paper"
+  
 - date: "2025-07-14"
   display_date: ""
   category: people
@@ -94,10 +118,34 @@
   link: "/members/hyejeong-jeon/"
   link_text: "Member page"
 
+- date: "2025-07-14"
+  display_date: ""
+  category: people
+  title: "Jinwoo Lee joins the lab"
+  body: "Jinwoo Lee (이진우) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/alumni/jinwoo-lee/"
+  link_text: "Alumni page"
+
+- date: "2025-07-14"
+  display_date: ""
+  category: people
+  title: "Chanjoong Kim joins the lab"
+  body: "Chanjoong Kim (김찬중) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/alumni/chanjoong-kim/"
+  link_text: "Alumni page"
+
+- date: "2025-07-14"
+  display_date: ""
+  category: people
+  title: "Hyojin Lee joins the lab"
+  body: "Hyojin Lee (이효진) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/alumni/hyojin-lee/"
+  link_text: "Alumni page"
+
 - date: "2025-03-01"
   display_date: "March 2025"
   category: event
   title: "Spectroscopy and AI Lab opens at Kookmin University"
-  body: "Joonyoung F. Joung joins the Department of Applied Chemistry as Assistant Professor and starts the lab."
+  body: "Joonyoung F. Joung joins the Department of Chemistry as Assistant Professor and starts his lab."
   link: "/pi/"
   link_text: "About the PI"
