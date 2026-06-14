@@ -22,6 +22,13 @@
 #   link_text    OPTIONAL. Link label. Defaults to "Details".
 # ---------------------------------------------------------------------------
 
+# TEMP-README-TEST (removed after verification)
+- date: "2099-01-01"
+  display_date: ""
+  category: award
+  title: "README verification test news"
+  body: "Temporary test entry."
+
 - date: "2026-06-14"
   display_date: ""
   category: event

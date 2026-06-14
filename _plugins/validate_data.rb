@@ -51,7 +51,11 @@ module SAIL
     def err(msg);  @errors << msg; end
     def warn(msg); @warns  << msg; end
 
-    def blank?(v); v.nil? || (v.respond_to?(:empty?) && v.strip.empty?); end
+    def blank?(v)
+      return true if v.nil?
+      return v.strip.empty? if v.is_a?(String)
+      false # numbers, dates, etc. are not "blank"
+    end
 
     def image_exists?(rel)
       File.file?(File.join(@src, "assets", "images", rel))
@@ -115,6 +119,11 @@ module SAIL
         %w[title authors journal year].each do |f|
           err("#{at}: missing required field `#{f}`.") if blank?(p[f])
         end
+        # year must be a plain number; a quoted "2026" mixes types with the other
+        # (integer) years and breaks the year grouping/sort on the list page.
+        if !blank?(p["year"]) && !p["year"].is_a?(Integer)
+          err("#{at}: `year` must be a plain number with no quotes (year: 2026), got #{p["year"].inspect}.")
+        end
         if !blank?(p["image"]) && !image_exists?(File.join("pubs", p["image"]))
           err("#{at}: `image: #{p["image"]}` not found in assets/images/pubs/.")
         end
@@ -143,7 +152,11 @@ module SAIL
         err("#{at}: missing required field `title`.") if blank?(title)
         if blank?(n["date"])
           err("#{at}: missing required field `date` (YYYY-MM-DD).")
-        elsif !(n["date"].to_s =~ DATE_RE)
+        elsif !n["date"].is_a?(String)
+          # an unquoted date is parsed as a Date object and mixes types with the
+          # other (string) dates, which breaks the newest-first sort.
+          err("#{at}: put quotes around the date, e.g. date: \"2026-06-20\".")
+        elsif !(n["date"] =~ DATE_RE)
           err("#{at}: `date: #{n["date"]}` must be YYYY-MM-DD.")
         end
         cat = n["category"]

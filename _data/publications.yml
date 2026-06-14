@@ -27,6 +27,15 @@
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
 
+# TEMP-README-TEST (removed after verification)
+- id: 999
+  title: "README verification test paper"
+  authors: "Zzz Testperson, Joonyoung F. Joung"
+  journal: "Nature"
+  year: 2099
+  themes:
+    - "Reaction pathway prediction"
+
 - id: 41
   title: "An overview of reaction outcome prediction with physics-based and data-driven methods"
   authors: "Joonyoung F. Joung*, Nicholas Casetti, Priyanka Raghavan, Connor W. Coley*"
