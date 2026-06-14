@@ -196,7 +196,7 @@ p { text-wrap: pretty; }
 
 .section-head { margin-bottom: var(--space-lg); }
 .section-head h2 { margin-top: 0.5rem; }
-.section-head .lead { margin-top: 0.75rem; max-width: 60ch; }
+.section-head .lead { margin-top: 0.75rem; max-width: none; } /* spans full content width, matching the hero lead */
 
 .divider { height: 1px; background: var(--line); border: 0; }
 
@@ -380,7 +380,7 @@ p { text-wrap: pretty; }
 
 .page-head { padding-block: var(--space-xl) var(--space-md); }
 .page-head h1 { margin-bottom: 0.6rem; }
-.page-head .lead { max-width: 70ch; } /* title aligns to the container's left edge; lead stays readable */
+.page-head .lead { max-width: none; } /* spans full content width, matching the hero lead */
 
 /* --- Cards / grids -------------------------------------------------------- */
 .card-grid {
