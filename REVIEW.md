@@ -381,3 +381,32 @@ logged rather than done.
 6. Pre-existing human items still open from §3 are unchanged: the two joke "dog"
    alumni (kept excluded), the dateless PI "Research Professor" appointment, and
    verifying member emails/join dates.
+
+## 11. README-path verification (2026-06-14) — adding content end-to-end
+
+Confirmed on real CI builds that following `README.md`/`CONTRIBUTING.md` to add
+content works and that mistakes are caught, not shipped.
+
+**Happy path (build green, artifact checked).** Added a test member, a paper
+(id 999) authored by them, and a news item — one entry each. Result: the paper's
+`/publications/999/` detail page and the member's `/members/zzz-testperson/` page
+were both generated from data with no stub; the paper auto-listed on the member's
+page under a "Publications" heading (the `publications.yml` → member-page link,
+matched on author name); the news item appeared on `/news/` and the home teaser;
+the paper appeared on the list under its year. All test entries were then removed.
+
+**Failure path (build red, as intended).** Planting three mistakes — a member
+with no `role`, a paper `image:` pointing at an un-uploaded file, and a news
+`category: awrd` typo — failed the build at the validator with one message:
+
+```
+SAIL data validation failed (3 problem(s)). Fix the _data/*.yml entries below...
+ - members.yml "Zzz Testperson": missing required field `role`.
+ - publications.yml id 999: `image: pub-999.jpg` not found in assets/images/pubs/.
+ - news.yml "...test news": `category: awrd` is not one of people, publication, award, talk, event.
+```
+
+The site was never touched (the build aborts before deploy). The logic review
+also hardened the validator to reject a quoted `year` and an unquoted news `date`
+with a clear message — both would otherwise mix value types and crash the year-
+group / date sort rather than fail cleanly.
