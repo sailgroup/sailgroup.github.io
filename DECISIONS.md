@@ -582,3 +582,32 @@ no broken internal link) then removing it. See `REVIEW.md` §12.
   user sees; body parity is preserved and proven.
 - **`lang="ko"` only on unambiguous Korean spans** (names, 초록), not on
   mixed-language news/photo captions, to keep the change surgical and risk-free.
+
+## D26 — Spacing/width consistency pass (PI-feedback)
+
+The PI compared the home hero's intro block to the other intro blocks and found
+the spacing inconsistent. Three surgical changes, all proven by live measurement,
+no content touched:
+
+- **Full-width leads.** The hero description spans the full content width, but
+  section-head and page-head leads were capped (`60ch` / `70ch`), so intros like
+  Research's "What we work on" wrapped early. Both set to `max-width: none` to
+  match the hero. No horizontal overflow at 1440px or 360px on any page.
+- **Person page top spacing.** `/people/<slug>/` used a full `.section` (72px top)
+  while every other content page — including the sibling publication detail page —
+  tops out at 48px. The person card now uses `.section--tight` so all content
+  pages share the same top spacing.
+- **Research lead gap.** The hero leaves `clamp(2rem,5vw,3.75rem)` (up to 60px)
+  between its description and the figure; the Research section-head left only 2rem
+  (32px) between its lead and the cards. `.section-head:has(.lead)` now uses the
+  same clamp so both intro blocks breathe alike (60px desktop, 32px mobile);
+  lead-less section-heads (Recent news, Journal covers, Find us) keep their 32px
+  gap. `:has()` degrades gracefully to 32px on the rare browser without it.
+
+Final full-site review after these changes: 60 pages (8 nav + 11 person + 41 pub
+detail) all 200 with 0 broken images (the apparent breakages were lazy-load
+timing only — all assets return 200); 22 redirects land on `/people/<slug>/` with
+canonical + noindex; theme filter AND logic correct (26 ∩ 13); author highlight +
+`author_aliases` confirmed on a non-PI page (Heejeong "H Kim"); axe 0 non-contrast
+violations (only the accepted PI-palette contrast on topic chips remains);
+home/publications LCP 124/185 ms, CLS ≈ 0; nav breakpoint 992px correct.
