@@ -13,6 +13,11 @@ permissions:
   pages: write
   id-token: write
 
+# Run JavaScript actions on Node 24. The Node 20 runtime these actions ship with is being
+# removed from GitHub runners; this opts every JS action in the workflow into Node 24.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # One deploy at a time; do not cancel an in-progress deploy.
 concurrency:
   group: pages

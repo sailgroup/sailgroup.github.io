@@ -1,7 +1,10 @@
 # Primary navigation. Order and labels match the site spec:
-# HOME / RESEARCH / MEMBERS (PI, Members, Alumni) / PUBLICATIONS / GROUP GUIDE / PHOTOS
+# HOME / NEWS / RESEARCH / MEMBERS (PI, Members, Alumni) / PUBLICATIONS / GROUP GUIDE / PHOTOS
 - name: Home
   url: /
+
+- name: News
+  url: /news/
 
 - name: Research
   url: /research/

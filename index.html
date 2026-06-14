@@ -15,6 +15,33 @@ layout: default
   </div>
 </section>
 
+{%- assign latest = site.data.news | sort: "date" | reverse -%}
+{%- if latest and latest.size > 0 -%}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Updates</p><h2>Recent news</h2></div>
+    <div class="card-grid">
+      {%- for n in latest limit: 3 -%}
+      {%- assign cat = n.category | default: "event" -%}
+      <article class="news-card">
+        <div class="news-card__meta">
+          <span class="news__date">{% if n.display_date and n.display_date != "" %}{{ n.display_date }}{% else %}{{ n.date | date: "%B %-d, %Y" }}{% endif %}</span>
+          <span class="news-tag news-tag--{{ cat }}">{{ cat | capitalize }}</span>
+        </div>
+        <h3 class="news-card__title">
+          {%- if n.link and n.link != "" -%}
+            {%- if n.link contains "://" -%}<a class="news-card__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer">{{ n.title }}</a>
+            {%- else -%}<a class="news-card__link" href="{{ n.link | relative_url }}">{{ n.title }}</a>{%- endif -%}
+          {%- else -%}{{ n.title }}{%- endif -%}
+        </h3>
+      </article>
+      {%- endfor -%}
+    </div>
+    <p style="margin-top:var(--space-lg)"><a class="link" href="{{ '/news/' | relative_url }}">More news</a></p>
+  </div>
+</section>
+{%- endif -%}
+
 <section class="section">
   <div class="container">
     <div class="section-head">

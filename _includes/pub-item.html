@@ -18,8 +18,12 @@
     {%- endif -%}
     {%- if hasdoi or haspre -%}
     <div class="pub__foot">
-      {%- if hasdoi -%}<a class="btn btn--ghost btn--sm" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="external" %} DOI</a>{%- endif -%}
-      {%- if haspre -%}<a class="btn btn--ghost btn--sm" href="{{ p.preprint_url }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="doc" %} Preprint</a>{%- endif -%}
+      {%- if hasdoi -%}<a class="pub-badge" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.png' | relative_url }}" alt="DOI" height="24"></a>{%- endif -%}
+      {%- if haspre -%}
+        {%- assign pl = p.preprint_url | downcase -%}
+        {%- if pl contains 'chemrxiv' -%}{%- assign prefile = 'chemrxiv.png' -%}{%- assign prealt = 'ChemRxiv' -%}{%- else -%}{%- assign prefile = 'arxiv.png' -%}{%- assign prealt = 'arXiv' -%}{%- endif -%}
+      <a class="pub-badge" href="{{ p.preprint_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ prealt }} preprint"><img src="{{ '/assets/images/' | append: prefile | relative_url }}" alt="{{ prealt }}" height="24"></a>
+      {%- endif -%}
     </div>
     {%- endif -%}
   </div>

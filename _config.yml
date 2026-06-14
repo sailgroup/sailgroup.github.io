@@ -69,9 +69,10 @@ exclude:
   - PROGRESS.md
   - CONTENT_INVENTORY.md
   - REVIEW.md
-  - "*.ps1"
-  - "*.js"          # root-level one-off scripts only; site JS lives in assets/js/
-  - "*.log"
+  # Do NOT add blanket globs like "*.js" or "*.ps1" here: Jekyll matches them against
+  # nested paths too, which silently dropped assets/js/*.js from the build and broke the
+  # publication filter, mobile nav, and photo lightbox. Root-level one-off helper scripts
+  # are kept out of the repo via .gitignore instead, so they never reach the CI build.
 
 # --- SEO --------------------------------------------------------------------
 twitter:

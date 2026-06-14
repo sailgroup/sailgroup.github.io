@@ -1,0 +1,39 @@
+---
+layout: default
+title: News
+permalink: /news/
+---
+<div class="container page-head">
+  <p class="eyebrow">Lab</p>
+  <h1>News</h1>
+  <p class="lead">Updates from the Spectroscopy and AI Lab at Kookmin University: new members, publications, and milestones.</p>
+</div>
+
+<section class="section section--tight">
+  <div class="container">
+    {%- assign items = site.data.news | sort: "date" | reverse -%}
+    <ol class="news">
+      {%- for n in items -%}
+      {%- assign cat = n.category | default: "event" -%}
+      <li class="news__item">
+        <div class="news__meta">
+          <span class="news__date">{% if n.display_date and n.display_date != "" %}{{ n.display_date }}{% else %}{{ n.date | date: "%B %-d, %Y" }}{% endif %}</span>
+          <span class="news-tag news-tag--{{ cat }}">{{ cat | capitalize }}</span>
+        </div>
+        <div class="news__content">
+          <h2 class="news__title">{{ n.title }}</h2>
+          {%- if n.body and n.body != "" -%}<p class="news__text">{{ n.body }}</p>{%- endif -%}
+          {%- if n.link and n.link != "" -%}
+            {%- assign label = n.link_text | default: "Details" -%}
+            {%- if n.link contains "://" -%}
+            <a class="link news__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer">{{ label }} {% include icon.html name="external" %}</a>
+            {%- else -%}
+            <a class="link news__link" href="{{ n.link | relative_url }}">{{ label }}</a>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>

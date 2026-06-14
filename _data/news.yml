@@ -1,0 +1,87 @@
+# news.yml
+# ---------------------------------------------------------------------------
+# SAIL news feed, shown on the News page (/news/), newest first.
+#
+# HOW TO ADD AN ITEM (no coding needed, edit this file on GitHub):
+#   1. Copy one block below (from "- date:" down to the blank line).
+#   2. Paste it anywhere in the list and fill in the fields. Order does not
+#      matter: the page always sorts by date, newest first.
+#   3. Commit. The site rebuilds and the item appears automatically.
+#
+# FIELDS
+#   date         REQUIRED. "YYYY-MM-DD". Controls the order (newest first).
+#                If you only know the month or year, use 01 for the missing
+#                part and set display_date so the guess is not shown.
+#   display_date OPTIONAL. Shown in place of date when set, e.g. "March 2025"
+#                or "2026". Leave "" to show the full date.
+#   category     one of: people | publication | award | talk | event
+#   title        REQUIRED. One line.
+#   body         OPTIONAL. A sentence or two of detail. Leave "" to omit.
+#   link         OPTIONAL. A page on this site ("/publications/41/") or a full
+#                URL ("https://..."). Full URLs open in a new tab.
+#   link_text    OPTIONAL. Link label. Defaults to "Details".
+# ---------------------------------------------------------------------------
+
+- date: "2026-02-01"
+  display_date: ""
+  category: people
+  title: "Seonbin Kim joins the lab"
+  body: "Seonbin Kim (김선빈) joins SAIL as an M.S. student in the Department of Applied Chemistry."
+  link: "/members/seonbin-kim/"
+  link_text: "Member page"
+
+- date: "2026-01-03"
+  display_date: "2026"
+  category: publication
+  title: "New review in Chemical Society Reviews"
+  body: "\"An overview of reaction outcome prediction with physics-based and data-driven methods.\""
+  link: "/publications/41/"
+  link_text: "Read the paper"
+
+- date: "2026-01-02"
+  display_date: "2026"
+  category: publication
+  title: "New article in the Bulletin of the Korean Chemical Society"
+  body: "\"Defining Chemical Problems for Artificial Intelligence Models.\""
+  link: "/publications/40/"
+  link_text: "Read the paper"
+
+- date: "2026-01-01"
+  display_date: "2026"
+  category: publication
+  title: "New paper in ACS Central Science"
+  body: "\"Higher-level Strategies for Computer-Aided Retrosynthesis.\""
+  link: "/publications/39/"
+  link_text: "Read the paper"
+
+- date: "2025-12-15"
+  display_date: ""
+  category: people
+  title: "Siyeol In joins the lab"
+  body: "Siyeol In (인시열) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/members/siyeol-in/"
+  link_text: "Member page"
+
+- date: "2025-09-11"
+  display_date: ""
+  category: people
+  title: "Jihwan Kim joins the lab"
+  body: "Jihwan Kim (김지환) joins SAIL as an M.S. student in the Department of Applied Chemistry."
+  link: "/members/jihwan-kim/"
+  link_text: "Member page"
+
+- date: "2025-07-14"
+  display_date: ""
+  category: people
+  title: "Hyejeong Jeon joins the lab"
+  body: "Hyejeong Jeon (전혜정) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/members/hyejeong-jeon/"
+  link_text: "Member page"
+
+- date: "2025-03-01"
+  display_date: "March 2025"
+  category: event
+  title: "Spectroscopy and AI Lab opens at Kookmin University"
+  body: "Joonyoung F. Joung joins the Department of Applied Chemistry as Assistant Professor and starts the lab."
+  link: "/pi/"
+  link_text: "About the PI"
