@@ -474,6 +474,37 @@ proof and a headless-Chrome CDP functional test (filter 41→2→41, lightbox
 open/Esc, mobile nav toggle, generated member page, valid JSON-LD, 0 JS errors)
 in `REVIEW.md` §10.
 
+## D24 — PI-feedback round (Phase 13): AND filter, structured citation, data-driven themes, badge layout, Heejeong's record
+
+Five PI-feedback items, each verified before deploy:
+
+1. **Topic filter is AND, not OR.** Selecting multiple chips now shows only
+   papers carrying *every* selected theme (`pubs.js`: `selected.every(...)`).
+2. **Structured citation.** The single `ref` string was split into `vol`/`issue`/
+   `pages`, rendered as **vol** (issue), pages (issue optional), via the shared
+   `pub-citation.html`. A non-numeric ref (e.g. "Advance Article", id 41) still
+   renders as-is. All 41 papers migrated (40 parsed, 1 kept).
+3. **Badge layout.** On the list, the DOI/preprint badges moved onto the topic-tag
+   row, to the left of the tags (logo - logo - tags), matched in size.
+4. **Data-driven themes.** The filter topics now live in `_data/themes.yml`
+   (name + color); colors are emitted into an inline `<style>` from that data
+   (`theme-styles.html`), so a non-coder can change the count, color, name, or
+   order in one file. The SCSS `$themes` map is gone. The validator checks every
+   paper theme exists in themes.yml and that themes.yml is well-formed.
+5. **Heejeong Kim.** Join date 2026-03-03 (news shows "March 2026"), Google
+   Scholar link, and her 36 pre-SAIL papers (Juyoung Yoon group, Ewha) listed on
+   her page. To keep `members.yml` clean for a long list, a member's papers may
+   live in `_data/member_pubs/<slug>.yml`; `member-pubs.html` reads it by slug
+   (validated). Her Scholar lists 37; the 37th is an erratum of the first and is
+   omitted. No DOIs are attached (titles render as plain text); the Scholar link
+   is the live, complete source.
+
+Verified: dev build green (validator now also enforces theme membership + the
+member_pubs file; html-proofer passed); CDP confirmed AND filtering (2 themes →
+the single paper with both); axe 0 WCAG-AA violations after the theme recolor;
+vol/issue/pages and the badge-left layout confirmed visually; Heejeong's page
+shows 36 papers. Deployed (main run 27492501337) and smoke-tested live.
+
 ## D23 — Members/alumni can list their own external publications (Phase 12)
 
 A member or alumnus often has papers that are not in the lab's
