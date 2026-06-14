@@ -1,2 +1,22 @@
-{%- comment -%}Volume/issue/pages for a paper, formatted **vol** (issue), pages. Falls back to free-text `ref` (e.g. "Advance Article"). Emits a leading space when non-empty, nothing when empty. Pass p=<paper>.{%- endcomment -%}
-{%- assign p = include.p -%}{%- if p.vol -%}{{ " " }}<strong>{{ p.vol }}</strong>{% if p.issue and p.issue != "" %} ({{ p.issue }}){% endif %}{% if p.pages and p.pages != "" %}, {{ p.pages }}{% endif %}{%- elsif p.ref and p.ref != "" -%}{{ " " }}{{ p.ref }}{%- endif -%}
+{%- comment -%}
+  ===========================================================================
+  Citation shown right AFTER the journal name on each paper.
+  This file renders:        , Volume (Issue), Pages
+  so the full line reads:   Bull. Korean Chem. Soc., 47 (3), 317-327 (2026)
+                                                   ^^ this comma + format
+
+  To change how it looks, edit the literal punctuation below (the commas and
+  the parentheses). Rules:
+    - (Issue) is shown only when the paper has an `issue`.
+    - ", Pages" is shown only when the paper has `pages`.
+    - A paper with no `vol` shows its free-text `ref` instead (e.g.
+      "Advance Article"), or nothing if it has neither.
+  Pass p=<paper>.
+  ===========================================================================
+{%- endcomment -%}
+{%- assign p = include.p -%}
+{%- if p.vol -%}
+, <strong>{{ p.vol }}</strong>{% if p.issue and p.issue != "" %} ({{ p.issue }}){% endif %}{% if p.pages and p.pages != "" %}, {{ p.pages }}{% endif %}
+{%- elsif p.ref and p.ref != "" -%}
+, {{ p.ref }}
+{%- endif -%}

@@ -93,6 +93,27 @@ Live: https://sail.kookmin.ac.kr
 
 ---
 
+## 디자인·서식 바꾸기 (어느 파일을 고치나)
+
+내용(논문·멤버 등)이 아니라 **보이는 모양/서식**을 바꾸려면 아래 파일을 고칩니다. GitHub에서
+파일을 열면 **맨 위 주석에 무엇을 하는지와 예시**가 적혀 있으니 그대로 수정 후 커밋하세요.
+
+| 바꾸고 싶은 것 | 파일 |
+| --- | --- |
+| 논문 서지 형식 (저널·권·페이지 사이 콤마/괄호 등) | `_includes/pub-citation.html` |
+| 주제 태그 색·이름·개수·순서 | `_data/themes.yml` |
+| 상단 메뉴(네비) 항목 | `_data/navigation.yml` |
+| 푸터 내용 | `_includes/footer.html` |
+| 논문 목록 한 줄(제목·저자·배지·태그) | `_includes/pub-item.html` |
+| 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
+| PI 페이지 구성 | `pi.html` |
+| 전체 색상·글꼴·간격(디자인 토큰) | `assets/css/main.scss` 맨 위 `:root` |
+
+예) "저널명과 권 사이에 콤마" → `_includes/pub-citation.html` 을 열면 형식 예시와 함께 콤마
+위치가 보입니다.
+
+---
+
 ## 유지보수
 
 - **Jekyll** + **GitHub Actions** 로 빌드·배포합니다(Pages source = GitHub Actions). 개발 머신에
