@@ -1,0 +1,23 @@
+{%- comment -%}
+Publications pulled live from the single _data/publications.yml: any paper whose
+author list contains this person's name (or a listed `author_aliases` entry).
+Add a paper there and it appears here automatically -- one source feeds the
+publications page, the detail pages, and the member/alumni pages.
+Pass the person object: {% include member-pubs.html person=m %}
+{%- endcomment -%}
+{%- assign person = include.person -%}
+{%- assign mine = "" | split: "" -%}
+{%- for p in site.data.publications -%}
+  {%- assign hit = false -%}
+  {%- if person.name and person.name != "" and p.authors contains person.name -%}{%- assign hit = true -%}{%- endif -%}
+  {%- if person.author_aliases -%}{%- for alias in person.author_aliases -%}{%- if p.authors contains alias -%}{%- assign hit = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+  {%- if hit -%}{%- assign mine = mine | push: p -%}{%- endif -%}
+{%- endfor -%}
+{%- if mine.size > 0 -%}
+<div class="member-pubs">
+  <h2 class="member-pubs__label">Publications</h2>
+  <div class="pub-list">
+    {%- for p in mine -%}{% include pub-item.html p=p %}{%- endfor -%}
+  </div>
+</div>
+{%- endif -%}

@@ -3,34 +3,4 @@ layout: default
 ---
 {%- assign a = site.data.alumni | where: "slug", page.slug | first -%}
 {%- unless a -%}{%- assign a = page -%}{%- endunless -%}
-<section class="section">
-  <div class="container container-narrow member-card">
-    <p class="eyebrow"><a class="link" href="{{ '/alumni/' | relative_url }}">Alumni</a></p>
-    {%- if a.photo and a.photo != "" -%}
-    <img class="member-card__photo" src="{{ '/assets/images/' | append: a.photo | relative_url }}" alt="{{ a.name }}">
-    {%- endif -%}
-    <h1 class="profile__name">{{ a.name }}{% if a.name_ko %} <span class="ko">{{ a.name_ko }}</span>{% endif %}</h1>
-    <p class="profile__title">{{ a.role }}</p>
-    <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University</p>
-    {%- if a.note and a.note != "" -%}<p class="member-card__meta">{{ a.note }}</p>{%- endif -%}
-    {%- include social-links.html person=a -%}
-    {%- assign body = content | strip -%}
-    {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ content }}</div>{%- endif -%}
-
-    {%- assign mine = "" | split: "" -%}
-    {%- for p in site.data.publications -%}
-      {%- assign hit = false -%}
-      {%- if a.name and a.name != "" and p.authors contains a.name -%}{%- assign hit = true -%}{%- endif -%}
-      {%- if a.author_aliases -%}{%- for alias in a.author_aliases -%}{%- if p.authors contains alias -%}{%- assign hit = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
-      {%- if hit -%}{%- assign mine = mine | push: p -%}{%- endif -%}
-    {%- endfor -%}
-    {%- if mine.size > 0 -%}
-    <div class="member-pubs">
-      <h2 class="member-pubs__label">Publications</h2>
-      <div class="pub-list">
-        {%- for p in mine -%}{% include pub-item.html p=p %}{%- endfor -%}
-      </div>
-    </div>
-    {%- endif -%}
-  </div>
-</section>
+{%- include person-profile.html person=a kind="alumnus" body=content -%}

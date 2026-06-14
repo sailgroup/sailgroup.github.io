@@ -1,0 +1,31 @@
+{%- comment -%}
+Personal page card for a member or alumnus. Both pages are the same card; the
+only differences are the back-link, the affiliation line, and (alumni only) a
+note. Pass: person (the data object), kind ("member" | "alumnus"), body (the
+optional prose body from the page, usually empty).
+{%- endcomment -%}
+{%- assign x = include.person -%}
+<section class="section">
+  <div class="container container-narrow member-card">
+    {%- if include.kind == "alumnus" -%}
+    <p class="eyebrow"><a class="link" href="{{ '/alumni/' | relative_url }}">Alumni</a></p>
+    {%- else -%}
+    <p class="eyebrow"><a class="link" href="{{ '/members/' | relative_url }}">Members</a></p>
+    {%- endif -%}
+    {%- if x.photo and x.photo != "" -%}
+    <img class="member-card__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}">
+    {%- endif -%}
+    <h1 class="profile__name">{{ x.name }}{% if x.name_ko %} <span class="ko">{{ x.name_ko }}</span>{% endif %}</h1>
+    <p class="profile__title">{{ x.role }}</p>
+    {%- if include.kind == "alumnus" -%}
+    <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University</p>
+    {%- if x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
+    {%- else -%}
+    <p class="member-card__meta">Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University{% if x.joined %} &middot; Joined {{ x.joined | date: "%B %Y" }}{% endif %}</p>
+    {%- endif -%}
+    {%- include social-links.html person=x -%}
+    {%- assign body = include.body | strip -%}
+    {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ include.body }}</div>{%- endif -%}
+    {%- include member-pubs.html person=x -%}
+  </div>
+</section>

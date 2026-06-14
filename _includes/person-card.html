@@ -1,0 +1,28 @@
+{%- comment -%}
+A person card for the Members / Alumni grids. Degrades gracefully: an initials
+disc when there is no photo, a plain name when there is no slug (so a future
+entry without a photo or slug never produces a broken image or link).
+Pass: person (the data object), base ("members" | "alumni").
+{%- endcomment -%}
+{%- assign x = include.person -%}
+{%- assign url = '/' | append: include.base | append: '/' | append: x.slug | append: '/' | relative_url -%}
+<div class="person">
+  {%- if x.photo and x.photo != "" -%}
+    {%- if x.slug and x.slug != "" -%}
+    <a href="{{ url }}">
+      <img class="person__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">
+    </a>
+    {%- else -%}
+    <img class="person__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">
+    {%- endif -%}
+  {%- else -%}
+  <div class="person__ph" aria-hidden="true">{{ x.name | slice: 0 }}</div>
+  {%- endif -%}
+  <p class="person__name">{%- if x.slug and x.slug != "" -%}<a href="{{ url }}">{{ x.name }}</a>{%- else -%}{{ x.name }}{%- endif -%}</p>
+  <p class="person__ko">{{ x.name_ko }}</p>
+  <p class="person__role">{{ x.role }}</p>
+  {%- if x.note and x.note != "" -%}<p class="person__note">{{ x.note }}</p>{%- endif -%}
+  {%- if x.email and x.email != "" -%}
+  <p class="person__links"><a href="mailto:{{ x.email }}" aria-label="Email {{ x.name }}">{% include icon.html name="mail" %}</a></p>
+  {%- endif -%}
+</div>

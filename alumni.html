@@ -12,28 +12,7 @@ permalink: /alumni/
 <section class="section section--tight">
   <div class="container">
     <div class="person-grid">
-      {%- for a in site.data.alumni -%}
-      <div class="person">
-        {%- if a.photo and a.photo != "" -%}
-          {%- if a.slug and a.slug != "" -%}
-          <a href="{{ '/alumni/' | append: a.slug | append: '/' | relative_url }}">
-            <img class="person__photo" src="{{ '/assets/images/' | append: a.photo | relative_url }}" alt="{{ a.name }}" loading="lazy">
-          </a>
-          {%- else -%}
-          <img class="person__photo" src="{{ '/assets/images/' | append: a.photo | relative_url }}" alt="{{ a.name }}" loading="lazy">
-          {%- endif -%}
-        {%- else -%}
-        <div class="person__ph" aria-hidden="true">{{ a.name | slice: 0 }}</div>
-        {%- endif -%}
-        <p class="person__name">{%- if a.slug and a.slug != "" -%}<a href="{{ '/alumni/' | append: a.slug | append: '/' | relative_url }}">{{ a.name }}</a>{%- else -%}{{ a.name }}{%- endif -%}</p>
-        <p class="person__ko">{{ a.name_ko }}</p>
-        <p class="person__role">{{ a.role }}</p>
-        {%- if a.note and a.note != "" -%}<p class="person__note">{{ a.note }}</p>{%- endif -%}
-        {%- if a.email and a.email != "" -%}
-        <p class="person__links"><a href="mailto:{{ a.email }}" aria-label="Email {{ a.name }}">{% include icon.html name="mail" %}</a></p>
-        {%- endif -%}
-      </div>
-      {%- endfor -%}
+      {%- for a in site.data.alumni -%}{% include person-card.html person=a base="alumni" %}{%- endfor -%}
     </div>
   </div>
 </section>
