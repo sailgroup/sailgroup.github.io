@@ -17,19 +17,19 @@
 #   name   REQUIRED. The label shown on the chip and the tag.
 #   color  REQUIRED. Hex color, e.g. "#1864ab".
 # ---------------------------------------------------------------------------
-- name: Clinical outcome prediction
-  color: "#b02a5b"
-- name: De novo molecule generation
-  color: "#6741d9"
-- name: Excited-state reaction
-  color: "#c92a2a"
+- name: Excited-state dynamics
+  color: "#D62728"
 - name: Experimental dataset
-  color: "#0b7285"
-- name: Molecular property prediction
-  color: "#1864ab"
-- name: Optical property analysis
-  color: "#862e9c"
+  color: "#6E6E6E"
+- name: Spectroscopic analysis
+  color: "#C49A2E"
 - name: Quantum chemical modeling
-  color: "#846800"
+  color: "#F3943E"
 - name: Reaction pathway prediction
-  color: "#1f7a33"
+  color: "#004F9E"
+- name: Molecular property prediction
+  color: "#08A470"
+- name: De novo molecule generation
+  color: "#4EBBE5"
+- name: Clinical outcome prediction
+  color: "#5E4B8B"
