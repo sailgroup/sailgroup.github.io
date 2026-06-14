@@ -33,3 +33,6 @@ qa.js
 .DS_Store
 Thumbs.db
 *.log
+
+# Local QA artifacts (parity diffs, screenshots)
+.qa/
