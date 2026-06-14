@@ -290,3 +290,30 @@ Deployed (main run 27485080347, build + deploy green) and re-verified live with 
 | R11 | detail 39 = journal logo + DOI image + ChemRxiv preprint; 37 = arXiv preprint; 41 = no preprint (conditional hides it), still logo + DOI | PASS |
 
 All 13 checks pass. No defects found.
+
+## 9. Phase 10 update (2026-06-14) — functional verification (PI round 2)
+
+The PI pushed back on a prior superficial "looks fine" report and asked for each feature to be
+checked for actual function, not markup presence. Everything below was verified against the
+real CI artifact (the build of record), not the local source — with a headless-Chrome CDP
+click test for the filter, and positive/negative controls for the member auto-add.
+
+| # | What was verified | How | Result |
+| --- | --- | --- | --- |
+| 1 | Site JS ships in the build | `pubs.js`, `nav.js`, `photos.js` present in the artifact (1644 / 1300 / 2397 B) | PASS |
+| 2 | Topic filter actually filters | CDP: load publications, click "Quantum chemical modeling" → visible papers 42 → 15, every one of the 15 carries that theme; click "All" → back to 42 | PASS |
+| 3 | Filter chips select | CDP: 9 chips found, clicked chip gains `active` class | PASS |
+| 4 | Member auto-add (R10) — positive | id-999 test paper authored by "Jihwan Kim" → jihwan-kim page shows it under one "Publications" heading | PASS |
+| 5 | Member auto-add (R10) — negative | seonbin-kim (not an author) shows 0 member-pubs | PASS |
+| 6 | Detail-page generator | `/publications/999/` built from the YAML entry with no `_publications` stub (42 detail dirs total) | PASS |
+| 7 | DOI/preprint badges on the list | 46 `pub-badge` total: 42 `doi.png`, 3 `arxiv.png`, 1 `chemrxiv.png`; 0 leftover `btn--ghost` text buttons | PASS |
+| 8 | Scholar logo | 1 `scholar.png` on the PI page, 0 leftover generic SVGs | PASS |
+| 9 | News feed | 8 items render (1 event, 4 people, 3 publication); home teaser shows 3 cards | PASS |
+| 10 | Left-aligned titles | all 7 pages use `container page-head` (no `container-narrow`) | PASS |
+
+The id-999 test paper (checks 4–6) was a throwaway entry added only to exercise the live
+mechanisms; it was removed before deploy, so jihwan-kim is correctly empty again. The design
+review the PI asked for was done from full-page screenshots at 1440px and 390px across home,
+news, publications, members, and research: spacing and positioning are clean at both widths;
+the only blank regions in the captures are `loading="lazy"` journal covers, a headless-capture
+artifact, not a site defect. No outstanding defects.

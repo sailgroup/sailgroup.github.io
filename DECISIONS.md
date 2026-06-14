@@ -335,3 +335,65 @@ re-check of R0–R12 (font, hero, no hero pills, no recent-work, no publications
 year labels, Korean 초록 + English block, colored multi-select chips, journal+DOI logos
 with conditional preprint logo verified on 39/37/41, member eyebrow, social icon links)
 all pass; see REVIEW.md Phase 9.1.
+
+## D21 — News feed, brand logos on the publications list, single-source detail pages, Node 24, left-aligned titles (PI-feedback round 2)
+
+A second batch of PI feedback, plus a functional re-verification the PI asked for after an
+earlier "looks fine" report was too superficial. Six changes.
+
+(1) **News tab, editable by non-coders via one YAML file.** Added a `/news/` page and a
+top-nav "News" entry (second, after Home). Content lives in `_data/news.yml`: one list
+entry per event with `date` (YYYY-MM-DD, required, drives the sort), an optional
+`display_date` text override, a `category` (people | publication | award | talk | event)
+that colors the pill, a `title`, an optional `body`, and an optional `link` (an internal
+path like `/members/...` or `/publications/41/`, or a full external URL — the template
+detects `://` and opens external links in a new tab). The file header documents every field
+in plain language so a lab member can add an entry without touching templates. The home page
+shows the three most recent items as cards under a "Recent news" band; the news page lists
+all of them newest-first. Seeded with eight real, datable events only: five member arrivals
+(2025–2026), the three 2026 papers (ids 39/40/41, linked to their detail pages), and the
+lab opening (March 2025). Heejeong Kim has no on-record join date so she is intentionally
+not in the people entries; logged in CONTENT_INVENTORY.md. No event was invented.
+
+(2) **DOI / arXiv / ChemRxiv / Scholar logos used on the list, not just detail pages.** The
+PI asked why the orange DOI mark, the arXiv mark, and the Google Scholar mark were not on the
+publications list. They now are. Each list entry's footer renders a `doi.png` badge (when the
+entry has a DOI) and a preprint badge (when it has a `preprint_url`; arXiv vs ChemRxiv chosen
+from the URL), replacing the old text "DOI / Preprint" buttons — the same logic the detail
+pages already used. The Google Scholar logo (`scholar.png`, a transparent raster) now renders
+through `_includes/icon.html` wherever a Scholar link exists (PI page, member and alumni
+social links), replacing a generic SVG. Live counts on the built list: 41 DOI badges,
+3 arXiv, 1 ChemRxiv, Scholar on the PI page.
+
+(3) **Detail pages generated from `publications.yml`, no per-paper stub.** Adding a paper used
+to need both a `publications.yml` entry and a hand-written `_publications/<id>.md` stub. A
+custom Jekyll generator (`_plugins/publication_pages.rb`) now creates
+`/publications/<id>/` for any id in `publications.yml` that lacks a stub, so one YAML entry is
+enough. It is additive: where a stub still exists it wins and is skipped, so the 41 existing
+pages are untouched. This works because CI builds with `bundle exec jekyll build` (custom
+plugins enabled), not the restricted github-pages gem (see D2). Verified by temporarily adding
+a test paper (id 999): its `/publications/999/` page built with no stub, then the entry was
+removed before deploy.
+
+(4) **Member auto-add proven, not assumed.** The PI asked to confirm that adding a paper whose
+author is a current member auto-lists it on that member's page. `member.html` scans
+`publications.yml` for the member's name or an `author_aliases` entry (D20), so the mechanism
+existed; this round proved it on a real build. With the id-999 test paper authored by
+"Jihwan Kim", jihwan-kim's page showed the new paper under "Publications" while a control
+member (seonbin-kim, not an author) showed none. The test entry was then removed, so all five
+members are again correctly empty until a real paper carries their name.
+
+(5) **Node 24 in CI.** Per the PI's request, the deploy workflow pins
+`FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` so the GitHub-managed Pages/upload actions run on
+Node 24 instead of emitting Node 16/20 deprecation warnings.
+
+(6) **Subpage titles left-aligned to match the home hero.** The PI noted the home hero text
+sits at the left while the Research / Members / Publications / etc. page titles were centered.
+Those pages used `container container-narrow page-head` (a 760px centered column); the
+`container-narrow` cap was removed from all seven (research, members, publications, pi, alumni,
+photos, news) so each title and lead share the same left edge as the hero and nav.
+
+Build-of-record note: the blanket `"*.js"` exclude that had silently dropped the site's own
+`assets/js/*.js` (the cause of the earlier "filter chips not selectable" report) stays
+removed; this round re-confirmed `pubs.js`, `nav.js`, and `photos.js` are present in the build
+and that clicking a topic chip actually filters (CDP test, REVIEW.md Phase 10).

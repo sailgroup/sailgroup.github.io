@@ -154,3 +154,16 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   the description still spans the content width. Re-verified all PI feedback R0–R12 live with a
   13-point check (DECISIONS.md item 9, REVIEW.md Phase 9.1) — all pass. Deployed via main run
   27485080347 (build + deploy green).
+- **Phase 10 (2026-06-14):** Second PI-feedback round (D21), plus the rigorous functional
+  re-verification the PI demanded. (1) Added a `/news/` tab and top-nav entry driven by
+  `_data/news.yml`, editable by non-coders, with a home "Recent news" teaser; seeded eight real
+  datable events (5 member arrivals, the 3 2026 papers, the lab opening). (2) Put DOI/arXiv/
+  ChemRxiv badges and the Google Scholar logo on the publications list (and Scholar wherever a
+  link exists), not just the detail pages. (3) Added `_plugins/publication_pages.rb` so a paper's
+  `/publications/<id>/` page is generated from `publications.yml` with no per-paper stub
+  (additive; the 41 stubs still win). (4) Proved member auto-add on a real build with a temporary
+  id-999 test paper (positive: jihwan-kim listed it; negative: seonbin-kim did not), then removed
+  it. (5) Pinned Node 24 in CI. (6) Left-aligned all seven subpage titles to match the home hero
+  (dropped `container-narrow`). Verified the filter functionally with a headless-Chrome CDP click
+  test (42 → 15 → 42) against the CI artifact, confirmed site JS ships, and reviewed the design at
+  1440px and 390px. Results in `REVIEW.md` section 9 (Phase 10).

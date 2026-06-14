@@ -115,3 +115,9 @@ was taken, what was normalized, and what is still open.
   the 41 listed papers, so every member's list is empty today; it populates
   automatically when a member's paper is added (set `author_aliases` if they
   published under a name variant).
+- **News feed seed (Phase 10, D21)**: `_data/news.yml` is seeded only from real,
+  datable events — 5 member arrivals, the 3 2026 papers, and the March 2025 lab
+  opening. **Gap:** Heejeong Kim (postdoctoral researcher) has no join date on the
+  source, so she has no "joins the lab" news entry; add one if a date is provided.
+  Award and talk categories exist in the template but have no entries yet (none on
+  record). Nothing in the feed was invented.
