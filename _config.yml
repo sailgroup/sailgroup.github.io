@@ -18,37 +18,14 @@ permalink: pretty
 sass:
   style: compressed
 
-collections:
-  members:
-    output: true
-    permalink: /members/:name/
-  alumni:
-    output: true
-    permalink: /alumni/:name/
-  publications:
-    output: true
-    permalink: /publications/:name/
+# Member, alumni, and publication detail pages are generated from _data/*.yml by
+# _plugins/generate_pages.rb (one YAML entry = one page; no collection stubs).
 
 defaults:
   - scope:
       path: ""
     values:
       image: /assets/images/og-image.png
-  - scope:
-      path: ""
-      type: members
-    values:
-      layout: member
-  - scope:
-      path: ""
-      type: alumni
-    values:
-      layout: alumnus
-  - scope:
-      path: ""
-      type: publications
-    values:
-      layout: publication
 
 plugins:
   - jekyll-feed
@@ -69,6 +46,8 @@ exclude:
   - PROGRESS.md
   - CONTENT_INVENTORY.md
   - REVIEW.md
+  - REFACTOR_PLAN.md
+  - CONTRIBUTING.md
   # Do NOT add blanket globs like "*.js" or "*.ps1" here: Jekyll matches them against
   # nested paths too, which silently dropped assets/js/*.js from the build and broke the
   # publication filter, mobile nav, and photo lightbox. Root-level one-off helper scripts
