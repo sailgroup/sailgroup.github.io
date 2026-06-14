@@ -87,6 +87,9 @@ body {
 
 img, picture, svg, video { display: block; max-width: 100%; height: auto; }
 svg { fill: currentColor; }
+/* Honor outline icons: a CSS `fill` overrides the SVG `fill="none"` attribute, which
+   otherwise fills stroke-only icons (e.g. the mail envelope rendered as a solid box). */
+svg[fill="none"] { fill: none; }
 .icon { width: 1.15em; height: 1.15em; flex: none; vertical-align: -0.16em; }
 .icon--brand { width: auto; } /* raster brand logos (e.g. Google Scholar): keep native aspect, height drives size */
 input, button, textarea, select { font: inherit; color: inherit; }

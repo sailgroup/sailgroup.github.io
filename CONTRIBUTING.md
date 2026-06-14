@@ -1,7 +1,7 @@
 # Contributing to the SAIL website
 
-You do **not** need to install anything or know how to code. Every change below
-is a single edit to one file on **github.com** (use the pencil ✏️ on the file).
+Every change below is a single edit to one file on **github.com** (use the pencil
+✏️ on the file) — no local setup needed.
 When you commit, GitHub rebuilds and publishes the site
 (`https://sail.kookmin.ac.kr`) in about a minute.
 

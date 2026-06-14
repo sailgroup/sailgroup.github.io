@@ -30,6 +30,14 @@
   link: "/"
   link_text: "Visit the site"
 
+- date: "2026-03-01"
+  display_date: "2026"
+  category: people
+  title: "Heejeong Kim joins the lab"
+  body: "Heejeong Kim (김희정) joins SAIL as a postdoctoral researcher in the Department of Applied Chemistry."
+  link: "/members/heejeong-kim/"
+  link_text: "Member page"
+
 - date: "2026-02-01"
   display_date: ""
   category: people

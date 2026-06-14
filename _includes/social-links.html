@@ -7,6 +7,7 @@ Renders only the links that exist; never invents a profile.
 {%- assign show = false -%}
 {%- if person.email and person.email != "" -%}{%- assign show = true -%}{%- endif -%}
 {%- if person.linkedin and person.linkedin != "" -%}{%- assign show = true -%}{%- endif -%}
+{%- if person.github and person.github != "" -%}{%- assign show = true -%}{%- endif -%}
 {%- if person.scholar and person.scholar != "" -%}{%- assign show = true -%}{%- endif -%}
 {%- if person.orcid and person.orcid != "" -%}{%- assign show = true -%}{%- endif -%}
 {%- if person.website and person.website != "" -%}{%- assign show = true -%}{%- endif -%}
@@ -17,6 +18,9 @@ Renders only the links that exist; never invents a profile.
   {%- endif -%}
   {%- if person.linkedin and person.linkedin != "" -%}
   <a class="icon-link" href="{{ person.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} on LinkedIn" title="LinkedIn">{% include icon.html name="linkedin" %}</a>
+  {%- endif -%}
+  {%- if person.github and person.github != "" -%}
+  <a class="icon-link" href="{{ person.github }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} on GitHub" title="GitHub">{% include icon.html name="github" %}</a>
   {%- endif -%}
   {%- if person.scholar and person.scholar != "" -%}
   <a class="icon-link" href="{{ person.scholar }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} on Google Scholar" title="Google Scholar">{% include icon.html name="scholar" %}</a>
