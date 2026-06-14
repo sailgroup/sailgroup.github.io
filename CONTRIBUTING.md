@@ -38,6 +38,29 @@ real URL): `linkedin:`, `scholar:`, `orcid:`, `website:`.
 
 Required: `name`, `role`. Everything else is optional.
 
+**A member's own papers from elsewhere** (not on the lab Publications page — e.g.
+a postdoc's papers from a previous position): add a `publications:` list to that
+member's entry. They show on the member's page, merged with any lab papers that
+match their name, newest first; the title links to the DOI and the member's own
+name is bold.
+
+```yaml
+- name: Heejeong Kim
+  role: Postdoctoral Researcher
+  slug: heejeong-kim
+  publications:
+    - title:   "A paper from her PhD"
+      authors: "Heejeong Kim, A. Advisor"
+      journal: "J. Phys. Chem. A"
+      year:    2023                 # plain number, no quotes
+      doi:     "https://doi.org/10.1021/..."   # optional; the title links here
+      preprint_url: "https://arxiv.org/abs/..." # optional
+```
+
+`title`, `authors`, `journal`, `year` are required per entry. List only papers
+that are **not** already on the lab Publications page (lab papers auto-appear by
+author name).
+
 ## Add an alumnus  →  `_data/alumni.yml`
 
 Identical to a member. Same fields; add an optional `note:` for a one-line note

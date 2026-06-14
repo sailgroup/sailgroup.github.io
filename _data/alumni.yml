@@ -4,6 +4,10 @@
 # source Alumni page (real, not invented). Two joke entries on the source site
 # (Rosua Chung / 정개념, Camus Chung / 정까뮈 — both lab dogs) are intentionally
 # excluded and flagged in REVIEW.md for a human decision.
+#
+# Each alumnus may also list their own papers under an optional `publications:`
+# field (same format as in members.yml: title / authors / journal / year, plus
+# optional doi / preprint_url). They appear on the alumnus's page, newest first.
 - name: Chanjoong Kim
   name_ko: 김찬중
   role: Undergraduate Researcher (UROP)

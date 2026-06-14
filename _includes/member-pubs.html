@@ -1,8 +1,11 @@
 {%- comment -%}
-Publications pulled live from the single _data/publications.yml: any paper whose
-author list contains this person's name (or a listed `author_aliases` entry).
-Add a paper there and it appears here automatically -- one source feeds the
-publications page, the detail pages, and the member/alumni pages.
+Publications shown on a member/alumnus page, newest first. Two sources, merged:
+  1. Lab papers from the single _data/publications.yml whose author list contains
+     this person's name (or a listed `author_aliases`) -- one source of truth.
+  2. The person's own external papers, listed under `publications:` in their
+     _data/members.yml / alumni.yml entry (papers NOT on the lab Publications
+     page, e.g. from a previous position).
+Duplicates (same DOI, or same title) are removed; the page owner's name is bold.
 Pass the person object: {% include member-pubs.html person=m %}
 {%- endcomment -%}
 {%- assign person = include.person -%}
@@ -13,11 +16,16 @@ Pass the person object: {% include member-pubs.html person=m %}
   {%- if person.author_aliases -%}{%- for alias in person.author_aliases -%}{%- if p.authors contains alias -%}{%- assign hit = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
   {%- if hit -%}{%- assign mine = mine | push: p -%}{%- endif -%}
 {%- endfor -%}
+{%- if person.publications -%}{%- for p in person.publications -%}{%- assign mine = mine | push: p -%}{%- endfor -%}{%- endif -%}
 {%- if mine.size > 0 -%}
+{%- assign seen = "" -%}
+{%- assign uniq = "" | split: "" -%}
+{%- for p in mine -%}{%- assign key = p.doi | default: p.title -%}{%- unless seen contains key -%}{%- assign uniq = uniq | push: p -%}{%- assign seen = seen | append: "||" | append: key -%}{%- endunless -%}{%- endfor -%}
+{%- assign uniq = uniq | sort: "year" | reverse -%}
 <div class="member-pubs">
   <h2 class="member-pubs__label">Publications</h2>
   <div class="pub-list">
-    {%- for p in mine -%}{% include pub-item.html p=p %}{%- endfor -%}
+    {%- for p in uniq -%}{% include pub-item.html p=p highlight=person.name %}{%- endfor -%}
   </div>
 </div>
 {%- endif -%}

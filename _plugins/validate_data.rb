@@ -92,6 +92,31 @@ module SAIL
         if !blank?(p["joined"]) && !(p["joined"].to_s =~ DATE_RE)
           err("#{at}: `joined: #{p["joined"]}` must be YYYY-MM-DD.")
         end
+        validate_person_pubs(p["publications"], at)
+      end
+    end
+
+    # A member/alumnus may list their own external papers under `publications:`.
+    def validate_person_pubs(pubs, at)
+      return if pubs.nil?
+      unless pubs.is_a?(Array)
+        err("#{at}: `publications` must be a list of papers.")
+        return
+      end
+      pubs.each_with_index do |pub, j|
+        pat = "#{at} publication #{j + 1}"
+        %w[title authors journal year].each do |f|
+          err("#{pat}: missing required field `#{f}`.") if blank?(pub[f])
+        end
+        if !blank?(pub["year"]) && !pub["year"].is_a?(Integer)
+          err("#{pat}: `year` must be a plain number with no quotes (year: 2023), got #{pub["year"].inspect}.")
+        end
+        %w[doi preprint_url].each do |f|
+          err("#{pat}: `#{f}` should be a full URL (http...), got: #{pub[f]}") if !blank?(pub[f]) && !pub[f].to_s.start_with?("http")
+        end
+        if !blank?(pub["image"]) && !image_exists?(File.join("pubs", pub["image"]))
+          err("#{pat}: `image: #{pub["image"]}` not found in assets/images/pubs/.")
+        end
       end
     end
 

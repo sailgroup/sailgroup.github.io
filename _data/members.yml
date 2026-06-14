@@ -9,6 +9,18 @@
 #   orcid:    https://orcid.org/0000-0000-0000-0000
 #   website:  https://...
 # author_aliases: ["Name Variant"]   # extra strings to match against publications.yml authors
+#
+# Optional: a member's own papers from elsewhere (NOT on the lab Publications
+# page, e.g. from a previous position). They show on the member's page, merged
+# with any lab papers matching their name, newest first. The title links to the
+# DOI; the member's own name is bold.
+#   publications:
+#     - title:   "Paper title"
+#       authors: "A. Member, B. Coauthor"
+#       journal: "J. Whatever"
+#       year:    2023                          # plain number, no quotes
+#       doi:     "https://doi.org/10.xxxx/yyy"  # optional; the title links here
+#       preprint_url: "https://arxiv.org/abs/..." # optional
 - name: Heejeong Kim
   name_ko: 김희정
   role: Postdoctoral Researcher
