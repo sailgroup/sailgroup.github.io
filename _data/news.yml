@@ -30,6 +30,30 @@
   link: "/"
   link_text: "Visit the site"
   
+- date: "2026-05-19"
+  display_date: ""
+  category: publication
+  title: "New review in Chemical Society Reviews"
+  body: "\"An overview of reaction outcome prediction with physics-based and data-driven methods.\""
+  link: "/publications/41/"
+  link_text: "Read the paper"
+  
+- date: "2026-03-25"
+  display_date: ""
+  category: publication
+  title: "New article in ACS Central Science"
+  body: "\"Higher-level Strategies for Computer-Aided Retrosynthesis.\""
+  link: "/publications/39/"
+  link_text: "Read the paper"
+  
+- date: "2026-03-20"
+  display_date: ""
+  category: publication
+  title: "New article in the Bulletin of the Korean Chemical Society"
+  body: "\"Defining Chemical Problems for Artificial Intelligence Models.\""
+  link: "/publications/40/"
+  link_text: "Read the paper"
+
 - date: "2026-03-08"
   display_date: ""
   category: event
@@ -53,30 +77,6 @@
   body: "Seonbin Kim (김선빈) joins SAIL as an M.S. student."
   link: "/members/seonbin-kim/"
   link_text: "Member page"
-
-- date: "2026-01-03"
-  display_date: "2026"
-  category: publication
-  title: "New review in Chemical Society Reviews"
-  body: "\"An overview of reaction outcome prediction with physics-based and data-driven methods.\""
-  link: "/publications/41/"
-  link_text: "Read the paper"
-
-- date: "2026-01-02"
-  display_date: "2026"
-  category: publication
-  title: "New article in the Bulletin of the Korean Chemical Society"
-  body: "\"Defining Chemical Problems for Artificial Intelligence Models.\""
-  link: "/publications/40/"
-  link_text: "Read the paper"
-
-- date: "2026-01-01"
-  display_date: "2026"
-  category: publication
-  title: "New article in ACS Central Science"
-  body: "\"Higher-level Strategies for Computer-Aided Retrosynthesis.\""
-  link: "/publications/39/"
-  link_text: "Read the paper"
 
 - date: "2025-12-15"
   display_date: ""
