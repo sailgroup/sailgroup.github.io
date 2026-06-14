@@ -27,6 +27,13 @@
   email: he2ja@ewha.ac.kr
   photo: heejeong-kim.jpg
   slug: heejeong-kim
+  # TEMP-PERSONAL-PUBS-TEST (removed after verification)
+  publications:
+    - title: "TEMP external paper for verification"
+      authors: "Heejeong Kim, A. Coauthor"
+      journal: "J. Test Chem."
+      year: 2024
+      doi: "https://doi.org/10.0000/temp-verify"
 
 - name: Jihwan Kim
   name_ko: 김지환
