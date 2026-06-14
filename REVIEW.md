@@ -424,3 +424,29 @@ via an optional `publications:` field. Verified on real CI builds:
 | Validation | required fields / integer year / URL doi / image existence checked per entry; build fails clearly on a mistake |
 
 The test entry was removed before deploy.
+
+## 13. Production-readiness audit (2026-06-14)
+
+A measured, evidence-based pass over the live site (headless Chrome), beyond the
+functional crawl.
+
+**Crawl (all 60 sitemap pages, desktop + mobile):** every page HTTP 200, exactly
+one `<h1>`, `alt` on every image, 0 broken images, 0 uncaught JS errors, and no
+horizontal overflow at 390 px.
+
+**Core Web Vitals (desktop):** home LCP 117 ms / CLS 0; publications LCP 139 ms /
+CLS 0.083; photos LCP 327 ms / CLS 0 — all within Google's "good" thresholds.
+DOM sizes 200–765 nodes; home loads in ~9 requests.
+
+**Accessibility (axe-core 4.10, WCAG 2 A/AA):** the first pass found borderline
+issues (ratios 3.85–4.49 vs the 4.5 AA threshold) — `--orange-ink` on tinted
+backgrounds (eyebrows, the "More news" link, the Publication news tag), the green
+topic tag on its tint, color-only figure-caption links, an `<aside>` nested in
+`<main>` on the PI page, and redundant gallery `alt`. All were fixed (darkened
+`--orange-ink` to `#ad4f0a` and the green topic to `#1f7a33`, underlined the
+caption links, changed the PI card to a `<div>`, made the gallery image
+decorative). A re-run is **0 violations across all 11 audited page types**.
+
+Remaining items are unchanged from §10 RECOMMENDATIONS (responsive `srcset`,
+self-hosting Pretendard, a manual screen-reader pass) and the content notes in
+§3 — none blocking.
