@@ -3,9 +3,10 @@ Publications shown on a member/alumnus page, newest first. Two sources, merged:
   1. Lab papers from the single _data/publications.yml whose author list contains
      this person's name (or a listed `author_aliases`) -- one source of truth.
   2. The person's own external papers, listed under `publications:` in their
-     _data/members.yml / alumni.yml entry (papers NOT on the lab Publications
-     page, e.g. from a previous position).
-Duplicates (same DOI, or same title) are removed; the page owner's name is bold.
+     _data/people.yml entry (papers NOT on the lab Publications page, e.g. from a
+     previous position), or in _data/member_pubs/<slug>.yml for a long list.
+Duplicates (same DOI, or same title) are removed; only the page owner's name is
+bold (pub-item passes person=...), and topic tags are hidden on personal pages.
 Pass the person object: {% include member-pubs.html person=m %}
 {%- endcomment -%}
 {%- assign person = include.person -%}
@@ -27,7 +28,7 @@ Pass the person object: {% include member-pubs.html person=m %}
 <div class="member-pubs">
   <h2 class="member-pubs__label">Publications</h2>
   <div class="pub-list">
-    {%- for p in uniq -%}{% include pub-item.html p=p aliases=person.author_aliases %}{%- endfor -%}
+    {%- for p in uniq -%}{% include pub-item.html p=p person=person hide_themes=true %}{%- endfor -%}
   </div>
 </div>
 {%- endif -%}

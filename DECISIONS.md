@@ -611,3 +611,28 @@ canonical + noindex; theme filter AND logic correct (26 ∩ 13); author highligh
 `author_aliases` confirmed on a non-PI page (Heejeong "H Kim"); axe 0 non-contrast
 violations (only the accepted PI-palette contrast on topic chips remains);
 home/publications LCP 124/185 ms, CLS ≈ 0; nav breakpoint 992px correct.
+
+## D27 — Author highlight is scope-aware, not "every lab name everywhere" (PI-feedback)
+
+D20/D24 made `pi-authors.html` bold **every** lab person's name (PI + all
+members + alumni) in any author list. When the PI added a test paper co-authored
+by several members, every one of their names got underlined on the Publications
+list and on each member's page — which reads wrong. The PI asked: the
+Publications list should mark only the PI, and a person's own page should mark
+only that person (and drop the topic tags there). Reconciled the earlier
+"highlight everyone" intent with this by making the highlight **context-scoped**:
+
+- `pi-authors.html` takes an optional `person`. With no `person` it bolds the PI
+  only (`site.data.pi.name` / `name_full`) — used by the Publications list and
+  every publication detail page. With `person=<entry>` it bolds only that person
+  (their `name` + `author_aliases`) — used on the person's own page.
+- `pub-item.html` forwards `person` to `pi-authors` and, given `hide_themes`,
+  omits the topic-tag row. `member-pubs.html` calls it with
+  `person=person hide_themes=true`; the Publications list and detail pages pass
+  neither, so they keep PI-only highlighting and (on the list) the tags.
+- This also shrinks the find-and-replace surface from ~12 names to 1–2 per
+  render, removing a class of substring-collision risk.
+
+The publications↔people **linking** is unchanged and correct: a paper still
+appears on every co-author's page (matched by `name`/`author_aliases` in
+`member-pubs.html`); only which name is emphasised, and whether tags show, changed.

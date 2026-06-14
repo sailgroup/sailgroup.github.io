@@ -1,17 +1,24 @@
 {%- comment -%}
-Author list with every lab person's name highlighted (bold + underline, .pi):
-the PI, every member, and every alumnus -- built from site.data, so adding a
-person (members/alumni.yml) or a paper makes the matching names bold
-automatically, everywhere the author list appears. On a person's own page, pass
-their author_aliases too (to also bold an abbreviated form like "H Kim").
-Pass: authors=<string>, optionally aliases=<array>.
+Highlights selected names (bold + underline, .pi) inside an author string.
+Scope is deliberate, so the same paper marks a different name per context:
+  - default (no `person`): highlight the PI only (site.data.pi.name / name_full).
+    Used on the Publications list and each publication detail page -- a paper on
+    the lab's list emphasises the lab's PI, not every co-author who is a member.
+  - with `person=<people entry>`: highlight ONLY that person (their `name` and any
+    `author_aliases`, e.g. an abbreviated "H Kim"). Used on a person's own page,
+    so each author list marks just the page owner.
+Pass: authors=<string>, optionally person=<people entry>.
 {%- endcomment -%}
 {%- assign out = include.authors -%}
 {%- assign names = "" | split: "" -%}
-{%- if site.data.pi.name and site.data.pi.name != "" -%}{%- assign names = names | push: site.data.pi.name -%}{%- endif -%}
-{%- if site.data.pi.name_full and site.data.pi.name_full != "" -%}{%- assign names = names | push: site.data.pi.name_full -%}{%- endif -%}
-{%- for person in site.data.people -%}{%- if person.name and person.name != "" -%}{%- assign names = names | push: person.name -%}{%- endif -%}{%- endfor -%}
-{%- if include.aliases -%}{%- for al in include.aliases -%}{%- if al and al != "" -%}{%- assign names = names | push: al -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+{%- if include.person -%}
+  {%- assign person = include.person -%}
+  {%- if person.name and person.name != "" -%}{%- assign names = names | push: person.name -%}{%- endif -%}
+  {%- if person.author_aliases -%}{%- for al in person.author_aliases -%}{%- if al and al != "" -%}{%- assign names = names | push: al -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+{%- else -%}
+  {%- if site.data.pi.name and site.data.pi.name != "" -%}{%- assign names = names | push: site.data.pi.name -%}{%- endif -%}
+  {%- if site.data.pi.name_full and site.data.pi.name_full != "" -%}{%- assign names = names | push: site.data.pi.name_full -%}{%- endif -%}
+{%- endif -%}
 {%- assign names = names | uniq -%}
 {%- for name in names -%}{%- capture rep -%}<strong class="pi">{{ name }}</strong>{%- endcapture -%}{%- assign out = out | replace: name, rep -%}{%- endfor -%}
 {{ out }}
