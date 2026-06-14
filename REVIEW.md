@@ -263,3 +263,30 @@ member pages.
 
 No defects found. The recommended manual follow-ups are unchanged from section 5 (a screen-reader pass
 and a Lighthouse run on the live URL).
+
+## 8. Phase 9.1 update (2026-06-14) — hero width fix + R0–R12 re-verification
+
+The hero was bleeding to the viewport edge (`.hero__inner { max-width: none }`) while every
+other section stayed at `--container` (1140px), so on wide screens it looked wider than the
+rest of the page. The override was removed; the hero now uses the standard container, its
+edges line up with the nav and all sections below, and the description still spans the full
+content width. This supersedes the "full-width hero lead present" note in section 7.
+Deployed (main run 27485080347, build + deploy green) and re-verified live with a fresh
+13-point check:
+
+| Req | Check | Result |
+| --- | --- | --- |
+| R0 | Pretendard in CSS; `--font-serif` aliases the sans (no serif face) | PASS |
+| R1 | hero uses `.container` (no `.hero__inner` override); 1440px screenshot edges align with nav + sections | PASS |
+| R2 | home hero has no research/publications/people pill buttons | PASS |
+| R3 | home has no "recent work" section | PASS |
+| R4 | publications page has no "peer-reviewed papers, newest first" lead | PASS |
+| R5 | year headings are bare 4-digit years (no per-year count) | PASS |
+| R6 | `/publications/39/` renders a Korean 초록 + English collapsible | PASS |
+| R7 | colored chips (dot + `data-theme-slug`); multi-select OR logic in `pubs.js` | PASS |
+| R8 | member page renders the MEMBERS eyebrow above the photo | PASS |
+| R9 | member social links render as `icon-link` with svg/img, not text | PASS |
+| R10/R12 | `member.html` lists papers from the one `publications.yml` by name/alias; 0 current members are authors, so the section is correctly empty | PASS |
+| R11 | detail 39 = journal logo + DOI image + ChemRxiv preprint; 37 = arXiv preprint; 41 = no preprint (conditional hides it), still logo + DOI | PASS |
+
+All 13 checks pass. No defects found.

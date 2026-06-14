@@ -147,3 +147,10 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   PI-bold; colored multi-select chips, no lead line, no per-year counts; no current member is yet an
   author on the 41 papers, so each member's publications section is correctly empty. Results in
   `REVIEW.md` section 7 (Phase 9 update).
+- **Phase 9.1 (2026-06-14):** Corrected the hero width. The R1 full-span pass had set
+  `.hero__inner { max-width: none }`, which let the hero bleed to the viewport edge while every
+  other section stayed at `--container` (1140px); the PI reported it looked "too full." Removed the
+  override so the hero uses the standard container and lines up with the nav and every section below;
+  the description still spans the content width. Re-verified all PI feedback R0–R12 live with a
+  13-point check (DECISIONS.md item 9, REVIEW.md Phase 9.1) — all pass. Deployed via main run
+  27485080347 (build + deploy green).

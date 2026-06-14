@@ -320,3 +320,18 @@ journal logo and DOI logo on 41/41, preprint logo on 4/41, PI name bold on 41/41
 publications index has colored multi-select chips, no lead line, and no per-year counts;
 the home page loads Pretendard with no "recent work" section; all five member pages return
 200 with icon links.
+
+(9) **Hero width correction (revises R1).** The first full-span pass set
+`.hero__inner { max-width: none }`, which removed the container cap and let the hero bleed
+to the viewport edge while every other section stayed bound to `--container` (1140px). The
+PI reported it looked "too full" relative to the rest of the page. The override was removed
+so the hero content uses the standard `.container` width and its left/right edges line up
+with the nav and every section below; the description still spans that full content width,
+now matched to the rest of the page (the R1 intent, just bounded). Deployed (dev run
+27485068238 build green; main run 27485080347 build + deploy green) and verified live: the
+compiled CSS has no `.hero__inner` rule, and a 1440px screenshot shows the hero eyebrow,
+h1, and lead sharing the same left edge as the nav and the Research section. A 13-point
+re-check of R0–R12 (font, hero, no hero pills, no recent-work, no publications lead, bare
+year labels, Korean 초록 + English block, colored multi-select chips, journal+DOI logos
+with conditional preprint logo verified on 39/37/41, member eyebrow, social icon links)
+all pass; see REVIEW.md Phase 9.1.
