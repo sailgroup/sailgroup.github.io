@@ -152,6 +152,36 @@
     - "Quantum chemical modeling"
     - "Excited-state reaction"
   image: "pub-32.jpg"
+  abstract: >
+    Photoacids are aromatic acids that exhibit significantly different acidities
+    when they are electronically excited. Three experimental methods have been
+    extensively used to determine the photoacidity: fluorescence titration, the
+    Förster cycle, and time-resolved experiments. However, the photoacidities
+    determined by these experimental methods are not consistent. In this work, we
+    used a theoretical method to evaluate the reliability of experimentally
+    determined values. In particular, density functional theory (DFT) and
+    time-dependent DFT calculations were used to obtain the changes in Gibbs free
+    energy for acid dissociation reactions which are directly related to values.
+    The Förster cycle, which is frequently used to experimentally determine the
+    photoacidity due to its simplicity, yielded inconsistent results depending on
+    how the transition energy was defined. We evaluated six empirical parameters
+    extracted from the absorption and emission spectra of acidic and basic species
+    of photoacids to adequately define the transition energy in the Förster cycle.
+    And we found that the values obtained using the optical bandgap as the
+    transition energy in the Förster cycle were in the best agreement with the
+    results of quantum chemical calculations.
+  abstract_ko: >
+    광산(photoacid)은 전자적으로 들뜬 상태가 되면 산도가 크게 달라지는 방향족 산이다.
+    광산도를 결정하는 데에는 형광 적정, 푀르스터 회로(Förster cycle), 시간 분해 실험의
+    세 가지 실험 방법이 널리 사용되어 왔다. 그러나 이들 방법으로 측정한 광산도 값은 서로
+    일치하지 않는다. 이 연구에서는 실험으로 결정한 값의 신뢰성을 이론적으로 평가하였다.
+    구체적으로 밀도범함수이론(DFT)과 시간의존 DFT 계산을 이용하여 광산도 값과 직접
+    관련된 산 해리 반응의 깁스 자유 에너지 변화를 구하였다. 간단하다는 이유로 광산도
+    측정에 자주 쓰이는 푀르스터 회로는 전이 에너지를 어떻게 정의하느냐에 따라 결과가
+    달라졌다. 이에 우리는 광산의 산성 화학종과 염기성 화학종의 흡수 및 방출 스펙트럼에서
+    추출한 여섯 가지 경험적 매개변수를 검토하여 푀르스터 회로의 전이 에너지를 적절히
+    정의하고자 하였다. 그 결과, 광학적 밴드갭을 전이 에너지로 사용했을 때 얻은 값이
+    양자화학 계산 결과와 가장 잘 일치함을 확인하였다.
 
 - id: 31
   title: "Deep learning for development of organic optoelectronic devices: Efficient prescreening of hosts and emitters in deep-blue fluorescent OLED"

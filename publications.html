@@ -7,7 +7,6 @@ scripts: [pubs]
 <div class="container container-narrow page-head">
   <p class="eyebrow">Publications</p>
   <h1>Publications</h1>
-  <p class="lead">{{ site.data.publications | size }} peer-reviewed papers, newest first. The principal investigator is highlighted in each author list.</p>
 </div>
 
 <section class="section section--tight">
@@ -18,7 +17,7 @@ scripts: [pubs]
     <div class="pub-toolbar" role="group" aria-label="Filter publications by topic">
       <button class="pub-filter is-active" data-theme="" aria-pressed="true">All</button>
       {%- for t in all_themes -%}
-      <button class="pub-filter" data-theme="{{ t }}" aria-pressed="false">{{ t }}</button>
+      <button class="pub-filter" data-theme="{{ t }}" data-theme-slug="{{ t | slugify }}" aria-pressed="false"><span class="pub-filter__dot" aria-hidden="true"></span>{{ t }}</button>
       {%- endfor -%}
     </div>
 
@@ -26,7 +25,7 @@ scripts: [pubs]
     {%- assign years = byyear | sort: "name" | reverse -%}
     {%- for yr in years -%}
     <section class="year-group">
-      <h2 class="year-label">{{ yr.name }} <span>{{ yr.items | size }}{% if yr.items.size == 1 %} paper{% else %} papers{% endif %}</span></h2>
+      <h2 class="year-label">{{ yr.name }}</h2>
       <div class="pub-list">
         {%- for p in yr.items -%}{% include pub-item.html p=p %}{%- endfor -%}
       </div>

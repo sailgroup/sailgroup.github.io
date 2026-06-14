@@ -1,0 +1,41 @@
+# journal_logos.yml
+# ---------------------------------------------------------------------------
+# Maps each journal name used in publications.yml to its logo file in
+# assets/images/journals/. Keys MUST match the `journal:` string exactly
+# (this is a hash lookup). Logos supplied by the PI (Journal Logos folder).
+# When a future paper introduces a new journal, add a line here; the paper
+# detail page simply hides the logo when a journal has no entry.
+# ---------------------------------------------------------------------------
+"Chem. Soc. Rev.": chem-soc-rev.png
+"Bull. Korean Chem. Soc.": bkcs.jpg
+"ACS Cent. Sci.": acs-cent-sci.png
+"J. Mater. Inf.": jmi.jpg
+"Nature": nature.png
+"Acc. Chem. Res.": acc-chem-res.png
+"Angew. Chem. Int. Ed.": angew-chem-int-ed.png
+"J. Mater. Chem. C": j-mater-chem-c.png
+"Phys. Chem. Chem. Phys.": pccp.png
+"npj Comput. Mater.": npj-comput-mater.png
+"J. Chem. Inf. Model.": jcim.png
+"Anal. Chim. Acta": anal-chim-acta.png
+"J. Pers. Med.": j-pers-med.png
+"ACS Appl. Mater. Interfaces": acs-ami.png
+"JACS Au": jacs-au.png
+"Nano Lett.": nano-lett.png
+"Nat. Commun.": nat-commun.png
+"Sci. Data": sci-data.png
+"Chem. Mater.": chem-mater.png
+"Chem. Sci.": chem-sci.png
+"NPG Asia Mater.": npg-asia-mater.png
+"New J. Chem.": new-j-chem.png
+"Cryst. Growth Des.": cryst-growth-des.png
+"Small": small.png
+"Sens. Actuators B Chem.": sens-actuators-b.png
+"Eur. J. Inorg. Chem.": eur-j-inorg-chem.png
+"Chem. Commun.": chem-commun.png
+"Adv. Funct. Mater.": adv-funct-mater.png
+"J. Am. Chem. Soc.": jacs.png
+"Dyes Pigm.": dyes-pigm.png
+"J. Phys. Chem. B": jpc-b.png
+"Macromolecules": macromolecules.png
+"J. Phys. Chem. Lett.": jpc-lett.png

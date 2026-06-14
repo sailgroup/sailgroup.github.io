@@ -13,8 +13,24 @@ layout: default
     <p class="profile__title">{{ a.role }}</p>
     <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University</p>
     {%- if a.note and a.note != "" -%}<p class="member-card__meta">{{ a.note }}</p>{%- endif -%}
-    {%- if a.email and a.email != "" -%}<p style="margin-top:var(--space-md)"><a class="btn btn--ghost btn--sm" href="mailto:{{ a.email }}">{% include icon.html name="mail" %} {{ a.email }}</a></p>{%- endif -%}
+    {%- include social-links.html person=a -%}
     {%- assign body = content | strip -%}
     {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ content }}</div>{%- endif -%}
+
+    {%- assign mine = "" | split: "" -%}
+    {%- for p in site.data.publications -%}
+      {%- assign hit = false -%}
+      {%- if a.name and a.name != "" and p.authors contains a.name -%}{%- assign hit = true -%}{%- endif -%}
+      {%- if a.author_aliases -%}{%- for alias in a.author_aliases -%}{%- if p.authors contains alias -%}{%- assign hit = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+      {%- if hit -%}{%- assign mine = mine | push: p -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if mine.size > 0 -%}
+    <div class="member-pubs">
+      <h2 class="member-pubs__label">Publications</h2>
+      <div class="pub-list">
+        {%- for p in mine -%}{% include pub-item.html p=p %}{%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
   </div>
 </section>

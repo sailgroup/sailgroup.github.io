@@ -1,6 +1,14 @@
 # Current members. Source: live lab site, extracted Phase 0. Exactly as listed;
 # no invented bios, interests, or links. Photos staged in _source/images and copied
 # to assets/images during build. Ordered by role, then join date.
+#
+# Optional per-member fields (add only with a real, verified URL; never invent one).
+# They render as logo icons beside the email on the member page:
+#   linkedin: https://www.linkedin.com/in/...
+#   scholar:  https://scholar.google.com/citations?user=...
+#   orcid:    https://orcid.org/0000-0000-0000-0000
+#   website:  https://...
+# author_aliases: ["Name Variant"]   # extra strings to match against publications.yml authors
 - name: Heejeong Kim
   name_ko: 김희정
   role: Postdoctoral Researcher

@@ -6,11 +6,6 @@ layout: default
     <p class="eyebrow">Joonyoung F. Joung Lab &middot; Kookmin University</p>
     <h1>{{ site.data.home.hero.title }}</h1>
     <p class="lead">{{ site.data.home.hero.lead }}</p>
-    <div class="hero__actions">
-      <a class="btn btn--solid" href="{{ '/research/' | relative_url }}">Research</a>
-      <a class="btn btn--ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
-      <a class="btn btn--ghost" href="{{ '/pi/' | relative_url }}">People</a>
-    </div>
     <figure class="hero__figure">
       <img src="{{ '/assets/images/home-architecture.png' | relative_url }}"
            alt="Generative electron-flow model architecture for chemical reaction prediction"
@@ -57,18 +52,6 @@ layout: default
 {%- endif -%}
 
 <section class="section">
-  <div class="container">
-    <div class="section-head"><p class="eyebrow">Publications</p><h2>Recent work</h2></div>
-    <div class="pub-list">
-      {%- for p in site.data.publications limit: 5 -%}
-        {% include pub-item.html p=p %}
-      {%- endfor -%}
-    </div>
-    <p style="margin-top:var(--space-lg)"><a class="link" href="{{ '/publications/' | relative_url }}">All {{ site.data.publications | size }} publications</a></p>
-  </div>
-</section>
-
-<section class="section section--alt">
   <div class="container">
     <div class="section-head"><p class="eyebrow">Contact</p><h2>Find us</h2></div>
     <dl class="contact-grid">

@@ -8,12 +8,12 @@
   <img class="pub__figure" src="{{ '/assets/images/pubs/' | append: p.image | relative_url }}" alt="" loading="lazy">
   {%- endif -%}
   <div class="pub__body">
-    <h3 class="pub__title">{{ p.title }}</h3>
+    <h3 class="pub__title"><a class="pub__link" href="{{ '/publications/' | append: p.id | append: '/' | relative_url }}">{{ p.title }}</a></h3>
     <p class="pub__authors">{{ authors }}</p>
     <p class="pub__meta"><span class="pub__journal">{{ p.journal }}</span>{% if p.ref and p.ref != "" %} {{ p.ref }}{% endif %} ({{ p.year }})</p>
     {%- if p.themes and p.themes.size > 0 -%}
     <div class="tag-list pub__themes">
-      {%- for t in p.themes -%}<span class="tag tag--accent">{{ t }}</span>{%- endfor -%}
+      {%- for t in p.themes -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endfor -%}
     </div>
     {%- endif -%}
     {%- if hasdoi or haspre -%}

@@ -6,7 +6,7 @@
    SAIL — Spectroscopy and AI Lab
    Design system. Warm academic neutrals with the brand orange (#f89858,
    sampled from the logo, where the "AI" in SAIL is set in orange).
-   Headings: Source Serif 4. Body: Inter.
+   Type: Pretendard, one friendly sans with full Hangul support.
    ========================================================================== */
 
 /* --- Design tokens -------------------------------------------------------- */
@@ -30,8 +30,8 @@
   --orange-wash: #fdf1e7;   /* faint orange tint background */
 
   /* Typography */
-  --font-sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans:  "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", Roboto, Arial, sans-serif;
+  --font-serif: var(--font-sans); /* one friendly sans across the site (was Source Serif 4) */
 
   --fs-xs:   0.8125rem;
   --fs-sm:   0.9rem;
@@ -310,10 +310,9 @@ p { text-wrap: pretty; }
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
-.hero__inner { max-width: 56rem; }
+.hero__inner { max-width: none; }
 .hero h1 { margin-top: 0.9rem; }
-.hero .lead { margin-top: 1.25rem; max-width: 44ch; }
-.hero__actions { margin-top: 1.9rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.hero .lead { margin-top: 1.25rem; max-width: none; } /* full-span description (R1) */
 .hero__wordmark .hl { color: var(--orange-ink); }
 .hero__figure { margin: clamp(2rem, 5vw, 3.75rem) auto 0; max-width: 880px; }
 .hero__figure img {
@@ -368,6 +367,29 @@ p { text-wrap: pretty; }
   white-space: nowrap;
 }
 .tag--accent { color: var(--orange-deep); background: var(--orange-wash); border-color: #f6d9c2; }
+
+/* Per-topic colors, shared by the publication tags and the filter chips. */
+$themes: (
+  "clinical-outcome-prediction":   #b02a5b,
+  "de-novo-molecule-generation":   #6741d9,
+  "excited-state-reaction":        #c92a2a,
+  "experimental-dataset":          #0b7285,
+  "molecular-property-prediction": #1864ab,
+  "optical-property-analysis":     #862e9c,
+  "quantum-chemical-modeling":     #846800,
+  "reaction-pathway-prediction":   #2b8a3e,
+);
+@each $slug, $c in $themes {
+  .tag--#{$slug} {
+    color: $c;
+    background: rgba($c, 0.10);
+    border-color: rgba($c, 0.30);
+  }
+  .pub-filter[data-theme-slug="#{$slug}"] { --c: #{$c}; }
+  .pub-filter[data-theme-slug="#{$slug}"].is-active {
+    background: $c; border-color: $c; color: #fff;
+  }
+}
 
 /* --- Prose ---------------------------------------------------------------- */
 .prose > * + * { margin-top: 1.1rem; }
@@ -473,6 +495,9 @@ p { text-wrap: pretty; }
 /* --- Publications --------------------------------------------------------- */
 .pub-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--space-lg); }
 .pub-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   padding: 0.4rem 0.85rem;
   font-size: var(--fs-xs);
   font-weight: 500;
@@ -484,6 +509,8 @@ p { text-wrap: pretty; }
 }
 .pub-filter:hover { border-color: var(--orange); color: var(--orange-deep); }
 .pub-filter.is-active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.pub-filter__dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--c, var(--line-2)); flex: none; }
+.pub-filter.is-active .pub-filter__dot { background: currentColor; }
 
 .year-group + .year-group { margin-top: var(--space-xl); }
 .year-label {
@@ -494,8 +521,6 @@ p { text-wrap: pretty; }
   border-bottom: 2px solid var(--orange);
   margin-bottom: var(--space-md);
 }
-.year-label span { color: var(--muted); font-size: var(--fs-sm); font-family: var(--font-sans); margin-left: 0.5rem; }
-
 .pub-list { display: grid; gap: 0.4rem; }
 .pub {
   display: grid;
@@ -720,7 +745,7 @@ body.no-scroll { overflow: hidden; }
 
 /* --- Member personal card ------------------------------------------------- */
 .member-card { text-align: center; }
-.member-card .eyebrow { justify-content: center; }
+.member-card .eyebrow { justify-content: center; margin-bottom: var(--space-lg); }
 .member-card .profile__name { justify-content: center; }
 .member-card__photo {
   width: 180px; height: 180px;
@@ -801,7 +826,74 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media print {
-  .site-header, .site-footer, .hero__actions, .pub-toolbar { display: none; }
+  .site-header, .site-footer, .pub-toolbar { display: none; }
   body { font-size: 11pt; }
   a { color: inherit; text-decoration: none; }
+}
+
+/* --- Publication title link ----------------------------------------------- */
+.pub__link { color: inherit; transition: color 0.15s ease; }
+.pub__link:hover { color: var(--orange-deep); text-decoration: underline; text-underline-offset: 2px; }
+
+/* --- Social / contact icon links (member + alumni) ------------------------ */
+.icon-links { margin-top: var(--space-md); display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+.icon-link {
+  display: grid; place-items: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  color: var(--ink-2);
+  background: #fff;
+  border: 1px solid var(--line-2);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.icon-link:hover { color: var(--orange-deep); border-color: var(--orange); background: var(--orange-wash); transform: translateY(-1px); }
+.icon-link .icon { width: 1.2em; height: 1.2em; vertical-align: 0; }
+
+/* --- Member auto-publications --------------------------------------------- */
+.member-pubs { margin-top: var(--space-2xl); text-align: left; }
+.member-pubs__label {
+  font-size: var(--fs-md);
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--orange);
+  margin-bottom: var(--space-md);
+}
+
+/* --- Paper detail page ---------------------------------------------------- */
+.paper__back { margin-bottom: var(--space-md); font-size: var(--fs-sm); }
+.paper__top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+.paper__logo { height: 44px; width: auto; max-width: 230px; object-fit: contain; }
+.paper__head { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: start; }
+.paper__title { font-size: var(--fs-xl); margin-bottom: var(--space-sm); }
+.paper__meta { color: var(--muted); font-size: var(--fs-sm); }
+.paper__meta .pub__journal { font-style: italic; color: var(--ink-2); }
+.paper__authors { color: var(--ink-2); margin-top: 0.5rem; }
+.paper__authors .pi {
+  font-weight: 600; color: var(--ink);
+  background: linear-gradient(transparent 62%, rgba(248, 152, 88, 0.34) 0);
+}
+.paper__figure {
+  margin: 0;
+  padding: var(--space-sm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  text-align: center;
+}
+.paper__figure img { display: inline-block; max-height: 320px; width: auto; }
+.paper__abstract { margin-top: var(--space-xl); max-width: 70ch; }
+.paper__abstract-label { font-size: var(--fs-md); margin-bottom: 0.6rem; }
+.paper__abstract p { color: var(--ink-2); line-height: 1.85; white-space: pre-line; }
+.paper__abstract-en { margin-top: var(--space-md); max-width: 70ch; }
+.paper__abstract-en summary { cursor: pointer; color: var(--orange-ink); font-size: var(--fs-sm); font-weight: 600; }
+.paper__abstract-en p { margin-top: 0.6rem; color: var(--muted); font-size: var(--fs-sm); line-height: 1.7; white-space: pre-line; }
+.paper__links { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
+.paper__doi img, .paper__pre img { height: 38px; width: auto; transition: transform 0.15s ease; }
+.paper__doi:hover img, .paper__pre:hover img { transform: translateY(-2px); }
+
+@media (min-width: 721px) {
+  .paper__head--figured { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
 }

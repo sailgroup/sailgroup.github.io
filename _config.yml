@@ -25,6 +25,9 @@ collections:
   alumni:
     output: true
     permalink: /alumni/:name/
+  publications:
+    output: true
+    permalink: /publications/:name/
 
 defaults:
   - scope:
@@ -41,6 +44,11 @@ defaults:
       type: alumni
     values:
       layout: alumnus
+  - scope:
+      path: ""
+      type: publications
+    values:
+      layout: publication
 
 plugins:
   - jekyll-feed

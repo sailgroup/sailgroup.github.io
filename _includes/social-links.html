@@ -1,0 +1,31 @@
+{%- comment -%}
+Icon-only contact links for a person (member, alumnus, or PI).
+Pass the person object: {% include social-links.html person=m %}
+Renders only the links that exist; never invents a profile.
+{%- endcomment -%}
+{%- assign person = include.person -%}
+{%- assign show = false -%}
+{%- if person.email and person.email != "" -%}{%- assign show = true -%}{%- endif -%}
+{%- if person.linkedin and person.linkedin != "" -%}{%- assign show = true -%}{%- endif -%}
+{%- if person.scholar and person.scholar != "" -%}{%- assign show = true -%}{%- endif -%}
+{%- if person.orcid and person.orcid != "" -%}{%- assign show = true -%}{%- endif -%}
+{%- if person.website and person.website != "" -%}{%- assign show = true -%}{%- endif -%}
+{%- if show -%}
+<div class="icon-links">
+  {%- if person.email and person.email != "" -%}
+  <a class="icon-link" href="mailto:{{ person.email }}" aria-label="Email {{ person.name }}" title="{{ person.email }}">{% include icon.html name="mail" %}</a>
+  {%- endif -%}
+  {%- if person.linkedin and person.linkedin != "" -%}
+  <a class="icon-link" href="{{ person.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} on LinkedIn" title="LinkedIn">{% include icon.html name="linkedin" %}</a>
+  {%- endif -%}
+  {%- if person.scholar and person.scholar != "" -%}
+  <a class="icon-link" href="{{ person.scholar }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} on Google Scholar" title="Google Scholar">{% include icon.html name="scholar" %}</a>
+  {%- endif -%}
+  {%- if person.orcid and person.orcid != "" -%}
+  <a class="icon-link" href="{{ person.orcid }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} ORCID" title="ORCID">{% include icon.html name="orcid" %}</a>
+  {%- endif -%}
+  {%- if person.website and person.website != "" -%}
+  <a class="icon-link" href="{{ person.website }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} website" title="Website">{% include icon.html name="link" %}</a>
+  {%- endif -%}
+</div>
+{%- endif -%}

@@ -1,0 +1,64 @@
+---
+layout: default
+---
+{%- assign p = site.data.publications | where: "id", page.pid | first -%}
+{%- unless p -%}{%- assign p = page -%}{%- endunless -%}
+{%- assign logo = site.data.journal_logos[p.journal] -%}
+{%- assign authors = p.authors | replace: 'Joonyoung Francis Joung', '<strong class="pi">Joonyoung Francis Joung</strong>' | replace: 'Joonyoung F. Joung', '<strong class="pi">Joonyoung F. Joung</strong>' -%}
+{%- assign hasimg = false -%}{%- if p.image and p.image != "" -%}{%- assign hasimg = true -%}{%- endif -%}
+{%- assign hasdoi = false -%}{%- if p.doi and p.doi != "" -%}{%- assign hasdoi = true -%}{%- endif -%}
+{%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
+<section class="section section--tight">
+  <div class="container">
+    <p class="paper__back"><a class="link" href="{{ '/publications/' | relative_url }}">Publications</a></p>
+
+    <div class="paper__top">
+      {%- if logo and logo != "" -%}
+      <img class="paper__logo" src="{{ '/assets/images/journals/' | append: logo | relative_url }}" alt="{{ p.journal }}">
+      {%- else -%}<span aria-hidden="true"></span>{%- endif -%}
+      {%- if p.themes and p.themes.size > 0 -%}
+      <div class="tag-list paper__themes">
+        {%- for t in p.themes -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endfor -%}
+      </div>
+      {%- endif -%}
+    </div>
+
+    <div class="paper__head{% if hasimg %} paper__head--figured{% endif %}">
+      <div class="paper__head-main">
+        <h1 class="paper__title">{{ p.title }}</h1>
+        <p class="paper__meta"><span class="pub__journal">{{ p.journal }}</span>{% if p.ref and p.ref != "" %}, {{ p.ref }}{% endif %} ({{ p.year }})</p>
+        <p class="paper__authors">{{ authors }}</p>
+        {%- if hasdoi or haspre -%}
+        <div class="paper__links">
+          {%- if hasdoi -%}
+          <a class="paper__doi" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.png' | relative_url }}" alt="DOI" height="38"></a>
+          {%- endif -%}
+          {%- if haspre -%}
+            {%- assign pl = p.preprint_url | downcase -%}
+            {%- if pl contains 'chemrxiv' -%}{%- assign prefile = 'chemrxiv.png' -%}{%- assign prealt = 'ChemRxiv' -%}{%- else -%}{%- assign prefile = 'arxiv.png' -%}{%- assign prealt = 'arXiv' -%}{%- endif -%}
+          <a class="paper__pre" href="{{ p.preprint_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ prealt }} preprint"><img src="{{ '/assets/images/' | append: prefile | relative_url }}" alt="{{ prealt }}" height="38"></a>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+      </div>
+      {%- if hasimg -%}
+      <figure class="paper__figure">
+        <img src="{{ '/assets/images/pubs/' | append: p.image | relative_url }}" alt="Graphical abstract for {{ p.title }}" loading="lazy">
+      </figure>
+      {%- endif -%}
+    </div>
+
+    {%- if p.abstract_ko and p.abstract_ko != "" -%}
+    <div class="paper__abstract">
+      <h2 class="paper__abstract-label">초록</h2>
+      <p>{{ p.abstract_ko }}</p>
+    </div>
+    {%- endif -%}
+    {%- if p.abstract and p.abstract != "" -%}
+    <details class="paper__abstract-en">
+      <summary>Original abstract (English)</summary>
+      <p>{{ p.abstract }}</p>
+    </details>
+    {%- endif -%}
+  </div>
+</section>

@@ -6,14 +6,31 @@ layout: default
 <section class="section">
   <div class="container container-narrow member-card">
     <p class="eyebrow"><a class="link" href="{{ '/members/' | relative_url }}">Members</a></p>
-    {%- if m.photo -%}
+    {%- if m.photo and m.photo != "" -%}
     <img class="member-card__photo" src="{{ '/assets/images/' | append: m.photo | relative_url }}" alt="{{ m.name }}">
     {%- endif -%}
     <h1 class="profile__name">{{ m.name }}{% if m.name_ko %} <span class="ko">{{ m.name_ko }}</span>{% endif %}</h1>
     <p class="profile__title">{{ m.role }}</p>
     <p class="member-card__meta">Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University{% if m.joined %} &middot; Joined {{ m.joined | date: "%B %Y" }}{% endif %}</p>
-    <p style="margin-top:var(--space-md)"><a class="btn btn--ghost btn--sm" href="mailto:{{ m.email }}">{% include icon.html name="mail" %} {{ m.email }}</a></p>
+    {%- include social-links.html person=m -%}
     {%- assign body = content | strip -%}
     {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ content }}</div>{%- endif -%}
+
+    {%- comment -%}Publications pulled live from the single _data/publications.yml: any paper whose author list contains this member's name (or a listed alias). Add a paper there and it appears here automatically.{%- endcomment -%}
+    {%- assign mine = "" | split: "" -%}
+    {%- for p in site.data.publications -%}
+      {%- assign hit = false -%}
+      {%- if m.name and m.name != "" and p.authors contains m.name -%}{%- assign hit = true -%}{%- endif -%}
+      {%- if m.author_aliases -%}{%- for alias in m.author_aliases -%}{%- if p.authors contains alias -%}{%- assign hit = true -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+      {%- if hit -%}{%- assign mine = mine | push: p -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if mine.size > 0 -%}
+    <div class="member-pubs">
+      <h2 class="member-pubs__label">Publications</h2>
+      <div class="pub-list">
+        {%- for p in mine -%}{% include pub-item.html p=p %}{%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
   </div>
 </section>
