@@ -21,13 +21,13 @@
   color: "#D62728"
 - name: Quantum chemical modeling
   color: "#F3943E"
-- name: Experimental dataset
-  color: "#6E6E6E"
 - name: Reaction pathway prediction
   color: "#004F9E"
 - name: Molecular property prediction
   color: "#08A470"
 - name: De novo molecule generation
   color: "#4EBBE5"
-- name: Clinical outcome prediction
+- name: Experimental dataset
   color: "#5E4B8B"
+- name: Clinical outcome prediction
+  color: "#6E6E6E"
