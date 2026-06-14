@@ -4,7 +4,7 @@ Project guide for Claude / maintainers working on this repository.
 
 ## What this is
 GitHub Pages site for **SAIL — Spectroscopy & Artificial Intelligence Lab** (Joonyoung F. Joung
-Lab, Dept. of Applied Chemistry, Kookmin University). It replaces the legacy Wix site
+Lab, Dept. of Chemistry, Kookmin University). It replaces the legacy Wix site
 (`sailabjfjoung.wixsite.com/sail`). Served at `https://sailgroup.github.io` and the custom
 domain `https://sail.kookmin.ac.kr`.
 
