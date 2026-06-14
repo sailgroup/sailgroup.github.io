@@ -636,3 +636,24 @@ only that person (and drop the topic tags there). Reconciled the earlier
 The publications↔people **linking** is unchanged and correct: a paper still
 appears on every co-author's page (matched by `name`/`author_aliases` in
 `member-pubs.html`); only which name is emphasised, and whether tags show, changed.
+
+## D28 — Deterministic order for a person's merged publication list (PI-feedback)
+
+On a person's page the lab Publications papers (matched by name) and the person's
+own external papers are merged. The PI wants them ordered by year (newest first)
+and, **within the same year, the lab Publications papers above the person's own**.
+The list was sorted with `sort: "year" | reverse`, but Liquid's `sort` is
+**unstable**, so same-year papers could land in either order (a 2026 own paper was
+showing above a 2026 lab paper).
+
+Fixed with a small Liquid filter, `_plugins/pub_sort.rb` → `sort_member_pubs`,
+that sorts by `[-year, original_index]`. `member-pubs.html` already builds the
+list lab-papers-first, so every lab paper has a lower index than every own paper;
+sorting by year-descending then index-ascending puts the newest year first and,
+on a tie, the lab papers first — and because the index is unique the output is
+fully deterministic (no build-to-build reshuffle). Proven on the real data before
+deploy with a faithful JS simulation of the merge + comparator (Seonbin: 2026 lab
+above 2026 own; Heejeong: 37 papers strictly newest-first).
+
+Also removed the PI's throwaway `Test` paper (was `id: 42`) from
+`publications.yml` at the maintainer's request; 41 real papers remain.
