@@ -4,7 +4,7 @@ name: Joonyoung F. Joung
 name_full: Joonyoung Francis Joung
 name_ko: 정준영
 title: Assistant Professor
-department: Department of Applied Chemistry
+department: Department of Chemistry
 college: College of Science and Technology
 institution: Kookmin University
 email: jjoung@kookmin.ac.kr
@@ -16,8 +16,8 @@ orcid: https://orcid.org/0000-0002-5976-2048
 github: https://github.com/jfjoung
 
 bio: >-
-  Joonyoung F. Joung is an Assistant Professor in the Department of Applied
-  Chemistry at Kookmin University. He completed his Ph.D. in physical chemistry
+  Joonyoung F. Joung is an Assistant Professor in the Department of Chemistry 
+  at Kookmin University. He completed his Ph.D. in physical chemistry
   at Korea University with Sungnam Park, then worked as a postdoctoral research
   associate at Korea University and as a postdoctoral associate in the Department
   of Chemical Engineering at MIT with Connor W. Coley. His work combines
@@ -33,9 +33,9 @@ education:
     institution: Inha University
     date: "2015.02"
 
-appointments:
+career:
   - role: Assistant Professor
-    org: Department of Applied Chemistry, Kookmin University
+    org: Department of Chemistry, Kookmin University
     period: 2025.03–present
   - role: Postdoctoral Associate
     org: Department of Chemical Engineering, MIT
@@ -47,7 +47,7 @@ appointments:
     period: 2020.09–2022.07
   - role: Research Professor
     org: Research Institute for Natural Science, Korea University
-    period: ""
+    period: 2020.09–2022.07
 
 related_labs:
   - name: Coley Research Group, MIT

@@ -37,7 +37,9 @@
   preprint_url: ""
   themes:
     - "Reaction pathway prediction"
+    - "Molecular property prediction"
     - "Quantum chemical modeling"
+    - "Experimental dataset"
   image: "pub-41.jpg"
   abstract: >
     The prediction of reaction outcomes is a longstanding challenge in
@@ -81,6 +83,7 @@
   themes:
     - "Molecular property prediction"
     - "Reaction pathway prediction"
+    - "Experimental dataset"
   image: "pub-40.jpg"
   abstract: >
     Artificial intelligence has become an increasingly important tool in
@@ -234,6 +237,7 @@
   preprint_url: "https://doi.org/10.48550/arXiv.2502.12979"
   themes:
     - "Reaction pathway prediction"
+    - "Experimental dataset"
   image: "pub-37.jpg"
   abstract: >
     Central to our understanding of chemical reactivity is the principle of
@@ -281,6 +285,7 @@
   preprint_url: "https://doi.org/10.48550/arXiv.2501.01835"
   themes:
     - "Reaction pathway prediction"
+    - "Molecular property prediction"
   image: "pub-36.jpg"
   abstract: >
     The advancement of machine learning and the availability of large-scale
@@ -356,7 +361,6 @@
   preprint_url: ""
   themes:
     - "De novo molecule generation"
-    - "Spectroscopic analysis"
   image: "pub-35.jpg"
   abstract: >
     Innovative approaches to design molecules with tailored properties are
@@ -497,6 +501,7 @@
   themes:
     - "Quantum chemical modeling"
     - "Excited-state dynamics"
+    - "Spectroscopic analysis"
   image: "pub-32.jpg"
   abstract: >
     Photoacids are aromatic acids that exhibit significantly different acidities
@@ -582,7 +587,6 @@
   preprint_url: ""
   themes:
     - "Molecular property prediction"
-    - "Spectroscopic analysis"
   image: "pub-30.jpg"
   abstract: >
     An adequate understanding of molecular structure-property relationships is
@@ -631,7 +635,7 @@
   doi: "https://doi.org/10.1016/j.aca.2022.339678"
   preprint_url: ""
   themes:
-    - "Clinical outcome prediction"
+    - "Quantum chemical modeling"
   image: "pub-29.jpg"
   abstract: >
     The precise in vitro diagnosis requires high selectivity and sensitivity
@@ -1017,7 +1021,6 @@
   preprint_url: ""
   themes:
     - "Experimental dataset"
-    - "Spectroscopic analysis"
   image: "pub-21.jpg"
   abstract: >
     Experimental databases on the optical properties of organic chromophores
@@ -1192,6 +1195,7 @@
   themes:
     - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-17.jpg"
   abstract: >
     Arrhenius photobases are of potential use for excited-state hydroxide ion
@@ -1327,6 +1331,7 @@
   themes:
     - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-14.jpg"
   abstract: >
     2-(Benzothiazol-2-yl)pyren-1-ol (P3-NS) was developed as an excited-state
@@ -1579,6 +1584,7 @@
   themes:
     - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-8.jpg"
   abstract: >
     Dissolved ions have a significant effect on the chemical equilibria and
@@ -1626,6 +1632,7 @@
   themes:
     - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-7.jpg"
   abstract: >
     Proton dissociation (PD) reactions of weak acids and proton transfer (PT)
@@ -1767,6 +1774,7 @@
   preprint_url: ""
   themes:
     - "Excited-state dynamics"
+    - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-3.jpg"
   abstract: >
@@ -1818,6 +1826,7 @@
   preprint_url: ""
   themes:
     - "Excited-state dynamics"
+    - "Quantum chemical modeling"
     - "Spectroscopic analysis"
   image: "pub-2.jpg"
   abstract: >
@@ -1862,6 +1871,7 @@
   themes:
     - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-1.jpg"
   abstract: >
     Coumarin 183 (C183) was used as a photoacid to study excited-state proton

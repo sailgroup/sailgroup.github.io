@@ -42,8 +42,8 @@ permalink: /pi/
         </div>
 
         <div class="cv">
-          <h2>Appointments</h2>
-          {%- for a in pi.appointments -%}
+          <h2>Career Summary</h2>
+          {%- for a in pi.career -%}
           <div class="cv__item">
             <div><span class="cv__role">{{ a.role }}</span><br><span class="cv__org">{{ a.org }}{% if a.advisor %}, {{ a.advisor }}{% endif %}</span></div>
             <span class="cv__when">{{ a.period }}</span>
