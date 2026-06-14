@@ -37,7 +37,9 @@
   preprint_url: ""
   themes:
     - "Reaction pathway prediction"
+    - "Molecular property prediction"
     - "Quantum chemical modeling"
+    - "Experimental dataset"
   image: "pub-41.jpg"
   abstract: >
     The prediction of reaction outcomes is a longstanding challenge in
@@ -81,6 +83,7 @@
   themes:
     - "Molecular property prediction"
     - "Reaction pathway prediction"
+    - "Experimental dataset"
   image: "pub-40.jpg"
   abstract: >
     Artificial intelligence has become an increasingly important tool in
@@ -234,6 +237,7 @@
   preprint_url: "https://doi.org/10.48550/arXiv.2502.12979"
   themes:
     - "Reaction pathway prediction"
+    - "Experimental dataset"
   image: "pub-37.jpg"
   abstract: >
     Central to our understanding of chemical reactivity is the principle of
@@ -281,6 +285,7 @@
   preprint_url: "https://doi.org/10.48550/arXiv.2501.01835"
   themes:
     - "Reaction pathway prediction"
+    - "Molecular property prediction"
   image: "pub-36.jpg"
   abstract: >
     The advancement of machine learning and the availability of large-scale
@@ -356,7 +361,6 @@
   preprint_url: ""
   themes:
     - "De novo molecule generation"
-    - "Optical property analysis"
   image: "pub-35.jpg"
   abstract: >
     Innovative approaches to design molecules with tailored properties are
@@ -447,7 +451,7 @@
   doi: "https://doi.org/10.1039/D2TC04194D"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-33.jpg"
   abstract: >
     Proper management of surface defects in perovskite nanocrystals (PeNCs)
@@ -496,7 +500,8 @@
   preprint_url: ""
   themes:
     - "Quantum chemical modeling"
-    - "Excited-state reaction"
+    - "Excited-state dynamics"
+    - "Spectroscopic analysis"
   image: "pub-32.jpg"
   abstract: >
     Photoacids are aromatic acids that exhibit significantly different acidities
@@ -582,7 +587,6 @@
   preprint_url: ""
   themes:
     - "Molecular property prediction"
-    - "Optical property analysis"
   image: "pub-30.jpg"
   abstract: >
     An adequate understanding of molecular structure-property relationships is
@@ -631,7 +635,7 @@
   doi: "https://doi.org/10.1016/j.aca.2022.339678"
   preprint_url: ""
   themes:
-    - "Clinical outcome prediction"
+    - "Quantum chemical modeling"
   image: "pub-29.jpg"
   abstract: >
     The precise in vitro diagnosis requires high selectivity and sensitivity
@@ -723,7 +727,7 @@
   doi: "https://doi.org/10.1021/acsami.1c14901"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-27.jpg"
   abstract: >
     Two kinds of dumbbell-shaped acceptor-donor-acceptor (A-D-A)-type triad
@@ -779,7 +783,7 @@
   doi: "https://doi.org/10.1021/acsami.1c04981"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
     - "Quantum chemical modeling"
   image: "pub-26.jpg"
   abstract: >
@@ -831,7 +835,7 @@
   preprint_url: ""
   themes:
     - "Molecular property prediction"
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-25.jpg"
   abstract: >
     Accurate and reliable prediction of the optical and photophysical
@@ -882,7 +886,7 @@
   doi: "https://doi.org/10.1021/acs.nanolett.1c00134"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-24.jpg"
   abstract: >
     Micropatterns with high stability, definition, and resolution are an
@@ -924,7 +928,7 @@
   doi: "https://doi.org/10.1038/s41467-020-20172-6"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
     - "Quantum chemical modeling"
   image: "pub-23.jpg"
   abstract: >
@@ -967,7 +971,7 @@
   doi: "https://doi.org/10.1021/acsami.0c11988"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-22.jpg"
   abstract: >
     Quantum dot (QD)-based displays call for non-destructive, high-throughput,
@@ -1017,7 +1021,6 @@
   preprint_url: ""
   themes:
     - "Experimental dataset"
-    - "Optical property analysis"
   image: "pub-21.jpg"
   abstract: >
     Experimental databases on the optical properties of organic chromophores
@@ -1049,7 +1052,7 @@
   doi: "https://doi.org/10.1021/acs.chemmater.0c02172"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-20.jpg"
   abstract: >
     We report newly synthesized fluorescence resonance energy transfer
@@ -1140,7 +1143,7 @@
   doi: "https://doi.org/10.1038/s41427-020-0200-4"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-18.jpg"
   abstract: >
     Endowing quantum dots (QDs) with robustness and durability has been one of
@@ -1190,8 +1193,9 @@
   doi: "https://doi.org/10.1039/C9NJ05404A"
   preprint_url: ""
   themes:
-    - "Excited-state reaction"
+    - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-17.jpg"
   abstract: >
     Arrhenius photobases are of potential use for excited-state hydroxide ion
@@ -1231,7 +1235,7 @@
   doi: "https://doi.org/10.1021/acs.cgd.9b01351"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-16.jpg"
   abstract: >
     The macrocyclic structure offers direction-control self-assembly to
@@ -1282,7 +1286,7 @@
   doi: "https://doi.org/10.1002/smll.201901342"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-15.jpg"
   abstract: >
     Because of their unique structural and optical properties, 1D perylene
@@ -1325,8 +1329,9 @@
   doi: "https://doi.org/10.1016/j.snb.2018.10.043"
   preprint_url: ""
   themes:
-    - "Excited-state reaction"
+    - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-14.jpg"
   abstract: >
     2-(Benzothiazol-2-yl)pyren-1-ol (P3-NS) was developed as an excited-state
@@ -1376,7 +1381,7 @@
   doi: "https://doi.org/10.1002/ejic.201801291"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-13.jpg"
   abstract: >
     A three-dimensional Cd2+ framework (1) with wide one-dimensional hexagonal
@@ -1412,7 +1417,7 @@
   doi: "https://doi.org/10.1039/C8CC06262E"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
     - "Quantum chemical modeling"
   image: "pub-12.jpg"
   abstract: >
@@ -1450,7 +1455,7 @@
   doi: "https://doi.org/10.1002/adfm.201801394"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-11.jpg"
   abstract: >
     Conventional organic glasses such as molecular and polymeric glasses
@@ -1544,7 +1549,7 @@
   doi: "https://doi.org/10.1016/j.dyepig.2018.02.039"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
     - "Quantum chemical modeling"
   image: "pub-9.jpg"
   abstract: >
@@ -1577,8 +1582,9 @@
   doi: "https://doi.org/10.1021/acs.jpcb.8b00588"
   preprint_url: ""
   themes:
-    - "Excited-state reaction"
+    - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-8.jpg"
   abstract: >
     Dissolved ions have a significant effect on the chemical equilibria and
@@ -1624,8 +1630,9 @@
   doi: "https://doi.org/10.1039/C7CP04392A"
   preprint_url: ""
   themes:
-    - "Excited-state reaction"
+    - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-7.jpg"
   abstract: >
     Proton dissociation (PD) reactions of weak acids and proton transfer (PT)
@@ -1666,7 +1673,7 @@
   doi: "https://doi.org/10.1016/j.snb.2016.10.076"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-6.jpg"
   abstract: >
     Luminescent chemosensors for chiral molecules have drawn significant
@@ -1696,7 +1703,7 @@
   doi: "https://doi.org/10.1021/acs.macromol.6b02493"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
     - "Quantum chemical modeling"
   image: "pub-5.jpg"
   abstract: >
@@ -1745,7 +1752,7 @@
   doi: "https://doi.org/10.1039/C6CC08606C"
   preprint_url: ""
   themes:
-    - "Optical property analysis"
+    - "Spectroscopic analysis"
   image: "pub-4.jpg"
   abstract: >
     An azobenzene-containing supramolecular polydiacetylene (PDA) crystal
@@ -1766,8 +1773,9 @@
   doi: "https://doi.org/10.1039/C6CP03858A"
   preprint_url: ""
   themes:
-    - "Excited-state reaction"
-    - "Optical property analysis"
+    - "Excited-state dynamics"
+    - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-3.jpg"
   abstract: >
     Photo-curable polymers originating from 10,12-pentacosadiynoic acid
@@ -1817,8 +1825,9 @@
   doi: "https://doi.org/10.1021/acs.jpclett.5b02671"
   preprint_url: ""
   themes:
-    - "Excited-state reaction"
-    - "Optical property analysis"
+    - "Excited-state dynamics"
+    - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-2.jpg"
   abstract: >
     Polydiacetylenes (PDAs) with thermochromic properties undergo colorimetric
@@ -1860,8 +1869,9 @@
   doi: "https://doi.org/10.1021/acs.jpcb.5b09905"
   preprint_url: ""
   themes:
-    - "Excited-state reaction"
+    - "Excited-state dynamics"
     - "Quantum chemical modeling"
+    - "Spectroscopic analysis"
   image: "pub-1.jpg"
   abstract: >
     Coumarin 183 (C183) was used as a photoacid to study excited-state proton
