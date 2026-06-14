@@ -30,6 +30,7 @@
   slug: heejeong-kim
   joined: "2026-03-03"
   scholar: https://scholar.google.com/citations?user=q9ZRzPAAAAAJ
+  author_aliases: ["H Kim"]   # the abbreviated form used in her papers (matched + bold)
 
 - name: Jihwan Kim
   name_ko: 김지환

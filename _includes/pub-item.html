@@ -8,7 +8,7 @@
   {%- endif -%}
   <div class="pub__body">
     <h3 class="pub__title">{% if p.id and p.id != "" %}<a class="pub__link" href="{{ '/publications/' | append: p.id | append: '/' | relative_url }}">{{ p.title }}</a>{% elsif p.doi and p.doi != "" %}<a class="pub__link" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
-    <p class="pub__authors">{% include pi-authors.html authors=p.authors highlight=include.highlight %}</p>
+    <p class="pub__authors">{% include pi-authors.html authors=p.authors highlight=include.highlight aliases=include.aliases %}</p>
     <p class="pub__meta"><span class="pub__journal">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
     {%- assign hastags = false -%}{%- if p.themes and p.themes.size > 0 -%}{%- assign hastags = true -%}{%- endif -%}
     {%- if hasdoi or haspre or hastags -%}
