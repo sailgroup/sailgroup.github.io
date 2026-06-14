@@ -310,9 +310,11 @@ p { text-wrap: pretty; }
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
-.hero__inner { max-width: none; }
+/* Hero content uses the standard .container width so its left/right edges line up with
+   every other section instead of bleeding to the viewport edge. The description still
+   spans that full content width (R1), just matched to the rest of the page. */
 .hero h1 { margin-top: 0.9rem; }
-.hero .lead { margin-top: 1.25rem; max-width: none; } /* full-span description (R1) */
+.hero .lead { margin-top: 1.25rem; max-width: none; }
 .hero__wordmark .hl { color: var(--orange-ink); }
 .hero__figure { margin: clamp(2rem, 5vw, 3.75rem) auto 0; max-width: 880px; }
 .hero__figure img {
