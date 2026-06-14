@@ -1,6 +1,0 @@
----
-layout: default
----
-{%- assign a = site.data.alumni | where: "slug", page.slug | first -%}
-{%- unless a -%}{%- assign a = page -%}{%- endunless -%}
-{%- include person-profile.html person=a kind="alumnus" body=content -%}

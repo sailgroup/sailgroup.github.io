@@ -10,8 +10,7 @@ Pass: authors=<string>, optionally aliases=<array>.
 {%- assign names = "" | split: "" -%}
 {%- if site.data.pi.name and site.data.pi.name != "" -%}{%- assign names = names | push: site.data.pi.name -%}{%- endif -%}
 {%- if site.data.pi.name_full and site.data.pi.name_full != "" -%}{%- assign names = names | push: site.data.pi.name_full -%}{%- endif -%}
-{%- for m in site.data.members -%}{%- if m.name and m.name != "" -%}{%- assign names = names | push: m.name -%}{%- endif -%}{%- endfor -%}
-{%- for a in site.data.alumni -%}{%- if a.name and a.name != "" -%}{%- assign names = names | push: a.name -%}{%- endif -%}{%- endfor -%}
+{%- for person in site.data.people -%}{%- if person.name and person.name != "" -%}{%- assign names = names | push: person.name -%}{%- endif -%}{%- endfor -%}
 {%- if include.aliases -%}{%- for al in include.aliases -%}{%- if al and al != "" -%}{%- assign names = names | push: al -%}{%- endif -%}{%- endfor -%}{%- endif -%}
 {%- assign names = names | uniq -%}
 {%- for name in names -%}{%- capture rep -%}<strong class="pi">{{ name }}</strong>{%- endcapture -%}{%- assign out = out | replace: name, rep -%}{%- endfor -%}

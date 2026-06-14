@@ -12,7 +12,8 @@ permalink: /alumni/
 <section class="section section--tight">
   <div class="container">
     <div class="person-grid">
-      {%- for a in site.data.alumni -%}{% include person-card.html person=a base="alumni" %}{%- endfor -%}
+      {%- assign grads = site.data.people | where: "status", "alumni" -%}
+      {%- for a in grads -%}{% include person-card.html person=a %}{%- endfor -%}
     </div>
   </div>
 </section>

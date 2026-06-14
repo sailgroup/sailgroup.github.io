@@ -15,40 +15,40 @@ the live site is left untouched — so you cannot break the site by editing data
 
 ---
 
-## Add a member  →  `_data/members.yml`
+## Add a person (member or alumnus)  →  `_data/people.yml`
 
-1. Add a photo: upload `firstname-lastname.jpg` to `assets/images/` (a square
-   photo looks best). This step is optional — without a photo the card shows the
-   person's initials.
-2. Add one block to `_data/members.yml`:
+1. Add a photo (optional): upload `firstname-lastname.jpg` to `assets/images/`
+   (square looks best). Without a photo the card shows the person's initials.
+2. Add one block to `_data/people.yml`:
 
    ```yaml
    - name: Gil-dong Hong
-     name_ko: 홍길동            # optional
+     status: current            # current (a current member) OR alumni
      role: M.S. Student
+     name_ko: 홍길동            # optional
      email: hong@kookmin.ac.kr  # optional
      photo: gil-dong-hong.jpg   # optional; must match the uploaded file
-     slug: gil-dong-hong        # lowercase-with-hyphens; gives them a personal page
+     slug: gil-dong-hong        # lowercase-with-hyphens; their personal-page address
      joined: "2026-03-01"       # optional, YYYY-MM-DD
    ```
 
-That's it. The member appears on the Members grid **and** gets a personal page
-at `/members/gil-dong-hong/` automatically. Optional social links (only with a
-real URL): `linkedin:`, `scholar:`, `orcid:`, `website:`.
+`status` decides which page lists them (`current` → Members, `alumni` → Alumni).
+Everyone gets a personal page at `/people/<slug>/`. Required: `name`, `role`,
+`status`. Optional social links (real URL only): `linkedin:`, `github:`,
+`scholar:`, `orcid:`, `website:`. Alumni may add a one-line `note:`.
 
-Required: `name`, `role`. Everything else is optional.
+**When someone graduates**, change only their `status` from `current` to
+`alumni`. Their `/people/<slug>/` URL stays the same, so no link ever breaks (the
+old `/members/<slug>/` and `/alumni/<slug>/` addresses keep redirecting to it) —
+you never have to update news links.
 
-**A member's own papers from elsewhere** (not on the lab Publications page — e.g.
-a postdoc's papers from a previous position): add a `publications:` list to that
-member's entry. They show on the member's page, merged with any lab papers that
-match their name, newest first; the title links to the DOI and the member's own
-name is bold.
+**A person's own papers from elsewhere** (not on the lab Publications page — e.g.
+a postdoc's prior work): add a `publications:` list to their entry. They show on
+their page, merged with any lab papers that match their name, newest first; the
+title links to the DOI and their own name is bold.
 
 ```yaml
-- name: Gil-dong Hong              # an existing member entry
-  role: Postdoctoral Researcher
-  slug: gil-dong-hong
-  publications:                    # add this field
+  publications:                    # inside the person's entry
     - title:   "Paper title"
       authors: "Gil-dong Hong, A. Coauthor"
       journal: "Journal Name"
@@ -58,14 +58,7 @@ name is bold.
 ```
 
 `title`, `authors`, `journal`, `year` are required per entry. List only papers
-that are **not** already on the lab Publications page (lab papers auto-appear by
-author name).
-
-## Add an alumnus  →  `_data/alumni.yml`
-
-Identical to a member. Same fields; add an optional `note:` for a one-line note
-(e.g. an exchange program). They appear on the Alumni grid and get a page at
-`/alumni/<slug>/`.
+**not** already on the lab Publications page (lab papers auto-appear by author name).
 
 ## Add a publication  →  `_data/publications.yml`
 

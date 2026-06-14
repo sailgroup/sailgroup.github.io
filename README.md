@@ -15,8 +15,7 @@ Live: https://sail.kookmin.ac.kr
 | 대상 | 파일 |
 | --- | --- |
 | 논문 | `_data/publications.yml` |
-| 멤버 | `_data/members.yml` |
-| 동문 | `_data/alumni.yml` |
+| 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`) |
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
 | 주제(테마) | `_data/themes.yml` — 필터 칩의 개수·색·이름·순서를 한 곳에서 편집 |
@@ -43,9 +42,11 @@ Live: https://sail.kookmin.ac.kr
 목록과 상세 페이지(`/publications/42/`)가 자동 생성됩니다. 저자 목록에 멤버 이름이 포함되면 해당
 멤버 페이지에도 자동으로 표시됩니다(이름이 멤버의 `name`과 일치해야 함).
 
-### 멤버 — `_data/members.yml`
+### 사람 (멤버·동문) — `_data/people.yml`
+멤버와 동문을 한 파일에서 관리합니다. `status` 가 **어느 페이지에 뜰지만** 결정합니다.
 ```yaml
 - name: Gildong Hong           # 필수
+  status: current              # 필수: current(현재 멤버) 또는 alumni(동문)
   role: M.S. Student           # 필수
   name_ko: 홍길동               # 선택
   email: hong@kookmin.ac.kr    # 선택
@@ -53,26 +54,24 @@ Live: https://sail.kookmin.ac.kr
   slug: gildong-hong           # 선택: 영문 소문자, 개인 페이지 주소가 됨
   joined: "2026-03-01"         # 선택: YYYY-MM-DD
 ```
-멤버 그리드와 개인 페이지(`/members/gildong-hong/`)가 자동 생성됩니다. 소셜 링크는 실제 URL이
-있을 때만 추가: `linkedin:` `github:` `scholar:` `orcid:` `website:`. 논문에 표기된 저자명이
-멤버의 `name`과 다르면 `author_aliases: ["다른 표기"]` 로 매칭을 보완합니다.
+개인 페이지(`/people/gildong-hong/`)와, `status` 에 맞는 그리드(Members 또는 Alumni)에 자동 등록됩니다.
+소셜 링크는 실제 URL이 있을 때만: `linkedin:` `github:` `scholar:` `orcid:` `website:`. 논문 저자명이
+`name` 과 다르면 `author_aliases: ["다른 표기"]`. 동문은 `note:` 로 한 줄 비고 추가 가능.
 
-**개인 논문**(랩 논문 목록에 없는, 이전 소속에서의 논문 등)은 해당 멤버 항목에 `publications:` 로
-추가합니다. 랩 논문과 합쳐 최신순으로 정렬되고, 제목은 DOI로 연결되며 본인 이름이 굵게 표시됩니다.
+> **졸업 처리**: 그 사람의 `status` 를 `current` → `alumni` 로 바꾸기만 하면 됩니다. 개인 페이지
+> 주소(`/people/<slug>/`)는 그대로라 **뉴스 등 어디서 건 링크가 절대 안 깨집니다** (기존
+> `/members/<slug>/`·`/alumni/<slug>/` 주소도 자동으로 이 페이지로 연결).
+
+**개인 논문**(랩 논문 목록에 없는, 이전 소속 논문 등)은 그 사람 항목에 `publications:` 로 추가합니다.
+랩 논문과 합쳐 최신순 정렬, 제목은 DOI로 연결, 본인 이름이 굵게 표시됩니다.
 ```yaml
-- name: Gildong Hong           # 기존 멤버 항목에
-  role: Postdoctoral Researcher
-  slug: gildong-hong
-  publications:                # 이 필드를 추가
+  publications:                # 사람 항목 안에 추가
     - title:   "Paper title"
       authors: "Gildong Hong, A. Coauthor"
       journal: "Journal Name"
       year:    2023            # 따옴표 없는 숫자
       doi:     "https://doi.org/10.xxxx/yyyy"   # 선택: 제목이 이 주소로 연결됨
 ```
-
-### 동문 — `_data/alumni.yml`
-멤버와 동일한 형식. `note:` 로 한 줄 비고를 추가할 수 있습니다. `/alumni/<slug>/` 페이지가 생성됩니다.
 
 ### 뉴스 — `_data/news.yml`
 ```yaml

@@ -1,0 +1,7 @@
+---
+layout: default
+---
+{%- assign person = site.data.people | where: "slug", page.slug | first -%}
+{%- unless person -%}{%- assign person = page -%}{%- endunless -%}
+{%- if person.status == "alumni" -%}{%- assign kind = "alumnus" -%}{%- else -%}{%- assign kind = "member" -%}{%- endif -%}
+{%- include person-profile.html person=person kind=kind body=content -%}

@@ -27,8 +27,7 @@ module SAIL
       @errors = []
       @warns  = []
 
-      validate_people(site.data["members"], "members.yml", "member")
-      validate_people(site.data["alumni"],  "alumni.yml",  "alumnus")
+      validate_people(site.data["people"], "people.yml", "person")
       validate_themes(site.data["themes"])
       validate_publications(site.data["publications"])
       validate_news(site.data["news"])
@@ -79,6 +78,9 @@ module SAIL
         at = "#{file} \"#{name}\"" unless blank?(name)
         err("#{at}: missing required field `name`.") if blank?(name)
         err("#{at}: missing required field `role`.") if blank?(p["role"])
+        unless %w[current alumni].include?(p["status"])
+          err("#{at}: `status` must be `current` or `alumni` (got #{p["status"].inspect}).")
+        end
 
         if !blank?(p["photo"]) && !image_exists?(p["photo"])
           err("#{at}: `photo: #{p["photo"]}` not found in assets/images/.")

@@ -1,6 +1,0 @@
----
-layout: default
----
-{%- assign m = site.data.members | where: "slug", page.slug | first -%}
-{%- unless m -%}{%- assign m = page -%}{%- endunless -%}
-{%- include person-profile.html person=m kind="member" body=content -%}
