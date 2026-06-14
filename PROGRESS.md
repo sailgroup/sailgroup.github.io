@@ -126,3 +126,24 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   (27 page-views): all 200, 0 JS errors, 0 broken images, 0 horizontal overflow at 360px, 0 em dashes;
   41/41 mobile thumbnails, footer year 2026 from JS, logo corner alpha 0, og:image 1200×630 (HTTP 200)
   with the full meta/manifest/favicon set present. Results in `REVIEW.md` section 7 (Phase 8 update).
+- **Phase 9 done** — PI-feedback redesign round (D20). Implemented the batch of changes the PI sent
+  after reviewing the live site: (1) the serif display face was swapped for Pretendard (variable,
+  dynamic-subset CDN) for full Hangul support, with `--font-serif` repointed to the sans so the whole
+  site is one friendly sans; (2) the hero description now spans full width and the hero buttons + home
+  "recent work" section were removed; (3) the publications list lost its "41 peer-reviewed papers"
+  lead and its per-year counts; (4) the topic filter chips became colored (per-topic dot) and
+  multi-select (match any selected topic; "All" resets); (5) each paper title now opens a detail page
+  at `/publications/:id/`, built from a thin `_publications/<id>.md` stub resolved against the single
+  `publications.yml`, showing the journal logo, DOI/preprint logos, graphical abstract, the Korean
+  초록, and the English abstract in a collapsible block; (6) all 41 papers were given real
+  cleaned-English `abstract` and Korean `abstract_ko` fields (publisher/aggregator full text,
+  Unicode-normalized; Korean is a faithful translation, none invented); (7) 47 journal logos +
+  arXiv/ChemRxiv/DOI marks were imported and mapped in `_data/journal_logos.yml`; (8) member pages got
+  eyebrow spacing, email/LinkedIn/Scholar icon links (only when a real URL exists), and a live list of
+  any paper carrying that member's name from the one `publications.yml`. Verified on `dev` (build
+  green, run 27484553277), fast-forwarded to `main`, deployed (run 27484568379, build + deploy green).
+  Live QA across the home, publications index, all 41 detail pages, and all 5 member pages: all 200;
+  41/41 Korean abstracts + English blocks; 41/41 journal+DOI logos, 4/41 preprint logos, 41/41
+  PI-bold; colored multi-select chips, no lead line, no per-year counts; no current member is yet an
+  author on the 41 papers, so each member's publications section is correctly empty. Results in
+  `REVIEW.md` section 7 (Phase 9 update).

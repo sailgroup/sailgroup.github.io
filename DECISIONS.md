@@ -252,3 +252,71 @@ both green). Live multi-width QA (REVIEW.md section 7, Phase 8) across 9 pages a
 dashes; 41/41 publication thumbnails shown on mobile, footer year `2026` from the client script, header
 logo corner alpha 0, `og:image` 1200×630 (HTTP 200) with the full Twitter/manifest/SVG-favicon/referrer
 set present and the manifest/robots/sitemap all returning 200.
+
+## D20 — PI-feedback redesign: Pretendard type, per-paper detail pages with Korean abstracts, colored multi-select topic filter, member icon links and auto-listed papers
+
+After the Phase 8 deploy the PI reviewed the live site and sent a batch of change
+requests. They were implemented as one round, in two commits: the layout, styles, and
+logo assets (`996cab8`), then the abstract data fill.
+
+(1) **Type (was Source Serif 4 -> Pretendard).** The serif display face was replaced
+with Pretendard (variable, dynamic-subset, loaded from jsDelivr) for full Hangul support
+and a softer tone. Rather than touch every rule, `--font-serif` was repointed to
+`var(--font-sans)`, so the whole site renders in one friendly sans with no other markup
+change; no serif face remains anywhere.
+
+(2) **Home.** The hero description now spans the full content width under the title; the
+hero pill buttons and the home "recent work" section were removed. The home page is hero,
+research, journal covers, contact.
+
+(3) **Publications list.** Dropped the "41 peer-reviewed papers" lead line and the
+per-year paper counts; each year heading is now the bare year.
+
+(4) **Topic filter (colored + multi-select).** The topic chips carry a per-topic color
+dot keyed by `data-theme-slug` (palette in `main.scss`) and are multi-select: clicking
+several shows every paper matching any selected topic, and "All" resets. `pubs.js` was
+rewritten around a Set of active themes.
+
+(5) **Per-paper detail pages.** Each paper title links to `/publications/:id/`, a page
+built from a thin `_publications/<id>.md` stub (just `pid: <id>`) resolved against the
+single `publications.yml` by a `where: "id"` lookup (the stub uses `pid`, not the
+Jekyll-reserved `page.id`). The page shows the journal logo, theme tags, the
+title/journal/authors line with the PI name bold, a DOI logo link and a preprint logo
+when those exist (see 7), the graphical abstract, the Korean 초록, and the original
+English abstract in a collapsible block.
+
+(6) **Abstracts (English + Korean) for all 41 papers.** Every entry now carries
+`abstract` (cleaned English) and `abstract_ko` (Korean). The English is the real
+publisher/aggregator full text (Semantic Scholar, then OpenAlex inverted-index
+reconstruction, CrossRef, and headed-Chrome publisher scrapes as needed), cleaned of
+editor/news/figshare boilerplate, with scientific notation normalized to Unicode (μm, ×,
+π-π, Förster, ΔpKb, °C, ν0-n). `abstract_ko` is a faithful translation of that abstract;
+machine translation is acceptable here per the PI. No abstract was invented: entries hold
+real text only, and the detail-page template renders each block only when its field is
+non-empty. The fetch/scrape/inject/QA scripts were one-off and are gitignored, not part
+of the build.
+
+(7) **Journal / DOI / preprint logos.** 47 journal wordmarks plus `arxiv.png`,
+`chemrxiv.png`, and an orange `doi.png` were imported under `assets/images/`. Journal
+name -> file is mapped in `_data/journal_logos.yml`; an unmapped journal renders no logo
+rather than a placeholder. The DOI logo shows when the entry has a DOI, the preprint logo
+when it has a `preprint_url` (arXiv vs ChemRxiv chosen from the URL). Live, 41/41 detail
+pages show a journal logo and a DOI logo; 4 carry a preprint logo.
+
+(8) **Member pages.** Spacing was added under the "MEMBERS" eyebrow. Email, LinkedIn, and
+Google Scholar (plus ORCID/website) now render as icon links via `social-links.html`, and
+only when a real URL is on file, never invented. Each member page lists, live from the one
+`publications.yml`, any paper whose author list contains the member's name or a listed
+`author_aliases` entry, so a single source feeds the publications page, the detail pages,
+and the member pages (no per-member list to keep in sync). None of the five current
+members (one postdoc, two M.S., two undergraduates, all joined 2025–2026) is yet an author
+on the 41 listed papers, so the section is correctly empty for all five today and will
+appear when a member's paper is added.
+
+Verified on `dev` (build green, run 27484553277), fast-forwarded to `main`, deployed (run
+27484568379, build + deploy both green). Live QA (REVIEW.md section 7, Phase 9): all 41
+`/publications/:id/` pages return 200 with a non-empty Korean 초록 and the English block;
+journal logo and DOI logo on 41/41, preprint logo on 4/41, PI name bold on 41/41; the
+publications index has colored multi-select chips, no lead line, and no per-year counts;
+the home page loads Pretendard with no "recent work" section; all five member pages return
+200 with icon links.

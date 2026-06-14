@@ -70,6 +70,7 @@ exclude:
   - CONTENT_INVENTORY.md
   - REVIEW.md
   - "*.ps1"
+  - "*.js"          # root-level one-off scripts only; site JS lives in assets/js/
   - "*.log"
 
 # --- SEO --------------------------------------------------------------------

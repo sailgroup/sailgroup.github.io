@@ -237,3 +237,29 @@ transparency (drawn to a canvas and read), the SEO/social meta, and horizontal o
 
 No defects found across mobile, tablet, and desktop. The recommended manual follow-ups are unchanged
 from section 5 (a screen-reader pass and a Lighthouse run on the live URL).
+
+### Phase 9 update (2026-06-14)
+
+Re-run after the Phase 9 deploy (run 27484568379) for the PI-feedback redesign round (D20): Pretendard
+type, per-paper detail pages with Korean abstracts, a colored multi-select topic filter,
+journal/DOI/preprint logos, and member icon links plus auto-listed papers. Live checks were run against
+`https://sail.kookmin.ac.kr` over the home page, the publications index, all 41 detail pages, and all 5
+member pages.
+
+| Check | Result |
+| --- | --- |
+| HTTP status (home, index, 41 detail pages, 5 member pages) | All 200 |
+| **Korean abstract on every paper** | **41 of 41** `/publications/:id/` pages render a non-empty `초록` (Korean lengths 474–693 chars on the sampled set) |
+| **English abstract block** | present on 41/41, in a collapsible "Original abstract (English)" `<details>` |
+| Unicode in abstracts (encoding) | μm, ×, π-π, Förster, ΔpKb, °C, ν0-n all render correctly (UTF-8, no mojibake) on the sampled pages |
+| Journal logo / DOI logo | **41/41** detail pages show a journal logo and a DOI logo |
+| Preprint logo | 4/41 (arXiv/ChemRxiv), correctly only where the entry has a `preprint_url` |
+| **PI name bold** | `<strong class="pi">` on **41/41** detail pages (Joonyoung F. Joung / Joonyoung Francis Joung) |
+| Topic filter | color dots (`pub-filter__dot`) + per-topic `data-theme-slug` present; multi-select wired in `pubs.js` |
+| Publications list cleanup | no "peer-reviewed" lead line; every year heading is a bare 4-digit year (0 with counts), years 2026 down to 2015 |
+| Home | loads Pretendard; no "recent work" section; full-width hero lead present |
+| Member pages | 5/5 show icon links (`icon-links`); the auto-list publications section is empty on all 5 because no current member is yet an author on the 41 listed papers (the list is wired and will populate when a member's paper is added) |
+| Font | site renders in Pretendard (`--font-serif` aliases the sans); no serif face remains |
+
+No defects found. The recommended manual follow-ups are unchanged from section 5 (a screen-reader pass
+and a Lighthouse run on the live URL).

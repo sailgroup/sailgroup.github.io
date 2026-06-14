@@ -10,7 +10,7 @@ was taken, what was normalized, and what is still open.
 
 | File | Content | Notes |
 |------|---------|-------|
-| `publications.yml` | 41 papers (id 1–41), newest first | Provided list, authoritative. Fields are display-ready; `themes` are SAIL tags; `image` now set for all 41 to the paper's own graphical abstract (`pub-<id>.jpg`, see D15). |
+| `publications.yml` | 41 papers (id 1–41), newest first | Provided list, authoritative. Fields are display-ready; `themes` are SAIL tags; `image` set for all 41 to the paper's own graphical abstract (`pub-<id>.jpg`, see D15); `abstract` (cleaned English) and `abstract_ko` (Korean) set for all 41 (D20), shown on the per-paper detail pages. |
 | `pi.yml` | PI profile, CV, links | Joonyoung F. Joung. Education, appointments, Scholar, ORCID. |
 | `members.yml` | 5 current members | Name, role, email, photo, slug only. No bios/links on source. |
 | `alumni.yml` | 6 alumni | All UROP undergraduates at Kookmin. Real ID photo + slug for each (harvested from the live `/alumni-1` page, Phase 7); each has a personal page via the `_alumni` collection. |
@@ -103,3 +103,15 @@ was taken, what was normalized, and what is still open.
   uses the official Kookmin English wordmark (D14); Phase 6 additionally extracted
   the Kookmin emblem to a transparent PNG for the header and built the circular
   favicon/PWA icon set from it (D17).
+- **Paper abstracts**: ~~not migrated~~ **RESOLVED (Phase 9, D20).** All 41 papers
+  now carry a cleaned-English `abstract` and a Korean `abstract_ko`, sourced from
+  publisher/aggregator full text (Semantic Scholar, OpenAlex, CrossRef, publisher
+  pages) and shown on `/publications/:id/`. No abstract invented; the Korean is a
+  faithful translation (machine translation acceptable per the PI). Scientific
+  notation normalized to Unicode (μm, ×, π-π, Förster, ΔpKb, °C, ν0-n).
+- **Member publications auto-list**: each member page lists papers from
+  `publications.yml` whose author list contains the member's name or an
+  `author_aliases` entry (D20). None of the 5 current members is yet an author on
+  the 41 listed papers, so every member's list is empty today; it populates
+  automatically when a member's paper is added (set `author_aliases` if they
+  published under a name variant).
