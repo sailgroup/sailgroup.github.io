@@ -27,7 +27,7 @@ Pass the person object: {% include member-pubs.html person=m %}
 <div class="member-pubs">
   <h2 class="member-pubs__label">Publications</h2>
   <div class="pub-list">
-    {%- for p in uniq -%}{% include pub-item.html p=p highlight=person.name aliases=person.author_aliases %}{%- endfor -%}
+    {%- for p in uniq -%}{% include pub-item.html p=p aliases=person.author_aliases %}{%- endfor -%}
   </div>
 </div>
 {%- endif -%}

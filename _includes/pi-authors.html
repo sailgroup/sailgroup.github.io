@@ -1,1 +1,18 @@
-{%- comment -%}Author list with names highlighted (bold + underline, .pi). Always bolds the PI. Optionally bolds `highlight` (a name, e.g. the member whose page this is) and every name in `aliases` (e.g. an abbreviated author form like "H Kim"). Pass authors=<string>, highlight=<name>, aliases=<array>.{%- endcomment -%}{%- assign out = include.authors | replace: 'Joonyoung Francis Joung', '<strong class="pi">Joonyoung Francis Joung</strong>' | replace: 'Joonyoung F. Joung', '<strong class="pi">Joonyoung F. Joung</strong>' -%}{%- assign hl = "" | split: "" -%}{%- if include.highlight and include.highlight != "" -%}{%- assign hl = hl | push: include.highlight -%}{%- endif -%}{%- if include.aliases -%}{%- for a in include.aliases -%}{%- assign hl = hl | push: a -%}{%- endfor -%}{%- endif -%}{%- for name in hl -%}{%- if name != "" and name != 'Joonyoung F. Joung' and name != 'Joonyoung Francis Joung' -%}{%- capture rep -%}<strong class="pi">{{ name }}</strong>{%- endcapture -%}{%- assign out = out | replace: name, rep -%}{%- endif -%}{%- endfor -%}{{ out }}
+{%- comment -%}
+Author list with every lab person's name highlighted (bold + underline, .pi):
+the PI, every member, and every alumnus -- built from site.data, so adding a
+person (members/alumni.yml) or a paper makes the matching names bold
+automatically, everywhere the author list appears. On a person's own page, pass
+their author_aliases too (to also bold an abbreviated form like "H Kim").
+Pass: authors=<string>, optionally aliases=<array>.
+{%- endcomment -%}
+{%- assign out = include.authors -%}
+{%- assign names = "" | split: "" -%}
+{%- if site.data.pi.name and site.data.pi.name != "" -%}{%- assign names = names | push: site.data.pi.name -%}{%- endif -%}
+{%- if site.data.pi.name_full and site.data.pi.name_full != "" -%}{%- assign names = names | push: site.data.pi.name_full -%}{%- endif -%}
+{%- for m in site.data.members -%}{%- if m.name and m.name != "" -%}{%- assign names = names | push: m.name -%}{%- endif -%}{%- endfor -%}
+{%- for a in site.data.alumni -%}{%- if a.name and a.name != "" -%}{%- assign names = names | push: a.name -%}{%- endif -%}{%- endfor -%}
+{%- if include.aliases -%}{%- for al in include.aliases -%}{%- if al and al != "" -%}{%- assign names = names | push: al -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+{%- assign names = names | uniq -%}
+{%- for name in names -%}{%- capture rep -%}<strong class="pi">{{ name }}</strong>{%- endcapture -%}{%- assign out = out | replace: name, rep -%}{%- endfor -%}
+{{ out }}

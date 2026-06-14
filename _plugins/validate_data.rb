@@ -168,7 +168,7 @@ module SAIL
         # Every theme a paper uses must be defined in themes.yml.
         theme_names = (@site.data["themes"] || []).map { |t| t["name"] }
         (p["themes"] || []).each do |t|
-          err("#{at}: theme \"#{t}\" is not in _data/themes.yml (add it there or fix the spelling).") unless theme_names.include?(t)
+          err("#{at}: theme \"#{t}\" is not in _data/themes.yml. If you renamed this theme in themes.yml, rename it here too; otherwise add it to themes.yml or fix the spelling.") unless theme_names.include?(t)
         end
       end
     end
