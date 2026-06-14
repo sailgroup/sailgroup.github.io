@@ -45,15 +45,15 @@ match their name, newest first; the title links to the DOI and the member's own
 name is bold.
 
 ```yaml
-- name: Heejeong Kim
+- name: Gil-dong Hong              # an existing member entry
   role: Postdoctoral Researcher
-  slug: heejeong-kim
-  publications:
-    - title:   "A paper from her PhD"
-      authors: "Heejeong Kim, A. Advisor"
-      journal: "J. Phys. Chem. A"
+  slug: gil-dong-hong
+  publications:                    # add this field
+    - title:   "Paper title"
+      authors: "Gil-dong Hong, A. Coauthor"
+      journal: "Journal Name"
       year:    2023                 # plain number, no quotes
-      doi:     "https://doi.org/10.1021/..."   # optional; the title links here
+      doi:     "https://doi.org/10.xxxx/yyyy"   # optional; the title links here
       preprint_url: "https://arxiv.org/abs/..." # optional
 ```
 
