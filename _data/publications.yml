@@ -191,6 +191,7 @@
   themes:
     - "Molecular property prediction"
     - "Quantum chemical modeling"
+    - "Experimental dataset"
   image: "pub-38.jpg"
   abstract: >
     Data-driven research is in the spotlight across many science and
