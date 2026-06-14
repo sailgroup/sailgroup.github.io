@@ -35,7 +35,7 @@ permalink: /pi/
           <h2>Education</h2>
           {%- for e in pi.education -%}
           <div class="cv__item">
-            <div><span class="cv__role">{{ e.degree }}</span><br><span class="cv__org">{{ e.institution }}{% if e.advisor %}, {{ e.advisor }}{% endif %}</span></div>
+            <div><span class="cv__role">{{ e.degree }}</span><br><span class="cv__org">{{ e.institution }}{% if e.advisor %}, {% include advisor.html advisor=e.advisor labs=pi.related_labs %}{% endif %}</span></div>
             <span class="cv__when">{{ e.date }}</span>
           </div>
           {%- endfor -%}
@@ -45,22 +45,11 @@ permalink: /pi/
           <h2>Career Summary</h2>
           {%- for a in pi.career -%}
           <div class="cv__item">
-            <div><span class="cv__role">{{ a.role }}</span><br><span class="cv__org">{{ a.org }}{% if a.advisor %}, {{ a.advisor }}{% endif %}</span></div>
+            <div><span class="cv__role">{{ a.role }}</span><br><span class="cv__org">{{ a.org }}{% if a.advisor %}, {% include advisor.html advisor=a.advisor labs=pi.related_labs %}{% endif %}</span></div>
             <span class="cv__when">{{ a.period }}</span>
           </div>
           {%- endfor -%}
         </div>
-
-        {%- if pi.related_labs -%}
-        <div class="cv">
-          <h2>Related groups</h2>
-          <ul class="footer-list" style="gap:0.6rem">
-            {%- for l in pi.related_labs -%}
-            <li><a class="link" href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name }} {% include icon.html name="external" %}</a></li>
-            {%- endfor -%}
-          </ul>
-        </div>
-        {%- endif -%}
       </div>
     </div>
   </div>

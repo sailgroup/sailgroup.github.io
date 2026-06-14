@@ -1,0 +1,4 @@
+{%- comment -%}Render an advisor name, linked to their group when a related_labs entry matches the surname (uses the URLs already in pi.yml; no extra data needed). Pass advisor=<name>, labs=<related_labs>.{%- endcomment -%}
+{%- assign aurl = "" -%}
+{%- if include.advisor and include.advisor != "" and include.labs -%}{%- assign lastname = include.advisor | split: " " | last -%}{%- for l in include.labs -%}{%- if l.name contains lastname -%}{%- assign aurl = l.url -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+{%- if aurl != "" -%}<a class="link" href="{{ aurl }}" target="_blank" rel="noopener noreferrer">{{ include.advisor }}</a>{%- else -%}{{ include.advisor }}{%- endif -%}

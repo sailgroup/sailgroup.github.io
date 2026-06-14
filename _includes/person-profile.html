@@ -18,10 +18,10 @@ optional prose body from the page, usually empty).
     <h1 class="profile__name">{{ x.name }}{% if x.name_ko %} <span class="ko" lang="ko">{{ x.name_ko }}</span>{% endif %}</h1>
     <p class="profile__title">{{ x.role }}</p>
     {%- if include.kind == "alumnus" -%}
-    <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University</p>
+    <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin University</p>
     {%- if x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
     {%- else -%}
-    <p class="member-card__meta">Spectroscopy and AI Lab, Department of Applied Chemistry, Kookmin University{% if x.joined %} &middot; Joined {{ x.joined | date: "%B %Y" }}{% endif %}</p>
+    <p class="member-card__meta">Spectroscopy and AI Lab, Department of Chemistry, Kookmin University{% if x.joined %} &middot; Joined {{ x.joined | date: "%B %Y" }}{% endif %}</p>
     {%- endif -%}
     {%- include social-links.html person=x -%}
     {%- assign body = include.body | strip -%}
