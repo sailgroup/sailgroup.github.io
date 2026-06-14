@@ -317,3 +317,67 @@ review the PI asked for was done from full-page screenshots at 1440px and 390px 
 news, publications, members, and research: spacing and positioning are clean at both widths;
 the only blank regions in the captures are `loading="lazy"` journal covers, a headless-capture
 artifact, not a site defect. No outstanding defects.
+
+## 10. Phase 11 update (2026-06-14) — refactor + optimization pass (D22), parity-proven
+
+A deep internals refactor (contributor ergonomics + code quality) with the hard
+requirement of **zero change to what sighted visitors see**. Proven by building
+the site on CI before and after and diffing the Pages artifact.
+
+**Parity method.** Baseline = the deployed `_site` (CI Pages artifact of the
+pre-refactor `main`). After each change, the `dev` artifact was downloaded and
+compared with a script that normalizes whitespace and the build-time timestamp.
+
+| Evidence | Result |
+| --- | --- |
+| Pages present before vs after | 61 HTML both; 41 publication detail + 5 member + 6 alumni pages all generated from `_data`, none lost |
+| **Page body** (everything a visitor sees), every page | **byte-identical** to baseline after whitespace normalization (DRY includes + generator produce the same DOM) |
+| `<head>` changes | only invisible meta: `og:type` article→website on the 52 generated pages (seo-tag), added JSON-LD, and `lang="ko"` attributes — no visible text/layout |
+| Compiled CSS | shrank 28158→27421 B (dead rules removed); no computed style changed (selectors had no element) |
+| `REFACTOR_PLAN.md`/`CONTRIBUTING.md` leaking into the build | fixed (added to `_config.yml` exclude); not published |
+| Build-time validator | green on current data; fails with a readable message on a planted bad entry |
+| CI html-proofer | runs 3 checks (Images, Links, Scripts), 68 internal links across 61 files, **0 failures** |
+
+**Functional verification (headless-Chrome CDP, against the refactored CI
+artifact).** Not markup-eyeballing — real clicks:
+
+| # | Check | Result |
+| --- | --- | --- |
+| 1 | Topic filter narrows | click a chip → visible papers 41 → 2, every visible one carries that theme | PASS |
+| 2 | "All" resets | → back to 41 | PASS |
+| 3 | Photos lightbox | click a thumbnail → lightbox opens, title set, counter "1 / 25" | PASS |
+| 4 | Esc closes lightbox | → `hidden` | PASS |
+| 5 | Mobile nav toggle (390px) | click → `.site-nav.is-open`, `aria-expanded=true` | PASS |
+| 6 | Generated member page | `/members/jihwan-kim/` renders "Jihwan Kim 김지환" from data (no stub) | PASS |
+| 7 | Detail-page JSON-LD | `/publications/41/` has a valid `ScholarlyArticle` block | PASS |
+| 8 | JS / page errors | 0 across the tested pages | PASS |
+
+8/8 functional checks pass; the live post-deploy smoke re-confirmed the same on
+`https://sail.kookmin.ac.kr` (see the deploy note below).
+
+---
+
+## RECOMMENDATIONS (needs human sign-off) — deferred, not executed
+
+These would change what sighted visitors see, need a human fact/decision, or
+carry regression risk against the "no visual change" mandate, so they were
+logged rather than done.
+
+1. **Responsive `srcset` for photos and publication thumbnails.** Would cut
+   mobile bandwidth, but needs newly generated image derivatives (and re-checking
+   every gallery/thumb visually). Deferred to avoid a visual-regression risk;
+   worth doing as a dedicated image-pipeline task.
+2. **Self-host / preload Pretendard.** The font CSS loads render-blocking from
+   jsDelivr. Self-hosting or `preload`+`font-display: swap` would improve first
+   paint but changes font loading behavior — wants a human perf/QA check.
+3. **Lighthouse + screen-reader pass on the live URL.** Recommended since Phase 5;
+   still outstanding. The `lang="ko"` and JSON-LD added in D22 should help the SEO/
+   a11y scores; verify with a real run.
+4. **`Person` JSON-LD on member/alumni pages** (only the PI has it). Minor SEO
+   upside; optional.
+5. **Merge the duplicate adjacent links** (photo + name → same URL) in the people
+   grid cards into one link, for slightly cleaner screen-reader output. Left as-is
+   to avoid a markup change with no visible benefit.
+6. Pre-existing human items still open from §3 are unchanged: the two joke "dog"
+   alumni (kept excluded), the dateless PI "Research Professor" appointment, and
+   verifying member emails/join dates.

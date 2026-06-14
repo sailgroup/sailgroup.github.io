@@ -413,3 +413,83 @@ and that clicking a topic chip actually filters (CDP test, REVIEW.md Phase 10).
   `_data/news.yml`, noting the move to sail.kookmin.ac.kr from the previous Wix site. Confirmed
   to the PI that the news feed is a plain YAML file any lab member can edit on GitHub (the file
   header documents every field).
+
+## D22 — Refactor + optimization pass: one-edit contributing, DRY internals, build-time validation (Phase 11)
+
+A deep internals pass with two goals: a non-coder can add any content type by
+editing **one** documented place, and the code is DRY/validated/accessible —
+all with **zero change to what sighted visitors see**, proven by diffing the CI
+Pages artifact before/after (every page body byte-identical; only invisible
+`<head>` meta and `lang="ko"` attributes change). Audit + plan are in
+`REFACTOR_PLAN.md`; QA evidence in `REVIEW.md` §10. Six changes:
+
+1. **One YAML edit = one page (the headline ergonomics win).**
+   `_plugins/generate_pages.rb` now generates every `/members/<slug>/`,
+   `/alumni/<slug>/`, and `/publications/<id>/` page directly from
+   `members.yml`/`alumni.yml`/`publications.yml`. This removed the 52
+   hand-written collection stubs (41 `_publications` + 5 `_members` + 6
+   `_alumni`), the old `publication_pages.rb`, and the `collections:` +
+   per-type-layout config in `_config.yml`. The templates already read `_data`,
+   so the stubs were pure routing scaffolding a contributor could forget; now
+   adding a person/paper needs no second file. Side effect (invisible): the
+   generated pages are plain pages, not collection "documents", so
+   jekyll-seo-tag labels them `og:type: website` (was `article`) and drops the
+   build-time `article:published_time` — a small SEO correction (a profile/paper
+   page was never an article).
+
+2. **Build-time data validation.** `_plugins/validate_data.rb` (priority
+   `:highest`) checks the content files before any page is built and fails with
+   one aggregated, human-readable message naming the file/entry/fix on the
+   common mistakes: a missing required field, a typo'd image filename, a bad
+   date, an unknown news category, a duplicate slug/id, a cover pointing at a
+   non-existent paper. A journal with no logo is a warning, not a failure (the
+   template legitimately hides it). This is the "malformed input fails the build
+   with a clear message, never a silently broken page" guarantee.
+
+3. **CI link/image guard.** The build job now runs **html-proofer** over `_site`
+   (internal-only; external DOIs/Scholar stay out of CI as slow/flaky), so a
+   broken internal link, a missing image, or an accidentally-excluded script
+   (the `assets/js/*.js` exclusion bug from D21) fails CI instead of shipping.
+
+4. **DRY templates.** The ~95%-identical `member`/`alumnus` layouts and the two
+   people-grid cards were factored into `person-profile.html`,
+   `person-card.html`, and `member-pubs.html`; the duplicated PI-name bolding,
+   preprint-badge logic, and journal-covers section into `pi-authors.html`,
+   `preprint-badge.html`, and `journal-covers.html`. Each pattern now has one
+   source.
+
+5. **Dead SCSS removed.** `.hero__wordmark`, `.pub__figure--empty`,
+   `.footer h2.footer-title`, and the unused `.btn--accent/--ghost/--sm`/
+   `.btn .icon` (only `.btn--solid`, used by 404.html, survives) — no selector
+   in any template. Compiled CSS shrank ~0.7 KB; no computed style changed.
+
+6. **Structured data + language.** Added `ResearchOrganization` (home),
+   `Person` (PI), and `ScholarlyArticle` (each paper) JSON-LD from the same
+   `_data`, and `lang="ko"` on the Korean spans (PI/member/alumni names, the
+   초록) so screen readers pronounce them correctly. Both are invisible to
+   sighted users.
+
+Verified on `dev` (build + html-proofer green), then deployed via D11. Parity
+proof and a headless-Chrome CDP functional test (filter 41→2→41, lightbox
+open/Esc, mobile nav toggle, generated member page, valid JSON-LD, 0 JS errors)
+in `REVIEW.md` §10.
+
+### Autonomous decisions (Phase 11, no human gate — rationale one line each)
+
+- **Generate pages instead of auto-creating stubs.** Cleaner single source of
+  truth than keeping a collection and writing stub files into it; the templates
+  never read the collection, so nothing was lost. (Serves north star A.)
+- **html-proofer via `gem install` in CI, not the Gemfile.** `Gemfile.lock` is
+  not committed and there is no local Ruby to regenerate it; a standalone install
+  keeps the Jekyll build bundle untouched and avoids a frozen-lock failure.
+- **Internal-only link checking.** External DOIs/Scholar/ORCID are slow and flaky
+  in CI and are spot-checked elsewhere; internal resolution is the regression-
+  prone part worth gating.
+- **Journal-with-no-logo is a warning, not an error.** The detail template is
+  designed to hide a missing logo (D20); failing the build would punish a valid
+  state.
+- **Accept the invisible `og:type` article→website change** rather than fake a
+  `date` to preserve "article". It is more correct and changes nothing a sighted
+  user sees; body parity is preserved and proven.
+- **`lang="ko"` only on unambiguous Korean spans** (names, 초록), not on
+  mixed-language news/photo captions, to keep the change surgical and risk-free.

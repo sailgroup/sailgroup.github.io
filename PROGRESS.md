@@ -22,6 +22,14 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   collection + `alumnus` layout; a real research-area figure per area from the lab's own papers
   [D18]; full-codebase review pass: em-dash-free output, footer KMU link consistency, nav
   section-highlighting, defensive member card, orphaned root logo removed; live-site QA, deploy)
+- [x] **Phase 11** — Refactor + optimization pass (D22): one-edit contributing
+  (`generate_pages.rb` builds every member/alumni/publication page from `_data`,
+  52 stubs + 3 collections removed), build-time data validation
+  (`validate_data.rb`), CI html-proofer internal link/image guard, DRY includes
+  (`person-profile`/`person-card`/`member-pubs`/`pi-authors`/`preprint-badge`/
+  `journal-covers`), dead-SCSS removal, JSON-LD (Organization/Person/
+  ScholarlyArticle) + `lang="ko"`, and `CONTRIBUTING.md`. Zero visual change,
+  proven by before/after CI-artifact body diff + CDP functional test.
 - [x] **Phase 8** — Mobile / SEO / security polish (publication thumbnails restored on mobile;
   auto-updating footer year via client JS with the build year as fallback; transparent header
   wordmark to remove the white box over the dark footer; `og:image` social card + SVG favicon +
