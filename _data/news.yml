@@ -26,14 +26,14 @@
   display_date: ""
   category: event
   title: "New SAIL website launches"
-  body: "The lab website was redesigned and moved to sail.kookmin.ac.kr, replacing the previous Wix site."
+  body: "Our new lab website was designed and developed by Chanjoong, replacing the previous Wix site with sail.kookmin.ac.kr. Thank you, Chanjoong, for your hard work and dedication!"
   link: "/"
   link_text: "Visit the site"
 
 - date: "2026-03-03"
   display_date: ""
   category: people
-  title: "Heejeong Kim joins the lab"
+  title: "Heejeong joins the lab"
   body: "Heejeong Kim (김희정) joins SAIL as a postdoctoral researcher."
   link: "/members/heejeong-kim/"
   link_text: "Member page"
@@ -41,7 +41,7 @@
 - date: "2026-02-01"
   display_date: ""
   category: people
-  title: "Seonbin Kim joins the lab"
+  title: "Seonbin joins the lab"
   body: "Seonbin Kim (김선빈) joins SAIL as an M.S. student."
   link: "/members/seonbin-kim/"
   link_text: "Member page"
@@ -65,7 +65,7 @@
 - date: "2026-01-01"
   display_date: "2026"
   category: publication
-  title: "New paper in ACS Central Science"
+  title: "New article in ACS Central Science"
   body: "\"Higher-level Strategies for Computer-Aided Retrosynthesis.\""
   link: "/publications/39/"
   link_text: "Read the paper"
@@ -73,7 +73,7 @@
 - date: "2025-12-15"
   display_date: ""
   category: people
-  title: "Siyeol In joins the lab"
+  title: "Siyeol joins the lab"
   body: "Siyeol In (인시열) joins SAIL as an undergraduate researcher (UROP)."
   link: "/members/siyeol-in/"
   link_text: "Member page"
@@ -81,7 +81,7 @@
 - date: "2025-12-15"
   display_date: ""
   category: people
-  title: "Hanbyul Baik joins the lab"
+  title: "Hanbyul joins the lab"
   body: "Hanbyul Baik (백한별) joins SAIL as an undergraduate researcher (UROP)."
   link: "/alumni/hanbyul-baik/"
   link_text: "Alumni page"
@@ -89,7 +89,7 @@
 - date: "2025-12-15"
   display_date: ""
   category: people
-  title: "Yongpyo Cho joins the lab"
+  title: "Yongpyo joins the lab"
   body: "Yongpyo Cho (조용표) joins SAIL as an undergraduate researcher (UROP)."
   link: "/alumni/yongpyo-cho/"
   link_text: "Alumni page"
@@ -97,7 +97,7 @@
 - date: "2025-09-11"
   display_date: ""
   category: people
-  title: "Jihwan Kim joins the lab"
+  title: "Jihwan joins the lab"
   body: "Jihwan Kim (김지환) joins SAIL as an M.S. student."
   link: "/members/jihwan-kim/"
   link_text: "Member page"
@@ -105,7 +105,7 @@
 - date: "2025-09-04"
   display_date: "2026"
   category: publication
-  title: "FlowER has been publised at Nature!"
+  title: "FlowER is now published in Nature!"
   body: "\"Electron flow matching for generative reaction mechanism prediction.\""
   link: "/publications/37/"
   link_text: "Read the paper"
@@ -113,7 +113,7 @@
 - date: "2025-07-14"
   display_date: ""
   category: people
-  title: "Hyejeong Jeon joins the lab"
+  title: "Hyejeong joins the lab"
   body: "Hyejeong Jeon (전혜정) joins SAIL as an undergraduate researcher (UROP)."
   link: "/members/hyejeong-jeon/"
   link_text: "Member page"
@@ -121,7 +121,7 @@
 - date: "2025-07-14"
   display_date: ""
   category: people
-  title: "Jinwoo Lee joins the lab"
+  title: "Jinwoo joins the lab"
   body: "Jinwoo Lee (이진우) joins SAIL as an undergraduate researcher (UROP)."
   link: "/alumni/jinwoo-lee/"
   link_text: "Alumni page"
@@ -129,7 +129,7 @@
 - date: "2025-07-14"
   display_date: ""
   category: people
-  title: "Chanjoong Kim joins the lab"
+  title: "Chanjoong joins the lab"
   body: "Chanjoong Kim (김찬중) joins SAIL as an undergraduate researcher (UROP)."
   link: "/alumni/chanjoong-kim/"
   link_text: "Alumni page"
@@ -137,7 +137,7 @@
 - date: "2025-07-14"
   display_date: ""
   category: people
-  title: "Hyojin Lee joins the lab"
+  title: "Hyojin joins the lab"
   body: "Hyojin Lee (이효진) joins SAIL as an undergraduate researcher (UROP)."
   link: "/alumni/hyojin-lee/"
   link_text: "Alumni page"
