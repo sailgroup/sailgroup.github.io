@@ -17,14 +17,12 @@
 #   name   REQUIRED. The label shown on the chip and the tag.
 #   color  REQUIRED. Hex color, e.g. "#1864ab".
 # ---------------------------------------------------------------------------
-- name: Excited-state dynamics
-  color: "#D62728"
-- name: Experimental dataset
-  color: "#6E6E6E"
 - name: Spectroscopic analysis
-  color: "#C49A2E"
+  color: "#D62728"
 - name: Quantum chemical modeling
   color: "#F3943E"
+- name: Experimental dataset
+  color: "#6E6E6E"
 - name: Reaction pathway prediction
   color: "#004F9E"
 - name: Molecular property prediction
