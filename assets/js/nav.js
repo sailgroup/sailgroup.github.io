@@ -23,14 +23,14 @@
 
   // Tapping a link on mobile closes the menu.
   nav.addEventListener("click", function (e) {
-    if (e.target.closest("a") && window.matchMedia("(max-width: 720px)").matches) {
+    if (e.target.closest("a") && window.matchMedia("(max-width: 992px)").matches) {
       close();
     }
   });
 
   // Reset when leaving the mobile breakpoint.
   window.addEventListener("resize", function () {
-    if (!window.matchMedia("(max-width: 720px)").matches) close();
+    if (!window.matchMedia("(max-width: 992px)").matches) close();
   });
 })();
 

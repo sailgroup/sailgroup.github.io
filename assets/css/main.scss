@@ -741,12 +741,11 @@ body.no-scroll { overflow: hidden; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 720px) {
+/* Tablet and below: collapse the primary nav to a hamburger. The 7 items crowd
+   and wrap "Group Guide" onto two lines anywhere from ~720 to ~990px, so switch
+   to the menu here. Keep this width in sync with nav.js. */
+@media (max-width: 992px) {
   .nav-toggle { display: block; }
-  .brand img { height: 44px; }
-  .brand-sep { height: 30px; }
-  .brand-kmu img { height: 36px; }
-  .brand-group { gap: 0.7rem; }
   .site-nav {
     position: absolute;
     top: 100%; left: 0; right: 0;
@@ -770,6 +769,13 @@ body.no-scroll { overflow: hidden; }
     box-shadow: none; border: 0; padding: 0 0 0.4rem 0.8rem;
     min-width: 0;
   }
+}
+
+@media (max-width: 720px) {
+  .brand img { height: 44px; }
+  .brand-sep { height: 30px; }
+  .brand-kmu img { height: 36px; }
+  .brand-group { gap: 0.7rem; }
   .pub { grid-template-columns: 64px 1fr; gap: var(--space-sm); }
   .pub--nofig { grid-template-columns: 1fr; }
   .pub__figure { width: 64px; height: 48px; }
