@@ -2,7 +2,7 @@
 A person card for the Members / Alumni grids. Degrades gracefully: an initials
 disc when there is no photo, a plain name when there is no slug (so a future
 entry without a photo or slug never produces a broken image or link).
-Pass: person (the data object), base ("members" | "alumni").
+Pass: person (the data object). The card always links to the canonical /people/<slug>/.
 {%- endcomment -%}
 {%- assign x = include.person -%}
 {%- assign url = '/people/' | append: x.slug | append: '/' | relative_url -%}

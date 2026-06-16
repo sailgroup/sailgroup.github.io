@@ -367,7 +367,6 @@ p { text-wrap: pretty; }
   border-radius: var(--radius-pill);
   white-space: nowrap;
 }
-.tag--accent { color: var(--orange-deep); background: var(--orange-wash); border-color: #f6d9c2; }
 
 /* Per-topic colors are generated from _data/themes.yml into an inline <style>
    (see _includes/theme-styles.html), so they can be edited without touching SCSS. */
