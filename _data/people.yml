@@ -23,8 +23,10 @@
   joined: "2026-03-03"
   scholar: https://scholar.google.com/citations?user=q9ZRzPAAAAAJ
   github: https://github.com/he2ja
+  orcid: https://orcid.org/0000-0002-0932-6897
   author_aliases:
     - H Kim
+    
 - name: Jihwan Kim
   status: current
   name_ko: 김지환
@@ -34,6 +36,8 @@
   slug: jihwan-kim
   joined: "2025-09-11"
   github: https://github.com/jihwan020
+  orcid: https://orcid.org/0009-0005-0693-9590
+  
 - name: Seonbin Kim
   status: current
   name_ko: 김선빈
@@ -43,6 +47,8 @@
   slug: seonbin-kim
   joined: "2026-02-01"
   github: https://github.com/seonn00
+  orcid: https://orcid.org/0009-0009-7317-729X
+  
 - name: Hyejeong Jeon
   status: current
   name_ko: 전혜정
