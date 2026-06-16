@@ -34,7 +34,19 @@ module SAIL
       validate_covers(site.data["covers"], site.data["publications"])
       validate_research(site.data["research"])
       validate_photos(site.data["photos"])
+      validate_navigation(site.data["navigation"])
+      validate_pi(site.data["pi"])
+      validate_home(site.data["home"])
+      validate_journal_logos(site.data["journal_logos"])
+
+      # Member/alumni external-publication files, plus a heads-up for an orphan file
+      # (a member_pubs/<slug>.yml whose slug matches no one in people.yml, so it
+      # renders nowhere -- a warning, not a hard error).
+      people_slugs = (site.data["people"] || []).map { |p| p["slug"].to_s }
       (site.data["member_pubs"] || {}).each do |slug, pubs|
+        unless people_slugs.include?(slug.to_s)
+          warn("member_pubs/#{slug}.yml has no matching person (slug \"#{slug}\") in people.yml; it will not appear anywhere.")
+        end
         validate_person_pubs(pubs, "member_pubs/#{slug}.yml")
       end
 
@@ -264,6 +276,83 @@ module SAIL
           err("#{at}: missing required field `image`.")
         elsif !image_exists?(ph["image"])
           err("#{at}: `image: #{ph["image"]}` not found in assets/images/.")
+        end
+      end
+    end
+
+    # --- navigation (top menu) ----------------------------------------------
+    # navigation.yml drives the header menu. A wrong url here would silently ship
+    # a broken nav link, so check the shape: every item needs a name and a url;
+    # an internal url must start with "/", an external one must be a full URL and
+    # carry `external: true`; children (dropdown) follow the same internal rule.
+    def validate_navigation(list)
+      return if list.nil?
+      unless list.is_a?(Array)
+        err("navigation.yml: expected a list of menu items.")
+        return
+      end
+      list.each_with_index do |item, i|
+        at = blank?(item["name"]) ? "navigation.yml entry #{i + 1}" : "navigation.yml \"#{item["name"]}\""
+        err("#{at}: missing required field `name`.") if blank?(item["name"])
+        url = item["url"]
+        if blank?(url)
+          err("#{at}: missing required field `url`.")
+        elsif item["external"]
+          err("#{at}: external `url` should be a full URL (http...), got: #{url}") unless url.to_s.start_with?("http")
+        elsif !url.to_s.start_with?("/")
+          err("#{at}: internal `url: #{url}` should start with \"/\" (e.g. /news/), or set `external: true` for an outside link.")
+        end
+        (item["children"] || []).each_with_index do |c, j|
+          cat = "#{at} child #{j + 1}"
+          err("#{cat}: missing required field `name`.") if blank?(c["name"])
+          if blank?(c["url"])
+            err("#{cat}: missing required field `url`.")
+          elsif !c["url"].to_s.start_with?("/")
+            err("#{cat}: `url: #{c["url"]}` should start with \"/\".")
+          end
+        end
+      end
+    end
+
+    # --- PI record (pi.yml is one record, not a list) -----------------------
+    def validate_pi(pi)
+      return if pi.nil?
+      unless pi.is_a?(Hash)
+        err("pi.yml: expected a single PI record (key: value lines).")
+        return
+      end
+      %w[name title].each do |f|
+        err("pi.yml: missing required field `#{f}`.") if blank?(pi[f])
+      end
+      if !blank?(pi["photo"]) && !image_exists?(pi["photo"])
+        err("pi.yml: `photo: #{pi["photo"]}` not found in assets/images/.")
+      end
+      err("pi.yml: `email` looks invalid (no '@'): #{pi["email"]}") if !blank?(pi["email"]) && !pi["email"].include?("@")
+      %w[scholar orcid github].each do |f|
+        err("pi.yml: `#{f}` should be a full URL (http...), got: #{pi[f]}") if !blank?(pi[f]) && !pi[f].to_s.start_with?("http")
+      end
+    end
+
+    # --- home (hero + contact block) ----------------------------------------
+    def validate_home(home)
+      return if home.nil? || !home.is_a?(Hash)
+      contact = home["contact"]
+      if contact.is_a?(Hash) && !blank?(contact["email"]) && !contact["email"].include?("@")
+        err("home.yml: `contact.email` looks invalid (no '@'): #{contact["email"]}")
+      end
+    end
+
+    # --- journal logos ------------------------------------------------------
+    # Each journal_logos.yml value must point at a real file in
+    # assets/images/journals/, otherwise the publication detail page ships a
+    # broken logo image. (A journal with no mapping at all is allowed and warned
+    # about in validate_publications; this checks the mapping target exists.)
+    def validate_journal_logos(logos)
+      return if logos.nil? || !logos.is_a?(Hash)
+      logos.each do |journal, file|
+        next if blank?(file)
+        unless File.file?(File.join(@src, "assets", "images", "journals", file.to_s))
+          err("journal_logos.yml: logo file \"#{file}\" for \"#{journal}\" not found in assets/images/journals/.")
         end
       end
     end
