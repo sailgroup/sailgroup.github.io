@@ -657,3 +657,33 @@ above 2026 own; Heejeong: 37 papers strictly newest-first).
 
 Also removed the PI's throwaway `Test` paper (was `id: 42`) from
 `publications.yml` at the maintainer's request; 41 real papers remain.
+
+## D29 — Second polish pass: doc/code consistency, dead code, validator coverage
+
+A conservative review/cleanup pass after the live site stabilized. **No site content
+and no visible output changed** — the contributor docs are build-excluded, and the
+code edits are dead-code removal, a comment fix, and an equivalent-selector merge.
+Scope was deliberately limited to maintainer-authored files; **none of the PI's
+content data (`publications.yml`, `news.yml`, `themes.yml`, `people.yml`,
+`covers.yml`) was touched.**
+
+- **Docs.** Reconciled `README.md` + `CONTRIBUTING.md` with the code as built:
+  documented both citation forms (`ref` free text, used by every current paper, and
+  the optional structured `vol`/`issue`/`pages`); added the news `display_date` /
+  `link_text` fields; documented the long-list `_data/member_pubs/<slug>.yml` option
+  beside the inline `publications:`; and surfaced `author_aliases` as the fix when a
+  paper spells a member's name differently (the one place the auto-link can miss).
+- **Dead code.** Removed the unused `doc` icon branch, the unreferenced `.tag--accent`
+  rule, and a stale `base` parameter note in `person-card.html` (grep-confirmed zero
+  references). Fixed the `pubs.js` filter comment (the filter is AND, not OR). Merged
+  the byte-identical `.pub__authors .pi` / `.paper__authors .pi` rules into one
+  selector (same computed style).
+- **Validator coverage.** Extended `validate_data.rb` to the files it did not cover:
+  `navigation.yml` (item/child shape, internal vs external url), `pi.yml` (required
+  fields, photo exists, email/url forms), `home.yml` (contact email), and
+  `journal_logos.yml` (each mapped logo file exists), plus a warning for an orphan
+  `member_pubs/<slug>.yml`. All additive — the new checks pass on current data and
+  fail the build with a readable message on a mistake.
+
+The no-visible-change property and the build are checked on the `dev` CI build
+(Jekyll + html-proofer) before `main` is fast-forwarded to deploy (D2, D11).
