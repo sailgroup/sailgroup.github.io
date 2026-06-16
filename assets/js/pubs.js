@@ -6,7 +6,7 @@
   var buttons = Array.prototype.slice.call(bar.querySelectorAll(".pub-filter"));
   var pubs = document.querySelectorAll(".pub");
   var groups = document.querySelectorAll(".year-group");
-  var active = Object.create(null); // selected theme strings (multi-select, OR)
+  var active = Object.create(null); // selected theme strings (multi-select, AND)
 
   function apply() {
     var selected = Object.keys(active);

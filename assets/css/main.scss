@@ -519,7 +519,8 @@ p { text-wrap: pretty; }
 }
 .pub__title { font-family: var(--font-serif); font-size: var(--fs-md); line-height: 1.32; font-weight: 600; }
 .pub__authors { font-size: var(--fs-sm); color: var(--ink-2); margin-top: 0.3rem; }
-.pub__authors .pi {
+.pub__authors .pi,
+.paper__authors .pi {
   font-weight: 600;
   color: var(--ink);
   background: linear-gradient(transparent 62%, rgba(248, 152, 88, 0.34) 0);
@@ -900,10 +901,6 @@ body.no-scroll { overflow: hidden; }
 .paper__meta { color: var(--muted); font-size: var(--fs-sm); }
 .paper__meta .pub__journal { font-style: italic; color: var(--ink-2); }
 .paper__authors { color: var(--ink-2); margin-top: 0.5rem; }
-.paper__authors .pi {
-  font-weight: 600; color: var(--ink);
-  background: linear-gradient(transparent 62%, rgba(248, 152, 88, 0.34) 0);
-}
 .paper__figure {
   margin: 0;
   padding: var(--space-sm);
