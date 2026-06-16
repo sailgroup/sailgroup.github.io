@@ -35,7 +35,9 @@ the live site is left untouched — so you cannot break the site by editing data
 `status` decides which page lists them (`current` → Members, `alumni` → Alumni).
 Everyone gets a personal page at `/people/<slug>/`. Required: `name`, `role`,
 `status`. Optional social links (real URL only): `linkedin:`, `github:`,
-`scholar:`, `orcid:`, `website:`. Alumni may add a one-line `note:`.
+`scholar:`, `orcid:`, `website:`. Alumni may add a one-line `note:`. If a lab paper
+lists this person under a different spelling (e.g. "H Kim" vs "Heejeong Kim"), add
+`author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them.
 
 **When someone graduates**, change only their `status` from `current` to
 `alumni`. Their `/people/<slug>/` URL stays the same, so no link ever breaks (the
@@ -59,6 +61,10 @@ title links to the DOI and their own name is bold.
 
 `title`, `authors`, `journal`, `year` are required per entry. List only papers
 **not** already on the lab Publications page (lab papers auto-appear by author name).
+
+For a long external list (e.g. a postdoc with many prior papers), put the same
+list in `_data/member_pubs/<slug>.yml` instead of inline, to keep `people.yml`
+readable — the person's page reads it by `slug` and merges it the same way.
 
 ## Add a publication  →  `_data/publications.yml`
 
@@ -84,6 +90,11 @@ current member's name — shows up on that member's page too, all automatically.
 Only `id`, `title`, `authors`, `journal`, `year` are required. A journal with no
 logo in `_data/journal_logos.yml` simply shows no logo (add a line there to fix).
 
+`ref` is free text for the volume/pages (e.g. `"47, 317-327"` or `"Advance
+Article"`), which is how every current paper is written. Alternatively use the
+structured `vol:` / `issue:` / `pages:` to get an auto-formatted *vol* (issue),
+pages line; `vol` takes precedence over `ref` when both are present.
+
 ## Add a news item  →  `_data/news.yml`
 
 Copy any block in the file and edit it. The file's header documents every field.
@@ -91,10 +102,12 @@ Minimum:
 
 ```yaml
 - date: "2026-06-20"           # required, YYYY-MM-DD (controls the order)
+  display_date: ""             # optional; shown instead of date, e.g. "March 2025" or "2026"
   category: award              # people | publication | award | talk | event
   title: "Best poster award"   # required
   body: "One or two sentences." # optional
   link: "/publications/41/"    # optional; internal path or full https URL
+  link_text: "Read more"       # optional; link label (defaults to "Details")
 ```
 
 The three newest items also show on the home page.

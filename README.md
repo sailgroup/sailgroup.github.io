@@ -29,9 +29,7 @@ Live: https://sail.kookmin.ac.kr
   authors: "Joonyoung F. Joung*, Jihwan Kim"   # 필수
   journal: "Nature"            # 필수
   year: 2026                   # 필수 (따옴표 없는 숫자)
-  vol: 12                      # 선택: 권 (굵게 표시됨)
-  issue: 3                     # 선택: 호 (없으면 생략, 괄호로 표시)
-  pages: "345-357"             # 선택: 페이지 → "12 (3), 345-357"
+  ref: "47, 317-327"           # 선택: 권·페이지를 자유 텍스트로 (예: "Advance Article"). 현재 모든 논문이 이 방식
   doi: "https://doi.org/10.1038/..."           # 선택
   preprint_url: "https://arxiv.org/abs/..."    # 선택 (arXiv/ChemRxiv 자동 판별)
   themes: ["Reaction pathway prediction"]      # 선택: _data/themes.yml 에 있는 이름만
@@ -40,7 +38,12 @@ Live: https://sail.kookmin.ac.kr
   abstract_ko: "한국어 초록."                   # 선택 (초록으로 표시)
 ```
 목록과 상세 페이지(`/publications/42/`)가 자동 생성됩니다. 저자 목록에 멤버 이름이 포함되면 해당
-멤버 페이지에도 자동으로 표시됩니다(이름이 멤버의 `name`과 일치해야 함).
+멤버 페이지에도 자동으로 표시됩니다(논문의 저자 표기가 멤버의 `name` 과 정확히 일치해야 함. 다르게
+표기됐으면 그 멤버의 `people.yml` 항목에 `author_aliases: ["다른 표기"]` 를 추가).
+
+> **권·호·페이지 자동 서식(선택):** `ref` 대신 `vol:`/`issue:`/`pages:` 를 쓰면 자동으로
+> *권* (호), 페이지 형태로 조판됩니다 — 예: `vol: 47`, `issue: 3`, `pages: "317-327"` → *47* (3), 317-327.
+> `vol` 이 있으면 `ref` 는 무시되므로 둘 중 하나만 쓰세요.
 
 ### 사람 (멤버·동문) — `_data/people.yml`
 멤버와 동문을 한 파일에서 관리합니다. `status` 가 **어느 페이지에 뜰지만** 결정합니다.
@@ -76,10 +79,12 @@ Live: https://sail.kookmin.ac.kr
 ### 뉴스 — `_data/news.yml`
 ```yaml
 - date: "2026-06-20"           # 필수: YYYY-MM-DD (최신순 정렬 기준)
+  display_date: ""             # 선택: 날짜 대신 표시할 문구 (예: "March 2025", "2026")
   category: award              # people | publication | award | talk | event
   title: "최우수 포스터상 수상"  # 필수
   body: "한두 문장 설명."        # 선택
   link: "/publications/41/"    # 선택: 내부 경로 또는 https 주소
+  link_text: "자세히"           # 선택: 링크 라벨 (기본값 "Details")
 ```
 가장 최근 3개는 홈 화면에도 표시됩니다.
 
