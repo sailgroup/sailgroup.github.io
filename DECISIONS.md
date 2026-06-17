@@ -713,3 +713,35 @@ straight to the paper. Decisions:
 Verified on the live site (headless Chrome): the viewer opens on home + photos at
 desktop and mobile, loads the high-res rendition (1145px+), shows caption/counter/
 paper link, advances with the arrows, and closes on Esc; 0 JS errors.
+
+## D31 — SEO + GEO optimization pass (Korean + global)
+
+The data-generated pages all shared the generic site title/description (52 identical
+`<title>`s) -- a real duplicate-content problem. Fixed and broadened to a full
+non-visual SEO/GEO pass.
+
+- **Per-page `<title>` + meta description for every generated page.** `generate_pages.rb`
+  now sets a unique title (the paper title / the person's name) and description
+  (an abstract excerpt for papers; "Name (한글 이름), role at SAIL, Kookmin University"
+  for people) on each generated page; jekyll-seo-tag reads them, so `<title>`,
+  `og:title`, twitter title and meta description all become page-specific. Section
+  pages (publications/research/news/members/alumni/photos/pi) got `description:`
+  front matter too. Person descriptions carry the Korean name for Naver/Korean search.
+- **Richer JSON-LD.** Organization: PostalAddress (Seoul, KR -- local/geo signal),
+  email, telephone, foundingDate, knowsAbout (research areas), founder. Member
+  Person: affiliation (Kookmin University). ScholarlyArticle: inLanguage, keywords.
+  All validated as parseable on the live site.
+- **GEO (AI answer engines).** Added `/llms.txt` -- a curated, data-driven markdown
+  summary (overview, research areas, key links, recent papers). robots.txt already
+  allows AI crawlers and references the sitemap.
+- **Sitemap hygiene.** The noindex `/members|/alumni/<slug>/` redirect pages are now
+  `sitemap: false`, so the sitemap lists only canonical pages (82 -> 60 URLs).
+- Also hardened the validator's email checks (`.to_s`, no crash on a non-string
+  email) and made modified-clicks on a cover follow its paper link.
+
+All changes are non-visual (head metadata, structured data, crawl files); verified
+live (unique titles, valid+enriched JSON-LD, llms.txt 200, cleaned sitemap).
+
+Manual follow-ups (account-specific, not codeable here): register the site in Google
+Search Console and Naver Search Advisor (Webmaster) and submit the sitemap; optionally
+add their verification meta tags.
