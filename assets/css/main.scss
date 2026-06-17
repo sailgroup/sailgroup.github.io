@@ -83,6 +83,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern", "liga", "calt";
+  overflow-wrap: break-word;
 }
 
 img, picture, svg, video { display: block; max-width: 100%; height: auto; }
