@@ -264,6 +264,10 @@ module SAIL
         elsif !image_exists?(c["image"])
           err("#{at}: `image: #{c["image"]}` not found in assets/images/.")
         end
+        unless blank?(c["image"])
+          full = c["image"].to_s.sub(/\.[^.]+\z/, "") + "-full.jpg"
+          warn("#{at}: high-res `#{full}` not found in assets/images/ (the fullscreen cover viewer needs it; generate it from the original cover).") unless image_exists?(full)
+        end
         pid = c["publication_id"]
         if !pid.nil? && !ids.include?(pid)
           err("#{at}: `publication_id: #{pid}` does not match any paper in publications.yml.")

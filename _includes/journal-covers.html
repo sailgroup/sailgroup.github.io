@@ -1,4 +1,8 @@
-{%- comment -%}Journal-covers highlights section (home + photos pages). Renders nothing when there are no covers.{%- endcomment -%}
+{%- comment -%}Journal-covers highlights section (home + photos pages). Renders nothing when there are no covers.
+Each cover opens a fullscreen viewer (covers.js) that loads a high-res "<base>-full.jpg" rendition; the
+thumbnail stays small for fast loading. Progressive enhancement: the cover is a real link to the paper for
+no-JS users and crawlers, and covers.js intercepts the click to show the full cover (with a paper link inside).
+Pages that include this must load covers.js (front matter: scripts: [covers]).{%- endcomment -%}
 {%- assign covers = site.data.covers -%}
 {%- if covers and covers.size > 0 -%}
 <section class="section section--alt">
@@ -6,17 +10,47 @@
     <div class="section-head"><p class="eyebrow">Highlights</p><h2>Journal covers</h2></div>
     <div class="covers">
       {%- for c in covers -%}
+      {%- assign full = c.image | split: "." | first | append: "-full.jpg" -%}
+      {%- assign fullurl = '/assets/images/' | append: full | relative_url -%}
+      {%- assign thumburl = '/assets/images/' | append: c.image | relative_url -%}
+      {%- capture cap -%}{{ c.journal }}, {{ c.year }}{%- endcapture -%}
+      {%- if c.publication_id -%}{%- assign paper = '/publications/' | append: c.publication_id | append: '/' | relative_url -%}{%- else -%}{%- assign paper = "" -%}{%- endif -%}
       <figure class="cover">
         {%- if c.publication_id -%}
-        <a class="cover__link" href="{{ '/publications/' | append: c.publication_id | append: '/' | relative_url }}" aria-label="View the paper: {{ c.journal }}, {{ c.year }}">
-          <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        <a class="cover__link" href="{{ paper }}" data-full="{{ fullurl }}" data-caption="{{ cap | escape }}" data-paper="{{ paper }}" aria-label="Enlarge {{ cap | escape }} cover">
+          <img src="{{ thumburl }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
         </a>
         {%- else -%}
-        <img src="{{ '/assets/images/' | append: c.image | relative_url }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        <button type="button" class="cover__link" data-full="{{ fullurl }}" data-caption="{{ cap | escape }}" data-paper="" aria-label="Enlarge {{ cap | escape }} cover">
+          <img src="{{ thumburl }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+        </button>
         {%- endif -%}
-        <figcaption>{{ c.journal }}, {{ c.year }}</figcaption>
+        <figcaption>{{ cap }}</figcaption>
       </figure>
       {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="lightbox" id="cover-lightbox" hidden>
+    <div class="lightbox__overlay" data-close></div>
+    <button class="lightbox__close" type="button" data-close aria-label="Close (Esc)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-prev aria-label="Previous cover">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-next aria-label="Next cover">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Journal cover viewer">
+      <figure class="lightbox__figure">
+        <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <figcaption class="lightbox__cap">
+          <p class="lightbox__title"></p>
+          <p class="lightbox__count"></p>
+          <p class="cover-lightbox__paper"><a href="#">View the paper &rarr;</a></p>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>

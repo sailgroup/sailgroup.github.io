@@ -536,7 +536,7 @@ p { text-wrap: pretty; }
 /* --- Journal covers ------------------------------------------------------- */
 .covers { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 .cover { display: block; }
-.cover__link { display: block; }
+.cover__link { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
 .cover img {
   width: 100%;
   border-radius: var(--radius-sm);
@@ -626,6 +626,18 @@ body.no-scroll { overflow: hidden; }
 .lightbox__title { font-family: var(--font-serif); font-size: var(--fs-md); font-weight: 600; color: #fff; }
 .lightbox__desc { font-size: var(--fs-sm); color: #d4ccc1; margin-top: 0.35rem; }
 .lightbox__count { font-size: var(--fs-xs); color: #8f867c; margin-top: 0.7rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+.cover-lightbox__paper { margin-top: 0.9rem; }
+.cover-lightbox__paper a {
+  display: inline-block;
+  padding: 0.5rem 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-pill);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cover-lightbox__paper a:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.65); }
 
 .lightbox__close,
 .lightbox__nav {
