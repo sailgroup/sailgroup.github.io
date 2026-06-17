@@ -38,6 +38,7 @@ module SAIL
       validate_pi(site.data["pi"])
       validate_home(site.data["home"])
       validate_journal_logos(site.data["journal_logos"])
+      warn_unused_themes(site.data["themes"], site.data["publications"])
 
       # Member/alumni external-publication files, plus a heads-up for an orphan file
       # (a member_pubs/<slug>.yml whose slug matches no one in people.yml, so it
@@ -107,6 +108,9 @@ module SAIL
           end
         end
         err("#{at}: `email` looks invalid (no '@'): #{p["email"]}") if !blank?(p["email"]) && !p["email"].include?("@")
+        %w[linkedin github scholar orcid website].each do |f|
+          err("#{at}: `#{f}` should be a full URL (http...), got: #{p[f]}") if !blank?(p[f]) && !p[f].to_s.start_with?("http")
+        end
         if !blank?(p["joined"]) && !(p["joined"].to_s =~ DATE_RE)
           err("#{at}: `joined: #{p["joined"]}` must be YYYY-MM-DD.")
         end
@@ -210,6 +214,18 @@ module SAIL
       end
     end
 
+    # A theme defined but used by no paper -- a gentle nudge to prune it (warn only;
+    # a theme may be kept intentionally for upcoming work).
+    def warn_unused_themes(themes, pubs)
+      return unless themes.is_a?(Array) && pubs.is_a?(Array)
+      used = {}
+      pubs.each { |p| (p["themes"] || []).each { |t| used[t] = true } }
+      themes.each do |t|
+        next if blank?(t["name"])
+        warn("themes.yml: \"#{t["name"]}\" is not used by any paper in publications.yml.") unless used[t["name"]]
+      end
+    end
+
     # --- news ---------------------------------------------------------------
     def validate_news(list)
       return if list.nil?
@@ -252,6 +268,10 @@ module SAIL
         if !pid.nil? && !ids.include?(pid)
           err("#{at}: `publication_id: #{pid}` does not match any paper in publications.yml.")
         end
+        %w[w h].each do |dim|
+          warn("#{at}: `#{dim}` should be the cover's pixel size (a number) so the layout reserves space.") unless c[dim].is_a?(Integer)
+        end
+        warn("#{at}: missing `journal`/`year` (shown in the caption and image alt text).") if blank?(c["journal"]) || blank?(c["year"])
       end
     end
 
@@ -261,9 +281,15 @@ module SAIL
       areas = data["areas"]
       return unless areas.is_a?(Array)
       areas.each_with_index do |a, i|
+        at = "research.yml area #{i + 1}"
+        at = "#{at} (#{a["title"]})" unless blank?(a["title"])
+        err("#{at}: missing required field `title`.") if blank?(a["title"])
+        err("#{at}: missing required field `body`.") if blank?(a["body"])
         next if blank?(a["figure"])
-        at = "research.yml area #{i + 1} (#{a["title"]})"
         err("#{at}: `figure: #{a["figure"]}` not found in assets/images/.") unless image_exists?(a["figure"])
+        %w[figure_w figure_h].each do |dim|
+          warn("#{at}: `#{dim}` should be the figure's pixel size (a number) for layout stability.") unless a[dim].is_a?(Integer)
+        end
       end
     end
 
