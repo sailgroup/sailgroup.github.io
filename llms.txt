@@ -1,0 +1,26 @@
+---
+permalink: /llms.txt
+---
+# SAIL — Spectroscopy and AI Lab (Joonyoung F. Joung Lab, Kookmin University)
+
+> {{ site.description }}
+
+The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }} in the {{ site.data.pi.department }} at {{ site.data.pi.institution }}, integrates machine learning with chemistry. Website: {{ site.url }}
+
+## Research areas
+{% for a in site.data.research.areas %}- {{ a.title }}: {{ a.body | strip_html | truncate: 220 }}
+{% endfor %}
+## Key pages
+- [Research]({{ site.url }}/research/): the lab's research directions, each with a figure from the lab's own papers.
+- [Publications]({{ site.url }}/publications/): {{ site.data.publications | size }} peer-reviewed papers; each has a detail page at {{ site.url }}/publications/<id>/ with abstract and DOI.
+- [Members]({{ site.url }}/members/) and [Alumni]({{ site.url }}/alumni/): lab people, each with a page at {{ site.url }}/people/<slug>/.
+- [Principal Investigator]({{ site.url }}/pi/): {{ site.data.pi.name }}.
+- [News]({{ site.url }}/news/): lab updates and milestones.
+
+## Principal investigator
+{{ site.data.pi.name }} ({{ site.data.pi.name_ko }}) — {{ site.data.pi.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}. Google Scholar: {{ site.data.pi.scholar }} · ORCID: {{ site.data.pi.orcid }}
+
+## Selected recent publications
+{% assign recent = site.data.publications | sort: "year" | reverse -%}
+{% for p in recent limit: 10 %}- {{ p.title }}. {{ p.journal }} ({{ p.year }}).{% if p.doi and p.doi != "" %} {{ p.doi }}{% endif %}
+{% endfor %}
