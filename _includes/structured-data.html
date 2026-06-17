@@ -1,9 +1,12 @@
 {%- comment -%}
-Page-specific JSON-LD, in addition to the generic tags jekyll-seo-tag emits.
-Home -> ResearchOrganization (the lab); /pi/ -> Person (the PI); each
-/publications/<id>/ -> ScholarlyArticle (the paper). All values come from the
-same _data files the pages render from, so the structured data cannot drift
-from the visible content. Invisible to sighted users (machine metadata).
+Page-specific JSON-LD, in addition to the generic tags jekyll-seo-tag emits:
+  /                              -> ResearchOrganization (the lab)
+  /pi/                           -> Person (the PI)
+  /publications/<id>/            -> ScholarlyArticle + BreadcrumbList
+  /people/<slug>/                -> Person + BreadcrumbList
+  /publications/ /members/ /alumni/ -> CollectionPage with an ItemList of the collection
+All values come from the same _data files the pages render from, so the structured
+data cannot drift from the visible content. Invisible to sighted users (metadata).
 {%- endcomment -%}
 {%- if page.url == "/" -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","name":{{ site.title | jsonify }},"alternateName":{{ site.short_name | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | jsonify }},"logo":"{{ site.url }}/assets/images/sail-logo.png","email":{{ site.data.home.contact.email | jsonify }},"telephone":{{ site.data.home.contact.phone | jsonify }},"foundingDate":"2025","address":{"@type":"PostalAddress","streetAddress":"77 Jeongneung-ro, Seongbuk-gu","addressLocality":"Seoul","postalCode":"02707","addressCountry":"KR"},"parentOrganization":{"@type":"CollegeOrUniversity","name":"Kookmin University","url":"https://english.kookmin.ac.kr/"},"knowsAbout":[{% for a in site.data.research.areas %}{{ a.title | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}],"founder":{"@type":"Person","name":{{ site.data.pi.name | jsonify }}},"sameAs":[{{ site.data.pi.scholar | jsonify }},{{ site.data.pi.orcid | jsonify }}]}</script>
@@ -14,6 +17,7 @@ from the visible content. Invisible to sighted users (machine metadata).
 {%- if p -%}
 {%- assign authnames = p.authors | replace: '*', '' | replace: '†', '' | split: ',' -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":{{ p.title | jsonify }},"datePublished":"{{ p.year }}","inLanguage":"en","isPartOf":{"@type":"Periodical","name":{{ p.journal | jsonify }}},"publisher":{"@type":"ResearchOrganization","name":{{ site.title | jsonify }}},"url":"{{ site.url }}{{ page.url }}","author":[{%- for n in authnames -%}{"@type":"Person","name":{{ n | strip | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- if p.doi and p.doi != "" -%},"sameAs":{{ p.doi | jsonify }}{%- endif -%}{%- if p.abstract and p.abstract != "" -%},"abstract":{{ p.abstract | strip | jsonify }}{%- endif -%}{%- if p.themes and p.themes.size > 0 -%},"keywords":{{ p.themes | join: ", " | jsonify }}{%- endif -%}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Publications","item":"{{ site.url }}/publications/"},{"@type":"ListItem","position":3,"name":{{ p.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}]}</script>
 {%- endif -%}
 {%- elsif page.slug -%}
 {%- assign person = site.data.people | where: "slug", page.slug | first -%}
@@ -25,5 +29,15 @@ from the visible content. Invisible to sighted users (machine metadata).
 {%- if person.linkedin and person.linkedin != "" -%}{%- assign sameas = sameas | push: person.linkedin -%}{%- endif -%}
 {%- if person.website and person.website != "" -%}{%- assign sameas = sameas | push: person.website -%}{%- endif -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":{{ person.name | jsonify }},"jobTitle":{{ person.role | jsonify }},"worksFor":{"@type":"ResearchOrganization","name":{{ site.title | jsonify }}},"affiliation":{"@type":"CollegeOrUniversity","name":"Kookmin University","url":"https://english.kookmin.ac.kr/"},"url":"{{ site.url }}{{ page.url }}"{% if person.name_ko and person.name_ko != "" %},"alternateName":{{ person.name_ko | jsonify }}{% endif %}{% if person.email and person.email != "" %},"email":"mailto:{{ person.email }}"{% endif %}{% if sameas.size > 0 %},"sameAs":[{% for u in sameas %}{{ u | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endif %}}</script>
+{%- assign pcrumbname = "Members" -%}{%- assign pcrumburl = "/members/" -%}{%- if person.status == "alumni" -%}{%- assign pcrumbname = "Alumni" -%}{%- assign pcrumburl = "/alumni/" -%}{%- endif -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"{{ pcrumbname }}","item":"{{ site.url }}{{ pcrumburl }}"},{"@type":"ListItem","position":3,"name":{{ person.name | jsonify }},"item":"{{ site.url }}{{ page.url }}"}]}</script>
 {%- endif -%}
+{%- elsif page.url == "/publications/" -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Publications","url":"{{ site.url }}/publications/","mainEntity":{"@type":"ItemList","numberOfItems":{{ site.data.publications | size }},"itemListElement":[{% for p in site.data.publications %}{"@type":"ListItem","position":{{ forloop.index }},"url":"{{ site.url }}/publications/{{ p.id }}/","name":{{ p.title | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}</script>
+{%- elsif page.url == "/members/" -%}
+{%- assign current = site.data.people | where: "status", "current" -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Members","url":"{{ site.url }}/members/","mainEntity":{"@type":"ItemList","itemListElement":[{% for m in current %}{"@type":"ListItem","position":{{ forloop.index }},"url":"{{ site.url }}/people/{{ m.slug }}/","name":{{ m.name | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}</script>
+{%- elsif page.url == "/alumni/" -%}
+{%- assign grads = site.data.people | where: "status", "alumni" -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Alumni","url":"{{ site.url }}/alumni/","mainEntity":{"@type":"ItemList","itemListElement":[{% for a in grads %}{"@type":"ListItem","position":{{ forloop.index }},"url":"{{ site.url }}/people/{{ a.slug }}/","name":{{ a.name | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}</script>
 {%- endif -%}
