@@ -47,8 +47,7 @@ jobs:
       # slow/flaky in CI and verified separately.
       - name: Check internal links and images
         run: |
-          gem install html-proofer --no-document
-          htmlproofer _site \
+          bundle exec htmlproofer _site \
             --disable-external \
             --ignore-empty-alt \
             --allow-hash-href \
