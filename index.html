@@ -25,7 +25,7 @@ layout: default
       {%- assign cat = n.category | default: "event" -%}
       <article class="news-card">
         <div class="news-card__meta">
-          <span class="news__date">{% if n.display_date and n.display_date != "" %}{{ n.display_date }}{% else %}{{ n.date | date: "%B %-d, %Y" }}{% endif %}</span>
+          <span class="news__date">{% include news-date.html n=n %}</span>
           <span class="news-tag news-tag--{{ cat }}">{{ cat | capitalize }}</span>
         </div>
         <h3 class="news-card__title">

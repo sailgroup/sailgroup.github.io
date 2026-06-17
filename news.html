@@ -17,7 +17,7 @@ permalink: /news/
       {%- assign cat = n.category | default: "event" -%}
       <li class="news__item">
         <div class="news__meta">
-          <span class="news__date">{% if n.display_date and n.display_date != "" %}{{ n.display_date }}{% else %}{{ n.date | date: "%B %-d, %Y" }}{% endif %}</span>
+          <span class="news__date">{% include news-date.html n=n %}</span>
           <span class="news-tag news-tag--{{ cat }}">{{ cat | capitalize }}</span>
         </div>
         <div class="news__content">

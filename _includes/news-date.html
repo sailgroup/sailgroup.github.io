@@ -1,0 +1,2 @@
+{%- comment -%}News date as displayed: the optional free-text display_date when set, else the formatted date. Used by index.html (home teaser) and news.html. Pass n=<news item>.{%- endcomment -%}
+{%- assign n = include.n -%}{% if n.display_date and n.display_date != "" %}{{ n.display_date }}{% else %}{{ n.date | date: "%B %-d, %Y" }}{% endif %}
