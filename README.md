@@ -1,6 +1,6 @@
 # SAIL — Spectroscopy and AI Lab
 
-국민대학교 응용화학부 **정준영 교수 연구실** 웹사이트.
+국민대학교 화학부 **정준영 교수 연구실** 웹사이트.
 Live: https://sail.kookmin.ac.kr
 
 ---
