@@ -58,10 +58,13 @@ module SAIL
         desc = "#{entry["journal"]} (#{entry["year"]}). #{strip_markers(entry["authors"])}" if desc.empty?
         { "title" => entry["title"].to_s, "description" => clip(desc, 200) }
       when "people"
-        nk  = entry["name_ko"].to_s.strip
-        who = nk.empty? ? entry["name"].to_s : "#{entry["name"]} (#{nk})"
-        { "title" => entry["name"].to_s,
-          "description" => "#{who}, #{entry["role"]} at the Spectroscopy and AI Lab (SAIL), Department of Chemistry, Kookmin University." }
+        nk   = entry["name_ko"].to_s.strip
+        who  = nk.empty? ? entry["name"].to_s : "#{entry["name"]} (#{nk})"
+        dept = entry["department"].to_s.strip
+        desc = dept.empty? ?
+          "#{who}, #{entry["role"]} at the Spectroscopy and AI Lab (SAIL), Department of Chemistry, Kookmin University." :
+          "#{who}, #{entry["role"]} in the #{dept}, Kookmin University, and a member of the Spectroscopy and AI Lab (SAIL)."
+        { "title" => entry["name"].to_s, "description" => desc }
       else
         {}
       end

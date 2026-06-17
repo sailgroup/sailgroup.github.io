@@ -19,10 +19,12 @@ optional prose body from the page, usually empty).
     <p class="profile__title">{{ x.role }}</p>
     {%- if include.kind == "alumnus" -%}
     <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin University</p>
-    {%- if x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
     {%- else -%}
     <p class="member-card__meta">Spectroscopy and AI Lab, Department of Chemistry, Kookmin University{% if x.joined %} &middot; Joined {{ x.joined | date: "%B %Y" }}{% endif %}</p>
     {%- endif -%}
+    {%- comment -%}Optional: the person's own school/department (e.g. a UROP whose home department differs from the lab's). Omitted when not set.{%- endcomment -%}
+    {%- if x.department and x.department != "" -%}<p class="member-card__meta">{{ x.department }}</p>{%- endif -%}
+    {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
     {%- include social-links.html person=x -%}
     {%- assign body = include.body | strip -%}
     {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ include.body }}</div>{%- endif -%}

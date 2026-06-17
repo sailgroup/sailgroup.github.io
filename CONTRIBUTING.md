@@ -25,6 +25,7 @@ the live site is left untouched — so you cannot break the site by editing data
    - name: Gil-dong Hong
      status: current            # current (a current member) OR alumni
      role: M.S. Student
+     department: School of Artificial Intelligence  # optional; their own school/dept
      name_ko: 홍길동            # optional
      email: hong@kookmin.ac.kr  # optional
      photo: gil-dong-hong.jpg   # optional; must match the uploaded file

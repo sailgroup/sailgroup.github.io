@@ -10,8 +10,10 @@
 # (the old /members/<slug>/ and /alumni/<slug>/ addresses keep redirecting here).
 #
 # Required: name, role, status.  Everything else is optional (photo, email,
-# slug, joined, github/linkedin/scholar/orcid/website, note, author_aliases,
-# publications). See CONTRIBUTING.md for the full field list.
+# slug, joined, department, github/linkedin/scholar/orcid/website, note,
+# author_aliases, publications). `department` is the person's own school/dept
+# (e.g. a UROP from another department); it shows on a line under the lab
+# affiliation, and is omitted entirely when not set. See CONTRIBUTING.md.
 # ---------------------------------------------------------------------------
 - name: Heejeong Kim
   status: current
@@ -71,6 +73,7 @@
   status: alumni
   name_ko: 김찬중
   role: Undergraduate Researcher (UROP)
+  department: School of Artificial Intelligence
   email: chanjoongkim@kookmin.ac.kr
   note: Global PBL program, Irvine, CA
   photo: chanjoong-kim.jpg

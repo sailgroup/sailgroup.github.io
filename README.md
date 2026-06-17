@@ -51,6 +51,7 @@ Live: https://sail.kookmin.ac.kr
 - name: Gildong Hong           # 필수
   status: current              # 필수: current(현재 멤버) 또는 alumni(동문)
   role: M.S. Student           # 필수
+  department: School of Artificial Intelligence   # 선택: 본인 소속 학부/학과 (랩 학과와 다를 때 표기)
   name_ko: 홍길동               # 선택
   email: hong@kookmin.ac.kr    # 선택
   photo: gildong-hong.jpg      # 선택: assets/images/ 에 업로드 (정사각형 권장)
