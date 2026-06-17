@@ -17,26 +17,33 @@ domain `https://sail.kookmin.ac.kr`.
 
 ## Layout
 - `_config.yml` — site configuration
-- `_data/` — content data: `publications.yml` (authoritative, 41 papers), `pi.yml`, `members.yml`,
-  `alumni.yml`, `research.yml`, `covers.yml`
-- `_members/` — Jekyll collection, one file per current member (personal pages)
-- `_layouts/`, `_includes/`, `_sass/`, `assets/` — templates, partials, styles, images
-- top-level pages — `index.html`, `research`, `people`/`pi`/`members`/`alumni`, `publications`,
-  `photos`
+- `_data/` — all content lives here: `publications.yml` (authoritative, 41 papers), `people.yml`
+  (members + alumni in one file; `status:` picks the page), `pi.yml`, `news.yml`, `research.yml`,
+  `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
+  `navigation.yml`, and `member_pubs/<slug>.yml` (a person's long external-paper list)
+- `_plugins/` — `generate_pages.rb` builds every publication/person page (and the legacy
+  `/members|/alumni/<slug>/` redirects) from `_data`, so adding one is a single YAML edit;
+  `validate_data.rb` checks the data at build time and fails with a readable message;
+  `pub_sort.rb` orders a person's merged publication list
+- `_layouts/` (`default`, `page`, `person`, `publication`), `_includes/` (shared markup),
+  `assets/` — templates, partials, styles (`assets/css/main.scss`), JS, images
+- top-level pages — `index.html`, `research`, `pi`/`members`/`alumni`, `publications`, `news`,
+  `photos` (member/alumni/publication detail pages are generated, not files)
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
   from the build)
-- `.github/workflows/` — CI build + deploy
+- `.github/workflows/` — CI build (Jekyll + html-proofer) + deploy
 
 ## Build / deploy
-- CI runs `bundle exec jekyll build` then deploys to Pages. Confirm the Actions run is green before
-  treating anything as done.
+- CI runs `bundle exec jekyll build`, then html-proofer over the built site, then deploys to Pages.
+  Push to `dev` builds only; `main` builds and deploys (D11). Confirm the Actions run is green
+  before treating anything as done.
 
 ## Conventions
 - Site copy: **no em dashes, no marketing tone, factual and specific.**
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in
   author lists.
-- Member/alumni facts must match the live Wix source exactly. Never invent photos or facts; leave
-  blanks and record gaps in `CONTENT_INVENTORY.md`.
+- Member/alumni/publication facts are content: never invent a photo, link, date, or fact — leave a
+  field blank instead, and record gaps in `CONTENT_INVENTORY.md`.
 
 ## Tracking files
 `DECISIONS.md` (decisions + rationale) · `PROGRESS.md` (phase status) · `CONTENT_INVENTORY.md`
