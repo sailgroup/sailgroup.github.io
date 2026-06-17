@@ -74,6 +74,9 @@
   // (the paper link lives inside the viewer).
   links.forEach(function (el, i) {
     el.addEventListener("click", function (e) {
+      // Let modified clicks (Ctrl/Cmd/Shift/Alt, middle button) follow the cover's
+      // real paper link -- e.g. open the paper in a new tab -- instead of the viewer.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
       open(i);
     });

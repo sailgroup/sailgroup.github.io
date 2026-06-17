@@ -107,7 +107,7 @@ module SAIL
             seen_slugs[slug] = (blank?(name) ? at : name)
           end
         end
-        err("#{at}: `email` looks invalid (no '@'): #{p["email"]}") if !blank?(p["email"]) && !p["email"].include?("@")
+        err("#{at}: `email` looks invalid (no '@'): #{p["email"]}") if !blank?(p["email"]) && !p["email"].to_s.include?("@")
         %w[linkedin github scholar orcid website].each do |f|
           err("#{at}: `#{f}` should be a full URL (http...), got: #{p[f]}") if !blank?(p[f]) && !p[f].to_s.start_with?("http")
         end
@@ -357,7 +357,7 @@ module SAIL
       if !blank?(pi["photo"]) && !image_exists?(pi["photo"])
         err("pi.yml: `photo: #{pi["photo"]}` not found in assets/images/.")
       end
-      err("pi.yml: `email` looks invalid (no '@'): #{pi["email"]}") if !blank?(pi["email"]) && !pi["email"].include?("@")
+      err("pi.yml: `email` looks invalid (no '@'): #{pi["email"]}") if !blank?(pi["email"]) && !pi["email"].to_s.include?("@")
       %w[scholar orcid github].each do |f|
         err("pi.yml: `#{f}` should be a full URL (http...), got: #{pi[f]}") if !blank?(pi[f]) && !pi[f].to_s.start_with?("http")
       end
@@ -367,7 +367,7 @@ module SAIL
     def validate_home(home)
       return if home.nil? || !home.is_a?(Hash)
       contact = home["contact"]
-      if contact.is_a?(Hash) && !blank?(contact["email"]) && !contact["email"].include?("@")
+      if contact.is_a?(Hash) && !blank?(contact["email"]) && !contact["email"].to_s.include?("@")
         err("home.yml: `contact.email` looks invalid (no '@'): #{contact["email"]}")
       end
     end
