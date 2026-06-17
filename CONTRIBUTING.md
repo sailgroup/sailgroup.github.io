@@ -36,7 +36,9 @@ the live site is left untouched — so you cannot break the site by editing data
 `status` decides which page lists them (`current` → Members, `alumni` → Alumni).
 Everyone gets a personal page at `/people/<slug>/`. Required: `name`, `role`,
 `status`. Optional social links (real URL only): `linkedin:`, `github:`,
-`scholar:`, `orcid:`, `website:`. Alumni may add a one-line `note:`. If a lab paper
+`scholar:`, `orcid:`, `website:`. An optional `department:` (e.g. `School of Artificial
+Intelligence`) shows the person's own school/department on a line under the lab affiliation,
+useful when their home department differs from the lab's. Alumni may add a one-line `note:`. If a lab paper
 lists this person under a different spelling (e.g. "H Kim" vs "Heejeong Kim"), add
 `author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them.
 
@@ -139,5 +141,5 @@ The three newest items also show on the home page.
   runs html-proofer over the built site to catch a broken internal link/image.
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `journal-covers`,
-  `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
+  `news-date`, `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
 - Never delete `CNAME` (the custom domain). `baseurl` stays `""`.

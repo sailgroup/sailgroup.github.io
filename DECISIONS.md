@@ -745,3 +745,15 @@ live (unique titles, valid+enriched JSON-LD, llms.txt 200, cleaned sitemap).
 Manual follow-ups (account-specific, not codeable here): register the site in Google
 Search Console and Naver Search Advisor (Webmaster) and submit the sitemap; optionally
 add their verification meta tags.
+
+## D32 — SEO/GEO follow-ups + optional per-person department
+
+- Extended D31's structured data: BreadcrumbList on each paper and person page, and a
+  CollectionPage + ItemList on the /publications/, /members/, /alumni/ list pages.
+  Validated as parseable on the live site.
+- Added an optional `department:` field to people.yml. When set, a person's own
+  school/department shows on a line under the lab affiliation (e.g. a UROP whose home
+  department differs from the lab's Department of Chemistry); when unset, the card is
+  unchanged. The lab affiliation line is kept on purpose (it states the lab's
+  department, not the member's), and the person page's SEO description reflects the
+  field too. Set for Chanjoong Kim (School of Artificial Intelligence) on request.

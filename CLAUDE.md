@@ -38,6 +38,15 @@ domain `https://sail.kookmin.ac.kr`.
   Push to `dev` builds only; `main` builds and deploys (D11). Confirm the Actions run is green
   before treating anything as done.
 
+## SEO / GEO
+- jekyll-seo-tag emits the core meta; `_plugins/generate_pages.rb` sets a unique `title`/
+  `description` per generated page (else all 52 share the site title). `_includes/structured-data.html`
+  emits JSON-LD (Organization, Person, ScholarlyArticle, BreadcrumbList, CollectionPage). `/llms.txt`
+  is a generated summary for AI answer engines; the sitemap excludes the noindex redirects.
+  Registering in Google Search Console / Naver Search Advisor is a manual (account-based) step.
+- Journal covers open a fullscreen viewer (`assets/js/covers.js`); each cover needs a high-res
+  `<base>-full.jpg` beside its thumbnail (the validator warns when it is missing).
+
 ## Conventions
 - Site copy: **no em dashes, no marketing tone, factual and specific.**
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in
