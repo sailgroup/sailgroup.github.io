@@ -29,7 +29,8 @@ module SAIL
           raw = entry[spec[:key]]
           next if raw.nil? || raw.to_s.strip.empty?
           value = spec[:field] == "pid" ? raw.to_i : raw.to_s
-          site.pages << DataPage.new(site, spec[:dir], raw.to_s, spec[:layout], spec[:field], value)
+          meta = seo_meta(spec[:data], entry)
+          site.pages << DataPage.new(site, spec[:dir], raw.to_s, spec[:layout], spec[:field], value, meta)
         end
       end
 
@@ -43,18 +44,51 @@ module SAIL
         end
       end
     end
+
+    private
+
+    # Per-page SEO <title> + meta description for a generated page. Without this,
+    # every generated paper/person page inherits the generic site title and
+    # description (52 identical titles) -- bad for search engines and AI answer
+    # engines. jekyll-seo-tag reads page.title / page.description from here.
+    def seo_meta(kind, entry)
+      case kind
+      when "publications"
+        desc = entry["abstract"].to_s.strip
+        desc = "#{entry["journal"]} (#{entry["year"]}). #{strip_markers(entry["authors"])}" if desc.empty?
+        { "title" => entry["title"].to_s, "description" => clip(desc, 200) }
+      when "people"
+        nk  = entry["name_ko"].to_s.strip
+        who = nk.empty? ? entry["name"].to_s : "#{entry["name"]} (#{nk})"
+        { "title" => entry["name"].to_s,
+          "description" => "#{who}, #{entry["role"]} at the Spectroscopy and AI Lab (SAIL), Department of Chemistry, Kookmin University." }
+      else
+        {}
+      end
+    end
+
+    def strip_markers(str)
+      str.to_s.gsub(/[*†‡]/, "").gsub(/\s+/, " ").strip
+    end
+
+    def clip(str, n)
+      s = str.to_s.gsub(/\s+/, " ").strip
+      return s if s.length <= n
+      head = s[0, n].rpartition(" ").first
+      (head.empty? ? s[0, n] : head) + "…"
+    end
   end
 
   # A standalone /<dir>/<slug>/index.html rendered with the given layout. The
   # body is empty; the layout pulls the entry's fields from _data by id/slug.
   class DataPage < Jekyll::Page
-    def initialize(site, dir, slug, layout, field, value)
+    def initialize(site, dir, slug, layout, field, value, extra = {})
       @site = site
       @base = site.source
       @dir  = File.join(dir, slug)
       @name = "index.html"
       process(@name)
-      @data = { "layout" => layout, field => value }
+      @data = { "layout" => layout, field => value }.merge(extra)
     end
   end
 
@@ -66,7 +100,7 @@ module SAIL
       @dir  = File.join(dir, slug)
       @name = "index.html"
       process(@name)
-      @data = {}
+      @data = { "sitemap" => false }
       @content = %(<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">) +
         %(<title>Redirecting&hellip;</title><link rel="canonical" href="#{target}">) +
         %(<meta name="robots" content="noindex">) +
