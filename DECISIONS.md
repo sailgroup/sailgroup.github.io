@@ -687,3 +687,29 @@ content data (`publications.yml`, `news.yml`, `themes.yml`, `people.yml`,
 
 The no-visible-change property and the build are checked on the `dev` CI build
 (Jekyll + html-proofer) before `main` is fast-forwarded to deploy (D2, D11).
+
+## D30 — Fullscreen journal-cover viewer (PI-feedback)
+
+Clicking a journal cover now opens a fullscreen lightbox instead of jumping
+straight to the paper. Decisions:
+
+- **Two renditions per cover, not one.** The grid keeps the small thumbnail
+  (~800px, lazy) so the home page stays light; a high-res `<base>-full.jpg`
+  (~1500px on the long side, q85, ~140–440KB) is generated from the original and
+  loaded **only when a cover is clicked**. This gives a crisp fullscreen view
+  without re-bloating the page (covers had just been cut from ~20MB to ~0.6MB in
+  the image-optimization pass). The originals stay in git history.
+- **Progressive enhancement.** The cover stays a real `<a href="/publications/<id>/">`
+  (so no-JS users and crawlers reach the paper); `assets/js/covers.js` intercepts
+  the click and opens the viewer, which carries a "View the paper" link inside.
+  Covers with no `publication_id` render as a `<button>` (viewer only).
+- **Reuse, not duplicate UI.** The viewer reuses the existing `.lightbox` styles
+  and mirrors `photos.js` (Esc / overlay / arrows / focus trap), as a separate
+  `#cover-lightbox` element so it coexists with the photo lightbox on /photos/.
+- **`-full` convention guarded.** `validate_data.rb` warns when a cover's
+  `-full.jpg` is missing (it is referenced from a `data-` attribute, so
+  html-proofer cannot catch it). Adding a cover means adding its `-full` rendition.
+
+Verified on the live site (headless Chrome): the viewer opens on home + photos at
+desktop and mobile, loads the high-res rendition (1145px+), shows caption/counter/
+paper link, advances with the arrows, and closes on Esc; 0 JS errors.
