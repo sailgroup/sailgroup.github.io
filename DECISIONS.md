@@ -798,3 +798,18 @@ add their verification meta tags.
   the verbatim source of record.
 - Implementation note: `.lang-pane[hidden]` needs `display:none !important` because
   `.positions-cta { display:flex }` would otherwise win over the `hidden` attribute.
+
+## D35 — Positions reverted to Korean-only; project cards generalized to any role
+
+- Reverts D34, on the PI's instruction: the page is Korean-only again, as in D33. The
+  `langs:` structure, the on-page toggle, `assets/js/positions.js`, and the English
+  draft were removed; `_data/positions.yml` is back to a flat `intro` + `sections`.
+- Generalized the project cards (the "표"): `projects` (and an optional
+  `projects_title`) is now a field of **each section**, not a one-off block fixed to
+  the undergraduate role. `positions.html` renders the card grid under whichever role
+  carries it, so the PI can advertise projects under "대학원생" or any other role with
+  the same YAML — documented in README/CONTRIBUTING, with a ready-to-uncomment example
+  left in the "대학원생" entry. Markup/styling of the cards is unchanged from D33.
+- Multiple `.prose` blocks (one per role) replace the single monolithic prose so cards
+  can sit mid-page; inter-section spacing is preserved by the existing `.prose h2`
+  top margin (verified by cross-width screenshot QA).

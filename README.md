@@ -98,32 +98,34 @@ Live: https://sail.kookmin.ac.kr
 ```
 
 ### 모집 — `_data/positions.yml`
-모집 안내 페이지(`/positions/`)의 모든 문구가 이 파일에 있습니다. 이 페이지는 **한국어/English 토글**
-(헤더 오른쪽 위)이 있어 언어별로 한 블록씩 `langs:` 아래에 둡니다. 각 언어 블록에서 소개글(`intro`),
-역할별 안내(`sections`), 학부 모집 프로젝트(`projects`)를 편집합니다. 프로젝트를 추가/삭제하려면
-블록을 추가/삭제하면 됩니다. **한국어를 고치면 영어도 같이 고쳐 두 언어가 어긋나지 않게 하세요.**
+모집 안내 페이지(`/positions/`)의 모든 문구가 이 파일에 있습니다(한국어). `intro`(소개글)와
+`sections`(역할별 안내) 목록으로 이루어집니다. 각 역할은 제목(`title`)과 문단(`paragraphs`)을 갖습니다.
 ```yaml
-langs:
-  - code: ko
-    label: 한국어
-    guide_phrase: 그룹 가이드        # 본문에서 이 문구가 자동으로 그룹 가이드로 링크됨
-    guide_button: 그룹 가이드        # CTA 버튼 라벨
-    requires_label: 필요 지식        # 프로젝트 카드의 '필요 지식:' 라벨
-    projects_title: 학부 연구생 모집 프로젝트
-    intro: "소개 문단."
-    sections:
-      - title: 대학원생              # 역할 제목
-        paragraphs:
-          - "문단 1."               # 한 항목이 한 문단
-    projects:
-      - title: "프로젝트 제목"
-        body: "프로젝트 설명."
-        requires: "유기화학"
-  - code: en                        # 같은 구조의 English 블록
-    label: English
-    # ...
+sections:
+  - title: 대학원생                 # 역할 제목
+    paragraphs:
+      - "문단 1."                   # 한 항목이 한 문단
+      - "문단 2."
 ```
-영어 번역본은 작성자가 만든 초안이므로 PI 검수 후 확정하는 것이 좋습니다.
+
+**모집 프로젝트 카드(표) 추가하기** — 지금은 '학부 연구생' 아래에 4개의 카드가 있습니다. 같은 카드를
+대학원생·박사후연구원 등 **어느 역할에든** 넣을 수 있습니다. 그 역할 항목 안에 `projects_title`(소제목,
+생략 가능)과 `projects`(카드 목록)를 추가하기만 하면 됩니다.
+```yaml
+  - title: 대학원생
+    paragraphs:
+      - "..."
+    projects_title: 대학원생 모집 프로젝트   # 카드 위 소제목 (생략하면 소제목 없이 카드만)
+    projects:
+      - title: 프로젝트 제목               # 카드 제목 (1, 2, 3… 번호 자동)
+        body: 프로젝트 설명.
+        requires: 유기화학                 # 선택: '필요 지식:' 줄로 표시
+      - title: 다른 프로젝트
+        body: 설명.
+```
+카드를 추가/삭제하려면 `projects` 아래 블록을 더하거나 지우면 됩니다. (`_data/positions.yml` 의 대학원생
+항목에는 복사해서 바로 쓸 수 있는 주석 예시가 들어 있습니다.) 본문 어디든 `그룹 가이드` 라고 쓰면
+자동으로 그룹 가이드 문서로 링크됩니다.
 
 ---
 

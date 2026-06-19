@@ -1,58 +1,48 @@
 ---
 layout: default
 title: Positions
-description: "SAIL 연구실 박사후연구원·대학원생·학부 연구생 모집 안내 (한국어/English): 국민대학교 화학부 정준영 교수 연구실(Spectroscopy and AI Lab)."
+description: "SAIL 연구실 박사후연구원·대학원생·학부 연구생 모집 안내: 국민대학교 화학부 정준영 교수 연구실(Spectroscopy and AI Lab)."
 permalink: /positions/
-scripts: [positions]
 ---
 {%- assign p = site.data.positions -%}
+{%- capture guide_link -%}<a href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">그룹 가이드</a>{%- endcapture -%}
 <div class="container container-narrow page-head">
-  <p class="eyebrow">{{ p.eyebrow }}</p>
-  <div class="page-head__bar">
-    <h1>Positions</h1>
-    <div class="lang-toggle" role="group" aria-label="Language / 언어">
-      {%- for L in p.langs -%}
-      <button type="button" class="lang-toggle__btn{% if forloop.first %} is-active{% endif %}" data-lang="{{ L.code }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ L.label }}</button>
-      {%- endfor -%}
-    </div>
-  </div>
-  {%- for L in p.langs -%}
-  {%- capture guide_link -%}<a href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">{{ L.guide_phrase }}</a>{%- endcapture -%}
-  <p class="lead lang-pane" data-lang="{{ L.code }}" lang="{{ L.code }}"{% unless forloop.first %} hidden{% endunless %}>{{ L.intro | replace: L.guide_phrase, guide_link }}</p>
-  {%- endfor -%}
-  {%- for L in p.langs -%}
-  <p class="positions-cta lang-pane" data-lang="{{ L.code }}"{% unless forloop.first %} hidden{% endunless %}>
-    <a class="btn btn--solid" href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">{{ L.guide_button }} {% include icon.html name="external" %}</a>
+  <p class="eyebrow">Join the lab</p>
+  <h1>Positions</h1>
+  <p class="lead">{{ p.intro | replace: "그룹 가이드", guide_link }}</p>
+  <p class="positions-cta">
+    <a class="btn btn--solid" href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">그룹 가이드 {% include icon.html name="external" %}</a>
     <a class="btn" href="mailto:{{ site.data.pi.email }}">{% include icon.html name="mail" %} {{ site.data.pi.email }}</a>
   </p>
-  {%- endfor -%}
 </div>
 
-{%- for L in p.langs -%}
-{%- capture guide_link -%}<a href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">{{ L.guide_phrase }}</a>{%- endcapture -%}
-<section class="section section--tight lang-pane" data-lang="{{ L.code }}" lang="{{ L.code }}"{% unless forloop.first %} hidden{% endunless %}>
+<section class="section section--tight">
   <div class="container container-narrow">
+    {%- for s in p.sections -%}
     <div class="prose">
-      {%- for s in L.sections -%}
       <h2>{{ s.title }}</h2>
       {%- for para in s.paragraphs -%}
-      <p>{{ para | replace: L.guide_phrase, guide_link }}</p>
-      {%- endfor -%}
+      <p>{{ para | replace: "그룹 가이드", guide_link }}</p>
       {%- endfor -%}
     </div>
 
-    <h2 class="positions-projects__title">{{ L.projects_title }}</h2>
+    {%- comment -%} Optional project cards for this role (works under any section). {%- endcomment -%}
+    {%- if s.projects and s.projects.size > 0 -%}
+    {%- if s.projects_title and s.projects_title != "" -%}
+    <h2 class="positions-projects__title">{{ s.projects_title }}</h2>
+    {%- endif -%}
     <div class="card-grid">
-      {%- for proj in L.projects -%}
+      {%- for proj in s.projects -%}
       <article class="card">
         <h3>{{ forloop.index }}. {{ proj.title }}</h3>
         <p>{{ proj.body }}</p>
         {%- if proj.requires and proj.requires != "" -%}
-        <p class="positions-req"><strong>{{ L.requires_label }}:</strong> {{ proj.requires }}</p>
+        <p class="positions-req"><strong>필요 지식:</strong> {{ proj.requires }}</p>
         {%- endif -%}
       </article>
       {%- endfor -%}
     </div>
+    {%- endif -%}
+    {%- endfor -%}
   </div>
 </section>
-{%- endfor -%}

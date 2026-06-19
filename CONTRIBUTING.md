@@ -129,38 +129,39 @@ The three newest items also show on the home page.
 
 ## Update the Positions page  →  `_data/positions.yml`
 
-All of the text on the Positions page (`/positions/`) lives here. The page has a
-**한국어 / English toggle** (top-right of the header), so the copy is kept one
-block per language under `langs:`. In each language block edit the `intro`, the
-per-role guidance under `sections:`, and the advertised undergraduate projects
-under `projects:`. To advertise or retire a project, add or remove one block.
-**Edit both languages together so they don't drift apart.**
+All of the text on the Positions page (`/positions/`) lives here (Korean). It is
+an `intro` plus a list of `sections` (one per role). Each role has a `title` and
+`paragraphs`:
 
 ```yaml
-langs:
-  - code: ko
-    label: 한국어
-    guide_phrase: 그룹 가이드        # this exact wording auto-links to the guide
-    guide_button: 그룹 가이드        # CTA button label
-    requires_label: 필요 지식        # the '필요 지식:' label on project cards
-    projects_title: 학부 연구생 모집 프로젝트
-    intro: "Intro paragraph."
-    sections:
-      - title: 대학원생              # the role heading
-        paragraphs:
-          - "First paragraph."       # one list item = one paragraph
-    projects:
-      - title: "Project title"       # shown as a card
-        body: "What the project is about."
-        requires: "유기화학"
-  - code: en                         # an English block with the same fields
-    label: English
-    # ...
+sections:
+  - title: 대학원생                 # the role heading
+    paragraphs:
+      - "First paragraph."          # one list item = one paragraph
+      - "Second paragraph."
 ```
 
-Within a language block, the `guide_phrase` wording auto-links to the group guide
-wherever it appears in the intro/sections. The English copy is a draft
-translation; have the PI review it before treating it as final.
+**Project cards (the boxes)** — today the "학부 연구생" role shows four cards. The
+same cards can be attached to **any** role (Graduate students, Postdoc, etc.):
+inside that role, add `projects_title` (an optional sub-heading) and a `projects`
+list. To advertise or retire a project, add or remove one block.
+
+```yaml
+  - title: 대학원생
+    paragraphs:
+      - "..."
+    projects_title: 대학원생 모집 프로젝트   # optional sub-heading above the cards
+    projects:
+      - title: 프로젝트 제목               # card title (auto-numbered 1, 2, 3…)
+        body: 프로젝트 설명.
+        requires: 유기화학                 # optional; shown as a '필요 지식:' line
+      - title: 다른 프로젝트
+        body: 설명.
+```
+
+The "대학원생" entry in `_data/positions.yml` has a ready-to-uncomment example.
+Writing `그룹 가이드` anywhere in the text auto-links to the group guide document.
+This page is in Korean by request; keep new copy in Korean to match.
 
 ---
 

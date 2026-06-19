@@ -360,42 +360,6 @@ p { text-wrap: pretty; }
 .positions-projects__title { margin-top: var(--space-xl); margin-bottom: 1.1rem; } /* match the prose h2->paragraph gap above the project cards */
 .positions-req { margin-top: 0.7rem; font-size: var(--fs-sm); color: var(--ink-2); }
 
-/* Positions page: 한국어 / English toggle, top-right of the header row. */
-.page-head__bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  margin-bottom: 0.6rem; /* the gap H1 used to give before the lead */
-}
-.page-head__bar h1 { margin-bottom: 0; }
-.lang-toggle {
-  flex: none;
-  display: inline-flex;
-  border: 1.5px solid var(--ink);
-  border-radius: var(--radius-pill);
-  overflow: hidden;
-}
-.lang-toggle__btn {
-  appearance: none;
-  -webkit-appearance: none;
-  padding: 0.32rem 0.85rem;
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--ink);
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  transition: background 0.16s ease, color 0.16s ease;
-}
-.lang-toggle__btn + .lang-toggle__btn { border-left: 1.5px solid var(--ink); }
-.lang-toggle__btn.is-active { background: var(--ink); color: #fff; }
-.lang-toggle__btn:not(.is-active):hover { background: var(--bg-alt); }
-/* Force-hide the inactive language pane (beats .positions-cta's display:flex). */
-.lang-pane[hidden] { display: none !important; }
-
 /* --- Tags ----------------------------------------------------------------- */
 .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tag {

@@ -20,8 +20,8 @@ domain `https://sail.kookmin.ac.kr`.
 - `_data/` — all content lives here: `publications.yml` (authoritative, 41 papers), `people.yml`
   (members + alumni in one file; `status:` picks the page), `pi.yml`, `news.yml`, `research.yml`,
   `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
-  `navigation.yml`, `positions.yml` (Positions page copy, bilingual KO/EN under
-  `langs:`; switched on-page by `assets/js/positions.js`), and
+  `navigation.yml`, `positions.yml` (Positions page copy, Korean-only; each role
+  section may carry an optional `projects` card list), and
   `member_pubs/<slug>.yml` (a person's long external-paper list)
 - `_plugins/` — `generate_pages.rb` builds every publication/person page (and the legacy
   `/members|/alumni/<slug>/` redirects) from `_data`, so adding one is a single YAML edit;

@@ -1,66 +1,73 @@
-# Positions / 모집 안내. Modeled on the Coley group's /positions page.
+# Positions / 모집 안내 페이지(/positions/)의 모든 문구. Coley 그룹의 /positions 페이지를
+# 본떴습니다. 한국어 전용입니다(요청). positions.html 이 이 파일로 페이지를 만듭니다.
 #
-# Bilingual: the page shows a 한국어 / English toggle (top-right of the header).
-# The Korean copy was supplied verbatim by the PI (Joonyoung F. Joung); the
-# English is a translation of it (draft, pending PI review). Rendered by
-# positions.html, switched client-side by assets/js/positions.js.
+# 구조
+#   intro      : 페이지 맨 위 소개글
+#   sections   : 역할별 안내 목록. 각 항목은 다음을 가집니다.
+#       title       (필수) 역할 제목 (예: 대학원생)
+#       paragraphs  (필수) 문단 목록 — 한 항목이 한 문단
+#       projects_title (선택) 카드 묶음 위에 붙는 소제목
+#       projects       (선택) 카드(표)로 표시되는 모집 항목 목록 — 아래 '학부 연구생' 참고
 #
-# To add a language: add a block under `langs` with the same fields. Within each
-# block, `guide_phrase` is the exact wording that auto-links to guide_url wherever
-# it appears in the intro/section text (so keep that phrase intact in the copy).
+# 모집 프로젝트 카드(표)는 어느 역할에든 넣을 수 있습니다. 지금은 '학부 연구생'에만 있지만,
+# '대학원생' 등 다른 역할 항목에 projects_title/projects 를 똑같이 추가하면 그 역할 아래에도
+# 같은 카드가 생깁니다(아래 대학원생 항목의 주석 예시 참고).
+#
+# 본문 어디든 '그룹 가이드' 라고 쓰면 자동으로 guide_url 문서로 링크됩니다.
 guide_url: https://docs.google.com/document/d/1ZdWAx0zq7Zv7_HgpjHrudxxzuV2inVjLmPZd-ciXWLo
 
-# Header kicker; kept in English on both panes to match the site chrome.
-eyebrow: Join the lab
+intro: >-
+  우리 연구실에 관심이 있다면, 먼저 그룹 가이드를 읽어보시길 바랍니다. 연구실이 중요하게
+  생각하는 가치와 제가 연구 및 멘토링에 대해 어떤 방식을 가지고 있는지 확인하길 바랍니다.
 
-langs:
-  - code: ko
-    label: 한국어
-    guide_phrase: 그룹 가이드
-    guide_button: 그룹 가이드
-    requires_label: 필요 지식
+sections:
+  - title: 박사후연구원 (Postdoctoral Researcher)
+    paragraphs:
+      - >-
+        박사후연구원(Postdoctoral Researcher) 지원을 희망하는 분은 CV와 연구 관심 분야 및
+        연구 경험을 간략히 소개한 내용을 이메일로 보내주시기 바랍니다. 또한 본인의 장기적인
+        연구 목표와 우리 연구실에서 이루고 싶은 연구 및 배우고 싶은 내용을 함께 작성해 주시기
+        바랍니다. 현재 연구실에 박사후연구원 자리가 없더라도 지원 자료는 보관하며, 향후
+        적합한 자리가 생길 경우 개별적으로 연락드릴 수 있습니다. 독립적인 연구비 또는
+        펠로우십을 확보하고 있는 경우에는 이를 함께 알려주시기 바랍니다.
+      - >-
+        현재 모집 중인 박사후연구원 채용은 연구 주제별로 이 페이지에 공고됩니다. 새로운
+        모집이 시작되면 본 페이지를 통해 안내드리겠습니다.
+
+  - title: 대학원생
+    paragraphs:
+      - >-
+        우리 연구실은 매년 1–3명의 대학원생을 선발할 예정이며, 모집 인원은 연구실의 연구
+        주제와 연구비 상황에 따라 달라질 수 있습니다. 연구실에 관심이 있는 학생은 지원 전에
+        그룹 가이드를 읽어보고, 연구 관심 분야와 진로 목표가 연구실과 잘 맞는지 충분히 검토한
+        후 지원하시기를 권장합니다. 특히, 가이드에 IDP를 작성하여 지원하기 전에 저에게 메일을
+        보내 상담하길 바랍니다.
+    # 대학원생 자리에도 모집 프로젝트 카드를 넣고 싶다면, 아래 두 줄의 주석(#)을 풀고
+    # '학부 연구생'의 projects 형식과 똑같이 작성하면 됩니다.
+    # projects_title: 대학원생 모집 프로젝트
+    # projects:
+    #   - title: 프로젝트 제목
+    #     body: 프로젝트 설명.
+    #     requires: 필요 지식 (선택)
+
+  - title: 학부 연구생
+    paragraphs:
+      - >-
+        학부 연구생으로 연구에 참여하고 싶은 학생은 연구실 홈페이지의 연구 분야와 최근 논문을
+        살펴본 후, 관심 있는 연구 주제를 함께 작성하여 이메일로 문의해 주시기 바랍니다. 3–4학년
+        학생의 경우 인공지능 소재화학 과목을 수강한 학생을 우선적으로 선발할 수 있습니다. 연구
+        경험이 없어도 배우려는 의지와 성실한 태도를 갖춘 학생이라면 언제든 환영합니다. 특히
+        대학원 진학을 고려하고 있는 학생들의 적극적인 지원을 환영합니다.
+      - >-
+        짧은 방학 기간 동안 새로운 인공지능 모델을 개발하여 의미 있는 연구 성과를 얻는 것은
+        쉽지 않습니다. 반면, 인공지능 연구에서 가장 중요한 기반은 양질의 데이터입니다. 따라서
+        단기 학부 연구생은 데이터베이스 구축이나 데이터 품질 향상과 같은 프로젝트를 수행하는
+        경우가 많습니다. 이러한 작업은 다소 반복적으로 느껴질 수 있지만, 새로운 인공지능 모델과
+        연구 성과를 가능하게 하는 가장 중요한 출발점입니다.
+      - >-
+        방학 이후에도 지속적으로 연구에 참여할 의사가 있는 학생에게는 프로젝트의 진행 상황과
+        역량을 고려하여 머신러닝 모델 개발, 알고리즘 구현 등 보다 심화된 연구 주제를 제공합니다.
     projects_title: 학부 연구생 모집 프로젝트
-    intro: >-
-      우리 연구실에 관심이 있다면, 먼저 그룹 가이드를 읽어보시길 바랍니다. 연구실이 중요하게
-      생각하는 가치와 제가 연구 및 멘토링에 대해 어떤 방식을 가지고 있는지 확인하길 바랍니다.
-    sections:
-      - title: 박사후연구원 (Postdoctoral Researcher)
-        paragraphs:
-          - >-
-            박사후연구원(Postdoctoral Researcher) 지원을 희망하는 분은 CV와 연구 관심 분야 및
-            연구 경험을 간략히 소개한 내용을 이메일로 보내주시기 바랍니다. 또한 본인의 장기적인
-            연구 목표와 우리 연구실에서 이루고 싶은 연구 및 배우고 싶은 내용을 함께 작성해 주시기
-            바랍니다. 현재 연구실에 박사후연구원 자리가 없더라도 지원 자료는 보관하며, 향후
-            적합한 자리가 생길 경우 개별적으로 연락드릴 수 있습니다. 독립적인 연구비 또는
-            펠로우십을 확보하고 있는 경우에는 이를 함께 알려주시기 바랍니다.
-          - >-
-            현재 모집 중인 박사후연구원 채용은 연구 주제별로 이 페이지에 공고됩니다. 새로운
-            모집이 시작되면 본 페이지를 통해 안내드리겠습니다.
-      - title: 대학원생
-        paragraphs:
-          - >-
-            우리 연구실은 매년 1–3명의 대학원생을 선발할 예정이며, 모집 인원은 연구실의 연구
-            주제와 연구비 상황에 따라 달라질 수 있습니다. 연구실에 관심이 있는 학생은 지원 전에
-            그룹 가이드를 읽어보고, 연구 관심 분야와 진로 목표가 연구실과 잘 맞는지 충분히 검토한
-            후 지원하시기를 권장합니다. 특히, 가이드에 IDP를 작성하여 지원하기 전에 저에게 메일을
-            보내 상담하길 바랍니다.
-      - title: 학부 연구생
-        paragraphs:
-          - >-
-            학부 연구생으로 연구에 참여하고 싶은 학생은 연구실 홈페이지의 연구 분야와 최근 논문을
-            살펴본 후, 관심 있는 연구 주제를 함께 작성하여 이메일로 문의해 주시기 바랍니다. 3–4학년
-            학생의 경우 인공지능 소재화학 과목을 수강한 학생을 우선적으로 선발할 수 있습니다. 연구
-            경험이 없어도 배우려는 의지와 성실한 태도를 갖춘 학생이라면 언제든 환영합니다. 특히
-            대학원 진학을 고려하고 있는 학생들의 적극적인 지원을 환영합니다.
-          - >-
-            짧은 방학 기간 동안 새로운 인공지능 모델을 개발하여 의미 있는 연구 성과를 얻는 것은
-            쉽지 않습니다. 반면, 인공지능 연구에서 가장 중요한 기반은 양질의 데이터입니다. 따라서
-            단기 학부 연구생은 데이터베이스 구축이나 데이터 품질 향상과 같은 프로젝트를 수행하는
-            경우가 많습니다. 이러한 작업은 다소 반복적으로 느껴질 수 있지만, 새로운 인공지능 모델과
-            연구 성과를 가능하게 하는 가장 중요한 출발점입니다.
-          - >-
-            방학 이후에도 지속적으로 연구에 참여할 의사가 있는 학생에게는 프로젝트의 진행 상황과
-            역량을 고려하여 머신러닝 모델 개발, 알고리즘 구현 등 보다 심화된 연구 주제를 제공합니다.
     projects:
       - title: FlowER 반응 예측 모델을 위한 데이터셋 확장
         body: >-
@@ -86,90 +93,3 @@ langs:
           데이터베이스는 모든 AI 모델의 출발점이며, 잘 구축된 데이터는 새로운 연구와 논문의
           기반이 됩니다.
         requires: 화학에 대한 기본 지식과 꼼꼼함
-
-  - code: en
-    label: English
-    guide_phrase: group guide
-    guide_button: Group guide
-    requires_label: Background
-    projects_title: Open undergraduate research projects
-    intro: >-
-      If you might be interested in joining us, please first read our group guide.
-      It explains the values the lab cares about and my approach to research and
-      mentorship.
-    sections:
-      - title: Postdoctoral researchers
-        paragraphs:
-          - >-
-            Prospective postdoctoral researchers should email me a CV together with
-            a brief summary of your research interests and experience. Please also
-            describe your long-term research goals and what you would hope to
-            accomplish and learn in our group. Even if there is no open
-            postdoctoral position at the moment, we keep applications on file and
-            may contact you individually when a suitable opening arises. If you have
-            secured independent funding or a fellowship, please mention it.
-          - >-
-            Postdoctoral openings we are actively recruiting for are posted by
-            research topic on this page. We will announce new openings here as they
-            become available.
-      - title: Graduate students
-        paragraphs:
-          - >-
-            We plan to recruit 1–3 graduate students each year, and the number can
-            vary with the lab's research topics and funding situation. If you are
-            interested in the lab, we encourage you to read the group guide before
-            applying and to consider carefully whether your research interests and
-            career goals fit the lab. In particular, please complete the IDP
-            described in the guide and email me to discuss before you apply.
-      - title: Undergraduate researchers
-        paragraphs:
-          - >-
-            Undergraduates who would like to take part in research should look
-            through the research areas and recent publications on the lab website,
-            then email me describing the research topics you are interested in. For
-            students in their third or fourth year, priority may be given to those
-            who have taken the AI Materials Chemistry course. Even without prior
-            research experience, students with a willingness to learn and a diligent
-            attitude are always welcome. We especially welcome applications from
-            students who are considering graduate study.
-          - >-
-            Over a short vacation it is hard to develop a new AI model and obtain
-            meaningful research results. The most important foundation of AI
-            research, by contrast, is high-quality data. Short-term undergraduate
-            researchers therefore often work on projects such as building databases
-            or improving data quality. This work can feel somewhat repetitive, but
-            it is the single most important starting point that makes new AI models
-            and research results possible.
-          - >-
-            For students who intend to keep doing research beyond the vacation, we
-            offer more advanced topics such as machine learning model development
-            and algorithm implementation, taking the project's progress and the
-            student's ability into account.
-    projects:
-      - title: Expanding the dataset for the FlowER reaction-prediction model
-        body: >-
-          The performance of modern AI models depends on the quality and scale of
-          the data even more than on the algorithm. In this project you build and
-          validate new reaction data so that FlowER can learn a wider range of
-          organic reactions and reaction mechanisms.
-        requires: Organic chemistry
-      - title: Building an IR / Raman / MS / NMR spectrum–structure database
-        body: >-
-          Predicting molecular structure from spectra alone is one of the central
-          goals of analytical chemistry, and the AI models for it require large
-          amounts of paired spectrum–structure data. In this project you build
-          training datasets for AI from the literature and public databases.
-        requires: Organic chemistry, spectroscopy of organic materials
-      - title: An LLM-based platform for automated data extraction from the literature
-        body: >-
-          Chemistry papers contain a vast amount of data that could be used for
-          machine learning, but collecting it by hand takes a great deal of time.
-          In this project you use state-of-the-art LLMs to build a platform that
-          automatically extracts and structures chemical data from the literature.
-        requires: Interest in Python programming and using LLMs
-      - title: Building new databases for AI for Chemistry
-        body: >-
-          In this project you systematically build chemical datasets and manage
-          their quality. Databases are the starting point for every AI model, and
-          well-built data is the foundation for new research and publications.
-        requires: Basic chemistry knowledge and attention to detail
