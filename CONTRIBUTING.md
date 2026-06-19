@@ -29,6 +29,7 @@ the live site is left untouched — so you cannot break the site by editing data
      name_ko: 홍길동            # optional
      email: hong@kookmin.ac.kr  # optional
      photo: gil-dong-hong.jpg   # optional; must match the uploaded file
+     photo_hover: gil-dong-hong-hover.jpg  # optional; a 2nd photo that fades in on hover
      slug: gil-dong-hong        # lowercase-with-hyphens; their personal-page address
      joined: "2026-03-01"       # optional, YYYY-MM-DD
    ```
@@ -41,6 +42,12 @@ Intelligence`) shows the person's own school/department on a line under the lab 
 useful when their home department differs from the lab's. Alumni may add a one-line `note:`. If a lab paper
 lists this person under a different spelling (e.g. "H Kim" vs "Heejeong Kim"), add
 `author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them.
+
+**A second photo on hover** (optional): set `photo_hover:` to a second image in
+`assets/images/` (e.g. `gil-dong-hong-hover.jpg`) and it cross-fades in when
+someone hovers the card photo on the Members/Alumni grid (for example a headshot
+and a candid photo). Leave it out for a single photo; on touch devices the
+default photo always shows. This works for any person the same way.
 
 **When someone graduates**, change only their `status` from `current` to
 `alumni`. Their `/people/<slug>/` URL stays the same, so no link ever breaks (the

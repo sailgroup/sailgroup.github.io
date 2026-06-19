@@ -56,12 +56,18 @@ Live: https://sail.kookmin.ac.kr
   name_ko: 홍길동               # 선택
   email: hong@kookmin.ac.kr    # 선택
   photo: gildong-hong.jpg      # 선택: assets/images/ 에 업로드 (정사각형 권장)
+  photo_hover: gildong-hong-hover.jpg   # 선택: 마우스를 올리면 바뀌는 두 번째 사진 (assets/images/ 에 업로드)
   slug: gildong-hong           # 선택: 영문 소문자, 개인 페이지 주소가 됨
   joined: "2026-03-01"         # 선택: YYYY-MM-DD
 ```
 개인 페이지(`/people/gildong-hong/`)와, `status` 에 맞는 그리드(Members 또는 Alumni)에 자동 등록됩니다.
 소셜 링크는 실제 URL이 있을 때만: `linkedin:` `github:` `scholar:` `orcid:` `website:`. 논문 저자명이
 `name` 과 다르면 `author_aliases: ["다른 표기"]`. 동문은 `note:` 로 한 줄 비고 추가 가능.
+
+> **마우스를 올리면 사진이 바뀌게 하기(선택):** `photo_hover:` 에 두 번째 사진 파일명을 적고 그 사진을
+> `assets/images/` 에 함께 올리면, 멤버 그리드에서 카드 사진에 마우스를 올렸을 때 두 번째 사진으로
+> 부드럽게 바뀝니다(예: 증명사진과 캐주얼 사진). 두 번째 사진이 없으면 이 줄을 안 적으면 그만이고,
+> 터치 기기(휴대폰 등)에서는 기본 사진만 보입니다. 어느 멤버에게나 같은 방식으로 쓸 수 있습니다.
 
 > **졸업 처리**: 그 사람의 `status` 를 `current` → `alumni` 로 바꾸기만 하면 됩니다. 개인 페이지
 > 주소(`/people/<slug>/`)는 그대로라 **뉴스 등 어디서 건 링크가 절대 안 깨집니다** (기존
