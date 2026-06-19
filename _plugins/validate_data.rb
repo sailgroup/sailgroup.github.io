@@ -98,6 +98,10 @@ module SAIL
         if !blank?(p["photo"]) && !image_exists?(p["photo"])
           err("#{at}: `photo: #{p["photo"]}` not found in assets/images/.")
         end
+        # Optional second photo that crossfades in on hover (person-card.html).
+        if !blank?(p["photo_hover"]) && !image_exists?(p["photo_hover"])
+          err("#{at}: `photo_hover: #{p["photo_hover"]}` not found in assets/images/.")
+        end
         unless blank?(p["slug"])
           slug = p["slug"]
           err("#{at}: `slug: #{slug}` must be lowercase letters/numbers/hyphens.") unless slug =~ SLUG_RE

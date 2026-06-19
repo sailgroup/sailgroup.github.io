@@ -437,6 +437,20 @@ p { text-wrap: pretty; }
   background: var(--bg-alt);
   border: 1px solid var(--line);
 }
+/* Optional hover photo swap: the second image is stacked over the first and
+   crossfades in on hover. Only on real hover devices, so touch users keep the
+   default photo. */
+.person__figure { display: block; }
+.person__figure--swap { position: relative; }
+.person__figure--swap .person__photo--hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .person__figure--swap:hover .person__photo--hover { opacity: 1; }
+}
 .person__ph {
   display: grid;
   place-items: center;

@@ -6,14 +6,17 @@ Pass: person (the data object). The card always links to the canonical /people/<
 {%- endcomment -%}
 {%- assign x = include.person -%}
 {%- assign url = '/people/' | append: x.slug | append: '/' | relative_url -%}
+{%- comment -%}Optional second photo that crossfades in on hover (pointer devices only).{%- endcomment -%}
+{%- assign has_hover = false -%}{%- if x.photo_hover and x.photo_hover != "" -%}{%- assign has_hover = true -%}{%- endif -%}
 <div class="person">
   {%- if x.photo and x.photo != "" -%}
+    {%- capture photo -%}<img class="person__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">{%- if has_hover -%}<img class="person__photo person__photo--hover" src="{{ '/assets/images/' | append: x.photo_hover | relative_url }}" alt="" aria-hidden="true" loading="lazy">{%- endif -%}{%- endcapture -%}
     {%- if x.slug and x.slug != "" -%}
-    <a href="{{ url }}">
-      <img class="person__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">
-    </a>
+    <a class="person__figure{% if has_hover %} person__figure--swap{% endif %}" href="{{ url }}">{{ photo }}</a>
+    {%- elsif has_hover -%}
+    <span class="person__figure person__figure--swap">{{ photo }}</span>
     {%- else -%}
-    <img class="person__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">
+    {{ photo }}
     {%- endif -%}
   {%- else -%}
   <div class="person__ph" aria-hidden="true">{{ x.name | slice: 0 }}</div>

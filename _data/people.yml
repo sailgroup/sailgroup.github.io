@@ -11,7 +11,9 @@
 #
 # Required: name, role, status.  Everything else is optional (photo, email,
 # slug, joined, department, github/linkedin/scholar/orcid/website, note,
-# author_aliases, publications). `department` is the person's own school/dept
+# author_aliases, publications). `photo_hover` is an optional second photo that
+# crossfades in when you hover the card photo (pointer devices only); leave it
+# out for the usual single photo. `department` is the person's own school/dept
 # (e.g. a UROP from another department); it shows on a line under the lab
 # affiliation, and is omitted entirely when not set. See CONTRIBUTING.md.
 # ---------------------------------------------------------------------------
@@ -66,6 +68,7 @@
   role: Undergraduate Researcher
   email: insy13@naver.com
   photo: siyeol-in.jpg
+  photo_hover: siyeol-in-hover.jpg
   slug: siyeol-in
   joined: "2025-12-15"
   github: https://github.com/insiyeol
