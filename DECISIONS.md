@@ -757,3 +757,23 @@ add their verification meta tags.
   unchanged. The lab affiliation line is kept on purpose (it states the lab's
   department, not the member's), and the person page's SEO description reflects the
   field too. Set for Chanjoong Kim (School of Artificial Intelligence) on request.
+
+## D33 — Positions page (`/positions/`), Korean-only
+
+- Added a Positions page modeled on the Coley group's `/positions/`, on request from
+  the PI. It states how to join the lab and how to apply for the postdoctoral
+  researcher, PhD student, and undergraduate research tracks, and lists the currently
+  advertised undergraduate projects. Linked in the top nav between Publications and
+  Group Guide.
+- All copy lives in `_data/positions.yml` (intro, `sections:` per role, and
+  `undergrad_projects:`), rendered by `positions.html` — same data-driven pattern as
+  the rest of the site, so the PI can advertise/retire a project with one YAML block.
+- **Korean-only, by request.** The rest of the site renders in English, but the PI
+  supplied this copy in Korean and the recruiting audience is primarily domestic
+  students/applicants, so the page ships verbatim in Korean (the page chrome — nav
+  label "Positions", h1, eyebrow — stays English to match the site). An English
+  version is a deliberate, recorded gap, not an oversight.
+- The phrase "그룹 가이드" is auto-linked to the group-guide document via a Liquid
+  `replace` filter, so the data stays plain text. A contact CTA reuses the PI email
+  from `pi.yml` (not invented), making the repeated "email me" instruction
+  actionable; one obvious typo in the supplied copy was corrected (논문를 → 논문을).

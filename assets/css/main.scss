@@ -355,6 +355,11 @@ p { text-wrap: pretty; }
 .btn--solid { background: var(--ink); color: #fff; }
 .btn--solid:hover { background: #000; }
 
+/* Positions page: CTA row under the intro + the project cards' "필요 지식" line */
+.positions-cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: var(--space-md); }
+.positions-projects__title { margin-top: var(--space-xl); }
+.positions-req { margin-top: 0.7rem; font-size: var(--fs-sm); color: var(--ink-2); }
+
 /* --- Tags ----------------------------------------------------------------- */
 .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tag {

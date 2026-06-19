@@ -127,6 +127,29 @@ The three newest items also show on the home page.
      alt: "Lab dinner, June 2026"      # optional; describes the image
    ```
 
+## Update the Positions page  →  `_data/positions.yml`
+
+All of the text on the Positions page (`/positions/`) lives here. Edit the
+intro, the per-role guidance under `sections:`, and the currently advertised
+undergraduate projects under `undergrad_projects:`. To advertise or retire a
+project, add or remove one block.
+
+```yaml
+sections:
+  - title: 대학원생                 # the role heading
+    paragraphs:
+      - "First paragraph."          # one list item = one paragraph
+      - "Second paragraph."
+undergrad_projects:
+  - title: "Project title"          # shown as a card
+    body: "What the project is about."
+    requires: "필요 지식"            # optional; rendered as a '필요 지식:' line
+```
+
+Writing `그룹 가이드` anywhere in the text auto-links to the group guide
+document. This page is written in Korean by request (the rest of the site is in
+English); keep new copy in Korean to match.
+
 ---
 
 ## How it works (for maintainers)

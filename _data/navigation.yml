@@ -1,5 +1,5 @@
 # Primary navigation. Order and labels match the site spec:
-# HOME / NEWS / RESEARCH / MEMBERS (PI, Members, Alumni) / PUBLICATIONS / GROUP GUIDE / PHOTOS
+# HOME / NEWS / RESEARCH / MEMBERS (PI, Members, Alumni) / PUBLICATIONS / POSITIONS / GROUP GUIDE / PHOTOS
 - name: Home
   url: /
 
@@ -21,6 +21,9 @@
 
 - name: Publications
   url: /publications/
+
+- name: Positions
+  url: /positions/
 
 - name: Group Guide
   url: https://docs.google.com/document/d/1ZdWAx0zq7Zv7_HgpjHrudxxzuV2inVjLmPZd-ciXWLo

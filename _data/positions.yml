@@ -1,0 +1,84 @@
+# Positions / 모집 안내. Korean copy supplied verbatim by the PI (Joonyoung F.
+# Joung); modeled on the Coley group's /positions page. Rendered by positions.html.
+# The phrase "그룹 가이드" is auto-linked to guide_url by the template (replace
+# filter), so keep that exact wording where the link should appear.
+#
+# This page is Korean-only by request (the rest of the site renders in English);
+# the recruiting audience is primarily domestic students and applicants.
+guide_url: https://docs.google.com/document/d/1ZdWAx0zq7Zv7_HgpjHrudxxzuV2inVjLmPZd-ciXWLo
+
+intro: >-
+  우리 연구실에 관심이 있다면, 먼저 그룹 가이드를 읽어보시길 바랍니다. 연구실이 중요하게
+  생각하는 가치와 제가 연구 및 멘토링에 대해 어떤 방식을 가지고 있는지 확인하길 바랍니다.
+
+sections:
+  - title: 박사후연구원 (Postdoctoral Researcher)
+    paragraphs:
+      - >-
+        박사후연구원(Postdoctoral Researcher) 지원을 희망하는 분은 CV와 연구 관심 분야 및
+        연구 경험을 간략히 소개한 내용을 이메일로 보내주시기 바랍니다. 또한 본인의 장기적인
+        연구 목표와 우리 연구실에서 이루고 싶은 연구 및 배우고 싶은 내용을 함께 작성해 주시기
+        바랍니다. 현재 연구실에 박사후연구원 자리가 없더라도 지원 자료는 보관하며, 향후
+        적합한 자리가 생길 경우 개별적으로 연락드릴 수 있습니다. 독립적인 연구비 또는
+        펠로우십을 확보하고 있는 경우에는 이를 함께 알려주시기 바랍니다.
+      - >-
+        현재 모집 중인 박사후연구원 채용은 연구 주제별로 이 페이지에 공고됩니다. 새로운
+        모집이 시작되면 본 페이지를 통해 안내드리겠습니다.
+
+  - title: 대학원생
+    paragraphs:
+      - >-
+        우리 연구실은 매년 1–3명의 대학원생을 선발할 예정이며, 모집 인원은 연구실의 연구
+        주제와 연구비 상황에 따라 달라질 수 있습니다. 연구실에 관심이 있는 학생은 지원 전에
+        그룹 가이드를 읽어보고, 연구 관심 분야와 진로 목표가 연구실과 잘 맞는지 충분히 검토한
+        후 지원하시기를 권장합니다. 특히, 가이드에 IDP를 작성하여 지원하기 전에 저에게 메일을
+        보내 상담하길 바랍니다.
+
+  - title: 학부 연구생
+    paragraphs:
+      - >-
+        학부 연구생으로 연구에 참여하고 싶은 학생은 연구실 홈페이지의 연구 분야와 최근 논문을
+        살펴본 후, 관심 있는 연구 주제를 함께 작성하여 이메일로 문의해 주시기 바랍니다. 3–4학년
+        학생의 경우 인공지능 소재화학 과목을 수강한 학생을 우선적으로 선발할 수 있습니다. 연구
+        경험이 없어도 배우려는 의지와 성실한 태도를 갖춘 학생이라면 언제든 환영합니다. 특히
+        대학원 진학을 고려하고 있는 학생들의 적극적인 지원을 환영합니다.
+      - >-
+        짧은 방학 기간 동안 새로운 인공지능 모델을 개발하여 의미 있는 연구 성과를 얻는 것은
+        쉽지 않습니다. 반면, 인공지능 연구에서 가장 중요한 기반은 양질의 데이터입니다. 따라서
+        단기 학부 연구생은 데이터베이스 구축이나 데이터 품질 향상과 같은 프로젝트를 수행하는
+        경우가 많습니다. 이러한 작업은 다소 반복적으로 느껴질 수 있지만, 새로운 인공지능 모델과
+        연구 성과를 가능하게 하는 가장 중요한 출발점입니다.
+      - >-
+        방학 이후에도 지속적으로 연구에 참여할 의사가 있는 학생에게는 프로젝트의 진행 상황과
+        역량을 고려하여 머신러닝 모델 개발, 알고리즘 구현 등 보다 심화된 연구 주제를 제공합니다.
+
+# Currently advertised undergraduate research projects.
+undergrad_projects_title: 학부 연구생 모집 프로젝트
+undergrad_projects:
+  - title: FlowER 반응 예측 모델을 위한 데이터셋 확장
+    body: >-
+      최신 인공지능 모델의 성능은 알고리즘보다도 데이터의 질과 규모에 크게 좌우됩니다.
+      FlowER가 더 다양한 유기 반응과 반응 메커니즘을 학습할 수 있도록 새로운 반응 데이터를
+      구축하고 검증하는 연구를 수행합니다.
+    requires: 유기화학
+
+  - title: IR / Raman / MS / NMR 스펙트럼–분자구조 데이터베이스 구축
+    body: >-
+      분자의 스펙트럼만으로 분자구조를 예측하는 것은 분석화학의 핵심 목표 중 하나입니다. 이를
+      위한 인공지능 모델은 대규모의 스펙트럼–분자구조 대응 데이터를 필요로 합니다. 실제 문헌과
+      공개 데이터베이스를 활용하여 AI 학습용 데이터셋을 구축하는 연구를 수행합니다.
+    requires: 유기화학, 유기소재분광학
+
+  - title: LLM 기반 문헌 데이터 추출 자동화 플랫폼 개발
+    body: >-
+      화학 논문에는 머신러닝에 활용할 수 있는 데이터가 방대하게 존재하지만, 사람이 직접
+      수집하기에는 많은 시간이 소요됩니다. 최신 LLM을 활용하여 문헌으로부터 화학 데이터를
+      자동으로 추출하고 구조화하는 플랫폼을 개발합니다.
+    requires: Python 프로그래밍과 LLM 활용에 대한 관심
+
+  - title: AI for Chemistry를 위한 신규 데이터베이스 구축
+    body: >-
+      다양한 화학 데이터를 체계적으로 구축하고 품질을 관리하는 연구를 수행합니다.
+      데이터베이스는 모든 AI 모델의 출발점이며, 잘 구축된 데이터는 새로운 연구와 논문의
+      기반이 됩니다.
+    requires: 화학에 대한 기본 지식과 꼼꼼함

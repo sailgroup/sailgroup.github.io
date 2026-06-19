@@ -19,6 +19,7 @@ Live: https://sail.kookmin.ac.kr
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
 | 주제(테마) | `_data/themes.yml` — 필터 칩의 개수·색·이름·순서를 한 곳에서 편집 |
+| 모집(Positions) | `_data/positions.yml` — 박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트 |
 
 저자 목록의 PI 이름 `Joonyoung F. Joung` 은 자동으로 굵게 표시됩니다.
 
@@ -95,6 +96,24 @@ Live: https://sail.kookmin.ac.kr
   title: "2026.06.20. 워크숍"   # 선택
   caption: "한 줄 설명"         # 선택
 ```
+
+### 모집 — `_data/positions.yml`
+모집 안내 페이지(`/positions/`)의 모든 문구가 이 파일에 있습니다. 역할별 안내(박사후연구원·대학원생·
+학부 연구생)는 `sections:`, 현재 모집 중인 학부 프로젝트는 `undergrad_projects:` 목록에서 편집합니다.
+프로젝트를 추가/삭제하려면 블록을 추가/삭제하면 됩니다.
+```yaml
+sections:
+  - title: 대학원생                # 역할 제목
+    paragraphs:
+      - "문단 1."                  # 한 항목이 한 문단
+      - "문단 2."
+undergrad_projects:
+  - title: "프로젝트 제목"         # 학부 모집 프로젝트 (카드로 표시)
+    body: "프로젝트 설명."
+    requires: "필요 지식"          # 선택: '필요 지식:' 줄로 표시
+```
+본문에 `그룹 가이드` 라고 쓰면 자동으로 그룹 가이드 문서로 링크됩니다. 이 페이지는 요청에 따라
+한국어로만 작성되어 있습니다(사이트의 다른 페이지는 영어로 표시됨).
 
 ---
 

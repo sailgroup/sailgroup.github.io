@@ -1,0 +1,43 @@
+---
+layout: default
+title: Positions
+description: "SAIL 연구실 박사후연구원·대학원생·학부 연구생 모집 안내: 국민대학교 화학부 정준영 교수 연구실(Spectroscopy and AI Lab)."
+permalink: /positions/
+---
+{%- assign p = site.data.positions -%}
+{%- capture guide_link -%}<a href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">그룹 가이드</a>{%- endcapture -%}
+<div class="container container-narrow page-head">
+  <p class="eyebrow">Join the lab</p>
+  <h1>Positions</h1>
+  <p class="lead">{{ p.intro | replace: "그룹 가이드", guide_link }}</p>
+  <p class="positions-cta">
+    <a class="btn btn--solid" href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">그룹 가이드 {% include icon.html name="external" %}</a>
+    <a class="btn" href="mailto:{{ site.data.pi.email }}">{% include icon.html name="mail" %} {{ site.data.pi.email }}</a>
+  </p>
+</div>
+
+<section class="section section--tight">
+  <div class="container container-narrow">
+    <div class="prose">
+      {%- for s in p.sections -%}
+      <h2>{{ s.title }}</h2>
+      {%- for para in s.paragraphs -%}
+      <p>{{ para | replace: "그룹 가이드", guide_link }}</p>
+      {%- endfor -%}
+      {%- endfor -%}
+    </div>
+
+    <h2 class="positions-projects__title">{{ p.undergrad_projects_title }}</h2>
+    <div class="card-grid">
+      {%- for proj in p.undergrad_projects -%}
+      <article class="card">
+        <h3>{{ forloop.index }}. {{ proj.title }}</h3>
+        <p>{{ proj.body }}</p>
+        {%- if proj.requires and proj.requires != "" -%}
+        <p class="positions-req"><strong>필요 지식:</strong> {{ proj.requires }}</p>
+        {%- endif -%}
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
