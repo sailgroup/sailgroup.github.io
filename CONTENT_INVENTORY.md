@@ -121,8 +121,10 @@ was taken, what was normalized, and what is still open.
   source, so she has no "joins the lab" news entry; add one if a date is provided.
   Award and talk categories exist in the template but have no entries yet (none on
   record). Nothing in the feed was invented.
-- **Positions page (D33)**: new content (not migrated from Wix), supplied verbatim by
-  the PI in `_data/positions.yml` and shown at `/positions/`. **Gap:** the page is
-  Korean-only by request, so there is no English version yet (the rest of the site is
-  English). The `undergrad_projects:` list is PI-maintained and changes over time. The
-  contact CTA reuses the PI email from `pi.yml`; nothing on the page was invented.
+- **Positions page (D33, bilingual in D34)**: new content (not migrated from Wix). The
+  Korean copy in `_data/positions.yml` was supplied verbatim by the PI; shown at
+  `/positions/` with a 한국어/English toggle. **Gap/caveat:** the English is a draft
+  translation (author-made, not PI-reviewed) — flag for PI review before treating as
+  final; keep the two languages in sync when editing. The `projects:` list is
+  PI-maintained and changes over time. The contact CTA reuses the PI email from
+  `pi.yml`; nothing on the page was invented.

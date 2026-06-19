@@ -777,3 +777,24 @@ add their verification meta tags.
   `replace` filter, so the data stays plain text. A contact CTA reuses the PI email
   from `pi.yml` (not invented), making the repeated "email me" instruction
   actionable; one obvious typo in the supplied copy was corrected (논문를 → 논문을).
+
+## D34 — Positions page is now bilingual (한국어 / English toggle)
+
+- Supersedes the Korean-only choice in D33, on request. `_data/positions.yml` now
+  holds one block per language under `langs:` (code/label/intro/sections/projects +
+  the localized labels guide_phrase/guide_button/requires_label/projects_title);
+  `positions.html` renders a `.lang-pane` per language and `assets/js/positions.js`
+  shows the chosen one (others carry `hidden`), remembering the choice in
+  localStorage. Default render is Korean (first `langs` entry); the page chrome
+  (eyebrow, H1 "Positions") stays English on both.
+- **Toggle placement (UX):** a segmented control at the top-right of the header row,
+  on the same line as the H1. Chosen over placing it by the CTA buttons because a
+  language switch is conventionally top-right, must appear *before* the body so a
+  reader can pick a language before reading, and should stay visually separate from
+  the action CTAs (guide/email). Page-level (not global-nav) placement signals that
+  only this page is bilingual.
+- **The English is a draft translation** of the PI's Korean, not PI-reviewed copy —
+  flagged for review in README/CONTRIBUTING and CONTENT_INVENTORY. The Korean remains
+  the verbatim source of record.
+- Implementation note: `.lang-pane[hidden]` needs `display:none !important` because
+  `.positions-cta { display:flex }` would otherwise win over the `hidden` attribute.

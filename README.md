@@ -98,22 +98,32 @@ Live: https://sail.kookmin.ac.kr
 ```
 
 ### 모집 — `_data/positions.yml`
-모집 안내 페이지(`/positions/`)의 모든 문구가 이 파일에 있습니다. 역할별 안내(박사후연구원·대학원생·
-학부 연구생)는 `sections:`, 현재 모집 중인 학부 프로젝트는 `undergrad_projects:` 목록에서 편집합니다.
-프로젝트를 추가/삭제하려면 블록을 추가/삭제하면 됩니다.
+모집 안내 페이지(`/positions/`)의 모든 문구가 이 파일에 있습니다. 이 페이지는 **한국어/English 토글**
+(헤더 오른쪽 위)이 있어 언어별로 한 블록씩 `langs:` 아래에 둡니다. 각 언어 블록에서 소개글(`intro`),
+역할별 안내(`sections`), 학부 모집 프로젝트(`projects`)를 편집합니다. 프로젝트를 추가/삭제하려면
+블록을 추가/삭제하면 됩니다. **한국어를 고치면 영어도 같이 고쳐 두 언어가 어긋나지 않게 하세요.**
 ```yaml
-sections:
-  - title: 대학원생                # 역할 제목
-    paragraphs:
-      - "문단 1."                  # 한 항목이 한 문단
-      - "문단 2."
-undergrad_projects:
-  - title: "프로젝트 제목"         # 학부 모집 프로젝트 (카드로 표시)
-    body: "프로젝트 설명."
-    requires: "필요 지식"          # 선택: '필요 지식:' 줄로 표시
+langs:
+  - code: ko
+    label: 한국어
+    guide_phrase: 그룹 가이드        # 본문에서 이 문구가 자동으로 그룹 가이드로 링크됨
+    guide_button: 그룹 가이드        # CTA 버튼 라벨
+    requires_label: 필요 지식        # 프로젝트 카드의 '필요 지식:' 라벨
+    projects_title: 학부 연구생 모집 프로젝트
+    intro: "소개 문단."
+    sections:
+      - title: 대학원생              # 역할 제목
+        paragraphs:
+          - "문단 1."               # 한 항목이 한 문단
+    projects:
+      - title: "프로젝트 제목"
+        body: "프로젝트 설명."
+        requires: "유기화학"
+  - code: en                        # 같은 구조의 English 블록
+    label: English
+    # ...
 ```
-본문에 `그룹 가이드` 라고 쓰면 자동으로 그룹 가이드 문서로 링크됩니다. 이 페이지는 요청에 따라
-한국어로만 작성되어 있습니다(사이트의 다른 페이지는 영어로 표시됨).
+영어 번역본은 작성자가 만든 초안이므로 PI 검수 후 확정하는 것이 좋습니다.
 
 ---
 

@@ -129,26 +129,38 @@ The three newest items also show on the home page.
 
 ## Update the Positions page  →  `_data/positions.yml`
 
-All of the text on the Positions page (`/positions/`) lives here. Edit the
-intro, the per-role guidance under `sections:`, and the currently advertised
-undergraduate projects under `undergrad_projects:`. To advertise or retire a
-project, add or remove one block.
+All of the text on the Positions page (`/positions/`) lives here. The page has a
+**한국어 / English toggle** (top-right of the header), so the copy is kept one
+block per language under `langs:`. In each language block edit the `intro`, the
+per-role guidance under `sections:`, and the advertised undergraduate projects
+under `projects:`. To advertise or retire a project, add or remove one block.
+**Edit both languages together so they don't drift apart.**
 
 ```yaml
-sections:
-  - title: 대학원생                 # the role heading
-    paragraphs:
-      - "First paragraph."          # one list item = one paragraph
-      - "Second paragraph."
-undergrad_projects:
-  - title: "Project title"          # shown as a card
-    body: "What the project is about."
-    requires: "필요 지식"            # optional; rendered as a '필요 지식:' line
+langs:
+  - code: ko
+    label: 한국어
+    guide_phrase: 그룹 가이드        # this exact wording auto-links to the guide
+    guide_button: 그룹 가이드        # CTA button label
+    requires_label: 필요 지식        # the '필요 지식:' label on project cards
+    projects_title: 학부 연구생 모집 프로젝트
+    intro: "Intro paragraph."
+    sections:
+      - title: 대학원생              # the role heading
+        paragraphs:
+          - "First paragraph."       # one list item = one paragraph
+    projects:
+      - title: "Project title"       # shown as a card
+        body: "What the project is about."
+        requires: "유기화학"
+  - code: en                         # an English block with the same fields
+    label: English
+    # ...
 ```
 
-Writing `그룹 가이드` anywhere in the text auto-links to the group guide
-document. This page is written in Korean by request (the rest of the site is in
-English); keep new copy in Korean to match.
+Within a language block, the `guide_phrase` wording auto-links to the group guide
+wherever it appears in the intro/sections. The English copy is a draft
+translation; have the PI review it before treating it as final.
 
 ---
 
