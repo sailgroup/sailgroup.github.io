@@ -357,7 +357,7 @@ p { text-wrap: pretty; }
 
 /* Positions page: CTA row under the intro + the project cards' "필요 지식" line */
 .positions-cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: var(--space-md); }
-.positions-projects__title { margin-top: var(--space-xl); }
+.positions-projects__title { margin-top: var(--space-xl); margin-bottom: 1.1rem; } /* match the prose h2->paragraph gap above the project cards */
 .positions-req { margin-top: 0.7rem; font-size: var(--fs-sm); color: var(--ink-2); }
 
 /* --- Tags ----------------------------------------------------------------- */
