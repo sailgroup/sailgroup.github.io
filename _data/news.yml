@@ -22,6 +22,14 @@
 #   link_text    OPTIONAL. Link label. Defaults to "Details".
 # ---------------------------------------------------------------------------
 
+- date: "2026-06-19"
+  display_date: ""
+  category: award
+  title: "Heejeong selected for the AI Seoul Tech Research Support Program"
+  body: "Congratulations to Heejeong on being selected as a postdoctoral researcher for the 2026 AI Seoul Tech Research Support Program, hosted by the Seoul Future Foundation! This competitive program supports outstanding researchers advancing AI research in Seoul. We wish Heejeong all the best in this exciting opportunity!"
+  link: "/members/heejeong-kim/"
+  link_text: "Member page"
+  
 - date: "2026-06-14"
   display_date: ""
   category: event
