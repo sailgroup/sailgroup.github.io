@@ -3,6 +3,21 @@
 # Images re-fetched through Wix's fit transform (bounded <=1600px) for the web; originals
 # remain on Wix. Order matches the live gallery (newest first). No captions invented.
 
+- image: photos/260622_선빈혜정시열_포스터.jpg
+  title: "2026.06.22. 선빈, 혜정, 시열 포스터 발표"
+  caption: "선빈, 혜정, 시열 포스터 발표 - 제149차 물리화학분과 여름심포지엄 @ Busan"
+  alt: "2026.06.22. 선빈, 혜정, 시열 포스터 발표"
+
+- image: photos/260621_물리화학분과여름심포지엄_부산.jpg
+  title: "2026.06.21. 부산에서"
+  caption: "부산 해운대에서"
+  alt: "2026.06.21. 부산 해운대에서"
+
+- image: photos/260621_물리화학분과여름심포지엄.jpg
+  title: "2026.06.21. 물리화학분과 여름심포지엄"
+  caption: "제149차 물리화학분과 여름심포지엄 @ Busan"
+  alt: "2026.06.21. 물리화학분과 여름심포지엄"
+  
 - image: photos/photo-01.jpg
   title: "2026.04.10. 선빈 생일 회식"
   caption: "술들고 행복한 선빈 / Happy Birthday Seonbin!"
