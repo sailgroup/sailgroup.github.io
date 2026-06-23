@@ -31,7 +31,10 @@
   title: "An overview of reaction outcome prediction with physics-based and data-driven methods"
   authors: "Joonyoung F. Joung*, Nicholas Casetti, Priyanka Raghavan, Connor W. Coley*"
   journal: "Chem. Soc. Rev."
-  ref: "Advance Article"
+  # ref: "Advance Article"
+  vol: 55
+  issue: 12
+  pages: "6768-6813"
   year: 2026
   doi: "https://doi.org/10.1039/D6CS00079G"
   preprint_url: ""
