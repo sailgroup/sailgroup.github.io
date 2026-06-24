@@ -22,6 +22,14 @@
 #   link_text    OPTIONAL. Link label. Defaults to "Details".
 # ---------------------------------------------------------------------------
 
+- date: "2026-06-24"
+  display_date: ""
+  category: award
+  title: "Jihwan wins Best Oral Presentation Award at the 149th KCS Physical Chemistry Division Summer Symposium"
+  body:  "Congratulations to Jihwan on receiving the Best Oral Presentation Award at the 149th Physical Chemistry Division Summer Symposium held in Busan! This award recognizes the outstanding quality and clarity of his research presentation. We are proud of his achievement and look forward to his continued contributions!"
+  link: "/members/jihwan-kim/"
+  link_text: "Member page"
+  
 - date: "2026-06-19"
   display_date: ""
   category: award
