@@ -3,6 +3,21 @@
 # Images re-fetched through Wix's fit transform (bounded <=1600px) for the web; originals
 # remain on Wix. Order matches the live gallery (newest first). No captions invented.
 
+- image: photos/260623_물리화학분과_김지환수상2.jpg
+  title: "2026.06.24. 지환 우수구두발표상 수상"
+  caption: "지환 우수구두발표상 수상 - 제149차 물리화학분과 여름심포지엄 @ Busan"
+  alt: "2026.06.24. 지환 우수구두발표상 수상"
+  
+- image: photos/260623_물리화학분과_김지환수상.jpg
+  title: "2026.06.24. 지환 우수구두발표상 수상"
+  caption: "지환 우수구두발표상 수상 - 제149차 물리화학분과 여름심포지엄 @ Busan"
+  alt: "2026.06.24. 지환 우수구두발표상 수상"
+  
+- image: photos/260623_물리화학분과_김지환발표.jpg
+  title: "2026.06.23. 지환 구두 발표"
+  caption: "지환 구두 발표 - 제149차 물리화학분과 여름심포지엄 @ Busan"
+  alt: "2026.06.23. 지환 구두 발표"
+  
 - image: photos/260622_선빈혜정시열_포스터.jpg
   title: "2026.06.22. 선빈, 혜정, 시열 포스터 발표"
   caption: "선빈, 혜정, 시열 포스터 발표 - 제149차 물리화학분과 여름심포지엄 @ Busan"
