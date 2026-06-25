@@ -25,7 +25,7 @@ scripts: [pubs]
     <section class="year-group">
       <h2 class="year-label">{{ yr.name }}</h2>
       <div class="pub-list">
-        {%- for p in yr.items -%}{% include pub-item.html p=p %}{%- endfor -%}
+        {%- for p in yr.items -%}{% include pub-item.html p=p show_id=true %}{%- endfor -%}
       </div>
     </section>
     {%- endfor -%}

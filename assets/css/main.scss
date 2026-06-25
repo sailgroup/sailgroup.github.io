@@ -530,6 +530,15 @@ p { text-wrap: pretty; }
   padding: var(--space-md) 0;
   border-bottom: 1px solid var(--line);
 }
+.pub__aside { display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; }
+.pub__num {
+  font-family: var(--font-serif);
+  font-size: var(--fs-md);
+  line-height: 1.32;
+  font-weight: 600;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
 .pub__figure {
   width: 88px; height: 66px;
   object-fit: cover;

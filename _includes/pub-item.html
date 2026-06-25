@@ -2,10 +2,13 @@
 {%- assign hasimg = false -%}{%- if p.image and p.image != "" -%}{%- assign hasimg = true -%}{%- endif -%}
 {%- assign hasdoi = false -%}{%- if p.doi and p.doi != "" -%}{%- assign hasdoi = true -%}{%- endif -%}
 {%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
-<article class="pub{% unless hasimg %} pub--nofig{% endunless %}" data-themes="{{ p.themes | join: '|' }}" data-year="{{ p.year }}">
-  {%- if hasimg -%}
-  <img class="pub__figure" src="{{ '/assets/images/pubs/' | append: p.image | relative_url }}" alt="" loading="lazy">
-  {%- endif -%}
+{%- comment -%}show_id is passed ONLY by the Publications listing (publications.html): it puts the paper's catalogue number (p.id) at the top of the left column, on the title's line, with the thumbnail below. Member/alumni pages (member-pubs.html) do not pass it, so the markup below the number is the same as before.{%- endcomment -%}
+{%- assign shownum = false -%}{%- if include.show_id and p.id and p.id != "" -%}{%- assign shownum = true -%}{%- endif -%}
+{%- capture figure -%}{%- if hasimg -%}<img class="pub__figure" src="{{ '/assets/images/pubs/' | append: p.image | relative_url }}" alt="" loading="lazy">{%- endif -%}{%- endcapture -%}
+<article class="pub{% unless shownum or hasimg %} pub--nofig{% endunless %}" data-themes="{{ p.themes | join: '|' }}" data-year="{{ p.year }}">
+  {%- if shownum -%}
+  <div class="pub__aside"><span class="pub__num">{{ p.id }}</span>{{ figure }}</div>
+  {%- else -%}{{ figure }}{%- endif -%}
   <div class="pub__body">
     <h3 class="pub__title">{% if p.id and p.id != "" %}<a class="pub__link" href="{{ '/publications/' | append: p.id | append: '/' | relative_url }}">{{ p.title }}</a>{% elsif p.doi and p.doi != "" %}<a class="pub__link" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
     <p class="pub__authors">{% include pi-authors.html authors=p.authors person=include.person %}</p>
