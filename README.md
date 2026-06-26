@@ -146,7 +146,7 @@ sections:
 | 주제 태그 색·이름·개수·순서 | `_data/themes.yml` |
 | 상단 메뉴(네비) 항목 | `_data/navigation.yml` |
 | 푸터 내용 | `_includes/footer.html` |
-| 논문 목록 한 줄(제목·저자·배지·태그) | `_includes/pub-item.html` |
+| 논문 목록 한 줄(번호·제목·저자·배지·태그) | `_includes/pub-item.html` |
 | 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
 | PI 페이지 구성 | `pi.html` |
 | 전체 색상·글꼴·간격(디자인 토큰) | `assets/css/main.scss` 맨 위 `:root` |

@@ -83,7 +83,7 @@ list, gets a detail page at `/publications/<id>/`, and — if an author matches 
 current member's name — shows up on that member's page too, all automatically.
 
 ```yaml
-- id: 42                       # required, a new unique number
+- id: 42                       # required, a new unique number; shown on the list
   title: "Paper title"         # required
   authors: "Joonyoung F. Joung*, A. Other"  # required; PI name is auto-bolded
   journal: "Nature"            # required; map a logo in _data/journal_logos.yml
