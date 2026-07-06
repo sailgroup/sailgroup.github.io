@@ -33,12 +33,25 @@
   journal: "ACS Energy Lett."
   ref: "Just accepted"
   year: 2026
-  doi: ""
+  doi: "https://doi.org/10.1021/acsenergylett.6c01560"
   preprint_url: ""
   themes:
     - "Quantum chemical modeling"
   image: ""
-  abstract: ""
+  abstract: >
+    Monodisperse iodide-based perovskite colloidal quantum dots (Pe-CQDs) are attractive for photovoltaics, 
+    but scaling-up their synthesis is challenging. Because precursor conversion, nucleation, and crystal growth occur 
+    almost simultaneously during rapid ionic crystallization, large-scale production typically suffers from local concentration 
+    variations that broaden the size distribution. To address this, we report a gram-scale synthesis strategy that separates 
+    the crystallization stages through controlled precursor diffusion. Ligand-mediated regulation delays monomer formation 
+    and suppresses continuous nucleation, yielding uniform CsPbI3-Pe-CQDs without post-synthetic size selection. 
+    This diffusion-control strategy successfully extends to formamidinium (FA) incorporation, enabling the direct synthesis of 
+    composition-tunable CsxFA1–xPbI3-Pe-CQDs while bypassing conventional cation exchange. The resulting monodisperse Pe-CQDs 
+    enable the fabrication of solar cells with a power conversion efficiency of 16.7%, while maintaining a robust efficiency of 
+    over 15% even with gram-scale batches. This approach demonstrates a reliable and scalable strategy for manufacturing device-grade 
+    CQD photovoltaics without sacrificing device-relevant properties upon scale-up.
+
+  
   
 - id: 41
   title: "An overview of reaction outcome prediction with physics-based and data-driven methods"
