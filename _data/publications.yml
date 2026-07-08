@@ -26,6 +26,28 @@
 #   3. id 39 preprint URL on Wix was malformed ("https://10.26434/...");
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
+- id: 43
+  title: "Continuous Light-Driven Pure CO2 Production by Regenerative Non-Aqueous Amine–Photoacid Cycling"
+  authors: "Gi Hyun Byun, Nayeong Kim, Joonyoung F Joung, Michael Massen-Hane, Betar M Gallant, Hyowon Seo, T Alan Hatton*"
+  journal: "ChemRxiv"
+  ref: "Preprint"
+  year: 2026
+  doi: ""
+  preprint_url: "https://doi.org/10.26434/chemrxiv.15005144/v1"
+  themes:
+    - "Quantum chemical modeling"
+  image: ""
+  abstract: >
+    Photochemical CO2 separation offers a low-temperature alternative to conventional thermal CO2 separation, 
+    replacing fuel-derived heat with light as the energy input. Although prior photoacid and photobase systems 
+    have shown promising light-driven CO2 capture–release behavior, continuous pure-CO2 generation from dilute feeds 
+    remains insufficiently developed. Here, we demonstrate light-driven pure-CO2 production from a 15% CO2 feed, 
+    reaching 3.2 sccm from 1.2 mL min−1 of circulating sorbent solution in a single lab-scale reactor, equivalent to 
+    4.6 L day−1. In the dimethyl sulfoxide amine–photoacid platform, acidity matching allows each photoacid molecule 
+    to undergo repeated excited-state proton transfer, coupling carbamic acidforming CO2 capture to efficient release.
+    The evolved CO2 forms self-generated bubbles without external sweep gas in the reduced-pressure continuous flow 
+    photoreactor developed in this work. Techno-economic analysis projects a minimum separation cost of $31.7 tCO2 −1 
+    from 15% CO2 source. These results establish a practical foundation for scalable light-driven carbon capture.
 
 - id: 42
   title: "Precursor Diffusion-Controlled Scalable Synthesis of Monodisperse Iodide Perovskite Quantum Dots for Efficient Photovoltaics"
