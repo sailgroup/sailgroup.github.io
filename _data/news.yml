@@ -111,7 +111,7 @@
   link_text: "Member page"
   
 - date: "2025-09-04"
-  display_date: "2026"
+  display_date: ""
   category: publication
   title: "FlowER is now published in Nature!"
   body: "\"Electron flow matching for generative reaction mechanism prediction.\""

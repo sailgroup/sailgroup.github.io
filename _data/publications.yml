@@ -2,22 +2,22 @@
 # ---------------------------------------------------------------------------
 # SAIL (Joonyoung F. Joung Lab, Kookmin University) publication list
 # Source: sailabjfjoung.wixsite.com/sail/research-paper (full page fetched 2026-06-13)
-# Coverage: all 41 papers (id 1-41), newest first.
+# Coverage: all 43 papers (id 1-43), newest first.
 #
 # Fields are display-ready strings (title / authors / journal / ref) so they
 # can be dropped into a Jekyll template with minimal massaging. `doi` and
 # `preprint_url` drive the link buttons; `themes` are the SAIL research tags;
-# `image` is intentionally empty (see NOTES).
+# `image` is the per-paper graphical abstract (see NOTES).
 #
 # PI name to highlight in the template (bold): "Joonyoung F. Joung"
 #   - also appears once as "Joonyoung Francis Joung" (id 13) -> add as alias.
 # Author markers preserved from source: * = corresponding, † = equal contribution.
 #
 # NOTES / KNOWN GAPS (verify before publishing):
-#   1. IMAGES: every per-paper thumbnail on Wix is the default empty-state
-#      placeholder, so there is no source graphic to copy. `image` is blank for
-#      all 41. Source each from the paper's graphical abstract / journal TOC,
-#      or leave blank. Do NOT invent images.
+#   1. IMAGES: `image` is each paper's graphical abstract / journal TOC, stored
+#      as pub-<id>.<ext> in assets/images/pubs/. Populated for id 1-42; id 43 (a
+#      preprint) has none yet. Source from the paper's graphical abstract, or
+#      leave blank. Do NOT invent images.
 #   2. THEMES: extracted from the rendered theme-tag icons on Wix. Papers below
 #      that list a single theme had a second theme icon on Wix that carried no
 #      readable label in extraction (image id 631af9db..., possibly an empty
@@ -1497,7 +1497,7 @@
   journal: "Adv. Funct. Mater."
   vol: 28
   issue: 39
-  pages: "1081394"
+  pages: "1801394"
   year: 2018
   doi: "https://doi.org/10.1002/adfm.201801394"
   preprint_url: ""
