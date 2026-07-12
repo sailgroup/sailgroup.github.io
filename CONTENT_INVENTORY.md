@@ -23,7 +23,7 @@ was taken, what was normalized, and what is still open.
 - PI portrait: `pi.jpg` (real). Decorative banner: `pi-alt.png`.
 - Member portraits (real): `heejeong-kim.jpg`, `hyejeong-jeon.jpg`,
   `jihwan-kim.jpg`, `siyeol-in.jpg`, `seonbin-kim.jpg`.
-- Journal covers (original resolution): `cover-17-njc-2020.png`,
+- Journal covers (original resolution): `cover-17-njc-2020.jpg`,
   `cover-25-jacsau-2021.jpg`, `cover-30-jcim-2022.jpg`,
   `cover-35-acscentsci-2025.jpg`.
 - `home-1.jpg` / `home-6.jpg` are an identical Wix stock teal hero graphic; not
