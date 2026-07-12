@@ -1,2 +1,0 @@
-{%- comment -%}Topic-tag colors generated from _data/themes.yml, so colors are data-driven (edit themes.yml, not SCSS). 8-digit hex appends alpha: 1a=10% tint, 4d=30% border.{%- endcomment -%}
-<style>{% for t in site.data.themes %}{% assign s = t.name | slugify %}.tag--{{ s }}{color:{{ t.color }};background:{{ t.color }}1a;border-color:{{ t.color }}4d}.pub-filter[data-theme-slug="{{ s }}"]{--c:{{ t.color }}}.pub-filter[data-theme-slug="{{ s }}"].is-active{background:{{ t.color }};border-color:{{ t.color }};color:#fff}{% endfor %}</style>

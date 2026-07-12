@@ -5,13 +5,14 @@
   <meta name="color-scheme" content="light">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   {%- comment -%}CSP via meta (GitHub Pages can't set response headers). All executable JS is same-origin files; the only inline <script> blocks are non-executing JSON/JSON-LD, so script-src 'self' breaks nothing while blocking injected scripts. jsdelivr is the one external origin (Pretendard font CSS+woff2).{%- endcomment -%}
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; object-src 'none'; base-uri 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; object-src 'none'; base-uri 'self'">
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" integrity="sha384-GIdEBaqGN9mNkDkMkzMHW8EKUqtpPIe/sLj1X7DIrnc9uPtLROJgmuDlh+3rBw0j" crossorigin="anonymous">
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  {%- include theme-styles.html -%}
+  {%- comment -%}Data-driven topic-tag colors, generated from _data/themes.yml as a cacheable stylesheet (not an inline <style>, so the CSP needs no style 'unsafe-inline').{%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/css/themes.css' | relative_url }}">
   <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
   <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="icon" href="{{ '/assets/images/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">

@@ -964,3 +964,10 @@ body.no-scroll { overflow: hidden; }
 @media (min-width: 721px) {
   .paper__head--figured { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
 }
+
+/* Small layout utilities. Kept as classes (never inline style=) so the page CSP can
+   forbid inline styles: style-src has no 'unsafe-inline'. */
+.u-mt-lg { margin-top: var(--space-lg); }
+.u-left { text-align: left; }
+.error-404 { text-align: center; padding-block: var(--space-2xl); }
+.error-404 .eyebrow { justify-content: center; }

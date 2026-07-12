@@ -1,0 +1,4 @@
+---
+---
+{% for t in site.data.themes %}{% assign s = t.name | slugify %}.tag--{{ s }}{color:{{ t.color }};background:{{ t.color }}1a;border-color:{{ t.color }}4d}.pub-filter[data-theme-slug="{{ s }}"]{--c:{{ t.color }}}.pub-filter[data-theme-slug="{{ s }}"].is-active{background:{{ t.color }};border-color:{{ t.color }};color:#fff}
+{% endfor %}

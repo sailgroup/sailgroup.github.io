@@ -27,7 +27,7 @@ optional prose body from the page, usually empty).
     {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
     {%- include social-links.html person=x -%}
     {%- assign body = include.body | strip -%}
-    {%- if body != "" -%}<div class="prose" style="margin-top:var(--space-lg);text-align:left">{{ include.body }}</div>{%- endif -%}
+    {%- if body != "" -%}<div class="prose u-mt-lg u-left">{{ include.body }}</div>{%- endif -%}
     {%- include member-pubs.html person=x -%}
   </div>
 </section>
