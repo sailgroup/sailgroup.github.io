@@ -7,11 +7,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Allow the deploy job to publish to GitHub Pages.
+# Least privilege: the workflow as a whole only needs to read the repo. The
+# Pages/OIDC write scopes are granted to the deploy job alone (see below).
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # Run JavaScript actions on Node 24. The Node 20 runtime these actions ship with is being
 # removed from GitHub runners; this opts every JS action in the workflow into Node 24.
@@ -62,6 +61,9 @@ jobs:
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     environment:
       name: github-pages
