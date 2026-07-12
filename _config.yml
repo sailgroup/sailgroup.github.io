@@ -32,6 +32,10 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# Jekyll skips dotfolders by default; force-include the RFC 9116 security.txt.
+include:
+  - ".well-known"
+
 exclude:
   - _source/
   - vendor/

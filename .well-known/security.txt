@@ -1,0 +1,9 @@
+---
+permalink: /.well-known/security.txt
+---
+# Security contact for the SAIL website (sail.kookmin.ac.kr).
+# RFC 9116. Renew the Expires date below before it lapses.
+Contact: mailto:{{ site.data.pi.email }}
+Expires: 2027-07-12T00:00:00.000Z
+Preferred-Languages: en, ko
+Canonical: {{ site.url }}/.well-known/security.txt
