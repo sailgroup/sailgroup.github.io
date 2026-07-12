@@ -4,11 +4,11 @@
   <meta name="theme-color" content="#161310">
   <meta name="color-scheme" content="light">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  {%- comment -%}CSP via meta (GitHub Pages can't set response headers). All executable JS is same-origin files; the only inline <script> blocks are non-executing JSON/JSON-LD, so script-src 'self' breaks nothing while blocking injected scripts. jsdelivr is the one external origin (Pretendard font CSS+woff2).{%- endcomment -%}
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+  {%- comment -%}CSP via meta (GitHub Pages can't set response headers). Every CSS/JS/font/image is same-origin (Pretendard is self-hosted), so this is a strict same-origin policy with NO external origins. script-src 'self' + no inline script blocks injected code; require-trusted-types-for hardens DOM-XSS sinks (the site's JS uses none, so it does not break).{%- endcomment -%}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
 
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" integrity="sha384-GIdEBaqGN9mNkDkMkzMHW8EKUqtpPIe/sLj1X7DIrnc9uPtLROJgmuDlh+3rBw0j" crossorigin="anonymous">
+  {%- comment -%}Pretendard is self-hosted (assets/fonts/pretendard/) so the site has zero external origins. Its CSS lazy-loads only the woff2 subsets a page actually needs (92 unicode-range chunks), with font-display:swap.{%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/fonts/pretendard/pretendard.css' | relative_url }}">
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   {%- comment -%}Data-driven topic-tag colors, generated from _data/themes.yml as a cacheable stylesheet (not an inline <style>, so the CSP needs no style 'unsafe-inline').{%- endcomment -%}
