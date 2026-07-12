@@ -255,6 +255,13 @@ module SAIL
         if !blank?(cat) && !NEWS_CATS.include?(cat)
           err("#{at}: `category: #{cat}` is not one of #{NEWS_CATS.join(", ")}.")
         end
+        # `link` goes into an href; keep it an internal path or a real URL (never a
+        # javascript:/data: scheme). The page CSP also blocks javascript: URIs; this
+        # closes it at the data layer too.
+        link = n["link"]
+        if !blank?(link) && !link.to_s.start_with?("/") && !link.to_s.start_with?("http")
+          err("#{at}: `link: #{link}` must be an internal path (starts with \"/\") or a full URL (http...).")
+        end
       end
     end
 

@@ -40,3 +40,13 @@
   var yr = document.getElementById("footer-year");
   if (yr) yr.textContent = String(new Date().getFullYear());
 })();
+
+/* Mild deterrent against casual saving of the lab's photos/portraits/covers:
+   suppress the right-click menu and drag on <img>. This is NOT a security control
+   -- the image URLs are public and reachable via DevTools, a direct request, or a
+   screenshot -- just a small nudge against one-click "Save/Open image". */
+(function () {
+  function block(e) { if (e.target && e.target.tagName === "IMG") e.preventDefault(); }
+  document.addEventListener("contextmenu", block);
+  document.addEventListener("dragstart", block);
+})();

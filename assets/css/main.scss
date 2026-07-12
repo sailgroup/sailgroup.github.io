@@ -971,3 +971,6 @@ body.no-scroll { overflow: hidden; }
 .u-left { text-align: left; }
 .error-404 { text-align: center; padding-block: var(--space-2xl); }
 .error-404 .eyebrow { justify-content: center; }
+
+/* Pair with the contextmenu/dragstart deterrent in nav.js (casual image-save nudge, not security). */
+img { -webkit-user-drag: none; user-select: none; }
