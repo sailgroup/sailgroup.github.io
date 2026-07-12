@@ -18,6 +18,8 @@ The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data
 - [News]({{ site.url }}/news/): lab updates and milestones.
 - [Positions]({{ site.url }}/positions/): how to join the lab and how to apply (postdoctoral researcher, PhD student, and undergraduate research), including currently advertised undergraduate projects. Written in Korean.
 
+Full text (all abstracts, people, research): {{ site.url }}/llms-full.txt
+
 ## Principal investigator
 {{ site.data.pi.name }} ({{ site.data.pi.name_ko }}) — {{ site.data.pi.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}. Google Scholar: {{ site.data.pi.scholar }} · ORCID: {{ site.data.pi.orcid }}
 

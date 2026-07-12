@@ -1,0 +1,38 @@
+---
+permalink: /llms-full.txt
+---
+# SAIL — Spectroscopy and AI Lab (Joonyoung F. Joung Lab, Kookmin University) — full content
+
+> {{ site.description }}
+
+The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }} in the {{ site.data.pi.department }} at {{ site.data.pi.institution }}, integrates machine learning with chemistry. Website: {{ site.url }}. This file is the expanded, full-text companion to {{ site.url }}/llms.txt.
+
+## Research areas
+{% for a in site.data.research.areas %}### {{ a.title }}
+{{ a.body | strip_html | strip_newlines }}
+{% endfor %}
+## Publications ({{ site.data.publications | size }}, newest first)
+{% assign pubs = site.data.publications | sort: "id" | reverse -%}
+{% for p in pubs %}### [{{ p.id }}] {{ p.title }}
+Authors: {{ p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', '' }}
+Venue: {{ p.journal }}{% if p.vol %}, {{ p.vol }}{% if p.issue and p.issue != "" %} ({{ p.issue }}){% endif %}{% if p.pages and p.pages != "" %}, {{ p.pages }}{% endif %}{% elsif p.ref and p.ref != "" %}, {{ p.ref }}{% endif %} ({{ p.year }}){% if p.doi and p.doi != "" %}
+DOI: {{ p.doi }}{% endif %}{% if p.preprint_url and p.preprint_url != "" %}
+Preprint: {{ p.preprint_url }}{% endif %}
+Page: {{ site.url }}/publications/{{ p.id }}/
+{% if p.themes and p.themes.size > 0 %}Topics: {{ p.themes | join: ", " }}
+{% endif %}{% if p.abstract and p.abstract != "" %}Abstract: {{ p.abstract | strip_html | strip_newlines }}
+{% endif %}
+{% endfor %}## People
+### Current members
+{% assign cur = site.data.people | where: "status", "current" -%}
+{% for m in cur %}- {{ m.name }}{% if m.name_ko and m.name_ko != "" %} ({{ m.name_ko }}){% endif %} — {{ m.role }}{% if m.slug and m.slug != "" %}. {{ site.url }}/people/{{ m.slug }}/{% endif %}
+{% endfor %}
+### Alumni
+{% assign al = site.data.people | where: "status", "alumni" -%}
+{% for a in al %}- {{ a.name }}{% if a.name_ko and a.name_ko != "" %} ({{ a.name_ko }}){% endif %} — {{ a.role }}
+{% endfor %}
+## Principal investigator
+{{ site.data.pi.name }} ({{ site.data.pi.name_ko }}) — {{ site.data.pi.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}. Google Scholar: {{ site.data.pi.scholar }} · ORCID: {{ site.data.pi.orcid }}
+
+## Joining the lab
+See {{ site.url }}/positions/ (Korean) for how to apply as a postdoctoral researcher, PhD student, or undergraduate researcher, including currently advertised undergraduate projects.
