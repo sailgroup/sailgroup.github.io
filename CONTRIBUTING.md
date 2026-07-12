@@ -35,13 +35,13 @@ the live site is left untouched — so you cannot break the site by editing data
    ```
 
 `status` decides which page lists them (`current` → Members, `alumni` → Alumni).
-Everyone gets a personal page at `/people/<slug>/`. Required: `name`, `role`,
+Everyone with a `slug` gets a personal page at `/people/<slug>/` (omit the slug and they still list on the grid, just without a page). Required: `name`, `role`,
 `status`. Optional social links (real URL only): `linkedin:`, `github:`,
 `scholar:`, `orcid:`, `website:`. An optional `department:` (e.g. `School of Artificial
 Intelligence`) shows the person's own school/department on a line under the lab affiliation,
 useful when their home department differs from the lab's. Alumni may add a one-line `note:`. If a lab paper
 lists this person under a different spelling (e.g. "H Kim" vs "Heejeong Kim"), add
-`author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them.
+`author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them. Keep an alias distinctive (a surname plus an initial like `"H Kim"`, not a bare `"Kim"`): matching is by substring, so a too-common alias can pull unrelated papers onto their page.
 
 **A second photo on hover** (optional): set `photo_hover:` to a second image in
 `assets/images/` (e.g. `gil-dong-hong-hover.jpg`) and it cross-fades in when
@@ -147,6 +147,10 @@ sections:
       - "First paragraph."          # one list item = one paragraph
       - "Second paragraph."
 ```
+
+`paragraphs` (and `projects` below) must be a **list** — each item begins with `-`.
+If you write `paragraphs:` as one value instead, the build stops with a clear
+message (it used to render nothing silently).
 
 **Project cards (the boxes)** — today the "학부 연구생" role shows four cards. The
 same cards can be attached to **any** role (Graduate students, Postdoc, etc.):

@@ -37,6 +37,7 @@ module SAIL
       validate_navigation(site.data["navigation"])
       validate_pi(site.data["pi"])
       validate_home(site.data["home"])
+      validate_positions(site.data["positions"])
       validate_journal_logos(site.data["journal_logos"])
       warn_unused_themes(site.data["themes"], site.data["publications"])
 
@@ -270,7 +271,7 @@ module SAIL
         end
         unless blank?(c["image"])
           full = c["image"].to_s.sub(/\.[^.]+\z/, "") + "-full.jpg"
-          warn("#{at}: high-res `#{full}` not found in assets/images/ (the fullscreen cover viewer needs it; generate it from the original cover).") unless image_exists?(full)
+          err("#{at}: high-res `#{full}` not found in assets/images/ (the fullscreen cover viewer needs it; generate it from the original cover).") unless image_exists?(full)
         end
         pid = c["publication_id"]
         if !pid.nil? && !ids.include?(pid)
@@ -373,6 +374,48 @@ module SAIL
       contact = home["contact"]
       if contact.is_a?(Hash) && !blank?(contact["email"]) && !contact["email"].to_s.include?("@")
         err("home.yml: `contact.email` looks invalid (no '@'): #{contact["email"]}")
+      end
+    end
+
+    # --- positions (Positions page copy; a record with an intro + sections list) --
+    # positions.html iterates `paragraphs` and `projects` as lists, and Liquid
+    # iterates ZERO times over a scalar -- so a `paragraphs:` written as one value,
+    # or a mis-nested `projects:`, would silently drop that text / those cards with
+    # a green build. Validate the shape so that mistake fails loudly instead.
+    def validate_positions(pos)
+      return if pos.nil?
+      unless pos.is_a?(Hash)
+        err("positions.yml: expected a single record (key: value lines).")
+        return
+      end
+      if !blank?(pos["guide_url"]) && !pos["guide_url"].to_s.start_with?("http")
+        err("positions.yml: `guide_url` should be a full URL (http...), got: #{pos["guide_url"]}")
+      end
+      secs = pos["sections"]
+      return if secs.nil?
+      unless secs.is_a?(Array)
+        err("positions.yml: `sections` must be a list (each role starts with `-`).")
+        return
+      end
+      secs.each_with_index do |s, i|
+        at = blank?(s["title"]) ? "positions.yml section #{i + 1}" : "positions.yml \"#{s["title"]}\""
+        err("#{at}: missing required field `title`.") if blank?(s["title"])
+        paras = s["paragraphs"]
+        if paras.nil?
+          err("#{at}: missing required field `paragraphs`.")
+        elsif !paras.is_a?(Array)
+          err("#{at}: `paragraphs` must be a list (each paragraph is a `-` item), not a single value.")
+        end
+        projs = s["projects"]
+        next if projs.nil?
+        unless projs.is_a?(Array)
+          err("#{at}: `projects` must be a list (each card is a `-` item).")
+          next
+        end
+        projs.each_with_index do |pr, j|
+          pat = "#{at} project #{j + 1}"
+          %w[title body].each { |f| err("#{pat}: missing required field `#{f}`.") if blank?(pr[f]) }
+        end
       end
     end
 

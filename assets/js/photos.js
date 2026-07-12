@@ -22,7 +22,7 @@
     cur = (i % n + n) % n;
     var d = data[cur];
     imgEl.src = d.src;
-    imgEl.alt = d.title || "";
+    imgEl.alt = d.alt || d.title || "";
     titleEl.textContent = d.title || "";
     titleEl.style.display = d.title ? "" : "none";
     descEl.textContent = d.caption || "";
