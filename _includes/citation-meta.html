@@ -1,0 +1,33 @@
+{%- comment -%}
+Google Scholar / Highwire Press citation_* meta for publication detail pages.
+Emits only when page.pid is set (the generated /publications/<id>/ pages); every
+value comes from the same publications.yml entry the page renders, so the meta
+cannot drift from the visible citation. Helps Google Scholar and reference
+managers recognize each paper. No citation_pdf_url: the lab links to the DOI,
+not a self-hosted PDF.
+{%- endcomment -%}
+{%- if page.pid -%}
+{%- assign p = site.data.publications | where: "id", page.pid | first -%}
+{%- if p -%}
+  <meta name="citation_title" content="{{ p.title | escape }}">
+  {%- assign authlist = p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', '' | split: ',' -%}
+  {%- for a in authlist -%}{%- assign an = a | strip -%}{%- if an != "" %}
+  <meta name="citation_author" content="{{ an | escape }}">{% endif -%}{%- endfor -%}
+  {%- if p.journal and p.journal != "" %}
+  <meta name="citation_journal_title" content="{{ p.journal | escape }}">{% endif -%}
+  {%- if p.vol %}
+  <meta name="citation_volume" content="{{ p.vol }}">{% endif -%}
+  {%- if p.issue and p.issue != "" %}
+  <meta name="citation_issue" content="{{ p.issue }}">{% endif -%}
+  {%- if p.pages and p.pages != "" -%}
+  {%- assign pp = p.pages | split: '-' %}
+  <meta name="citation_firstpage" content="{{ pp[0] | strip }}">
+  {%- if pp.size > 1 %}
+  <meta name="citation_lastpage" content="{{ pp[1] | strip }}">{% endif -%}
+  {%- endif -%}
+  {%- if p.year %}
+  <meta name="citation_publication_date" content="{{ p.year }}">{% endif -%}
+  {%- if p.doi and p.doi != "" %}
+  <meta name="citation_doi" content="{{ p.doi | replace: 'https://doi.org/', '' | replace: 'http://doi.org/', '' }}">{% endif -%}
+{%- endif -%}
+{%- endif -%}

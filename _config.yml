@@ -54,8 +54,10 @@ exclude:
   # are kept out of the repo via .gitignore instead, so they never reach the CI build.
 
 # --- SEO --------------------------------------------------------------------
-twitter:
-  card: summary_large_image
+# No `twitter:` block on purpose: the lab has no X/Twitter account, and an empty
+# one made jekyll-seo-tag emit a bogus `twitter:site` ("@") and a `twitter:creator`
+# built from the author name. With no `twitter:` key, seo-tag still defaults
+# `twitter:card` to summary_large_image, so link previews keep the large image.
 author:
   name: Joonyoung F. Joung
 social:

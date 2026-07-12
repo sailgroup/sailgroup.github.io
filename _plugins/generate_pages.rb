@@ -56,7 +56,13 @@ module SAIL
       when "publications"
         desc = entry["abstract"].to_s.strip
         desc = "#{entry["journal"]} (#{entry["year"]}). #{strip_markers(entry["authors"])}" if desc.empty?
-        { "title" => entry["title"].to_s, "description" => clip(desc, 200) }
+        meta = { "title" => entry["title"].to_s, "description" => clip(desc, 200) }
+        # Per-paper OG/Twitter image = its graphical abstract, so link previews and
+        # AI/social cards show the figure instead of the generic site banner. Papers
+        # with no image (e.g. the preprint id 43) fall back to the site default.
+        img = entry["image"].to_s.strip
+        meta["image"] = "/assets/images/pubs/#{img}" unless img.empty?
+        meta
       when "people"
         nk   = entry["name_ko"].to_s.strip
         who  = nk.empty? ? entry["name"].to_s : "#{entry["name"]} (#{nk})"
