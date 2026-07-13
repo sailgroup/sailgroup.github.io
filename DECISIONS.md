@@ -840,3 +840,10 @@ add their verification meta tags.
   verbatim. Her 1.0 MB 824x1094 PNG portrait was recompressed to a 40 KB 600px-wide JPG
   (the PNG alpha channel is fully opaque, so nothing was lost), matching the other
   member photos; the original stays in git history.
+- Follow-up (same day, maintainer request): the description is now rendered as an
+  "About" section using the same label style as the Publications section below it
+  (`member-about`/`member-about__label` share the `member-pubs` rules: `--fs-md`
+  heading, 2px orange bottom rule, `--space-2xl` top gap), so a page with both reads
+  as two matching sections instead of a floating paragraph. Heading text is "About"
+  rather than "Description": it parallels "Publications" as a page section name and is
+  the common label on academic personal pages.

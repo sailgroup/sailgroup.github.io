@@ -875,9 +875,9 @@ body.no-scroll { overflow: hidden; }
 .icon-link:hover { color: var(--orange-deep); border-color: var(--orange); background: var(--orange-wash); transform: translateY(-1px); }
 .icon-link .icon { width: 1.2em; height: 1.2em; vertical-align: 0; }
 
-/* --- Member auto-publications --------------------------------------------- */
-.member-pubs { margin-top: var(--space-2xl); text-align: left; }
-.member-pubs__label {
+/* --- Member page sections: About (description) + auto-publications -------- */
+.member-about, .member-pubs { margin-top: var(--space-2xl); text-align: left; }
+.member-about__label, .member-pubs__label {
   font-size: var(--fs-md);
   padding-bottom: 0.4rem;
   border-bottom: 2px solid var(--orange);

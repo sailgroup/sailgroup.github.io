@@ -26,8 +26,13 @@ optional prose body from the page, usually empty).
     {%- if x.department and x.department != "" -%}<p class="member-card__meta">{{ x.department }}</p>{%- endif -%}
     {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
     {%- include social-links.html person=x -%}
-    {%- comment -%}Optional short bio (`description:` in people.yml), shown above the publication list.{%- endcomment -%}
-    {%- if x.description and x.description != "" -%}<div class="prose u-mt-lg u-left">{{ x.description | markdownify }}</div>{%- endif -%}
+    {%- comment -%}Optional short bio (`description:` in people.yml): an "About" section styled like the Publications section below it (same label + rule), shown above the publication list.{%- endcomment -%}
+    {%- if x.description and x.description != "" -%}
+    <div class="member-about">
+      <h2 class="member-about__label">About</h2>
+      <div class="prose">{{ x.description | markdownify }}</div>
+    </div>
+    {%- endif -%}
     {%- assign body = include.body | strip -%}
     {%- if body != "" -%}<div class="prose u-mt-lg u-left">{{ include.body }}</div>{%- endif -%}
     {%- include member-pubs.html person=x -%}

@@ -59,7 +59,7 @@ Live: https://sail.kookmin.ac.kr
   photo_hover: gildong-hong-hover.jpg   # 선택: 마우스를 올리면 바뀌는 두 번째 사진 (assets/images/people/ 에 업로드)
   slug: gildong-hong           # 선택: 영문 소문자, 개인 페이지 주소가 됨
   joined: "2026-03-01"         # 선택: YYYY-MM-DD
-  description: >               # 선택: 개인 페이지의 논문 목록 위에 표시되는 짧은 소개
+  description: >               # 선택: 개인 페이지의 논문 목록 위에 "About" 섹션으로 표시되는 짧은 소개
     한두 문장 소개를 여기에 적습니다. 들여쓰기만 유지하면
     여러 줄로 나눠 적어도 한 문단으로 합쳐집니다.
 ```
