@@ -450,3 +450,31 @@ decorative). A re-run is **0 violations across all 11 audited page types**.
 Remaining items are unchanged from §10 RECOMMENDATIONS (responsive `srcset`,
 self-hosting Pretendard, a manual screen-reader pass) and the content notes in
 §3 — none blocking.
+
+---
+
+## 11. Final production audit (2026-07-13, commit 8fcf379)
+
+Run after the July 2026 changes (people photo folder and About section, D36; branch
+ruleset; em dash sweep, D37). Everything below was verified against the deployed
+build and the live site.
+
+- **Repo state:** dev == main == origin at `8fcf379`, working tree clean; the latest
+  Actions runs on both branches are green (build, validator, html-proofer, deploy).
+  `main` is now covered by the `protect-main` ruleset (force pushes and branch
+  deletion blocked; normal pushes unaffected).
+- **Deployed build audit (artifact of 8fcf379):** 65 pages plus 24 legacy redirect
+  stubs. Every page has a unique `<title>`, a unique meta description, and a
+  canonical link; all 180 JSON-LD blocks parse as valid JSON; the sitemap (64 URLs)
+  matches the built file set exactly and excludes the noindex redirects; all 5
+  journal covers ship with their `-full.jpg` counterpart. The only duplicate
+  description is 404.html sharing the site default with the home page, which is
+  harmless because 404 responses are not indexed.
+- **Live sweep:** all 64 sitemap URLs return 200; `/llms.txt`, `/llms-full.txt`,
+  `/feed.xml`, `/robots.txt`, `/favicon.ico`, `/site.webmanifest`, and the CSS
+  return 200; the legacy `/members|alumni/<slug>/` stubs serve their meta-refresh
+  redirect; a bogus URL returns 404; `sailgroup.github.io` 301s to the custom
+  domain and plain http 301s to https.
+- **Browser sweep (live, headless Chrome):** 15 representative pages (all 9
+  top-level pages plus 3 person and 3 publication pages) at 1440 px and 390 px,
+  30 loads in total: zero console errors, zero page errors, zero failed requests.
