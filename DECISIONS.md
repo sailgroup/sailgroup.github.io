@@ -847,3 +847,19 @@ add their verification meta tags.
   as two matching sections instead of a floating paragraph. Heading text is "About"
   rather than "Description": it parallels "Publications" as a page section name and is
   the common label on academic personal pages.
+
+## D37 — Em dashes removed from public docs and served text (house style)
+
+- The house style ("no em dashes, plain factual wording") was still violated by the
+  public-facing docs themselves: README.md (10), CONTRIBUTING.md (11), the served
+  /llms.txt and /llms-full.txt templates (6), plus contributor-facing comments in
+  _data/positions.yml, _data/themes.yml, the two _data/member_pubs headers, and the
+  main.scss banner. Each was replaced with plain punctuation (colon, comma, semicolon,
+  or parentheses) chosen per sentence; the only served-output change is the llms.txt
+  files' separators, no visible page content changed.
+- The internal tracking files (DECISIONS.md, PROGRESS.md, REVIEW.md,
+  CONTENT_INVENTORY.md, REFACTOR_PLAN.md, CLAUDE.md) keep their em dashes: the
+  "## D<n> — title" heading separator is this file's established format, the files are
+  maintainer-facing, and the house style targets site copy and contributor docs.
+- No paper title or other factual data contained an em dash, so nothing factual was
+  touched (the member_pubs hits were file-header comments).

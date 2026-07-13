@@ -1,4 +1,4 @@
-# SAIL — Spectroscopy and AI Lab
+# SAIL: Spectroscopy and AI Lab
 
 국민대학교 화학부 **정준영 교수 연구실** 웹사이트.
 Live: https://sail.kookmin.ac.kr
@@ -18,12 +18,12 @@ Live: https://sail.kookmin.ac.kr
 | 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`) |
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
-| 주제(테마) | `_data/themes.yml` — 필터 칩의 개수·색·이름·순서를 한 곳에서 편집 |
-| 모집(Positions) | `_data/positions.yml` — 박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트 |
+| 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
+| 모집(Positions) | `_data/positions.yml` (박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트) |
 
 저자 목록의 PI 이름 `Joonyoung F. Joung` 은 자동으로 굵게 표시됩니다.
 
-### 논문 — `_data/publications.yml` (최신 항목을 위에)
+### 논문: `_data/publications.yml` (최신 항목을 위에)
 ```yaml
 - id: 42                       # 필수: 겹치지 않는 새 번호
   title: "논문 제목"            # 필수
@@ -43,10 +43,10 @@ Live: https://sail.kookmin.ac.kr
 표기됐으면 그 멤버의 `people.yml` 항목에 `author_aliases: ["다른 표기"]` 를 추가).
 
 > **권·호·페이지 자동 서식(선택):** `ref` 대신 `vol:`/`issue:`/`pages:` 를 쓰면 자동으로
-> *권* (호), 페이지 형태로 조판됩니다 — 예: `vol: 47`, `issue: 3`, `pages: "317-327"` → *47* (3), 317-327.
+> *권* (호), 페이지 형태로 조판됩니다. 예: `vol: 47`, `issue: 3`, `pages: "317-327"` → *47* (3), 317-327.
 > `vol` 이 있으면 `ref` 는 무시되므로 둘 중 하나만 쓰세요.
 
-### 사람 (멤버·동문) — `_data/people.yml`
+### 사람 (멤버·동문): `_data/people.yml`
 멤버와 동문을 한 파일에서 관리합니다. `status` 가 **어느 페이지에 뜰지만** 결정합니다.
 ```yaml
 - name: Gildong Hong           # 필수
@@ -87,7 +87,7 @@ Live: https://sail.kookmin.ac.kr
       doi:     "https://doi.org/10.xxxx/yyyy"   # 선택: 제목이 이 주소로 연결됨
 ```
 
-### 뉴스 — `_data/news.yml`
+### 뉴스: `_data/news.yml`
 ```yaml
 - date: "2026-06-20"           # 필수: YYYY-MM-DD (최신순 정렬 기준)
   display_date: ""             # 선택: 날짜 대신 표시할 문구 (예: "March 2025", "2026")
@@ -99,14 +99,14 @@ Live: https://sail.kookmin.ac.kr
 ```
 가장 최근 3개는 홈 화면에도 표시됩니다.
 
-### 사진 — `_data/photos.yml` (최신 항목을 위에)
+### 사진: `_data/photos.yml` (최신 항목을 위에)
 ```yaml
 - image: photos/photo-26.jpg   # 필수: assets/images/photos/ 에 업로드 (≤1600px)
   title: "2026.06.20. 워크숍"   # 선택
   caption: "한 줄 설명"         # 선택
 ```
 
-### 모집 — `_data/positions.yml`
+### 모집: `_data/positions.yml`
 모집 안내 페이지(`/positions/`)의 모든 문구가 이 파일에 있습니다(한국어). `intro`(소개글)와
 `sections`(역할별 안내) 목록으로 이루어집니다. 각 역할은 제목(`title`)과 문단(`paragraphs`)을 갖습니다.
 ```yaml
@@ -117,7 +117,7 @@ sections:
       - "문단 2."
 ```
 
-**모집 프로젝트 카드(표) 추가하기** — 지금은 '학부 연구생' 아래에 4개의 카드가 있습니다. 같은 카드를
+**모집 프로젝트 카드(표) 추가하기:** 지금은 '학부 연구생' 아래에 4개의 카드가 있습니다. 같은 카드를
 대학원생·박사후연구원 등 **어느 역할에든** 넣을 수 있습니다. 그 역할 항목 안에 `projects_title`(소제목,
 생략 가능)과 `projects`(카드 목록)를 추가하기만 하면 됩니다.
 ```yaml

@@ -1,7 +1,7 @@
 ---
 permalink: /llms.txt
 ---
-# SAIL — Spectroscopy and AI Lab (Joonyoung F. Joung Lab, Kookmin University)
+# SAIL: Spectroscopy and AI Lab (Joonyoung F. Joung Lab, Kookmin University)
 
 > {{ site.description }}
 
@@ -21,7 +21,7 @@ The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data
 Full text (all abstracts, people, research): {{ site.url }}/llms-full.txt
 
 ## Principal investigator
-{{ site.data.pi.name }} ({{ site.data.pi.name_ko }}) — {{ site.data.pi.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}. Google Scholar: {{ site.data.pi.scholar }} · ORCID: {{ site.data.pi.orcid }}
+{{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}. Google Scholar: {{ site.data.pi.scholar }} · ORCID: {{ site.data.pi.orcid }}
 
 ## Selected recent publications
 {% assign recent = site.data.publications | sort: "year" | reverse -%}

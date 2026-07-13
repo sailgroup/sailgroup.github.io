@@ -1,16 +1,16 @@
 # Contributing to the SAIL website
 
 Every change below is a single edit to one file on **github.com** (use the pencil
-✏️ on the file) — no local setup needed.
+✏️ on the file); no local setup is needed.
 When you commit, GitHub rebuilds and publishes the site
 (`https://sail.kookmin.ac.kr`) in about a minute.
 
 If you make a mistake (a missing required field, a typo'd image name, a bad
 date), the build **fails with a clear message naming the file and the fix**, and
-the live site is left untouched — so you cannot break the site by editing data.
+the live site is left untouched, so you cannot break the site by editing data.
 
 > Bold the PI name **Joonyoung F. Joung** in author lists. House style: no em
-> dashes, plain factual wording. Never invent a photo, link, date, or fact —
+> dashes, plain factual wording. Never invent a photo, link, date, or fact;
 > leave a field blank instead.
 
 ---
@@ -18,7 +18,7 @@ the live site is left untouched — so you cannot break the site by editing data
 ## Add a person (member or alumnus)  →  `_data/people.yml`
 
 1. Add a photo (optional): upload `firstname-lastname.jpg` to
-   `assets/images/people/` — the folder that holds every people photo (square
+   `assets/images/people/`, the folder that holds every people photo (square
    looks best). Without a photo the card shows the person's initials; a generic
    `anonymous.png` in the same folder can be used instead of a real photo.
 2. Add one block to `_data/people.yml`:
@@ -59,10 +59,10 @@ default photo always shows. This works for any person the same way.
 
 **When someone graduates**, change only their `status` from `current` to
 `alumni`. Their `/people/<slug>/` URL stays the same, so no link ever breaks (the
-old `/members/<slug>/` and `/alumni/<slug>/` addresses keep redirecting to it) —
+old `/members/<slug>/` and `/alumni/<slug>/` addresses keep redirecting to it), so
 you never have to update news links.
 
-**A person's own papers from elsewhere** (not on the lab Publications page — e.g.
+**A person's own papers from elsewhere** (not on the lab Publications page, e.g.
 a postdoc's prior work): add a `publications:` list to their entry. They show on
 their page, merged with any lab papers that match their name, newest first; the
 title links to the DOI and their own name is bold.
@@ -82,13 +82,13 @@ title links to the DOI and their own name is bold.
 
 For a long external list (e.g. a postdoc with many prior papers), put the same
 list in `_data/member_pubs/<slug>.yml` instead of inline, to keep `people.yml`
-readable — the person's page reads it by `slug` and merges it the same way.
+readable; the person's page reads it by `slug` and merges it the same way.
 
 ## Add a publication  →  `_data/publications.yml`
 
 Add one block (newest go at the top). The paper appears on the Publications
-list, gets a detail page at `/publications/<id>/`, and — if an author matches a
-current member's name — shows up on that member's page too, all automatically.
+list, gets a detail page at `/publications/<id>/`, and, if an author matches a
+current member's name, shows up on that member's page too, all automatically.
 
 ```yaml
 - id: 42                       # required, a new unique number; shown on the list
@@ -156,11 +156,11 @@ sections:
       - "Second paragraph."
 ```
 
-`paragraphs` (and `projects` below) must be a **list** — each item begins with `-`.
+`paragraphs` (and `projects` below) must be a **list**: each item begins with `-`.
 If you write `paragraphs:` as one value instead, the build stops with a clear
 message (it used to render nothing silently).
 
-**Project cards (the boxes)** — today the "학부 연구생" role shows four cards. The
+**Project cards (the boxes):** today the "학부 연구생" role shows four cards. The
 same cards can be attached to **any** role (Graduate students, Postdoc, etc.):
 inside that role, add `projects_title` (an optional sub-heading) and a `projects`
 list. To advertise or retire a project, add or remove one block.
