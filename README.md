@@ -55,17 +55,20 @@ Live: https://sail.kookmin.ac.kr
   department: School of Artificial Intelligence   # 선택: 본인 소속 학부/학과 (랩 학과와 다를 때 표기)
   name_ko: 홍길동               # 선택
   email: hong@kookmin.ac.kr    # 선택
-  photo: gildong-hong.jpg      # 선택: assets/images/ 에 업로드 (정사각형 권장)
-  photo_hover: gildong-hong-hover.jpg   # 선택: 마우스를 올리면 바뀌는 두 번째 사진 (assets/images/ 에 업로드)
+  photo: gildong-hong.jpg      # 선택: assets/images/people/ 에 업로드 (정사각형 권장)
+  photo_hover: gildong-hong-hover.jpg   # 선택: 마우스를 올리면 바뀌는 두 번째 사진 (assets/images/people/ 에 업로드)
   slug: gildong-hong           # 선택: 영문 소문자, 개인 페이지 주소가 됨
   joined: "2026-03-01"         # 선택: YYYY-MM-DD
+  description: >               # 선택: 개인 페이지의 논문 목록 위에 표시되는 짧은 소개
+    한두 문장 소개를 여기에 적습니다. 들여쓰기만 유지하면
+    여러 줄로 나눠 적어도 한 문단으로 합쳐집니다.
 ```
 개인 페이지(`/people/gildong-hong/`)와, `status` 에 맞는 그리드(Members 또는 Alumni)에 자동 등록됩니다.
 소셜 링크는 실제 URL이 있을 때만: `linkedin:` `github:` `scholar:` `orcid:` `website:`. 논문 저자명이
 `name` 과 다르면 `author_aliases: ["다른 표기"]`. 동문은 `note:` 로 한 줄 비고 추가 가능.
 
 > **마우스를 올리면 사진이 바뀌게 하기(선택):** `photo_hover:` 에 두 번째 사진 파일명을 적고 그 사진을
-> `assets/images/` 에 함께 올리면, 멤버 그리드에서 카드 사진에 마우스를 올렸을 때 두 번째 사진으로
+> `assets/images/people/` 에 함께 올리면, 멤버 그리드에서 카드 사진에 마우스를 올렸을 때 두 번째 사진으로
 > 부드럽게 바뀝니다(예: 증명사진과 캐주얼 사진). 두 번째 사진이 없으면 이 줄을 안 적으면 그만이고,
 > 터치 기기(휴대폰 등)에서는 기본 사진만 보입니다. 어느 멤버에게나 같은 방식으로 쓸 수 있습니다.
 

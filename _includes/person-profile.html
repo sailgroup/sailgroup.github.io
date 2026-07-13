@@ -13,7 +13,7 @@ optional prose body from the page, usually empty).
     <p class="eyebrow"><a class="link" href="{{ '/members/' | relative_url }}">Members</a></p>
     {%- endif -%}
     {%- if x.photo and x.photo != "" -%}
-    <img class="member-card__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}">
+    <img class="member-card__photo" src="{{ '/assets/images/people/' | append: x.photo | relative_url }}" alt="{{ x.name }}">
     {%- endif -%}
     <h1 class="profile__name">{{ x.name }}{% if x.name_ko %} <span class="ko" lang="ko">{{ x.name_ko }}</span>{% endif %}</h1>
     <p class="profile__title">{{ x.role }}</p>
@@ -26,6 +26,8 @@ optional prose body from the page, usually empty).
     {%- if x.department and x.department != "" -%}<p class="member-card__meta">{{ x.department }}</p>{%- endif -%}
     {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
     {%- include social-links.html person=x -%}
+    {%- comment -%}Optional short bio (`description:` in people.yml), shown above the publication list.{%- endcomment -%}
+    {%- if x.description and x.description != "" -%}<div class="prose u-mt-lg u-left">{{ x.description | markdownify }}</div>{%- endif -%}
     {%- assign body = include.body | strip -%}
     {%- if body != "" -%}<div class="prose u-mt-lg u-left">{{ include.body }}</div>{%- endif -%}
     {%- include member-pubs.html person=x -%}

@@ -127,3 +127,12 @@ was taken, what was normalized, and what is still open.
   advertised-project cards are now an optional `projects` list on any role section
   (PI-maintained, changes over time). The contact CTA reuses the PI email from `pi.yml`;
   nothing on the page was invented.
+- **Yunhee Choi (added by the PI, 2026-07-13)**: visiting undergraduate student from
+  EPFL. Photo uploaded by the PI (`yunhee-choi.png`, 824x1094, 1.0 MB), recompressed to
+  `assets/images/people/yunhee-choi.jpg` (600px, 40 KB; original in git history). Her
+  page `description` is the PI's wording verbatim (KakaoTalk, 2026-07-13); the role was
+  normalized from the typo'd `Visting undergraduate` and the redundant typo'd `note`
+  dropped (D36). The PI also uploaded `anonymous.png` (generic avatar): kept in
+  `assets/images/people/` as an opt-in placeholder (`photo: anonymous.png`); nothing
+  references it by default. All other people photos moved unchanged into
+  `assets/images/people/` (D36).

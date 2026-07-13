@@ -17,8 +17,10 @@ the live site is left untouched — so you cannot break the site by editing data
 
 ## Add a person (member or alumnus)  →  `_data/people.yml`
 
-1. Add a photo (optional): upload `firstname-lastname.jpg` to `assets/images/`
-   (square looks best). Without a photo the card shows the person's initials.
+1. Add a photo (optional): upload `firstname-lastname.jpg` to
+   `assets/images/people/` — the folder that holds every people photo (square
+   looks best). Without a photo the card shows the person's initials; a generic
+   `anonymous.png` in the same folder can be used instead of a real photo.
 2. Add one block to `_data/people.yml`:
 
    ```yaml
@@ -28,10 +30,13 @@ the live site is left untouched — so you cannot break the site by editing data
      department: School of Artificial Intelligence  # optional; their own school/dept
      name_ko: 홍길동            # optional
      email: hong@kookmin.ac.kr  # optional
-     photo: gil-dong-hong.jpg   # optional; must match the uploaded file
+     photo: gil-dong-hong.jpg   # optional; must match the file in assets/images/people/
      photo_hover: gil-dong-hong-hover.jpg  # optional; a 2nd photo that fades in on hover
      slug: gil-dong-hong        # lowercase-with-hyphens; their personal-page address
      joined: "2026-03-01"       # optional, YYYY-MM-DD
+     description: >             # optional; short intro shown on their personal page
+       Gil-dong is an M.S. student working on machine learning for chemistry.
+       Keep the indentation and it can run over several lines.
    ```
 
 `status` decides which page lists them (`current` → Members, `alumni` → Alumni).
@@ -39,12 +44,14 @@ Everyone with a `slug` gets a personal page at `/people/<slug>/` (omit the slug 
 `status`. Optional social links (real URL only): `linkedin:`, `github:`,
 `scholar:`, `orcid:`, `website:`. An optional `department:` (e.g. `School of Artificial
 Intelligence`) shows the person's own school/department on a line under the lab affiliation,
-useful when their home department differs from the lab's. Alumni may add a one-line `note:`. If a lab paper
+useful when their home department differs from the lab's. An optional `description:` (a short
+intro paragraph, like the example above) appears on the personal page above the person's
+publication list. Alumni may add a one-line `note:`. If a lab paper
 lists this person under a different spelling (e.g. "H Kim" vs "Heejeong Kim"), add
 `author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them. Keep an alias distinctive (a surname plus an initial like `"H Kim"`, not a bare `"Kim"`): matching is by substring, so a too-common alias can pull unrelated papers onto their page.
 
 **A second photo on hover** (optional): set `photo_hover:` to a second image in
-`assets/images/` (e.g. `gil-dong-hong-hover.jpg`) and it cross-fades in when
+`assets/images/people/` (e.g. `gil-dong-hong-hover.jpg`) and it cross-fades in when
 someone hovers the card photo on the Members/Alumni grid (for example a headshot
 and a candid photo). Leave it out for a single photo; on touch devices the
 default photo always shows. This works for any person the same way.

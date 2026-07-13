@@ -10,7 +10,7 @@ Pass: person (the data object). The card always links to the canonical /people/<
 {%- assign has_hover = false -%}{%- if x.photo_hover and x.photo_hover != "" -%}{%- assign has_hover = true -%}{%- endif -%}
 <div class="person">
   {%- if x.photo and x.photo != "" -%}
-    {%- capture photo -%}<img class="person__photo" src="{{ '/assets/images/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">{%- if has_hover -%}<img class="person__photo person__photo--hover" src="{{ '/assets/images/' | append: x.photo_hover | relative_url }}" alt="" aria-hidden="true" loading="lazy">{%- endif -%}{%- endcapture -%}
+    {%- capture photo -%}<img class="person__photo" src="{{ '/assets/images/people/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">{%- if has_hover -%}<img class="person__photo person__photo--hover" src="{{ '/assets/images/people/' | append: x.photo_hover | relative_url }}" alt="" aria-hidden="true" loading="lazy">{%- endif -%}{%- endcapture -%}
     {%- if x.slug and x.slug != "" -%}
     <a class="person__figure{% if has_hover %} person__figure--swap{% endif %}" href="{{ url }}">{{ photo }}</a>
     {%- elsif has_hover -%}

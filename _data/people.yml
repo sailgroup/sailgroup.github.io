@@ -10,12 +10,16 @@
 # (the old /members/<slug>/ and /alumni/<slug>/ addresses keep redirecting here).
 #
 # Required: name, role, status.  Everything else is optional (photo, email,
-# slug, joined, department, github/linkedin/scholar/orcid/website, note,
-# author_aliases, publications). `photo_hover` is an optional second photo that
-# crossfades in when you hover the card photo (pointer devices only); leave it
-# out for the usual single photo. `department` is the person's own school/dept
-# (e.g. a UROP from another department); it shows on a line under the lab
-# affiliation, and is omitted entirely when not set. See CONTRIBUTING.md.
+# slug, joined, department, description, github/linkedin/scholar/orcid/website,
+# note, author_aliases, publications). Photo files are uploaded to
+# assets/images/people/ and referenced here by bare filename; `photo_hover` is
+# an optional second photo (same folder) that crossfades in when you hover the
+# card photo (pointer devices only). `department` is the person's own school/
+# dept (e.g. a UROP from another department); it shows on a line under the lab
+# affiliation, and is omitted entirely when not set. `description` is a short
+# intro paragraph shown on the personal page above the publication list; write
+# it as `description: >` with the text indented on the following lines.
+# See CONTRIBUTING.md.
 # ---------------------------------------------------------------------------
 - name: Heejeong Kim
   status: current
@@ -77,15 +81,18 @@
 - name: Yunhee Choi
   status: current
   name_ko: 최윤희
-  role: Visting undergraduate
-  email: yunhee.choi@epfl.ch 
-  photo: yunhee-choi.png
+  role: Visiting Undergraduate Student (EPFL)
+  email: yunhee.choi@epfl.ch
+  photo: yunhee-choi.jpg
   slug: yunhee-choi
   joined: "2026-07-13"
   github: https://github.com/ynhchoi
-  note: Vistiting undergraduate student from EPFL
+  description: >
+    Yunhee is a visiting undergraduate student from EPFL, studying Chemistry
+    and Chemical Engineering. She is broadly interested in machine learning
+    for chemistry, ranging from reaction prediction to electronic structure
+    and molecular simulation.
 
-  
 - name: Chanjoong Kim
   status: alumni
   name_ko: 김찬중

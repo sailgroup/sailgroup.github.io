@@ -96,12 +96,17 @@ module SAIL
           err("#{at}: `status` must be `current` or `alumni` (got #{p["status"].inspect}).")
         end
 
-        if !blank?(p["photo"]) && !image_exists?(p["photo"])
-          err("#{at}: `photo: #{p["photo"]}` not found in assets/images/.")
+        if !blank?(p["photo"]) && !image_exists?(File.join("people", p["photo"]))
+          err("#{at}: `photo: #{p["photo"]}` not found in assets/images/people/.")
         end
         # Optional second photo that crossfades in on hover (person-card.html).
-        if !blank?(p["photo_hover"]) && !image_exists?(p["photo_hover"])
-          err("#{at}: `photo_hover: #{p["photo_hover"]}` not found in assets/images/.")
+        if !blank?(p["photo_hover"]) && !image_exists?(File.join("people", p["photo_hover"]))
+          err("#{at}: `photo_hover: #{p["photo_hover"]}` not found in assets/images/people/.")
+        end
+        # Optional short bio shown on the personal page; must be one text block
+        # (a YAML list here would render as run-together text, so fail loudly).
+        if !p["description"].nil? && !p["description"].is_a?(String)
+          err("#{at}: `description` must be a single text block, not a list (use `description: >` followed by indented lines).")
         end
         unless blank?(p["slug"])
           slug = p["slug"]
@@ -366,8 +371,8 @@ module SAIL
       %w[name title].each do |f|
         err("pi.yml: missing required field `#{f}`.") if blank?(pi[f])
       end
-      if !blank?(pi["photo"]) && !image_exists?(pi["photo"])
-        err("pi.yml: `photo: #{pi["photo"]}` not found in assets/images/.")
+      if !blank?(pi["photo"]) && !image_exists?(File.join("people", pi["photo"]))
+        err("pi.yml: `photo: #{pi["photo"]}` not found in assets/images/people/.")
       end
       err("pi.yml: `email` looks invalid (no '@'): #{pi["email"]}") if !blank?(pi["email"]) && !pi["email"].to_s.include?("@")
       %w[scholar orcid github].each do |f|

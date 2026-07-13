@@ -67,10 +67,19 @@ module SAIL
         nk   = entry["name_ko"].to_s.strip
         who  = nk.empty? ? entry["name"].to_s : "#{entry["name"]} (#{nk})"
         dept = entry["department"].to_s.strip
-        desc = dept.empty? ?
-          "#{who}, #{entry["role"]} at the Spectroscopy and AI Lab (SAIL), Department of Chemistry, Kookmin University." :
-          "#{who}, #{entry["role"]} in the #{dept}, Kookmin University, and a member of the Spectroscopy and AI Lab (SAIL)."
-        { "title" => entry["name"].to_s, "description" => desc }
+        # A person's own `description:` (the short bio shown on their page) beats
+        # the formulaic line; both are clipped to a search-snippet length.
+        desc = entry["description"].to_s.strip
+        if desc.empty?
+          desc = dept.empty? ?
+            "#{who}, #{entry["role"]} at the Spectroscopy and AI Lab (SAIL), Department of Chemistry, Kookmin University." :
+            "#{who}, #{entry["role"]} in the #{dept}, Kookmin University, and a member of the Spectroscopy and AI Lab (SAIL)."
+        end
+        meta = { "title" => entry["name"].to_s, "description" => clip(desc, 200) }
+        # Per-person OG/Twitter image = their portrait (same fallback rule as papers).
+        photo = entry["photo"].to_s.strip
+        meta["image"] = "/assets/images/people/#{photo}" unless photo.empty?
+        meta
       else
         {}
       end

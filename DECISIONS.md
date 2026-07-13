@@ -813,3 +813,30 @@ add their verification meta tags.
 - Multiple `.prose` blocks (one per role) replace the single monolithic prose so cards
   can sit mid-page; inter-section spacing is preserved by the existing `.prose h2`
   top margin (verified by cross-width screenshot QA).
+
+## D36 — People photos live in `assets/images/people/`; per-person `description` (PI request)
+
+- The PI asked (2026-07-13, KakaoTalk) for (1) a dedicated folder holding the people
+  photos and (2) a short per-person description on each member page, shown above the
+  publication list, giving Yunhee Choi's text as the example.
+- All portraits (12 member/alumni photos, `pi.jpg`, and the PI-uploaded `anonymous.png`
+  placeholder) moved from the `assets/images/` root into `assets/images/people/`,
+  matching the existing `pubs/`, `journals/`, `photos/` subfolder convention. YAML keeps
+  bare filenames (`photo: heejeong-kim.jpg`); the templates (`person-card.html`,
+  `person-profile.html`, `pi.html`) and the validator prefix the folder, so contributors
+  upload to one place and a typo'd filename fails the build naming that folder.
+- New optional `description:` field in `people.yml` (folded block scalar, plain text or
+  simple Markdown): rendered on `/people/<slug>/` between the social links and the
+  publication list, reusing the existing `prose u-mt-lg u-left` body styling (no new
+  CSS). It also becomes the generated page's meta description (clipped to 200 chars,
+  replacing the formulaic line) and the JSON-LD Person `description`; the portrait now
+  doubles as the page's OG image and JSON-LD Person `image`, mirroring how paper pages
+  use their graphical abstract.
+- Yunhee Choi's entry (added by the PI directly on main) was normalized while merging:
+  role `Visting undergraduate` → `Visiting Undergraduate Student (EPFL)` (spelling fix,
+  Title Case, and the existing `Undergraduate Researcher (UROP)` qualifier pattern so
+  EPFL still shows on the Members grid); the `note` (also typo'd, and fully contained in
+  the description's first sentence) was dropped; `description` is the PI's text
+  verbatim. Her 1.0 MB 824x1094 PNG portrait was recompressed to a 40 KB 600px-wide JPG
+  (the PNG alpha channel is fully opaque, so nothing was lost), matching the other
+  member photos; the original stays in git history.

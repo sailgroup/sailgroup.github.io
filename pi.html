@@ -16,7 +16,7 @@ permalink: /pi/
   <div class="container">
     <div class="profile">
       <div class="profile__aside">
-        <img class="profile__photo" src="{{ '/assets/images/' | append: pi.photo | relative_url }}" alt="{{ pi.name }}" width="354" height="472">
+        <img class="profile__photo" src="{{ '/assets/images/people/' | append: pi.photo | relative_url }}" alt="{{ pi.name }}" width="354" height="472">
         <div class="profile__contact">
           {%- if pi.office -%}<span>{% include icon.html name="pin" %} {{ pi.office }}</span>{%- endif -%}
           <a href="mailto:{{ pi.email }}">{% include icon.html name="mail" %} {{ pi.email }}</a>
