@@ -62,6 +62,7 @@
   slug: hyejeong-jeon
   joined: "2025-07-14"
   github: https://github.com/HyejeongJeon
+
 - name: Siyeol In
   status: current
   name_ko: 인시열
@@ -72,6 +73,19 @@
   slug: siyeol-in
   joined: "2025-12-15"
   github: https://github.com/insiyeol
+
+- name: Yunhee Choi
+  status: current
+  name_ko: 최윤희
+  role: Visting undergraduate
+  email: yunhee.choi@epfl.ch 
+  photo: yunhee-choi.png
+  slug: yunhee-choi
+  joined: "2026-07-13"
+  github: https://github.com/ynhchoi
+  note: Vistiting undergraduate student from EPFL
+
+  
 - name: Chanjoong Kim
   status: alumni
   name_ko: 김찬중
@@ -84,6 +98,7 @@
   linkedin: https://www.linkedin.com/in/chanjoong/
   github: https://github.com/chanjoongx
   orcid: https://orcid.org/0009-0009-9566-5403
+
 - name: Yongpyo Cho
   status: alumni
   name_ko: 조용표
@@ -91,6 +106,7 @@
   email: lulischo@kookmin.ac.kr
   photo: yongpyo-cho.jpg
   slug: yongpyo-cho
+  
 - name: Jinwoo Lee
   status: alumni
   name_ko: 이진우
@@ -98,6 +114,7 @@
   email: jinwoo2657@kookmin.ac.kr
   photo: jinwoo-lee.jpg
   slug: jinwoo-lee
+  
 - name: Hanbyul Baik
   status: alumni
   name_ko: 백한별
@@ -105,6 +122,7 @@
   email: hanbyurii@kookmin.ac.kr
   photo: hanbyul-baik.jpg
   slug: hanbyul-baik
+  
 - name: Hyojin Lee
   status: alumni
   name_ko: 이효진
@@ -112,6 +130,7 @@
   email: aquarius8139@kookmin.ac.kr
   photo: hyojin-lee.jpg
   slug: hyojin-lee
+  
 - name: Yumin Kim
   status: alumni
   name_ko: 김유민
