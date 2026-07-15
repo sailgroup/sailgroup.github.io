@@ -22,6 +22,14 @@
 #   link_text    OPTIONAL. Link label. Defaults to "Details".
 # ---------------------------------------------------------------------------
 
+- date: "2026-07-13"
+  display_date: ""
+  category: people
+  title: "Yunhee joins the lab"
+  body: "Yunhee Choi (최윤희) joins SAIL as a visiting undergraduate student (EPFL)."
+  link: "/members/yunhee-choi/"
+  link_text: "Member page"
+
 - date: "2026-06-24"
   display_date: ""
   category: award
