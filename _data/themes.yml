@@ -25,9 +25,9 @@
   color: "#004F9E"
 - name: Molecular property prediction
   color: "#08A470"
-- name: De novo molecule generation
+- name: Representation learning
+  color: "#5E4B8B"   
+- name: Generative modeling
   color: "#4EBBE5"
 - name: Experimental dataset
-  color: "#5E4B8B"
-- name: Clinical outcome prediction
   color: "#6E6E6E"
