@@ -26,6 +26,17 @@
 #   3. id 39 preprint URL on Wix was malformed ("https://10.26434/...");
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
+- id: 44
+  title: "From Molecules to Mixture"
+  authors: "Jihwan Kim, Chanjoong Kim, Joonyoung F. Joung*"
+  journal: "Submitted"
+  year: 2026
+  doi: ""
+  themes:
+    - "Molecular property prediction"
+  image: ""
+  abstract: ""
+
 - id: 43
   title: "Continuous Light-Driven Pure CO2 Production by Regenerative Non-Aqueous Amine–Photoacid Cycling"
   authors: "Gi Hyun Byun, Nayeong Kim, Joonyoung F. Joung, Michael Massen-Hane, Betar M Gallant, Hyowon Seo, T Alan Hatton*"
