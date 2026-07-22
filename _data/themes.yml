@@ -26,8 +26,8 @@
 - name: Molecular property prediction
   color: "#08A470"
 - name: Representation learning
-  color: "#5E4B8B"   
+  color: "#06B6D4"   
 - name: Generative modeling
-  color: "#4EBBE5"
+  color: "#B5179E"
 - name: Experimental dataset
   color: "#6E6E6E"
