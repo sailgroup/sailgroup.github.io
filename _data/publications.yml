@@ -26,7 +26,7 @@
 #   3. id 39 preprint URL on Wix was malformed ("https://10.26434/...");
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
-- id: 44
+- id: 45
   title: "From Molecules to Mixture"
   authors: "Jihwan Kim, Chanjoong Kim, Joonyoung F. Joung*"
   journal: "Submitted"
@@ -34,9 +34,22 @@
   doi: ""
   themes:
     - "Molecular property prediction"
+    - "Representation learning"
   image: ""
   abstract: ""
 
+- id: 44
+  title: "Raman Classification"
+  authors: "Jihwan Kim, ..., Chanjoong Kim, ..., Joonyoung F. Joung*"
+  journal: "Submitted"
+  year: 2026
+  doi: ""
+  themes:
+    - "Spectroscopic analysis"
+    - "Representation learning"
+  image: ""
+  abstract: ""
+  
 - id: 43
   title: "Continuous Light-Driven Pure CO2 Production by Regenerative Non-Aqueous Amine–Photoacid Cycling"
   authors: "Gi Hyun Byun, Nayeong Kim, Joonyoung F. Joung, Michael Massen-Hane, Betar M Gallant, Hyowon Seo, T Alan Hatton*"
@@ -298,6 +311,7 @@
   preprint_url: "https://doi.org/10.48550/arXiv.2502.12979"
   themes:
     - "Reaction pathway prediction"
+    - "Generative modeling"
     - "Experimental dataset"
   image: "pub-37.jpg"
   abstract: >
@@ -421,7 +435,7 @@
   doi: "https://doi.org/10.1021/acscentsci.4c00656"
   preprint_url: ""
   themes:
-    - "De novo molecule generation"
+    - "Generative modeling"
   image: "pub-35.jpg"
   abstract: >
     Innovative approaches to design molecules with tailored properties are
@@ -469,6 +483,7 @@
   preprint_url: "https://doi.org/10.48550/arXiv.2403.04580"
   themes:
     - "Reaction pathway prediction"
+    - "Generative modeling"
     - "Experimental dataset"
   image: "pub-34.jpg"
   abstract: >
@@ -745,7 +760,7 @@
   doi: "https://doi.org/10.3390/jpm12020143"
   preprint_url: ""
   themes:
-    - "Clinical outcome prediction"
+    - "Representation learning"
   image: "pub-28.jpg"
   abstract: >
     Radiation therapy (RT) is an important and potentially curative modality
