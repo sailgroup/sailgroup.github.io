@@ -910,6 +910,7 @@
   preprint_url: ""
   themes:
     - "Molecular property prediction"
+    - "Representation learning"
     - "Spectroscopic analysis"
   image: "pub-25.jpg"
   abstract: >
