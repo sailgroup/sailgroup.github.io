@@ -26,7 +26,7 @@
 #   3. id 39 preprint URL on Wix was malformed ("https://10.26434/...");
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
-- id: 45
+- id: 46
   title: "From Molecules to Mixture"
   authors: "Jihwan Kim, Chanjoong Kim, Joonyoung F. Joung*"
   journal: "Submitted"
@@ -39,7 +39,7 @@
   image: ""
   abstract: ""
 
-- id: 44
+- id: 45
   title: "Raman Classification"
   authors: "Jihwan Kim, ..., Chanjoong Kim, ..., Joonyoung F. Joung*"
   journal: "Submitted"
@@ -48,6 +48,18 @@
   themes:
     - "Spectroscopic analysis"
     - "Representation learning"
+  image: ""
+  abstract: ""
+  
+- id: 44
+  title: "Excited-state absorption calculations"
+  authors: "Joonyoung F. Joung*, ..."
+  journal: "Submitted"
+  year: 2026
+  doi: ""
+  themes:
+    - "Spectroscopic analysis"
+    - "Quantum chemical modeling"
   image: ""
   abstract: ""
   
