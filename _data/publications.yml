@@ -52,16 +52,27 @@
   abstract: ""
   
 - id: 44
-  title: "Excited-state absorption calculations"
-  authors: "Joonyoung F. Joung*, ..."
+  title: "Prediction of experimental excited-state absorption spectra by using vibronic transition calculations: Its practical application to a π-conjugated molecule"
+  authors: "Joonyoung F. Joung*, Sungnam Park*"
   journal: "Submitted"
   year: 2026
   doi: ""
+  preprint_url: "https://doi.org/10.48550/arXiv.2607.25247"
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
   image: ""
-  abstract: ""
+  abstract: >
+    Accurate theoretical prediction of excited-state absorption (ESA) spectra remains challenging. 
+    Although considerable progress has been made in computational methods for ESA spectroscopy, their practical application 
+    to the interpretation of transient absorption and photoinduced absorption spectra is still limited. In this study, 
+    we present a practical approach for calculating molecular ESA spectra by combining vibronic transition calculations with routine 
+    density functional theory (DFT) and time-dependent DFT (TDDFT) calculations available in standard quantum chemistry packages.
+    Using azulene as a model system, we demonstrate that the proposed method successfully reproduces the vibronic features and band 
+    positions observed in the experimental ESA spectrum. This approach therefore provides a practical framework for assigning ESA bands 
+    arising from transitions between low-lying excited states of molecules. The method delivers the vibronic band shapes and peak 
+    positions that are needed to assign ESA bands directly from these standard calculations, without requiring the 
+    excited-state-to-excited-state transition moments that determine absolute intensities.
   
 - id: 43
   title: "Continuous Light-Driven Pure CO2 Production by Regenerative Non-Aqueous Amine–Photoacid Cycling"
