@@ -101,7 +101,9 @@
   title: "Precursor Diffusion-Controlled Scalable Synthesis of Monodisperse Iodide Perovskite Quantum Dots for Efficient Photovoltaics"
   authors: "Jaehyuk Kim†, Sanghun Han†, Jigeon Kim†, Hye Min Kim, Seongwon Lee, Dong Gyu Lee, Gayoung Seo, Hyeon Soo Ma, Joonyoung F. Joung, Tae Kyung Lee, Hyung Min Kim,* Jongmin Choi*, Younghoon Kim*"
   journal: "ACS Energy Lett."
-  ref: "Just accepted"
+  vol: 11
+  issue: 8
+  pages: "5817-5828"
   year: 2026
   doi: "https://doi.org/10.1021/acsenergylett.6c01560"
   preprint_url: ""
