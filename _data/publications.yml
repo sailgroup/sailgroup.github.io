@@ -59,7 +59,7 @@
   doi: "https://doi.org/10.1016/j.jallcom.2026.190954"
   themes:
     - "Molecular property prediction"
-  image: "pub-425gif"
+  image: "Pub_45.png"
   abstract: >
     Lead halide colloidal perovskite nanocrystals (CPNCs) have emerged as promising candidates for next-generation optoelectronics owing to their outstanding optical properties; 
     however, their intrinsic instability against environmental stimuli remains a critical bottleneck. Herein, we report the synthesis of highly stable, colloidally dispersible 
@@ -82,7 +82,7 @@
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
-  image: "pub-434.png"
+  image: "pub-44.png"
   abstract: >
     Accurate theoretical prediction of excited-state absorption (ESA) spectra remains challenging. 
     Although considerable progress has been made in computational methods for ESA spectroscopy, their practical application 
