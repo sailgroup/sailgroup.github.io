@@ -26,7 +26,7 @@
 #   3. id 39 preprint URL on Wix was malformed ("https://10.26434/...");
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
-- id: 46
+- id: 47
   title: "From Molecules to Mixture"
   authors: "Jihwan Kim, Chanjoong Kim, Joonyoung F. Joung*"
   journal: "Submitted"
@@ -39,7 +39,7 @@
   image: ""
   abstract: ""
 
-- id: 45
+- id: 46
   title: "Raman Classification"
   authors: "Jihwan Kim, ..., Chanjoong Kim, ..., Joonyoung F. Joung*"
   journal: "Submitted"
@@ -50,18 +50,39 @@
     - "Representation learning"
   image: ""
   abstract: ""
+
+- id: 45
+  title: "Synergistic Ligand and Composition Control for Bright and Stable CsPbBr3/Cs4PbBr6 Core/Shell Colloidal Perovskite Nanocrystals"
+  authors: "Jae Woo Kim, Jigeon Kim , Jihwan Kim, Huieun Kim, Haereum Jo, Wonjong Lee, Jongchul Lim, Joonyoung F. Joung*, Younghoon Kim*"
+  journal: "J. Alloys Compd."
+  year: 2026
+  doi: "https://doi.org/10.1016/j.jallcom.2026.190954"
+  themes:
+    - "Molecular property prediction"
+  image: "pub-425gif"
+  abstract: >
+    Lead halide colloidal perovskite nanocrystals (CPNCs) have emerged as promising candidates for next-generation optoelectronics owing to their outstanding optical properties; 
+    however, their intrinsic instability against environmental stimuli remains a critical bottleneck. Herein, we report the synthesis of highly stable, colloidally dispersible 
+    CsPbBr3/Cs4PbBr6 single core/single shell CPNCs via a synergistic approach that combines an oleylamine-driven surface phase transition with a controlled Cs-rich environment. 
+    To overcome the sensitivity of the core/shell formation to interdependent synthesis parameters, we employ a machine-learning-assisted workflow. A random forest classifier 
+    is utilized to identify the optimal synthesis window with a prediction accuracy of 97.3%, enabling the precise regulation of shell growth. The resulting core/shell CPNCs 
+    exhibit a uniform rhombohedral morphology and maintain a Type-I band alignment, which preserves the excellent optical properties of the CsPbBr3 CPNC core while confining charge
+    carriers for efficient radiative recombination. Furthermore, the Cs4PbBr6 shell acts as a robust barrier, providing superior stability against harsh conditions, including 
+    exposure to polar solvents (acetone), high temperature (85 °C), and high humidity (85% RH). These CsPbBr3/Cs4PbBr6 core/shell CPNCs retain high colloidal dispersibility, 
+    offering a solution-processable material for robust perovskite-based optoelectronic devices.
+  
   
 - id: 44
   title: "Prediction of experimental excited-state absorption spectra by using vibronic transition calculations: Its practical application to a π-conjugated molecule"
   authors: "Joonyoung F. Joung*, Sungnam Park*"
-  journal: "Submitted"
+  journal: "Bull. Korean Chem. Soc."
   year: 2026
   doi: ""
   preprint_url: "https://doi.org/10.48550/arXiv.2607.25247"
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
-  image: ""
+  image: "pub-434.png"
   abstract: >
     Accurate theoretical prediction of excited-state absorption (ESA) spectra remains challenging. 
     Although considerable progress has been made in computational methods for ESA spectroscopy, their practical application 
