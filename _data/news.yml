@@ -22,6 +22,22 @@
 #   link_text    OPTIONAL. Link label. Defaults to "Details".
 # ---------------------------------------------------------------------------
 
+- date: "2026-09-10"
+  display_date: ""
+  category: publication
+  title: "Jihwan co-authors new paper on perovskite nanocrystals"
+  body: "Congratulations to Jihwan on the publication of \"Synergistic Ligand and Composition Control for Bright and Stable CsPbBr3/Cs4PbBr6 Core/Shell Colloidal Perovskite Nanocrystals\"! Jihwan contributed to the machine learning part of this collaborative study, developing a random forest model to predict successful core/shell formation and guide the optimization of synthesis conditions."
+  link: "/publications/45/"
+  link_text: "Read the paper"
+
+- date: "2026-09-01"
+  display_date: ""
+  category: people
+  title: "Yeonju joins the lab"
+  body: "Yeonju Yoo (유연주) joins SAIL as an undergraduate researcher (UROP)."
+  link: "/members/yeonju-yoo/"
+  link_text: "Member page"
+
 - date: "2026-07-13"
   display_date: ""
   category: people
