@@ -55,6 +55,8 @@
   title: "Synergistic Ligand and Composition Control for Bright and Stable CsPbBr3/Cs4PbBr6 Core/Shell Colloidal Perovskite Nanocrystals"
   authors: "Jae Woo Kim, Jigeon Kim, Jihwan Kim, Huieun Kim, Haereum Jo, Wonjong Lee, Jongchul Lim, Joonyoung F. Joung*, Younghoon Kim*"
   journal: "J. Alloys Compd."
+  vol: 1080
+  pages: "190954"
   year: 2026
   doi: "https://doi.org/10.1016/j.jallcom.2026.190954"
   themes:
@@ -76,8 +78,9 @@
   title: "Prediction of experimental excited-state absorption spectra by using vibronic transition calculations: Its practical application to a π-conjugated molecule"
   authors: "Joonyoung F. Joung*, Sungnam Park*"
   journal: "Bull. Korean Chem. Soc."
+  pages: "Early veiw"
   year: 2026
-  doi: ""
+  doi: "http://doi.org/10.1002/bkcs.70213"
   preprint_url: "https://doi.org/10.48550/arXiv.2607.25247"
   themes:
     - "Spectroscopic analysis"
