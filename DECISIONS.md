@@ -951,10 +951,11 @@ add their verification meta tags.
 - Roles of Jihwan Kim and Seonbin Kim: "M.S./Ph.D integrated course" to "M.S./Ph.D.
   Integrated Course": the missing period, and Title Case like every other role on the
   Members grid (the D36 precedent).
-- Journal logos, clearing the build warnings for 43 and 45: `J. Alloys Compd.` uses the
-  title block cropped from the journal's official Elsevier cover (ars.els-cdn.com),
-  on the same 280x140 white canvas as the other Elsevier logos; `ChemRxiv` reuses the
-  site's existing ChemRxiv mark (`assets/images/chemrxiv.png`), cropped to its square.
+- Journal logos, clearing the build warnings for 43 and 45: `J. Alloys Compd.` is the
+  title block cropped tightly from the journal's official Elsevier cover
+  (ars.els-cdn.com; 506x195, so the thin title stays legible at the 44 px logo
+  height); `ChemRxiv` reuses the site's existing ChemRxiv mark
+  (`assets/images/chemrxiv.png`), cropped to its square.
 - Left as entered, on instruction: papers 46 and 47 ("Submitted", no logo, no DOI);
   their build warning remains. Not changed because they are style rather than error:
   paper title capitalisation (each follows the PI's entry), `YOOYEONJU.jpg` naming
