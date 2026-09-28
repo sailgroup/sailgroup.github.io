@@ -622,3 +622,15 @@ Chrome.
   first paint the same or earlier on /publications/, /positions/, home and /pi/; largest
   paint earlier on /publications/ and home and the same within run-to-run noise on the
   other two.
+- **Live browser checks** (after the deploy): the full sweep (`.qa/tools/qa-site.js`
+  against https://sail.kookmin.ac.kr: all 70 pages at 1440 and 390 px, 12 also at 768,
+  axe-core on 12) finds no problems. The interactive parts work: on Publications each
+  of the 7 topic chips shows exactly the papers that carry it, two chips show the papers
+  with both, a year heading hides when it has none, and "All" shows all 47 again; the
+  cover viewer on the home page and Photos opens the full-size cover, links to its
+  paper, moves with the arrow keys and closes with Escape, returning focus; the photo
+  viewer opens the 1600 px photo and moves and closes the same way; the member hover
+  photo loads; the phone menu opens and closes; a missing address gets the 404 page;
+  and no console error occurs. Every person page lists exactly the lab papers whose
+  author list names the person (by name or `author_aliases`), as before. `http://` and
+  `sailgroup.github.io` addresses redirect to https://sail.kookmin.ac.kr.
