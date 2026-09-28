@@ -516,4 +516,87 @@ Chrome, before publishing.
   145 KB); the repository files are unchanged. `/.well-known/security.txt` is present
   in the v5 artifact.
 - **Content:** no file under `_data/` changed in D38. The data corrections requested
-  afterwards (D39) are verified in section 13.
+  afterwards (D39) are verified in section 14.
+
+## 14. Data corrections and review follow-up (2026-09-29, D39 and D40)
+
+Verified on a local build of the working tree made the way CI makes it (the image step
+in `node:24` with the locked `sharp`, then `jekyll build` in `ruby:3.3` with Bundler in
+deployment mode against the committed `Gemfile.lock`, then html-proofer: passed on 96
+files), compared with a build of d098025, served locally and driven with headless
+Chrome.
+
+- **D39 in the build:** paper 44 shows "Early View" and links
+  `https://doi.org/10.1002/bkcs.70213`; paper 42's title ends "Quantum Dots for
+  Photovoltaics" and marks "Hyung Min Kim*"; paper 43 lists "Betar M. Gallant" and
+  "T. Alan Hatton"; the Members grid shows "M.S./Ph.D. Integrated Course" twice; papers
+  43 and 45 show the ChemRxiv and J. Alloys Compd. logos; the Alumni intro reads
+  "Former members of the Spectroscopy and AI Lab at Kookmin University."
+- **Content (D40):** `_data/` byte-identical to d098025. Visible text (`innerText`,
+  `textContent`, `<html lang>`) identical on all 70 pages at 1350 and 390 px; the 26
+  redirect stubs byte-identical. With the intended changes normalised out (D40), no
+  other difference remains in any page's HTML.
+- **Layout:** every element's box, after fonts and images load, identical on all 70
+  pages at 1350, 1024, 700, 600 and 390 px, except paper 42's `<img>` at 600 and 700 px
+  (469 to 500 px wide, same centre; the box differs from about 545 to 720 px);
+  screenshots of that figure from 540 to 736 px are byte-identical.
+- **Metadata:** all 193 JSON-LD blocks parse. 45 ScholarlyArticles, none with a
+  `publisher` or a "..." author, each with the PI's author entry carrying
+  `<site>/pi/#person`; none for papers 46 and 47, which also have no `citation_*`
+  tags. The 8 alumni carry `alumniOf` only. The PI page's title is the PI's name and
+  its description is byte-identical. `og:locale` is `en_US`, `ko_KR` on Positions.
+  `/feed.xml` and its `<link>` are gone. `security.txt` `Expires` is the build time
+  plus 330 days. `robots.txt`, `sitemap.xml` and `site.webmanifest` are unchanged.
+- **llms.txt / llms-full.txt:** the ten entries match the Publications page order (47
+  down to 38) and link each paper's page; the alumni URLs, the PI's biography,
+  education and career, and all 20 news items (order, date, body, link) match the data
+  and the pages. No em dashes.
+- **Site sweep** (`.qa/tools/qa-site.js`: all 70 pages at 1440 and 390 px, 12
+  representative pages also at 768 px): no console errors or CSP violations, no failed
+  requests, no horizontal overflow, no broken images; axe-core (WCAG 2 A/AA, the 12
+  pages at 1440 px) finds nothing.
+- **srcset:** `sizes` against the drawn width at every viewport width from 320 to
+  1600 px: gallery 1.000 to 1.034, covers 0.989 to 1.087, publication thumbnails
+  1.000. Image bytes for the whole /photos/ page: 7,178 KB before; after, 1,438 KB on
+  a desktop at 1x, 3,178 KB at 2x, 3,647 KB on a 375 px phone at 2x, 6,090 KB on a
+  390 px phone at 3x.
+- **Font swap** (Pretendard held back 1.5 s): /positions/ layout shift 0.26 to 0.0002
+  on a phone and 0.06 to 0.26 (it varies run to run) to 0.0005 on a desktop; other
+  pages unchanged (at most 0.003).
+- **Lighthouse** (local, base to new, before the review fixes, which touch only
+  metadata and text): Positions performance 65 to 82 on mobile and 84 to 99 on desktop,
+  CLS 0.29 to 0; paper 1 mobile CLS 0.12 to 0.013; bytes on /photos/ 7,533 to 1,807
+  KiB (desktop), home 933 to 562 KiB (desktop).
+- **Image step on the repository** (90 images): 3 rewritten in the build copy
+  (people/YOOYEONJU.jpg 978 KB to 40 KB, its EXIF removed; pubs/pub-44.png 172 KB to
+  145 KB; people/anonymous.png drops a 25-byte text chunk, pixels identical); 85
+  renditions for 80 images. On synthetic uploads (Linux filesystem): EXIF orientations
+  3, 6 and 8 end up the right way round; PNG metadata removed with identical pixels;
+  JPG and WebP metadata removed; GPS, HEIC and TIFF uploads warned; truncated and
+  corrupt files left as uploaded with a warning; `x.jpg` and `x.JPG` do not share
+  renditions; no temporary files left; a second run changes nothing; without CI or
+  `--local` it exits without touching anything.
+- **Header emblem:** the 160 px file drawn at 30, 36 and 46 px at 1x to 3x is
+  visually identical to the 1024 px original.
+- **Build tools:** the CONTRIBUTING commands work as written (`bundle lock` makes no
+  change; the full local build passes html-proofer; the `docker` volume syntax works in
+  PowerShell and, with `MSYS_NO_PATHCONV=1`, in Git Bash).
+- **README path, end to end** (a scratch copy, edited only as the README describes: a
+  new paper 48 with a figure, a new member with a photo, a news item linking to
+  `/members/<slug>/`, a gallery photo and a journal cover, both with a GPS position, a
+  cover pointing at paper 48, and one member moved to alumni): the build, the data
+  check and html-proofer pass, and 34 checks hold. The paper page is generated (PI in
+  bold, citation tags, the PI linked in its JSON-LD, figure sized); it heads the
+  Publications list with a smaller thumbnail; it is listed on the pages of the new
+  member, a current member and an alumnus who co-authored it. The new member has a page,
+  a card on Members, and `/members/` and `/alumni/` redirects; the graduated member moved
+  from Members to Alumni under the same address, with `alumniOf`. The news item shows on
+  the home page and News with the link printed as `/people/<slug>/`; the photo leads the
+  gallery with its smaller copies; the cover opens the full-size viewer and links to
+  paper 48. `llms.txt` counts 48 papers and lists paper 48 first; `llms-full.txt`, the
+  sitemap (without the redirects) and the image list include the new entries. The GPS
+  warnings appear, and the served copies have no EXIF and are 1600, 1200 and 800 px.
+- **Reviews:** four separate reviews (templates and SEO, CI and images, content and
+  docs, and a last pass over the fixes) found nothing above low severity. Their fixes
+  are in D40; one suggestion, a scheduled monthly rebuild for `security.txt`, was
+  declined for the reason given there.

@@ -186,3 +186,18 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   hidden English-only abstracts (42-45), and the Positions page language. CI actions bumped
   (checkout v7, upload-pages-artifact v5 with hidden files kept, deploy-pages v5) and an
   optional build-copy image shrink step added. Results in `REVIEW.md` section 12.
+- **Phase 15 (2026-09-29):** Review follow-up (D40), content-neutral. A full review of
+  d098025 (performance, security, SEO, GEO) was cross-checked and every fix that changes
+  no content was made: the site author and JSON-LD publisher are the lab, not the PI;
+  JSON-LD `@id`s join the lab, the PI and the PI's 45 papers; alumni are `alumniOf`;
+  submitted manuscripts (46, 47) get no ScholarlyArticle or `citation_*` tags;
+  `og:locale` fixed; the empty feed removed; news links print canonical person URLs;
+  `llms.txt` and `llms-full.txt` completed and made deterministic; `security.txt`
+  renews its `Expires` on every deploy. A new CI image step (before the build) removes
+  camera metadata, warns about GPS positions and unreadable formats, and makes srcset
+  renditions; paper figures get their size and load first; a Hangul fallback font ends
+  the Positions page's font-swap shift (CLS 0.26 to 0.0002). Lockfiles committed,
+  setup-ruby pinned, per-branch concurrency, grouped monthly Dependabot. Four separate
+  reviews found nothing above low severity; their fixes are in. The README's editing
+  steps, run end to end on a scratch copy, are unchanged. `_data/` unchanged, visible
+  text identical on all 70 pages. Results in `REVIEW.md` section 14 (2026-09-29).

@@ -966,3 +966,108 @@ add their verification meta tags.
   paper title capitalisation (each follows the PI's entry), `YOOYEONJU.jpg` naming
   (served resized by the D38 image step), and news links that use the
   `/members/<slug>/` redirect paths.
+
+## D40 — Review follow-up: metadata, structured data, images, fonts, CI (2026-09-29)
+
+- A full review of d098025 (performance, security, SEO, GEO) was cross-checked item
+  by item; the maintainer asked for every fix that changes no content. Findings that
+  need the PI (facts in the data) and steps outside the repository (Search Console,
+  Naver, repository settings) were left out. No file under `_data/` changed and no
+  visible text changed. The final layout (every element's box once fonts and images
+  have loaded) is identical on all 70 pages at 1350, 1024 and 390 px; between about 545
+  and 720 px one figure capped by `max-height` (paper 42) has a wider `<img>` box and is
+  drawn exactly as before (screenshots byte-identical from 540 to 736 px). Four separate
+  reviews of the change (templates and SEO, CI and images, content and docs, and a last
+  pass over the fixes) found nothing above low severity; their fixes are included below.
+  The editing steps in the README were run end to end on a scratch copy (REVIEW
+  section 14): they are unchanged and every cross-link still follows the data.
+- **Site author is the lab.** `author:` in `_config.yml` named the PI as a Person, and
+  jekyll-seo-tag names its JSON-LD `publisher` after the author, so every page said an
+  Organization called "Joonyoung F. Joung" published it. It is now the lab, as an
+  Organization with its URL. `social:` removed: seo-tag turned its links (the PI's
+  Scholar and ORCID) into the home page's WebSite `sameAs`, which must identify the
+  site; they stay on the PI's own Person data.
+- **Structured data** (`_includes/structured-data.html`): the lab is
+  `<site>/#organization` and the PI `<site>/pi/#person`; members and the PI point at
+  the lab by `@id`, and the home page's `founder` points at the PI (with the profile
+  links). The PI's entry in a paper's author list carries the PI's `@id` and page
+  (matched on `name` or `name_full`, as the bold PI name is), so the 45 articles attach
+  to the same person. Alumni get `alumniOf` the lab instead of a current `jobTitle`/
+  `worksFor`/`affiliation`. ScholarlyArticle no longer names the lab as `publisher`
+  (the journal's publisher is). A paper with neither a DOI nor a preprint link (a
+  manuscript under review: 46, 47) gets no ScholarlyArticle and no `citation_*` tags,
+  so Scholar does not index "Submitted" as a journal; author lists skip "..." entries.
+- **Other metadata:** `og:locale` in the form ogp.me asks for (`en_US`; `ko_KR` on the
+  Korean Positions page). The PI page's `<title>` is the PI's name like every person
+  page, and its title and description are built from `pi.yml` in `generate_pages.rb`
+  (the description text is unchanged; a `title` or `description` written in the page's
+  front matter would win, and a missing page or name is logged). jekyll-feed removed:
+  the site has no posts, so it published an empty `/feed.xml` linked from every page.
+  News links written as `/members/<slug>/` are printed as the person's canonical
+  `/people/<slug>/` (the old address is a noindex redirect); `news.yml` is untouched.
+  The PI's Korean name on the home page is marked `lang="ko"`.
+- **GEO:** `/llms.txt` lists the ten newest papers in the Publications page order (the
+  built-in sort is unstable, so same-year papers came out in arbitrary order), each as
+  a link to its page. `/llms-full.txt` adds the PI's page, biography, education and
+  career, each alumnus's page, and every news item. Text fields in both files are
+  folded with `normalize_whitespace` instead of `strip_newlines`, which deletes a line
+  break and so joins the words on either side (no field has one today; the output only
+  loses a few doubled spaces). The research figures' alt text uses the same filter.
+- **Images** (`.github/scripts/prepare-images.mjs`, replacing `optimize-images.mjs`):
+  the CI step now runs on the checkout before the build, so the build can use what it
+  learns. Besides shrinking oversized uploads (same limits), it removes metadata from
+  JPG (also `.jfif`, `.jpe`), PNG, WebP and AVIF uploads (EXIF can hold the GPS
+  position): a PNG drops its text and EXIF chunks and keeps its pixels, so it never
+  grows; other formats are re-encoded after applying the EXIF rotation (checked for
+  orientations 3, 6 and 8); an animated image is left as uploaded, with a warning if it
+  has metadata. The repository is public and keeps each file as uploaded, so an upload
+  that holds a GPS position is named in a warning on the run's summary page, as is a
+  HEIC, TIFF or DNG upload (the step does not process those; most browsers cannot show
+  them). A file that
+  fails is published as uploaded, with a warning. The step rewrites files in place, so
+  it refuses to run outside CI without `--local`. It also makes smaller copies (gallery
+  photos 480, 800, 1200 px; paper figures 480; covers 400) and lists the size of each
+  gallery photo, paper figure and cover in `_data/generated_images.json` (not
+  committed). Templates turn that into
+  `srcset`/`sizes` (`_includes/image-srcset.html`) and into `width`/`height` on the paper
+  page figure; without the file, pages are exactly as before. An image shown with
+  `object-fit: cover` in a 4:3 box gets width values scaled to the part that is drawn,
+  so the browser picks a file that is sharp at the size shown. Every `sizes` value was
+  checked against the drawn width at each viewport width from 320 to 1600 px.
+- **Loading:** the paper-page figure is in the first screenful, so it is no longer lazy
+  and gets `fetchpriority="high"`; `.paper__figure img` dropped `width: auto`, which
+  overrode the new attributes (the box is now reserved before the file arrives, and
+  `object-fit: contain` keeps the proportions of a figure capped by `max-height`). The first gallery photo and
+  the PI photo load with high priority. The header emblem was a 1024 px PNG shown at
+  46 px; it is now 160 px (29 KB to 7 KB, visually identical when drawn at 1x to 3x).
+- **Hangul fallback:** until Pretendard's files arrive, Korean text was set in Malgun
+  Gothic (Hangul 1 em wide; Pretendard's is 1770/2048 em), so the Positions page
+  re-wrapped when Pretendard swapped in (CLS 0.26 to 0.30). `main.scss` adds
+  `local()` faces of Malgun Gothic (size-adjust 86.43%) and Noto Sans CJK KR (0.92 em;
+  93.94%) for Hangul syllables only, placed right after Pretendard in the stack (the
+  faces are defined below `:root`, so the design tokens stay at the top of the file,
+  where the README points editors). Names and widths were read from the font files; a variable Noto Sans KR is drawn at the
+  requested weight, not its Thin default.
+- **CI and build tools:** `Gemfile.lock` and `.github/scripts/package-lock.json` are
+  committed, and CI installs exactly them (supersedes the Phase 11 note that the
+  lockfile was not committed). `ruby/setup-ruby` is pinned to a commit, with the runner
+  image fixed at `ubuntu-24.04` so that pinned release keeps knowing it; jobs have
+  timeouts, and the two image-step steps have their own (5 minutes), so a stalled
+  download cannot use up the job's time and stop the deploy. The concurrency group is
+  per branch: with one group for all branches, a push to `dev` could cancel a `main`
+  run waiting behind another, and that commit would never deploy. Dependabot runs
+  monthly with one grouped pull request per ecosystem (actions, gems, and the image
+  step's `sharp`), for releases at least 7 days old (`cooldown`).
+- **security.txt** writes `Expires` at build time (330 days ahead), so every deploy of
+  `main` renews it instead of it lapsing on a fixed date. A scheduled monthly rebuild
+  was considered and left out: GitHub turns off a workflow that has a schedule after 60
+  days without activity in a public repository, and a turned-off workflow no longer
+  runs on a push either (GitHub community discussions 32197 and 66834), so the site
+  would stop deploying; a separate scheduled workflow would gain only those 60 days.
+  CONTRIBUTING says when to re-run the workflow by hand.
+- Unused CSS (`.visually-hidden`, `.divider`) removed. `member-pubs.html` dedupes with
+  an array: the joined string made `contains` a substring match, so a paper whose title
+  is part of an earlier entry's could be dropped. `journal-covers.html` names the
+  full-size cover by dropping only the last extension (`a.v2.jpg` to `a.v2-full.jpg`),
+  the rule the data validator checks; it dropped everything after the first dot.
+  Neither changes output with today's data.
