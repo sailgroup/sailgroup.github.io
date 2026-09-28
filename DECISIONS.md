@@ -929,5 +929,34 @@ add their verification meta tags.
 - Not done, by decision: the home contact block stays (D20 home structure); the
   middle dot in the hero line stays; an automatic new-publication finder was
   deferred (it would open GitHub issues and notify the PI, so it needs the PI's
-  agreement first). PI data was not edited: id 44 `ref: "Early veiw"` and the role
-  spelling "M.S./Ph.D integrated course" are reported to the maintainer instead.
+  agreement first). This pass changed no data; the data corrections that followed on
+  the maintainer's instruction are D39.
+
+## D39 — PI data corrections and two journal logos (maintainer's instruction, 2026-09-28)
+
+- The D38 review listed errors in data the PI had entered. The maintainer asked for
+  them to be fixed and for the remaining data to be made correct, leaving the two
+  submitted manuscripts (46, 47) exactly as entered. Every change below is a
+  correction to the publisher of record (Crossref metadata and the publisher's own
+  article page) or a spelling/punctuation fix; nothing was reworded.
+- Paper 44: `ref: "Early veiw"` to `"Early View"` (Wiley's term, capitalised like the
+  existing "Advance Article"); DOI `http://doi.org/...` to `https://doi.org/...` like
+  every other paper.
+- Paper 42: title "...Quantum Dots for Efficient Photovoltaics" to "...Quantum Dots for
+  Photovoltaics", the published title (ACS article page, Crossref); the corresponding
+  mark on Hyung Min Kim moved from after the comma (`Kim,*`) to the name (`Kim*,`); the
+  ACS page marks him corresponding (`*Email: hyungkim@kookmin.ac.kr`).
+- Paper 43: author initials "Betar M Gallant", "T Alan Hatton" to "Betar M. Gallant",
+  "T. Alan Hatton" (Crossref record of the ChemRxiv DOI).
+- Roles of Jihwan Kim and Seonbin Kim: "M.S./Ph.D integrated course" to "M.S./Ph.D.
+  Integrated Course": the missing period, and Title Case like every other role on the
+  Members grid (the D36 precedent).
+- Journal logos, clearing the build warnings for 43 and 45: `J. Alloys Compd.` uses the
+  title block cropped from the journal's official Elsevier cover (ars.els-cdn.com),
+  on the same 280x140 white canvas as the other Elsevier logos; `ChemRxiv` reuses the
+  site's existing ChemRxiv mark (`assets/images/chemrxiv.png`), cropped to its square.
+- Left as entered, on instruction: papers 46 and 47 ("Submitted", no logo, no DOI);
+  their build warning remains. Not changed because they are style rather than error:
+  paper title capitalisation (each follows the PI's entry), `YOOYEONJU.jpg` naming
+  (served resized by the D38 image step), and news links that use the
+  `/members/<slug>/` redirect paths.

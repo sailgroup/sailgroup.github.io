@@ -515,6 +515,5 @@ Chrome, before publishing.
   (people/YOOYEONJU.jpg 978 KB to 40 KB at 640x800; pubs/pub-44.png 172 KB to
   145 KB); the repository files are unchanged. `/.well-known/security.txt` is present
   in the v5 artifact.
-- **Content:** no file under `_data/` changed. Build warnings are data notes for the
-  PI (no journal logo for "Submitted", "J. Alloys Compd.", "ChemRxiv"), as is the
-  `ref: "Early veiw"` spelling on paper 44.
+- **Content:** no file under `_data/` changed in D38. The data corrections requested
+  afterwards (D39) are verified in section 13.

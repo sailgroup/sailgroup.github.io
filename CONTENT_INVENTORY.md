@@ -136,3 +136,11 @@ was taken, what was normalized, and what is still open.
   `assets/images/people/` as an opt-in placeholder (`photo: anonymous.png`); nothing
   references it by default. All other people photos moved unchanged into
   `assets/images/people/` (D36).
+- **Data corrections, 2026-09-28 (D39, maintainer's instruction)**: paper 44 `ref`
+  "Early veiw" to "Early View" and its DOI to https; paper 42 title matched to the
+  published title (no "Efficient") and the Hyung Min Kim corresponding mark placed on
+  the name; paper 43 author initials "Betar M. Gallant", "T. Alan Hatton" (Crossref);
+  roles "M.S./Ph.D. Integrated Course" (Jihwan Kim, Seonbin Kim). New journal logos:
+  `journals/j-alloys-compd.png` (title block of the official Elsevier cover) and
+  `journals/chemrxiv.png` (the site's existing ChemRxiv mark). Papers 46 and 47
+  ("Submitted") left exactly as entered by the PI.

@@ -176,7 +176,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   test (42 → 15 → 42) against the CI artifact, confirmed site JS ships, and reviewed the design at
   1440px and 390px. Results in `REVIEW.md` section 9 (Phase 10).
 - **Phase 14 (2026-09-28):** De-templated visual pass and fixes (D38). Synced local with the
-  PI's 24 direct commits on main first (none touched by this pass; zero diff under `_data/`).
+  PI's 24 direct commits on main first (none touched by the visual pass; zero diff under
+  `_data/`; the data corrections that followed on the maintainer's instruction are D39).
   Removed eyebrow labels, the accent bar, hero glow, header blur, figure shadows, the PI-name
   highlighter, and ALL-CAPS tracking; warm neutrals became untinted greys; h1/h2 weight 500.
   Home research section now shows each area in full beside its figure, linked to

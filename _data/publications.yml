@@ -78,9 +78,9 @@
   title: "Prediction of experimental excited-state absorption spectra by using vibronic transition calculations: Its practical application to a π-conjugated molecule"
   authors: "Joonyoung F. Joung*, Sungnam Park*"
   journal: "Bull. Korean Chem. Soc."
-  ref: "Early veiw"
+  ref: "Early View"
   year: 2026
-  doi: "http://doi.org/10.1002/bkcs.70213"
+  doi: "https://doi.org/10.1002/bkcs.70213"
   preprint_url: "https://doi.org/10.48550/arXiv.2607.25247"
   themes:
     - "Spectroscopic analysis"
@@ -100,7 +100,7 @@
   
 - id: 43
   title: "Continuous Light-Driven Pure CO2 Production by Regenerative Non-Aqueous Amine–Photoacid Cycling"
-  authors: "Gi Hyun Byun, Nayeong Kim, Joonyoung F. Joung, Michael Massen-Hane, Betar M Gallant, Hyowon Seo, T Alan Hatton*"
+  authors: "Gi Hyun Byun, Nayeong Kim, Joonyoung F. Joung, Michael Massen-Hane, Betar M. Gallant, Hyowon Seo, T. Alan Hatton*"
   journal: "ChemRxiv"
   ref: "Preprint"
   year: 2026
@@ -122,8 +122,8 @@
     from 15% CO2 source. These results establish a practical foundation for scalable light-driven carbon capture.
 
 - id: 42
-  title: "Precursor Diffusion-Controlled Scalable Synthesis of Monodisperse Iodide Perovskite Quantum Dots for Efficient Photovoltaics"
-  authors: "Jaehyuk Kim†, Sanghun Han†, Jigeon Kim†, Hye Min Kim, Seongwon Lee, Dong Gyu Lee, Gayoung Seo, Hyeon Soo Ma, Joonyoung F. Joung, Tae Kyung Lee, Hyung Min Kim,* Jongmin Choi*, Younghoon Kim*"
+  title: "Precursor Diffusion-Controlled Scalable Synthesis of Monodisperse Iodide Perovskite Quantum Dots for Photovoltaics"
+  authors: "Jaehyuk Kim†, Sanghun Han†, Jigeon Kim†, Hye Min Kim, Seongwon Lee, Dong Gyu Lee, Gayoung Seo, Hyeon Soo Ma, Joonyoung F. Joung, Tae Kyung Lee, Hyung Min Kim*, Jongmin Choi*, Younghoon Kim*"
   journal: "ACS Energy Lett."
   vol: 11
   issue: 8
