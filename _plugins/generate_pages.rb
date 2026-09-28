@@ -43,14 +43,41 @@ module SAIL
           %w[members alumni].each { |old| site.pages << RedirectPage.new(site, old, slug, target) }
         end
       end
+
+      pi_page_meta(site)
     end
 
     private
 
+    # pi.html is hand-written, but its <title> and meta description are set here from
+    # _data/pi.yml, so they follow the PI's own entry (a new title or department reaches
+    # search results too) instead of a copy in front matter that would go stale. The
+    # title is the PI's name, as on every generated person page; the page's front-matter
+    # `description_topics` ends the description. A `title` or `description` written in
+    # pi.html's front matter is kept (it wins over the built one).
+    def pi_page_meta(site)
+      pi = site.data["pi"]
+      page = site.pages.find { |p| p.url == "/pi/" }
+      name = pi.is_a?(Hash) ? pi["name"].to_s.strip : ""
+      if page.nil? || name.empty?
+        Jekyll.logger.warn "Pages:", "/pi/ title and description not set from _data/pi.yml " \
+                                     "(#{page ? "pi.yml has no name" : "no page at /pi/"})."
+        return
+      end
+      nk  = pi["name_ko"].to_s.strip
+      who = nk.empty? ? name : "#{name} (#{nk})"
+      desc = "#{who}, #{pi["title"]} in the #{pi["department"]} at #{pi["institution"]} " \
+             "and Principal Investigator of the #{site.config["title"]} (#{site.config["short_name"]})"
+      topics = page.data["description_topics"].to_s.strip
+      desc += ": #{topics}" unless topics.empty?
+      page.data["title"] ||= name
+      page.data["description"] ||= "#{desc}."
+    end
+
     # Per-page SEO <title> + meta description for a generated page. Without this,
     # every generated paper/person page inherits the generic site title and
-    # description (52 identical titles) -- bad for search engines and AI answer
-    # engines. jekyll-seo-tag reads page.title / page.description from here.
+    # description -- bad for search engines and AI answer engines. jekyll-seo-tag
+    # reads page.title / page.description from here.
     def seo_meta(kind, entry)
       case kind
       when "publications"

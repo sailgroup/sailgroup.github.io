@@ -28,7 +28,8 @@ permalink: /news/
             {%- if n.link contains "://" -%}
             <a class="link news__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer">{{ label }} {% include icon.html name="external" %}</a>
             {%- else -%}
-            <a class="link news__link" href="{{ n.link | relative_url }}">{{ label }}</a>
+            {%- capture href -%}{% include news-href.html link=n.link %}{%- endcapture -%}
+            <a class="link news__link" href="{{ href | relative_url }}">{{ label }}</a>
             {%- endif -%}
           {%- endif -%}
         </div>

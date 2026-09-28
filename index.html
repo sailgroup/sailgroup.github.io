@@ -32,7 +32,7 @@ scripts: [covers]
         <h3 class="news-card__title">
           {%- if n.link and n.link != "" -%}
             {%- if n.link contains "://" -%}<a class="news-card__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer">{{ n.title }}</a>
-            {%- else -%}<a class="news-card__link" href="{{ n.link | relative_url }}">{{ n.title }}</a>{%- endif -%}
+            {%- else -%}{%- capture href -%}{% include news-href.html link=n.link %}{%- endcapture -%}<a class="news-card__link" href="{{ href | relative_url }}">{{ n.title }}</a>{%- endif -%}
           {%- else -%}{{ n.title }}{%- endif -%}
         </h3>
       </article>
@@ -87,7 +87,7 @@ scripts: [covers]
       </div>
       <div>
         <dt>Principal investigator</dt>
-        <dd><a class="link" href="{{ '/pi/' | relative_url }}">{{ site.data.pi.name }}</a> ({{ site.data.pi.name_ko }})<br>{{ site.data.pi.title }}, {{ site.data.pi.department }}</dd>
+        <dd><a class="link" href="{{ '/pi/' | relative_url }}">{{ site.data.pi.name }}</a> (<span lang="ko">{{ site.data.pi.name_ko }}</span>)<br>{{ site.data.pi.title }}, {{ site.data.pi.department }}</dd>
         <dt>Affiliation</dt>
         <dd>{{ site.data.pi.college }}, {{ site.data.pi.institution }}</dd>
       </div>

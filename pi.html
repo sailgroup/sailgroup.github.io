@@ -1,8 +1,10 @@
 ---
 layout: default
-title: Principal Investigator
-description: "Joonyoung F. Joung (정준영), Assistant Professor in the Department of Chemistry at Kookmin University and Principal Investigator of the Spectroscopy and AI Lab (SAIL): spectroscopy, physical chemistry, and machine learning for molecular property and reaction prediction."
 permalink: /pi/
+# The <title> (the PI's name, like every person page) and the meta description are
+# built from _data/pi.yml by _plugins/generate_pages.rb, so a change there (a new
+# title, say) reaches search results too. This phrase ends the description:
+description_topics: "spectroscopy, physical chemistry, and machine learning for molecular property and reaction prediction"
 ---
 {%- assign pi = site.data.pi -%}
 <div class="container page-head">
@@ -15,7 +17,7 @@ permalink: /pi/
   <div class="container">
     <div class="profile">
       <div class="profile__aside">
-        <img class="profile__photo" src="{{ '/assets/images/people/' | append: pi.photo | relative_url }}" alt="{{ pi.name }}" width="354" height="472">
+        <img class="profile__photo" src="{{ '/assets/images/people/' | append: pi.photo | relative_url }}" alt="{{ pi.name }}" width="354" height="472" fetchpriority="high">
         <div class="profile__contact">
           {%- if pi.office -%}<span>{% include icon.html name="pin" %} {{ pi.office }}</span>{%- endif -%}
           <a href="mailto:{{ pi.email }}">{% include icon.html name="mail" %} {{ pi.email }}</a>

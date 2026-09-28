@@ -2,21 +2,37 @@
 Page-specific JSON-LD, in addition to the generic tags jekyll-seo-tag emits:
   /                              -> ResearchOrganization (the lab)
   /pi/                           -> Person (the PI)
-  /publications/<id>/            -> ScholarlyArticle + BreadcrumbList
+  /publications/<id>/            -> ScholarlyArticle (a paper with a DOI or preprint) + BreadcrumbList
   /people/<slug>/                -> Person + BreadcrumbList
   /publications/ /members/ /alumni/ -> CollectionPage with an ItemList of the collection
 All values come from the same _data files the pages render from, so the structured
 data cannot drift from the visible content. Invisible to sighted users (metadata).
+The lab and the PI carry stable "@id"s (<site>/#organization, <site>/pi/#person), and
+the other mentions of them in this file repeat that @id (the home page's founder, a
+person's worksFor or alumniOf, and the PI in a paper's author list, matched on
+pi.yml `name` or `name_full` as the bold PI name is), so search engines join the
+mentions into one lab and one person. jekyll-seo-tag's own block names the lab
+without an @id. sameAs lists only profiles of the entity itself: the PI's Scholar
+and ORCID pages sit on the PI, never on the lab.
 {%- endcomment -%}
+{%- capture orgref -%}{"@type":"ResearchOrganization","@id":"{{ site.url }}/#organization","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }}}{%- endcapture -%}
 {%- if page.url == "/" -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","name":{{ site.title | jsonify }},"alternateName":{{ site.short_name | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | jsonify }},"logo":"{{ site.url }}/assets/images/sail-logo.png","email":{{ site.data.home.contact.email | jsonify }},"telephone":{{ site.data.home.contact.phone | jsonify }},"foundingDate":"2025","address":{"@type":"PostalAddress","streetAddress":"77 Jeongneung-ro, Seongbuk-gu","addressLocality":"Seoul","postalCode":"02707","addressCountry":"KR"},"parentOrganization":{"@type":"CollegeOrUniversity","name":"Kookmin University","url":"https://english.kookmin.ac.kr/"},"knowsAbout":[{% for a in site.data.research.areas %}{{ a.title | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}],"founder":{"@type":"Person","name":{{ site.data.pi.name | jsonify }}},"sameAs":[{{ site.data.pi.scholar | jsonify }},{{ site.data.pi.orcid | jsonify }}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","@id":"{{ site.url }}/#organization","name":{{ site.title | jsonify }},"alternateName":{{ site.short_name | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | jsonify }},"logo":"{{ site.url }}/assets/images/sail-logo.png","email":{{ site.data.home.contact.email | jsonify }},"telephone":{{ site.data.home.contact.phone | jsonify }},"foundingDate":"2025","address":{"@type":"PostalAddress","streetAddress":"77 Jeongneung-ro, Seongbuk-gu","addressLocality":"Seoul","postalCode":"02707","addressCountry":"KR"},"parentOrganization":{"@type":"CollegeOrUniversity","name":"Kookmin University","url":"https://english.kookmin.ac.kr/"},"knowsAbout":[{% for a in site.data.research.areas %}{{ a.title | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}],"founder":{"@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ site.data.pi.name | jsonify }},"url":"{{ site.url }}/pi/","sameAs":[{{ site.data.pi.scholar | jsonify }},{{ site.data.pi.orcid | jsonify }}]}}</script>
 {%- elsif page.url == "/pi/" -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":{{ site.data.pi.name | jsonify }},"alternateName":{{ site.data.pi.name_ko | jsonify }},"jobTitle":{{ site.data.pi.title | jsonify }},"email":{{ "mailto:" | append: site.data.pi.email | jsonify }},"url":"{{ site.url }}/pi/","affiliation":{"@type":"CollegeOrUniversity","name":{{ site.data.pi.institution | jsonify }}},"worksFor":{"@type":"ResearchOrganization","name":{{ site.title | jsonify }}},"sameAs":[{{ site.data.pi.scholar | jsonify }},{{ site.data.pi.orcid | jsonify }}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ site.data.pi.name | jsonify }},"alternateName":{{ site.data.pi.name_ko | jsonify }},"jobTitle":{{ site.data.pi.title | jsonify }},"email":{{ "mailto:" | append: site.data.pi.email | jsonify }},"url":"{{ site.url }}/pi/","affiliation":{"@type":"CollegeOrUniversity","name":{{ site.data.pi.institution | jsonify }}},"worksFor":{{ orgref }},"sameAs":[{{ site.data.pi.scholar | jsonify }},{{ site.data.pi.orcid | jsonify }}]}</script>
 {%- elsif page.pid -%}
 {%- assign p = site.data.publications | where: "id", page.pid | first -%}
 {%- if p -%}
-{%- assign authnames = p.authors | replace: '*', '' | replace: '†', '' | split: ',' -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":{{ p.title | jsonify }},"datePublished":"{{ p.year }}","inLanguage":"en","isPartOf":{"@type":"Periodical","name":{{ p.journal | jsonify }}},"publisher":{"@type":"ResearchOrganization","name":{{ site.title | jsonify }}},"url":"{{ site.url }}{{ page.url }}","author":[{%- for n in authnames -%}{"@type":"Person","name":{{ n | strip | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- if p.doi and p.doi != "" -%},"sameAs":{{ p.doi | jsonify }}{%- endif -%}{%- if p.abstract and p.abstract != "" -%},"abstract":{{ p.abstract | strip | jsonify }}{%- endif -%}{%- if p.themes and p.themes.size > 0 -%},"keywords":{{ p.themes | join: ", " | jsonify }}{%- endif -%}}</script>
+{%- comment -%}ScholarlyArticle only for a paper with a public version (DOI or preprint), the same rule as citation-meta.html: a manuscript under review is not yet an article in a periodical ("Submitted" is not a journal). No "publisher": the lab is not the publisher of its papers, and the journal's publisher is not in the data. Author entries "..." (a shortened list) are skipped. The breadcrumb is emitted for every paper.{%- endcomment -%}
+{%- assign citable = false -%}
+{%- if p.doi and p.doi != "" -%}{%- assign citable = true -%}{%- endif -%}
+{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign citable = true -%}{%- endif -%}
+{%- assign rawnames = p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', '' | split: ',' -%}
+{%- assign authnames = "" | split: "" -%}
+{%- for a in rawnames -%}{%- assign an = a | strip -%}{%- if an != "" and an != "..." and an != "…" -%}{%- assign authnames = authnames | push: an -%}{%- endif -%}{%- endfor -%}
+{%- if citable -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":{{ p.title | jsonify }},"datePublished":"{{ p.year }}","inLanguage":"en","isPartOf":{"@type":"Periodical","name":{{ p.journal | jsonify }}},"url":"{{ site.url }}{{ page.url }}","author":[{%- for n in authnames -%}{%- if n == site.data.pi.name or n == site.data.pi.name_full -%}{"@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ n | jsonify }},"url":"{{ site.url }}/pi/"}{%- else -%}{"@type":"Person","name":{{ n | jsonify }}}{%- endif -%}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- if p.doi and p.doi != "" -%},"sameAs":{{ p.doi | jsonify }}{%- endif -%}{%- if p.abstract and p.abstract != "" -%},"abstract":{{ p.abstract | strip | jsonify }}{%- endif -%}{%- if p.themes and p.themes.size > 0 -%},"keywords":{{ p.themes | join: ", " | jsonify }}{%- endif -%}}</script>
+{% endif -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Publications","item":"{{ site.url }}/publications/"},{"@type":"ListItem","position":3,"name":{{ p.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}]}</script>
 {%- endif -%}
 {%- elsif page.slug -%}
@@ -28,7 +44,13 @@ data cannot drift from the visible content. Invisible to sighted users (metadata
 {%- if person.github and person.github != "" -%}{%- assign sameas = sameas | push: person.github -%}{%- endif -%}
 {%- if person.linkedin and person.linkedin != "" -%}{%- assign sameas = sameas | push: person.linkedin -%}{%- endif -%}
 {%- if person.website and person.website != "" -%}{%- assign sameas = sameas | push: person.website -%}{%- endif -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":{{ person.name | jsonify }},"jobTitle":{{ person.role | jsonify }},"worksFor":{"@type":"ResearchOrganization","name":{{ site.title | jsonify }}},"affiliation":{"@type":"CollegeOrUniversity","name":"Kookmin University","url":"https://english.kookmin.ac.kr/"},"url":"{{ site.url }}{{ page.url }}"{% if person.name_ko and person.name_ko != "" %},"alternateName":{{ person.name_ko | jsonify }}{% endif %}{% if person.description and person.description != "" %},"description":{{ person.description | strip | jsonify }}{% endif %}{% if person.photo and person.photo != "" %},"image":"{{ site.url }}/assets/images/people/{{ person.photo }}"{% endif %}{% if person.email and person.email != "" %},"email":{{ "mailto:" | append: person.email | jsonify }}{% endif %}{% if sameas.size > 0 %},"sameAs":[{% for u in sameas %}{{ u | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endif %}}</script>
+{%- comment -%}A current member works for the lab now. A former member (status: alumni) is an alumnus of the lab: no present-tense worksFor, affiliation, or jobTitle (their role on the page is a past one).{%- endcomment -%}
+{%- if person.status == "alumni" -%}
+{%- capture roleprops -%}"alumniOf":{{ orgref }}{%- endcapture -%}
+{%- else -%}
+{%- capture roleprops -%}"jobTitle":{{ person.role | jsonify }},"worksFor":{{ orgref }},"affiliation":{"@type":"CollegeOrUniversity","name":"Kookmin University","url":"https://english.kookmin.ac.kr/"}{%- endcapture -%}
+{%- endif -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":{{ person.name | jsonify }},{{ roleprops }},"url":"{{ site.url }}{{ page.url }}"{% if person.name_ko and person.name_ko != "" %},"alternateName":{{ person.name_ko | jsonify }}{% endif %}{% if person.description and person.description != "" %},"description":{{ person.description | strip | jsonify }}{% endif %}{% if person.photo and person.photo != "" %},"image":"{{ site.url }}/assets/images/people/{{ person.photo }}"{% endif %}{% if person.email and person.email != "" %},"email":{{ "mailto:" | append: person.email | jsonify }}{% endif %}{% if sameas.size > 0 %},"sameAs":[{% for u in sameas %}{{ u | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endif %}}</script>
 {%- assign pcrumbname = "Members" -%}{%- assign pcrumburl = "/members/" -%}{%- if person.status == "alumni" -%}{%- assign pcrumbname = "Alumni" -%}{%- assign pcrumburl = "/alumni/" -%}{%- endif -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"{{ pcrumbname }}","item":"{{ site.url }}{{ pcrumburl }}"},{"@type":"ListItem","position":3,"name":{{ person.name | jsonify }},"item":"{{ site.url }}{{ page.url }}"}]}</script>
 {%- endif -%}

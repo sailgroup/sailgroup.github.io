@@ -21,9 +21,10 @@ Pass the person object: {% include member-pubs.html person=m %}
 {%- comment -%}For a long list, a member's papers can live in _data/member_pubs/<slug>.yml instead of inline.{%- endcomment -%}
 {%- if person.slug and site.data.member_pubs and site.data.member_pubs[person.slug] -%}{%- for p in site.data.member_pubs[person.slug] -%}{%- assign mine = mine | push: p -%}{%- endfor -%}{%- endif -%}
 {%- if mine.size > 0 -%}
-{%- assign seen = "" -%}
+{%- comment -%}`seen` is an array, so `contains` is an exact match. (It was a joined string, where `contains` matches any substring: a title that is part of an earlier one, e.g. a paper listed after its "[Erratum]", was dropped.){%- endcomment -%}
+{%- assign seen = "" | split: "" -%}
 {%- assign uniq = "" | split: "" -%}
-{%- for p in mine -%}{%- assign key = p.doi | default: p.title -%}{%- unless seen contains key -%}{%- assign uniq = uniq | push: p -%}{%- assign seen = seen | append: "||" | append: key -%}{%- endunless -%}{%- endfor -%}
+{%- for p in mine -%}{%- assign key = p.doi | default: p.title -%}{%- unless seen contains key -%}{%- assign uniq = uniq | push: p -%}{%- assign seen = seen | push: key -%}{%- endunless -%}{%- endfor -%}
 {%- comment -%}Newest year first; for the same year, lab Publications papers (added above, so lower index) stay above the person's own papers. Deterministic -- see _plugins/pub_sort.rb.{%- endcomment -%}
 {%- assign uniq = uniq | sort_member_pubs -%}
 <div class="member-pubs">

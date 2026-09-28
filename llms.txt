@@ -8,7 +8,7 @@ permalink: /llms.txt
 The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }} in the {{ site.data.pi.department }} at {{ site.data.pi.institution }}, integrates machine learning with chemistry. Website: {{ site.url }}
 
 ## Research areas
-{% for a in site.data.research.areas %}- {{ a.title }}: {{ a.body | strip_html | truncate: 220 }}
+{% for a in site.data.research.areas %}- {{ a.title }}: {{ a.body | strip_html | normalize_whitespace | truncate: 220 }}
 {% endfor %}
 ## Key pages
 - [Research]({{ site.url }}/research/): the lab's research directions, each with a figure from the lab's own papers.
@@ -18,12 +18,13 @@ The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data
 - [News]({{ site.url }}/news/): lab updates and milestones.
 - [Positions]({{ site.url }}/positions/): how to join the lab and how to apply (postdoctoral researcher, PhD student, and undergraduate research), including currently advertised undergraduate projects. Written in Korean.
 
-Full text (all abstracts, people, research): {{ site.url }}/llms-full.txt
+Full text (research, every publication with its abstract where it has one, people, the principal investigator's background, and news): {{ site.url }}/llms-full.txt
 
 ## Principal investigator
 {{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}. Google Scholar: {{ site.data.pi.scholar }} · ORCID: {{ site.data.pi.orcid }}
 
 ## Selected recent publications
-{% assign recent = site.data.publications | sort: "year" | reverse -%}
-{% for p in recent limit: 10 %}- {{ p.title }}. {{ p.journal }} ({{ p.year }}).{% if p.doi and p.doi != "" %} {{ p.doi }}{% endif %}
+{% comment %}Newest year first and, within a year, in the order of the Publications page (sort_member_pubs keeps the file order on a tie; the built-in sort is unstable, so same-year papers came out in an arbitrary order and the ten listed were not simply the newest). Each entry links its page on this site, in the llms.txt list form "[name](url): notes"; brackets in a title (e.g. [4+2]) are escaped so the link stays intact.{% endcomment -%}
+{% assign recent = site.data.publications | sort_member_pubs -%}
+{% for p in recent limit: 10 %}- [{{ p.title | replace: "[", "\[" | replace: "]", "\]" }}]({{ site.url }}/publications/{{ p.id }}/): {{ p.journal }} ({{ p.year }}).{% if p.doi and p.doi != "" %} {{ p.doi }}{% endif %}
 {% endfor %}

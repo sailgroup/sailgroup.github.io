@@ -9,7 +9,7 @@ The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data
 
 ## Research areas
 {% for a in site.data.research.areas %}### {{ a.title }}
-{{ a.body | strip_html | strip_newlines }}
+{{ a.body | strip_html | normalize_whitespace }}
 {% endfor %}
 ## Publications ({{ site.data.publications | size }}, newest first)
 {% assign pubs = site.data.publications | sort: "id" | reverse -%}
@@ -20,7 +20,7 @@ DOI: {{ p.doi }}{% endif %}{% if p.preprint_url and p.preprint_url != "" %}
 Preprint: {{ p.preprint_url }}{% endif %}
 Page: {{ site.url }}/publications/{{ p.id }}/
 {% if p.themes and p.themes.size > 0 %}Topics: {{ p.themes | join: ", " }}
-{% endif %}{% if p.abstract and p.abstract != "" %}Abstract: {{ p.abstract | strip_html | strip_newlines }}
+{% endif %}{% if p.abstract and p.abstract != "" %}Abstract: {{ p.abstract | strip_html | normalize_whitespace }}
 {% endif %}
 {% endfor %}## People
 ### Current members
@@ -29,10 +29,28 @@ Page: {{ site.url }}/publications/{{ p.id }}/
 {% endfor %}
 ### Alumni
 {% assign al = site.data.people | where: "status", "alumni" -%}
-{% for a in al %}- {{ a.name }}{% if a.name_ko and a.name_ko != "" %} ({{ a.name_ko }}){% endif %}, {{ a.role }}
+{% for a in al %}- {{ a.name }}{% if a.name_ko and a.name_ko != "" %} ({{ a.name_ko }}){% endif %}, {{ a.role }}{% if a.slug and a.slug != "" %}. {{ site.url }}/people/{{ a.slug }}/{% endif %}
 {% endfor %}
 ## Principal investigator
-{{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}. Google Scholar: {{ site.data.pi.scholar }} · ORCID: {{ site.data.pi.orcid }}
+{% assign pi = site.data.pi -%}
+{{ pi.name }} ({{ pi.name_ko }}), {{ pi.title }}, {{ pi.department }}, {{ pi.institution }}. Page: {{ site.url }}/pi/ · Google Scholar: {{ pi.scholar }} · ORCID: {{ pi.orcid }}
 
+{{ pi.bio | strip_html | normalize_whitespace }}
+
+Education:
+{% for e in pi.education %}- {{ e.degree }}, {{ e.institution }}{% if e.advisor %} (advisor: {{ e.advisor }}){% endif %}, {{ e.date }}
+{% endfor %}
+Career:
+{% for c in pi.career %}- {{ c.role }}, {{ c.org }}{% if c.advisor %} (advisor: {{ c.advisor }}){% endif %}, {{ c.period }}
+{% endfor %}
 ## Joining the lab
 See {{ site.url }}/positions/ (Korean) for how to apply as a postdoctoral researcher, PhD student, or undergraduate researcher, including currently advertised undergraduate projects.
+
+## News (newest first)
+{% comment %}Every item on /news/, in its order. A link to this site is printed as an absolute URL (news-href.html gives the address the News page links to).{% endcomment -%}
+{% assign items = site.data.news | sort: "date" | reverse -%}
+{% for n in items %}### {% include news-date.html n=n %}: {{ n.title }}
+{% if n.body and n.body != "" %}{{ n.body | strip_html | normalize_whitespace }}
+{% endif %}{% if n.link and n.link != "" %}{% if n.link contains "://" %}Link: {{ n.link }}{% else %}{% capture href %}{% include news-href.html link=n.link %}{% endcapture %}Link: {{ href | absolute_url }}{% endif %}
+{% endif %}
+{% endfor %}
