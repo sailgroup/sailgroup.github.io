@@ -1,17 +1,41 @@
-# Dependabot keeps the CI action versions and Ruby gems patched.
-# github-actions works immediately; bundler proposes Gemfile updates (and lockfile
-# bumps once a Gemfile.lock is committed).
+# Dependabot keeps the CI actions, the Ruby gems (Gemfile.lock) and the CI image step's
+# sharp (.github/scripts/package-lock.json) patched. Monthly, one pull request per
+# ecosystem (all updates grouped), so there is little to review: a green CI run on the
+# pull request is the check. A release is proposed only once it is a week old
+# (cooldown), so a bad or compromised release is usually withdrawn before it gets here.
+# Security updates are not delayed.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns: ["*"]
     commit-message:
       prefix: "ci"
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    cooldown:
+      default-days: 7
+    groups:
+      gems:
+        patterns: ["*"]
     commit-message:
       prefix: "deps"
+  - package-ecosystem: "npm"
+    directory: "/.github/scripts"
+    schedule:
+      interval: "monthly"
+    cooldown:
+      default-days: 7
+    groups:
+      image-step:
+        patterns: ["*"]
+    commit-message:
+      prefix: "ci"

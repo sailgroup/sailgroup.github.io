@@ -1,0 +1,12 @@
+{
+  "name": "sail-site-ci-scripts",
+  "private": true,
+  "description": "CI image step for the SAIL site (prepare-images.mjs). Not part of the published site.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  }
+}

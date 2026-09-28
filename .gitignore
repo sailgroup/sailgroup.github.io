@@ -11,6 +11,13 @@ _source/
 node_modules/
 npm-debug.log*
 package-lock.json
+# ...except the CI image step's lockfile, which pins the sharp version CI installs
+!.github/scripts/package-lock.json
+
+# Written by the CI image step (.github/scripts/prepare-images.mjs) before each build;
+# never committed
+assets/images/thumbs/
+_data/generated_images.json
 
 # One-off harvest/render tooling (local only, not part of the site)
 harvest.js

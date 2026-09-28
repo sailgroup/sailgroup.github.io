@@ -17,20 +17,49 @@ permissions:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-# One deploy at a time; do not cancel an in-progress deploy.
+# One run at a time per branch, and never cancel one in progress (a deploy included).
+# Per branch because a group keeps only one waiting run and cancels the one before it:
+# with a single group for every branch, a push to dev made while main was building
+# could cancel the waiting main run, and that main commit would never be published.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # A fixed runner image rather than ubuntu-latest: setup-ruby below is pinned to one
+    # release, which only knows the runner images that existed when it was made.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
+      # Images: shrink oversized uploads, remove camera metadata (e.g. GPS position), and
+      # make the smaller renditions pages offer through srcset (.github/scripts/
+      # prepare-images.mjs). It changes only this run's working copy, before the build;
+      # the repository keeps the files as uploaded. Optional: if it fails for any reason,
+      # the site builds and deploys with the plain image files. The step timeouts keep a
+      # stalled download from using up the job's own timeout (which would stop the deploy).
+      - name: Set up Node (image step)
+        uses: actions/setup-node@v7
+        continue-on-error: true
+        timeout-minutes: 5
+        with:
+          node-version: "24"
+
+      - name: Prepare images
+        continue-on-error: true
+        timeout-minutes: 5
+        run: |
+          npm ci --prefix .github/scripts --no-audit --no-fund
+          node .github/scripts/prepare-images.mjs assets/images _data/generated_images.json
+
+      # Pinned to a commit (third-party action; the tag it came from is in the comment).
+      # bundler-cache installs exactly the gems in the committed Gemfile.lock (deployment
+      # mode) and caches them.
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
         with:
           ruby-version: "3.3"
           bundler-cache: true
@@ -52,21 +81,6 @@ jobs:
             --allow-hash-href \
             --no-enforce-https
 
-      # Shrink oversized uploads (people/, photos/, pubs/) in the built copy only; the
-      # repository originals stay as uploaded. Optional: if this step fails for any
-      # reason, the site still deploys with the original images.
-      - name: Set up Node (image optimization)
-        uses: actions/setup-node@v7
-        continue-on-error: true
-        with:
-          node-version: "24"
-
-      - name: Optimize images in the built site
-        continue-on-error: true
-        run: |
-          npm install --no-save --no-package-lock --no-audit --no-fund sharp@0.35
-          node .github/scripts/optimize-images.mjs _site/assets/images
-
       # include-hidden-files: v4+ of this action drops dotfiles by default, which
       # would silently remove /.well-known/security.txt from the deployed site.
       - name: Upload Pages artifact
@@ -82,7 +96,8 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

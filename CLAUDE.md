@@ -17,7 +17,7 @@ domain `https://sail.kookmin.ac.kr`.
 
 ## Layout
 - `_config.yml` — site configuration
-- `_data/` — all content lives here: `publications.yml` (authoritative, 43 papers), `people.yml`
+- `_data/` — all content lives here: `publications.yml` (authoritative, one entry per paper), `people.yml`
   (members + alumni in one file; `status:` picks the page), `pi.yml`, `news.yml`, `research.yml`,
   `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
   `navigation.yml`, `positions.yml` (Positions page copy, Korean-only; each role
@@ -33,21 +33,29 @@ domain `https://sail.kookmin.ac.kr`.
   `photos`, `positions` (member/alumni/publication detail pages are generated, not files)
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
   from the build)
-- `.github/workflows/` — CI build (Jekyll + html-proofer) + deploy
+- `.github/workflows/` — CI build (Jekyll + html-proofer) + deploy; `.github/scripts/` — the CI
+  image step (`prepare-images.mjs`, its `sharp` version pinned by `package-lock.json`)
 
 ## Build / deploy
-- CI runs `bundle exec jekyll build`, then html-proofer over the built site, then deploys to Pages.
-  Push to `dev` builds only; `main` builds and deploys (D11). Confirm the Actions run is green
-  before treating anything as done.
+- CI first runs `.github/scripts/prepare-images.mjs` on the checkout (shrinks oversized uploads,
+  strips photo metadata, writes smaller renditions for `srcset` and lists them with image sizes in
+  `_data/generated_images.json`; D40), then `bundle exec jekyll build`, then html-proofer over the
+  built site, then deploys to Pages. The image step may fail without failing the build: pages then
+  use the plain image files. Push to `dev` builds only; `main` builds and deploys (D11). Confirm
+  the Actions run is green before treating anything as done.
+- `Gemfile.lock` and `.github/scripts/package-lock.json` are committed and CI installs exactly
+  what they pin; update them as `CONTRIBUTING.md` ("Build tools") describes. A local build can
+  run in Docker (`ruby:3.3`) with the same commands as CI.
 
 ## SEO / GEO
 - jekyll-seo-tag emits the core meta; `_plugins/generate_pages.rb` sets a unique `title`/
-  `description` per generated page (else all 52 share the site title). `_includes/structured-data.html`
+  `description` per generated page (else every generated page shares the site title). `_includes/structured-data.html`
   emits JSON-LD (Organization, Person, ScholarlyArticle, BreadcrumbList, CollectionPage). `/llms.txt`
-  is a generated summary for AI answer engines; the sitemap excludes the noindex redirects.
+  is a generated summary for AI answer engines (`/llms-full.txt` the full text); the sitemap
+  excludes the noindex redirects. `/.well-known/security.txt` writes its `Expires` at build time.
   Registering in Google Search Console / Naver Search Advisor is a manual (account-based) step.
 - Journal covers open a fullscreen viewer (`assets/js/covers.js`); each cover needs a high-res
-  `<base>-full.jpg` beside its thumbnail (the validator warns when it is missing).
+  `<base>-full.jpg` beside its thumbnail (the validator fails the build when it is missing).
 
 ## Conventions
 - Site copy: **no em dashes, no marketing tone, factual and specific.**

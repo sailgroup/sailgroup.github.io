@@ -26,6 +26,9 @@ Live: https://sail.kookmin.ac.kr
 
 사진(`people/`·`photos/`·`pubs/`)은 원본 크기 그대로 올려도 됩니다. 배포할 때 사이트에 올라가는 사본만
 웹용 크기로 자동으로 줄여지고(인물 800px, 사진 1600px, 논문 그림 1200px), 저장소의 원본은 그대로 남습니다.
+사이트 사본에서는 촬영 위치(GPS) 같은 사진 정보도 지워지지만, 저장소는 공개되어 있고 원본을 그대로 보관하므로
+휴대폰 사진은 위치 정보 없이 저장해 올려 주세요. 사진은 JPG로 올립니다(아이폰 기본 형식인 HEIC는 크롬 등
+대부분의 브라우저에서 보이지 않습니다).
 
 ### 논문: `_data/publications.yml` (최신 항목을 위에)
 ```yaml
@@ -171,6 +174,8 @@ sections:
 - 콘텐츠는 전부 `_data/*.yml`. `_plugins/generate_pages.rb` 가 데이터로부터 멤버·동문·논문
   페이지를 생성하고, `_plugins/validate_data.rb` 가 빌드 시 데이터를 검증합니다. 공용 마크업은
   `_includes/` 에 있습니다.
+- 빌드 도구 버전은 `Gemfile.lock` 과 `.github/scripts/package-lock.json` 으로 고정되어 있고, Dependabot이
+  한 달에 한 번 업데이트 PR을 엽니다(CI가 통과하면 병합). 자세한 내용은 `CONTRIBUTING.md` 의 Build tools.
 - 주의: `CNAME`(커스텀 도메인) 파일을 삭제하지 마세요. `baseurl` 은 `""` 로 유지합니다.
 - 상세 안내는 [`CONTRIBUTING.md`](CONTRIBUTING.md), 설계 결정 기록은 [`DECISIONS.md`](DECISIONS.md)
   를 참고하세요.

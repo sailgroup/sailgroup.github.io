@@ -156,9 +156,19 @@ keeps the link working. An area without a figure is shown as text only.
 
 Upload photos as they are. When the site is deployed, the copies served to
 visitors are scaled down automatically (people 800 px, photos 1600 px, paper
-figures 1200 px on the longest side) and recompressed; the originals in the
-repository are never changed. Journal covers, logos, and research figures are
-served as uploaded.
+figures 1200 px on the longest side) and recompressed, and camera metadata (such
+as the GPS position a phone stores in a photo) is removed. The repository itself
+is public and keeps the file exactly as uploaded, so share a phone photo without
+its location (most phones and photo apps have that option); the build's summary
+page warns when a JPG, PNG, WebP, or AVIF upload holds a GPS position. Save photos
+as JPG: a HEIC file (the iPhone default) or a TIFF is not processed, so it is
+published with its metadata, and most browsers cannot show it (the summary page
+warns about these too). Gallery photos, paper
+figures, and journal covers also get smaller copies, which the browser uses where
+the image is shown small (the photo grid, the publication list). The originals in
+the repository are never changed. Logos and research figures are served as
+uploaded. A file name with a space or a comma gets no smaller copies (the page
+still shows the image), so name files like `photo-26.jpg`.
 
 ## Update the Positions page  →  `_data/positions.yml`
 
@@ -211,11 +221,53 @@ This page is in Korean by request; keep new copy in Korean to match.
 - All content lives in `_data/*.yml`. `_plugins/generate_pages.rb` turns each
   member/alumnus/paper entry into its page; `_plugins/validate_data.rb` checks
   the data at build time and fails with a readable message on a mistake. CI also
-  runs html-proofer over the built site to catch a broken internal link/image,
-  then `.github/scripts/optimize-images.mjs` shrinks oversized uploads in the
-  built copy only (an optional step: if it fails, the site deploys with the
-  original images).
+  runs html-proofer over the built site to catch a broken internal link/image.
+  Before the build, `.github/scripts/prepare-images.mjs` works on CI's copy of
+  the images (never the repository): it shrinks oversized uploads, removes camera
+  metadata, and makes the smaller copies above, listing them in
+  `_data/generated_images.json`, which the templates turn into `srcset` (D40). It
+  is an optional step: if it fails, the site is built with the plain image files.
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `journal-covers`,
   `news-date`, `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
 - Never delete `CNAME` (the custom domain). `baseurl` stays `""`.
+
+## Build tools
+
+- **Versions are locked.** `Gemfile.lock` pins every Ruby gem (Jekyll, its
+  plugins, html-proofer) and `.github/scripts/package-lock.json` pins `sharp` for
+  the image step. CI installs exactly these (Bundler in deployment mode, `npm
+  ci`), so a new release cannot change or break a build on its own.
+- **Updates come from Dependabot**: once a month, one pull request each for the
+  GitHub Actions, the gems, and `sharp`. Merge it when its CI run is green.
+- **Docker runs Ruby here** (there is no local Ruby). The commands below work in
+  PowerShell and in a Unix shell; in Git Bash on Windows, put `MSYS_NO_PATHCONV=1`
+  in front of `docker`.
+- **After editing the `Gemfile`**, regenerate `Gemfile.lock` in the same commit,
+  or CI stops with a frozen-lockfile error:
+
+  ```sh
+  docker run --rm -v "${PWD}:/site" -w /site ruby:3.3 bundle lock
+  ```
+
+  (`bundle lock --update` moves every gem to its newest allowed version.)
+- **To change the `sharp` version**, in `.github/scripts/`:
+  `npm install --save-exact --package-lock-only sharp@<version>`.
+- **A full local build**, the same commands as CI:
+
+  ```sh
+  docker run --rm -v "${PWD}:/site" -w /site ruby:3.3 bash -c "bundle install && JEKYLL_ENV=production bundle exec jekyll build && bundle exec htmlproofer _site --disable-external --ignore-empty-alt --allow-hash-href --no-enforce-https"
+  ```
+
+  The image step is optional (without it pages use the plain image files). It
+  rewrites images in place, so it runs only in CI unless given `--local`, and then
+  only on a copy of the repository: `npm ci --prefix .github/scripts`, then
+  `node .github/scripts/prepare-images.mjs assets/images _data/generated_images.json --local`.
+
+- `/.well-known/security.txt` gets its `Expires` date (330 days ahead) at build
+  time, so the live file is renewed each time `main` is deployed. If `main` has
+  not been deployed for about ten months, re-run the workflow on `main` (Actions,
+  "Build and deploy site", Run workflow) so it does not lapse. There is no monthly
+  scheduled run on purpose: GitHub turns off a workflow that has a schedule after
+  60 days without activity in a public repository, and a turned-off workflow no
+  longer runs on a push either, so the site would stop deploying.
