@@ -5,6 +5,14 @@ description: "Life at the Spectroscopy and AI Lab (SAIL), Kookmin University: co
 permalink: /photos/
 scripts: [photos, covers]
 ---
+{%- comment -%}
+Grid images: each cell shows its photo with object-fit: cover at 4:3, so the grid offers CI's
+smaller renditions (image-srcset.html); the lightbox still opens the full photo. `sizes` is the
+cell width: minmax(220px, 1fr) columns with a 0.9rem gap inside .container (1140px max, side
+padding clamp(1.1rem, 4vw, 2rem)), i.e. 4 columns from 988px, 3 from 749px, 2 from 494px, else 1.
+The first photo is in the first screenful on every layout (on phones it is the largest image
+there), so it loads at once with high priority; the rest stay lazy.
+{%- endcomment -%}
 <div class="container page-head">
   <h1>Photos</h1>
   <p class="lead">Life in the Spectroscopy and AI Lab at Kookmin University: conferences, poster sessions, and group outings. Select a photo for the full image and caption.</p>
@@ -14,10 +22,11 @@ scripts: [photos, covers]
   <div class="container">
     <ul class="gallery">
       {%- for p in site.data.photos -%}
+      {%- capture srcset -%}{% include image-srcset.html image=p.image sizes="(min-width: 1140px) 259px, (min-width: 988px) calc(25vw - 26px), (min-width: 749px) calc(33.4vw - 30px), (min-width: 494px) calc(46vw - 7px), 92vw" %}{%- endcapture -%}
       <li>
         <button class="gallery__item" type="button" data-index="{{ forloop.index0 }}"
                 aria-label="View larger{% if p.title and p.title != '' %}: {{ p.title | escape }}{% endif %}{% if p.caption and p.caption != '' %}. {{ p.caption | escape }}{% endif %}">
-          <img src="{{ '/assets/images/' | append: p.image | relative_url }}" alt="" loading="lazy">
+          <img src="{{ '/assets/images/' | append: p.image | relative_url }}"{{ srcset }} alt=""{% if forloop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
           {%- if p.title and p.title != "" -%}<span class="gallery__cap">{{ p.title }}</span>{%- endif -%}
         </button>
       </li>

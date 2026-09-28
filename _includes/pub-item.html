@@ -4,7 +4,8 @@
 {%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
 {%- comment -%}show_id is passed ONLY by the Publications listing (publications.html): it puts the paper's catalogue number (p.id) at the top of the left column, on the title's line, with the thumbnail below. Member/alumni pages (member-pubs.html) do not pass it, so the markup below the number is the same as before.{%- endcomment -%}
 {%- assign shownum = false -%}{%- if include.show_id and p.id and p.id != "" -%}{%- assign shownum = true -%}{%- endif -%}
-{%- capture figure -%}{%- if hasimg -%}<img class="pub__figure" src="{{ '/assets/images/pubs/' | append: p.image | relative_url }}" alt="" loading="lazy">{%- endif -%}{%- endcapture -%}
+{%- comment -%}The list thumbnail is an 88x66 box (64x48 on phones), so a large graphical abstract comes with a smaller rendition when CI made one (image-srcset.html).{%- endcomment -%}
+{%- capture figure -%}{%- if hasimg -%}{%- assign figpath = 'pubs/' | append: p.image -%}<img class="pub__figure" src="{{ '/assets/images/' | append: figpath | relative_url }}"{% include image-srcset.html image=figpath sizes="(max-width: 720px) 64px, 88px" %} alt="" loading="lazy">{%- endif -%}{%- endcapture -%}
 <article class="pub{% unless shownum or hasimg %} pub--nofig{% endunless %}" data-themes="{{ p.themes | join: '|' }}" data-year="{{ p.year }}">
   {%- if shownum -%}
   <div class="pub__aside"><span class="pub__num">{{ p.id }}</span>{{ figure }}</div>

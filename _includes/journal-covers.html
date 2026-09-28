@@ -2,7 +2,13 @@
 Each cover opens a fullscreen viewer (covers.js) that loads a high-res "<base>-full.jpg" rendition; the
 thumbnail stays small for fast loading. Progressive enhancement: the cover is a real link to the paper for
 no-JS users and crawlers, and covers.js intercepts the click to show the full cover (with a paper link inside).
-Pages that include this must load covers.js (front matter: scripts: [covers]).{%- endcomment -%}
+Pages that include this must load covers.js (front matter: scripts: [covers]).
+The full-size name drops only the LAST extension ("a.v2.jpg" -> "a.v2-full.jpg"), the same rule the
+data validator checks. When CI made a smaller rendition of the thumbnail (see image-srcset.html), the
+browser may pick it; the `sizes` value is the grid cell width: minmax(150px, 1fr) columns with a 20px
+gap inside .container (1140px max, side padding clamp(1.1rem, 4vw, 2rem)), i.e. 6 tracks from 1064px
+(5 covers, so the cell stops growing at 163px), 5 from 894px, 4 from 718px, 3 from 533px, 2 from 356px,
+else 1 (at most 320px). Checked against the drawn width at every viewport width from 320 to 1600px.{%- endcomment -%}
 {%- assign covers = site.data.covers -%}
 {%- if covers and covers.size > 0 -%}
 <section class="section section--alt">
@@ -10,19 +16,22 @@ Pages that include this must load covers.js (front matter: scripts: [covers]).{%
     <div class="section-head"><h2>Journal covers</h2></div>
     <div class="covers">
       {%- for c in covers -%}
-      {%- assign full = c.image | split: "." | first | append: "-full.jpg" -%}
+      {%- assign fullbase = c.image -%}
+      {%- if c.image contains "." -%}{%- assign fullbase = c.image | split: "." | pop | join: "." -%}{%- endif -%}
+      {%- assign full = fullbase | append: "-full.jpg" -%}
       {%- assign fullurl = '/assets/images/' | append: full | relative_url -%}
       {%- assign thumburl = '/assets/images/' | append: c.image | relative_url -%}
+      {%- capture srcset -%}{% include image-srcset.html image=c.image sizes="(min-width: 1064px) 163px, (min-width: 894px) calc((100vw - 144px) / 5), (min-width: 718px) calc((100vw - 124px) / 4), (min-width: 533px) calc((92vw - 40px) / 3), (min-width: 356px) calc((100vw - 55px) / 2), calc(100vw - 35px)" %}{%- endcapture -%}
       {%- capture cap -%}{{ c.journal }}, {{ c.year }}{%- endcapture -%}
       {%- if c.publication_id -%}{%- assign paper = '/publications/' | append: c.publication_id | append: '/' | relative_url -%}{%- else -%}{%- assign paper = "" -%}{%- endif -%}
       <figure class="cover">
         {%- if c.publication_id -%}
         <a class="cover__link" href="{{ paper }}" data-full="{{ fullurl }}" data-caption="{{ cap | escape }}" data-paper="{{ paper }}" aria-label="Enlarge {{ cap | escape }} cover">
-          <img src="{{ thumburl }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+          <img src="{{ thumburl }}"{{ srcset }} alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
         </a>
         {%- else -%}
         <button type="button" class="cover__link" data-full="{{ fullurl }}" data-caption="{{ cap | escape }}" data-paper="" aria-label="Enlarge {{ cap | escape }} cover">
-          <img src="{{ thumburl }}" alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
+          <img src="{{ thumburl }}"{{ srcset }} alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
         </button>
         {%- endif -%}
         <figcaption>{{ cap }}</figcaption>

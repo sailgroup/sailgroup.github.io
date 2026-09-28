@@ -37,8 +37,11 @@ layout: default
         {%- endif -%}
       </div>
       {%- if hasimg -%}
+      {%- comment -%}The graphical abstract is in the first screenful (beside the title on desktop, below it on phones) and is usually the page's largest image, so it is not lazy-loaded. width/height (the served pixel size, from CI's _data/generated_images.json when present) let the browser reserve its box before the file arrives, so the abstract below does not jump; the CSS draws it exactly as before (max-height 320px, object-fit: contain; a figure capped by max-height can have a wider box than the drawn image, which stays centered).{%- endcomment -%}
+      {%- assign figpath = 'pubs/' | append: p.image -%}
+      {%- assign gi = site.data.generated_images[figpath] -%}
       <figure class="paper__figure">
-        <img src="{{ '/assets/images/pubs/' | append: p.image | relative_url }}" alt="Graphical abstract for {{ p.title }}" loading="lazy">
+        <img src="{{ '/assets/images/' | append: figpath | relative_url }}" alt="Graphical abstract for {{ p.title }}"{% if gi and gi.w and gi.h %} width="{{ gi.w }}" height="{{ gi.h }}"{% endif %} fetchpriority="high">
       </figure>
       {%- endif -%}
     </div>

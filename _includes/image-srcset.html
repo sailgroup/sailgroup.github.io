@@ -1,0 +1,15 @@
+{%- comment -%}
+Smaller renditions of one image for an <img> tag: prints ` srcset="..." sizes="..."`
+(with the leading space) or nothing at all.
+CI's image step (.github/scripts/prepare-images.mjs) makes the renditions and lists them
+in _data/generated_images.json (not committed), keyed by the path under assets/images/.
+Without that file (a local build, or the step failed) this prints nothing, and the <img>
+keeps its plain src exactly as before. The original stays in the list as the largest
+candidate, so the browser always has a sharp choice for the screen. The `w` values are
+the width each file is worth in the layout: for an image shown with object-fit: cover
+in a 4:3 box, a picture wider than 4:3 is scaled to the box height and cropped at the
+sides, so the script scales its values down and the browser picks a larger file.
+Pass image=<path under assets/images> sizes=<the sizes attribute value>.
+{%- endcomment -%}
+{%- assign gi = site.data.generated_images[include.image] -%}
+{%- if gi and gi.variants and gi.variants.size > 0 %} srcset="{%- for v in gi.variants -%}{{ '/assets/images/' | append: v.src | relative_url }} {{ v.d }}w, {% endfor -%}{{ '/assets/images/' | append: include.image | relative_url }} {{ gi.d }}w" sizes="{{ include.sizes }}"{% endif -%}

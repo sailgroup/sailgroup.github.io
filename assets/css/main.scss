@@ -30,8 +30,8 @@
   --orange-deep: #9e4a0c;   /* hover for orange text */
   --orange-wash: #fdf1e7;   /* faint orange tint background */
 
-  /* Typography */
-  --font-sans:  "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", Roboto, Arial, sans-serif;
+  /* Typography (the two "Hangul Fallback" faces are defined right after :root) */
+  --font-sans:  "Pretendard Variable", Pretendard, "Hangul Fallback Malgun", "Hangul Fallback Noto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", Roboto, Arial, sans-serif;
   --font-serif: var(--font-sans); /* one friendly sans across the site (was Source Serif 4) */
 
   --fs-xs:   0.8125rem;
@@ -62,6 +62,43 @@
   --shadow-sm: 0 1px 2px rgba(20, 20, 20, 0.05), 0 1px 3px rgba(20, 20, 20, 0.06);
   --shadow-md: 0 6px 20px rgba(20, 20, 20, 0.08), 0 2px 6px rgba(20, 20, 20, 0.05);
   --ring: 0 0 0 3px rgba(248, 152, 88, 0.45);
+}
+
+/* --- Hangul fallback while Pretendard loads -------------------------------- */
+/* Pretendard's Hangul syllables are 0.8643em wide. Until its files arrive, Korean text is
+   set in the system Hangul font, which is wider (Malgun Gothic on Windows 1em, Noto Sans
+   CJK KR on Android and Linux 0.92em), so it wrapped onto more lines and jumped when
+   Pretendard swapped in. These faces are those installed fonts scaled to Pretendard's
+   width (size-adjust), for Hangul syllables only (unicode-range), so line breaks hold
+   through the swap. local() reads an installed font: nothing is downloaded, and where the
+   font is not installed the face is skipped and the stack goes on as before. */
+@font-face {
+  font-family: "Hangul Fallback Malgun";
+  src: local("Malgun Gothic"), local("MalgunGothic");
+  font-weight: 100 599;
+  size-adjust: 86.43%;
+  unicode-range: U+AC00-D7A3;
+}
+@font-face {
+  font-family: "Hangul Fallback Malgun";
+  src: local("Malgun Gothic Bold"), local("MalgunGothicBold");
+  font-weight: 600 1000;
+  size-adjust: 86.43%;
+  unicode-range: U+AC00-D7A3;
+}
+@font-face {
+  font-family: "Hangul Fallback Noto";
+  src: local("Noto Sans CJK KR"), local("NotoSansCJKkr-Regular"), local("Noto Sans KR"), local("NotoSansKR-Regular");
+  font-weight: 100 599;
+  size-adjust: 93.94%;
+  unicode-range: U+AC00-D7A3;
+}
+@font-face {
+  font-family: "Hangul Fallback Noto";
+  src: local("Noto Sans CJK KR Bold"), local("NotoSansCJKkr-Bold"), local("Noto Sans KR Bold"), local("NotoSansKR-Bold");
+  font-weight: 600 1000;
+  size-adjust: 93.94%;
+  unicode-range: U+AC00-D7A3;
 }
 
 /* --- Reset ---------------------------------------------------------------- */
@@ -163,14 +200,6 @@ p { text-wrap: pretty; }
 }
 .skip-link:focus { top: 0.75rem; }
 
-.visually-hidden {
-  position: absolute !important;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0 0 0 0);
-  white-space: nowrap; border: 0;
-}
-
 :focus-visible {
   outline: 2px solid var(--orange-ink);
   outline-offset: 2px;
@@ -198,7 +227,6 @@ p { text-wrap: pretty; }
 .section-head:has(.lead) { margin-bottom: clamp(2rem, 5vw, 3.75rem); }
 .section-head .lead { margin-top: 0.75rem; max-width: none; } /* spans full content width, matching the hero lead */
 
-.divider { height: 1px; background: var(--line); border: 0; }
 
 /* --- Header / navigation -------------------------------------------------- */
 .site-header {
@@ -366,8 +394,8 @@ p { text-wrap: pretty; }
   white-space: nowrap;
 }
 
-/* Per-topic colors are generated from _data/themes.yml into an inline <style>
-   (see _includes/theme-styles.html), so they can be edited without touching SCSS. */
+/* Per-topic colors are generated from _data/themes.yml into assets/css/themes.css (a
+   separate stylesheet linked in head.html), so they can be edited without touching SCSS. */
 
 /* --- Prose ---------------------------------------------------------------- */
 .prose > * + * { margin-top: 1.1rem; }
@@ -962,7 +990,11 @@ body.no-scroll { overflow: hidden; }
   background: #fff;
   text-align: center;
 }
-.paper__figure img { display: inline-block; max-height: 320px; width: auto; }
+/* The img carries width/height (its pixel size), so the browser reserves its box before
+   the file arrives. No `width: auto` here: that would override those attributes and
+   leave a 0x0 box until load. max-width: 100% (global img rule) fits it to the column;
+   object-fit keeps a tall figure's proportions when max-height caps its box. */
+.paper__figure img { display: inline-block; max-height: 320px; object-fit: contain; }
 .paper__abstract { margin-top: var(--space-xl); max-width: 70ch; }
 .paper__abstract-label { font-size: var(--fs-md); margin-bottom: 0.6rem; }
 .paper__abstract p { color: var(--ink-2); line-height: 1.85; white-space: pre-line; }
