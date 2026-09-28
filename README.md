@@ -18,10 +18,14 @@ Live: https://sail.kookmin.ac.kr
 | 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`) |
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
+| 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시) |
 | 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
 | 모집(Positions) | `_data/positions.yml` (박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트) |
 
 저자 목록의 PI 이름 `Joonyoung F. Joung` 은 자동으로 굵게 표시됩니다.
+
+사진(`people/`·`photos/`·`pubs/`)은 원본 크기 그대로 올려도 됩니다. 배포할 때 사이트에 올라가는 사본만
+웹용 크기로 자동으로 줄여지고(인물 800px, 사진 1600px, 논문 그림 1200px), 저장소의 원본은 그대로 남습니다.
 
 ### 논문: `_data/publications.yml` (최신 항목을 위에)
 ```yaml
@@ -30,13 +34,13 @@ Live: https://sail.kookmin.ac.kr
   authors: "Joonyoung F. Joung*, Jihwan Kim"   # 필수
   journal: "Nature"            # 필수
   year: 2026                   # 필수 (따옴표 없는 숫자)
-  ref: "47, 317-327"           # 선택: 권·페이지를 자유 텍스트로 (예: "Advance Article"). 현재 모든 논문이 이 방식
+  ref: "47, 317-327"           # 선택: 권·페이지를 자유 텍스트로 (예: "Advance Article"). 대부분의 논문은 아래 vol/issue/pages 방식
   doi: "https://doi.org/10.1038/..."           # 선택
   preprint_url: "https://arxiv.org/abs/..."    # 선택 (arXiv/ChemRxiv 자동 판별)
   themes: ["Reaction pathway prediction"]      # 선택: _data/themes.yml 에 있는 이름만
   image: "pub-42.jpg"          # 선택: assets/images/pubs/ 에 업로드
-  abstract: "English abstract."                # 선택
-  abstract_ko: "한국어 초록."                   # 선택 (초록으로 표시)
+  abstract: "English abstract."                # 선택 (한국어 초록이 없으면 그대로 전부 표시)
+  abstract_ko: "한국어 초록."                   # 선택 (초록으로 표시, 영어 초록은 그 아래 접힘)
 ```
 목록과 상세 페이지(`/publications/42/`)가 자동 생성됩니다. 저자 목록에 멤버 이름이 포함되면 해당
 멤버 페이지에도 자동으로 표시됩니다(논문의 저자 표기가 멤버의 `name` 과 정확히 일치해야 함. 다르게
@@ -101,7 +105,7 @@ Live: https://sail.kookmin.ac.kr
 
 ### 사진: `_data/photos.yml` (최신 항목을 위에)
 ```yaml
-- image: photos/photo-26.jpg   # 필수: assets/images/photos/ 에 업로드 (≤1600px)
+- image: photos/photo-26.jpg   # 필수: assets/images/photos/ 에 업로드 (큰 사진은 배포 때 1600px로 자동 축소)
   title: "2026.06.20. 워크숍"   # 선택
   caption: "한 줄 설명"         # 선택
 ```
@@ -152,6 +156,7 @@ sections:
 | 논문 목록 한 줄(번호·제목·저자·배지·태그) | `_includes/pub-item.html` |
 | 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
 | PI 페이지 구성 | `pi.html` |
+| 홈 화면 구성 (최근 뉴스·연구·저널 표지·연락처) | `index.html` |
 | 전체 색상·글꼴·간격(디자인 토큰) | `assets/css/main.scss` 맨 위 `:root` |
 
 예) "저널명과 권 사이에 콤마" → `_includes/pub-citation.html` 을 열면 형식 예시와 함께 콤마

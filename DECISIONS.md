@@ -863,3 +863,69 @@ add their verification meta tags.
   maintainer-facing, and the house style targets site copy and contributor docs.
 - No paper title or other factual data contained an em dash, so nothing factual was
   touched (the member_pubs hits were file-header comments).
+
+## D38 — De-templated visual style; home research rows; small fixes (2026-09-28)
+
+- The maintainer found parts of the site read as a generated template rather than a
+  lab site, singling out the short orange dash before small labels, and asked for the
+  understated feel of the lab site it was first modelled on (coley.mit.edu) without
+  changing any content or anything the PI entered. The published list of common
+  generated-design defaults (Anthropic frontend-design guidance, 2026-09) matched the
+  site almost item by item: a tracked ALL-CAPS "eyebrow" label with a rule above every
+  heading, a coloured left accent bar on cards, a warm cream and brown-black palette,
+  a glow behind the hero, a translucent blurred header, ALL-CAPS tracked field labels.
+- Removed: the eyebrow on every page and section (they only repeated the heading or
+  the nav section, e.g. "People" over "Members"; the member/paper back link keeps its
+  function as a plain `.back-link`), the research-card accent bar, the hero glow and
+  figure shadows, the header blur, the highlighter under the PI name (bold stays, per
+  the house rule), ALL-CAPS tracking on footer titles, home contact labels, and news
+  category pills. Two small lines that carry information stay as a plain muted
+  `.kicker`: the lab name above the home title and "Error 404".
+- Palette: warm neutrals (`#3c3833`, `#6c665e`, `#e8e2d9`, `#faf8f4`, footer
+  `#161310`) became untinted greys of the same lightness, so contrast is unchanged.
+  The brand orange stays. Topic tags and news categories stay coloured (the
+  maintainer rejected a grey preview); only their caps/tracking was dropped.
+- h1/h2 weight 600 to 500: large headings read calm; h3/h4 keep 600.
+- Kept on the maintainer's instruction: hover lifts on cards, covers, badges, and
+  buttons (listed as a template tell, but the maintainer likes them). Kept from
+  earlier decisions: the home structure (D20), coloured multi-select topic chips and
+  badge-left publication rows (D24), Pretendard, and the maintainer's image
+  right-click deterrent.
+- Home research section: it showed each area's text cut at 28 words ("...") in a 3+1
+  card grid. Cutting the PI's text is not acceptable, and a text-only block of four
+  full paragraphs read as too much text, so each area is now a row in the
+  Publications-list pattern: the area's existing figure (from `research.yml`, the
+  same one the Research page shows) beside its title and full text. Title and figure
+  link to that area on `/research/` (each `research-area` now has
+  `id="<slugified title>"`; html-proofer checks these hashes). An area without a
+  figure renders text only. The section heading is now "Research" (was "What we work
+  on"), and the contact heading "Contact" (was "Find us"): template wording, not PI
+  text. The cover viewer's "View the paper" link lost its arrow.
+- Topic tag contrast: tag text is drawn in the topic colour darkened by a third
+  (`color-mix(in srgb, <colour> 66%, #000)`), and so is the active filter fill under
+  white text; tint, border, and filter dot keep the exact `themes.yml` colour. Text
+  on tint went from 2.1-2.9:1 (Quantum orange, Representation cyan, Property green)
+  to 4.5-5.8:1. `themes.yml` itself is untouched; a plain fallback declaration
+  precedes each `color-mix`.
+- Bugs fixed: the footer address rendered italic (`.footer address` never matched;
+  the footer is `.site-footer`); PI contact icons sat above their text (the global
+  `svg { display: block }`); Korean text broke mid-word (`word-break: keep-all`);
+  Positions project-card titles had no gap before the body; papers with only an
+  English abstract (44, 45) hid it inside a collapsed "Original abstract" toggle, so
+  it now shows in full under an "Abstract" heading (papers with `abstract_ko` are
+  unchanged); the Korean-only Positions page declared `lang="en"` (it now sets
+  `lang: ko`, and the layout reads `page.lang` before `site.lang`).
+- CI: `actions/checkout` v4 to v7, `upload-pages-artifact` v3 to v5, `deploy-pages`
+  v4 to v5 (the open Dependabot PRs). upload-pages-artifact v4+ drops dotfiles unless
+  `include-hidden-files: true`, which would have silently removed
+  `/.well-known/security.txt`; the flag is set. A new optional step
+  (`.github/scripts/optimize-images.mjs`, sharp) scales oversized uploads in the
+  BUILT copy only (people 800 px, photos 1600 px, pubs 1200 px on the longest side;
+  written back only when at least 10% smaller), so a contributor can upload a phone
+  photo as is and the repository keeps the original. It runs with
+  `continue-on-error`, so a failure deploys the original images.
+- Not done, by decision: the home contact block stays (D20 home structure); the
+  middle dot in the hero line stays; an automatic new-publication finder was
+  deferred (it would open GitHub issues and notify the PI, so it needs the PI's
+  agreement first). PI data was not edited: id 44 `ref: "Early veiw"` and the role
+  spelling "M.S./Ph.D integrated course" are reported to the maintainer instead.

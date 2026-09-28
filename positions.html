@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Positions
+lang: ko
 description: "SAIL 연구실 박사후연구원·대학원생·학부 연구생 모집 안내: 국민대학교 화학부 정준영 교수 연구실(Spectroscopy and AI Lab)."
 permalink: /positions/
 ---
 {%- assign p = site.data.positions -%}
 {%- capture guide_link -%}<a href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">그룹 가이드</a>{%- endcapture -%}
 <div class="container container-narrow page-head">
-  <p class="eyebrow">Join the lab</p>
   <h1>Positions</h1>
   <p class="lead">{{ p.intro | replace: "그룹 가이드", guide_link }}</p>
   <p class="positions-cta">

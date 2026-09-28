@@ -4,7 +4,7 @@ scripts: [covers]
 ---
 <section class="hero">
   <div class="container hero__inner">
-    <p class="eyebrow">Joonyoung F. Joung Lab &middot; Kookmin University</p>
+    <p class="kicker">Joonyoung F. Joung Lab &middot; Kookmin University</p>
     <h1>{{ site.data.home.hero.title }}</h1>
     <p class="lead">{{ site.data.home.hero.lead }}</p>
     <figure class="hero__figure">
@@ -20,7 +20,7 @@ scripts: [covers]
 {%- if latest and latest.size > 0 -%}
 <section class="section section--alt">
   <div class="container">
-    <div class="section-head"><p class="eyebrow">Updates</p><h2>Recent news</h2></div>
+    <div class="section-head"><h2>Recent news</h2></div>
     <div class="card-grid">
       {%- for n in latest limit: 3 -%}
       {%- assign cat = n.category | default: "event" -%}
@@ -46,15 +46,24 @@ scripts: [covers]
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Research</p>
-      <h2>What we work on</h2>
+      <h2>Research</h2>
       <p class="lead">{{ site.data.research.overview.en }}</p>
     </div>
-    <div class="card-grid">
+    {%- comment -%}Each area in full (never truncated), with its figure from research.yml beside it. Title and figure link to the same area on /research/ (id = the slugified title, set in research.html).{%- endcomment -%}
+    <div class="area-rows">
       {%- for area in site.data.research.areas -%}
-      <article class="area">
-        <h3>{{ area.title }}</h3>
-        <p>{{ area.body | truncatewords: 28 }}</p>
+      {%- assign has_fig = false -%}
+      {%- if area.figure and area.figure != "" -%}{%- assign has_fig = true -%}{%- endif -%}
+      <article class="area-row{% unless has_fig %} area-row--nofig{% endunless %}">
+        {%- if has_fig -%}
+        <a class="area-row__fig" href="{{ '/research/' | relative_url }}#{{ area.title | slugify }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/images/' | append: area.figure | relative_url }}" alt="" width="{{ area.figure_w }}" height="{{ area.figure_h }}" loading="lazy">
+        </a>
+        {%- endif -%}
+        <div>
+          <h3><a class="area-row__link" href="{{ '/research/' | relative_url }}#{{ area.title | slugify }}">{{ area.title }}</a></h3>
+          <p>{{ area.body }}</p>
+        </div>
       </article>
       {%- endfor -%}
     </div>
@@ -66,7 +75,7 @@ scripts: [covers]
 
 <section class="section">
   <div class="container">
-    <div class="section-head"><p class="eyebrow">Contact</p><h2>Find us</h2></div>
+    <div class="section-head"><h2>Contact</h2></div>
     <dl class="contact-grid">
       <div>
         <dt>Address</dt>

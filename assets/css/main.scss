@@ -4,23 +4,24 @@
 
 /* ==========================================================================
    SAIL: Spectroscopy and AI Lab
-   Design system. Warm academic neutrals with the brand orange (#f89858,
-   sampled from the logo, where the "AI" in SAIL is set in orange).
+   Design system. Neutral greys with the brand orange (#f89858, sampled from
+   the logo, where the "AI" in SAIL is set in orange). Other colour comes only
+   from information: figures, topic tags, news categories.
    Type: Pretendard, one friendly sans with full Hangul support.
    ========================================================================== */
 
 /* --- Design tokens -------------------------------------------------------- */
 :root {
-  /* Ink + neutrals (warm) */
+  /* Ink + neutrals (untinted greys) */
   --ink:        #1a1a1a;
-  --ink-2:      #3c3833;
-  --muted:      #6c665e;
-  --line:       #e8e2d9;
-  --line-2:     #d9d2c7;
+  --ink-2:      #3b3b3b;
+  --muted:      #6a6a6a;
+  --line:       #e6e6e6;
+  --line-2:     #d5d5d5;
   --bg:         #ffffff;
-  --bg-alt:     #faf8f4;
-  --bg-ink:     #161310;
-  --bg-ink-2:   #221d18;
+  --bg-alt:     #f7f7f7;
+  --bg-ink:     #1f1f1f;
+  --bg-ink-2:   #333333;
 
   /* Brand orange */
   --orange:      #f89858;   /* exact logo accent */
@@ -58,8 +59,8 @@
   --radius-sm: 6px;
   --radius-pill: 999px;
   --header-h: 82px;
-  --shadow-sm: 0 1px 2px rgba(26, 22, 17, 0.05), 0 1px 3px rgba(26, 22, 17, 0.06);
-  --shadow-md: 0 6px 20px rgba(26, 22, 17, 0.08), 0 2px 6px rgba(26, 22, 17, 0.05);
+  --shadow-sm: 0 1px 2px rgba(20, 20, 20, 0.05), 0 1px 3px rgba(20, 20, 20, 0.06);
+  --shadow-md: 0 6px 20px rgba(20, 20, 20, 0.08), 0 2px 6px rgba(20, 20, 20, 0.05);
   --ring: 0 0 0 3px rgba(248, 152, 88, 0.45);
 }
 
@@ -84,6 +85,7 @@ body {
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern", "liga", "calt";
   overflow-wrap: break-word;
+  word-break: keep-all; /* break Korean lines between words, not mid-word (no effect on English) */
 }
 
 img, picture, svg, video { display: block; max-width: 100%; height: auto; }
@@ -112,6 +114,8 @@ h1 { font-size: var(--fs-2xl); }
 h2 { font-size: var(--fs-xl); }
 h3 { font-size: var(--fs-lg); }
 h4 { font-size: var(--fs-md); font-weight: 700; }
+/* Display headings a touch lighter than h3/h4, so large type reads calm rather than heavy. */
+h1, h2 { font-weight: 500; letter-spacing: -0.005em; }
 
 p { text-wrap: pretty; }
 
@@ -121,24 +125,17 @@ p { text-wrap: pretty; }
   color: var(--ink-2);
 }
 
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--orange-ink);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
+/* Small plain line above a heading that adds information the heading lacks (the lab
+   name over the home title, "Error 404"). Sentence case, no rule or caps tracking;
+   pages do not repeat their own title or nav section here. */
+.kicker {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--muted);
 }
-.eyebrow::before {
-  content: "";
-  width: 1.6rem;
-  height: 2px;
-  background: var(--orange);
-  display: inline-block;
-}
+
+/* Plain text link back to the parent list (member, alumnus, and paper pages). */
+.back-link { margin-bottom: var(--space-md); font-size: var(--fs-sm); }
 
 /* --- Links ---------------------------------------------------------------- */
 .prose a,
@@ -199,7 +196,6 @@ p { text-wrap: pretty; }
 /* When a section-head carries a lead paragraph, match the hero's lead-to-figure
    gap so the two intro blocks on the home page breathe the same way. */
 .section-head:has(.lead) { margin-bottom: clamp(2rem, 5vw, 3.75rem); }
-.section-head h2 { margin-top: 0.5rem; }
 .section-head .lead { margin-top: 0.75rem; max-width: none; } /* spans full content width, matching the hero lead */
 
 .divider { height: 1px; background: var(--line); border: 0; }
@@ -209,8 +205,7 @@ p { text-wrap: pretty; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: saturate(180%) blur(10px);
+  background: #fff;
   border-bottom: 1px solid var(--line);
 }
 .header-inner {
@@ -312,9 +307,7 @@ p { text-wrap: pretty; }
 .hero {
   position: relative;
   padding-block: clamp(3.5rem, 8vw, 6.5rem);
-  background:
-    radial-gradient(60rem 30rem at 85% -10%, var(--orange-wash), transparent 60%),
-    var(--bg);
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
@@ -329,7 +322,6 @@ p { text-wrap: pretty; }
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: #fff;
-  box-shadow: var(--shadow-md);
 }
 .hero__figure figcaption {
   margin-top: 0.85rem; text-align: center;
@@ -404,20 +396,39 @@ p { text-wrap: pretty; }
   transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
 }
 .card:hover { border-color: var(--line-2); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.card h3 { font-size: var(--fs-md); }
+.card h3 { font-size: var(--fs-md); margin-bottom: 0.5rem; }
 
-/* Research area cards */
-.area { position: relative; padding-left: var(--space-md); }
-.area::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0.3rem; bottom: 0.3rem;
-  width: 3px;
-  background: var(--orange);
-  border-radius: 3px;
+/* Home research rows: each area's figure beside its full title and text (the
+   Publications-list pattern). The text is never truncated; the figure links to
+   the same area on /research/. An area without a figure falls back to text only. */
+.area-rows { display: grid; }
+.area-row {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+  padding-block: var(--space-md);
+  border-top: 1px solid var(--line);
 }
-.area h3 { margin-bottom: 0.5rem; }
-.area p { color: var(--ink-2); }
+.area-row:first-child { border-top: 0; padding-top: 0; }
+.area-row--nofig { grid-template-columns: 1fr; }
+.area-row__fig {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  padding: 0.5rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.area-row__fig:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.area-row__fig img { width: 100%; height: 100%; object-fit: contain; }
+.area-row h3 { font-size: var(--fs-md); line-height: 1.32; }
+.area-row__link { color: inherit; transition: color 0.15s ease; }
+.area-row__link:hover { color: var(--orange-deep); }
+.area-row p { margin-top: 0.4rem; color: var(--ink-2); }
 
 /* --- People --------------------------------------------------------------- */
 .person-grid {
@@ -479,6 +490,8 @@ p { text-wrap: pretty; }
 .profile__aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
 .profile__photo { width: 100%; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
 .profile__contact { margin-top: var(--space-md); display: grid; gap: 0.45rem; font-size: var(--fs-sm); }
+/* Icon beside its text: the global svg { display: block } would otherwise stack the icon above the line. */
+.profile__contact > a, .profile__contact > span { display: flex; align-items: center; gap: 0.55rem; }
 .profile__contact a:hover { color: var(--orange-ink); }
 .profile__name { margin-bottom: 0.2rem; }
 .profile__name .ko { color: var(--muted); font-size: 0.6em; font-family: var(--font-sans); font-weight: 500; margin-left: 0.5rem; }
@@ -552,7 +565,6 @@ p { text-wrap: pretty; }
 .paper__authors .pi {
   font-weight: 600;
   color: var(--ink);
-  background: linear-gradient(transparent 62%, rgba(248, 152, 88, 0.34) 0);
 }
 .pub__meta { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.25rem; }
 .pub__journal { font-style: italic; color: var(--ink-2); }
@@ -606,7 +618,7 @@ p { text-wrap: pretty; }
   line-height: 1.35;
   color: #fff;
   text-align: left;
-  background: linear-gradient(transparent, rgba(10, 8, 6, 0.82));
+  background: linear-gradient(transparent, rgba(12, 12, 12, 0.82));
   border-radius: 0 0 var(--radius) var(--radius);
   opacity: 0;
   transform: translateY(0.4rem);
@@ -630,7 +642,7 @@ body.no-scroll { overflow: hidden; }
 .lightbox__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(12, 10, 8, 0.88);
+  background: rgba(12, 12, 12, 0.88);
   backdrop-filter: blur(4px);
 }
 .lightbox__dialog {
@@ -648,12 +660,12 @@ body.no-scroll { overflow: hidden; }
   width: auto;
   border-radius: var(--radius);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
-  background: #161310;
+  background: var(--bg-ink);
 }
 .lightbox__cap { margin-top: var(--space-md); text-align: center; max-width: 62ch; }
 .lightbox__title { font-family: var(--font-serif); font-size: var(--fs-md); font-weight: 600; color: #fff; }
-.lightbox__desc { font-size: var(--fs-sm); color: #d4ccc1; margin-top: 0.35rem; }
-.lightbox__count { font-size: var(--fs-xs); color: #8f867c; margin-top: 0.7rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+.lightbox__desc { font-size: var(--fs-sm); color: #d0d0d0; margin-top: 0.35rem; }
+.lightbox__count { font-size: var(--fs-xs); color: #9a9a9a; margin-top: 0.7rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
 .cover-lightbox__paper { margin-top: 0.9rem; }
 .cover-lightbox__paper a {
   display: inline-block;
@@ -695,14 +707,14 @@ body.no-scroll { overflow: hidden; }
 
 /* --- Contact strip -------------------------------------------------------- */
 .contact-grid { display: grid; gap: var(--space-lg); grid-template-columns: 1.2fr 1fr; align-items: start; }
-.contact-grid dt { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 0.9rem; }
+.contact-grid dt { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.9rem; }
 .contact-grid dd { margin-top: 0.15rem; }
 
 /* --- Footer --------------------------------------------------------------- */
 .site-footer {
   margin-top: var(--space-3xl);
   background: var(--bg-ink);
-  color: #cfc7bd;
+  color: #d0d0d0;
   padding-block: var(--space-2xl) var(--space-lg);
 }
 .footer-grid {
@@ -712,20 +724,20 @@ body.no-scroll { overflow: hidden; }
 }
 .footer-mark { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
 .footer-mark .hl { color: var(--orange); }
-.footer-brand p { margin-top: 0.8rem; max-width: 34ch; color: #b6ada2; font-size: var(--fs-sm); }
+.footer-brand p { margin-top: 0.8rem; max-width: 34ch; color: #b5b5b5; font-size: var(--fs-sm); }
 .footer-kmu { display: inline-block; margin-top: var(--space-md); opacity: 0.85; transition: opacity 0.15s ease; }
 .footer-kmu:hover { opacity: 1; }
 .footer-kmu img { height: 30px; width: auto; display: block; }
-.footer-title { font-family: var(--font-sans); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.1em; color: #8f867c; font-weight: 600; margin-bottom: 0.9rem; }
+.footer-title { font-family: var(--font-sans); font-size: var(--fs-sm); color: #9a9a9a; font-weight: 600; margin-bottom: 0.9rem; }
 .footer-list { display: grid; gap: 0.5rem; font-size: var(--fs-sm); }
-.footer-list a:hover, .footer address a:hover { color: var(--orange); }
-.footer address { font-style: normal; font-size: var(--fs-sm); line-height: 1.7; color: #b6ada2; }
+.footer-list a:hover, .site-footer address a:hover { color: var(--orange); }
+.site-footer address { font-style: normal; font-size: var(--fs-sm); line-height: 1.7; color: #b5b5b5; }
 .footer-base {
   margin-top: var(--space-xl);
   padding-top: var(--space-md);
   border-top: 1px solid var(--bg-ink-2);
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem;
-  font-size: var(--fs-xs); color: #8f867c;
+  font-size: var(--fs-xs); color: #8c8c8c;
 }
 .footer-base a:hover { color: var(--orange); }
 
@@ -755,7 +767,6 @@ body.no-scroll { overflow: hidden; }
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: #fff;
-  box-shadow: var(--shadow-sm);
 }
 .research-area__figure figcaption {
   margin-top: 0.6rem; text-align: center;
@@ -765,7 +776,7 @@ body.no-scroll { overflow: hidden; }
 
 /* --- Member personal card ------------------------------------------------- */
 .member-card { text-align: center; }
-.member-card .eyebrow { justify-content: center; margin-bottom: var(--space-lg); }
+.member-card .back-link { margin-bottom: var(--space-lg); }
 .member-card .profile__name { justify-content: center; }
 .member-card__photo {
   width: 180px; height: 180px;
@@ -829,6 +840,9 @@ body.no-scroll { overflow: hidden; }
   .research-area--figured { grid-template-columns: 1fr; gap: var(--space-md); }
   .research-area--figured:nth-child(even) .research-area__text { order: 0; }
   .research-area__text p, .research-area p { max-width: none; }
+  .area-row { grid-template-columns: 88px minmax(0, 1fr); gap: var(--space-sm); }
+  .area-row--nofig { grid-template-columns: 1fr; }
+  .area-row p { font-size: var(--fs-sm); }
 }
 
 @media (max-width: 430px) {
@@ -899,8 +913,7 @@ body.no-scroll { overflow: hidden; }
 .news__link { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.6rem; font-size: var(--fs-sm); font-weight: 600; }
 .news__link .icon { width: 1em; height: 1em; }
 .news-tag {
-  display: inline-block; font-size: 0.7rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.05em;
+  display: inline-block; font-size: var(--fs-xs); font-weight: 500;
   padding: 0.16rem 0.5rem; border-radius: 999px;
   border: 1px solid var(--line-2); color: var(--muted); background: var(--bg);
   white-space: nowrap;
@@ -930,7 +943,6 @@ body.no-scroll { overflow: hidden; }
 .news-card__link:hover { color: var(--orange-deep); }
 
 /* --- Paper detail page ---------------------------------------------------- */
-.paper__back { margin-bottom: var(--space-md); font-size: var(--fs-sm); }
 .paper__top {
   display: flex; align-items: center; justify-content: space-between;
   gap: 1rem; flex-wrap: wrap;
@@ -970,7 +982,7 @@ body.no-scroll { overflow: hidden; }
 .u-mt-lg { margin-top: var(--space-lg); }
 .u-left { text-align: left; }
 .error-404 { text-align: center; padding-block: var(--space-2xl); }
-.error-404 .eyebrow { justify-content: center; }
+.error-404 h1 { margin-top: 0.5rem; }
 
 /* Pair with the contextmenu/dragstart deterrent in nav.js (casual image-save nudge, not security). */
 img { -webkit-user-drag: none; user-select: none; }

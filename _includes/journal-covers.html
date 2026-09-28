@@ -7,7 +7,7 @@ Pages that include this must load covers.js (front matter: scripts: [covers]).{%
 {%- if covers and covers.size > 0 -%}
 <section class="section section--alt">
   <div class="container">
-    <div class="section-head"><p class="eyebrow">Highlights</p><h2>Journal covers</h2></div>
+    <div class="section-head"><h2>Journal covers</h2></div>
     <div class="covers">
       {%- for c in covers -%}
       {%- assign full = c.image | split: "." | first | append: "-full.jpg" -%}
@@ -48,7 +48,7 @@ Pages that include this must load covers.js (front matter: scripts: [covers]).{%
         <figcaption class="lightbox__cap">
           <p class="lightbox__title"></p>
           <p class="lightbox__count"></p>
-          <p class="cover-lightbox__paper"><a href="#">View the paper &rarr;</a></p>
+          <p class="cover-lightbox__paper"><a href="#">View the paper</a></p>
         </figcaption>
       </figure>
     </div>

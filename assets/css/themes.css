@@ -1,4 +1,5 @@
 ---
 ---
-{% for t in site.data.themes %}{% assign s = t.name | slugify %}.tag--{{ s }}{color:{{ t.color }};background:{{ t.color }}1a;border-color:{{ t.color }}4d}.pub-filter[data-theme-slug="{{ s }}"]{--c:{{ t.color }}}.pub-filter[data-theme-slug="{{ s }}"].is-active{background:{{ t.color }};border-color:{{ t.color }};color:#fff}
+{%- comment -%}Per-topic colours from _data/themes.yml. Tag text, and the fill behind the white text of an active filter, use the topic colour darkened by a third (color-mix) so light colours such as orange and cyan stay readable (WCAG AA 4.5:1); the tag tint, border, and filter dot keep the exact colour. The plain declaration before each color-mix is the fallback for browsers without color-mix.{%- endcomment -%}
+{% for t in site.data.themes %}{% assign s = t.name | slugify %}.tag--{{ s }}{color:{{ t.color }};color:color-mix(in srgb,{{ t.color }} 66%,#000);background:{{ t.color }}1a;border-color:{{ t.color }}4d}.pub-filter[data-theme-slug="{{ s }}"]{--c:{{ t.color }}}.pub-filter[data-theme-slug="{{ s }}"].is-active{background:{{ t.color }};background:color-mix(in srgb,{{ t.color }} 66%,#000);border-color:{{ t.color }};border-color:color-mix(in srgb,{{ t.color }} 66%,#000);color:#fff}
 {% endfor %}

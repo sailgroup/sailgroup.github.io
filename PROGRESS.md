@@ -175,3 +175,13 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   (dropped `container-narrow`). Verified the filter functionally with a headless-Chrome CDP click
   test (42 → 15 → 42) against the CI artifact, confirmed site JS ships, and reviewed the design at
   1440px and 390px. Results in `REVIEW.md` section 9 (Phase 10).
+- **Phase 14 (2026-09-28):** De-templated visual pass and fixes (D38). Synced local with the
+  PI's 24 direct commits on main first (none touched by this pass; zero diff under `_data/`).
+  Removed eyebrow labels, the accent bar, hero glow, header blur, figure shadows, the PI-name
+  highlighter, and ALL-CAPS tracking; warm neutrals became untinted greys; h1/h2 weight 500.
+  Home research section now shows each area in full beside its figure, linked to
+  `/research/#<slug>`. Topic tags keep their colours with AA-contrast text. Fixed the italic
+  footer address, stacked PI contact icons, Korean mid-word breaks, Positions card spacing,
+  hidden English-only abstracts (44, 45), and the Positions page language. CI actions bumped
+  (checkout v7, upload-pages-artifact v5 with hidden files kept, deploy-pages v5) and an
+  optional build-copy image shrink step added. Results in `REVIEW.md` section 12.

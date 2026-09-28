@@ -9,7 +9,7 @@ layout: default
 {%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
 <section class="section section--tight">
   <div class="container">
-    <p class="paper__back"><a class="link" href="{{ '/publications/' | relative_url }}">Publications</a></p>
+    <p class="back-link"><a class="link" href="{{ '/publications/' | relative_url }}">Publications</a></p>
 
     <div class="paper__top">
       {%- if logo and logo != "" -%}
@@ -43,17 +43,25 @@ layout: default
       {%- endif -%}
     </div>
 
-    {%- if p.abstract_ko and p.abstract_ko != "" -%}
+    {%- comment -%}With a Korean abstract: Korean first, the original English folded below it. With only the English abstract (a newly added paper): show it in full, never folded away.{%- endcomment -%}
+    {%- assign has_ko = false -%}{%- if p.abstract_ko and p.abstract_ko != "" -%}{%- assign has_ko = true -%}{%- endif -%}
+    {%- assign has_en = false -%}{%- if p.abstract and p.abstract != "" -%}{%- assign has_en = true -%}{%- endif -%}
+    {%- if has_ko -%}
     <div class="paper__abstract" lang="ko">
       <h2 class="paper__abstract-label">초록</h2>
       <p>{{ p.abstract_ko }}</p>
     </div>
-    {%- endif -%}
-    {%- if p.abstract and p.abstract != "" -%}
+    {%- if has_en -%}
     <details class="paper__abstract-en">
       <summary>Original abstract (English)</summary>
       <p>{{ p.abstract }}</p>
     </details>
+    {%- endif -%}
+    {%- elsif has_en -%}
+    <div class="paper__abstract">
+      <h2 class="paper__abstract-label">Abstract</h2>
+      <p>{{ p.abstract }}</p>
+    </div>
     {%- endif -%}
   </div>
 </section>

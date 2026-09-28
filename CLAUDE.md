@@ -51,6 +51,11 @@ domain `https://sail.kookmin.ac.kr`.
 
 ## Conventions
 - Site copy: **no em dashes, no marketing tone, factual and specific.**
+- Visual style (D38): understated, in the spirit of coley.mit.edu. No tracked ALL-CAPS labels
+  or "eyebrow" lines above headings, no decorative accent bars or glows; neutral (untinted) greys
+  plus the brand orange; other colour comes only from information (figures, topic tags, news
+  categories, which stay coloured). Hover lifts are kept (maintainer's choice). Never shorten or
+  hide PI-written text to fit a layout; balance a text-heavy block with the lab's own figures.
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in
   author lists.
 - Member/alumni/publication facts are content: never invent a photo, link, date, or fact — leave a

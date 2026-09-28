@@ -5,7 +5,6 @@ description: "Research at the Spectroscopy and AI Lab (SAIL), Kookmin University
 permalink: /research/
 ---
 <div class="container page-head">
-  <p class="eyebrow">Research</p>
   <h1>Research</h1>
   <p class="lead">{{ site.data.research.overview.en }}</p>
 </div>
@@ -16,8 +15,9 @@ permalink: /research/
       {%- for area in site.data.research.areas -%}
       {%- assign has_fig = false -%}
       {%- if area.figure and area.figure != "" -%}{%- assign has_fig = true -%}{%- endif -%}
-      <article class="research-area{% if has_fig %} research-area--figured{% endif %}">
-        <div class="area research-area__text">
+      {%- comment -%}id = the slugified title; the home page research rows link here (/research/#<id>).{%- endcomment -%}
+      <article class="research-area{% if has_fig %} research-area--figured{% endif %}" id="{{ area.title | slugify }}">
+        <div class="research-area__text">
           <h2>{{ area.title }}</h2>
           <p>{{ area.body }}</p>
         </div>

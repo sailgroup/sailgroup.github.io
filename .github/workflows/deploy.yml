@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -52,10 +52,28 @@ jobs:
             --allow-hash-href \
             --no-enforce-https
 
+      # Shrink oversized uploads (people/, photos/, pubs/) in the built copy only; the
+      # repository originals stay as uploaded. Optional: if this step fails for any
+      # reason, the site still deploys with the original images.
+      - name: Set up Node (image optimization)
+        uses: actions/setup-node@v7
+        continue-on-error: true
+        with:
+          node-version: "24"
+
+      - name: Optimize images in the built site
+        continue-on-error: true
+        run: |
+          npm install --no-save --no-package-lock --no-audit --no-fund sharp@0.35
+          node .github/scripts/optimize-images.mjs _site/assets/images
+
+      # include-hidden-files: v4+ of this action drops dotfiles by default, which
+      # would silently remove /.well-known/security.txt from the deployed site.
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+          include-hidden-files: true
 
   # Deploy only from main, so pushes to dev verify the build without publishing.
   deploy:
@@ -71,4 +89,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

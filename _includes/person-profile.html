@@ -8,9 +8,9 @@ optional prose body from the page, usually empty).
 <section class="section section--tight">
   <div class="container container-narrow member-card">
     {%- if include.kind == "alumnus" -%}
-    <p class="eyebrow"><a class="link" href="{{ '/alumni/' | relative_url }}">Alumni</a></p>
+    <p class="back-link"><a class="link" href="{{ '/alumni/' | relative_url }}">Alumni</a></p>
     {%- else -%}
-    <p class="eyebrow"><a class="link" href="{{ '/members/' | relative_url }}">Members</a></p>
+    <p class="back-link"><a class="link" href="{{ '/members/' | relative_url }}">Members</a></p>
     {%- endif -%}
     {%- if x.photo and x.photo != "" -%}
     <img class="member-card__photo" src="{{ '/assets/images/people/' | append: x.photo | relative_url }}" alt="{{ x.name }}">

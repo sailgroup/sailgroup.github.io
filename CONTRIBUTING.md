@@ -19,7 +19,7 @@ the live site is left untouched, so you cannot break the site by editing data.
 
 1. Add a photo (optional): upload `firstname-lastname.jpg` to
    `assets/images/people/`, the folder that holds every people photo (square
-   looks best). Without a photo the card shows the person's initials; a generic
+   looks best; any size is fine, see "Image sizes" below). Without a photo the card shows the person's initials; a generic
    `anonymous.png` in the same folder can be used instead of a real photo.
 2. Add one block to `_data/people.yml`:
 
@@ -101,17 +101,17 @@ current member's name, shows up on that member's page too, all automatically.
   preprint_url: "https://arxiv.org/abs/..."  # optional; shows arXiv/ChemRxiv badge
   themes: ["Reaction pathway prediction"]    # optional topic tags (filter chips)
   image: "pub-42.jpg"          # optional; upload to assets/images/pubs/
-  abstract: "English abstract."        # optional; shown on the detail page
-  abstract_ko: "한국어 초록."           # optional; shown as 초록
+  abstract: "English abstract."        # optional; shown in full on the detail page
+  abstract_ko: "한국어 초록."           # optional; shown as 초록, with the English folded below it
 ```
 
 Only `id`, `title`, `authors`, `journal`, `year` are required. A journal with no
 logo in `_data/journal_logos.yml` simply shows no logo (add a line there to fix).
 
 `ref` is free text for the volume/pages (e.g. `"47, 317-327"` or `"Advance
-Article"`), which is how every current paper is written. Alternatively use the
-structured `vol:` / `issue:` / `pages:` to get an auto-formatted *vol* (issue),
-pages line; `vol` takes precedence over `ref` when both are present.
+Article"`). Most papers instead use the structured `vol:` / `issue:` / `pages:`,
+which gives an auto-formatted *vol* (issue), pages line; `vol` takes precedence
+over `ref` when both are present.
 
 ## Add a news item  →  `_data/news.yml`
 
@@ -132,7 +132,7 @@ The three newest items also show on the home page.
 
 ## Add a photo  →  upload an image + add one line to `_data/photos.yml`
 
-1. Upload your image to `assets/images/photos/` (e.g. `photo-26.jpg`, ≤1600 px).
+1. Upload your image to `assets/images/photos/` (e.g. `photo-26.jpg`; any size is fine).
 2. Add a block to `_data/photos.yml` (newest first):
 
    ```yaml
@@ -141,6 +141,24 @@ The three newest items also show on the home page.
      caption: "At the restaurant"      # optional caption line
      alt: "Lab dinner, June 2026"      # optional; describes the image
    ```
+
+## Update the research areas  →  `_data/research.yml`
+
+Each area has a `title` and a `body` (both required) and an optional figure from
+one of the lab's papers (`figure:` a file in `assets/images/`, `figure_w` /
+`figure_h` its pixel size, `figure_alt`, and `figure_journal` / `figure_year` /
+`figure_doi` for the caption link). Every area is shown in full on the Research
+page and on the home page, where the figure sits beside the text; the home page
+links each area to its section on `/research/` by title, so renaming an area
+keeps the link working. An area without a figure is shown as text only.
+
+## Image sizes
+
+Upload photos as they are. When the site is deployed, the copies served to
+visitors are scaled down automatically (people 800 px, photos 1600 px, paper
+figures 1200 px on the longest side) and recompressed; the originals in the
+repository are never changed. Journal covers, logos, and research figures are
+served as uploaded.
 
 ## Update the Positions page  →  `_data/positions.yml`
 
@@ -193,7 +211,10 @@ This page is in Korean by request; keep new copy in Korean to match.
 - All content lives in `_data/*.yml`. `_plugins/generate_pages.rb` turns each
   member/alumnus/paper entry into its page; `_plugins/validate_data.rb` checks
   the data at build time and fails with a readable message on a mistake. CI also
-  runs html-proofer over the built site to catch a broken internal link/image.
+  runs html-proofer over the built site to catch a broken internal link/image,
+  then `.github/scripts/optimize-images.mjs` shrinks oversized uploads in the
+  built copy only (an optional step: if it fails, the site deploys with the
+  original images).
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `journal-covers`,
   `news-date`, `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
