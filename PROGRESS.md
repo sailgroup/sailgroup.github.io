@@ -200,4 +200,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   setup-ruby pinned, per-branch concurrency, grouped monthly Dependabot. Four separate
   reviews found nothing above low severity; their fixes are in. The README's editing
   steps, run end to end on a scratch copy, are unchanged. `_data/` unchanged, visible
-  text identical on all 70 pages. Results in `REVIEW.md` section 14 (2026-09-29).
+  text identical on all 70 pages. Deployed on 2026-09-29 (main run 36474498473) and
+  verified live: the site is byte-identical to the verified build. Results in
+  `REVIEW.md` section 14 (2026-09-29).

@@ -366,15 +366,17 @@ logged rather than done.
 1. **Responsive `srcset` for photos and publication thumbnails.** Would cut
    mobile bandwidth, but needs newly generated image derivatives (and re-checking
    every gallery/thumb visually). Deferred to avoid a visual-regression risk;
-   worth doing as a dedicated image-pipeline task.
+   worth doing as a dedicated image-pipeline task. *(2026-09-29: done in D40, the
+   CI image step's smaller copies; layout checked identical, section 14.)*
 2. **Self-host / preload Pretendard.** The font CSS loads render-blocking from
    jsDelivr. Self-hosting or `preload`+`font-display: swap` would improve first
    paint but changes font loading behavior — wants a human perf/QA check.
 3. **Lighthouse + screen-reader pass on the live URL.** Recommended since Phase 5;
    still outstanding. The `lang="ko"` and JSON-LD added in D22 should help the SEO/
-   a11y scores; verify with a real run.
+   a11y scores; verify with a real run. *(2026-09-29: Lighthouse run on the live URL
+   before and after D40, section 14. The screen-reader pass is still outstanding.)*
 4. **`Person` JSON-LD on member/alumni pages** (only the PI has it). Minor SEO
-   upside; optional.
+   upside; optional. *(Done on 2026-06-17, 8f9994f.)*
 5. **Merge the duplicate adjacent links** (photo + name → same URL) in the people
    grid cards into one link, for slightly cleaner screen-reader output. Left as-is
    to avoid a markup change with no visible benefit.
@@ -600,3 +602,23 @@ Chrome.
   docs, and a last pass over the fixes) found nothing above low severity. Their fixes
   are in D40; one suggestion, a scheduled monthly rebuild for `security.txt`, was
   declined for the reason given there.
+- **Deployed and verified live** (dev run 36474295882 and main run 36474498473, both
+  green; `main` fast-forwarded to 9b3af2c with no PI commits in between): the CI
+  artifact matches the local build file for file (445 files; only `security.txt`'s
+  `Expires` differs). On https://sail.kookmin.ac.kr the 95 HTML pages, `llms.txt`,
+  `llms-full.txt`, `sitemap.xml`, `robots.txt`, `site.webmanifest` and `main.css` are
+  byte-identical to that build; all 175 image URLs (`src` and `srcset`) load; the 13
+  people pages, their 26 `/members/` and `/alumni/` addresses and the 47 paper pages
+  return 200; a missing address returns the 404 page and `/feed.xml` is gone.
+- **Lighthouse on the live URL** (d098025 on 2026-09-28 against 9b3af2c, one run
+  each): /photos/ on mobile, performance 87 to 96, LCP 4.1 to 2.7 s, 2,501 to 1,435 KiB
+  (desktop 7,451 to 1,710 KiB); home 683 to 442 KiB on mobile and 861 to 489 KiB on
+  desktop; /publications/ 480 to 328 KiB on mobile; /positions/ on desktop, performance
+  87 to 100, CLS 0.267 to 0; papers 1 and 44 on mobile, CLS 0.060 and 0.015 to 0. The
+  single mobile runs after the deploy also showed a later first paint on four pages
+  (/publications/ 1.04 to 1.89 s), which three repeat runs each on /publications/,
+  /positions/ and home did not (1.09 to 1.53 s). A local A/B of the two builds in ABBA
+  order (four mobile runs per page, served without compression) finds no slowdown:
+  first paint the same or earlier on /publications/, /positions/, home and /pi/; largest
+  paint earlier on /publications/ and home and the same within run-to-run noise on the
+  other two.
