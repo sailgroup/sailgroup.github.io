@@ -911,10 +911,12 @@ add their verification meta tags.
   the footer is `.site-footer`); PI contact icons sat above their text (the global
   `svg { display: block }`); Korean text broke mid-word (`word-break: keep-all`);
   Positions project-card titles had no gap before the body; papers with only an
-  English abstract (44, 45) hid it inside a collapsed "Original abstract" toggle, so
+  English abstract (42-45) hid it inside a collapsed "Original abstract" toggle, so
   it now shows in full under an "Abstract" heading (papers with `abstract_ko` are
   unchanged); the Korean-only Positions page declared `lang="en"` (it now sets
-  `lang: ko`, and the layout reads `page.lang` before `site.lang`).
+  `lang: ko`, and the layout reads `page.lang` before `site.lang`); the "Award" news
+  pill text (`#9a6b1a` on its tint, 4.27:1, first used by the PI's June news items,
+  after the last accessibility audit) darkened to `#8a5f14` (5.1:1), same hue.
 - CI: `actions/checkout` v4 to v7, `upload-pages-artifact` v3 to v5, `deploy-pages`
   v4 to v5 (the open Dependabot PRs). upload-pages-artifact v4+ drops dotfiles unless
   `include-hidden-files: true`, which would have silently removed

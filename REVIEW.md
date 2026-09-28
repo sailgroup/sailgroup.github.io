@@ -478,3 +478,43 @@ build and the live site.
 - **Browser sweep (live, headless Chrome):** 15 representative pages (all 9
   top-level pages plus 3 person and 3 publication pages) at 1440 px and 390 px,
   30 loads in total: zero console errors, zero page errors, zero failed requests.
+
+---
+
+## 12. Visual pass and fixes (2026-09-28, D38)
+
+Verified on the CI artifact of `dev` commit b01a4dc (run 36406300276: build, validator,
+html-proofer, image step, upload all green), served locally and driven with headless
+Chrome, before publishing.
+
+- **Pages:** all 69 sitemap URLs plus 404, at 1440 px and 390 px, and 12 representative
+  pages also at 768 px (152 loads): zero console errors or warnings (so no CSP
+  violation), zero page errors, zero failed requests, zero horizontal overflow, zero
+  broken images, no `.eyebrow` element and no uppercase-transformed text anywhere.
+  `<html lang>` is `ko` on `/positions/` only, `en` elsewhere.
+- **Home:** section headings read Recent news, Research, Journal covers, Contact. The
+  four research rows match `research.yml` title and body word for word (no
+  truncation); each figure sits left of its text (208 px wide, 88 px on phones);
+  title and figure link to the same `/research/#<slug>`, and all four ids exist on
+  the Research page, landing below the sticky header. Hero has no glow or figure
+  shadow, the header is solid white without blur, the footer address is upright.
+- **Papers:** 1-41 still show 초록 with the English abstract folded; 42-45 (English
+  only) now show it in full under "Abstract"; 46-47 have no abstract and show none.
+  Every paper page has the plain "Publications" back link and a bold PI name without
+  the highlighter.
+- **Topic tags (text on tint):** Quantum 4.53, Representation 4.71, Property 5.79,
+  Generative 7.31, Spectroscopic 7.81, Dataset 9.95, Reaction 10.50 (was 2.12-6.80).
+  Active filter, white on fill: 4.91-12.14. Clicking every chip on and off returns
+  the list to all 47 papers.
+- **Fixes:** PI contact icons are inline with their text (all 6 rows); person pages
+  show a centred Members/Alumni back link; Positions card titles have an 8 px gap;
+  Korean text wraps between words.
+- **axe-core (WCAG 2 A/AA)** on 12 page types: one finding, the "Award" news pill
+  (4.27:1, a colour predating this pass and first used in June), fixed in D38.
+- **Images:** the CI step reduced 2 of 90 uploads in the built copy
+  (people/YOOYEONJU.jpg 978 KB to 40 KB at 640x800; pubs/pub-44.png 172 KB to
+  145 KB); the repository files are unchanged. `/.well-known/security.txt` is present
+  in the v5 artifact.
+- **Content:** no file under `_data/` changed. Build warnings are data notes for the
+  PI (no journal logo for "Submitted", "J. Alloys Compd.", "ChemRxiv"), as is the
+  `ref: "Early veiw"` spelling on paper 44.

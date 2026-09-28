@@ -182,6 +182,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   Home research section now shows each area in full beside its figure, linked to
   `/research/#<slug>`. Topic tags keep their colours with AA-contrast text. Fixed the italic
   footer address, stacked PI contact icons, Korean mid-word breaks, Positions card spacing,
-  hidden English-only abstracts (44, 45), and the Positions page language. CI actions bumped
+  hidden English-only abstracts (42-45), and the Positions page language. CI actions bumped
   (checkout v7, upload-pages-artifact v5 with hidden files kept, deploy-pages v5) and an
   optional build-copy image shrink step added. Results in `REVIEW.md` section 12.
