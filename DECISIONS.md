@@ -956,6 +956,11 @@ add their verification meta tags.
   (ars.els-cdn.com; 506x195, so the thin title stays legible at the 44 px logo
   height); `ChemRxiv` reuses the site's existing ChemRxiv mark
   (`assets/images/chemrxiv.png`), cropped to its square.
+- Template copy found in the same final review: the Alumni intro read "Former
+  undergraduate researchers (UROP) of ...", no longer true once a visiting EPFL
+  student (D36) became an alumna; it now reads "Former members of the Spectroscopy
+  and AI Lab at Kookmin University.", parallel to the Members intro. The 404 page's
+  lead got the 0.75rem gap under its heading that section leads have elsewhere.
 - Left as entered, on instruction: papers 46 and 47 ("Submitted", no logo, no DOI);
   their build warning remains. Not changed because they are style rather than error:
   paper title capitalisation (each follows the PI's entry), `YOOYEONJU.jpg` naming
