@@ -760,9 +760,14 @@ body.no-scroll { overflow: hidden; }
 .footer-kmu img { height: 30px; width: auto; display: block; }
 .footer-title { font-family: var(--font-sans); font-size: var(--fs-sm); color: #9a9a9a; font-weight: 600; margin-bottom: 0.9rem; }
 /* The menu's pages in two columns, top to bottom in menu order; the columns balance
-   themselves, so a page added to the menu needs no change here. */
+   themselves, so a page added to the menu needs no change here. One column where two would
+   wrap the longest label: with "Principal Investigator", two columns need 17.7em (em here is
+   the body text size, 17px by default), so on a narrow phone or with a reader's larger
+   default font, which em follows as the menu breakpoint does. */
+.footer-links { container-type: inline-size; }
 .footer-list { columns: 2; column-gap: var(--space-lg); font-size: var(--fs-sm); }
 .footer-list li { break-inside: avoid; padding-bottom: 0.5rem; }
+@container (max-width: 18em) { .footer-list { columns: 1; } }
 .footer-list a:hover, .site-footer address a:hover { color: var(--orange); }
 .site-footer address { font-style: normal; font-size: var(--fs-sm); line-height: 1.7; color: #b5b5b5; }
 .footer-base {
