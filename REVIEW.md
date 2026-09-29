@@ -692,3 +692,17 @@ the live site (9774b2e) is the "before".
 - **Image step:** on a copy of the images, a corrupt JPG fails the run with
   `IMAGES_STRICT=true` (exit 1, the warning and a closing message) and without it passes
   with the warning (exit 0), as on `main`.
+- **Deployed and verified live** (dev run 36558572454 and main run 36558704178, both
+  green, the main run's image step with the same result as above; `main` fast-forwarded
+  to a0fac09 with no PI commits in between): the build of a0fac09, whose changes are in
+  the records and docs alone, matches the build checked above file for file (446 files;
+  only `security.txt`'s `Expires` differs). On https://sail.kookmin.ac.kr all 96 HTML files
+  (the 404 page included), `llms.txt`, `llms-full.txt`, `robots.txt`, `security.txt`,
+  `sitemap.xml`, `site.webmanifest`, the three stylesheets and four scripts, the square
+  logo and both ChemRxiv files are byte-identical to the deployed build, and all 227
+  image URLs (`src` and `srcset`) load. Read from the live pages: the home page's square
+  logo, the PI page's `og:image` and Person, `noindex` on `/404.html` and status 404 for
+  a missing address, paper 43's preprint DOI, the `lang` marks on Positions, the hidden
+  empty-result line, the titles of 7 and 36 and issue 36 of 27 (17 checks).
+  `qa-site.js` on the live site: all 70 pages at 1440 and 390 px, 12 also at 768 px,
+  axe-core on 12, no problems; `functional.js` on the live site: 22 of 22 pass.

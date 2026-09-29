@@ -215,5 +215,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   dark mode is opted out; 404 is noindex; structured data gets a square logo, the PI's
   image, paper figures and the preprint DOI; `llms.txt` has the research texts in full;
   the ChemRxiv mark is readable; the CI image step is strict on `dev` and pull requests.
-  Docs follow; REVIEW's duplicate section numbers are fixed. Results in `REVIEW.md`
-  section 17 (2026-09-29).
+  Docs follow; REVIEW's duplicate section numbers are fixed. Deployed on 2026-09-29
+  (main run 36558704178) and verified live: the site is byte-identical to the verified
+  build. Results in `REVIEW.md` section 17 (2026-09-29).
