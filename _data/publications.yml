@@ -257,6 +257,7 @@
   authors: "Jihye Roh, Joonyoung F. Joung, Kevin Yu, Zhengkai Tu, G. Logan Bartholomew, Omar A. Santiago-Reyes, Mun Hong Fong, Richmond Sarpong, Sarah E. Reisman, Connor W. Coley*"
   journal: "ACS Cent. Sci."
   vol: 12
+  issue: 3
   pages: "345-357"
   year: 2026
   doi: "https://doi.org/10.1021/acscentsci.5c02014"
@@ -304,9 +305,10 @@
 
 - id: 38
   title: "Exploring Materials Data through Collaboration: 2024 KRICT ChemDX Hackathon"
-  authors: "Su-Hyun Yoo*, Andre K. Y. Low, Jose Recatala-Gomez, Harikrishna Sahu, Chiho Kim, Joonyoung F. Joung, Hoje Chun, Katerina A. Christofidou, Joshua Berry, Michail Minotakis, Kisung Kang, Kwangsoo Kim, Gaheun Shin, Hyunwoo Jang, Sanghyuk Lee, Minkyu Park, Byung-Hyun Kim, Kihyun Shin, Jungho Shin, Aloysius Soon, Joshua Schrier*, Woosun Jang*"
+  authors: "Su-Hyun Yoo*, Andre K. Y. Low, Jose Recatala-Gomez, Harikrishna Sahu, Chiho Kim, Joonyoung F. Joung, Hoje Chun, Katerina A. Christofidou, Joshua Berry, Michail Minotakis, Kisung Kang, Kwang-soo Kim, Gaheun Shin, Hyunwoo Jang, Sanghyuk Lee, Minkyu Park, Byung-Hyun Kim, Kihyun Shin, Jungho Shin, Aloysius Soon, Joshua Schrier*, Woosun Jang*"
   journal: "J. Mater. Inf."
   vol: 5
+  issue: 4
   pages: "54"
   year: 2025
   doi: "https://doi.org/10.20517/jmi.2025.65"
@@ -399,7 +401,7 @@
     메우는 중요한 진전을 보여준다.
 
 - id: 36
-  title: "ASKCOS: an open source software suite for synthesis planning"
+  title: "ASKCOS: Open-Source, Data-Driven Synthesis Planning"
   authors: "Zhengkai Tu, Sourabh J. Choure, Mun Hong Fong, Jihye Roh, Itai Levin, Kevin Yu, Joonyoung F. Joung, Nathan Morgan, Shih-Cheng Li, Xiaoqi Sun, Huiqian Lin, Mark Murnin, Jordan P. Liles, Thomas J. Struble, Michael E. Fortunato, Mengjie Liu, William H. Green, Klavs F. Jensen, Connor W. Coley*"
   journal: "Acc. Chem. Res."
   vol: 58
@@ -660,7 +662,7 @@
     양자화학 계산 결과와 가장 잘 일치함을 확인하였다.
 
 - id: 31
-  title: "Deep learning for development of organic optoelectronic devices: Efficient prescreening of hosts and emitters in deep-blue fluorescent OLED"
+  title: "Deep learning for development of organic optoelectronic devices: Efficient prescreening of hosts and emitters in deep-blue fluorescent OLEDs"
   authors: "Minseok Jeong†, Joonyoung F. Joung†, Jinhyo Hwang†, Minhi Han†, Chang Woo Koh, Dong Hoon Choi*, Sungnam Park*"
   journal: "npj Comput. Mater."
   vol: 8
@@ -846,7 +848,7 @@
   authors: "Young Woong Lee, Jiwoo Yeop, Hyojin Lim, Won-Woo Park, Joonyoung F. Joung, Sungnam Park, Oh-Hoon Kwon*, Jin Young Kim*, Han Young Woo*"
   journal: "ACS Appl. Mater. Interfaces"
   vol: 13
-  issue: 26
+  issue: 36
   pages: "43174-43185"
   year: 2021
   doi: "https://doi.org/10.1021/acsami.1c14901"
@@ -1087,7 +1089,7 @@
     시스템에 적용될 수 있을 것이다.
 
 - id: 22
-  title: "Direct Photolithographic Patterning of Colloidal Quantum Dots Enabled by UV-Crosslinkable & Hole-Transporting Polymer Ligand"
+  title: "Direct Photolithographic Patterning of Colloidal Quantum Dots Enabled by UV-Crosslinkable and Hole-Transporting Polymer Ligands"
   authors: "Jaewan Ko, Jun Hyuk Chang, Byeong Guk Jeong, Hyung Jong Kim, Joonyoung F. Joung, Sungnam Park, Dong Hoon Choi*, Wan Ki Bae*, Joona Bang*"
   journal: "ACS Appl. Mater. Interfaces"
   vol: 12
@@ -1168,8 +1170,8 @@
     상태에 있는 7,016개 고유 유기 발색단으로 구성된 데이터셋을 CSV 형식으로 제공한다.
 
 - id: 20
-  title: "Green-, Red-, and NIR-Emitting Polymer Dot Probes for Simultaneous Multicolor Cell Imaging with a Single Excitation Wavelength"
-  authors: "Ji-Eun Jeong, Mohammad Afsar Uddin, Hwa Sook Ryu, Hee-Chang Kim, Minsu Kang, Joonyoung F. Joung, Sungnam Park, Sang-Hee Shim, Han Young Woo*"
+  title: "Green-, Red-, and Near-Infrared-Emitting Polymer Dot Probes for Simultaneous Multicolor Cell Imaging with a Single Excitation Wavelength"
+  authors: "Ji-Eun Jeong, Mohammad Afsar Uddin, Hwa Sook Ryu, Hee-Chang Kim, Minsu Kang, Joonyoung F. Joung, Sungnam Park, Sang-Hee Shim*, Han Young Woo*"
   journal: "Chem. Mater."
   vol: 32
   issue: 15
@@ -1350,8 +1352,8 @@
     유발 아레니우스 광염기에 대한 분자 설계를 제안한다.
 
 - id: 16
-  title: "Macrocyclic Diacetylene-Terthiophene Cocrystal: Molecular Self-Assembly, Topochemical Polymerization and Energy Transfer"
-  authors: "Kwangmin Bae, Jung-Moo Heo, Mohammed Khazi, Joonyoung F. Joung, Sungnam Park, Youngmee Kim, Jong-Man Kim*"
+  title: "Macrocyclic Diacetylene-Terthiophene Cocrystal: Molecular Self-Assembly, Topochemical Polymerization, and Energy Transfer"
+  authors: "Kwangmin Bae†, Jung-Moo Heo†, Mohammed Iqbal Khazi, Joonyoung F. Joung, Sungnam Park, Youngmee Kim, Jong-Man Kim*"
   journal: "Cryst. Growth Des."
   vol: 20
   issue: 1
@@ -1401,8 +1403,8 @@
     현상은 새로운 에너지 포집 기능성 초분자의 설계에 유용할 것이다.
 
 - id: 15
-  title: "Covalently Linked, Perylene diimide Polydiacetylene Nanofibers Display Enhanced Stability and Photocurrent with Reversible FRET Phenomenon"
-  authors: "Joonsik Seo, Chra Kantha, Joonyoung F. Joung, Sungnam Park, Raz Jelinek, Jong-Man Kim*"
+  title: "Covalently Linked Perylene Diimide–Polydiacetylene Nanofibers Display Enhanced Stability and Photocurrent with Reversible FRET Phenomenon"
+  authors: "Joonsik Seo, Chandra Kantha, Joonyoung F. Joung, Sungnam Park*, Raz Jelinek, Jong-Man Kim*"
   journal: "Small"
   vol: 15
   issue: 19
@@ -1532,7 +1534,7 @@
 
 - id: 12
   title: "A naphthoimidazolium-cholesterol derivative as a ratiometric fluorescence based chemosensor for the chiral recognition of carboxylates"
-  authors: "Xin Zhang†, Gyeongju Ko†, Joonyoung F. Joung†, Meng Li, K.M.K. Swamy, Yerin Jeong, Dayoung Lee, Yifan Liu, Songyi Lee*, Sungnam Park*, Tony D. James*, Juyoung Yoon*"
+  authors: "Xin Zhang†, Gyeongju Ko†, Joonyoung F. Joung†, Meng Li, Yerin Jeong, K.M.K. Swamy, Dayoung Lee, Yifan Liu, Songyi Lee*, Sungnam Park*, Tony D. James*, Juyoung Yoon*"
   journal: "Chem. Commun."
   vol: 54
   issue: 94
@@ -1610,7 +1612,7 @@
 
 - id: 10
   title: "Elucidating the Role of Molecule-Electrode Interfacial Defects in Charge Tunneling Characteristics of Large-area Junctions"
-  authors: "Gyu Don Kong, Junji Jin, Martin M. Thuo, Hyunsun Song, Joonyoung F. Joung, Sungnam Park, Hyo Jae Yoon*"
+  authors: "Gyu Don Kong, Junji Jin, Martin Thuo, Hyunsun Song, Joonyoung F. Joung, Sungnam Park, Hyo Jae Yoon*"
   journal: "J. Am. Chem. Soc."
   vol: 140
   issue: 38
@@ -1665,7 +1667,7 @@
 
 - id: 9
   title: "Topochemical polymerization of macrocyclic diacetylene with a naphthalene moiety for a tubular-shaped polydiacetylene chromophore"
-  authors: "Chra Kantha, Hansol Kim, Youngmee Kim, Jung Moo Heo, Joonyoung F. Joung, Sungnam Park, Jong-Man Kim*"
+  authors: "Chandra Kantha, Hansol Kim, Youngmee Kim, Jung-Moo Heo, Joonyoung F. Joung, Sungnam Park, Jong-Man Kim*"
   journal: "Dyes Pigm."
   vol: 154
   pages: "199-204"
@@ -1743,7 +1745,7 @@
     이온 효과를 이해하는 데 매우 중요하다.
 
 - id: 7
-  title: "Ionic effect on the excited-state proton transfer reactions in aqueous solutions"
+  title: "Ionic effects on the proton transfer mechanism in aqueous solutions"
   authors: "Joonyoung F. Joung, Sangin Kim, Sungnam Park*"
   journal: "Phys. Chem. Chem. Phys."
   vol: 19
@@ -1816,7 +1818,7 @@
 
 - id: 5
   title: "Chromogenic Tubular Polydiacetylenes from Topochemical Polymerization of Self-Assembled Macrocyclic Diacetylenes"
-  authors: "Jung-Moo Heo, Youngmee Kim, Seulki Han, Joonyoung F. Joung, Sang-hwa Lee, Sejin Han, Jaegeun Noh, Jaeyoun Kim, Sungnam Park, Haiwon Lee, Yoon Mi Choi, Young-Sik Jung, Jong-Man Kim*"
+  authors: "Jung-Moo Heo, Youngmee Kim, Seulki Han, Joonyoung F. Joung, Sang-hwa Lee, Sejin Han, Jaegeun Noh, Jaeyong Kim, Sungnam Park, Haiwon Lee, Yoon Mi Choi, Young-Sik Jung, Jong-Man Kim*"
   journal: "Macromolecules"
   vol: 50
   issue: 3
