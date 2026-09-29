@@ -1,6 +1,8 @@
 {%- comment -%}English footer on a page in another language (see header.html). The links are the
 top menu's (_data/navigation.yml; a menu with sub-pages lists the sub-pages, and Home is the logo),
-so a page added to the menu is listed here too. Contact comes from _data/home.yml.{%- endcomment -%}
+so a page added to the menu is listed here too, then Kookmin University (the header's emblem goes
+home at the PI's request, D21, so the university is linked here). Contact comes from
+_data/home.yml.{%- endcomment -%}
 <footer class="site-footer"{% if page.lang and page.lang != site.lang %} lang="{{ site.lang }}"{% endif %}>
   <div class="container">
     <div class="footer-grid">
@@ -27,6 +29,7 @@ so a page added to the menu is listed here too. Contact comes from _data/home.ym
           <li><a href="{{ item.url | relative_url }}">{{ item.name }}</a></li>
             {%- endif -%}
           {%- endfor -%}
+          <li><a href="https://english.kookmin.ac.kr/" target="_blank" rel="noopener noreferrer">Kookmin University</a></li>
         </ul>
       </nav>
 
