@@ -68,7 +68,9 @@ domain `https://sail.kookmin.ac.kr`.
   (figures, topic tags, news categories, which stay coloured). Hover lifts are kept (maintainer's
   choice). Never shorten or hide PI-written text to fit a layout; balance a text-heavy block with
   the lab's own figures. The header switches to the menu button at 68.75em (1100px at the
-  default font size; `main.scss` and `nav.js` hold the width, keep them in sync).
+  default font size; `main.scss` and `nav.js` hold the width, keep them in sync), and the
+  footer changes from three columns to two rows at the same width. The footer's links follow
+  `navigation.yml`; the home page has no Contact section (the footer carries it, D43).
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in
   author lists.
 - Member/alumni/publication facts are content: never invent a photo, link, date, or fact — leave a

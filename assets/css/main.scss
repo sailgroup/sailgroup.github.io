@@ -770,6 +770,13 @@ body.no-scroll { overflow: hidden; }
   font-size: var(--fs-xs); color: #8c8c8c;
 }
 .footer-base a:hover { color: var(--orange); }
+/* Where the header shows the menu button (68.75em, see the header), three columns leave the
+   links' two columns too narrow ("Principal Investigator" wrapped at 861px): the brand takes
+   its own row, with the links and Contact side by side under it (one column on phones). */
+@media (max-width: 68.75em) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
 
 /* --- Publication filter states ------------------------------------------- */
 .pub--nofig { grid-template-columns: 1fr; }
@@ -826,8 +833,6 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 860px) {
   .profile { grid-template-columns: 1fr; }
   .profile__aside { position: static; max-width: 320px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
 }
 /* PI page on tablets: the contact list beside the photo, not below it in a 320px column
    with the other half of the width empty. */
@@ -841,7 +846,8 @@ body.no-scroll { overflow: hidden; }
    narrower one they wrapped "Group Guide" and squeezed the logos. The breakpoint is in
    em, unlike the others, because the items' width follows the reader's font size
    setting: 68.75em is 1100px at the default size (a margin above 1080px), and with a
-   larger default font the menu takes over at a wider window. Keep in sync with nav.js. */
+   larger default font the menu takes over at a wider window. Keep in sync with nav.js
+   and the footer's query (above), which switches its layout at the same width. */
 @media (max-width: 68.75em) {
   .nav-toggle { display: block; }
   .site-nav {
