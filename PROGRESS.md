@@ -223,5 +223,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   every page of the menu (generated from `navigation.yml`, so it follows the menu) and
   Kookmin University in two columns, with Contact as its last column; the home page's
   Contact section, which repeated the footer right above it, is removed; a page that ends
-  with a grey band meets the footer without a white strip. Results in `REVIEW.md` section 18
-  (2026-09-29).
+  with a grey band meets the footer without a white strip. Deployed on 2026-09-29 (main
+  run 36578027829) and verified live: the site is byte-identical to the verified build.
+  Results in `REVIEW.md` section 18 (2026-09-29).

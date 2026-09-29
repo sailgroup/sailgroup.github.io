@@ -738,3 +738,19 @@ headless Chrome; the live site (3a0d5b5) is the "before".
   above; all 70 pages at 1440 and 390 px, 12 also at 768 px, axe-core on 12): no problems.
   **Functional checks** (served locally): 22 of 22 pass. **HTML** (html-validate, all 96
   pages): no errors except paper 29's bare "<" (D42).
+- **Deployed and verified live** (dev run 36577929821 and main run 36578027829, both
+  green, the image step in both with 90 images checked, 3 rewritten, 85 renditions and no
+  failures; `main` fast-forwarded to 91d300a with no PI commits in between): the build of
+  91d300a, whose changes after 53d1a37 are in the records alone, matches the build checked
+  above file for file (446 files; only `security.txt`'s `Expires` differs). On
+  https://sail.kookmin.ac.kr all 96 HTML files (the 404 page included), `llms.txt`,
+  `llms-full.txt`, `robots.txt`, `security.txt`, `sitemap.xml`, `site.webmanifest`, the
+  three stylesheets and four scripts are byte-identical to the deployed build, and all 227
+  image URLs (`src` and `srcset`) load. Read from the live pages: the home page's headings
+  (Recent news, Research, Journal covers; no Contact section) and its 14 images, the
+  footer's Kookmin University logo among them, all loaded; the space above the footer, 0
+  on / and /photos/ and the 112 px margin on /research/, /publications/, /positions/ and
+  the 404 page, at 1440 and 390 px. `qa-site.js` on the live site, its footer checks
+  included: all 70 pages at 1440 and 390 px, 12 also at 768 px, axe-core on 12, no
+  problems; `functional.js` on the live site: 22 of 22 pass; the D42 spot checks
+  (`d42-spot.js`): 17 of 17.
