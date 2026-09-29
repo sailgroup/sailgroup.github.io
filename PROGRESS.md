@@ -185,7 +185,7 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   footer address, stacked PI contact icons, Korean mid-word breaks, Positions card spacing,
   hidden English-only abstracts (42-45), and the Positions page language. CI actions bumped
   (checkout v7, upload-pages-artifact v5 with hidden files kept, deploy-pages v5) and an
-  optional build-copy image shrink step added. Results in `REVIEW.md` section 12.
+  optional build-copy image shrink step added. Results in `REVIEW.md` section 15.
 - **Phase 15 (2026-09-29):** Review follow-up (D40), content-neutral. A full review of
   d098025 (performance, security, SEO, GEO) was cross-checked and every fix that changes
   no content was made: the site author and JSON-LD publisher are the lab, not the PI;
@@ -202,4 +202,18 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   steps, run end to end on a scratch copy, are unchanged. `_data/` unchanged, visible
   text identical on all 70 pages. Deployed on 2026-09-29 (main run 36474498473) and
   verified live: the site is byte-identical to the verified build. Results in
-  `REVIEW.md` section 14 (2026-09-29).
+  `REVIEW.md` section 16 (2026-09-29).
+- **Phase 16 (2026-09-29):** Review of the 2026-09-28/29 work (D38 to D40) and its fixes.
+  Publication data (D41): 14 papers corrected against their publisher pages (titles of 7,
+  15, 16, 20, 22, 31 and 36; six author names, one author order, four author marks; the
+  issue of 27, 38 and 39); style differences left as entered. Review fixes (D42): the
+  header switches to the menu at 68.75em (1100 px) and its logos no longer squeeze; the
+  footer mark is drawn at its size; an empty topic filter says so and offers a reset;
+  paper pages put the figure below the title under 1000 px; the PI page puts the contact
+  list beside the photo from 561 to 860 px; phone research figures sit above their text;
+  printing opens folded abstracts; English parts of the Korean page are marked; forced
+  dark mode is opted out; 404 is noindex; structured data gets a square logo, the PI's
+  image, paper figures and the preprint DOI; `llms.txt` has the research texts in full;
+  the ChemRxiv mark is readable; the CI image step is strict on `dev` and pull requests.
+  Docs follow; REVIEW's duplicate section numbers are fixed. Results in `REVIEW.md`
+  section 17 (2026-09-29).

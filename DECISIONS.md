@@ -571,6 +571,8 @@ no broken internal link) then removing it. See `REVIEW.md` §12.
 - **html-proofer via `gem install` in CI, not the Gemfile.** `Gemfile.lock` is
   not committed and there is no local Ruby to regenerate it; a standalone install
   keeps the Jekyll build bundle untouched and avoids a frozen-lock failure.
+  (Superseded by D40: html-proofer is a locked Gemfile dependency, and
+  `Gemfile.lock` is committed.)
 - **Internal-only link checking.** External DOIs/Scholar/ORCID are slow and flaky
   in CI and are spot-checked elsewhere; internal resolution is the regression-
   prone part worth gating.
@@ -925,7 +927,9 @@ add their verification meta tags.
   BUILT copy only (people 800 px, photos 1600 px, pubs 1200 px on the longest side;
   written back only when at least 10% smaller), so a contributor can upload a phone
   photo as is and the repository keeps the original. It runs with
-  `continue-on-error`, so a failure deploys the original images.
+  `continue-on-error`, so a failure deploys the original images. (Revised: D40
+  replaced it with `prepare-images.mjs`, which runs before the build; D42 makes that
+  step strict on `dev` and on pull requests.)
 - Not done, by decision: the home contact block stays (D20 home structure); the
   middle dot in the hero line stays; an automatic new-publication finder was
   deferred (it would open GitHub issues and notify the PI, so it needs the PI's
@@ -980,7 +984,7 @@ add their verification meta tags.
   reviews of the change (templates and SEO, CI and images, content and docs, and a last
   pass over the fixes) found nothing above low severity; their fixes are included below.
   The editing steps in the README were run end to end on a scratch copy (REVIEW
-  section 14): they are unchanged and every cross-link still follows the data.
+  section 16): they are unchanged and every cross-link still follows the data.
 - **Site author is the lab.** `author:` in `_config.yml` named the PI as a Person, and
   jekyll-seo-tag names its JSON-LD `publisher` after the author, so every page said an
   Organization called "Joonyoung F. Joung" published it. It is now the lab, as an
@@ -1042,7 +1046,9 @@ add their verification meta tags.
   46 px; it is now 160 px (29 KB to 7 KB, visually identical when drawn at 1x to 3x).
 - **Hangul fallback:** until Pretendard's files arrive, Korean text was set in Malgun
   Gothic (Hangul 1 em wide; Pretendard's is 1770/2048 em), so the Positions page
-  re-wrapped when Pretendard swapped in (CLS 0.26 to 0.30). `main.scss` adds
+  re-wrapped when Pretendard swapped in (measured before this change: a layout shift,
+  CLS, of up to 0.29, from 0.06 to 0.29 by run and width; REVIEW section 16).
+  `main.scss` adds
   `local()` faces of Malgun Gothic (size-adjust 86.43%) and Noto Sans CJK KR (0.92 em;
   93.94%) for Hangul syllables only, placed right after Pretendard in the stack (the
   faces are defined below `:root`, so the design tokens stay at the top of the file,
@@ -1071,3 +1077,121 @@ add their verification meta tags.
   full-size cover by dropping only the last extension (`a.v2.jpg` to `a.v2-full.jpg`),
   the rule the data validator checks; it dropped everything after the first dot.
   Neither changes output with today's data.
+
+## D41 — Publication data checked against the publishers (maintainer's instruction, 2026-09-29)
+
+- The review of D38 to D40 found more errors in `_data/publications.yml`, and the
+  maintainer asked for them to be fixed as in D39. Every change matches the paper's
+  page at its publisher, opened in a browser, and Crossref agrees on the titles,
+  names, order and issues (it records no author marks); paper 9 rests on Crossref
+  alone, because its Elsevier page answered with a robot check. Nothing was
+  reworded: titles take the published wording, names the published byline.
+- Titles: 7 "Ionic effects on the proton transfer mechanism in aqueous solutions" (was
+  "Ionic effect on the excited-state proton transfer reactions in aqueous solutions");
+  36 "ASKCOS: Open-Source, Data-Driven Synthesis Planning" (the file had the arXiv
+  preprint's title); 15 "Covalently Linked Perylene Diimide–Polydiacetylene
+  Nanofibers ..." (a stray comma after "Linked", "diimide" in lower case, and no dash
+  between the two parts); 20 "Near-Infrared-Emitting" (the published title spells out
+  "NIR"); 22 "... UV-Crosslinkable and Hole-Transporting Polymer Ligands" (was "&" and
+  "Ligand"); 31 "... fluorescent OLEDs" (was "OLED"); 16 "Topochemical Polymerization,
+  and Energy Transfer" (the published comma).
+- Names, as in the byline: "Chandra Kantha" in 9 and 15 (was "Chra Kantha": the name
+  with "and" cut out of it; no other name in the file lost an "and"); "Jung-Moo Heo" in
+  9 (as in 5 and 16); "Jaeyong Kim" in 5 (was "Jaeyoun"); "Martin Thuo" in 10 (the
+  byline and Crossref have no middle initial); "Mohammed Iqbal Khazi" in 16;
+  "Kwang-soo Kim" in 38.
+- Author order: 12 lists Yerin Jeong before K.M.K. Swamy, as published.
+- Marks the publisher prints and the file lacked: corresponding author Sungnam Park in
+  15 (Wiley labels him "Corresponding Author", with his e-mail) and Sang-Hee Shim in 20;
+  equal contribution for Kwangmin Bae and Jung-Moo Heo in 16, with the file's own `†`
+  (the file uses `†` where a journal prints `‡` or `∥`, as in 12 and 42).
+- Issues: 27 is issue 36 (was 26); 38 (issue 4) and 39 (issue 3) gained theirs.
+- Not changed, as style rather than error: dash characters and capitalisation where the
+  words match (10 "Molecule-Electrode ... Large-area", 16 "Diacetylene-Terthiophene",
+  31 "Efficient" after the colon, 38's title case, 39 "Higher-level"), "K.M.K." without
+  spaces, and 31's issue: npj's page shows only the volume and the article number
+  ("issue 1" is in its metadata alone), where 38's page shows "Volume 5, Issue 4". D39's
+  corresponding mark on Hyung Min Kim in 42 is confirmed by the ACS page. No other file
+  under `_data/` names these papers, so a person's page cannot list one twice.
+
+## D42 — Review fixes after D40: header, footer, filter, tablets, metadata, CI (2026-09-29)
+
+- An overall review of the work of 2026-09-28 and 29 (D38 to D40), on the maintainer's
+  request, looked for mistakes; each finding was reproduced in a browser before it was
+  fixed, and each fix was checked again after it. No content changed here (D41 has the
+  data).
+- **Header:** between 993 and 1080 px the nav squeezed the logos (their box narrowed
+  while their height stayed) and wrapped "Group Guide". The menu now takes over at
+  68.75em, 1100 px at the default font size: the items need a 1080 px window with
+  Pretendard (1072 px in the fallback font), and the margin covers a classic 17 px
+  scrollbar, which media queries count. It is in em so that a reader's larger default
+  font brings the menu in at a wider window (at 20 px, up to 1375 px). The logo group
+  never shrinks. `nav.js` uses the same query; Escape closes the open menu and returns
+  focus to its button; menu rows and their dividers span the menu, with the Members
+  arrow at the right edge. `white-space: nowrap` on the labels was tried and dropped:
+  with a larger default font it would push the nav past the window, where a wrapped
+  label only makes the header 2 px taller.
+- **Footer:** `.footer-brand p` outranked `.footer-mark`, so "SAIL" was drawn at 14.4 px
+  in the paragraph grey, 12.8 px below the column titles; it is 24 px white again, level
+  with them.
+- **Publications filter:** topics combine with AND, so two can match no paper (e.g.
+  Quantum chemical modeling and Representation learning), and the page then showed
+  only the chips. The line "No paper has all the selected topics." and a "Show all
+  papers" button now appear, inside a `role="status"` region so screen readers announce
+  them; the button clears the filter and moves focus to "All". The filter and menu
+  buttons are `type="button"`.
+- **Tablets and phones:** a paper's title sits beside its figure from 1000 px (from 721
+  px it was squeezed to 8 or 9 lines at 768); the PI page puts the contact list beside a
+  240 px photo from 561 to 860 px (it sat below the photo in a 320 px column, with the
+  other half of the width empty); on phones each home research figure sits above its
+  title at its own proportions, up to 480 px wide and 220 px tall (the 88 px column drew
+  the 4:1 figures about 20 px tall).
+- **Printing** opens every folded `<details>` (the English abstract under a Korean one)
+  and folds them again afterwards. (The CSS rule first considered, `details > * {
+  display: block }`, leaves a closed body hidden in current Chrome; only the newer
+  `::details-content` selector reaches it.)
+- **Language:** on the Korean Positions page the skip link, header, footer and the
+  "Positions" heading are marked `lang="en"` (WCAG 3.1.2, language of parts).
+- **Head:** `color-scheme: only light`, because Chrome's automatic dark mode ("darken
+  websites" on Android) inverted the site and the black logo, menu icon and journal
+  logos nearly vanished. `404.html` is noindex: GitHub Pages serves it with status 404
+  for a missing address, but `/404.html` itself answers 200. The redirect pages'
+  canonical is absolute, like every other page's.
+- **Structured data and GEO:** the lab's logo is `sail-logo-square.png`, the header
+  wordmark (224x57, not rescaled) centred on a 280x280 white square, because Google uses
+  an organization logo only from 112x112; `_config.yml` `logo` feeds seo-tag and the
+  home page's JSON-LD, and the header still shows `sail-logo.png`. The PI's Person has
+  an `image` and the university's URL; a ScholarlyArticle has its figure as `image`; a
+  preprint entry without a DOI (43) uses its preprint DOI
+  (`10.26434/chemrxiv.15005144/v1`, which resolves) as `sameAs` and `citation_doi`. The
+  PI page's link preview shows the portrait. `llms.txt` gives each research text in full
+  (`truncate: 220` cut them mid-word) and no longer promises an abstract and DOI for
+  every paper.
+- **ChemRxiv mark:** the badge was a 140 px black square with a transparent half beside
+  it, and D39's journal logo the square alone, so the name could not be read at 24 or
+  44 px. Both files are now the lettering cropped with a black margin (136x40, the same
+  pixels, not rescaled).
+- **CI image step:** strict on `dev` and on pull requests: `continue-on-error` only on
+  `main`, and with `IMAGES_STRICT` an image that errors while being processed fails the
+  run (a HEIC, TIFF or DNG upload, which the step does not process, only warns).
+  Before, a Dependabot update that broke the step still gave a green run, which is the
+  rule for merging it. On `main` it stays optional, so the PI's pushes always deploy.
+  The warning for a file that step 1 had already rewritten no longer says the file is
+  published as uploaded.
+- **Docs:** CONTRIBUTING, README and CLAUDE.md now describe the strict step, bringing
+  `dev` up to date after a Dependabot merge, which folders the image step cleans
+  (journal covers, logos and research figures are served as uploaded, metadata
+  included), the Korean texts in `research.yml` that are not shown, `BUNDLE_FROZEN` for
+  the local build, the `.kicker` exception and the menu breakpoint. D38's image step and
+  the Phase 11 lockfile note are marked as revised. REVIEW's second "11." and "12." are
+  now 14 and 15 (so the D39/D40 section is 16), and its README-path record says which
+  uploads carried a GPS position: a gallery photo and a paper figure (the step never
+  checks covers).
+- Found and left for the PI or the maintainer: `research-properties.jpg` is cut off at
+  its right edge, and the Yongpyo Cho and Hanbyul Baik photos show white strips at the
+  sides of the circle (the files themselves); five photos committed on 2026-06-23 and
+  24 (07a28d0, 05f3a8d) held a GPS position and stay in the repository history,
+  although the files were replaced on 2026-07-12 (df7948d), and rewriting published
+  history is the PI's decision; paper 29's abstract has a bare "<" ("P < 0.0001",
+  "(<5 min)"), which browsers show as written but the HTML validator flags. Abstracts
+  are printed unescaped, so escaping them could break markup the PI enters; left as is.

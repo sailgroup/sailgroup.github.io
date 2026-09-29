@@ -41,9 +41,10 @@ jobs:
       # the repository keeps the files as uploaded. On main it is optional: if it fails for
       # any reason, the site builds and deploys with the plain image files. On dev and on
       # pull requests (Dependabot's included) a failure fails the run, and so does an image
-      # the script could not process (IMAGES_STRICT), so an update that breaks this step
-      # shows before it is merged. The step timeouts keep a stalled download from using up
-      # the job's own timeout (which would stop the deploy).
+      # that errors while being processed (IMAGES_STRICT; a HEIC, TIFF or DNG upload only
+      # warns), so an update that breaks this step shows before it is merged. The step
+      # timeouts keep a stalled download from using up the job's own timeout (which would
+      # stop the deploy).
       - name: Set up Node (image step)
         uses: actions/setup-node@v7
         continue-on-error: ${{ github.ref == 'refs/heads/main' }}

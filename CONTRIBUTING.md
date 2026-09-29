@@ -234,7 +234,8 @@ This page is in Korean by request; keep new copy in Korean to match.
   `_data/generated_images.json`, which the templates turn into `srcset` (D40). On
   `main` it is optional: if it fails, the site is built and deployed with the
   plain image files. On `dev` and on pull requests it is strict: a failure, or an
-  image it could not process, fails the run, so a problem shows before `main`.
+  image that errors while being processed, fails the run, so a problem shows
+  before `main` (a HEIC, TIFF or DNG upload only gets its warning).
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `journal-covers`,
   `news-date`, `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
@@ -249,8 +250,8 @@ This page is in Korean by request; keep new copy in Korean to match.
 - **Updates come from Dependabot**: once a month, one pull request each for the
   GitHub Actions, the gems, and `sharp`. Merge it when its CI run is green (the
   image step is strict on a pull request, so green includes it). Merging deploys
-  `main`; then bring `dev` up to date (`git switch dev`, `git pull origin main`,
-  `git push`), so work on `dev` starts from what is live.
+  `main`; then bring `dev` up to date (`git switch dev`, `git pull --no-rebase
+  origin main`, `git push`), so work on `dev` starts from what is live.
 - **Docker runs Ruby here** (there is no local Ruby). The commands below work in
   PowerShell and in a Unix shell; in Git Bash on Windows, put `MSYS_NO_PATHCONV=1`
   in front of `docker`.

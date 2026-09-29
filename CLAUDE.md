@@ -42,8 +42,9 @@ domain `https://sail.kookmin.ac.kr`.
   `_data/generated_images.json`; D40), then `bundle exec jekyll build`, then html-proofer over the
   built site, then deploys to Pages. On `main` the image step may fail without failing the build
   (pages then use the plain image files); on `dev` and pull requests it is strict (`IMAGES_STRICT`):
-  a failure or an unprocessable image fails the run (D42). Push to `dev` builds only; `main` builds
-  and deploys (D11). Confirm the Actions run is green before treating anything as done.
+  a failure, or an image that errors while being processed, fails the run (a HEIC, TIFF or DNG
+  upload only warns; D42). Push to `dev` builds only; `main` builds and deploys (D11). Confirm the
+  Actions run is green before treating anything as done.
 - `Gemfile.lock` and `.github/scripts/package-lock.json` are committed and CI installs exactly
   what they pin; update them as `CONTRIBUTING.md` ("Build tools") describes. A local build can
   run in Docker (`ruby:3.3`) with the same commands as CI.

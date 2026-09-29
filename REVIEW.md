@@ -367,14 +367,14 @@ logged rather than done.
    mobile bandwidth, but needs newly generated image derivatives (and re-checking
    every gallery/thumb visually). Deferred to avoid a visual-regression risk;
    worth doing as a dedicated image-pipeline task. *(2026-09-29: done in D40, the
-   CI image step's smaller copies; layout checked identical, section 14.)*
+   CI image step's smaller copies; layout checked identical, section 16.)*
 2. **Self-host / preload Pretendard.** The font CSS loads render-blocking from
    jsDelivr. Self-hosting or `preload`+`font-display: swap` would improve first
    paint but changes font loading behavior — wants a human perf/QA check.
 3. **Lighthouse + screen-reader pass on the live URL.** Recommended since Phase 5;
    still outstanding. The `lang="ko"` and JSON-LD added in D22 should help the SEO/
    a11y scores; verify with a real run. *(2026-09-29: Lighthouse run on the live URL
-   before and after D40, section 14. The screen-reader pass is still outstanding.)*
+   before and after D40, section 16. The screen-reader pass is still outstanding.)*
 4. **`Person` JSON-LD on member/alumni pages** (only the PI has it). Minor SEO
    upside; optional. *(Done on 2026-06-17, 8f9994f.)*
 5. **Merge the duplicate adjacent links** (photo + name → same URL) in the people
@@ -455,7 +455,7 @@ self-hosting Pretendard, a manual screen-reader pass) and the content notes in
 
 ---
 
-## 11. Final production audit (2026-07-13, commit 8fcf379)
+## 14. Final production audit (2026-07-13, commit 8fcf379)
 
 Run after the July 2026 changes (people photo folder and About section, D36; branch
 ruleset; em dash sweep, D37). Everything below was verified against the deployed
@@ -483,7 +483,7 @@ build and the live site.
 
 ---
 
-## 12. Visual pass and fixes (2026-09-28, D38)
+## 15. Visual pass and fixes (2026-09-28, D38)
 
 Verified on the CI artifact of `dev` commit b01a4dc (run 36406300276: build, validator,
 html-proofer, image step, upload all green), served locally and driven with headless
@@ -518,9 +518,9 @@ Chrome, before publishing.
   145 KB); the repository files are unchanged. `/.well-known/security.txt` is present
   in the v5 artifact.
 - **Content:** no file under `_data/` changed in D38. The data corrections requested
-  afterwards (D39) are verified in section 14.
+  afterwards (D39) are verified in section 16.
 
-## 14. Data corrections and review follow-up (2026-09-29, D39 and D40)
+## 16. Data corrections and review follow-up (2026-09-29, D39 and D40)
 
 Verified on a local build of the working tree made the way CI makes it (the image step
 in `node:24` with the locked `sharp`, then `jekyll build` in `ruby:3.3` with Bundler in
@@ -585,8 +585,9 @@ Chrome.
   PowerShell and, with `MSYS_NO_PATHCONV=1`, in Git Bash).
 - **README path, end to end** (a scratch copy, edited only as the README describes: a
   new paper 48 with a figure, a new member with a photo, a news item linking to
-  `/members/<slug>/`, a gallery photo and a journal cover, both with a GPS position, a
-  cover pointing at paper 48, and one member moved to alumni): the build, the data
+  `/members/<slug>/`, a gallery photo, a journal cover pointing at paper 48, and one
+  member moved to alumni; the gallery photo and paper 48's figure carried a GPS
+  position, the cover none, as the step does not check covers): the build, the data
   check and html-proofer pass, and 34 checks hold. The paper page is generated (PI in
   bold, citation tags, the PI linked in its JSON-LD, figure sized); it heads the
   Publications list with a smaller thumbnail; it is listed on the pages of the new
@@ -634,3 +635,60 @@ Chrome.
   and no console error occurs. Every person page lists exactly the lab papers whose
   author list names the person (by name or `author_aliases`), as before. `http://` and
   `sailgroup.github.io` addresses redirect to https://sail.kookmin.ac.kr.
+
+## 17. Review fixes and data corrections (2026-09-29, D41 and D42)
+
+Verified on the CI builds of the two commits (dev runs 36554022773 for the fixes and
+36554778179 for the data, both green, the image step strict: 90 images checked, 3
+rewritten, 85 renditions, no failures), served locally and driven with headless Chrome;
+the live site (9774b2e) is the "before".
+
+- **D41 in the build:** the 14 corrected papers show the new titles, names, marks and
+  issues; on each page the heading, the JSON-LD `headline` and `citation_title` agree;
+  `citation_issue` is 36, 4 and 3 for 27, 38 and 39. Every changed value matches the
+  publisher's page (paper 9: Crossref); the evidence was read from the pages, not only
+  from Crossref.
+- **Header** (default font size): the menu button shows at 992, 1024, 1080 and 1100 px
+  and not at 1101, 1180, 1280 and 1440 px; at every width both logos keep their
+  proportions (220.1x56 and 46x46), no nav label wraps where the nav shows, and nothing
+  overflows. With a 20 px default font (a Chrome profile setting) the menu shows up to
+  1375 px; from 1376 px "Group Guide" takes two lines (header 84 px instead of 82) and
+  nothing overflows. The open menu's rows span the menu at 390 and 1024 px; Escape
+  closes it and focus returns to the menu button.
+- **Footer:** "SAIL" is 24 px white with no top margin at 1440, 768 and 390 px, and
+  level with the column titles at 1440 px.
+- **Publications:** the empty-result line is hidden at load; two topics with no common
+  paper (Quantum chemical modeling and Representation learning) show it and no year
+  group; "Show all papers" brings back all 47 and focuses "All". The ChemRxiv badges are
+  the 136x40 file drawn 24 px tall.
+- **Paper pages:** paper 44's figure sits below its title at 768 and 999 px (4 and 3
+  title lines) and beside it at 1000 and 1440 px, with no overflow. Paper 43 shows the
+  ChemRxiv logo 44 px and the badge 38 px tall, `citation_doi`
+  `10.26434/chemrxiv.15005144/v1`, and that DOI as the article's `sameAs`.
+- **PI page:** the contact list sits beside the 240 px photo at 561, 768 and 860 px, and
+  below it at 560 px (320 px photo) and 861 px (280 px), with no overflow.
+- **Metadata:** on 10 pages `color-scheme` is "only light", there is no robots meta, and
+  every JSON-LD block parses; `/404.html` and a missing address (status 404) carry
+  `noindex`. On Positions the page is `ko` and the skip link, header, footer and heading
+  `en`; on the home page the header and footer carry no `lang` of their own. Both JSON-LD
+  logos are the square file, which is served. The PI page's `og:image` and
+  `twitter:image` are the portrait, and its Person has the image and the university's
+  URL; paper 44's article has its figure as `image` and its DOI as `sameAs`. A
+  `/members/<slug>/` redirect has an absolute canonical. `llms.txt`'s four research
+  lines are whole (215 to 646 characters).
+- **Print:** on paper 1 the folded English abstract opens on `beforeprint` and folds
+  again on `afterprint`.
+- **Before and after** (screenshots, live site against the build): the header at 1024,
+  1080 and 1101 px; the footer; the PI page at 768 px; paper 44 at 768 and 1000 px (the
+  same at 1000); the home research rows at 390 px; paper 43's head; and the home page at
+  390 px under Chrome's forced dark mode (before: a dark page, the logo and the menu
+  icon nearly invisible; after: the light design unchanged).
+- **Site sweep** (`.qa/tools/qa-site.js`, its phone research-row check updated to the new
+  layout; all 70 pages at 1440 and 390 px, 12 also at 768 px, axe-core on 12): no
+  problems, on the build before and after the data commit. **Functional checks**
+  (`.qa/tools/functional.js`, served locally): 22 of 22 pass. **HTML** (html-validate,
+  standard rules, all 96 built pages): no errors except paper 29's bare "<" in its
+  abstract, which the live site has too (D42).
+- **Image step:** on a copy of the images, a corrupt JPG fails the run with
+  `IMAGES_STRICT=true` (exit 1, the warning and a closing message) and without it passes
+  with the warning (exit 0), as on `main`.
