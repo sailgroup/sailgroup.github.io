@@ -742,6 +742,9 @@ body.no-scroll { overflow: hidden; }
   color: #d0d0d0;
   padding-block: var(--space-2xl) var(--space-lg);
 }
+/* A page that ends with a grey band (the journal covers on the home and Photos pages) meets
+   the footer directly, without a white strip between the two. */
+.site-main:has(> section.section--alt:last-of-type) + .site-footer { margin-top: 0; }
 .footer-grid {
   display: grid;
   gap: var(--space-xl);
