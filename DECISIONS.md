@@ -1195,3 +1195,60 @@ add their verification meta tags.
   history is the PI's decision; paper 29's abstract has a bare "<" ("P < 0.0001",
   "(<5 min)"), which browsers show as written but the HTML validator flags. Abstracts
   are printed unescaped, so escaping them could break markup the PI enters; left as is.
+
+## D43 — Footer lists every page with Contact on the right; no home Contact section (maintainer's request, 2026-09-29)
+
+- The maintainer found the footer thin (its Links were Research, Publications, People and
+  Kookmin University), asked for every page in it and for Contact as its last column, and
+  found the home page's Contact section, directly above the footer, awkward.
+- A survey of 16 sites (coley.mit.edu; the Aspuru-Guzik, Jensen, Barzilay, Whitesides,
+  Kulik, Yaghi, Martínez and Schwaller groups; a KAIST, two POSTECH and an SNU lab;
+  kookmin.ac.kr, english.kookmin.ac.kr and mit.edu) and of NN/g ("Footers 101", "113
+  Design Guidelines for Homepage Usability"), USWDS and WCAG 2.2 (3.2.6, consistent help):
+  - contact details in the footer of every page are the norm (11 of the 16 footers);
+  - repeating the whole menu in the footer is optional (NN/g's "doormat" footer; USWDS: the
+    footer need not mirror the header). Jensen, Yaghi and MIT list every page, most lab
+    footers list none, and no lab lists only some pages, as SAIL's footer did;
+  - no rule fixes where contact goes: left (Jensen, MIT), centre (KAIST, Toronto) and right
+    (Coley, both POSTECH labs, Kookmin's English site) all occur;
+  - no surveyed site repeats a home Contact section right above a footer with the same
+    details; NN/g advises one clear place for such content. Two labs invite instead:
+    Barzilay's "Let's work together!" button to its Work With Us page right above the
+    footer, and a POSTECH lab's "Join our team" block mid-page.
+- Why it was so: the footer's links were written by hand in the first build (1b0a056,
+  2026-06-14) as a copy of the hero's three buttons, and never followed the menu, which
+  gained News (9e20100) and Positions (6d424b6) and had Alumni, Group Guide and Photos
+  from the start. The home Contact section ("Find us" until D38) was part of the first
+  build's template; nothing in the records has the PI asking for it (D20 lists the home
+  page's sections after the PI's changes), and D38 asked the maintainer whether to drop it
+  and, without an answer, kept it.
+- **Footer:** brand, Links, Contact, left to right.
+  - Links are generated from `_data/navigation.yml` in menu order, so a page added to the
+    menu is listed too: a menu entry with sub-pages gives its sub-pages (Principal
+    Investigator, Members, Alumni), Home is left out (the logo is the home link), and the
+    external Group Guide opens in a new tab like the header's. "People" (to /pi/) gives way
+    to the menu's names.
+  - Kookmin University stays last in Links: D21 sent the header's Kookmin emblem home at the
+    PI's request on the ground that the footer links the university, by its logo and by this
+    entry.
+  - The links sit in two CSS columns, top to bottom in menu order. The Links column is a
+    size container, and the list drops to one column where that column is narrower than
+    18em (two list columns need 17.7em of the body text size for "Principal
+    Investigator"). That happens only with a reader's larger default font (at 20 px the
+    two longest labels wrapped in three columns and on tablets and phones before this) or
+    on a phone narrower than about 340 px.
+  - Three columns above the header's menu breakpoint (68.75em, 1100 px at the default
+    size); below it the brand takes its own row with Links and Contact side by side (three
+    columns squeezed the links and wrapped two labels at 861 px); one column at 720 px and
+    below. `main.scss` notes that the footer shares the menu's breakpoint.
+- **Home:** the Contact section is removed with its CSS (`.contact-grid`). The footer shows
+  the same address, e-mail and phone on every page; the PI's title and college it added are
+  on the PI page, and the home page's first line names the PI. The home page now ends with
+  the grey journal-covers band, as /photos/ always did; where a page's last section is such
+  a band the footer's top margin is 0, so no white strip separates them (`:has()`; a browser
+  without it keeps the strip).
+- Docs: README's table of files (the menu file also sets the footer's links; where the
+  contact details live; the home page's sections), the comments in `navigation.yml` and
+  `home.yml`, and CLAUDE.md.
+- Not done: a one-line home pointer to Positions like those two labs' (new copy, the
+  maintainer's call); the base line "Kookmin University · Seoul, Republic of Korea" stays.

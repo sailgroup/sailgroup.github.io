@@ -218,3 +218,10 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   Docs follow; REVIEW's duplicate section numbers are fixed. Deployed on 2026-09-29
   (main run 36558704178) and verified live: the site is byte-identical to the verified
   build. Results in `REVIEW.md` section 17 (2026-09-29).
+- **Phase 17 (2026-09-29):** Footer and home page ending (D43), on the maintainer's request
+  and after a survey of 16 lab and university sites and NN/g's guidance. The footer lists
+  every page of the menu (generated from `navigation.yml`, so it follows the menu) and
+  Kookmin University in two columns, with Contact as its last column; the home page's
+  Contact section, which repeated the footer right above it, is removed; a page that ends
+  with a grey band meets the footer without a white strip. Results in `REVIEW.md` section 18
+  (2026-09-29).

@@ -706,3 +706,35 @@ the live site (9774b2e) is the "before".
   empty-result line, the titles of 7 and 36 and issue 36 of 27 (17 checks).
   `qa-site.js` on the live site: all 70 pages at 1440 and 390 px, 12 also at 768 px,
   axe-core on 12, no problems; `functional.js` on the live site: 22 of 22 pass.
+
+## 18. Footer and home page ending (2026-09-29, D43)
+
+Verified on the CI builds of the five commits (dev runs 36567799089, 36567928711,
+36568247471, 36568492332 and 36568903983, all green), served locally and driven with
+headless Chrome; the live site (3a0d5b5) is the "before".
+
+- **Footer links:** on every page they are the menu's pages in menu order, then Kookmin
+  University: News, Research, Principal Investigator, Members, Alumni, Publications,
+  Positions, Group Guide (new tab), Photos, Kookmin University. `qa-site.js` checks this on
+  all 70 pages at each width it tests, with no link wrapping.
+- **Layout at the default font size** (12 widths, 1440 to 360 px): brand, Links and
+  Contact, left to right, from 1101 px; from 721 to 1100 px the brand on its own row with
+  Links and Contact side by side; one column at 720 px and below. The links are two columns
+  of five everywhere; none wraps and nothing overflows. The footer is 396 px tall on a
+  desktop (356 before), 594 px on a tablet (553) and 777 px at 390 px (736). A build with
+  three columns down to 861 px wrapped "Principal Investigator" and "Kookmin University"
+  there; switching at the menu breakpoint (9e2b069) fixed it.
+- **With a 20 px default font** (a Chrome profile setting): three columns from 1376 px, as
+  the menu; where the Links column is narrower than 18em the list is one column, so no label
+  wraps at 1920, 1440, 1376, 1375, 1100, 768 or 390 px and nothing overflows. Without the
+  container query the two long labels wrapped at 1376 px and wider and at 768 and 390 px.
+- **Home:** the section headings are Recent news, Research and Journal covers. On / and
+  /photos/ the grey band meets the footer (no gap at 1440 or 390 px); /research/,
+  /publications/, /pi/, /news/, /positions/, /members/ and the 404 page keep the 112 px
+  margin above it.
+- **Before and after** (screenshots, live site against the build): the footer at 1440, 1024
+  and 390 px, and the end of the home page at 1440 and 390 px.
+- **Site sweep** (`qa-site.js`, updated for D43: the home headings and the footer checks
+  above; all 70 pages at 1440 and 390 px, 12 also at 768 px, axe-core on 12): no problems.
+  **Functional checks** (served locally): 22 of 22 pass. **HTML** (html-validate, all 96
+  pages): no errors except paper 29's bare "<" (D42).
