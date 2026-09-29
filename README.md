@@ -154,12 +154,12 @@ sections:
 | --- | --- |
 | 논문 서지 형식 (저널·권·페이지 사이 콤마/괄호 등) | `_includes/pub-citation.html` |
 | 주제 태그 색·이름·개수·순서 | `_data/themes.yml` |
-| 상단 메뉴(네비) 항목 | `_data/navigation.yml` |
-| 푸터 내용 | `_includes/footer.html` |
+| 상단 메뉴(네비) 항목 (푸터의 링크도 이 목록을 따라 함께 바뀜) | `_data/navigation.yml` |
+| 푸터 구성 (연락처 값은 `_data/home.yml` 의 `contact`) | `_includes/footer.html` |
 | 논문 목록 한 줄(번호·제목·저자·배지·태그) | `_includes/pub-item.html` |
 | 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
 | PI 페이지 구성 | `pi.html` |
-| 홈 화면 구성 (최근 뉴스·연구·저널 표지·연락처) | `index.html` |
+| 홈 화면 구성 (최근 뉴스·연구·저널 표지) | `index.html` |
 | 전체 색상·글꼴·간격(디자인 토큰) | `assets/css/main.scss` 맨 위 `:root` |
 
 예) "저널명과 권 사이에 콤마" → `_includes/pub-citation.html` 을 열면 형식 예시와 함께 콤마

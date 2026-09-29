@@ -72,25 +72,3 @@ scripts: [covers]
 </section>
 
 {% include journal-covers.html %}
-
-<section class="section">
-  <div class="container">
-    <div class="section-head"><h2>Contact</h2></div>
-    <dl class="contact-grid">
-      <div>
-        <dt>Address</dt>
-        <dd>{{ site.data.home.contact.address_en }}</dd>
-        <dt>Email</dt>
-        <dd><a class="link" href="mailto:{{ site.data.home.contact.email }}">{{ site.data.home.contact.email }}</a></dd>
-        <dt>Phone</dt>
-        <dd>{{ site.data.home.contact.phone }}</dd>
-      </div>
-      <div>
-        <dt>Principal investigator</dt>
-        <dd><a class="link" href="{{ '/pi/' | relative_url }}">{{ site.data.pi.name }}</a> (<span lang="ko">{{ site.data.pi.name_ko }}</span>)<br>{{ site.data.pi.title }}, {{ site.data.pi.department }}</dd>
-        <dt>Affiliation</dt>
-        <dd>{{ site.data.pi.college }}, {{ site.data.pi.institution }}</dd>
-      </div>
-    </dl>
-  </div>
-</section>

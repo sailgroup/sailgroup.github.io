@@ -1,5 +1,7 @@
 # Primary navigation. Order and labels match the site spec:
 # HOME / NEWS / RESEARCH / MEMBERS (PI, Members, Alumni) / PUBLICATIONS / POSITIONS / GROUP GUIDE / PHOTOS
+# The footer lists the same pages in the same order (the sub-pages instead of their parent;
+# Home is the logo), so an entry added or renamed here changes the footer too.
 - name: Home
   url: /
 

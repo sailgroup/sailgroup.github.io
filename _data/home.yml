@@ -1,4 +1,5 @@
-# Home hero and contact block. Source: live lab site, extracted Phase 0.
+# Home hero, and the lab's contact details (shown in the footer on every page and used in the
+# structured data). Source: live lab site, extracted Phase 0.
 # Copy is factual and matches the lab's four research areas; no marketing phrasing.
 hero:
   title: Spectroscopy and AI Lab

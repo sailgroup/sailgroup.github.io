@@ -735,11 +735,6 @@ body.no-scroll { overflow: hidden; }
   .lightbox__img { max-height: 64vh; }
 }
 
-/* --- Contact strip -------------------------------------------------------- */
-.contact-grid { display: grid; gap: var(--space-lg); grid-template-columns: 1.2fr 1fr; align-items: start; }
-.contact-grid dt { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.9rem; }
-.contact-grid dd { margin-top: 0.15rem; }
-
 /* --- Footer --------------------------------------------------------------- */
 .site-footer {
   margin-top: var(--space-3xl);
@@ -750,7 +745,7 @@ body.no-scroll { overflow: hidden; }
 .footer-grid {
   display: grid;
   gap: var(--space-xl);
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.3fr 1.3fr 1fr;
 }
 .footer-brand p { margin-top: 0.8rem; max-width: 34ch; color: #b5b5b5; font-size: var(--fs-sm); }
 /* After the generic `.footer-brand p` rule and one class more specific, so the mark keeps
@@ -761,7 +756,10 @@ body.no-scroll { overflow: hidden; }
 .footer-kmu:hover { opacity: 1; }
 .footer-kmu img { height: 30px; width: auto; display: block; }
 .footer-title { font-family: var(--font-sans); font-size: var(--fs-sm); color: #9a9a9a; font-weight: 600; margin-bottom: 0.9rem; }
-.footer-list { display: grid; gap: 0.5rem; font-size: var(--fs-sm); }
+/* The menu's pages in two columns, top to bottom in menu order; the columns balance
+   themselves, so a page added to the menu needs no change here. */
+.footer-list { columns: 2; column-gap: var(--space-lg); font-size: var(--fs-sm); }
+.footer-list li { break-inside: avoid; padding-bottom: 0.5rem; }
 .footer-list a:hover, .site-footer address a:hover { color: var(--orange); }
 .site-footer address { font-style: normal; font-size: var(--fs-sm); line-height: 1.7; color: #b5b5b5; }
 .footer-base {
@@ -828,8 +826,8 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 860px) {
   .profile { grid-template-columns: 1fr; }
   .profile__aside { position: static; max-width: 320px; }
-  .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
 }
 /* PI page on tablets: the contact list beside the photo, not below it in a 320px column
    with the other half of the width empty. */
