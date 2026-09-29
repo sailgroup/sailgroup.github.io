@@ -38,19 +38,24 @@ jobs:
       # Images: shrink oversized uploads, remove camera metadata (e.g. GPS position), and
       # make the smaller renditions pages offer through srcset (.github/scripts/
       # prepare-images.mjs). It changes only this run's working copy, before the build;
-      # the repository keeps the files as uploaded. Optional: if it fails for any reason,
-      # the site builds and deploys with the plain image files. The step timeouts keep a
-      # stalled download from using up the job's own timeout (which would stop the deploy).
+      # the repository keeps the files as uploaded. On main it is optional: if it fails for
+      # any reason, the site builds and deploys with the plain image files. On dev and on
+      # pull requests (Dependabot's included) a failure fails the run, and so does an image
+      # the script could not process (IMAGES_STRICT), so an update that breaks this step
+      # shows before it is merged. The step timeouts keep a stalled download from using up
+      # the job's own timeout (which would stop the deploy).
       - name: Set up Node (image step)
         uses: actions/setup-node@v7
-        continue-on-error: true
+        continue-on-error: ${{ github.ref == 'refs/heads/main' }}
         timeout-minutes: 5
         with:
           node-version: "24"
 
       - name: Prepare images
-        continue-on-error: true
+        continue-on-error: ${{ github.ref == 'refs/heads/main' }}
         timeout-minutes: 5
+        env:
+          IMAGES_STRICT: ${{ github.ref != 'refs/heads/main' }}
         run: |
           npm ci --prefix .github/scripts --no-audit --no-fund
           node .github/scripts/prepare-images.mjs assets/images _data/generated_images.json

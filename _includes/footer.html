@@ -1,4 +1,5 @@
-<footer class="site-footer">
+{%- comment -%}English footer on a page in another language (see header.html).{%- endcomment -%}
+<footer class="site-footer"{% if page.lang and page.lang != site.lang %} lang="{{ site.lang }}"{% endif %}>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">

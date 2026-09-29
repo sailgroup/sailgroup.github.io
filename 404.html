@@ -2,6 +2,9 @@
 layout: default
 title: Page not found
 permalink: /404.html
+# GitHub Pages returns this page with status 404 for a missing address, but /404.html
+# itself answers 200, so it tells search engines not to index it (head.html).
+noindex: true
 ---
 <section class="section">
   <div class="container container-narrow error-404">

@@ -6,6 +6,7 @@
   var buttons = Array.prototype.slice.call(bar.querySelectorAll(".pub-filter"));
   var pubs = document.querySelectorAll(".pub");
   var groups = document.querySelectorAll(".year-group");
+  var empty = document.querySelector(".pubs-empty"); // "no paper has all the selected topics"
   var active = Object.create(null); // selected theme strings (multi-select, AND)
 
   function apply() {
@@ -30,8 +31,22 @@
       p.classList.toggle("is-hidden", !show);
     });
 
+    var anyShown = false;
     groups.forEach(function (g) {
-      g.classList.toggle("is-hidden", !g.querySelector(".pub:not(.is-hidden)"));
+      var shown = !!g.querySelector(".pub:not(.is-hidden)");
+      g.classList.toggle("is-hidden", !shown);
+      if (shown) anyShown = true;
+    });
+    if (empty) empty.hidden = anyShown;
+  }
+
+  // "Show all papers" in the empty message: same as "All", then focus moves to "All"
+  // (the button itself disappears with the message).
+  if (empty) {
+    empty.querySelector(".pubs-empty__reset").addEventListener("click", function () {
+      active = Object.create(null);
+      apply();
+      allBtn.focus();
     });
   }
 

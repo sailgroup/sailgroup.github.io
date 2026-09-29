@@ -40,9 +40,10 @@ domain `https://sail.kookmin.ac.kr`.
 - CI first runs `.github/scripts/prepare-images.mjs` on the checkout (shrinks oversized uploads,
   strips photo metadata, writes smaller renditions for `srcset` and lists them with image sizes in
   `_data/generated_images.json`; D40), then `bundle exec jekyll build`, then html-proofer over the
-  built site, then deploys to Pages. The image step may fail without failing the build: pages then
-  use the plain image files. Push to `dev` builds only; `main` builds and deploys (D11). Confirm
-  the Actions run is green before treating anything as done.
+  built site, then deploys to Pages. On `main` the image step may fail without failing the build
+  (pages then use the plain image files); on `dev` and pull requests it is strict (`IMAGES_STRICT`):
+  a failure or an unprocessable image fails the run (D42). Push to `dev` builds only; `main` builds
+  and deploys (D11). Confirm the Actions run is green before treating anything as done.
 - `Gemfile.lock` and `.github/scripts/package-lock.json` are committed and CI installs exactly
   what they pin; update them as `CONTRIBUTING.md` ("Build tools") describes. A local build can
   run in Docker (`ruby:3.3`) with the same commands as CI.
@@ -60,10 +61,13 @@ domain `https://sail.kookmin.ac.kr`.
 ## Conventions
 - Site copy: **no em dashes, no marketing tone, factual and specific.**
 - Visual style (D38): understated, in the spirit of coley.mit.edu. No tracked ALL-CAPS labels
-  or "eyebrow" lines above headings, no decorative accent bars or glows; neutral (untinted) greys
-  plus the brand orange; other colour comes only from information (figures, topic tags, news
-  categories, which stay coloured). Hover lifts are kept (maintainer's choice). Never shorten or
-  hide PI-written text to fit a layout; balance a text-heavy block with the lab's own figures.
+  or "eyebrow" lines above headings (a plain muted `.kicker` line stays only where it adds what
+  the heading lacks: the lab name on the home page, "Error 404"), no decorative accent bars or
+  glows; neutral (untinted) greys plus the brand orange; other colour comes only from information
+  (figures, topic tags, news categories, which stay coloured). Hover lifts are kept (maintainer's
+  choice). Never shorten or hide PI-written text to fit a layout; balance a text-heavy block with
+  the lab's own figures. The header switches to the menu button at 68.75em (1100px at the
+  default font size; `main.scss` and `nav.js` hold the width, keep them in sync).
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in
   author lists.
 - Member/alumni/publication facts are content: never invent a photo, link, date, or fact — leave a

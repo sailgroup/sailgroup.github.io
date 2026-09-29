@@ -12,9 +12,9 @@ scripts: [pubs]
 <section class="section section--tight">
   <div class="container">
     <div class="pub-toolbar" role="group" aria-label="Filter publications by topic">
-      <button class="pub-filter is-active" data-theme="" aria-pressed="true">All</button>
+      <button type="button" class="pub-filter is-active" data-theme="" aria-pressed="true">All</button>
       {%- for t in site.data.themes -%}
-      <button class="pub-filter" data-theme="{{ t.name }}" data-theme-slug="{{ t.name | slugify }}" aria-pressed="false"><span class="pub-filter__dot" aria-hidden="true"></span>{{ t.name }}</button>
+      <button type="button" class="pub-filter" data-theme="{{ t.name }}" data-theme-slug="{{ t.name | slugify }}" aria-pressed="false"><span class="pub-filter__dot" aria-hidden="true"></span>{{ t.name }}</button>
       {%- endfor -%}
     </div>
 
@@ -28,5 +28,13 @@ scripts: [pubs]
       </div>
     </section>
     {%- endfor -%}
+
+    {%- comment -%}The topic filter is AND, so two topics can match no paper. pubs.js then shows this line in place of an empty page; role="status" makes screen readers announce it.{%- endcomment -%}
+    <div role="status">
+      <div class="pubs-empty" hidden>
+        <p>No paper has all the selected topics.</p>
+        <button type="button" class="btn pubs-empty__reset">Show all papers</button>
+      </div>
+    </div>
   </div>
 </section>

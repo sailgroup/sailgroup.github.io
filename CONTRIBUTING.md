@@ -150,7 +150,10 @@ one of the lab's papers (`figure:` a file in `assets/images/`, `figure_w` /
 `figure_doi` for the caption link). Every area is shown in full on the Research
 page and on the home page, where the figure sits beside the text; the home page
 links each area to its section on `/research/` by title, so renaming an area
-keeps the link working. An area without a figure is shown as text only.
+keeps the link working. An area without a figure is shown as text only. The
+Korean texts in the file (`overview.ko`, each area's `title_ko` and `body_ko`)
+are kept from the old site but are not shown anywhere, so editing them does not
+change the site.
 
 ## Image sizes
 
@@ -166,8 +169,11 @@ published with its metadata, and most browsers cannot show it (the summary page
 warns about these too). Gallery photos, paper
 figures, and journal covers also get smaller copies, which the browser uses where
 the image is shown small (the photo grid, the publication list). The originals in
-the repository are never changed. Logos and research figures are served as
-uploaded. A file name with a space or a comma gets no smaller copies (the page
+the repository are never changed. Only uploads to `people/`, `photos/`, and
+`pubs/` are scaled down, cleaned, and checked for a GPS position: journal covers
+(apart from their smaller copies), logos, and research figures are served as
+uploaded, metadata included, so remove a photo's location before using it as one
+of those. A file name with a space or a comma gets no smaller copies (the page
 still shows the image), so name files like `photo-26.jpg`.
 
 ## Update the Positions page  →  `_data/positions.yml`
@@ -225,8 +231,10 @@ This page is in Korean by request; keep new copy in Korean to match.
   Before the build, `.github/scripts/prepare-images.mjs` works on CI's copy of
   the images (never the repository): it shrinks oversized uploads, removes camera
   metadata, and makes the smaller copies above, listing them in
-  `_data/generated_images.json`, which the templates turn into `srcset` (D40). It
-  is an optional step: if it fails, the site is built with the plain image files.
+  `_data/generated_images.json`, which the templates turn into `srcset` (D40). On
+  `main` it is optional: if it fails, the site is built and deployed with the
+  plain image files. On `dev` and on pull requests it is strict: a failure, or an
+  image it could not process, fails the run, so a problem shows before `main`.
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `journal-covers`,
   `news-date`, `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
@@ -239,7 +247,10 @@ This page is in Korean by request; keep new copy in Korean to match.
   the image step. CI installs exactly these (Bundler in deployment mode, `npm
   ci`), so a new release cannot change or break a build on its own.
 - **Updates come from Dependabot**: once a month, one pull request each for the
-  GitHub Actions, the gems, and `sharp`. Merge it when its CI run is green.
+  GitHub Actions, the gems, and `sharp`. Merge it when its CI run is green (the
+  image step is strict on a pull request, so green includes it). Merging deploys
+  `main`; then bring `dev` up to date (`git switch dev`, `git pull origin main`,
+  `git push`), so work on `dev` starts from what is live.
 - **Docker runs Ruby here** (there is no local Ruby). The commands below work in
   PowerShell and in a Unix shell; in Git Bash on Windows, put `MSYS_NO_PATHCONV=1`
   in front of `docker`.
@@ -253,10 +264,11 @@ This page is in Korean by request; keep new copy in Korean to match.
   (`bundle lock --update` moves every gem to its newest allowed version.)
 - **To change the `sharp` version**, in `.github/scripts/`:
   `npm install --save-exact --package-lock-only sharp@<version>`.
-- **A full local build**, the same commands as CI:
+- **A full local build**, the same commands as CI (`BUNDLE_FROZEN` makes Bundler
+  refuse a `Gemfile.lock` that does not match the `Gemfile`, as CI does):
 
   ```sh
-  docker run --rm -v "${PWD}:/site" -w /site ruby:3.3 bash -c "bundle install && JEKYLL_ENV=production bundle exec jekyll build && bundle exec htmlproofer _site --disable-external --ignore-empty-alt --allow-hash-href --no-enforce-https"
+  docker run --rm -e BUNDLE_FROZEN=true -v "${PWD}:/site" -w /site ruby:3.3 bash -c "bundle install && JEKYLL_ENV=production bundle exec jekyll build && bundle exec htmlproofer _site --disable-external --ignore-empty-alt --allow-hash-href --no-enforce-https"
   ```
 
   The image step is optional (without it pages use the plain image files). It

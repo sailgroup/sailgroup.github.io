@@ -32,9 +32,11 @@
 // that factor, so the browser picks a file that is sharp at the size actually drawn.
 // Covers are shown whole, so their value is their width.
 //
-// A file that cannot be processed is left as it was, with no renditions, and named in a
-// warning. So is a photo in a format this step does not process (HEIC, the iPhone default,
-// TIFF, DNG): its metadata stays in the published copy, and most browsers cannot show it.
+// A file that cannot be processed is published as it stands (as uploaded, or as step 1
+// already rewrote it), with no renditions, and named in a warning; with IMAGES_STRICT=true
+// (the workflow sets it on dev and pull requests) the run then fails. A photo in a format
+// this step does not process (HEIC, the iPhone default, TIFF, DNG) is published as uploaded
+// with a warning: its metadata stays in the published copy, and most browsers cannot show it.
 //
 // Usage (CI): node .github/scripts/prepare-images.mjs assets/images _data/generated_images.json
 // Elsewhere, on a copy of the repository: add --local.
@@ -248,14 +250,16 @@ async function processFile(file, folder, limit) {
     }
     return;
   }
+  let rewritten = false; // step 1 already replaced the file (smaller, or without metadata)
   try {
     const { input, output } = fmt && limit
       ? await optimize(file, rel, fmt, limit)
       : await readFile(file).then((b) => ({ input: b, output: b }));
+    rewritten = output !== input;
     if (RENDITIONS[folder]) await describe(rel, fmt, RENDITIONS[folder], input, output);
   } catch (e) {
     stats.failed++;
-    warn(rel, `could not be processed (${e.message}); it is published as uploaded, without smaller copies.`);
+    warn(rel, `could not be processed (${e.message}); it is published ${rewritten ? "as step 1 rewrote it" : "as uploaded"}, without smaller copies.`);
   }
 }
 
@@ -277,6 +281,14 @@ console.log(
   (stats.rewritten ? ` (${Math.round(stats.before / 1024)} KB -> ${Math.round(stats.after / 1024)} KB` +
     (stats.stripped ? `, metadata removed from ${stats.stripped}` : "") + ")" : "") +
   `; ${stats.renditions} renditions for ${Object.keys(sorted).length} images listed in ${dataFile}` +
-  (stats.failed ? `; ${stats.failed} left as uploaded after an error` : "") +
+  (stats.failed ? `; ${stats.failed} not fully processed after an error` : "") +
   (stats.unhandled ? `; ${stats.unhandled} in a format this step does not handle` : "")
 );
+
+// On dev and pull requests the workflow sets IMAGES_STRICT, and an image that could not be
+// processed fails the run: a dependency update that breaks this step fails every image, and
+// that shows before the update is merged. On main the site is published all the same.
+if (stats.failed && process.env.IMAGES_STRICT === "true") {
+  console.error(`prepare-images: ${stats.failed} image(s) could not be processed; failing because IMAGES_STRICT is set.`);
+  process.exitCode = 1;
+}

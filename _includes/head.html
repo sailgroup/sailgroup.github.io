@@ -2,8 +2,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f1f1f">
-  <meta name="color-scheme" content="light">
+  {%- comment -%}"only light": the site has no dark design, and Chrome's automatic dark mode (Android's "darken websites") inverted it and made the black logos nearly vanish; "only" opts the site out of it.{%- endcomment %}
+  <meta name="color-scheme" content="only light">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  {%- if page.noindex %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
   {%- comment -%}CSP via meta (GitHub Pages can't set response headers). Every CSS/JS/font/image is same-origin (Pretendard is self-hosted), so this is a strict same-origin policy with NO external origins. script-src 'self' + no inline script blocks injected code; require-trusted-types-for hardens DOM-XSS sinks (the site's JS uses none, so it does not break).{%- endcomment -%}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
 

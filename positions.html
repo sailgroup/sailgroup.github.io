@@ -9,7 +9,7 @@ permalink: /positions/
 {%- assign p = site.data.positions -%}
 {%- capture guide_link -%}<a href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">그룹 가이드</a>{%- endcapture -%}
 <div class="container container-narrow page-head">
-  <h1>Positions</h1>
+  <h1 lang="en">Positions</h1>
   <p class="lead">{{ p.intro | replace: "그룹 가이드", guide_link }}</p>
   <p class="positions-cta">
     <a class="btn btn--solid" href="{{ p.guide_url }}" target="_blank" rel="noopener noreferrer">그룹 가이드 {% include icon.html name="external" %}</a>

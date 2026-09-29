@@ -1,5 +1,7 @@
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
+{%- comment -%}On a page written in another language than the site (the Korean Positions page sets lang: ko), the English skip link, header and footer say they are English, so screen readers switch voice for them.{%- endcomment -%}
+{%- assign chromelang = "" -%}{%- if page.lang and page.lang != site.lang -%}{%- capture chromelang %} lang="{{ site.lang }}"{% endcapture -%}{%- endif -%}
+<a class="skip-link" href="#main"{{ chromelang }}>Skip to content</a>
+<header class="site-header"{{ chromelang }}>
   <div class="header-inner container">
     <div class="brand-group">
       <a class="brand" href="{{ '/' | relative_url }}" aria-label="SAIL, Spectroscopy and AI Lab, home">
@@ -12,7 +14,7 @@
       </a>
     </div>
 
-    <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
 

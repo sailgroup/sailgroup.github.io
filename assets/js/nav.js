@@ -3,6 +3,7 @@
   var btn = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".site-nav");
   if (!btn || !nav) return;
+  var MENU = "(max-width: 68.75em)"; // the menu breakpoint in main.scss
 
   function close() {
     btn.setAttribute("aria-expanded", "false");
@@ -23,14 +24,38 @@
 
   // Tapping a link on mobile closes the menu.
   nav.addEventListener("click", function (e) {
-    if (e.target.closest("a") && window.matchMedia("(max-width: 992px)").matches) {
+    if (e.target.closest("a") && window.matchMedia(MENU).matches) {
       close();
+    }
+  });
+
+  // Escape closes the open menu and returns focus to the menu button.
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+      close();
+      btn.focus();
     }
   });
 
   // Reset when leaving the mobile breakpoint.
   window.addEventListener("resize", function () {
-    if (!window.matchMedia("(max-width: 992px)").matches) close();
+    if (!window.matchMedia(MENU).matches) close();
+  });
+})();
+
+/* Printing: open every folded <details> (e.g. the English abstract under a Korean one),
+   so the printout has the whole text, and fold them again afterwards. */
+(function () {
+  var opened = [];
+  window.addEventListener("beforeprint", function () {
+    Array.prototype.forEach.call(document.querySelectorAll("details:not([open])"), function (d) {
+      d.open = true;
+      opened.push(d);
+    });
+  });
+  window.addEventListener("afterprint", function () {
+    opened.forEach(function (d) { d.open = false; });
+    opened = [];
   });
 })();
 

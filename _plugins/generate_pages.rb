@@ -72,6 +72,11 @@ module SAIL
       desc += ": #{topics}" unless topics.empty?
       page.data["title"] ||= name
       page.data["description"] ||= "#{desc}."
+      # Link previews show the PI's portrait, as every person page shows its own. An
+      # `image` in pi.html's front matter wins; the site-wide default (og-image.png)
+      # comes from _config.yml defaults, which are not keys of page.data.
+      photo = pi["photo"].to_s.strip
+      page.data["image"] = "/assets/images/people/#{photo}" unless photo.empty? || page.data.key?("image")
     end
 
     # Per-page SEO <title> + meta description for a generated page. Without this,
@@ -146,8 +151,10 @@ module SAIL
       @name = "index.html"
       process(@name)
       @data = { "sitemap" => false }
+      # The canonical is absolute, like every other page's (seo-tag writes site url + path).
+      canonical = site.config["url"].to_s.chomp("/") + target
       @content = %(<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">) +
-        %(<title>Redirecting&hellip;</title><link rel="canonical" href="#{target}">) +
+        %(<title>Redirecting&hellip;</title><link rel="canonical" href="#{canonical}">) +
         %(<meta name="robots" content="noindex">) +
         %(<meta http-equiv="refresh" content="0; url=#{target}"></head>) +
         %(<body>Redirecting to <a href="#{target}">#{target}</a>&hellip;</body></html>)

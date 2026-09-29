@@ -33,7 +33,10 @@ may shorten the author list with "...", which must never go out as an author nam
   {%- endif -%}
   {%- if p.year %}
   <meta name="citation_publication_date" content="{{ p.year }}">{% endif -%}
-  {%- if p.doi and p.doi != "" %}
-  <meta name="citation_doi" content="{{ p.doi | replace: 'https://doi.org/', '' | replace: 'http://doi.org/', '' }}">{% endif -%}
+  {%- comment -%}The paper's DOI, or for a preprint entry without one (e.g. 43) the preprint's DOI from its doi.org link.{%- endcomment -%}
+  {%- assign doiurl = "" -%}
+  {%- if p.doi and p.doi != "" -%}{%- assign doiurl = p.doi -%}{%- elsif p.preprint_url contains "doi.org/10." -%}{%- assign doiurl = p.preprint_url -%}{%- endif -%}
+  {%- if doiurl != "" %}
+  <meta name="citation_doi" content="{{ doiurl | replace: 'https://doi.org/', '' | replace: 'http://doi.org/', '' }}">{% endif -%}
 {%- endif -%}
 {%- endif -%}

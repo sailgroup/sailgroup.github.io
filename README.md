@@ -18,7 +18,7 @@ Live: https://sail.kookmin.ac.kr
 | 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`) |
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
-| 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시) |
+| 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시. 한국어 `overview.ko`·`title_ko`·`body_ko` 는 보관만 되고 사이트에 표시되지 않음) |
 | 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
 | 모집(Positions) | `_data/positions.yml` (박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트) |
 
@@ -175,7 +175,8 @@ sections:
   페이지를 생성하고, `_plugins/validate_data.rb` 가 빌드 시 데이터를 검증합니다. 공용 마크업은
   `_includes/` 에 있습니다.
 - 빌드 도구 버전은 `Gemfile.lock` 과 `.github/scripts/package-lock.json` 으로 고정되어 있고, Dependabot이
-  한 달에 한 번 업데이트 PR을 엽니다(CI가 통과하면 병합). 자세한 내용은 `CONTRIBUTING.md` 의 Build tools.
+  한 달에 한 번 업데이트 PR을 엽니다(CI가 통과하면 병합. PR에서는 이미지 단계도 실패하면 CI가 실패합니다).
+  병합하면 `main` 이 배포되므로, 그 뒤 `dev` 에 `main` 을 받아 둡니다. 자세한 내용은 `CONTRIBUTING.md` 의 Build tools.
 - 주의: `CNAME`(커스텀 도메인) 파일을 삭제하지 마세요. `baseurl` 은 `""` 로 유지합니다.
 - 상세 안내는 [`CONTRIBUTING.md`](CONTRIBUTING.md), 설계 결정 기록은 [`DECISIONS.md`](DECISIONS.md)
   를 참고하세요.
