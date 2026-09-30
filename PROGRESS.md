@@ -241,5 +241,11 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   the example's `...` left in a link, a field written twice in one paper, and a link line
   indented into the abstract, and on GitHub a failed build lists its problems under
   Annotations on the run's page. The site itself is unchanged. Deployed on 2026-09-30
-  (main run 36713165048) and verified live. The PI entered four links through the new slots
+  (main runs 36713165048 and 36716690891) and verified live. The PI entered four links through the new slots
   the same evening (a7ccd56). Results in `REVIEW.md` section 20 (2026-09-30).
+- **Phase 20 (2026-09-30):** Dataset link on papers (D46), on the PI's request. Every paper
+  has an empty `dataset: ""` slot after `code:`. A Figshare address shows Figshare's mark
+  right after the GitHub icon (another host: a grey dataset icon), and papers 21, 34 and 37
+  link their Figshare datasets. The build checks the field like `code`. README and
+  CONTRIBUTING cover both links in one section. Results in `REVIEW.md` section 21
+  (2026-09-30).

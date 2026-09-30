@@ -1349,3 +1349,42 @@ add their verification meta tags.
   organisation, not the gitlab.com repository D44 found), 37 FongMunHong/FlowER and 38
   jfjoung/KRICT_Hackathon. The build passed and deployed (main run 36716007804), and each
   address loads.
+- **Second edit by the PI** (6065770, 21:48 KST): paper 36's code link changed from
+  github.com/ASKCOS to gitlab.com/mlpds_mit/askcosv2 (the repository D44 found), which shows
+  the grey code icon. Deployed by the PI's push (main run 36717234068).
+
+## D46 — Dataset link on papers: the Figshare icon (PI request, 2026-09-30)
+
+- The PI asked for a Figshare icon beside the GitHub one, for a paper's dataset ("dataset
+  link 라고 보면 되요"), and gave the addresses through the maintainer: paper 37
+  `https://doi.org/10.6084/m9.figshare.32513667`, paper 34
+  `https://doi.org/10.6084/m9.figshare.26046106.v1` (given without `https://`, which was
+  added) and paper 21 `https://figshare.com/articles/dataset/DB_for_chromophore/12045567/2`.
+  Each is a Figshare dataset whose title and authors fit the paper (Figshare API): "FlowER -
+  Mechanistic datasets and model checkpoint" (Fong, Joung, Pinkhassik, Coley), "Mechanistic
+  dataset" (Joung, Coley) and "DB for chromophore" (Joung, Han, Jeong, Park).
+- **Data:** a `dataset:` per paper, like `code:` (D44, D45). Every paper has a `dataset: ""`
+  slot right after its `code:` line, filled for 21, 34 and 37. People's own paper lists take
+  it too (the README and CONTRIBUTING templates). The validator treats it as a link field
+  like `code` (a full `http` address, no example `...`, not written twice, not indented into
+  the abstract), with the same Annotations on GitHub (D45).
+- **Icon:** Figshare's own mark (the ring of coloured dots), cut from the logo file on
+  Figshare's site (info.figshare.com, `Figshare-logo.svg`, 2024): its four dot paths
+  unchanged, the wordmark and the "A Digital Science Solution" line left out, in a square box
+  so it is drawn at the DOI logo's size (24 px on the lists, 38 px on the paper page, with the
+  same hover lift). `_includes/dataset-badge.html` gives it to a Figshare address:
+  figshare.com, a `*.figshare.com` portal (a publisher's, for example), or a Figshare DOI
+  (doi.org, dx.doi.org or www.doi.org with the prefix 10.6084). Any other host (Zenodo, a lab
+  server, a DOI with another prefix) gets a plain grey dataset icon (`data.svg`, a database
+  drawing in the style of `code.svg`), so Figshare's logo never points elsewhere.
+- **Where:** right after the GitHub icon, so the row reads DOI, arXiv, GitHub, Figshare, then
+  the topic tags; the paper page keeps the same order. The link opens in a new tab and is
+  named "View dataset on Figshare" (or "View dataset") for screen readers.
+- `llms-full.txt` gives a `Dataset:` line. The citation meta and the JSON-LD are unchanged,
+  as for code (D44).
+- **Docs:** README's section is now "논문에 코드와 데이터 링크 달기 (GitHub, Figshare 아이콘)":
+  one set of steps for both slots, with paper 37 as the example (the anchor in the table at
+  the top changed with it). The templates and the design table (the Figshare and grey
+  dataset pictures, `dataset-badge.html`) follow. CONTRIBUTING's section is "Link a paper's
+  code and data", `dataset-badge` joins its list of includes, and the header comment of
+  `publications.yml` names both slots.

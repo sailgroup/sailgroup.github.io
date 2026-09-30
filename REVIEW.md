@@ -842,3 +842,34 @@ Verified on local builds in Docker (`ruby:3.3`, with CI's image step and html-pr
   the branch were deleted afterwards.
 - **The PI's first use:** a7ccd56 added links to papers 34, 36, 37 and 38; main run
   36716007804 is green and the live Publications list shows five code icons.
+- **Annotation change deployed:** dev 36716558349 and main 36716690891, both green; `main`
+  was fast-forwarded to ddee767 with no PI commits in between; the live site's 109 text
+  files are byte-identical to the deployed build and all 227 image URLs load.
+
+## 21. Dataset link on papers (2026-09-30, D46)
+
+Verified on a local build in Docker (`ruby:3.3`, with CI's image step and html-proofer), on
+the data as of the PI's 6065770.
+
+- **Against the live site:** html-proofer passed. Of the 109 text files only these differ:
+  the Publications list, the pages of papers 21, 34 and 37, `main.css` (the `.paper__data`
+  selectors), `llms-full.txt` (a `Dataset:` line for exactly 21, 34 and 37) and
+  `security.txt`'s `Expires`. The only image not yet live is `figshare.svg`. No member page
+  lists these three papers, so none changed.
+- **Screens:** at 1440 px paper 37's row reads DOI, arXiv, GitHub, Figshare, then its tags,
+  the Figshare mark at the DOI logo's size; at 390 and 320 px the four stay on one line with
+  the tags below. Paper 21 reads DOI, Figshare. On paper 37's page the four sit in that order
+  at 38 px (1440 and 390 px).
+- **Which icon:** with test addresses on papers 16 to 20 (never committed), figshare.com,
+  acs.figshare.com, `https://FigShare.com/...` and dx.doi.org/10.6084/... got the Figshare
+  mark; zenodo.org and doi.org/10.5281/... (a Zenodo DOI) got the grey dataset icon.
+- **Checks:** on a copy with four slips the build stopped ("validation failed (4
+  problem(s))"), and with `GITHUB_ACTIONS=true` it printed each as an annotation:
+  - "publications.yml id 44: the abstract contains `dataset: "https://zenodo.org/records/9"`,
+    so that line was read as part of the abstract. ..."
+  - "publications.yml id 20: `dataset` should be a full URL (http...), got:
+    figshare.com/articles/x"
+  - "publications.yml id 18: `dataset: https://doi.org/10.6084/m9.figshare...` still has the
+    example's "..."; ..."
+  - "publications.yml id 19: `dataset` is written twice (lines 1297 and 1298), and only the
+    last one counts. Keep one `dataset:` line."
