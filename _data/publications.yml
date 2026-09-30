@@ -327,7 +327,7 @@
   year: 2025
   doi: "https://doi.org/10.20517/jmi.2025.65"
   preprint_url: ""
-  code: ""
+  code: "https://github.com/jfjoung/KRICT_Hackathon"
   themes:
     - "Molecular property prediction"
     - "Quantum chemical modeling"
@@ -376,7 +376,7 @@
   year: 2025
   doi: "https://doi.org/10.1038/s41586-025-09426-9"
   preprint_url: "https://doi.org/10.48550/arXiv.2502.12979"
-  code: ""
+  code: "https://github.com/FongMunHong/FlowER"
   themes:
     - "Reaction pathway prediction"
     - "Generative modeling"
@@ -426,7 +426,7 @@
   year: 2025
   doi: "https://doi.org/10.1021/acs.accounts.5c00155"
   preprint_url: "https://doi.org/10.48550/arXiv.2501.01835"
-  code: ""
+  code: "https://github.com/ASKCOS"
   themes:
     - "Reaction pathway prediction"
     - "Molecular property prediction"
@@ -551,7 +551,7 @@
   year: 2024
   doi: "https://doi.org/10.1002/anie.202411296"
   preprint_url: "https://doi.org/10.48550/arXiv.2403.04580"
-  code: ""
+  code: "https://github.com/jfjoung/mechanism_prediction"
   themes:
     - "Reaction pathway prediction"
     - "Generative modeling"
