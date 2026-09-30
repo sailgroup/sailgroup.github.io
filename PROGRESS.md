@@ -229,5 +229,7 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
 - **Phase 18 (2026-09-30):** Code link on papers (D44), on the PI's request. An optional
   `code:` on a paper shows the GitHub mark (for another host, a plain code icon) after the
   DOI and preprint logos on the Publications list, member pages and the paper page, and a
-  `Code:` line in `llms-full.txt`; the build checks that it is a full address. No paper has
-  one yet: the PI enters them. Results in `REVIEW.md` section 19 (2026-09-30).
+  `Code:` line in `llms-full.txt`; the build checks that it is a full address. README
+  explains it. Paper 47 links its code (sailgroup/MEMo) on the maintainer's instruction;
+  other links are the PI's to enter. Deployed on 2026-09-30 (main run 36708030157) and
+  verified live. Results in `REVIEW.md` section 19 (2026-09-30).

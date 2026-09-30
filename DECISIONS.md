@@ -1267,8 +1267,9 @@ add their verification meta tags.
 - **Data:** an optional `code:` on a paper in `publications.yml` (also on a person's own
   papers, inline or in `member_pubs/<slug>.yml`), one address. `validate_data.rb` checks it
   like `doi` and `preprint_url`: an address that does not start with `http` stops the
-  build and names the paper. No paper has one yet; which repository belongs to which paper
-  is the PI's to enter.
+  build and names the paper. Paper 47 links `https://github.com/sailgroup/MEMo`, entered on
+  the instruction of the maintainer, one of its authors (2026-09-30); other links are the
+  PI's to enter.
 - **Icon:** the GitHub mark (the one the people pages already use, in GitHub's #24292f) for a
   github.com address. Any other host (GitLab, Zenodo, a lab server) gets a plain grey code
   icon (`code.svg`), so GitHub's logo never points elsewhere. `_includes/code-badge.html`
@@ -1282,5 +1283,19 @@ add their verification meta tags.
 - `llms-full.txt` gives a `Code:` line for a paper that has one. The citation meta and the
   JSON-LD are unchanged: schema.org has no property for an article's code, and a code link
   does not make a manuscript citable.
-- Docs: the field in README and CONTRIBUTING (and `code-badge` in its list of includes),
-  and in the header comment of `publications.yml`.
+- Docs: README (the example, and a note on where the icon shows, the grey icon for other
+  hosts and what the build does with a malformed address), CONTRIBUTING (and `code-badge`
+  in its list of includes), and the header comment of `publications.yml`.
+- Found and not entered (the maintainer chose to link paper 47 only). Each repository is
+  named by the paper itself or its SI, and each resolves:
+  - 34: github.com/jfjoung/mechanism_prediction (the Data Availability Statement);
+  - 35: github.com/spark8ku/DeepMoleculeGen;
+  - 36: gitlab.com/mlpds_mit/askcosv2 (would show the grey icon);
+  - 37: github.com/FongMunHong/FlowER (the dataset curation code is
+    github.com/jfjoung/Mechanistic_dataset);
+  - 38: github.com/KRICT-DATA/2024-KRICT-ChemDX-Hackathon (the PI's project in it is
+    github.com/jfjoung/KRICT_Hackathon);
+  - 39: github.com/jihye-roh/higherlev_retro (SI).
+
+  No code: 21, 25, 28, 31, 40 and 41. Paper 30's Data and Software Availability section is
+  behind the paywall. Not checked: 1 to 20, 22 to 24, 26, 27, 29, 32, 33 and 42 to 46.

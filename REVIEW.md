@@ -778,3 +778,11 @@ alone) and 36 (a gitlab.com address). The live site (0733789) is the "before".
 - **Checks:** html-proofer passed. Site sweep (`qa-site.js`: all 70 pages at 1440 and 390
   px, 12 also at 768 px, axe-core on 12, among them /publications/, paper 44 and Jihwan
   Kim's page with their test links): no problems.
+- **Before the deploy** (dev run 36706420691, green): the CI build against the live site,
+  file by file. Only `main.css` (the `.paper__code` selectors) and `security.txt`'s
+  `Expires` differ among the 109 text files, and all 226 image URLs load.
+- **Deployed and verified live** (the feature and README's note):
+  - runs: dev 36707956222 and main 36708030157, all green;
+  - `main` was fast-forwarded to 9940f49 with no PI commits in between;
+  - on https://sail.kookmin.ac.kr the 109 text files and the two new icons are byte-identical
+    to the deployed build, and all 226 image URLs load.
