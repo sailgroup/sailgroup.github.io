@@ -1,0 +1,4 @@
+{%- comment -%}Code link for a paper (`code:` in publications.yml). The GitHub mark for a github.com address; any other host (GitLab, Zenodo, a lab server) gets a plain code icon, so GitHub's logo never points elsewhere. Pass: url, class, height.{%- endcomment -%}
+{%- assign codehost = include.url | strip | downcase | split: '://' | last | split: '/' | first -%}
+{%- if codehost == 'github.com' or codehost == 'www.github.com' -%}{%- assign codefile = 'github.svg' -%}{%- assign codealt = 'GitHub' -%}{%- assign codelabel = 'View code on GitHub' -%}{%- else -%}{%- assign codefile = 'code.svg' -%}{%- assign codealt = 'Code' -%}{%- assign codelabel = 'View code' -%}{%- endif -%}
+<a class="{{ include.class }}" href="{{ include.url | strip }}" target="_blank" rel="noopener noreferrer" aria-label="{{ codelabel }}"><img src="{{ '/assets/images/' | append: codefile | relative_url }}" alt="{{ codealt }}" width="{{ include.height }}" height="{{ include.height }}"></a>

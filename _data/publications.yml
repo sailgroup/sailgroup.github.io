@@ -5,9 +5,12 @@
 # Coverage: all 43 papers (id 1-43), newest first.
 #
 # Fields are display-ready strings (title / authors / journal / ref) so they
-# can be dropped into a Jekyll template with minimal massaging. `doi` and
-# `preprint_url` drive the link buttons; `themes` are the SAIL research tags;
+# can be dropped into a Jekyll template with minimal massaging. `doi`,
+# `preprint_url` and `code` drive the link buttons; `themes` are the SAIL research tags;
 # `image` is the per-paper graphical abstract (see NOTES).
+# `code` (optional) is the paper's code repository, e.g.
+#   code: "https://github.com/sailgroup/..."
+# and shows the GitHub icon after the DOI and preprint logos (another host: a code icon).
 #
 # PI name to highlight in the template (bold): "Joonyoung F. Joung"
 #   - also appears once as "Joonyoung Francis Joung" (id 13) -> add as alias.

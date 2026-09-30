@@ -75,6 +75,7 @@ title links to the DOI and their own name is bold.
       year:    2023                 # plain number, no quotes
       doi:     "https://doi.org/10.xxxx/yyyy"   # optional; the title links here
       preprint_url: "https://arxiv.org/abs/..." # optional
+      code:    "https://github.com/..."         # optional; GitHub icon beside the DOI
 ```
 
 `title`, `authors`, `journal`, `year` are required per entry. List only papers
@@ -99,6 +100,7 @@ current member's name, shows up on that member's page too, all automatically.
   year: 2026                   # required
   doi: "https://doi.org/10.1038/..."   # optional; shows the DOI badge
   preprint_url: "https://arxiv.org/abs/..."  # optional; shows arXiv/ChemRxiv badge
+  code: "https://github.com/sailgroup/..."   # optional; the paper's code, shows the GitHub icon
   themes: ["Reaction pathway prediction"]    # optional topic tags (filter chips)
   image: "pub-42.jpg"          # optional; upload to assets/images/pubs/
   abstract: "English abstract."        # optional; shown in full on the detail page
@@ -237,7 +239,7 @@ This page is in Korean by request; keep new copy in Korean to match.
   image that errors while being processed, fails the run, so a problem shows
   before `main` (a HEIC, TIFF or DNG upload only gets its warning).
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
-  `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `journal-covers`,
+  `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `code-badge`, `journal-covers`,
   `news-date`, `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
 - Never delete `CNAME` (the custom domain). `baseurl` stays `""`.
 

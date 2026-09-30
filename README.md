@@ -40,6 +40,7 @@ Live: https://sail.kookmin.ac.kr
   ref: "47, 317-327"           # 선택: 권·페이지를 자유 텍스트로 (예: "Advance Article"). 대부분의 논문은 아래 vol/issue/pages 방식
   doi: "https://doi.org/10.1038/..."           # 선택
   preprint_url: "https://arxiv.org/abs/..."    # 선택 (arXiv/ChemRxiv 자동 판별)
+  code: "https://github.com/sailgroup/..."     # 선택: 논문 코드 저장소. DOI·arXiv 오른쪽에 GitHub 아이콘 (GitHub 가 아닌 주소는 코드 아이콘)
   themes: ["Reaction pathway prediction"]      # 선택: _data/themes.yml 에 있는 이름만
   image: "pub-42.jpg"          # 선택: assets/images/pubs/ 에 업로드
   abstract: "English abstract."                # 선택 (한국어 초록이 없으면 그대로 전부 표시)

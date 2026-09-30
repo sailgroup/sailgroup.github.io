@@ -143,7 +143,7 @@ module SAIL
         if !blank?(pub["year"]) && !pub["year"].is_a?(Integer)
           err("#{pat}: `year` must be a plain number with no quotes (year: 2023), got #{pub["year"].inspect}.")
         end
-        %w[doi preprint_url].each do |f|
+        %w[doi preprint_url code].each do |f|
           err("#{pat}: `#{f}` should be a full URL (http...), got: #{pub[f]}") if !blank?(pub[f]) && !pub[f].to_s.start_with?("http")
         end
         if !blank?(pub["image"]) && !image_exists?(File.join("pubs", pub["image"]))
@@ -184,7 +184,7 @@ module SAIL
         if !blank?(p["image"]) && !image_exists?(File.join("pubs", p["image"]))
           err("#{at}: `image: #{p["image"]}` not found in assets/images/pubs/.")
         end
-        %w[doi preprint_url].each do |f|
+        %w[doi preprint_url code].each do |f|
           v = p[f]
           err("#{at}: `#{f}` should be a full URL (http...), got: #{v}") if !blank?(v) && !v.to_s.start_with?("http")
         end

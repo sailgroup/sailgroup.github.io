@@ -7,6 +7,7 @@ layout: default
 {%- assign hasimg = false -%}{%- if p.image and p.image != "" -%}{%- assign hasimg = true -%}{%- endif -%}
 {%- assign hasdoi = false -%}{%- if p.doi and p.doi != "" -%}{%- assign hasdoi = true -%}{%- endif -%}
 {%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
+{%- assign hascode = false -%}{%- if p.code and p.code != "" -%}{%- assign hascode = true -%}{%- endif -%}
 <section class="section section--tight">
   <div class="container">
     <p class="back-link"><a class="link" href="{{ '/publications/' | relative_url }}">Publications</a></p>
@@ -27,12 +28,13 @@ layout: default
         <h1 class="paper__title">{{ p.title }}</h1>
         <p class="paper__meta"><span class="pub__journal">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
         <p class="paper__authors">{% include pi-authors.html authors=p.authors %}</p>
-        {%- if hasdoi or haspre -%}
+        {%- if hasdoi or haspre or hascode -%}
         <div class="paper__links">
           {%- if hasdoi -%}
           <a class="paper__doi" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.svg' | relative_url }}" alt="DOI" width="38" height="38"></a>
           {%- endif -%}
           {%- if haspre -%}{% include preprint-badge.html url=p.preprint_url class="paper__pre" height="38" %}{%- endif -%}
+          {%- if hascode -%}{% include code-badge.html url=p.code class="paper__code" height="38" %}{%- endif -%}
         </div>
         {%- endif -%}
       </div>
