@@ -231,5 +231,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   DOI and preprint logos on the Publications list, member pages and the paper page, and a
   `Code:` line in `llms-full.txt`; the build checks that it is a full address. README
   explains it. Paper 47 links its code (sailgroup/MEMo) on the maintainer's instruction;
-  other links are the PI's to enter. Deployed on 2026-09-30 (main run 36708030157) and
-  verified live. Results in `REVIEW.md` section 19 (2026-09-30).
+  other links are the PI's to enter. Deployed on 2026-09-30 (main runs 36708030157 and
+  36710435741) and verified live. Results in `REVIEW.md` section 19 (2026-09-30).

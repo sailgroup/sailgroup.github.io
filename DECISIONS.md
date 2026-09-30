@@ -1297,5 +1297,6 @@ add their verification meta tags.
     github.com/jfjoung/KRICT_Hackathon);
   - 39: github.com/jihye-roh/higherlev_retro (SI).
 
-  No code: 21, 25, 28, 31, 40 and 41. Paper 30's Data and Software Availability section is
-  behind the paywall. Not checked: 1 to 20, 22 to 24, 26, 27, 29, 32, 33 and 42 to 46.
+  No code: 21, 25, 28, 31, 40, 41 and 44 (its data are "available from the corresponding
+  author upon reasonable request"). Paper 30's Data and Software Availability section is
+  behind the paywall. Not checked: 1 to 20, 22 to 24, 26, 27, 29, 32, 33, 42, 43, 45 and 46.

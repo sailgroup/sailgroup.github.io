@@ -786,3 +786,18 @@ alone) and 36 (a gitlab.com address). The live site (0733789) is the "before".
   - `main` was fast-forwarded to 9940f49 with no PI commits in between;
   - on https://sail.kookmin.ac.kr the 109 text files and the two new icons are byte-identical
     to the deployed build, and all 226 image URLs load.
+- **Paper 47's link, deployed and verified live:**
+  - runs: dev 36710197352 and main 36710435741, both green;
+  - `main` was fast-forwarded to 9cfa3c4 with no PI commits in between;
+  - before the deploy, the CI build differed from the live site only where paper 47 shows:
+    the Publications list, its page, the pages of Jihwan Kim and Chanjoong Kim, and
+    `llms-full.txt`; `security.txt`'s `Expires` also differed;
+  - after the deploy the 109 text files and the two icons on the live site are
+    byte-identical to the deployed build, and all 227 image URLs load (the GitHub icon is
+    now one of them);
+  - on the live site paper 47 shows the GitHub mark before its tags on the list (1440 and
+    390 px), on its page and on Chanjoong Kim's page, with no console errors, broken images
+    or overflow.
+- **Paper 44** has no code link: its Data Availability Statement (Wiley) reads "available
+  from the corresponding author upon reasonable request", and its arXiv text names no
+  repository. GitHub code search for its DOI or arXiv number finds nothing.
