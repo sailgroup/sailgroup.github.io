@@ -35,6 +35,7 @@
   journal: "Submitted"
   year: 2026
   doi: ""
+  code: "https://github.com/sailgroup/MEMo"
   themes:
     - "Molecular property prediction"
     - "Representation learning"
