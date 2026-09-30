@@ -1337,3 +1337,15 @@ add their verification meta tags.
 
   With D44's check (an address must start with `http`) that makes four; README lists them in
   plain words.
+- **Where the message shows (added after the final review, 2026-09-30):** a failed build's
+  run page on GitHub said only "Process completed with exit code 1."; the list of problems
+  sat in the log, above a long `--trace` backtrace. The PI's failed runs of 2026-07-22 and
+  2026-09-07 look exactly like that. On GitHub Actions the validator now also prints each
+  problem as an `::error` workflow command, so it shows under Annotations on the run's page,
+  titled "Data check". Outside Actions nothing changes. README and CONTRIBUTING say where to
+  look.
+- **First use:** the PI entered four links through the empty slots the same evening
+  (a7ccd56, 21:37 KST): 34 jfjoung/mechanism_prediction, 36 github.com/ASKCOS (the ASKCOS
+  organisation, not the gitlab.com repository D44 found), 37 FongMunHong/FlowER and 38
+  jfjoung/KRICT_Hackathon. The build passed and deployed (main run 36716007804), and each
+  address loads.

@@ -833,3 +833,12 @@ Verified on local builds in Docker (`ruby:3.3`, with CI's image step and html-pr
   - on github.com the README's new section renders with its anchor
     (`#논문에-코드-링크-달기-github-아이콘`), which the table at the top links to, and the
     file the edit link opens (`_data/publications.yml` on `main`) exists.
+- **Annotations (after the final review):** on the copy with the four slips, a build with
+  `GITHUB_ACTIONS=true` printed the four problems as `::error title=Data check::...` lines,
+  and a build without it printed none. On GitHub, a build of a temporary branch with one
+  slip (paper 46's `code` without `https://`; started by hand, so no deploy) failed with the
+  annotation "Data check: publications.yml id 46: `code` should be a full URL (http...),
+  got: github.com/sailgroup/test" beside "Process completed with exit code 1.". The run and
+  the branch were deleted afterwards.
+- **The PI's first use:** a7ccd56 added links to papers 34, 36, 37 and 38; main run
+  36716007804 is green and the live Publications list shows five code icons.

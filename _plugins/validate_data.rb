@@ -63,6 +63,12 @@ module SAIL
         "Fix the _data/*.yml entries below, then commit again.\n" +
         ("=" * 72) + "\n  - " + @errors.join("\n  - ") + "\n" + ("=" * 72)
       Jekyll.logger.error "Data check:", banner
+      # On GitHub Actions each problem also becomes an annotation, so the failed run's page
+      # shows it; otherwise that page says only "exit code 1" and the list sits in the log.
+      if ENV["GITHUB_ACTIONS"] == "true"
+        @errors.each { |e| $stdout.puts "::error title=Data check::#{e.gsub("%", "%25").gsub("\r", "%0D").gsub("\n", "%0A")}" }
+        $stdout.flush
+      end
       raise Jekyll::Errors::FatalException, "SAIL data validation failed (#{@errors.size} problem(s)); see the list above."
     end
 

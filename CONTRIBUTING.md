@@ -132,6 +132,9 @@ The build stops and names the paper when an address:
   above the empty slot would vanish);
 - is indented like the abstract's text, which makes it part of the abstract.
 
+On GitHub the failed run's page lists each problem under **Annotations**, titled "Data
+check" (this holds for every data check, not only these).
+
 ## Add a news item  →  `_data/news.yml`
 
 Copy any block in the file and edit it. The file's header documents every field.
