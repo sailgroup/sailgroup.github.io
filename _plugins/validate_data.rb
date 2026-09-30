@@ -20,8 +20,8 @@ module SAIL
     DATE_RE  = /\A\d{4}-\d{2}-\d{2}\z/
     SLUG_RE  = /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/
     NEWS_CATS = %w[people publication award talk event].freeze
-    # A paper's link fields (the DOI, preprint and code icons).
-    LINK_FIELDS = %w[doi preprint_url code].freeze
+    # A paper's link fields (the DOI, preprint, code and dataset icons).
+    LINK_FIELDS = %w[doi preprint_url code dataset].freeze
 
     def generate(site)
       @site   = site
@@ -219,7 +219,7 @@ module SAIL
     end
 
     # YAML keeps the last of two same-named fields in one entry without a word, so a
-    # `code:` line added while the paper's empty `code: ""` slot is still there can
+    # `code:` or `dataset:` line added while the paper's empty slot is still there can
     # silently lose. The parsed data cannot show that, so read the file's text.
     def check_duplicate_pub_fields
       path = File.join(@src, @site.config["data_dir"] || "_data", "publications.yml")

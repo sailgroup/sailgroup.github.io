@@ -76,6 +76,7 @@ title links to the DOI and their own name is bold.
       doi:     "https://doi.org/10.xxxx/yyyy"   # optional; the title links here
       preprint_url: "https://arxiv.org/abs/..." # optional
       code:    ""                               # optional; the code repository (GitHub icon)
+      dataset: ""                               # optional; the dataset (Figshare icon)
 ```
 
 `title`, `authors`, `journal`, `year` are required per entry. List only papers
@@ -100,7 +101,8 @@ current member's name, shows up on that member's page too, all automatically.
   year: 2026                   # required
   doi: "https://doi.org/10.1038/..."   # optional; shows the DOI badge
   preprint_url: "https://arxiv.org/abs/..."  # optional; shows arXiv/ChemRxiv badge
-  code: ""                     # optional; the code repository (see "Link a paper's code")
+  code: ""                     # optional; the code repository (see "Link a paper's code and data")
+  dataset: ""                  # optional; the dataset, e.g. on Figshare (same section)
   themes: ["Reaction pathway prediction"]    # optional topic tags (filter chips)
   image: "pub-42.jpg"          # optional; upload to assets/images/pubs/
   abstract: "English abstract."        # optional; shown in full on the detail page
@@ -115,14 +117,19 @@ Article"`). Most papers instead use the structured `vol:` / `issue:` / `pages:`,
 which gives an auto-formatted *vol* (issue), pages line; `vol` takes precedence
 over `ref` when both are present.
 
-### Link a paper's code (GitHub icon)
+### Link a paper's code and data (GitHub, Figshare icons)
 
-Every paper has a `code: ""` slot. Put the repository's full address between the
-quotes, one per paper, e.g. `code: "https://github.com/sailgroup/MEMo"` (paper 47).
-The GitHub mark then shows at the right end of the DOI and preprint logos (just before
-the topic tags) on the Publications list, the paper's page and its authors' member
-pages. Any other host (GitLab, Zenodo) gets a plain grey code icon. Empty quotes show
-nothing. README ("논문에 코드 링크 달기") walks through the edit on github.com.
+Every paper has two slots, `code: ""` for its code repository and `dataset: ""` for
+its dataset. Put the full address between the quotes, one per slot, e.g.
+`code: "https://github.com/FongMunHong/FlowER"` and
+`dataset: "https://doi.org/10.6084/m9.figshare.32513667"` (paper 37). The GitHub mark
+and then the Figshare mark show after the DOI and preprint logos (just before the topic
+tags) on the Publications list, the paper's page and its authors' member pages. The icon follows the address: `code` on github.com gets the
+GitHub mark, any other host (GitLab) a plain grey code icon; `dataset` on Figshare
+(figshare.com, a *.figshare.com portal, or a Figshare DOI, `https://doi.org/10.6084/...`)
+gets the Figshare mark, any other host (Zenodo) a plain grey dataset icon. Empty quotes
+show nothing. README ("논문에 코드와 데이터 링크 달기") walks through the edit on
+github.com.
 
 The build stops and names the paper when an address:
 
@@ -259,8 +266,9 @@ This page is in Korean by request; keep new copy in Korean to match.
   image that errors while being processed, fails the run, so a problem shows
   before `main` (a HEIC, TIFF or DNG upload only gets its warning).
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
-  `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `code-badge`, `journal-covers`,
-  `news-date`, `social-links`, `icon`, `structured-data`). Edit a pattern in one place.
+  `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `code-badge`,
+  `dataset-badge`, `journal-covers`, `news-date`, `social-links`, `icon`,
+  `structured-data`). Edit a pattern in one place.
 - Never delete `CNAME` (the custom domain). `baseurl` stays `""`.
 
 ## Build tools

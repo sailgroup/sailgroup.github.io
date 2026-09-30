@@ -1,0 +1,10 @@
+{%- comment -%}Dataset link for a paper (`dataset:` in publications.yml). The Figshare mark for a Figshare address (figshare.com, a *.figshare.com portal, or a Figshare DOI, doi.org/10.6084/...); any other host (Zenodo, a lab server) gets a plain dataset icon, so Figshare's logo never points elsewhere. To change a picture, replace assets/images/figshare.svg or data.svg under the same name (square; drawn 24 px on the lists, 38 px on the paper page). Its place in the row is set where this is included: _includes/pub-item.html (lists) and _layouts/publication.html (paper page). Pass: url, class, height.{%- endcomment -%}
+{%- assign dataparts = include.url | strip | downcase | split: '://' | last | split: '/' -%}
+{%- assign datahost = dataparts[0] -%}
+{%- assign datahosttail = datahost | slice: -13, 13 -%}
+{%- assign datafig = false -%}
+{%- if datahost == 'figshare.com' or datahosttail == '.figshare.com' -%}{%- assign datafig = true -%}
+{%- elsif datahost == 'doi.org' or datahost == 'dx.doi.org' or datahost == 'www.doi.org' -%}{%- if dataparts[1] == '10.6084' -%}{%- assign datafig = true -%}{%- endif -%}
+{%- endif -%}
+{%- if datafig -%}{%- assign datafile = 'figshare.svg' -%}{%- assign dataalt = 'Figshare' -%}{%- assign datalabel = 'View dataset on Figshare' -%}{%- else -%}{%- assign datafile = 'data.svg' -%}{%- assign dataalt = 'Dataset' -%}{%- assign datalabel = 'View dataset' -%}{%- endif -%}
+<a class="{{ include.class }}" href="{{ include.url | strip }}" target="_blank" rel="noopener noreferrer" aria-label="{{ datalabel }}"><img src="{{ '/assets/images/' | append: datafile | relative_url }}" alt="{{ dataalt }}" width="{{ include.height }}" height="{{ include.height }}"></a>

@@ -1034,8 +1034,8 @@ body.no-scroll { overflow: hidden; }
 .paper__abstract-en summary { cursor: pointer; color: var(--orange-ink); font-size: var(--fs-sm); font-weight: 600; }
 .paper__abstract-en p { margin-top: 0.6rem; color: var(--muted); font-size: var(--fs-sm); line-height: 1.7; white-space: pre-line; }
 .paper__links { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
-.paper__doi img, .paper__pre img, .paper__code img { height: 38px; width: auto; transition: transform 0.15s ease; }
-.paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img { transform: translateY(-2px); }
+.paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 38px; width: auto; transition: transform 0.15s ease; }
+.paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img, .paper__data:hover img { transform: translateY(-2px); }
 
 /* Title beside the figure only where the title column is wide enough: from 721px it was
    squeezed to 8 or 9 lines on tablets. Below 1000px the figure follows the title. */

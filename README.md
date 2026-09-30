@@ -15,7 +15,7 @@ Live: https://sail.kookmin.ac.kr
 | 대상 | 파일 |
 | --- | --- |
 | 논문 | `_data/publications.yml` |
-| 논문 코드 링크 (GitHub 아이콘) | `_data/publications.yml` 에서 그 논문의 `code: ""` 따옴표 안에 저장소 주소 ([자세히](#논문에-코드-링크-달기-github-아이콘)) |
+| 논문 코드·데이터 링크 (GitHub, Figshare 아이콘) | `_data/publications.yml` 에서 그 논문의 `code: ""`(코드 저장소)·`dataset: ""`(데이터셋) 따옴표 안에 주소 ([자세히](#논문에-코드와-데이터-링크-달기-github-figshare-아이콘)) |
 | 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`) |
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
@@ -41,7 +41,8 @@ Live: https://sail.kookmin.ac.kr
   ref: "47, 317-327"           # 선택: 권·페이지를 자유 텍스트로 (예: "Advance Article"). 대부분의 논문은 아래 vol/issue/pages 방식
   doi: "https://doi.org/10.1038/..."           # 선택
   preprint_url: "https://arxiv.org/abs/..."    # 선택 (arXiv/ChemRxiv 자동 판별)
-  code: ""                                     # 선택: 코드 저장소 주소. 없으면 비워 둠 (아래 "논문에 코드 링크 달기")
+  code: ""                                     # 선택: 코드 저장소 주소. 없으면 비워 둠 (아래 "논문에 코드와 데이터 링크 달기")
+  dataset: ""                                  # 선택: 데이터셋 주소(Figshare 등). 없으면 비워 둠
   themes: ["Reaction pathway prediction"]      # 선택: _data/themes.yml 에 있는 이름만
   image: "pub-42.jpg"          # 선택: assets/images/pubs/ 에 업로드
   abstract: "English abstract."                # 선택 (한국어 초록이 없으면 그대로 전부 표시)
@@ -55,43 +56,49 @@ Live: https://sail.kookmin.ac.kr
 > *권* (호), 페이지 형태로 조판됩니다. 예: `vol: 47`, `issue: 3`, `pages: "317-327"` → *47* (3), 317-327.
 > `vol` 이 있으면 `ref` 는 무시되므로 둘 중 하나만 쓰세요.
 
-### 논문에 코드 링크 달기 (GitHub 아이콘)
+### 논문에 코드와 데이터 링크 달기 (GitHub, Figshare 아이콘)
 
-논문의 코드가 공개된 저장소가 있으면, 그 논문의 `code: ""` 따옴표 안에 저장소 주소만 넣으면 됩니다.
-Publications 목록, 논문 페이지, 저자인 멤버의 페이지에서 **DOI·arXiv 로고의 맨 오른쪽**(주제 태그 바로
-앞)에 GitHub 아이콘이 생기고, 누르면 저장소가 새 탭에서 열립니다. 비워 둔 논문에는 아이콘이 없습니다.
+논문마다 코드 저장소 칸 `code: ""` 와 데이터셋 칸 `dataset: ""` 이 있습니다. 공개된 곳이 있으면 따옴표
+안에 주소만 넣으면 됩니다. Publications 목록, 논문 페이지, 저자인 멤버의 페이지에서 **DOI·arXiv 로고
+오른쪽**에 GitHub, Figshare 아이콘이 이 순서로 생기고(주제 태그 바로 앞), 누르면 새 탭에서 열립니다.
+비워 둔 칸은 아이콘이 없습니다.
 
 1. [`_data/publications.yml` 편집 화면](https://github.com/sailgroup/sailgroup.github.io/edit/main/_data/publications.yml)을 엽니다.
-2. 편집 화면 안을 한 번 누른 뒤 `Ctrl+F`(Mac은 `⌘+F`)로 논문 번호를 찾습니다. 예: `id: 47`.
-   번호는 사이트 Publications 목록 왼쪽의 숫자이고, 논문 페이지 주소(`/publications/47/`)의 숫자입니다.
-   찾은 줄 바로 아래 `title:` 이 그 논문인지 확인합니다(`id: 4` 로 찾으면 `id: 47` 이 먼저 걸립니다).
-3. 그 논문의 `code: ""` 따옴표 안에 저장소 주소를 붙여 넣습니다. 새 줄을 만들 필요는 없습니다.
+2. 편집 화면 안을 한 번 누른 뒤 `Ctrl+F`(Mac은 `⌘+F`)로 논문 번호를 찾습니다. 예: `id: 37`.
+   번호는 사이트 Publications 목록 왼쪽의 숫자이고, 논문 페이지 주소(`/publications/37/`)의 숫자입니다.
+   찾은 줄 바로 아래 `title:` 이 그 논문인지 확인합니다(`id: 3` 으로 찾으면 `id: 39` 가 먼저 걸립니다).
+3. 코드 저장소 주소는 `code: ""`, 데이터셋 주소는 `dataset: ""` 의 따옴표 안에 붙여 넣습니다. 새 줄을
+   만들 필요는 없습니다.
 4. 오른쪽 위 초록색 **Commit changes...** 를 누르고, 뜨는 창에서 다시 **Commit changes** 를 누릅니다.
    1~3분 뒤 사이트에 아이콘이 나타납니다. 바로 보이지 않으면 `Ctrl+Shift+R`(Mac은 `⌘+Shift+R`)로
    새로고침합니다.
 
 ```yaml
-- id: 47
-  title: "From Molecules to Mixture"
+- id: 37
+  title: "Electron flow matching for generative reaction mechanism prediction"
   ...
-  doi: ""
-  code: "https://github.com/sailgroup/MEMo"    # ← 따옴표 안에 주소
+  code: "https://github.com/FongMunHong/FlowER"              # ← 코드 저장소 주소
+  dataset: "https://doi.org/10.6084/m9.figshare.32513667"    # ← 데이터셋 주소
   themes:
 ```
 
-- 주소는 `https://` 로 시작하는 전체 주소로, 논문 하나에 하나만 적습니다.
-- github.com 주소는 GitHub 로고로, 그 밖의 곳(GitLab 등)은 회색 코드 아이콘으로 표시됩니다.
-- 링크를 없애려면 따옴표 안을 비웁니다(`code: ""`). 줄은 지우지 않아도 됩니다.
+- 주소는 `https://` 로 시작하는 전체 주소로, 칸 하나에 하나만 적습니다.
+- 어떤 아이콘이 뜰지는 주소를 보고 정해집니다.
+  - `code`: github.com 주소는 GitHub 로고, 그 밖의 곳(GitLab 등)은 회색 코드 아이콘
+  - `dataset`: Figshare 주소(`https://figshare.com/...`, 또는 `https://doi.org/10.6084/...` 인 Figshare
+    DOI)는 Figshare 로고, 그 밖의 곳(Zenodo 등)은 회색 데이터 아이콘
+- 링크를 없애려면 따옴표 안을 비웁니다(`code: ""`, `dataset: ""`). 줄은 지우지 않아도 됩니다.
 - 다음과 같은 실수는 사이트 빌드가 멈추면서 몇 번 논문의 무엇이 문제인지 알려 줍니다. 고칠 때까지 사이트는
   이전 상태 그대로입니다. 저장소 **Actions** 탭에서 초록색 체크는 성공, 빨간색 X는 실패입니다. 빨간색 X
   항목을 누르면 **Annotations** 칸에 `Data check` 로 시작하는 메시지가 보입니다.
   - 주소 앞의 `https://` 가 빠짐 (예: `github.com/sailgroup/MEMo`)
   - 예시의 `...` 를 그대로 둠
-  - 한 논문에 `code:` 줄이 둘
-  - `code:` 줄을 초록(abstract) 본문처럼 네 칸 들여 씀
+  - 한 논문에 `code:` 줄(또는 `dataset:` 줄)이 둘
+  - `code:`·`dataset:` 줄을 초록(abstract) 본문처럼 네 칸 들여 씀
 - 이 저장소에 쓰기 권한이 없는 사람이 1번 링크로 편집하면, GitHub 가 사본(fork)을 만들어 변경
   요청(Pull request)으로 보내도록 안내합니다. 관리자가 합치면 반영됩니다.
-- 코드 공개 여부를 이미 확인한 논문(주소와 근거)은 [`DECISIONS.md`](DECISIONS.md) 의 D44 에 적혀 있습니다.
+- 코드 저장소를 이미 찾아본 논문(주소와 근거)은 [`DECISIONS.md`](DECISIONS.md) 의 D44 에, 데이터셋
+  링크를 넣은 내력은 D46 에 적혀 있습니다.
 
 ### 사람 (멤버·동문): `_data/people.yml`
 멤버와 동문을 한 파일에서 관리합니다. `status` 가 **어느 페이지에 뜰지만** 결정합니다.
@@ -133,6 +140,7 @@ Publications 목록, 논문 페이지, 저자인 멤버의 페이지에서 **DOI
       year:    2023            # 따옴표 없는 숫자
       doi:     "https://doi.org/10.xxxx/yyyy"   # 선택: 제목이 이 주소로 연결됨
       code:    ""                               # 선택: 코드 저장소 주소 (GitHub 아이콘)
+      dataset: ""                               # 선택: 데이터셋 주소 (Figshare 아이콘)
 ```
 
 ### 뉴스: `_data/news.yml`
@@ -198,8 +206,9 @@ sections:
 | 상단 메뉴(네비) 항목 (푸터의 링크도 이 목록을 따라 함께 바뀜) | `_data/navigation.yml` |
 | 푸터 구성 (연락처 값은 `_data/home.yml` 의 `contact`) | `_includes/footer.html` |
 | 논문 목록 한 줄(번호·제목·저자·배지·태그) | `_includes/pub-item.html` |
-| 논문 링크 아이콘 (DOI·arXiv·GitHub) 순서 | 목록: `_includes/pub-item.html`, 논문 페이지: `_layouts/publication.html` |
+| 논문 링크 아이콘 (DOI·arXiv·GitHub·Figshare) 순서 | 목록: `_includes/pub-item.html`, 논문 페이지: `_layouts/publication.html` |
 | 코드 아이콘 그림 (GitHub 로고, 회색 코드 아이콘) | `assets/images/github.svg`, `assets/images/code.svg` 파일을 같은 이름으로 교체 (어느 주소에 어느 그림인지는 `_includes/code-badge.html`) |
+| 데이터 아이콘 그림 (Figshare 로고, 회색 데이터 아이콘) | `assets/images/figshare.svg`, `assets/images/data.svg` 파일을 같은 이름으로 교체 (어느 주소에 어느 그림인지는 `_includes/dataset-badge.html`) |
 | 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
 | PI 페이지 구성 | `pi.html` |
 | 홈 화면 구성 (최근 뉴스·연구·저널 표지) | `index.html` |

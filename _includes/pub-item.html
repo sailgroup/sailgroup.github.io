@@ -3,6 +3,7 @@
 {%- assign hasdoi = false -%}{%- if p.doi and p.doi != "" -%}{%- assign hasdoi = true -%}{%- endif -%}
 {%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
 {%- assign hascode = false -%}{%- if p.code and p.code != "" -%}{%- assign hascode = true -%}{%- endif -%}
+{%- assign hasdataset = false -%}{%- if p.dataset and p.dataset != "" -%}{%- assign hasdataset = true -%}{%- endif -%}
 {%- comment -%}show_id is passed ONLY by the Publications listing (publications.html): it puts the paper's catalogue number (p.id) at the top of the left column, on the title's line, with the thumbnail below. Member/alumni pages (member-pubs.html) do not pass it, so the markup below the number is the same as before.{%- endcomment -%}
 {%- assign shownum = false -%}{%- if include.show_id and p.id and p.id != "" -%}{%- assign shownum = true -%}{%- endif -%}
 {%- comment -%}The list thumbnail is an 88x66 box (64x48 on phones), so a large graphical abstract comes with a smaller rendition when CI made one (image-srcset.html).{%- endcomment -%}
@@ -16,11 +17,12 @@
     <p class="pub__authors">{% include pi-authors.html authors=p.authors person=include.person %}</p>
     <p class="pub__meta"><span class="pub__journal">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
     {%- assign hastags = false -%}{%- unless include.hide_themes -%}{%- if p.themes and p.themes.size > 0 -%}{%- assign hastags = true -%}{%- endif -%}{%- endunless -%}
-    {%- if hasdoi or haspre or hascode or hastags -%}
+    {%- if hasdoi or haspre or hascode or hasdataset or hastags -%}
     <div class="pub__foot">
       {%- if hasdoi -%}<a class="pub-badge" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer" aria-label="View at publisher (DOI)"><img src="{{ '/assets/images/doi.svg' | relative_url }}" alt="DOI" width="24" height="24"></a>{%- endif -%}
       {%- if haspre -%}{% include preprint-badge.html url=p.preprint_url class="pub-badge" height="24" %}{%- endif -%}
       {%- if hascode -%}{% include code-badge.html url=p.code class="pub-badge" height="24" %}{%- endif -%}
+      {%- if hasdataset -%}{% include dataset-badge.html url=p.dataset class="pub-badge" height="24" %}{%- endif -%}
       {%- if hastags -%}<div class="tag-list pub__themes">{%- for t in p.themes -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endfor -%}</div>{%- endif -%}
     </div>
     {%- endif -%}

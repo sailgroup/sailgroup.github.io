@@ -6,13 +6,15 @@
 #
 # Fields are display-ready strings (title / authors / journal / ref) so they
 # can be dropped into a Jekyll template with minimal massaging. `doi`,
-# `preprint_url` and `code` drive the link buttons; `themes` are the SAIL research tags;
-# `image` is the per-paper graphical abstract (see NOTES).
-# `code` is the paper's code repository. Every paper has a `code: ""` slot: put the full
-# address between the quotes, e.g.
+# `preprint_url`, `code` and `dataset` drive the link buttons; `themes` are the SAIL
+# research tags; `image` is the per-paper graphical abstract (see NOTES).
+# `code` is the paper's code repository and `dataset` its dataset. Every paper has both
+# slots, `code: ""` and `dataset: ""`: put the full address between the quotes, e.g.
 #   code: "https://github.com/sailgroup/MEMo"
-# and the GitHub icon shows at the right end of the DOI and preprint logos (another host:
-# a grey code icon). Step by step: README, "논문에 코드 링크 달기".
+#   dataset: "https://doi.org/10.6084/m9.figshare.32513667"
+# The GitHub icon then shows at the right end of the DOI and preprint logos, and the
+# Figshare icon to its right (another host: a grey code or dataset icon).
+# Step by step: README, "논문에 코드와 데이터 링크 달기".
 #
 # PI name to highlight in the template (bold): "Joonyoung F. Joung"
 #   - also appears once as "Joonyoung Francis Joung" (id 13) -> add as alias.
@@ -38,6 +40,7 @@
   year: 2026
   doi: ""
   code: "https://github.com/sailgroup/MEMo"
+  dataset: ""
   themes:
     - "Molecular property prediction"
     - "Representation learning"
@@ -52,6 +55,7 @@
   year: 2026
   doi: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
     - "Representation learning"
@@ -67,6 +71,7 @@
   year: 2026
   doi: "https://doi.org/10.1016/j.jallcom.2026.190954"
   code: ""
+  dataset: ""
   themes:
     - "Molecular property prediction"
   image: "Pub_45.png"
@@ -91,6 +96,7 @@
   doi: "https://doi.org/10.1002/bkcs.70213"
   preprint_url: "https://doi.org/10.48550/arXiv.2607.25247"
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
@@ -116,6 +122,7 @@
   doi: ""
   preprint_url: "https://doi.org/10.26434/chemrxiv.15005144/v1"
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
   image: ""
@@ -142,6 +149,7 @@
   doi: "https://doi.org/10.1021/acsenergylett.6c01560"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
   image: "pub-42.gif"
@@ -170,6 +178,7 @@
   doi: "https://doi.org/10.1039/D6CS00079G"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Reaction pathway prediction"
     - "Molecular property prediction"
@@ -216,6 +225,7 @@
   doi: "https://doi.org/10.1002/bkcs.70113"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Molecular property prediction"
     - "Reaction pathway prediction"
@@ -276,6 +286,7 @@
   doi: "https://doi.org/10.1021/acscentsci.5c02014"
   preprint_url: "https://doi.org/10.26434/chemrxiv-2025-21zvt"
   code: ""
+  dataset: ""
   themes:
     - "Reaction pathway prediction"
   image: "pub-39.jpg"
@@ -328,6 +339,7 @@
   doi: "https://doi.org/10.20517/jmi.2025.65"
   preprint_url: ""
   code: "https://github.com/jfjoung/KRICT_Hackathon"
+  dataset: ""
   themes:
     - "Molecular property prediction"
     - "Quantum chemical modeling"
@@ -377,6 +389,7 @@
   doi: "https://doi.org/10.1038/s41586-025-09426-9"
   preprint_url: "https://doi.org/10.48550/arXiv.2502.12979"
   code: "https://github.com/FongMunHong/FlowER"
+  dataset: "https://doi.org/10.6084/m9.figshare.32513667"
   themes:
     - "Reaction pathway prediction"
     - "Generative modeling"
@@ -427,6 +440,7 @@
   doi: "https://doi.org/10.1021/acs.accounts.5c00155"
   preprint_url: "https://doi.org/10.48550/arXiv.2501.01835"
   code: "https://gitlab.com/mlpds_mit/askcosv2"
+  dataset: ""
   themes:
     - "Reaction pathway prediction"
     - "Molecular property prediction"
@@ -504,6 +518,7 @@
   doi: "https://doi.org/10.1021/acscentsci.4c00656"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Generative modeling"
   image: "pub-35.jpg"
@@ -552,6 +567,7 @@
   doi: "https://doi.org/10.1002/anie.202411296"
   preprint_url: "https://doi.org/10.48550/arXiv.2403.04580"
   code: "https://github.com/jfjoung/mechanism_prediction"
+  dataset: "https://doi.org/10.6084/m9.figshare.26046106.v1"
   themes:
     - "Reaction pathway prediction"
     - "Generative modeling"
@@ -598,6 +614,7 @@
   doi: "https://doi.org/10.1039/D2TC04194D"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-33.jpg"
@@ -647,6 +664,7 @@
   doi: "https://doi.org/10.1039/D2CP03308A"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
@@ -692,6 +710,7 @@
   doi: "https://doi.org/10.1038/s41524-022-00834-3"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Molecular property prediction"
     - "Experimental dataset"
@@ -735,6 +754,7 @@
   doi: "https://doi.org/10.1021/acs.jcim.2c00173"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Molecular property prediction"
   image: "pub-30.jpg"
@@ -785,6 +805,7 @@
   doi: "https://doi.org/10.1016/j.aca.2022.339678"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
   image: "pub-29.jpg"
@@ -836,6 +857,7 @@
   doi: "https://doi.org/10.3390/jpm12020143"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Representation learning"
   image: "pub-28.jpg"
@@ -879,6 +901,7 @@
   doi: "https://doi.org/10.1021/acsami.1c14901"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-27.jpg"
@@ -936,6 +959,7 @@
   doi: "https://doi.org/10.1021/acsami.1c04981"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
@@ -988,6 +1012,7 @@
   doi: "https://doi.org/10.1021/jacsau.1c00035"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Molecular property prediction"
     - "Representation learning"
@@ -1042,6 +1067,7 @@
   doi: "https://doi.org/10.1021/acs.nanolett.1c00134"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-24.jpg"
@@ -1085,6 +1111,7 @@
   doi: "https://doi.org/10.1038/s41467-020-20172-6"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
@@ -1129,6 +1156,7 @@
   doi: "https://doi.org/10.1021/acsami.0c11988"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-22.jpg"
@@ -1179,6 +1207,7 @@
   doi: "https://doi.org/10.1038/s41597-020-00634-8"
   preprint_url: ""
   code: ""
+  dataset: "https://figshare.com/articles/dataset/DB_for_chromophore/12045567/2"
   themes:
     - "Experimental dataset"
   image: "pub-21.jpg"
@@ -1212,6 +1241,7 @@
   doi: "https://doi.org/10.1021/acs.chemmater.0c02172"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-20.jpg"
@@ -1263,6 +1293,7 @@
   doi: "https://doi.org/10.1039/D0SC01085E"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
   image: "pub-19.jpg"
@@ -1305,6 +1336,7 @@
   doi: "https://doi.org/10.1038/s41427-020-0200-4"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-18.jpg"
@@ -1356,6 +1388,7 @@
   doi: "https://doi.org/10.1039/C9NJ05404A"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
@@ -1398,6 +1431,7 @@
   doi: "https://doi.org/10.1021/acs.cgd.9b01351"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-16.jpg"
@@ -1450,6 +1484,7 @@
   doi: "https://doi.org/10.1002/smll.201901342"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-15.jpg"
@@ -1494,6 +1529,7 @@
   doi: "https://doi.org/10.1016/j.snb.2018.10.043"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
@@ -1546,6 +1582,7 @@
   doi: "https://doi.org/10.1002/ejic.201801291"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-13.jpg"
@@ -1583,6 +1620,7 @@
   doi: "https://doi.org/10.1039/C8CC06262E"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
@@ -1622,6 +1660,7 @@
   doi: "https://doi.org/10.1002/adfm.201801394"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-11.jpg"
@@ -1663,6 +1702,7 @@
   doi: "https://doi.org/10.1021/jacs.8b08146"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
   image: "pub-10.jpg"
@@ -1718,6 +1758,7 @@
   doi: "https://doi.org/10.1016/j.dyepig.2018.02.039"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
@@ -1752,6 +1793,7 @@
   doi: "https://doi.org/10.1021/acs.jpcb.8b00588"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
@@ -1800,6 +1842,7 @@
   doi: "https://doi.org/10.1039/C7CP04392A"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
@@ -1843,6 +1886,7 @@
   doi: "https://doi.org/10.1016/j.snb.2016.10.076"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-6.jpg"
@@ -1874,6 +1918,7 @@
   doi: "https://doi.org/10.1021/acs.macromol.6b02493"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
     - "Quantum chemical modeling"
@@ -1924,6 +1969,7 @@
   doi: "https://doi.org/10.1039/C6CC08606C"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Spectroscopic analysis"
   image: "pub-4.jpg"
@@ -1946,6 +1992,7 @@
   doi: "https://doi.org/10.1039/C6CP03858A"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
@@ -1998,6 +2045,7 @@
   doi: "https://doi.org/10.1021/acs.jpclett.5b02671"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"
@@ -2042,6 +2090,7 @@
   doi: "https://doi.org/10.1021/acs.jpcb.5b09905"
   preprint_url: ""
   code: ""
+  dataset: ""
   themes:
     - "Quantum chemical modeling"
     - "Spectroscopic analysis"

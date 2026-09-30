@@ -18,7 +18,8 @@ Authors: {{ p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', 
 Venue: {{ p.journal }}{% if p.vol %}, {{ p.vol }}{% if p.issue and p.issue != "" %} ({{ p.issue }}){% endif %}{% if p.pages and p.pages != "" %}, {{ p.pages }}{% endif %}{% elsif p.ref and p.ref != "" %}, {{ p.ref }}{% endif %} ({{ p.year }}){% if p.doi and p.doi != "" %}
 DOI: {{ p.doi }}{% endif %}{% if p.preprint_url and p.preprint_url != "" %}
 Preprint: {{ p.preprint_url }}{% endif %}{% if p.code and p.code != "" %}
-Code: {{ p.code | strip }}{% endif %}
+Code: {{ p.code | strip }}{% endif %}{% if p.dataset and p.dataset != "" %}
+Dataset: {{ p.dataset | strip }}{% endif %}
 Page: {{ site.url }}/publications/{{ p.id }}/
 {% if p.themes and p.themes.size > 0 %}Topics: {{ p.themes | join: ", " }}
 {% endif %}{% if p.abstract and p.abstract != "" %}Abstract: {{ p.abstract | strip_html | normalize_whitespace }}
