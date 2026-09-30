@@ -67,7 +67,18 @@
   slug: yeonju-yoo
   joined: "2026-09-01"
   github: https://github.com/yyoo-1
-  
+
+
+
+- name: Siyeol In
+  status: alumni
+  name_ko: 인시열
+  role: Undergraduate Researcher
+  email: insy13@naver.com
+  photo: siyeol-in.jpg
+  slug: siyeol-in
+  joined: "2025-12-15"
+  github: https://github.com/insiyeol
 
 - name: Hyejeong Jeon
   status: alumni
@@ -146,15 +157,3 @@
   email: kyukmin@kookmin.ac.kr
   photo: yumin-kim.jpg
   slug: yumin-kim
-
-
-- name: Siyeol In
-  status: alumni
-  name_ko: 인시열
-  role: Undergraduate Researcher
-  email: insy13@naver.com
-  photo: siyeol-in.jpg
-  slug: siyeol-in
-  joined: "2025-12-15"
-  github: https://github.com/insiyeol
-  
