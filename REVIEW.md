@@ -873,3 +873,15 @@ the data as of the PI's 6065770.
     example's "..."; ..."
   - "publications.yml id 19: `dataset` is written twice (lines 1297 and 1298), and only the
     last one counts. Keep one `dataset:` line."
+- **Deployed and verified live:**
+  - runs: dev 36718544914 and main 36718673535, all green;
+  - before the deploy the CI build differed from the live site in the same seven files as
+    the local build; its Publications list has three Figshare marks (21, 34, 37), four GitHub
+    marks and one grey code icon (36), and its `llms-full.txt` three `Dataset:` lines;
+  - `main` was fast-forwarded to 9a31ba0 with no PI commits in between;
+  - after the deploy the 109 text files and the two new icons on https://sail.kookmin.ac.kr
+    are byte-identical to the deployed build, and all 229 image URLs load;
+  - on the live Publications page paper 37 reads DOI, arXiv, GitHub, Figshare and paper 21
+    DOI, Figshare, every image loaded and there are no console errors;
+  - on github.com the README's renamed section has the anchor the table at the top links to
+    (`#논문에-코드와-데이터-링크-달기-github-figshare-아이콘`).

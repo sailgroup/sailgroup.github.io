@@ -247,5 +247,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   has an empty `dataset: ""` slot after `code:`. A Figshare address shows Figshare's mark
   right after the GitHub icon (another host: a grey dataset icon), and papers 21, 34 and 37
   link their Figshare datasets. The build checks the field like `code`. README and
-  CONTRIBUTING cover both links in one section. Results in `REVIEW.md` section 21
-  (2026-09-30).
+  CONTRIBUTING cover both links in one section. Deployed on 2026-09-30 (main run
+  36718673535) and verified live. Results in `REVIEW.md` section 21 (2026-09-30).
