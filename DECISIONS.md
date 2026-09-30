@@ -1252,3 +1252,29 @@ add their verification meta tags.
   `home.yml`, and CLAUDE.md.
 - Not done: a one-line home pointer to Positions like those two labs' (new copy, the
   maintainer's call); the base line "Kookmin University · Seoul, Republic of Korea" stays.
+
+## D44 — Code link on papers (PI request, 2026-09-30)
+
+- The PI asked for a GitHub icon to the right of a paper's DOI, to link the paper's code
+  where there is any. The maintainer marked the place on the Publications list: after the
+  arXiv logo, before the topic tags.
+- **Data:** an optional `code:` on a paper in `publications.yml` (also on a person's own
+  papers, inline or in `member_pubs/<slug>.yml`), one address. `validate_data.rb` checks it
+  like `doi` and `preprint_url`: an address that does not start with `http` stops the
+  build and names the paper. No paper has one yet; which repository belongs to which paper
+  is the PI's to enter.
+- **Icon:** the GitHub mark (the one the people pages already use, in GitHub's #24292f) for a
+  github.com address. Any other host (GitLab, Zenodo, a lab server) gets a plain grey code
+  icon (`code.svg`), so GitHub's logo never points elsewhere. `_includes/code-badge.html`
+  picks it from the address's host, as `preprint-badge.html` picks arXiv or ChemRxiv. Both
+  icons are round like the DOI logo and drawn at its size: 24 px on the lists, 38 px on the
+  paper page, with the same hover lift.
+- **Where:** on the Publications list and on member pages, after the DOI and preprint
+  logos (a paper with only a code link, such as a submitted one, still gets the row); on
+  the paper page, in the link row after them. The link opens in a new tab and is named
+  "View code on GitHub" (or "View code") for screen readers.
+- `llms-full.txt` gives a `Code:` line for a paper that has one. The citation meta and the
+  JSON-LD are unchanged: schema.org has no property for an article's code, and a code link
+  does not make a manuscript citable.
+- Docs: the field in README and CONTRIBUTING (and `code-badge` in its list of includes),
+  and in the header comment of `publications.yml`.

@@ -226,3 +226,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   with a grey band meets the footer without a white strip. Deployed on 2026-09-29 (main
   run 36578027829) and verified live: the site is byte-identical to the verified build.
   Results in `REVIEW.md` section 18 (2026-09-29).
+- **Phase 18 (2026-09-30):** Code link on papers (D44), on the PI's request. An optional
+  `code:` on a paper shows the GitHub mark (for another host, a plain code icon) after the
+  DOI and preprint logos on the Publications list, member pages and the paper page, and a
+  `Code:` line in `llms-full.txt`; the build checks that it is a full address. No paper has
+  one yet: the PI enters them. Results in `REVIEW.md` section 19 (2026-09-30).

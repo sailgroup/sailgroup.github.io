@@ -754,3 +754,24 @@ headless Chrome; the live site (3a0d5b5) is the "before".
   included: all 70 pages at 1440 and 390 px, 12 also at 768 px, axe-core on 12, no
   problems; `functional.js` on the live site: 22 of 22 pass; the D42 spot checks
   (`d42-spot.js`): 17 of 17.
+
+## 19. Code link on papers (2026-09-30, D44)
+
+Verified on a local build of the change in Docker (`ruby:3.3`, with CI's image step and
+html-proofer), with test `code:` addresses on five papers that were never committed: 44
+(DOI, arXiv, GitHub), 37 (DOI, arXiv, GitHub), 25 (DOI, GitHub), 47 (submitted: GitHub
+alone) and 36 (a gitlab.com address). The live site (0733789) is the "before".
+
+- **Publications list:** paper 44 reads DOI, arXiv, GitHub, then its topic tags, where the
+  PI marked; the GitHub mark is 24 × 24 px like the DOI logo, and the logos and tags share
+  one centre line. Paper 47 shows the GitHub mark before its tags; paper 36 the grey code
+  icon. At 390 and 320 px the logos stay on one line with the tags below them, as on the
+  live site. The page's height and every paper's position at 1440 px match the live site.
+- **Paper pages** 44 and 36: DOI, arXiv, then the code link, each 38 px high.
+- **Member page** (Jihwan Kim, tags hidden there): paper 47 shows the GitHub mark alone.
+- **`llms-full.txt`:** a `Code:` line for exactly the five test papers.
+- **Validation:** a code address without `https://` (`github.com/...`) stops the build with
+  "publications.yml id 47: `code` should be a full URL (http...), got: github.com/...".
+- **Checks:** html-proofer passed. Site sweep (`qa-site.js`: all 70 pages at 1440 and 390
+  px, 12 also at 768 px, axe-core on 12, among them /publications/, paper 44 and Jihwan
+  Kim's page with their test links): no problems.
