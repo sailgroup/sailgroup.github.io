@@ -801,3 +801,25 @@ alone) and 36 (a gitlab.com address). The live site (0733789) is the "before".
 - **Paper 44** has no code link: its Data Availability Statement (Wiley) reads "available
   from the corresponding author upon reasonable request", and its arXiv text names no
   repository. GitHub code search for its DOI or arXiv number finds nothing.
+
+## 20. Code link made easy to add (2026-09-30, D45)
+
+Verified on local builds in Docker (`ruby:3.3`, with CI's image step and html-proofer).
+
+- **Data:** each of the 47 papers has exactly one `code:` line; 46 are empty and paper 47's
+  is `https://github.com/sailgroup/MEMo`, as before.
+- **No change to the site:** html-proofer passed. Compared with the live site file by file,
+  108 of the 109 text files are identical; the other is `security.txt`, whose `Expires` is
+  written at build time. All 227 image URLs load.
+- **The new checks:** on a scratch copy with four slips put in, the build stopped
+  ("validation failed (4 problem(s))") with:
+  - "publications.yml id 45: `code: https://github.com/sailgroup/...` still has the
+    example's "..."; put the real address, or leave it empty ("")."
+  - "publications.yml id 43: the abstract contains `code: "https://github.com/sailgroup/y"`,
+    so that line was read as part of the abstract. Start it with two spaces, the same as
+    `abstract:`, not four."
+  - "publications.yml id 42: `code` should be a full URL (http...), got: github.com/sailgroup/z"
+  - "publications.yml id 44: `code` is written twice (lines 92 and 94), and only the last
+    one counts. Keep one `code:` line."
+
+  None of the new checks fires on the committed data.

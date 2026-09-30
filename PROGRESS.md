@@ -233,3 +233,11 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   explains it. Paper 47 links its code (sailgroup/MEMo) on the maintainer's instruction;
   other links are the PI's to enter. Deployed on 2026-09-30 (main runs 36708030157 and
   36710435741) and verified live. Results in `REVIEW.md` section 19 (2026-09-30).
+- **Phase 19 (2026-09-30):** Code link made easy to add (D45), on the maintainer's request.
+  Every paper has an empty `code: ""` slot. README walks through the edit on github.com (a
+  direct link to the file's editor, find the paper, paste the address between the quotes,
+  commit) and says where the icon shows: the right end of the DOI and arXiv logos, just
+  before the topic tags. CONTRIBUTING has the same in English. The build now also stops on
+  the example's `...` left in a link, a field written twice in one paper, and a link line
+  indented into the abstract. The site itself is unchanged. Results in `REVIEW.md`
+  section 20 (2026-09-30).

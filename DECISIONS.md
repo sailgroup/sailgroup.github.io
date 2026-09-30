@@ -1300,3 +1300,40 @@ add their verification meta tags.
   No code: 21, 25, 28, 31, 40, 41 and 44 (its data are "available from the corresponding
   author upon reasonable request"). Paper 30's Data and Software Availability section is
   behind the paywall. Not checked: 1 to 20, 22 to 24, 26, 27, 29, 32, 33, 42, 43, 45 and 46.
+
+## D45 — Code link: a slot in every paper, README steps, checks for slips (maintainer's request, 2026-09-30)
+
+- The maintainer asked that the GitHub README explain the code link so that anyone can add
+  one: add a repository's address and the icon shows at the right end. The icon's place is
+  D44's (after the DOI and preprint logos, just before the topic tags); only how a link is
+  added changed.
+- **An empty slot in every paper:** each of the 47 papers in `publications.yml` has one
+  `code:` line, `code: ""` where there is no link (after `preprint_url`, or after `doi` for
+  45 and 46), so adding a link is filling in the quotes, with no new line to place or indent.
+  Empty quotes show nothing, as before, so the site does not change. People's own paper
+  lists (`people.yml`, `member_pubs/`) are left as they are; README and CONTRIBUTING show the
+  empty slot in their templates.
+- **README:** a section "논문에 코드 링크 달기 (GitHub 아이콘)", linked from the table of what
+  to edit at the top. It says where the icon shows, then four steps on github.com: open the
+  file's editor (a direct link), find the paper with `Ctrl+F` by its `id:` and check the
+  title below it (`id: 4` finds 47 first, the file being newest first), paste the address
+  between the quotes, commit (and reload if the icon is not there yet: pages are cached for
+  up to 10 minutes). Then a filled-in example (paper 47), the rules (a full `https://`
+  address, one per paper; github.com gets the GitHub mark, any other host the grey icon;
+  empty the quotes to remove it), the four slips the build catches and where its message is
+  (the Actions tab), and what happens for someone without write access (GitHub offers a fork
+  and a pull request). The design table names the files that set the icons' order and their
+  pictures. CONTRIBUTING has the same in English ("Link a paper's code"), and the header
+  comments of `publications.yml` and `code-badge.html` point to them.
+- **Checks (`validate_data.rb`):** three slips that YAML accepts without a word now stop the
+  build and name the paper:
+  - a link (`doi`, `preprint_url` or `code`, also on people's own papers) that still has the
+    example's `...`;
+  - a field written twice in one paper of `publications.yml`: YAML keeps the last, so an
+    address added on a new line above the empty slot would be lost. The parsed data cannot
+    show this, so the check reads the file's lines; it covers every field, not only `code`;
+  - a quoted link line indented four spaces under `abstract:` or `abstract_ko:`, which YAML
+    reads as part of the abstract, so the icon never shows.
+
+  With D44's check (an address must start with `http`) that makes four; README lists them in
+  plain words.
