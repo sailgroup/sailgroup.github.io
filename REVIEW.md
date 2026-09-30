@@ -371,6 +371,9 @@ logged rather than done.
 2. **Self-host / preload Pretendard.** The font CSS loads render-blocking from
    jsDelivr. Self-hosting or `preload`+`font-display: swap` would improve first
    paint but changes font loading behavior — wants a human perf/QA check.
+   *(2026-07-12: done in 0f9310a. Pretendard's subsets are served from
+   `assets/fonts/pretendard/` with `font-display: swap`, and the CSP allows only the
+   site's own origin.)*
 3. **Lighthouse + screen-reader pass on the live URL.** Recommended since Phase 5;
    still outstanding. The `lang="ko"` and JSON-LD added in D22 should help the SEO/
    a11y scores; verify with a real run. *(2026-09-29: Lighthouse run on the live URL

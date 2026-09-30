@@ -532,7 +532,8 @@ Verified: dev build green (validator now also enforces theme membership + the
 member_pubs file; html-proofer passed); CDP confirmed AND filtering (2 themes →
 the single paper with both); axe 0 WCAG-AA violations after the theme recolor;
 vol/issue/pages and the badge-left layout confirmed visually; Heejeong's page
-shows 36 papers. Deployed (main run 27492501337) and smoke-tested live.
+shows 36 papers. Deployed (main run 27492501337) and smoke-tested live. (Later that
+day 9812546 added her erratum, to match her Scholar count: 37 papers.)
 
 ## D23 — Members/alumni can list their own external publications (Phase 12)
 
@@ -970,6 +971,10 @@ add their verification meta tags.
   paper title capitalisation (each follows the PI's entry), `YOOYEONJU.jpg` naming
   (served resized by the D38 image step), and news links that use the
   `/members/<slug>/` redirect paths.
+- An earlier change to a PI entry, recorded here on 2026-09-30 after an audit of the PI's
+  entries (until then only its commit message had it): 0de1d15 (2026-07-12) cleared the
+  `display_date: "2026"` the PI had given the FlowER news item (ef1118a). The item is
+  dated 2025-09-04 and the paper (37) is from 2025, so it now shows "September 4, 2025".
 
 ## D40 — Review follow-up: metadata, structured data, images, fonts, CI (2026-09-29)
 
@@ -1250,8 +1255,9 @@ add their verification meta tags.
 - Docs: README's table of files (the menu file also sets the footer's links; where the
   contact details live; the home page's sections), the comments in `navigation.yml` and
   `home.yml`, and CLAUDE.md.
-- Not done: a one-line home pointer to Positions like those two labs' (new copy, the
-  maintainer's call); the base line "Kookmin University · Seoul, Republic of Korea" stays.
+- Not done: a one-line home pointer to Positions like those two labs' (the maintainer
+  declined it on 2026-09-29); the base line "Kookmin University · Seoul, Republic of Korea"
+  stays.
 
 ## D44 — Code link on papers (PI request, 2026-09-30)
 
