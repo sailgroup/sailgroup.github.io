@@ -426,7 +426,7 @@
   year: 2025
   doi: "https://doi.org/10.1021/acs.accounts.5c00155"
   preprint_url: "https://doi.org/10.48550/arXiv.2501.01835"
-  code: "https://github.com/ASKCOS"
+  code: "https://gitlab.com/mlpds_mit/askcosv2"
   themes:
     - "Reaction pathway prediction"
     - "Molecular property prediction"
