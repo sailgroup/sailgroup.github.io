@@ -40,7 +40,7 @@ Live: https://sail.kookmin.ac.kr
   ref: "47, 317-327"           # 선택: 권·페이지를 자유 텍스트로 (예: "Advance Article"). 대부분의 논문은 아래 vol/issue/pages 방식
   doi: "https://doi.org/10.1038/..."           # 선택
   preprint_url: "https://arxiv.org/abs/..."    # 선택 (arXiv/ChemRxiv 자동 판별)
-  code: "https://github.com/sailgroup/..."     # 선택: 논문 코드 저장소. DOI·arXiv 오른쪽에 GitHub 아이콘 (GitHub 가 아닌 주소는 코드 아이콘)
+  code: "https://github.com/sailgroup/..."     # 선택: 논문 코드 저장소 (아래 "논문 코드 링크" 참고)
   themes: ["Reaction pathway prediction"]      # 선택: _data/themes.yml 에 있는 이름만
   image: "pub-42.jpg"          # 선택: assets/images/pubs/ 에 업로드
   abstract: "English abstract."                # 선택 (한국어 초록이 없으면 그대로 전부 표시)
@@ -53,6 +53,13 @@ Live: https://sail.kookmin.ac.kr
 > **권·호·페이지 자동 서식(선택):** `ref` 대신 `vol:`/`issue:`/`pages:` 를 쓰면 자동으로
 > *권* (호), 페이지 형태로 조판됩니다. 예: `vol: 47`, `issue: 3`, `pages: "317-327"` → *47* (3), 317-327.
 > `vol` 이 있으면 `ref` 는 무시되므로 둘 중 하나만 쓰세요.
+
+> **논문 코드 링크(GitHub, 선택):** 논문의 코드가 공개된 저장소가 있으면 그 논문 항목에 `code:` 한 줄을
+> 넣습니다. 예: `code: "https://github.com/sailgroup/저장소이름"`. Publications 목록, 논문 페이지, 멤버
+> 페이지에서 DOI·arXiv 로고 오른쪽(주제 태그 앞)에 GitHub 아이콘이 생기고, 누르면 저장소가 새 탭에서
+> 열립니다. 주소가 없는 논문에는 아이콘이 생기지 않습니다. github.com 이 아닌 주소(GitLab 등)는 GitHub
+> 로고 대신 회색 코드 아이콘으로 표시됩니다. 논문 하나에 주소 하나를 `https://` 로 시작하는 전체 주소로
+> 적습니다. 형식이 틀리면 빌드가 해당 논문 번호를 알려 주고 멈추며, 사이트는 이전 상태로 남습니다.
 
 ### 사람 (멤버·동문): `_data/people.yml`
 멤버와 동문을 한 파일에서 관리합니다. `status` 가 **어느 페이지에 뜰지만** 결정합니다.
