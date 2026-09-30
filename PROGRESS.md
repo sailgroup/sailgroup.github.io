@@ -239,5 +239,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   commit) and says where the icon shows: the right end of the DOI and arXiv logos, just
   before the topic tags. CONTRIBUTING has the same in English. The build now also stops on
   the example's `...` left in a link, a field written twice in one paper, and a link line
-  indented into the abstract. The site itself is unchanged. Results in `REVIEW.md`
-  section 20 (2026-09-30).
+  indented into the abstract. The site itself is unchanged. Deployed on 2026-09-30 (main
+  run 36713165048) and verified live. Results in `REVIEW.md` section 20 (2026-09-30).

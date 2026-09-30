@@ -823,3 +823,13 @@ Verified on local builds in Docker (`ruby:3.3`, with CI's image step and html-pr
     one counts. Keep one `code:` line."
 
   None of the new checks fires on the committed data.
+- **Deployed and verified live:**
+  - runs: dev 36713021505 and main 36713165048, all green;
+  - before the deploy the CI build differed from the live site only in `security.txt`'s
+    `Expires` (108 of the 109 text files identical);
+  - `main` was fast-forwarded to 8b68fe7 with no PI commits in between;
+  - after the deploy the 109 text files on https://sail.kookmin.ac.kr are byte-identical to
+    the deployed build, and all 227 image URLs load;
+  - on github.com the README's new section renders with its anchor
+    (`#논문에-코드-링크-달기-github-아이콘`), which the table at the top links to, and the
+    file the edit link opens (`_data/publications.yml` on `main`) exists.
