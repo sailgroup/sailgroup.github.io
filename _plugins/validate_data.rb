@@ -20,6 +20,8 @@ module SAIL
     DATE_RE  = /\A\d{4}-\d{2}-\d{2}\z/
     SLUG_RE  = /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/
     NEWS_CATS = %w[people publication award talk event].freeze
+    # A paper's link fields (the DOI, preprint and code icons).
+    LINK_FIELDS = %w[doi preprint_url code].freeze
 
     def generate(site)
       @site   = site
@@ -30,6 +32,7 @@ module SAIL
       validate_people(site.data["people"], "people.yml", "person")
       validate_themes(site.data["themes"])
       validate_publications(site.data["publications"])
+      check_duplicate_pub_fields
       validate_news(site.data["news"])
       validate_covers(site.data["covers"], site.data["publications"])
       validate_research(site.data["research"])
@@ -143,8 +146,9 @@ module SAIL
         if !blank?(pub["year"]) && !pub["year"].is_a?(Integer)
           err("#{pat}: `year` must be a plain number with no quotes (year: 2023), got #{pub["year"].inspect}.")
         end
-        %w[doi preprint_url code].each do |f|
+        LINK_FIELDS.each do |f|
           err("#{pat}: `#{f}` should be a full URL (http...), got: #{pub[f]}") if !blank?(pub[f]) && !pub[f].to_s.start_with?("http")
+          err("#{pat}: `#{f}: #{pub[f]}` still has the example's \"...\"; put the real address, or leave it empty (\"\").") if !blank?(pub[f]) && pub[f].to_s.include?("...")
         end
         if !blank?(pub["image"]) && !image_exists?(File.join("pubs", pub["image"]))
           err("#{pat}: `image: #{pub["image"]}` not found in assets/images/pubs/.")
@@ -184,9 +188,16 @@ module SAIL
         if !blank?(p["image"]) && !image_exists?(File.join("pubs", p["image"]))
           err("#{at}: `image: #{p["image"]}` not found in assets/images/pubs/.")
         end
-        %w[doi preprint_url code].each do |f|
+        LINK_FIELDS.each do |f|
           v = p[f]
           err("#{at}: `#{f}` should be a full URL (http...), got: #{v}") if !blank?(v) && !v.to_s.start_with?("http")
+          err("#{at}: `#{f}: #{v}` still has the example's \"...\"; put the real address, or leave it empty (\"\").") if !blank?(v) && v.to_s.include?("...")
+        end
+        # A link line indented like the abstract's text (four spaces) is read as part of the
+        # abstract: it shows as text on the paper page and its icon never appears.
+        %w[abstract abstract_ko].each do |f|
+          m = p[f].to_s.match(/\b(#{LINK_FIELDS.join("|")}):\s*"https?:\/\/[^"\s]*"?/)
+          err("#{at}: the #{f} contains `#{m[0]}`, so that line was read as part of the #{f}. Start it with two spaces, the same as `#{f}:`, not four.") if m
         end
         # A journal with no logo mapping is allowed (the template hides it); warn only.
         logos = @site.data["journal_logos"] || {}
@@ -197,6 +208,30 @@ module SAIL
         theme_names = (@site.data["themes"] || []).map { |t| t["name"] }
         (p["themes"] || []).each do |t|
           err("#{at}: theme \"#{t}\" is not in _data/themes.yml. If you renamed this theme in themes.yml, rename it here too; otherwise add it to themes.yml or fix the spelling.") unless theme_names.include?(t)
+        end
+      end
+    end
+
+    # YAML keeps the last of two same-named fields in one entry without a word, so a
+    # `code:` line added while the paper's empty `code: ""` slot is still there can
+    # silently lose. The parsed data cannot show that, so read the file's text.
+    def check_duplicate_pub_fields
+      path = File.join(@src, @site.config["data_dir"] || "_data", "publications.yml")
+      return unless File.file?(path)
+      label = nil
+      seen = {}
+      File.foreach(path).with_index(1) do |line, n|
+        if (m = line.match(/\A- ([A-Za-z_]+):(.*)/))
+          label = m[1] == "id" ? "id #{m[2].strip}" : "the entry on line #{n}"
+          seen = { m[1] => n }
+        elsif label && (m = line.match(/\A  ([A-Za-z_]+):(.*)/))
+          key = m[1]
+          label = "id #{m[2].strip}" if key == "id"
+          if seen[key]
+            err("publications.yml #{label}: `#{key}` is written twice (lines #{seen[key]} and #{n}), and only the last one counts. Keep one `#{key}:` line.")
+          else
+            seen[key] = n
+          end
         end
       end
     end

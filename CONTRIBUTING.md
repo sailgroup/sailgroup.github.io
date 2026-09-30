@@ -75,7 +75,7 @@ title links to the DOI and their own name is bold.
       year:    2023                 # plain number, no quotes
       doi:     "https://doi.org/10.xxxx/yyyy"   # optional; the title links here
       preprint_url: "https://arxiv.org/abs/..." # optional
-      code:    "https://github.com/..."         # optional; GitHub icon beside the DOI
+      code:    ""                               # optional; the code repository (GitHub icon)
 ```
 
 `title`, `authors`, `journal`, `year` are required per entry. List only papers
@@ -100,7 +100,7 @@ current member's name, shows up on that member's page too, all automatically.
   year: 2026                   # required
   doi: "https://doi.org/10.1038/..."   # optional; shows the DOI badge
   preprint_url: "https://arxiv.org/abs/..."  # optional; shows arXiv/ChemRxiv badge
-  code: "https://github.com/sailgroup/..."   # optional; the paper's code, shows the GitHub icon
+  code: ""                     # optional; the code repository (see "Link a paper's code")
   themes: ["Reaction pathway prediction"]    # optional topic tags (filter chips)
   image: "pub-42.jpg"          # optional; upload to assets/images/pubs/
   abstract: "English abstract."        # optional; shown in full on the detail page
@@ -114,6 +114,23 @@ logo in `_data/journal_logos.yml` simply shows no logo (add a line there to fix)
 Article"`). Most papers instead use the structured `vol:` / `issue:` / `pages:`,
 which gives an auto-formatted *vol* (issue), pages line; `vol` takes precedence
 over `ref` when both are present.
+
+### Link a paper's code (GitHub icon)
+
+Every paper has a `code: ""` slot. Put the repository's full address between the
+quotes, one per paper, e.g. `code: "https://github.com/sailgroup/MEMo"` (paper 47).
+The GitHub mark then shows at the right end of the DOI and preprint logos (just before
+the topic tags) on the Publications list, the paper's page and its authors' member
+pages. Any other host (GitLab, Zenodo) gets a plain grey code icon. Empty quotes show
+nothing. README ("논문에 코드 링크 달기") walks through the edit on github.com.
+
+The build stops and names the paper when an address:
+
+- does not start with `http`;
+- still has the example's `...`;
+- is given twice in one paper (YAML silently keeps the last one, so a filled-in line
+  above the empty slot would vanish);
+- is indented like the abstract's text, which makes it part of the abstract.
 
 ## Add a news item  →  `_data/news.yml`
 
