@@ -54,7 +54,7 @@
   journal: "Submitted"
   year: 2026
   doi: ""
-  code: ""
+  code: "https://github.com/sailgroup/Wavenumber-Aware-Deep-Learning/"
   dataset: ""
   themes:
     - "Spectroscopic analysis"
