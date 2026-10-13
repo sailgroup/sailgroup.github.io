@@ -302,7 +302,9 @@ p { text-wrap: pretty; }
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 0 clamp(0.35rem, 1.5vw, 1.25rem);
+  /* The gap narrows toward the menu breakpoint (14px at 1101px, 20px from 1331px as before),
+     so the bar keeps one row there with a classic scrollbar and Group Guide's new-tab mark. */
+  gap: 0 clamp(0.35rem, 2.6vw - 0.9rem, 1.25rem);
 }
 .nav-item > a {
   display: inline-flex;
@@ -323,6 +325,8 @@ p { text-wrap: pretty; }
   color: var(--ink);
   border-bottom-color: var(--orange);
 }
+/* Small mark after a link that opens another site in a new tab (Group Guide). */
+.site-nav .icon { width: 0.8em; height: 0.8em; }
 
 /* Dropdown: the parent stays a link; the chevron button beside it opens the panel
    (disclosure pattern). nav.js sets aria-expanded, also on mouse hover, so the panel's

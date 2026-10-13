@@ -50,7 +50,7 @@
             </li>
           {%- elsif item.external -%}
             <li class="nav-item">
-              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.name }}</a>
+              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.name }}{% include icon.html name="external" %}{% include new-tab.html %}</a>
             </li>
           {%- else -%}
             <li class="nav-item">
