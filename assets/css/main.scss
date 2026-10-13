@@ -989,8 +989,6 @@ body.no-scroll { overflow: hidden; }
 .pubs-empty { padding-bottom: var(--space-xl); }
 
 /* --- Research areas page -------------------------------------------------- */
-/* The lab's Korean overview, under the English one in the same type. */
-.research-overview-ko { margin-top: 0.6rem; }
 .research-areas {
   display: grid;
   gap: var(--space-2xl);
