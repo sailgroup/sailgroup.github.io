@@ -9,8 +9,9 @@
              alt="SAIL, Spectroscopy and AI Lab" width="224" height="57">
       </a>
       <span class="brand-sep" aria-hidden="true"></span>
-      <a class="brand-kmu" href="{{ '/' | relative_url }}" aria-label="Kookmin University, home">
-        <img src="{{ '/assets/images/kmu-emblem.png' | relative_url }}" alt="Kookmin University" width="80" height="80">
+      {%- comment -%}The emblem goes home like the logo, at the PI's request (D21). For a mouse or a tap only: out of the tab order and the accessibility tree, so the logo is the one home link a keyboard or screen reader meets, and no link named after the university leads to the lab's home page.{%- endcomment %}
+      <a class="brand-kmu" href="{{ '/' | relative_url }}" tabindex="-1" aria-hidden="true">
+        <img src="{{ '/assets/images/kmu-emblem.png' | relative_url }}" alt="" width="80" height="80">
       </a>
     </div>
 
