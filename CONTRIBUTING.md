@@ -276,7 +276,8 @@ This page is in Korean by request; keep new copy in Korean to match.
   without it "Nature" became "자연", names were doubled, and the PI's Korean abstracts
   were re-translated into broken Korean. Prose (bios, research text, news) stays
   translatable: a name kept inside a sentence made the translator drop the Korean
-  particle after it.
+  particle after it. Two lines of one entry (a role and its place) are two blocks, not
+  one line broken by `<br>`, which the translator runs together.
 - **Meta descriptions** stay within 160 characters (Bing's site scan reports longer
   ones, and Google cuts the snippet near there). A page's front-matter `description:`
   is written to fit; the generated ones (papers, people, the PI) are cut at a word.

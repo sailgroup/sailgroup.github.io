@@ -33,11 +33,12 @@ permalink: /pi/
           <p>{{ pi.bio }}</p>
         </div>
 
+        {%- comment -%}Each entry's role and place are two blocks, not one line broken by <br>: a browser's page translator then translates each on its own. As one line it ran them together and broke the result at the old place ("고려 / 대학교 물리화학 박사"). They look the same either way.{%- endcomment %}
         <div class="cv">
           <h2>Education</h2>
           {%- for e in pi.education -%}
           <div class="cv__item">
-            <div><span class="cv__role">{{ e.degree }}</span><br><span class="cv__org">{{ e.institution }}{% if e.advisor %}, {% include advisor.html advisor=e.advisor labs=pi.related_labs %}{% endif %}</span></div>
+            <div><div class="cv__role">{{ e.degree }}</div><div class="cv__org">{{ e.institution }}{% if e.advisor %}, {% include advisor.html advisor=e.advisor labs=pi.related_labs %}{% endif %}</div></div>
             <span class="cv__when">{{ e.date }}</span>
           </div>
           {%- endfor -%}
@@ -47,7 +48,7 @@ permalink: /pi/
           <h2>Career Summary</h2>
           {%- for a in pi.career -%}
           <div class="cv__item">
-            <div><span class="cv__role">{{ a.role }}</span><br><span class="cv__org">{{ a.org }}{% if a.advisor %}, {% include advisor.html advisor=a.advisor labs=pi.related_labs %}{% endif %}</span></div>
+            <div><div class="cv__role">{{ a.role }}</div><div class="cv__org">{{ a.org }}{% if a.advisor %}, {% include advisor.html advisor=a.advisor labs=pi.related_labs %}{% endif %}</div></div>
             <span class="cv__when">{{ a.period }}</span>
           </div>
           {%- endfor -%}

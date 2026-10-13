@@ -1412,7 +1412,10 @@ add their verification meta tags.
   word for word, "Nature" and the cover captions stay, no name is doubled. Prose (bios,
   research text, news) is translated as before. Also tried and taken back: the PI's name
   inside the bio, after which the translator dropped the Korean particle and the space
-  ("Joonyoung F. Joung국민대학교 ..."), worse than its own "정준영 F.는 ...".
+  ("Joonyoung F. Joung국민대학교 ..."), worse than its own "정준영 F.는 ...". On the PI
+  page each education and career entry's role and place are now two blocks; as one line
+  broken by `<br>`, the translator ran them together and broke the result at the old place
+  ("고려 / 대학교 물리화학 박사"). The English page is pixel-identical at four widths.
 - **Titles and descriptions** (`generate_pages.rb`): a person's and the PI's title carry
   the Korean name ("Jihwan Kim (김지환)"); a paper with a DOI or preprint adds "(Journal,
   Year)" to its title (the page heading stays the paper's title); descriptions are cut at

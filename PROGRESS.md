@@ -251,7 +251,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   36718673535) and verified live. Results in `REVIEW.md` section 21 (2026-09-30).
 - **Phase 21 (2026-10-13):** Search and page-translation pass (D47), on the maintainer's
   request. Names, journals and Korean text keep their form under Chrome's page translation
-  (`translate="no"`); titles carry Korean names and a published paper's venue; descriptions
+  (`translate="no"`), and the PI page's education and career lines translate line by
+  line; titles carry Korean names and a published paper's venue; descriptions
   stay within 160 characters; the structured data and llms.txt add the lab's other names
   (among them 인공지능화학연구실), Kookmin's Korean name, the GitHub organization and the
   lab's Korean overview; Chanjoong Kim links chanjoongx.com; after each `main` deploy,
