@@ -516,14 +516,14 @@ p { text-wrap: pretty; }
 .area-row h3 { font-size: var(--fs-md); line-height: 1.32; }
 .area-row__link { color: inherit; transition: color 0.15s ease; }
 .area-row__link:hover { color: var(--orange-deep); }
-.area-row p { margin-top: 0.4rem; color: var(--ink-2); max-width: 56ch; }
-/* From 1000px the text keeps a reading measure (56ch is about 70 characters a line in
-   Pretendard, where 1ch is a digit's width; the whole row gave 105 to 113) and the figure
-   column takes the rest of the row. The figure box is as tall as the text beside it, so
-   every row is balanced: the 4:1 database figure gets a short wide box, a long text a
-   tall one. Narrower, the 208px column keeps its 4:3 box. */
+.area-row p { margin-top: 0.4rem; color: var(--ink-2); max-width: 55ch; }
+/* From 1000px the text keeps a reading measure (55ch: 66 to 70 characters a line on
+   average and never more than 75 in Pretendard, where 1ch is a digit's width; the whole row
+   gave 105 to 113) and the figure column takes the rest of the row. The figure box is as
+   tall as the text beside it, so every row is balanced: the 4:1 database figure gets a
+   short wide box, a long text a tall one. Narrower, the 208px column keeps its 4:3 box. */
 @media (min-width: 1000px) {
-  .area-row { grid-template-columns: minmax(0, 1fr) minmax(0, 56ch); align-items: stretch; }
+  .area-row { grid-template-columns: minmax(0, 1fr) minmax(0, 55ch); align-items: stretch; }
   .area-row--nofig { grid-template-columns: minmax(0, 1fr); }
   .area-row__fig { position: relative; aspect-ratio: auto; min-height: 156px; }
   .area-row__fig img { position: absolute; inset: 0.5rem; width: calc(100% - 1rem); height: calc(100% - 1rem); }
@@ -613,8 +613,9 @@ p { text-wrap: pretty; }
 /* Icon beside its text: the global svg { display: block } would otherwise stack the icon above the line. */
 .profile__contact > a, .profile__contact > span { display: flex; align-items: center; gap: 0.55rem; }
 .profile__contact a:hover { color: var(--orange-ink); }
-/* The bio keeps a reading measure: about 70 characters a line (the whole column gave 89). */
-.profile__main .prose p { max-width: 56ch; }
+/* The bio keeps a reading measure: 65 characters a line on average, at most 71 (the whole
+   column gave 89). */
+.profile__main .prose p { max-width: 55ch; }
 .profile__name { margin-bottom: 0.2rem; }
 .profile__name .ko { color: var(--muted); font-size: 0.6em; font-family: var(--font-sans); font-weight: 500; margin-left: 0.5rem; }
 .profile__title { color: var(--ink-2); font-weight: 500; }
