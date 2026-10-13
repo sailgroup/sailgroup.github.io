@@ -21,15 +21,16 @@ permalink: /news/
           <span class="news-tag news-tag--{{ cat }}">{{ cat | capitalize }}</span>
         </div>
         <div class="news__content">
-          <h2 class="news__title">{{ n.title }}</h2>
+          {%- comment -%}Several links share a label ("Member page"), so each is described by its item's title.{%- endcomment %}
+          <h2 class="news__title" id="news-{{ forloop.index }}">{{ n.title }}</h2>
           {%- if n.body and n.body != "" -%}<p class="news__text">{{ n.body }}</p>{%- endif -%}
           {%- if n.link and n.link != "" -%}
             {%- assign label = n.link_text | default: "Details" -%}
             {%- if n.link contains "://" -%}
-            <a class="link news__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer">{{ label }} {% include icon.html name="external" %}</a>
+            <a class="link news__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer" aria-describedby="news-{{ forloop.index }}">{{ label }} {% include icon.html name="external" %}</a>
             {%- else -%}
             {%- capture href -%}{% include news-href.html link=n.link %}{%- endcapture -%}
-            <a class="link news__link" href="{{ href | relative_url }}">{{ label }}</a>
+            <a class="link news__link" href="{{ href | relative_url }}" aria-describedby="news-{{ forloop.index }}">{{ label }}</a>
             {%- endif -%}
           {%- endif -%}
         </div>

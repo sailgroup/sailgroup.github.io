@@ -577,8 +577,10 @@ p { text-wrap: pretty; }
 .person__name a:hover { color: var(--orange-deep); }
 .person__role { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.15rem; }
 .person__ko { font-size: var(--fs-xs); color: var(--muted); }
-.person__links { margin-top: 0.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
-.person__links a { color: var(--muted); }
+/* Each icon link is a target of at least 24x24px (WCAG 2.5.8) around the same 20px icon; the
+   gap and margin are 4px and 2px smaller, so the icons sit where they did. */
+.person__links { margin-top: calc(0.5rem - 2px); display: flex; flex-wrap: wrap; justify-content: center; gap: calc(0.6rem - 4px); }
+.person__links a { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; border-radius: 4px; color: var(--muted); }
 .person__links a:hover { color: var(--orange-ink); }
 
 /* Note line under a person's role (e.g. alumni exchange-program note) */
