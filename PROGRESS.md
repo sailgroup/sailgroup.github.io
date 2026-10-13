@@ -280,5 +280,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   D50's accessibility check in CI and its two scheduled workflows (broken outside links,
   papers on the PI's ORCID that the site does not list) were taken out too, so nothing
   outside the site is added (D53). Built on `dev` (run 38457279655 green; axe: no violation
-  on 70 pages and the phone menu; after D53, run 38463633407 green). Results in `REVIEW.md`
-  section 23 (2026-10-13 and 2026-10-14).
+  on 70 pages and the phone menu; after D53, run 38463633407 green). Deployed on 2026-10-14
+  (main run 38465994849) and verified live; IndexNow sent 69 pages (Bing 200, Naver 200).
+  Results in `REVIEW.md` section 23 (2026-10-13 and 2026-10-14).

@@ -983,3 +983,22 @@ build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same
   38457279655 at 0badb6f): the built site is the same, file for file, in all 492 files but
   `security.txt`, whose `Expires` is written at build time. The text check above holds for
   ddde611.
+- **Deployed and verified live:**
+  - runs: dev 38463633407 and 38463978085, main 38465994849, all green;
+  - `main` was fast-forwarded from d1886d4 to c9f9d4c with no PI commits in between;
+  - IndexNow sent all 69 pages (the markup of every page changed); api.indexnow.org and
+    Naver answered 200;
+  - the 158 files compared on https://sail.kookmin.ac.kr are byte-identical to the deployed
+    build (the 40 larger figures, the SVG logo and `/publications.bib` among them), and all
+    269 image URLs load;
+  - all 69 pages match the build in shown text, screen-reader text, links, head tags and
+    JSON-LD, and the machine files (`llms.txt`, `llms-full.txt`, the sitemap, `robots.txt`,
+    `security.txt`, the web manifest) are the build's and, but for `security.txt`'s
+    `Expires`, the same as before the deploy;
+  - on the live site the open phone menu reaches all 11 links at 844x390, 667x375 and
+    320x256; the footer is 628px tall at 390px with its base line; 2 keyboard stops lead to
+    "/"; the menu button shows up to 1,100px and the bar of eight items from 1,101px, with
+    no overflow;
+  - `functional.js` on the live site: 22 of 22 pass (its viewer selectors now those of the
+    one viewer; no member has a hover photo at present, so that check finds none);
+    `d42-spot.js`: 17 of 17.
