@@ -21,11 +21,7 @@ _data/home.yml.{%- endcomment -%}
             {%- if item.url == "/" -%}{%- continue -%}{%- endif -%}
             {%- if item.children -%}
               {%- for c in item.children -%}
-                {%- if c.external -%}
-          <li><a href="{{ c.url }}" target="_blank" rel="noopener noreferrer">{{ c.name }}{% include new-tab.html %}</a></li>
-                {%- else -%}
           <li><a href="{{ c.url | relative_url }}">{{ c.name }}</a></li>
-                {%- endif -%}
               {%- endfor -%}
             {%- elsif item.external -%}
           <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.name }}{% include new-tab.html %}</a></li>

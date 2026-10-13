@@ -267,7 +267,7 @@ p { text-wrap: pretty; }
   min-height: var(--header-h);
 }
 /* The logos never shrink: they have a fixed height, so a narrower box would squash them.
-   The nav fits beside them above the menu breakpoint (55em, below). */
+   The nav fits beside them above the menu breakpoint (68.75em, below). */
 .brand-group { display: inline-flex; align-items: center; gap: 0.9rem; flex-shrink: 0; }
 .brand { display: inline-flex; align-items: center; }
 .brand img { height: 56px; width: auto; }
@@ -294,20 +294,19 @@ p { text-wrap: pretty; }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* A label never breaks (a two-word one did under WCAG 1.4.12 text spacing). Where the labels
-   need more room than the bar has (text spacing makes them about 60px wider, which the bar
-   has from about 900px), a whole item moves to a second row instead of running past the
-   window, as nowrap alone did (D42). */
+/* A label never breaks ("Group Guide" did under WCAG 1.4.12 text spacing). Where the labels
+   need more room than the bar has (text spacing makes them about 100px wider), a whole item
+   moves to a second row instead of running past the window, as nowrap alone did (D42). */
 .nav-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 0 1.25rem;
+  /* The gap narrows toward the menu breakpoint (14px at 1101px, 20px from 1331px as before),
+     so the bar keeps one row there with a classic scrollbar and Group Guide's new-tab mark. */
+  gap: 0 clamp(0.35rem, 2.6vw - 0.9rem, 1.25rem);
 }
-/* The links and the button of an entry with sub-pages look alike. */
-.nav-item > a,
-.subnav-toggle {
+.nav-item > a {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -322,23 +321,33 @@ p { text-wrap: pretty; }
 }
 .nav-item > a:hover,
 .nav-item > a[aria-current="page"],
-.nav-item.is-current > .subnav-toggle {
+.nav-item.is-current > a {
   color: var(--ink);
   border-bottom-color: var(--orange);
-}
-/* A tap leaves :hover on the button, which unlike a link does not leave the page, and the
-   line would mark it as the current page; only a mouse gets it. */
-@media (hover: hover) {
-  .subnav-toggle:hover { color: var(--ink); border-bottom-color: var(--orange); }
 }
 /* Small mark after a link that opens another site in a new tab (Group Guide). */
 .site-nav .icon { width: 0.8em; height: 0.8em; }
 
-/* Dropdown: the entry's button opens the panel (disclosure pattern). nav.js sets
-   aria-expanded, also on mouse hover, so the panel's state and what a screen reader hears
-   always agree. */
-.nav-item.has-children { position: relative; }
-.subnav-toggle::after {
+/* Dropdown: the parent stays a link; the chevron button beside it opens the panel
+   (disclosure pattern). nav.js sets aria-expanded, also on mouse hover, so the panel's
+   state and what a screen reader hears always agree. The 24px-wide button overlaps the
+   link's right padding and the item's negative margin takes back its empty right half, so
+   the arrow sits where it did inside the link and the bar is no wider (it has little room
+   at the menu breakpoint); its focus ring is drawn inside it, clear of the label. */
+.nav-item.has-children { position: relative; display: flex; align-items: center; margin-right: -0.4rem; }
+.subnav-toggle {
+  display: grid;
+  place-items: center start;
+  width: 1.5rem; height: 2rem;
+  margin-left: -0.3rem;
+  padding-left: 0.2rem;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  border-radius: var(--radius-sm);
+}
+.subnav-toggle:hover { color: var(--ink); }
+.subnav-toggle:focus-visible { outline-offset: -2px; }
+.subnav-toggle::before {
   content: "";
   width: 0.42em; height: 0.42em;
   border-right: 1.5px solid currentColor;
@@ -347,7 +356,7 @@ p { text-wrap: pretty; }
   opacity: 0.7;
   transition: transform 0.16s ease;
 }
-.subnav-toggle[aria-expanded="true"]::after { transform: rotate(225deg) translateY(-1px); }
+.subnav-toggle[aria-expanded="true"]::before { transform: rotate(225deg) translateY(-1px); }
 .subnav {
   position: absolute;
   top: 100%;
@@ -367,9 +376,7 @@ p { text-wrap: pretty; }
   opacity: 1; visibility: visible; transform: translateY(0);
 }
 .subnav a {
-  display: flex; /* a row, with Group Guide's new-tab mark beside its name */
-  align-items: center;
-  gap: 0.3rem;
+  display: block;
   padding: 0.55rem 0.7rem;
   font-size: var(--fs-sm);
   color: var(--ink-2);
@@ -954,11 +961,10 @@ body.no-scroll { overflow: hidden; }
   font-size: var(--fs-xs); color: #8c8c8c;
 }
 .footer-base a:hover { color: var(--orange); }
-/* Where the header shows the menu button (55em, see the header), the brand takes its own
-   row, with the links and Contact side by side under it (one column on phones). Above it,
-   in three columns, the Links column is narrower than 18em up to about 1010px, so the list
-   is one column there (see above). */
-@media (max-width: 55em) {
+/* Where the header shows the menu button (68.75em, see the header), three columns leave the
+   links' two columns too narrow ("Principal Investigator" wrapped at 861px): the brand takes
+   its own row, with the links and Contact side by side under it (one column on phones). */
+@media (max-width: 68.75em) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
 }
@@ -1040,14 +1046,14 @@ body.no-scroll { overflow: hidden; }
   .profile__contact { margin-top: 0; }
 }
 
-/* Tablet and below: collapse the primary nav to a hamburger. Beside the logos, the five
-   items need an 819px window with Pretendard (813px in the fallback font), 834px with a
-   classic 15px scrollbar; in a narrower one an item moves to a second row. The breakpoint
-   is in em, unlike the others, because the items' width follows the reader's font size
-   setting: 55em is 880px at the default size (46px above 834px), and with a larger
-   default font the menu takes over at a wider window. Keep in sync with nav.js and the
-   footer's query (above), which switches its layout at the same width. */
-@media (max-width: 55em) {
+/* Tablet and below: collapse the primary nav to a hamburger. Beside the logos, the
+   items need a 1080px window with Pretendard (1072px in the fallback font); in a
+   narrower one they wrapped "Group Guide" and squeezed the logos. The breakpoint is in
+   em, unlike the others, because the items' width follows the reader's font size
+   setting: 68.75em is 1100px at the default size (a margin above 1080px), and with a
+   larger default font the menu takes over at a wider window. Keep in sync with nav.js
+   and the footer's query (above), which switches its layout at the same width. */
+@media (max-width: 68.75em) {
   .nav-toggle { display: block; }
   .site-nav {
     position: absolute;
@@ -1071,19 +1077,17 @@ body.no-scroll { overflow: hidden; }
     gap: 0;
     padding: 0.6rem clamp(1.1rem, 4vw, 2rem) 1.1rem;
   }
-  /* Full-width rows: the divider spans the menu. An entry's button opens its sub-pages in
-     place under it, with the chevron at the right end of its row. */
-  .nav-item > a,
-  .subnav-toggle { display: flex; width: 100%; padding: 0.75rem 0.2rem; border-bottom: 1px solid var(--line); }
-  .subnav-toggle::after { margin-left: auto; }
+  /* Full-width rows: the divider spans the menu. A parent's sub-pages are always listed
+     under it here, so its chevron button is not needed. */
+  .nav-item > a { display: flex; padding: 0.75rem 0.2rem; border-bottom: 1px solid var(--line); }
+  .nav-item.has-children { display: block; margin-right: 0; }
+  .subnav-toggle { display: none; }
   .nav-item.has-children .subnav {
     position: static;
-    display: none;
     opacity: 1; visibility: visible; transform: none;
     box-shadow: none; border: 0; padding: 0 0 0.4rem 0.8rem;
     min-width: 0;
   }
-  .nav-item.has-children .subnav-toggle[aria-expanded="true"] + .subnav { display: block; }
 }
 
 @media (max-width: 720px) {

@@ -370,10 +370,9 @@ module SAIL
 
     # --- navigation (top menu) ----------------------------------------------
     # navigation.yml drives the header menu. A wrong url here would silently ship
-    # a broken nav link, so check the shape: every item needs a name. An item with
-    # children is a button that opens them, so it has no url; every other item and
-    # every child needs one. An internal url must start with "/", an external one
-    # must be a full URL and carry `external: true`.
+    # a broken nav link, so check the shape: every item needs a name and a url;
+    # an internal url must start with "/", an external one must be a full URL and
+    # carry `external: true`; children (dropdown) follow the same internal rule.
     def validate_navigation(list)
       return if list.nil?
       unless list.is_a?(Array)
@@ -382,28 +381,24 @@ module SAIL
       end
       list.each_with_index do |item, i|
         at = blank?(item["name"]) ? "navigation.yml entry #{i + 1}" : "navigation.yml \"#{item["name"]}\""
-        children = item["children"] || []
-        if children.empty?
-          validate_nav_link(item, at)
-          next
-        end
         err("#{at}: missing required field `name`.") if blank?(item["name"])
-        unless blank?(item["url"])
-          err("#{at}: an entry with children opens them from a button and has no page of its own; remove its `url` (list that page as a child).")
+        url = item["url"]
+        if blank?(url)
+          err("#{at}: missing required field `url`.")
+        elsif item["external"]
+          err("#{at}: external `url` should be a full URL (http...), got: #{url}") unless url.to_s.start_with?("http")
+        elsif !url.to_s.start_with?("/")
+          err("#{at}: internal `url: #{url}` should start with \"/\" (e.g. /news/), or set `external: true` for an outside link.")
         end
-        children.each_with_index { |c, j| validate_nav_link(c, "#{at} child #{j + 1}") }
-      end
-    end
-
-    def validate_nav_link(item, at)
-      err("#{at}: missing required field `name`.") if blank?(item["name"])
-      url = item["url"]
-      if blank?(url)
-        err("#{at}: missing required field `url`.")
-      elsif item["external"]
-        err("#{at}: external `url` should be a full URL (http...), got: #{url}") unless url.to_s.start_with?("http")
-      elsif !url.to_s.start_with?("/")
-        err("#{at}: internal `url: #{url}` should start with \"/\" (e.g. /news/), or set `external: true` for an outside link.")
+        (item["children"] || []).each_with_index do |c, j|
+          cat = "#{at} child #{j + 1}"
+          err("#{cat}: missing required field `name`.") if blank?(c["name"])
+          if blank?(c["url"])
+            err("#{cat}: missing required field `url`.")
+          elsif !c["url"].to_s.start_with?("/")
+            err("#{cat}: `url: #{c["url"]}` should start with \"/\".")
+          end
+        end
       end
     end
 
