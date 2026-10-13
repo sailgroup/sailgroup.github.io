@@ -1578,6 +1578,9 @@ add their verification meta tags.
   their one job `contents: read` and `issues: write`. GitHub pauses a scheduled workflow
   after 60 days without activity in the repository; "Enable workflow" on the Actions tab
   restarts it.
+- **Checks taken out** on 2026-10-14, before any deploy (D53): edac1fa, 0b37a56 and
+  ddde611 revert 8f2f667, 40a206d and 5d2e918, so the accessibility check and the two
+  scheduled workflows are not added. Each returns by reverting that commit.
 
 ## D51: [Taken back by D52] The menu groups the people pages; the Korean overview on Research (for the PI to confirm, 2026-10-13)
 
@@ -1624,3 +1627,20 @@ add their verification meta tags.
   and every string in `_data` that the live site shows must still be shown. For this round
   (CI run 38457279655 at 0badb6f): 69 pages, shown text removed or changed on none; of the 991
   strings in `_data`, the 715 the live site shows are all still shown.
+
+## D53: Nothing outside the site is added in this round (maintainer's rule, 2026-10-14)
+
+- **Asked:** the maintainer sees the round as UX and UI work only, and ruled that what is not
+  on `main` now is not added outside the site, so that nothing new notifies anyone: a check
+  that opens a GitHub issue notifies everyone who watches the repository.
+- **Applied:** edac1fa, 0b37a56 and ddde611 revert D50's new-paper watch, link check and
+  accessibility check (8f2f667, 40a206d, 5d2e918). The workflow, Dependabot's settings and the
+  scripts' packages (`sharp` only) are again as on `main`; `.github` differs from `main` only
+  in the image step (507377e: a paper's `-full` figure keeps its size), which shapes the built
+  site's images.
+- **Kept:** what D49, D50 and D52 put in the pages, BibTeX and the larger figures among them.
+  The accessibility fixes stay in the markup; the check that confirmed them (no violation on
+  70 pages and the phone menu, run 38457279655) is not part of CI.
+- **Check:** the built site is the same, file for file, in all 492 files but `security.txt`,
+  whose `Expires` is written at build time (CI run 38463633407 at ddde611 against run
+  38457279655 at 0badb6f), so the text check of D52 holds for ddde611.

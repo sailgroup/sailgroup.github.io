@@ -274,10 +274,11 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   topics in the address; text colours follow their role and prose lines stay within about 75
   characters; one viewer serves the covers, the photos and the figures; 40 paper pages show a
   larger published figure, and each paper with a DOI its BibTeX (`/publications.bib` has
-  all); the header logo is an SVG redrawn to match the PNG. CI now checks every page with
-  axe-core, and two scheduled workflows report broken outside links (monthly) and papers on
-  the PI's ORCID that the site does not list (weekly). D51 (the menu grouped under People,
-  the Korean overview on Research) was taken back before the deploy and the footer's base
-  line put back, so what the PI wrote and the site's own wording stay as they are (D52).
-  Built on `dev` (run 38457279655 green; axe: no violation on 70 pages and the phone menu).
-  Results in `REVIEW.md` section 23 (2026-10-13 and 2026-10-14).
+  all); the header logo is an SVG redrawn to match the PNG. D51 (the menu grouped under
+  People, the Korean overview on Research) was taken back before the deploy and the footer's
+  base line put back, so what the PI wrote and the site's own wording stay as they are (D52).
+  D50's accessibility check in CI and its two scheduled workflows (broken outside links,
+  papers on the PI's ORCID that the site does not list) were taken out too, so nothing
+  outside the site is added (D53). Built on `dev` (run 38457279655 green; axe: no violation
+  on 70 pages and the phone menu; after D53, run 38463633407 green). Results in `REVIEW.md`
+  section 23 (2026-10-13 and 2026-10-14).

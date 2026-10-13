@@ -929,7 +929,7 @@ Verified on the CI builds of `dev` (there is no local Ruby), then on the live si
   - all 69 pages match the build in title, description, visible text and links, and the key
     file is served.
 
-## 23. Design review fixes, citations, figures and checks (2026-10-13 and 2026-10-14, D49, D50, D52)
+## 23. Design review fixes, citations, figures and checks (2026-10-13 and 2026-10-14, D49, D50, D52, D53)
 
 Verified on a local build of `dev` (Docker `ruby:3.3`, the commands CI runs) and on the CI
 build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same viewports.
@@ -961,7 +961,8 @@ build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same
 - **Logo:** the SVG against the PNG at 224x57 differs by 1.6 of 255 on average; 5,617 bytes.
 - **Scheduled checks, dry runs:** the link check read 80 outside links in 70 s and found none
   that needs a look (LinkedIn refuses scripts: HTTP 999). The new-paper watch read 50 ORCID
-  works; two are not on the site (an SSRN preprint and a 2019 correction).
+  works; two are not on the site (an SSRN preprint and a 2019 correction). Neither workflow
+  is added: both were taken out before the deploy, with the accessibility check (D53).
 - **Before and after:** 30 views from 320 to 1536px wide (pages, the phone menu, the
   dropdown, the viewers, the footer), captured on the live site and on the dev build and
   put side by side on one page for the maintainer; the dev views taken again from CI's build
@@ -978,3 +979,7 @@ build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same
   copy button; the filter's no-result sentence moved from its hidden box into the count line,
   word for word. Links added: the phone number's `tel:`, `/publications.bib`, the home figure
   and the 40 paper figures.
+- **After D53** (the three checks taken out, ddde611; CI run 38463633407, against run
+  38457279655 at 0badb6f): the built site is the same, file for file, in all 492 files but
+  `security.txt`, whose `Expires` is written at build time. The text check above holds for
+  ddde611.

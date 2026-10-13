@@ -33,22 +33,19 @@ domain `https://sail.kookmin.ac.kr`.
   `photos`, `positions` (member/alumni/publication detail pages are generated, not files)
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
   from the build)
-- `.github/workflows/`: the CI build (Jekyll, html-proofer, axe-core) and deploy, and the
-  scheduled `link-check.yml` (monthly) and `new-papers.yml` (weekly); `.github/scripts/`: the
-  scripts they run (`prepare-images.mjs`, `check-a11y.mjs`, `check-links.mjs`,
-  `check-new-papers.mjs`, `indexnow.mjs`), their packages pinned by `package-lock.json`
+- `.github/workflows/`: the CI build (Jekyll, html-proofer) and deploy; `.github/scripts/`: the
+  scripts it runs (`prepare-images.mjs`, `indexnow.mjs`), `sharp`'s version pinned by
+  `package-lock.json`
 
 ## Build / deploy
 - CI first runs `.github/scripts/prepare-images.mjs` on the checkout (shrinks oversized uploads,
   strips photo metadata, writes smaller renditions for `srcset` and lists them with image sizes in
-  `_data/generated_images.json`; D40), then `bundle exec jekyll build`, then html-proofer and
-  axe-core (`check-a11y.mjs`: WCAG 2.2 A and AA on every page and the open phone menu; D50) over
-  the built site, then deploys to Pages. On `main` the image step may fail without failing the
-  build (pages then use the plain image files) and an axe violation only warns; on `dev` and pull
-  requests both are strict (`IMAGES_STRICT`, `A11Y_STRICT`): a failure, an image that errors
-  while being processed, or an axe violation fails the run (a HEIC, TIFF or DNG upload only
-  warns; D42). Push to `dev` builds only; `main` builds and deploys (D11). Confirm the Actions
-  run is green before treating anything as done.
+  `_data/generated_images.json`; D40), then `bundle exec jekyll build`, then html-proofer over the
+  built site, then deploys to Pages. On `main` the image step may fail without failing the build
+  (pages then use the plain image files); on `dev` and pull requests it is strict (`IMAGES_STRICT`):
+  a failure, or an image that errors while being processed, fails the run (a HEIC, TIFF or DNG
+  upload only warns; D42). Push to `dev` builds only; `main` builds and deploys (D11). Confirm the
+  Actions run is green before treating anything as done.
 - `Gemfile.lock` and `.github/scripts/package-lock.json` are committed and CI installs exactly
   what they pin; update them as `CONTRIBUTING.md` ("Build tools") describes. A local build can
   run in Docker (`ruby:3.3`) with the same commands as CI.

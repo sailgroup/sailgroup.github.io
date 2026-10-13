@@ -241,12 +241,6 @@ sections:
 - 빌드 도구 버전은 `Gemfile.lock` 과 `.github/scripts/package-lock.json` 으로 고정되어 있고, Dependabot이
   한 달에 한 번 업데이트 PR을 엽니다(CI가 통과하면 병합. PR에서는 이미지 단계도 실패하면 CI가 실패합니다).
   병합하면 `main` 이 배포되므로, 그 뒤 `dev` 에 `main` 을 받아 둡니다. 자세한 내용은 `CONTRIBUTING.md` 의 Build tools.
-- 빌드마다 접근성 검사(axe-core, `.github/scripts/check-a11y.mjs`)가 모든 페이지를 확인합니다. `dev` 와
-  PR 에서는 문제가 있으면 CI 가 실패하고, `main` 에서는 경고만 남기고 배포합니다. 정해진 날에는 두 가지를
-  확인해 GitHub 이슈 하나로 알립니다. 매달 3일에는 데이터에 적힌 바깥 링크(DOI·논문·코드·데이터·개인 링크)를
-  확인하고(라벨 `link-check`), 매주 월요일에는 PI 의 ORCID 에 있지만 사이트에 없는 논문을 찾습니다(라벨
-  `new-paper`). 이슈를 보고 고치거나, 일부러 빼는 논문과 잘못된 경보는 `CONTRIBUTING.md` 의 Checks 에 적힌
-  대로 목록 파일에 넣습니다.
 - 주의: `CNAME`(커스텀 도메인) 파일을 삭제하지 마세요. `baseurl` 은 `""` 로 유지합니다.
 - 주의: 맨 위 폴더의 `4fa521d6cc1d0212aa5696ee0a4b94a8.txt` 도 삭제하지 마세요. `main` 이 배포될 때마다
   바뀐 페이지를 네이버와 빙에 알리는 IndexNow 의 키 파일입니다(공개되어 있는 것이 정상입니다).
