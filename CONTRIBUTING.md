@@ -292,18 +292,20 @@ This page is in Korean by request; keep new copy in Korean to match.
 ## Build tools
 
 - **Versions are locked.** `Gemfile.lock` pins every Ruby gem (Jekyll, its
-  plugins, html-proofer) and `.github/scripts/package-lock.json` pins `sharp` for
-  the image step. CI installs exactly these (Bundler in deployment mode, `npm
-  ci`), so a new release cannot change or break a build on its own.
+  plugins, html-proofer) and `.github/scripts/package-lock.json` pins the CI
+  scripts' packages (`sharp` for the image step, `axe-core` and `puppeteer-core`
+  for the accessibility check). CI installs exactly these (Bundler in deployment
+  mode, `npm ci`), so a new release cannot change or break a build on its own.
 - **Updates come from Dependabot**: once a month, one pull request each for the
-  GitHub Actions, the gems, and `sharp`. Merge it when its CI run is green (the
-  image step is strict on a pull request, so green includes it). Merging deploys
+  GitHub Actions, the gems, and the CI scripts' packages. Merge it when its CI run
+  is green (the image step and the accessibility check are strict on a pull
+  request, so green includes them). Merging deploys
   `main`; then bring `dev` up to date (`git switch dev`, `git pull --no-rebase
   origin main`, `git push`), so work on `dev` starts from what is live. Every
   action in the workflow is pinned to a commit with its release in a comment;
-  Dependabot's pull request changes both. A security fix for a gem or `sharp` can
-  also arrive between the monthly ones (Dependabot security updates); handle it the
-  same way.
+  Dependabot's pull request changes both. A security fix for a gem or a script
+  package can also arrive between the monthly ones (Dependabot security updates);
+  handle it the same way.
 - **Secrets are refused at push.** Secret scanning with push protection is on: a
   push that contains a token or key is rejected. Take the secret out of the commit
   instead of bypassing the block, and revoke it if it was ever pushed anywhere.
@@ -318,8 +320,8 @@ This page is in Korean by request; keep new copy in Korean to match.
   ```
 
   (`bundle lock --update` moves every gem to its newest allowed version.)
-- **To change the `sharp` version**, in `.github/scripts/`:
-  `npm install --save-exact --package-lock-only sharp@<version>`.
+- **To change a script package's version** (`sharp`, `axe-core`, ...), in
+  `.github/scripts/`: `npm install --save-exact --package-lock-only <package>@<version>`.
 - **A full local build**, the same commands as CI (`BUNDLE_FROZEN` makes Bundler
   refuse a `Gemfile.lock` that does not match the `Gemfile`, as CI does):
 
@@ -339,3 +341,18 @@ This page is in Korean by request; keep new copy in Korean to match.
   scheduled run on purpose: GitHub turns off a workflow that has a schedule after
   60 days without activity in a public repository, and a turned-off workflow no
   longer runs on a push either, so the site would stop deploying.
+
+## Checks
+
+- **Accessibility, on every build.** After html-proofer, CI runs axe-core
+  (`.github/scripts/check-a11y.mjs`) on every page of the built site (the redirect
+  stubs aside) against WCAG 2.2 A and AA, and once more on the home page at 390 px
+  with the phone menu open. On `dev` and on pull requests a violation fails the run;
+  on `main` it is a warning on the run's page and the site deploys anyway. The log
+  names each one: the page, axe's rule (with a link that explains it), its impact
+  and the element's selector. To run it here after a local build (above): `npm ci
+  --prefix .github/scripts`, set `CHROME_BIN` to your Chrome (on Windows usually
+  `C:/Program Files/Google/Chrome/Application/chrome.exe`), then
+  `node .github/scripts/check-a11y.mjs _site`. A false alarm: fix the markup if
+  you can; if not, add the rule's id to `RULES_OFF` or the element's selector to
+  `EXCLUDE` at the top of that script, with the reason beside it.

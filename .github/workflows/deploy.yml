@@ -98,6 +98,21 @@ jobs:
             --allow-hash-href \
             --no-enforce-https
 
+      # Accessibility: axe-core checks every page of the build (the redirect stubs aside)
+      # against WCAG 2.2 A and AA, and the phone menu once, in the Chrome the runner carries
+      # (.github/scripts/check-a11y.mjs). Like the image step, it is strict on dev and on pull
+      # requests, where a violation fails the run, and only warns on main, so a content push
+      # always deploys. The image step installed the scripts' packages; if it failed on main
+      # before that, they are installed here.
+      - name: Check accessibility (axe-core)
+        continue-on-error: ${{ github.ref == 'refs/heads/main' }}
+        timeout-minutes: 5
+        env:
+          A11Y_STRICT: ${{ github.ref != 'refs/heads/main' }}
+        run: |
+          test -d .github/scripts/node_modules/puppeteer-core || npm ci --prefix .github/scripts --no-audit --no-fund
+          node .github/scripts/check-a11y.mjs _site
+
       # include-hidden-files: v4+ of this action drops dotfiles by default, which
       # would silently remove /.well-known/security.txt from the deployed site.
       - name: Upload Pages artifact
