@@ -122,9 +122,14 @@
 /* Mild deterrent against casual saving of the lab's photos/portraits/covers:
    suppress the right-click menu and drag on <img>. This is NOT a security control
    -- the image URLs are public and reachable via DevTools, a direct request, or a
-   screenshot -- just a small nudge against one-click "Save/Open image". */
+   screenshot -- just a small nudge against one-click "Save/Open image". An image inside
+   a link keeps its menu and drag, so "Open link in new tab" works on paper thumbnails
+   and covers. */
 (function () {
-  function block(e) { if (e.target && e.target.tagName === "IMG") e.preventDefault(); }
+  function block(e) {
+    var t = e.target;
+    if (t && t.tagName === "IMG" && !t.closest("a")) e.preventDefault();
+  }
   document.addEventListener("contextmenu", block);
   document.addEventListener("dragstart", block);
 })();
