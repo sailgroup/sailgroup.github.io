@@ -1,0 +1,15 @@
+{%- comment -%}Small menu of the three people pages, under the heading of /pi/, /members/ and /alumni/: the header's dropdown is not at hand on a touch screen, and /members/ had no link to the other two. The names are the menu's (_data/navigation.yml), so a renamed entry changes here too; the current page carries aria-current.{%- endcomment -%}
+{%- assign people = "/pi/,/members/,/alumni/" | split: "," -%}
+<nav class="people-nav" aria-label="People">
+  <ul>
+    {%- for u in people -%}
+      {%- for item in site.data.navigation -%}
+        {%- for c in item.children -%}
+          {%- if c.url == u %}
+    <li><a href="{{ c.url | relative_url }}"{% if page.url == c.url %} aria-current="page"{% endif %}>{{ c.name }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- endfor %}
+  </ul>
+</nav>
