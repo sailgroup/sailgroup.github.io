@@ -1,4 +1,4 @@
-{%- comment -%}Preprint logo link. Chooses arXiv vs ChemRxiv from the URL. Pass: url, class, height.{%- endcomment -%}
+{%- comment -%}Preprint logo link. Chooses arXiv vs ChemRxiv from the URL. Pass: url, class, height, and on a list describedby=<the paper title's id> (each badge then says which paper it is for, as the badge names repeat down a list).{%- endcomment -%}
 {%- assign pl = include.url | downcase -%}
 {%- if pl contains 'chemrxiv' -%}{%- assign prefile = 'chemrxiv.png' -%}{%- assign prealt = 'ChemRxiv' -%}{%- else -%}{%- assign prefile = 'arxiv.png' -%}{%- assign prealt = 'arXiv' -%}{%- endif -%}
-<a class="{{ include.class }}" href="{{ include.url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ prealt }} preprint"><img src="{{ '/assets/images/' | append: prefile | relative_url }}" alt="{{ prealt }}" height="{{ include.height }}"></a>
+<a class="{{ include.class }}" href="{{ include.url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ prealt }} preprint (opens in a new tab)"{% if include.describedby %} aria-describedby="{{ include.describedby }}"{% endif %}><img src="{{ '/assets/images/' | append: prefile | relative_url }}" alt="{{ prealt }}" height="{{ include.height }}"></a>
