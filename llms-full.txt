@@ -7,10 +7,16 @@ permalink: /llms-full.txt
 
 The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }} in the {{ site.data.pi.department }} at {{ site.data.pi.institution }}, integrates machine learning with chemistry. Website: {{ site.url }}. This file is the expanded, full-text companion to {{ site.url }}/llms.txt.
 
+{% if site.alternate_names and site.alternate_names.size > 0 %}Other names: {{ site.alternate_names | join: "; " }}. {% endif %}{% if site.university_ko %}Kookmin University in Korean: {{ site.university_ko }}. {% endif %}{% if site.github_org %}GitHub: {{ site.github_org }}{% endif %}
+{% if site.data.research.overview.ko and site.data.research.overview.ko != "" %}
+In Korean, in the lab's own words: {{ site.data.research.overview.ko | normalize_whitespace }}
+{% endif %}
 ## Research areas
 {% for a in site.data.research.areas %}### {{ a.title }}
 {{ a.body | strip_html | normalize_whitespace }}
-{% endfor %}
+{% if a.body_ko and a.body_ko != "" %}
+In Korean{% if a.title_ko and a.title_ko != "" %} ({{ a.title_ko }}){% endif %}: {{ a.body_ko | strip_html | normalize_whitespace }}
+{% endif %}{% endfor %}
 ## Publications ({{ site.data.publications | size }}, newest first)
 {% assign pubs = site.data.publications | sort: "id" | reverse -%}
 {% for p in pubs %}### [{{ p.id }}] {{ p.title }}

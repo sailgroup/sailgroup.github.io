@@ -7,6 +7,10 @@ permalink: /llms.txt
 
 The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data.pi.name_ko }}), {{ site.data.pi.title }} in the {{ site.data.pi.department }} at {{ site.data.pi.institution }}, integrates machine learning with chemistry. Website: {{ site.url }}
 
+{% if site.alternate_names and site.alternate_names.size > 0 %}Other names: {{ site.alternate_names | join: "; " }}. {% endif %}{% if site.university_ko %}Kookmin University in Korean: {{ site.university_ko }}. {% endif %}{% if site.github_org %}GitHub: {{ site.github_org }}{% endif %}
+{% if site.data.research.overview.ko and site.data.research.overview.ko != "" %}
+In Korean, in the lab's own words: {{ site.data.research.overview.ko | normalize_whitespace }}
+{% endif %}
 ## Research areas
 {% comment %}Each area's text in full: the texts are short (under 700 characters), and `truncate` cut them mid-word ("These predictio...").{% endcomment -%}
 {% for a in site.data.research.areas %}- {{ a.title }}: {{ a.body | strip_html | normalize_whitespace }}
