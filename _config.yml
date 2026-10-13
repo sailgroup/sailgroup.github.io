@@ -2,6 +2,17 @@
 title: Spectroscopy and AI Lab
 short_name: SAIL
 tagline: SAIL at Kookmin University
+# Other names of the lab, for search engines and AI answer engines only (the structured
+# data and llms.txt; no page shows them): the home page's kicker, and the Korean name
+# Kookmin University's faculty directory gives the lab (kookmin.ac.kr, 교수연구, 정준영,
+# "연구실/실험실"), so a search by either name finds this site.
+alternate_names:
+  - Joonyoung F. Joung Lab
+  - 인공지능화학연구실
+# Kookmin University's Korean name, beside the English one in the structured data.
+university_ko: 국민대학교
+# The lab's GitHub organization: the lab itself, so it is the lab's sameAs.
+github_org: https://github.com/sailgroup
 # Within 160 characters: it is also the home page's meta description, and Bing's site
 # scan reports a longer one (Google cuts the snippet near that length).
 description: >-
