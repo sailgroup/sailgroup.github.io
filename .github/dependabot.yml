@@ -1,6 +1,5 @@
-# Dependabot keeps the CI actions, the Ruby gems (Gemfile.lock) and the CI scripts' packages
-# (.github/scripts/package-lock.json: sharp for the image step, axe-core and puppeteer-core
-# for the accessibility check) patched. Monthly, one pull request per
+# Dependabot keeps the CI actions, the Ruby gems (Gemfile.lock) and the CI image step's
+# sharp (.github/scripts/package-lock.json) patched. Monthly, one pull request per
 # ecosystem (all updates grouped), so there is little to review: a green CI run on the
 # pull request is the check. A release is proposed only once it is a week old
 # (cooldown), so a bad or compromised release is usually withdrawn before it gets here.
@@ -36,7 +35,7 @@ updates:
     cooldown:
       default-days: 7
     groups:
-      ci-scripts:
+      image-step:
         patterns: ["*"]
     commit-message:
       prefix: "ci"
