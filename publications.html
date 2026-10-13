@@ -34,4 +34,8 @@ scripts: [pubs]
     </section>
     {%- endfor %}
   </div>
+  {%- comment -%}One BibTeX file with every paper that has a DOI (publications.bib, built from the data by _plugins/bibtex.rb), linked once, after the list.{%- endcomment %}
+  <div class="container">
+    <p class="pubs-bib"><a class="link" href="{{ '/publications.bib' | relative_url }}" download>BibTeX for all papers</a></p>
+  </div>
 </section>

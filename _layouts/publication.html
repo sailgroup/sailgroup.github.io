@@ -91,5 +91,15 @@ layout: default
       <p>{{ p.abstract }}</p>
     </div>
     {%- endif -%}
+
+    {%- if hasdoi -%}
+    {%- comment -%}The paper's BibTeX entry, written by _plugins/bibtex.rb (the same entries as /publications.bib). The Copy button stays hidden until assets/js/bibtex.js shows it; without the script the entry can still be selected and copied. A paper page is generated without front matter (no `scripts:` list), so the script is loaded here.{%- endcomment %}
+    <details class="paper__cite">
+      <summary>BibTeX</summary>
+      <pre class="paper__bibtex" id="bibtex" translate="no"><code>{{ p | bibtex | escape }}</code></pre>
+      <p class="paper__cite-actions"><button type="button" class="btn paper__cite-copy" data-copy="bibtex" hidden>Copy</button><span class="paper__cite-status" role="status"></span></p>
+    </details>
+    <script src="{{ '/assets/js/bibtex.js' | relative_url }}" defer></script>
+    {%- endif -%}
   </div>
 </section>

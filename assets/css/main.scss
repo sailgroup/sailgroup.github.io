@@ -743,6 +743,8 @@ p { text-wrap: pretty; }
 .pub-badge { display: inline-flex; }
 .pub-badge img { height: 24px; width: auto; transition: transform 0.15s ease; }
 .pub-badge:hover img { transform: translateY(-2px); }
+/* The link to the BibTeX file of all papers, after the list (publications.html). */
+.pubs-bib { margin-top: var(--space-lg); font-size: var(--fs-sm); }
 
 /* --- Journal covers ------------------------------------------------------- */
 /* Five covers to a row from 685px (the five fill the row: 199px each at 1440, 125px at 768),
@@ -1253,6 +1255,31 @@ body.no-scroll { overflow: hidden; }
 .paper__links { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
 .paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 38px; width: auto; transition: transform 0.15s ease; }
 .paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img, .paper__data:hover img { transform: translateY(-2px); }
+/* BibTeX under the abstract (publication.html): the summary looks like the English
+   abstract's, the box is as wide as the English abstract (68ch at 14.4px) with the
+   entry wrapping inside it (no sideways scroll), then the Copy button and its status. */
+.paper__cite { margin-top: var(--space-md); max-width: 68ch; font-size: var(--fs-sm); }
+.paper__cite summary { width: fit-content; cursor: pointer; color: var(--orange-ink); font-size: var(--fs-sm); font-weight: 600; }
+.paper__bibtex {
+  margin-top: 0.6rem;
+  padding: var(--space-sm);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--ink-2);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+/* The browser's own rule sets <code> to the generic monospace, which Chrome on a Korean
+   Windows draws in GulimChe; take the stack above instead. */
+.paper__bibtex code { font: inherit; }
+.paper__cite-actions { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-xs); }
+.paper__cite-copy { padding: 0.35rem 0.95rem; font-size: var(--fs-xs); }
+.paper__cite-copy[hidden] { display: none; } /* .btn's inline-flex would show it */
+.paper__cite-status { font-size: var(--fs-xs); color: var(--muted); }
 
 
 /* Small layout utilities. Kept as classes (never inline style=) so the page CSP can
