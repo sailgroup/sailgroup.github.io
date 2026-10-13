@@ -27,7 +27,7 @@ lang: en
 # this site-wide value outranks a page's `lang` in jekyll-seo-tag.
 locale: en_US
 timezone: Asia/Seoul
-# The lab's logo in structured data only (the header shows sail-logo.png itself). It is the
+# The lab's logo in structured data only (the header shows sail-logo.svg itself). It is the
 # header wordmark, unscaled, centred on a 280x280 white square: Google uses an
 # organization logo only when it is at least 112x112, and the wordmark is 224x57.
 logo: /assets/images/sail-logo-square.png
