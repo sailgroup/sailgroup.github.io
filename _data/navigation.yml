@@ -1,18 +1,16 @@
-# Primary navigation. Order and labels match the site spec:
-# HOME / NEWS / RESEARCH / MEMBERS (PI, Members, Alumni) / PUBLICATIONS / POSITIONS / GROUP GUIDE / PHOTOS
-# The footer lists the same pages in the same order (the sub-pages instead of their parent;
-# Home is the logo), so an entry added or renamed here changes the footer too.
-- name: Home
-  url: /
-
+# Primary navigation, in menu order:
+# NEWS / RESEARCH / PEOPLE (Principal Investigator, Members, Alumni, Photos, Group Guide) / PUBLICATIONS / POSITIONS
+# Home is the logo. An entry with sub-pages (children) has no page and no url of its own: in
+# the header its name is a button that opens them. The footer lists the same pages in the same
+# order (the sub-pages instead of their parent), so an entry added or renamed here changes the
+# footer too.
 - name: News
   url: /news/
 
 - name: Research
   url: /research/
 
-- name: Members
-  url: /members/
+- name: People
   children:
     - name: Principal Investigator
       url: /pi/
@@ -20,16 +18,14 @@
       url: /members/
     - name: Alumni
       url: /alumni/
+    - name: Photos
+      url: /photos/
+    - name: Group Guide
+      url: https://docs.google.com/document/d/1ZdWAx0zq7Zv7_HgpjHrudxxzuV2inVjLmPZd-ciXWLo
+      external: true
 
 - name: Publications
   url: /publications/
 
 - name: Positions
   url: /positions/
-
-- name: Group Guide
-  url: https://docs.google.com/document/d/1ZdWAx0zq7Zv7_HgpjHrudxxzuV2inVjLmPZd-ciXWLo
-  external: true
-
-- name: Photos
-  url: /photos/

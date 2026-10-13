@@ -35,16 +35,19 @@
           {%- endif -%}
 
           {%- if item.children -%}
-            {%- comment -%}Disclosure: the parent stays a link and the button beside it opens the sub-pages (nav.js). Only the current sub-page carries aria-current; the parent shows the current section by its class alone.{%- endcomment -%}
+            {%- comment -%}An entry with sub-pages has no page of its own: its name is a button that opens them (disclosure pattern, nav.js), as a dropdown in the bar and in place in the phone menu. Only the current sub-page carries aria-current; the button shows the current section by its class alone.{%- endcomment -%}
             {%- assign subid = "subnav-" | append: item.name | slugify -%}
             <li class="nav-item has-children{% if active != "" %} is-current{% endif %}">
-              <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
-              <button type="button" class="subnav-toggle" aria-expanded="false" aria-controls="{{ subid }}" aria-label="{{ item.name }} pages"></button>
+              <button type="button" class="subnav-toggle" aria-expanded="false" aria-controls="{{ subid }}">{{ item.name }}</button>
               <ul class="subnav" id="{{ subid }}">
                 {%- for c in item.children -%}
+                  {%- if c.external -%}
+                  <li><a href="{{ c.url }}" target="_blank" rel="noopener noreferrer">{{ c.name }}{% include icon.html name="external" %}{% include new-tab.html %}</a></li>
+                  {%- else -%}
                   {%- assign cactive = "" -%}
                   {%- if page.url contains c.url -%}{%- assign cactive = "yes" -%}{%- endif -%}
                   <li><a href="{{ c.url | relative_url }}"{% if cactive != "" %} aria-current="page"{% endif %}>{{ c.name }}</a></li>
+                  {%- endif -%}
                 {%- endfor -%}
               </ul>
             </li>

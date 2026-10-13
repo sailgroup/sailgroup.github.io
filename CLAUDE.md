@@ -79,7 +79,7 @@ domain `https://sail.kookmin.ac.kr`.
   glows; neutral (untinted) greys plus the brand orange; other colour comes only from information
   (figures, topic tags, news categories, which stay coloured). Hover lifts are kept (maintainer's
   choice). Never shorten or hide PI-written text to fit a layout; balance a text-heavy block with
-  the lab's own figures. The header switches to the menu button at 68.75em (1100px at the
+  the lab's own figures. The header switches to the menu button at 55em (880px at the
   default font size; `main.scss` and `nav.js` hold the width, keep them in sync), and the
   footer changes from three columns to two rows at the same width. The footer's links follow
   `navigation.yml`; the home page has no Contact section (the footer carries it, D43).

@@ -4,7 +4,7 @@
   var nav = document.querySelector(".site-nav");
   var header = document.querySelector(".site-header");
   if (!btn || !nav || !header) return;
-  var MENU = "(max-width: 68.75em)"; // the menu breakpoint in main.scss
+  var MENU = "(max-width: 55em)"; // the menu breakpoint in main.scss
 
   function isOpen() { return btn.getAttribute("aria-expanded") === "true"; }
 
@@ -54,17 +54,19 @@
     if (!window.matchMedia(MENU).matches) close();
   });
 
-  // Dropdowns above the menu breakpoint (disclosure pattern): the button beside a parent
-  // link opens its sub-pages. A mouse opens them on hover as well and closes them on
-  // leaving, unless the button was clicked, which keeps them open until a second click.
-  // Escape, a click outside and focus leaving close them. (In the phone menu the button
-  // is hidden and the sub-pages are always listed.)
+  // An entry with sub-pages is a button that opens them (disclosure pattern). In the bar
+  // they open as a dropdown: a mouse opens it on hover as well and closes it on leaving,
+  // unless the button was clicked, which keeps it open until a second click; Escape, a
+  // click outside and focus leaving close it. In the phone menu they open in place, and
+  // only the button and Escape close them: closing on a tap elsewhere in the menu would
+  // move the rows under the finger before the tap lands.
   Array.prototype.forEach.call(nav.querySelectorAll(".subnav-toggle"), function (sub) {
     var item = sub.parentNode;
     var byHover = false;
     function expanded() { return sub.getAttribute("aria-expanded") === "true"; }
     function set(open) { sub.setAttribute("aria-expanded", String(open)); byHover = false; }
-    function mouse(e) { return e.pointerType === "mouse" && !window.matchMedia(MENU).matches; }
+    function inBar() { return !window.matchMedia(MENU).matches; }
+    function mouse(e) { return e.pointerType === "mouse" && inBar(); }
 
     sub.addEventListener("click", function () {
       if (byHover) byHover = false; // opened by hover: the click keeps it open
@@ -85,13 +87,17 @@
       if (inside) sub.focus();
     });
     document.addEventListener("pointerdown", function (e) {
-      if (expanded() && !item.contains(e.target)) set(false);
+      if (expanded() && inBar() && !item.contains(e.target)) set(false);
     });
     item.addEventListener("focusout", function (e) {
-      if (expanded() && e.relatedTarget && !item.contains(e.relatedTarget)) set(false);
+      if (expanded() && inBar() && e.relatedTarget && !item.contains(e.relatedTarget)) set(false);
     });
+    // Close on crossing the breakpoint, not on every resize: a phone's toolbars resize the
+    // window while the menu is in use.
+    var wasBar = inBar();
     window.addEventListener("resize", function () {
-      if (expanded() && window.matchMedia(MENU).matches) set(false);
+      if (inBar() !== wasBar && expanded()) set(false);
+      wasBar = inBar();
     });
   });
 })();
