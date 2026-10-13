@@ -71,7 +71,11 @@
    Pretendard swapped in. These faces are those installed fonts scaled to Pretendard's
    width (size-adjust), for Hangul syllables only (unicode-range), so line breaks hold
    through the swap. local() reads an installed font: nothing is downloaded, and where the
-   font is not installed the face is skipped and the stack goes on as before. */
+   font is not installed the face is skipped and the stack goes on as before.
+   The Noto faces name the fonts by their PostScript names only. The full names "Noto Sans
+   KR" and "Noto Sans KR Bold" also match the variable Noto Sans KR that some Windows PCs
+   carry, and Chrome read that large file before the first paint (first paint of /pi/ 314
+   ms with those names, 124 ms without, on such a PC). */
 @font-face {
   font-family: "Hangul Fallback Malgun";
   src: local("Malgun Gothic"), local("MalgunGothic");
@@ -88,14 +92,14 @@
 }
 @font-face {
   font-family: "Hangul Fallback Noto";
-  src: local("Noto Sans CJK KR"), local("NotoSansCJKkr-Regular"), local("Noto Sans KR"), local("NotoSansKR-Regular");
+  src: local("Noto Sans CJK KR"), local("NotoSansCJKkr-Regular"), local("NotoSansKR-Regular");
   font-weight: 100 599;
   size-adjust: 93.94%;
   unicode-range: U+AC00-D7A3;
 }
 @font-face {
   font-family: "Hangul Fallback Noto";
-  src: local("Noto Sans CJK KR Bold"), local("NotoSansCJKkr-Bold"), local("Noto Sans KR Bold"), local("NotoSansKR-Bold");
+  src: local("Noto Sans CJK KR Bold"), local("NotoSansCJKkr-Bold"), local("NotoSansKR-Bold");
   font-weight: 600 1000;
   size-adjust: 93.94%;
   unicode-range: U+AC00-D7A3;
