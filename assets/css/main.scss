@@ -211,6 +211,23 @@ p { text-wrap: pretty; }
   outline-offset: 2px;
   border-radius: 2px;
 }
+/* On the dark footer and the viewers' dark backdrop the text orange is too dark for a ring
+   (2.67:1 on #2a2a2a, 3.06:1 on #1f1f1f); the logo orange is 6.6:1 and 7.6:1 there. */
+.site-footer :focus-visible,
+.lightbox :focus-visible { outline-color: var(--orange); }
+
+/* Text for screen readers only: on the page, out of sight. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* --- Layout --------------------------------------------------------------- */
 .container {
