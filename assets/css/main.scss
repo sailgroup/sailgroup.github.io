@@ -914,6 +914,13 @@ body.no-scroll { overflow: hidden; }
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-md);
     display: none;
+    /* The header is sticky, so scrolling the page never brings a long menu into view: on a
+       short screen (a phone held sideways, 400% zoom) the menu scrolls on its own instead.
+       dvh follows the phone's toolbars; vh is the fallback. */
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .site-nav.is-open { display: block; }
   .nav-list {
