@@ -10,6 +10,11 @@ Grid images: each cell shows its photo with object-fit: cover at 4:3, so the gri
 smaller renditions (image-srcset.html); the lightbox still opens the full photo. `sizes` is the
 cell width: 4 columns from 720px, 2 from 494px (minmax(220px, 1fr)), else 1, with a 0.9rem gap
 inside .container (1140px max, side padding clamp(1.1rem, 4vw, 2rem)).
+One exception: on a phone with a 2.5x screen or denser (most current phones are 2.6x to 3x),
+the one-column cell is given as two thirds of its width, so the photos are drawn at about 2x
+instead of 3x: the 800px file, not the 1200px one or the original. At 390px and 3x the first
+photo goes from 172 KB to 79 KB and the first ten from 1609 KB to 999 KB; the difference in
+sharpness at 2x is hard to see on a phone.
 The first photo is in the first screenful on every layout (on phones it is the largest image
 there), so it loads at once with high priority; the rest stay lazy.
 {%- endcomment -%}
@@ -22,7 +27,7 @@ there), so it loads at once with high priority; the rest stay lazy.
   <div class="container">
     <ul class="gallery">
       {%- for p in site.data.photos -%}
-      {%- capture srcset -%}{% include image-srcset.html image=p.image sizes="(min-width: 1140px) 259px, (min-width: 800px) calc(25vw - 27px), (min-width: 720px) calc(23vw - 11px), (min-width: 494px) calc(46vw - 7px), (min-width: 440px) 92vw, calc(100vw - 35px)" %}{%- endcapture -%}
+      {%- capture srcset -%}{% include image-srcset.html image=p.image sizes="(max-width: 493px) and (min-resolution: 2.5dppx) calc(66.7vw - 23px), (min-width: 1140px) 259px, (min-width: 800px) calc(25vw - 27px), (min-width: 720px) calc(23vw - 11px), (min-width: 494px) calc(46vw - 7px), (min-width: 440px) 92vw, calc(100vw - 35px)" %}{%- endcapture -%}
       <li>
         <button class="gallery__item" type="button" data-viewer="photo-lightbox" data-full="{{ '/assets/images/' | append: p.image | relative_url }}"
                 data-title="{{ p.title | escape }}" data-desc="{{ p.caption | escape }}" data-alt="{{ p.alt | escape }}"
