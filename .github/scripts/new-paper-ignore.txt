@@ -1,0 +1,5 @@
+# Works on the PI's ORCID record that the lab does not list on the site on purpose, so the
+# weekly new-paper watch (.github/scripts/check-new-papers.mjs, run by
+# .github/workflows/new-papers.yml) stops reporting them. One DOI per line, bare
+# (10.1234/abcd) or as a https://doi.org/ address. A # starts a comment: say why beside
+# each entry.

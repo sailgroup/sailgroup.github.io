@@ -370,6 +370,17 @@ This page is in Korean by request; keep new copy in Korean to match.
   in a browser): add the address to `.github/scripts/link-check-ignore.txt`. To try
   it without touching issues: `npm ci --prefix .github/scripts`, then
   `node .github/scripts/check-links.mjs --dry-run`.
+- **New papers, weekly** (`.github/workflows/new-papers.yml`, Monday mornings).
+  `.github/scripts/check-new-papers.mjs` reads the PI's works from ORCID (the iD in
+  `_data/pi.yml`) and compares their DOIs with `_data/publications.yml`; it knows
+  that a preprint's version DOI (`...-v2`) and Angewandte Chemie's two editions
+  (`ange` and `anie`) are the same article. Works not on the site go into one
+  issue, "Papers on ORCID that are not on the site" (label `new-paper`), closed by
+  the check once none is missing; a work whose other version or title is already
+  on the site says so, as its entry may need the new DOI. Add each paper (above,
+  "Add a publication"), or, for a work the lab leaves out on purpose, put its DOI
+  in `.github/scripts/new-paper-ignore.txt`. Dry run:
+  `node .github/scripts/check-new-papers.mjs --dry-run`.
 - **Scheduled checks** run only from the default branch, so they start once their
   workflow files are on `main`. In a public repository GitHub turns a scheduled
   workflow off after 60 days without activity; the Actions tab then says so, and

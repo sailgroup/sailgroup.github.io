@@ -1,0 +1,52 @@
+name: New papers
+
+# Once a week, the PI's works on ORCID (the iD in _data/pi.yml) are compared by DOI with
+# _data/publications.yml (.github/scripts/check-new-papers.mjs). Works that are not on the
+# site are listed in one issue, "Papers on ORCID that are not on the site" (label
+# new-paper), which each check updates and closes once none is missing. A work the lab
+# leaves out on purpose goes in .github/scripts/new-paper-ignore.txt. Schedules run only from
+# the default branch, and this workflow is separate from the deploy for the same reason as
+# link-check.yml.
+on:
+  schedule:
+    - cron: "41 0 * * 1" # Mondays, 00:41 UTC (09:41 in Korea)
+  workflow_dispatch:
+
+# Nothing at the workflow level; the job gets only what it needs.
+permissions: {}
+
+# Run JavaScript actions on Node 24, as deploy.yml does (GitHub is removing Node 20).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# A run started by hand while the weekly one is going waits for it, so there is one issue.
+concurrency:
+  group: new-papers
+  cancel-in-progress: false
+
+jobs:
+  papers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    # Read the repository; open, update or close the issue (and make its label once).
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      # Pinned to the same commits as deploy.yml; Dependabot updates both.
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+
+      - name: Compare ORCID with the site and report in an issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          npm ci --prefix .github/scripts --no-audit --no-fund
+          node .github/scripts/check-new-papers.mjs
