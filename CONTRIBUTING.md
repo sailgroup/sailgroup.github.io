@@ -314,9 +314,8 @@ This page is in Korean by request; keep new copy in Korean to match.
 - **Versions are locked.** `Gemfile.lock` pins every Ruby gem (Jekyll, its
   plugins, html-proofer) and `.github/scripts/package-lock.json` pins the CI
   scripts' packages (`sharp` for the image step, `axe-core` and `puppeteer-core`
-  for the accessibility check, `yaml` for the scheduled checks). CI installs
-  exactly these (Bundler in deployment mode, `npm ci`), so a new release cannot
-  change or break a build on its own.
+  for the accessibility check). CI installs exactly these (Bundler in deployment
+  mode, `npm ci`), so a new release cannot change or break a build on its own.
 - **Updates come from Dependabot**: once a month, one pull request each for the
   GitHub Actions, the gems, and the CI scripts' packages. Merge it when its CI run
   is green (the image step and the accessibility check are strict on a pull
@@ -377,21 +376,3 @@ This page is in Korean by request; keep new copy in Korean to match.
   `node .github/scripts/check-a11y.mjs _site`. A false alarm: fix the markup if
   you can; if not, add the rule's id to `RULES_OFF` or the element's selector to
   `EXCLUDE` at the top of that script, with the reason beside it.
-- **Outside links, monthly** (`.github/workflows/link-check.yml`; to run it now:
-  Actions, "Link check", Run workflow). `.github/scripts/check-links.mjs` reads every
-  outside link in `_data/` (papers' DOI, preprint, code and dataset; people's and the
-  PI's links; the menu, news and Positions) and checks each once, one request at a
-  time per site: a DOI through doi.org (is it registered; publishers' pages often
-  refuse scripts), GitHub and ORCID through their APIs, other pages directly. Broken
-  links go into one issue, "Link check: N links need a look" (label `link-check`),
-  which each check updates and the first one that finds nothing closes. Sites that
-  refuse scripts (Google Scholar, LinkedIn, publishers) are listed there as "could
-  not check" and never open the issue by themselves. A false alarm (the link works
-  in a browser): add the address to `.github/scripts/link-check-ignore.txt`. To try
-  it without touching issues: `npm ci --prefix .github/scripts`, then
-  `node .github/scripts/check-links.mjs --dry-run`.
-- **Scheduled checks** run only from the default branch, so they start once their
-  workflow files are on `main`. In a public repository GitHub turns a scheduled
-  workflow off after 60 days without activity; the Actions tab then says so, and
-  "Enable workflow" turns it back on. Each is a workflow of its own, so this never
-  stops the deploy.
