@@ -29,11 +29,8 @@ permalink: /pi/
 
       <div class="profile__main">
         <div class="prose">
-          {%- comment -%}The PI's name in the bio stays as written under a browser's page translation (Chrome made "Joonyoung F. Joung is ..." into "정준영 F.는 ..."); the rest of the bio is translated as usual.{%- endcomment -%}
-          {%- assign bio = pi.bio -%}
-          {%- if pi.name and pi.name != "" -%}{%- capture keep -%}<span translate="no">{{ pi.name }}</span>{%- endcapture -%}{%- assign bio = bio | replace: pi.name, keep -%}{%- endif -%}
-          {%- if pi.name_full and pi.name_full != "" -%}{%- capture keep -%}<span translate="no">{{ pi.name_full }}</span>{%- endcapture -%}{%- assign bio = bio | replace: pi.name_full, keep -%}{%- endif %}
-          <p>{{ bio }}</p>
+          {%- comment -%}The bio is translated whole under a browser's page translation. Keeping the PI's name in it as written (translate="no") was tried: the translator then lost the Korean particle and the space after it ("Joonyoung F. Joung국민대학교 ..."), which reads worse than its own "정준영 F.는 ...". Names are kept only where they stand alone (headings, author lists).{%- endcomment %}
+          <p>{{ pi.bio }}</p>
         </div>
 
         <div class="cv">
