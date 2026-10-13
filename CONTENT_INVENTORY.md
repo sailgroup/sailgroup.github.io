@@ -31,6 +31,13 @@ was taken, what was normalized, and what is still open.
 - **Publication thumbnails** (`assets/images/pubs/pub-1.jpg … pub-41.jpg`): each
   paper's real graphical abstract / TOC figure from the publisher of record by
   DOI, normalized to a uniform 360×270 white thumbnail (D15). ~552 KB total.
+- **Larger publication figures** (2026-10-13): `pub-<id>-full.jpg` beside the
+  thumbnail for 40 papers: the same graphic the thumbnail shows, at the largest size
+  the publisher of record publishes, found by DOI as in D15 (the papers' own graphical
+  abstracts or TOC graphics; Nature's figure; MDPI's Figure 1; the OAE cover), each
+  matched against its thumbnail; JPEG, longest side at most 1600 px, 3.5 MB in total.
+  None for 11 and 15 (Wiley publishes their TOC graphic only at under 1.5 times the
+  thumbnail's size) or 44 and 45 (their images are already full size).
 - **Photos** (`assets/images/photos/photo-01.jpg … photo-25.jpg`): the full 25
   genuine Wix gallery photos, bounded to ≤1600 px, with their verbatim bilingual
   captions stored in `_data/photos.yml` (D16). Full-res originals archived under
