@@ -21,7 +21,7 @@ permalink: /pi/
         <div class="profile__contact">
           {%- if pi.office -%}<span>{% include icon.html name="pin" %} {{ pi.office }}</span>{%- endif -%}
           <a href="mailto:{{ pi.email }}">{% include icon.html name="mail" %} {{ pi.email }}</a>
-          <span>{% include icon.html name="phone" %} {{ pi.phone }}</span>
+          <a href="tel:{{ pi.phone | remove: ' ' | remove: '-' }}">{% include icon.html name="phone" %} {{ pi.phone }}</a>
           <a href="{{ pi.scholar }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="scholar" %} Google Scholar</a>
           <a href="{{ pi.orcid }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="orcid" %} ORCID</a>
           {%- if pi.github and pi.github != "" -%}<a href="{{ pi.github }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="github" %} GitHub</a>{%- endif -%}

@@ -38,7 +38,7 @@ _data/home.yml.{%- endcomment -%}
         <address>
           {{ site.data.home.contact.address_en }}<br>
           <a href="mailto:{{ site.data.home.contact.email }}">{{ site.data.home.contact.email }}</a><br>
-          {{ site.data.home.contact.phone }}
+          <a href="tel:{{ site.data.home.contact.phone | remove: ' ' | remove: '-' }}">{{ site.data.home.contact.phone }}</a>
         </address>
       </div>
     </div>
