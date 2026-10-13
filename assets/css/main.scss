@@ -646,6 +646,8 @@ p { text-wrap: pretty; }
 .pub__meta { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.25rem; }
 .pub__pages { white-space: nowrap; }
 .pub__journal { font-style: italic; color: var(--ink-2); }
+/* "Submitted" in the journal field is a status, not a journal name: set upright. */
+.pub__journal--status { font-style: normal; }
 .pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.7rem; }
 .pub-badge { display: inline-flex; }
 .pub-badge img { height: 24px; width: auto; transition: transform 0.15s ease; }
@@ -1065,7 +1067,6 @@ body.no-scroll { overflow: hidden; }
 .paper__head { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: start; }
 .paper__title { font-size: var(--fs-xl); margin-bottom: var(--space-sm); }
 .paper__meta { color: var(--muted); font-size: var(--fs-sm); }
-.paper__meta .pub__journal { font-style: italic; color: var(--ink-2); }
 .paper__authors { color: var(--ink-2); margin-top: 0.5rem; }
 .paper__figure {
   margin: 0;

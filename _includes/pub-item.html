@@ -17,7 +17,7 @@
   <div class="pub__body">
     <h3 class="pub__title" id="{{ titleid }}">{% if p.id and p.id != "" %}<a class="pub__link" href="{{ '/publications/' | append: p.id | append: '/' | relative_url }}">{{ p.title }}</a>{% elsif p.doi and p.doi != "" %}<a class="pub__link" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer">{{ p.title }}{% include new-tab.html %}</a>{% else %}{{ p.title }}{% endif %}</h3>
     <p class="pub__authors" translate="no">{% include pi-authors.html authors=p.authors person=include.person %}</p>
-    <p class="pub__meta"><span class="pub__journal" translate="no">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
+    <p class="pub__meta"><span class="pub__journal{% if p.journal == 'Submitted' %} pub__journal--status{% endif %}" translate="no">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
     {%- assign hastags = false -%}{%- unless include.hide_themes -%}{%- if p.themes and p.themes.size > 0 -%}{%- assign hastags = true -%}{%- endif -%}{%- endunless -%}
     {%- if hasdoi or haspre or hascode or hasdataset or hastags -%}
     <div class="pub__foot">
