@@ -312,21 +312,41 @@ p { text-wrap: pretty; }
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 .nav-item > a:hover,
-.nav-item > a[aria-current="page"] {
+.nav-item > a[aria-current="page"],
+.nav-item.is-current > a {
   color: var(--ink);
   border-bottom-color: var(--orange);
 }
 
-/* Dropdown */
-.nav-item.has-children { position: relative; }
-.nav-item.has-children > a::after {
+/* Dropdown: the parent stays a link; the chevron button beside it opens the panel
+   (disclosure pattern). nav.js sets aria-expanded, also on mouse hover, so the panel's
+   state and what a screen reader hears always agree. The 24px-wide button overlaps the
+   link's right padding and the item's negative margin takes back its empty right half, so
+   the arrow sits where it did inside the link and the bar is no wider (it has little room
+   at the menu breakpoint); its focus ring is drawn inside it, clear of the label. */
+.nav-item.has-children { position: relative; display: flex; align-items: center; margin-right: -0.4rem; }
+.subnav-toggle {
+  display: grid;
+  place-items: center start;
+  width: 1.5rem; height: 2rem;
+  margin-left: -0.3rem;
+  padding-left: 0.2rem;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  border-radius: var(--radius-sm);
+}
+.subnav-toggle:hover { color: var(--ink); }
+.subnav-toggle:focus-visible { outline-offset: -2px; }
+.subnav-toggle::before {
   content: "";
   width: 0.42em; height: 0.42em;
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg) translateY(-1px);
-  opacity: 0.6;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: 0.7;
+  transition: transform 0.16s ease;
 }
+.subnav-toggle[aria-expanded="true"]::before { transform: rotate(225deg) translateY(-1px); }
 .subnav {
   position: absolute;
   top: 100%;
@@ -342,8 +362,7 @@ p { text-wrap: pretty; }
   transform: translateY(6px);
   transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
 }
-.nav-item.has-children:hover .subnav,
-.nav-item.has-children:focus-within .subnav {
+.subnav-toggle[aria-expanded="true"] + .subnav {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
 .subnav a {
@@ -929,9 +948,11 @@ body.no-scroll { overflow: hidden; }
     gap: 0;
     padding: 0.6rem clamp(1.1rem, 4vw, 2rem) 1.1rem;
   }
-  /* Full-width rows: the divider spans the menu and the Members arrow sits at the right edge. */
+  /* Full-width rows: the divider spans the menu. A parent's sub-pages are always listed
+     under it here, so its chevron button is not needed. */
   .nav-item > a { display: flex; padding: 0.75rem 0.2rem; border-bottom: 1px solid var(--line); }
-  .nav-item > a::after { margin-left: auto; }
+  .nav-item.has-children { display: block; margin-right: 0; }
+  .subnav-toggle { display: none; }
   .nav-item.has-children .subnav {
     position: static;
     opacity: 1; visibility: visible; transform: none;

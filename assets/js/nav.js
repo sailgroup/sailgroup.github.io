@@ -53,6 +53,47 @@
   window.addEventListener("resize", function () {
     if (!window.matchMedia(MENU).matches) close();
   });
+
+  // Dropdowns above the menu breakpoint (disclosure pattern): the button beside a parent
+  // link opens its sub-pages. A mouse opens them on hover as well and closes them on
+  // leaving, unless the button was clicked, which keeps them open until a second click.
+  // Escape, a click outside and focus leaving close them. (In the phone menu the button
+  // is hidden and the sub-pages are always listed.)
+  Array.prototype.forEach.call(nav.querySelectorAll(".subnav-toggle"), function (sub) {
+    var item = sub.parentNode;
+    var byHover = false;
+    function expanded() { return sub.getAttribute("aria-expanded") === "true"; }
+    function set(open) { sub.setAttribute("aria-expanded", String(open)); byHover = false; }
+    function mouse(e) { return e.pointerType === "mouse" && !window.matchMedia(MENU).matches; }
+
+    sub.addEventListener("click", function () {
+      if (byHover) byHover = false; // opened by hover: the click keeps it open
+      else set(!expanded());
+    });
+    item.addEventListener("pointerenter", function (e) {
+      if (mouse(e) && !expanded()) { set(true); byHover = true; }
+    });
+    item.addEventListener("pointerleave", function (e) {
+      if (mouse(e) && byHover) set(false);
+    });
+    // Escape also dismisses a panel opened by hover (WCAG 1.4.13); focus goes back to the
+    // button only if it was inside.
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || !expanded()) return;
+      var inside = item.contains(document.activeElement);
+      set(false);
+      if (inside) sub.focus();
+    });
+    document.addEventListener("pointerdown", function (e) {
+      if (expanded() && !item.contains(e.target)) set(false);
+    });
+    item.addEventListener("focusout", function (e) {
+      if (expanded() && e.relatedTarget && !item.contains(e.relatedTarget)) set(false);
+    });
+    window.addEventListener("resize", function () {
+      if (expanded() && window.matchMedia(MENU).matches) set(false);
+    });
+  });
 })();
 
 /* Printing: open every folded <details> (e.g. the English abstract under a Korean one),

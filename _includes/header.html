@@ -34,9 +34,12 @@
           {%- endif -%}
 
           {%- if item.children -%}
-            <li class="nav-item has-children">
-              <a href="{{ item.url | relative_url }}"{% if active != "" %} aria-current="page"{% endif %}>{{ item.name }}</a>
-              <ul class="subnav">
+            {%- comment -%}Disclosure: the parent stays a link and the button beside it opens the sub-pages (nav.js). Only the current sub-page carries aria-current; the parent shows the current section by its class alone.{%- endcomment -%}
+            {%- assign subid = "subnav-" | append: item.name | slugify -%}
+            <li class="nav-item has-children{% if active != "" %} is-current{% endif %}">
+              <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
+              <button type="button" class="subnav-toggle" aria-expanded="false" aria-controls="{{ subid }}" aria-label="{{ item.name }} pages"></button>
+              <ul class="subnav" id="{{ subid }}">
                 {%- for c in item.children -%}
                   {%- assign cactive = "" -%}
                   {%- if page.url contains c.url -%}{%- assign cactive = "yes" -%}{%- endif -%}
