@@ -31,6 +31,11 @@ jobs:
     # release, which only knows the runner images that existed when it was made.
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    # The IndexNow list for the deploy job (the last step below; main only).
+    outputs:
+      indexnow_host: ${{ steps.indexnow.outputs.host }}
+      indexnow_key: ${{ steps.indexnow.outputs.key }}
+      indexnow_urls: ${{ steps.indexnow.outputs.urls }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -95,6 +100,17 @@ jobs:
           path: _site
           include-hidden-files: true
 
+      # IndexNow, part 1 (main only, before the deploy job publishes this build): list the
+      # pages that differ from the live site, for the deploy job to report once they are
+      # live (.github/scripts/indexnow.mjs). It never fails the run; when it fails, nothing
+      # is reported and the deploy goes ahead as usual.
+      - name: List the pages this deploy changes (IndexNow)
+        id: indexnow
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        timeout-minutes: 3
+        run: node .github/scripts/indexnow.mjs _site >> "$GITHUB_OUTPUT"
+
   # Deploy only from main, so pushes to dev verify the build without publishing.
   deploy:
     if: github.ref == 'refs/heads/main'
@@ -111,3 +127,27 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      # IndexNow, part 2: tell Bing (which passes the list to the other IndexNow engines)
+      # and Naver which pages just changed, so they recrawl them soon. Naver had indexed one
+      # page of this site in October 2026. The values come in through env, never pasted into
+      # the script. A refused request (any answer but 200 or 202) shows as a warning on the
+      # run's page; the site is already published by then, so it changes nothing else.
+      - name: Tell search engines which pages changed (IndexNow)
+        if: needs.build.outputs.indexnow_urls != ''
+        continue-on-error: true
+        timeout-minutes: 2
+        env:
+          HOST: ${{ needs.build.outputs.indexnow_host }}
+          KEY: ${{ needs.build.outputs.indexnow_key }}
+          URLS: ${{ needs.build.outputs.indexnow_urls }}
+        run: |
+          printf '%s\n' "$URLS" | jq -R . | jq -s --arg host "$HOST" --arg key "$KEY" \
+            '{host: $host, key: $key, keyLocation: ("https://" + $host + "/" + $key + ".txt"), urlList: map(select(length > 0))}' > indexnow.json
+          n=$(jq '.urlList | length' indexnow.json)
+          for endpoint in https://api.indexnow.org/indexnow https://searchadvisor.naver.com/indexnow; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 -X POST \
+              -H 'Content-Type: application/json; charset=utf-8' --data @indexnow.json "$endpoint" || true)
+            echo "IndexNow: $n URLs to $endpoint, HTTP $code" | tee -a "$GITHUB_STEP_SUMMARY"
+            case "$code" in 200|202) ;; *) echo "::warning title=IndexNow::$endpoint answered HTTP $code" ;; esac
+          done
