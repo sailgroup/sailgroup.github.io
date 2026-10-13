@@ -8,17 +8,19 @@
 //
 // 1. Upload folders people/, photos/, pubs/ (under assets/images/), JPG (also .jpeg, .jfif,
 //    .jpe, .jif), PNG, WebP, AVIF:
-//    a file larger than its folder's limit (longest side in pixels, or file size) is scaled
-//    down to fit, never enlarged, keeping its aspect ratio, and written back when the result
-//    is at least 10% smaller. Metadata (EXIF, which can hold the GPS position; XMP; IPTC;
+//    a file larger than its folder's limit (longest side in pixels, or file size; a paper's
+//    larger figure, pubs/<base>-full.jpg, has a limit of its own) is scaled down to fit,
+//    never enlarged, keeping its aspect ratio, and written back when the result is at
+//    least 10% smaller. Metadata (EXIF, which can hold the GPS position; XMP; IPTC;
 //    PNG text chunks) is always removed: a PNG drops those chunks and keeps its pixels as
 //    they are (so it never grows); any other format is re-encoded, after applying its EXIF
 //    rotation. An animated image is not re-encoded (that would keep one frame).
 // 2. Smaller renditions for srcset, in assets/images/thumbs/<path>-<W>w<ext>: gallery
-//    photos (photos/) 480, 800 and 1200 px wide, publication thumbnails (pubs/) 480, journal
-//    covers (cover-*.jpg at the assets/images/ root, not the -full copies) 400. A width is
-//    made only when it is well below the image's own (at most 85% of it), from the file as
-//    uploaded, and kept only when it is at least 10% smaller than the published image.
+//    photos (photos/) 480, 800 and 1200 px wide, publication thumbnails (pubs/, not the -full
+//    figures) 480, journal covers (cover-*.jpg at the assets/images/ root, not the -full
+//    copies) 400. A width is made only when it is well below the image's own (at most 85% of
+//    it), from the file as uploaded, and kept only when it is at least 10% smaller than the
+//    published image.
 // 3. The list, written last to the data file named on the command line
 //    (_data/generated_images.json): for every image in photos/ and pubs/ and every cover,
 //    keyed by its path under assets/images/, its pixel size (w, h), its srcset width value
@@ -26,11 +28,11 @@
 //    it. Without the file (a local build, or this step failed) pages use the plain image
 //    files, as they did before this step existed.
 //
-// The srcset width value: photos/ and pubs/ images are shown with object-fit: cover in a
-// 4:3 box, so a picture wider than 4:3 fills the box height and is cropped at the sides; it
-// is drawn wider than the box by aspect / (4/3), and its value is its width scaled down by
-// that factor, so the browser picks a file that is sharp at the size actually drawn.
-// Covers are shown whole, so their value is their width.
+// The srcset width value: photos/ images and pubs/ thumbnails are shown with object-fit:
+// cover in a 4:3 box, so a picture wider than 4:3 fills the box height and is cropped at the
+// sides; it is drawn wider than the box by aspect / (4/3), and its value is its width scaled
+// down by that factor, so the browser picks a file that is sharp at the size actually drawn.
+// Covers and the pubs/ -full figures are shown whole, so their value is their width.
 //
 // A file that cannot be processed is published as it stands (as uploaded, or as step 1
 // already rewrote it), with no renditions, and named in a warning; with IMAGES_STRICT=true
@@ -57,17 +59,23 @@ if (process.env.CI !== "true" && !local) {
   process.exit(2);
 }
 
-// Step 1 limits: longest side (px) and file-size budget (bytes) per upload folder.
+// Step 1 limits: longest side (px) and file-size budget (bytes) per upload folder, and for
+// pubsFull, the pubs/<base>-full.<ext> files in pubs/.
 const LIMITS = {
   people: { side: 800, bytes: 250 * 1024 },  // portraits: shown at 180-280px
   photos: { side: 1600, bytes: 600 * 1024 }, // gallery: full-size view in the lightbox
-  pubs: { side: 1200, bytes: 400 * 1024 },   // graphical abstracts: at most 320px tall on paper pages
+  pubs: { side: 1200, bytes: 400 * 1024 },   // graphical abstracts: 4:3 thumbnails in lists, and the paper page's figure when it has no -full copy
+  pubsFull: { side: 1600, bytes: 600 * 1024 }, // a paper's figure, shown whole on its page and in the viewer
 };
+const UPLOAD_FOLDERS = ["people", "photos", "pubs"];
+const FULL = /-full\.[^./]+$/i; // pubs/pub-37-full.jpg
 
-// Step 2 rendition widths (px). `cover4x3`: shown with object-fit: cover in a 4:3 box.
+// Step 2 rendition widths (px). `cover4x3`: shown with object-fit: cover in a 4:3 box. A
+// -full figure gets none: it is listed for its pixel size (the page's width and height).
 const RENDITIONS = {
   photos: { widths: [480, 800, 1200], cover4x3: true },
   pubs: { widths: [480], cover4x3: true },
+  pubsFull: { widths: [], cover4x3: false },
   covers: { widths: [400], cover4x3: false },
 };
 
@@ -263,8 +271,11 @@ async function processFile(file, folder, limit) {
   }
 }
 
-for (const folder of Object.keys(LIMITS)) {
-  for (const file of await listFiles(path.join(root, folder))) await processFile(file, folder, LIMITS[folder]);
+for (const folder of UPLOAD_FOLDERS) {
+  for (const file of await listFiles(path.join(root, folder))) {
+    const kind = folder === "pubs" && FULL.test(file) ? "pubsFull" : folder;
+    await processFile(file, kind, LIMITS[kind]);
+  }
 }
 for (const entry of (await readdir(root, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
   if (entry.isFile() && /^cover-.*\.jpe?g$/i.test(entry.name) && !/-full\.jpe?g$/i.test(entry.name)) {
