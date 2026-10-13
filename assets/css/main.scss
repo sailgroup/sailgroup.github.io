@@ -622,6 +622,7 @@ p { text-wrap: pretty; }
 /* One author name (pi-authors.html): lines break only between names. */
 .author { white-space: nowrap; }
 .pub__meta { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.25rem; }
+.pub__pages { white-space: nowrap; }
 .pub__journal { font-style: italic; color: var(--ink-2); }
 .pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.7rem; }
 .pub-badge { display: inline-flex; }
@@ -914,8 +915,14 @@ body.no-scroll { overflow: hidden; }
   .brand-sep { height: 30px; }
   .brand-kmu img { height: 36px; }
   .brand-group { gap: 0.7rem; }
-  .pub { grid-template-columns: 64px 1fr; gap: var(--space-sm); }
-  .pub--nofig { grid-template-columns: 1fr; }
+  /* The number and the 64x48 thumbnail float at the left of the title, and the text runs
+     on under them at the full width: in a 64px grid column beside them, titles took 4 to
+     6 lines at 390px and up to 9 at 320px, with an empty strip under the thumbnail. The
+     author list starts below the thumbnail, so its first line is never a short one
+     squeezed in beside it. */
+  .pub { display: flow-root; }
+  .pub__aside, .pub > .pub__figure { float: left; margin: 0 var(--space-sm) var(--space-2xs) 0; }
+  .pub__authors { clear: left; }
   .pub__figure { width: 64px; height: 48px; }
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
   .person-grid { grid-template-columns: repeat(2, minmax(0, 210px)); gap: var(--space-xl) var(--space-lg); }
