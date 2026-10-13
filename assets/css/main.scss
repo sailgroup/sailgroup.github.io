@@ -588,15 +588,12 @@ p { text-wrap: pretty; }
 /* Balanced lines, so a short last word ("(UROP)") does not sit alone on its own line. */
 .person__role, .person__note { text-wrap: balance; }
 
-/* No card alone at the left of the last row. From 1000px a count of 3n+1 (the four members)
-   gets four columns; otherwise a lone last card takes the middle of three columns, or is
-   centred across two (alumni on phones: nine cards). */
+/* No card alone at the left of the last row: a lone last card takes the middle of three
+   columns, or is centred across two (alumni on phones: nine cards). The grid stays at three
+   to a row however many cards there are (the four members: three, then one in the middle;
+   the maintainer's choice, D49). */
 @media (min-width: 721px) {
   .person-grid > :last-child:nth-child(3n+1):not(:first-child) { grid-column: 2; }
-}
-@media (min-width: 1000px) {
-  .person-grid:has(> :last-child:nth-child(3n+1)) { grid-template-columns: repeat(4, minmax(0, 210px)); max-width: calc(4 * 210px + 3 * var(--space-xl)); }
-  .person-grid:has(> :last-child:nth-child(3n+1)) > :last-child:not(:first-child) { grid-column: auto; }
 }
 @media (max-width: 720px) {
   .person-grid > :last-child:nth-child(odd):not(:first-child) { grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--space-lg)) / 2); }
