@@ -2,25 +2,25 @@
   "use strict";
   var btn = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".site-nav");
-  if (!btn || !nav) return;
+  var header = document.querySelector(".site-header");
+  if (!btn || !nav || !header) return;
   var MENU = "(max-width: 68.75em)"; // the menu breakpoint in main.scss
 
-  function close() {
-    btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-label", "Open menu");
-    nav.classList.remove("is-open");
+  function isOpen() { return btn.getAttribute("aria-expanded") === "true"; }
+
+  // While the menu is open the page behind it does not scroll (the menu scrolls on its own);
+  // the photo and cover viewers use the same no-scroll class.
+  function setOpen(open) {
+    btn.setAttribute("aria-expanded", String(open));
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    nav.classList.toggle("is-open", open);
+    document.body.classList.toggle("no-scroll", open);
   }
 
-  btn.addEventListener("click", function () {
-    var open = btn.getAttribute("aria-expanded") === "true";
-    if (open) {
-      close();
-    } else {
-      btn.setAttribute("aria-expanded", "true");
-      btn.setAttribute("aria-label", "Close menu");
-      nav.classList.add("is-open");
-    }
-  });
+  // Only when open, so a resize never clears a viewer's no-scroll.
+  function close() { if (isOpen()) setOpen(false); }
+
+  btn.addEventListener("click", function () { setOpen(!isOpen()); });
 
   // Tapping a link on mobile closes the menu.
   nav.addEventListener("click", function (e) {
@@ -31,10 +31,22 @@
 
   // Escape closes the open menu and returns focus to the menu button.
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+    if (e.key === "Escape" && isOpen()) {
       close();
       btn.focus();
     }
+  });
+
+  // A tap or click outside the header closes the menu; focus stays where the tap put it.
+  document.addEventListener("pointerdown", function (e) {
+    if (isOpen() && !header.contains(e.target)) close();
+  });
+
+  // So does focus leaving the header (Tab past the last link), so the next stop is never
+  // hidden under the open menu. A tap on plain text in the menu sends focus nowhere
+  // (relatedTarget is null); that keeps it open.
+  header.addEventListener("focusout", function (e) {
+    if (isOpen() && e.relatedTarget && !header.contains(e.relatedTarget)) close();
   });
 
   // Reset when leaving the mobile breakpoint.
