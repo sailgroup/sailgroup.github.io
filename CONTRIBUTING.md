@@ -188,9 +188,10 @@ one of the lab's papers (`figure:` a file in `assets/images/`, `figure_w` /
 page and on the home page, where the figure sits beside the text; the home page
 links each area to its section on `/research/` by title, so renaming an area
 keeps the link working. An area without a figure is shown as text only. The
-Korean texts in the file (`overview.ko`, each area's `title_ko` and `body_ko`)
-are kept from the old site and shown on no page; they go only into `/llms.txt`
-and `/llms-full.txt`, for AI answer engines asked in Korean (D47).
+Korean overview (`overview.ko`) is shown on the Research page under the English
+one (D51). Each area's Korean texts (`title_ko`, `body_ko`) are kept from the old
+site and shown on no page; they and the overview go into `/llms.txt` and
+`/llms-full.txt`, for AI answer engines asked in Korean (D47).
 
 ## Image sizes
 

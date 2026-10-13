@@ -1580,3 +1580,16 @@ add their verification meta tags.
   after 60 days without activity in the repository; "Enable workflow" on the Actions tab
   restarts it.
 
+## D51: The menu groups the people pages; the Korean overview on Research (for the PI to confirm, 2026-10-13)
+
+- **Menu:** with eight items the bar needed about 1,080px, so below 1,100px (68.75em) the
+  whole menu hid behind the menu button, tablets held sideways and small laptops included.
+  Now the bar is News, Research, People, Publications and Positions; People is a button that
+  opens Principal Investigator, Members, Alumni, Photos and Group Guide, and Home left the
+  bar (the logo and the emblem go home). The bar needs 819px (834px with a classic
+  scrollbar), so the menu button takes over at 55em (880px) and the footer switches at the
+  same width. `validate_data.rb` accepts a menu entry with sub-pages and no url.
+- **Korean overview:** `research.yml`'s `overview.ko`, which no page showed, is on /research/
+  under the English overview (`lang="ko"`, `translate="no"`).
+- Each is one commit (62a1566 and fbe49ba), and their notes in the docs are one more, so
+  either can be taken back without touching the rest of the round.
