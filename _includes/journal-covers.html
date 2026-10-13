@@ -5,10 +5,10 @@ is a real link to the paper for no-JS users and crawlers, and viewer.js intercep
 cover (with a paper link inside). Pages that include this must load viewer.js (front matter: scripts: [viewer]).
 The full-size name drops only the LAST extension ("a.v2.jpg" -> "a.v2-full.jpg"), the same rule the
 data validator checks. When CI made a smaller rendition of the thumbnail (see image-srcset.html), the
-browser may pick it; the `sizes` value is the grid cell width: minmax(150px, 1fr) columns with a 20px
-gap inside .container (1140px max, side padding clamp(1.1rem, 4vw, 2rem)), i.e. 6 tracks from 1064px
-(5 covers, so the cell stops growing at 163px), 5 from 894px, 4 from 718px, 3 from 533px, 2 from 356px,
-else 1 (at most 320px). Checked against the drawn width at every viewport width from 320 to 1600px.{%- endcomment -%}
+browser may pick it; the `sizes` value is the cover's width: five to a row from 685px, three from
+405px, two below, with a 20px gap inside .container (1140px max, side padding clamp(1.1rem, 4vw,
+2rem)), so 199px from 1140px. Checked against the drawn width at every viewport width from 320 to
+1600px.{%- endcomment -%}
 {%- assign covers = site.data.covers -%}
 {%- if covers and covers.size > 0 -%}
 <section class="section section--alt">
@@ -21,7 +21,7 @@ else 1 (at most 320px). Checked against the drawn width at every viewport width 
       {%- assign full = fullbase | append: "-full.jpg" -%}
       {%- assign fullurl = '/assets/images/' | append: full | relative_url -%}
       {%- assign thumburl = '/assets/images/' | append: c.image | relative_url -%}
-      {%- capture srcset -%}{% include image-srcset.html image=c.image sizes="(min-width: 1064px) 163px, (min-width: 894px) calc((100vw - 144px) / 5), (min-width: 718px) calc((100vw - 124px) / 4), (min-width: 533px) calc((92vw - 40px) / 3), (min-width: 356px) calc((100vw - 55px) / 2), calc(100vw - 35px)" %}{%- endcapture -%}
+      {%- capture srcset -%}{% include image-srcset.html image=c.image sizes="(min-width: 1140px) 199px, (min-width: 800px) calc((100vw - 144px) / 5), (min-width: 685px) calc(18.4vw - 16px), (min-width: 441px) calc(30.67vw - 13px), (min-width: 405px) calc((100vw - 75px) / 3), calc((100vw - 55px) / 2)" %}{%- endcapture -%}
       {%- capture cap -%}{{ c.journal }}, {{ c.year }}{%- endcapture -%}
       {%- if c.publication_id -%}{%- assign paper = '/publications/' | append: c.publication_id | append: '/' | relative_url -%}{%- else -%}{%- assign paper = "" -%}{%- endif -%}
       <figure class="cover">

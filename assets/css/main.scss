@@ -585,6 +585,25 @@ p { text-wrap: pretty; }
 
 /* Note line under a person's role (e.g. alumni exchange-program note) */
 .person__note { font-size: var(--fs-xs); color: var(--muted); margin-top: 0.2rem; line-height: 1.45; }
+/* Balanced lines, so a short last word ("(UROP)") does not sit alone on its own line. */
+.person__role, .person__note { text-wrap: balance; }
+
+/* No card alone at the left of the last row. From 1000px a count of 3n+1 (the four members)
+   gets four columns; otherwise a lone last card takes the middle of three columns, or is
+   centred across two (alumni on phones: nine cards). */
+@media (min-width: 721px) {
+  .person-grid > :last-child:nth-child(3n+1):not(:first-child) { grid-column: 2; }
+}
+@media (min-width: 1000px) {
+  .person-grid:has(> :last-child:nth-child(3n+1)) { grid-template-columns: repeat(4, minmax(0, 210px)); max-width: calc(4 * 210px + 3 * var(--space-xl)); }
+  .person-grid:has(> :last-child:nth-child(3n+1)) > :last-child:not(:first-child) { grid-column: auto; }
+}
+@media (max-width: 720px) {
+  .person-grid > :last-child:nth-child(odd):not(:first-child) { grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--space-lg)) / 2); }
+}
+@media (max-width: 480px) {
+  .person-grid > :last-child:nth-child(odd):not(:first-child) { width: calc((100% - var(--space-md)) / 2); }
+}
 
 /* --- PI profile ----------------------------------------------------------- */
 .profile { display: grid; gap: var(--space-xl); grid-template-columns: 280px 1fr; align-items: start; }
@@ -725,11 +744,20 @@ p { text-wrap: pretty; }
 .pub-badge:hover img { transform: translateY(-2px); }
 
 /* --- Journal covers ------------------------------------------------------- */
-.covers { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-.cover { display: block; }
+/* Five covers to a row from 685px (the five fill the row: 199px each at 1440, 125px at 768),
+   three from 405px, two below; a short last row is centred, so a lone cover never sits at
+   the left. Each width leaves 0.1px spare, so rounding never pushes the last one to a new
+   row. journal-covers.html's `sizes` follows these widths. */
+.covers { --cols: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md); }
+@media (max-width: 684px) { .covers { --cols: 3; } }
+@media (max-width: 404px) { .covers { --cols: 2; } }
+.cover { display: block; flex: 0 0 calc((100% - (var(--cols) - 1) * var(--space-md)) / var(--cols) - 0.1px); min-width: 0; }
 .cover__link { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+/* One 3:4 box for every cover (NJC's image is a little wider), so the captions line up. */
 .cover img {
   width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
@@ -739,7 +767,17 @@ p { text-wrap: pretty; }
 .cover figcaption { margin-top: 0.5rem; font-size: var(--fs-xs); color: var(--muted); }
 
 /* --- Photos gallery ------------------------------------------------------- */
+/* Four columns from 720px (31 photos: seven rows of four and one of three; three columns at
+   768 left one photo alone), two from 494px, one below; photos.html's `sizes` follows these
+   widths. A photo alone in the last row is centred at the width of one column. */
 .gallery { display: grid; gap: var(--space-sm); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+@media (min-width: 720px) {
+  .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .gallery > :last-child:nth-child(4n+1):not(:first-child) { grid-column: 1 / -1; justify-self: center; width: calc((100% - 3 * var(--space-sm)) / 4); }
+}
+@media (min-width: 494px) and (max-width: 719px) {
+  .gallery > :last-child:nth-child(odd):not(:first-child) { grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--space-sm)) / 2); }
+}
 .gallery__item {
   position: relative;
   display: block;
