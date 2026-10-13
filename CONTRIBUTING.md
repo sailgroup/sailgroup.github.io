@@ -188,10 +188,9 @@ one of the lab's papers (`figure:` a file in `assets/images/`, `figure_w` /
 page and on the home page, where the figure sits beside the text; the home page
 links each area to its section on `/research/` by title, so renaming an area
 keeps the link working. An area without a figure is shown as text only. The
-Korean overview (`overview.ko`) is shown on the Research page under the English
-one (D51). Each area's Korean texts (`title_ko`, `body_ko`) are kept from the old
-site and shown on no page; they and the overview go into `/llms.txt` and
-`/llms-full.txt`, for AI answer engines asked in Korean (D47).
+Korean texts in the file (`overview.ko`, each area's `title_ko` and `body_ko`)
+are kept from the old site and shown on no page; they go only into `/llms.txt`
+and `/llms-full.txt`, for AI answer engines asked in Korean (D47).
 
 ## Image sizes
 
@@ -302,6 +301,13 @@ This page is in Korean by request; keep new copy in Korean to match.
   (api.indexnow.org, which shares it with Bing's partners, and Naver) once the pages are
   live, so those engines recrawl them soon. Neither step can fail a run. The key is
   public by design: an engine reads the file to check that the list came from the site.
+- **What the site says stays as written (D52).** A change to the templates, styles or
+  scripts may change how a page looks, not what it says: the text the PI wrote and the facts
+  are never reworded, shortened, hidden or reordered, and the menu's labels and order, the
+  footer's lines and page headings change only when the maintainer approves. A spelling error
+  in the PI's text is fixed only once the maintainer approves that line, in its own commit,
+  recorded in `CONTENT_INVENTORY.md`. Before deploying such a change, compare every page's
+  text with the live site and show the maintainer each removed or changed line.
 
 ## Build tools
 

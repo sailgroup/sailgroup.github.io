@@ -102,6 +102,12 @@ domain `https://sail.kookmin.ac.kr`.
   `publications.yml` for every paper with a DOI (`_plugins/bibtex.rb`).
 - Member/alumni/publication facts are content: never invent a photo, link, date, or fact — leave a
   field blank instead, and record gaps in `CONTENT_INVENTORY.md`.
+- What the site says stays as written (D52): never reword, shorten, hide or reorder what the
+  PI wrote or the site's facts; fix a spelling error only after the maintainer approves that
+  line, in its own commit, recorded in `CONTENT_INVENTORY.md`. The menu's labels and order,
+  the footer's lines and page headings change only on the maintainer's approval, and text no
+  page shows is shown only when the PI asks. Design may change. Before a deploy, compare
+  every page's text with the live site and show the maintainer each removed or changed line.
 
 ## Tracking files
 `DECISIONS.md` (decisions + rationale) · `PROGRESS.md` (phase status) · `CONTENT_INVENTORY.md`

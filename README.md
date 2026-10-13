@@ -19,7 +19,7 @@ Live: https://sail.kookmin.ac.kr
 | 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`) |
 | 뉴스 | `_data/news.yml` |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
-| 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시. 한국어 개요 `overview.ko` 는 연구 페이지의 영어 개요 아래에도 표시. 분야별 한국어 `title_ko`·`body_ko` 는 화면에 표시되지 않고, AI 검색용 `llms.txt`·`llms-full.txt` 에만 들어감) |
+| 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시. 한국어 `overview.ko`·`title_ko`·`body_ko` 는 화면에 표시되지 않고, AI 검색용 `llms.txt`·`llms-full.txt` 에만 들어감) |
 | 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
 | 모집(Positions) | `_data/positions.yml` (박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트) |
 

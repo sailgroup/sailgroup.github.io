@@ -1506,10 +1506,9 @@ add their verification meta tags.
   wraps), and links that open a new tab say so to screen readers. The PI, Members and
   Alumni pages carry a small line of the three under their heading
   (`_includes/people-nav.html`).
-- **Footer:** shorter on phones (390px: 777px, now 598px). The base line "Kookmin University
-  · Seoul, Republic of Korea" is gone, which reverses D43's "the base line stays": the
-  address already names Seoul and the country, and "Kookmin University" now appears twice
-  instead of three times.
+- **Footer:** shorter on phones (390px: 777px, now 628px). The base line "Kookmin University
+  · Seoul, Republic of Korea" stays, as D43 has it: the round first took it out (598px), and
+  D52 put it back before the deploy.
 - **Type and colour:** text colours by role (running text `--ink-2`; headings, names and
   titles `--ink`; `--muted` only for dates, venues, captions and counts; the PI's title is
   no longer in the link orange). Prose is capped at 55ch, measured: the home rows ran 105 to
@@ -1580,7 +1579,7 @@ add their verification meta tags.
   after 60 days without activity in the repository; "Enable workflow" on the Actions tab
   restarts it.
 
-## D51: The menu groups the people pages; the Korean overview on Research (for the PI to confirm, 2026-10-13)
+## D51: [Taken back by D52] The menu groups the people pages; the Korean overview on Research (for the PI to confirm, 2026-10-13)
 
 - **Menu:** with eight items the bar needed about 1,080px, so below 1,100px (68.75em) the
   whole menu hid behind the menu button, tablets held sideways and small laptops included.
@@ -1593,3 +1592,35 @@ add their verification meta tags.
   under the English overview (`lang="ko"`, `translate="no"`).
 - Each is one commit (62a1566 and fbe49ba), and their notes in the docs are one more, so
   either can be taken back without touching the rest of the round.
+- **Taken back** on 2026-10-14, before any deploy (D52): 2df2e6e reverts 62a1566 and
+  7971cd4 reverts fbe49ba. Either returns by reverting that commit, if the PI asks.
+
+## D52: What the site says stays as written (maintainer's rule, 2026-10-14)
+
+- **Asked:** before the D49 to D51 deploy, the maintainer ruled that the original content and
+  text must not change, and that what the PI wrote is changed only to fix a spelling error; a
+  change in design is fine as long as the content stays the same.
+- **Rule:** the text the PI wrote and the facts on the site (research and bio text, news, the
+  Positions copy, captions, Korean abstracts, paper titles, authors and venues, people's names
+  and roles) are shown as written: not reworded, shortened, hidden or reordered. A spelling
+  error is fixed only after the maintainer approves that line, in a commit of its own, and is
+  recorded under "Normalizations and corrections" in `CONTENT_INVENTORY.md`. The site's own
+  wording (the menu's labels and their order, which come from the old site; the footer's
+  lines; page headings) changes only on the maintainer's explicit approval, and text that no
+  page shows is shown only when the PI asks. Free to change: layout, colour, type, spacing,
+  behaviour, accessibility attributes and screen-reader text, new text that replaces nothing
+  (a paper count, BibTeX), and output derived faithfully from the data (BibTeX, JSON-LD,
+  `llms.txt`).
+- **Applied to this round:** D51 is taken back, so the menu is again Home, News, Research,
+  Members (Principal Investigator, Members, Alumni), Publications, Positions, Group Guide and
+  Photos, with the menu button below 68.75em (1100px) as on the live site, and the Korean
+  overview is again on no page. The footer's base line is back (D43). The line of the three
+  people pages is named "Members pages" for screen readers, after the menu, not "People".
+  Kept from D49: the emblem left the tab order and the accessibility tree, because its name,
+  "Kookmin University, home", gave the university's name to a link that goes to the lab's
+  home page; the page shows the same emblem.
+- **Check before a deploy:** the text of every sitemap page is compared with the live site,
+  split into what the page shows, what only screen readers get and what shows after a click,
+  and every string in `_data` that the live site shows must still be shown. For this round
+  (CI run 38457279655 at 0badb6f): 69 pages, shown text removed or changed on none; of the 991
+  strings in `_data`, the 715 the live site shows are all still shown.

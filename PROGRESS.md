@@ -276,7 +276,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   larger published figure, and each paper with a DOI its BibTeX (`/publications.bib` has
   all); the header logo is an SVG redrawn to match the PNG. CI now checks every page with
   axe-core, and two scheduled workflows report broken outside links (monthly) and papers on
-  the PI's ORCID that the site does not list (weekly). Two changes are for the PI to confirm
-  (D51): the menu groups the people pages under People (the bar shows from 880px), and
-  Research shows the Korean overview. Built on `dev` (run 38397550480 green; axe: no
-  violation on 70 pages and the phone menu). Results in `REVIEW.md` section 23 (2026-10-13).
+  the PI's ORCID that the site does not list (weekly). D51 (the menu grouped under People,
+  the Korean overview on Research) was taken back before the deploy and the footer's base
+  line put back, so what the PI wrote and the site's own wording stay as they are (D52).
+  Built on `dev` (run 38457279655 green; axe: no violation on 70 pages and the phone menu).
+  Results in `REVIEW.md` section 23 (2026-10-13 and 2026-10-14).
