@@ -885,3 +885,46 @@ the data as of the PI's 6065770.
     DOI, Figshare, every image loaded and there are no console errors;
   - on github.com the README's renamed section has the anchor the table at the top links to
     (`#논문에-코드와-데이터-링크-달기-github-figshare-아이콘`).
+
+## 22. Search, page translation and repository settings (2026-10-13, D47, D48)
+
+Verified on the CI builds of `dev` (there is no local Ruby), then on the live site.
+
+- **Search metadata:** on the dev build every one of the 69 pages has a meta description of
+  25 to 160 characters and JSON-LD that parses. Titles read "Joonyoung F. Joung (정준영)",
+  "Chanjoong Kim (김찬중)" and "Electron flow matching for generative reaction mechanism
+  prediction (Nature, 2025)", each followed by "| Spectroscopy and AI Lab"; papers 46 and
+  47 (no DOI or preprint yet) keep their plain titles. The lab's JSON-LD lists SAIL,
+  Joonyoung F. Joung Lab and 인공지능화학연구실 as other names and github.com/sailgroup as
+  sameAs; the PI's lists Korea University and Inha University as alumniOf; paper 37 carries
+  its DOI as identifier; Chanjoong Kim's page links https://chanjoongx.com.
+- **Page translation** (Google's Translate Element on the built pages): "Nature", the other
+  journal names and the cover captions stay as written, the PI's Korean abstracts stay word
+  for word, and no name is doubled. The PI's bio translates whole ("정준영 F.는 국민대학교
+  화학과 조교수입니다."). The education and career lines translate one by one ("물리화학 박사"
+  above "고려대학교 박성남 교수", where they used to run together), and the English page's
+  two CV blocks are pixel-identical to before at 1280, 1024, 768 and 390 px.
+- **Full QA sweep** (`.qa/tools/qa-site.js` on the dev build at 5aea45f): 70 pages, 152
+  loads, no problems.
+- **What the deploy would change** (the live site against the dev build, all 69 sitemap
+  pages, before deploying): visible text on no page; links on two (the chanjoongx.com link
+  on Alumni and on Chanjoong Kim's page); browser titles on 59 (13 people, the PI, 45
+  papers); meta descriptions on 58. Members, News, Photos, Positions and papers 46 and 47
+  were identical in all four. Off the pages, `llms.txt` and `llms-full.txt` replace the
+  one-line description and add lines (nothing else is removed), and the IndexNow key file
+  is new. The only data change is Chanjoong Kim's `website`.
+- **Repository settings (D48),** read back after each change: the description, website and
+  nine topics; secret scanning and push protection enabled (first scan: no alert; a search
+  of the whole history for token formats beforehand: none); Dependabot security updates
+  (no open alert); private vulnerability reporting; Wiki and Projects off.
+- **Deployed and verified live:**
+  - runs: dev 38355251057, 38356073147, 38356430997 and 38359653323, main 38359746272, all
+    green; the pinned actions ran in the last two (deploy-pages in the main run);
+  - `main` was fast-forwarded from 6946649 to 1e4da1d with no PI commits in between;
+  - IndexNow sent 67 of the 69 pages (all but News and Positions); api.indexnow.org answered
+    202 and Naver 200;
+  - the 110 files compared on https://sail.kookmin.ac.kr are byte-identical to the deployed
+    build (paper 34's page answered 503 once, then 200 and identical), and all 229 image
+    URLs load;
+  - all 69 pages match the build in title, description, visible text and links, and the key
+    file is served.

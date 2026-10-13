@@ -256,12 +256,13 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   stay within 160 characters; the structured data and llms.txt add the lab's other names
   (among them 인공지능화학연구실), Kookmin's Korean name, the GitHub organization and the
   lab's Korean overview; Chanjoong Kim links chanjoongx.com; after each `main` deploy,
-  IndexNow tells Bing and Naver which pages changed. Built and checked on `dev` (CI run
-  38355251057 and the full QA sweep); not yet deployed.
+  IndexNow tells Bing and Naver which pages changed. Deployed on 2026-10-13 (main run
+  38359746272) and verified live; IndexNow sent 67 pages (Bing 202, Naver 200). Results in
+  `REVIEW.md` section 22 (2026-10-13).
 - **Phase 22 (2026-10-13):** Repository settings and pinned actions (D48), on the
   maintainer's request. The repository has its description, website and topics, secret
   scanning with push protection, Dependabot security updates and private vulnerability
   reporting; the unused Wiki and Projects tabs are off. The workflow pins GitHub's own
   actions to commits and checkout keeps no token; `.github/SECURITY.md` says how to
-  report a problem. Settings applied and read back on 2026-10-13; the workflow change is
-  not yet deployed.
+  report a problem. Settings applied and read back on 2026-10-13; the workflow change was
+  deployed with Phase 21 (main run 38359746272). Results in `REVIEW.md` section 22.
