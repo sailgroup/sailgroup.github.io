@@ -1180,19 +1180,21 @@ body.no-scroll { overflow: hidden; }
 .paper__title { font-size: var(--fs-xl); margin-bottom: var(--space-sm); }
 .paper__meta { color: var(--muted); font-size: var(--fs-sm); }
 .paper__authors { color: var(--ink-2); margin-top: 0.5rem; }
-.paper__figure {
-  margin: 0;
-  padding: var(--space-sm);
-  border: 1px solid var(--line);
+/* The figure sits under the title, at most 420px tall, framed by a 1px ring on the img
+   itself, so the frame always fits the drawn image (a ring, not a border, so the image keeps
+   every pixel of its box). The img carries width/height (its pixel size, scaled down to the
+   420px cap in _layouts/publication.html), so the browser reserves its box before the file
+   arrives. No `width: auto` here: that would override those attributes and leave a 0x0 box
+   until load. max-width: 100% and height: auto (global img rule) fit it to the column in
+   proportion; max-height is the cap for a build without those sizes. */
+.paper__figure { margin: 0; }
+.paper__figure img {
+  max-height: 420px;
   border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--line);
   background: #fff;
-  text-align: center;
 }
-/* The img carries width/height (its pixel size), so the browser reserves its box before
-   the file arrives. No `width: auto` here: that would override those attributes and
-   leave a 0x0 box until load. max-width: 100% (global img rule) fits it to the column;
-   object-fit keeps a tall figure's proportions when max-height caps its box. */
-.paper__figure img { display: inline-block; max-height: 320px; object-fit: contain; }
+.paper__zoom { display: block; width: fit-content; max-width: 100%; border-radius: var(--radius); cursor: zoom-in; }
 /* The line length cap sits on the paragraphs, so `ch` is measured in their own type size:
    on the containers it was taken at 17px, and the 14.4px English abstract ran 107
    characters a line. The summary is only as wide as its text. */
@@ -1211,11 +1213,6 @@ body.no-scroll { overflow: hidden; }
 .paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 38px; width: auto; transition: transform 0.15s ease; }
 .paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img, .paper__data:hover img { transform: translateY(-2px); }
 
-/* Title beside the figure only where the title column is wide enough: from 721px it was
-   squeezed to 8 or 9 lines on tablets. Below 1000px the figure follows the title. */
-@media (min-width: 1000px) {
-  .paper__head--figured { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
-}
 
 /* Small layout utilities. Kept as classes (never inline style=) so the page CSP can
    forbid inline styles: style-src has no 'unsafe-inline'. */

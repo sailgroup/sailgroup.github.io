@@ -25,7 +25,7 @@ layout: default
       {%- endif -%}
     </div>
 
-    <div class="paper__head{% if hasimg %} paper__head--figured{% endif %}">
+    <div class="paper__head">
       <div class="paper__head-main">
         <h1 class="paper__title">{{ p.title }}</h1>
         <p class="paper__meta"><span class="pub__journal{% if p.journal == 'Submitted' %} pub__journal--status{% endif %}" translate="no">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
@@ -42,12 +42,32 @@ layout: default
         {%- endif -%}
       </div>
       {%- if hasimg -%}
-      {%- comment -%}The graphical abstract is in the first screenful (beside the title on desktop, below it on phones) and is usually the page's largest image, so it is not lazy-loaded. width/height (the served pixel size, from CI's _data/generated_images.json when present) let the browser reserve its box before the file arrives, so the abstract below does not jump; the CSS draws it exactly as before (max-height 320px, object-fit: contain; a figure capped by max-height can have a wider box than the drawn image, which stays centered).{%- endcomment -%}
+      {%- comment -%}The graphical abstract, under the title at every width (most are wider than 3:2, and beside the title a 2:1 figure was 428px wide). The larger copy pubs/<base>-full.jpg is shown when it exists (looked up in site.static_files) and opens in the viewer on a click or tap (viewer.js; the link to the image works without JS); otherwise the thumbnail, at its own size. It is in the first screenful, so it is not lazy-loaded. width/height reserve its box before the file arrives, so the abstract below does not jump: its pixel size from CI's _data/generated_images.json, scaled down to the 420px cap in main.scss, so the frame (the img's own border) always fits the drawn image. Without that file the CSS applies the same cap.{%- endcomment -%}
       {%- assign figpath = 'pubs/' | append: p.image -%}
+      {%- assign figbase = p.image | split: "." | pop | join: "." -%}
+      {%- assign fullpath = 'pubs/' | append: figbase | append: '-full.jpg' -%}
+      {%- assign fullrel = '/assets/images/' | append: fullpath -%}
+      {%- assign fullfile = site.static_files | where: "path", fullrel | first -%}
+      {%- if fullfile -%}{%- assign figpath = fullpath -%}{%- endif -%}
+      {%- assign figurl = '/assets/images/' | append: figpath | relative_url -%}
       {%- assign gi = site.data.generated_images[figpath] -%}
+      {%- assign fw = nil -%}{%- assign fh = nil -%}
+      {%- if gi and gi.w and gi.h -%}
+        {%- assign fw = gi.w -%}{%- assign fh = gi.h -%}
+        {%- if gi.h > 420 -%}{%- assign fw = gi.w | times: 420.0 | divided_by: gi.h | round -%}{%- assign fh = 420 -%}{%- endif -%}
+      {%- endif -%}
+      {%- capture figimg -%}<img src="{{ figurl }}" alt="Graphical abstract for {{ p.title | escape }}"{% if fw %} width="{{ fw }}" height="{{ fh }}"{% endif %} fetchpriority="high">{%- endcapture -%}
       <figure class="paper__figure">
-        <img src="{{ '/assets/images/' | append: figpath | relative_url }}" alt="Graphical abstract for {{ p.title }}"{% if gi and gi.w and gi.h %} width="{{ gi.w }}" height="{{ gi.h }}"{% endif %} fetchpriority="high">
+        {%- if fullfile %}
+        <a class="paper__zoom" href="{{ figurl }}" data-viewer="figure-lightbox" data-full="{{ figurl }}" data-alt="Graphical abstract for {{ p.title | escape }}" aria-label="Enlarge the graphical abstract for {{ p.title | escape }}">{{ figimg }}</a>
+        {%- else %}
+        {{ figimg }}
+        {%- endif %}
       </figure>
+      {%- if fullfile %}
+      {% include lightbox.html id="figure-lightbox" label="Figure viewer" %}
+      <script src="{{ '/assets/js/viewer.js' | relative_url }}" defer></script>
+      {%- endif %}
       {%- endif -%}
     </div>
 
