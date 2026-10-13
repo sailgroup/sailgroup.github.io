@@ -28,7 +28,7 @@ there), so it loads at once with high priority; the rest stay lazy.
                 data-title="{{ p.title | escape }}" data-desc="{{ p.caption | escape }}" data-alt="{{ p.alt | escape }}"
                 aria-label="View larger{% if p.title and p.title != '' %}: {{ p.title | escape }}{% endif %}{% if p.caption and p.caption != '' %}. {{ p.caption | escape }}{% endif %}">
           <img src="{{ '/assets/images/' | append: p.image | relative_url }}"{{ srcset }} alt=""{% if forloop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
-          {%- if p.title and p.title != "" -%}<span class="gallery__cap">{{ p.title }}</span>{%- endif -%}
+          {%- if p.title and p.title != "" -%}{%- assign ko = p.title | korean -%}<span class="gallery__cap"{% if ko %} lang="ko" translate="no"{% endif %}>{{ p.title }}</span>{%- endif -%}
         </button>
       </li>
       {%- endfor -%}

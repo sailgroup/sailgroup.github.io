@@ -8,6 +8,16 @@
 
   var SWIPE = 50; // px of horizontal travel that turns a touch into previous or next
 
+  // A text whose first letter is Hangul is Korean, the rule of _plugins/hangul.rb (which
+  // marks the gallery's captions): digits before it do not count, and an English caption
+  // that ends with Korean names stays English.
+  var LETTER = /[A-Za-zÀ-ɏͰ-Ͽᄀ-ᇿ㄰-㆏가-힣]/;
+  var HANGUL = /[ᄀ-ᇿ㄰-㆏가-힣]/;
+  function korean(s) {
+    var m = LETTER.exec(s || "");
+    return !!m && HANGUL.test(m[0]);
+  }
+
   function setup(lb) {
     var triggers = Array.prototype.filter.call(document.querySelectorAll("[data-viewer][data-full]"), function (el) {
       return el.getAttribute("data-viewer") === lb.id;
@@ -34,6 +44,22 @@
     var cur = 0, lastFocus = null;
     var down = {}, start = null; // touch or pen pointers on the dialog, and where a swipe began
 
+    // Korean alt text, title or description gets lang="ko" and translate="no" (as the site's
+    // other Korean text); any other text gets back the element's own translate value.
+    var marked = [img, title, desc];
+    var own = marked.map(function (el) { return el.getAttribute("translate"); });
+    function mark(i, text) {
+      var el = marked[i];
+      if (korean(text)) {
+        el.setAttribute("lang", "ko");
+        el.setAttribute("translate", "no");
+        return;
+      }
+      el.removeAttribute("lang");
+      if (own[i] === null) el.removeAttribute("translate");
+      else el.setAttribute("translate", own[i]);
+    }
+
     // One image (a figure): no previous, next or count.
     if (n < 2) {
       lb.classList.add("lightbox--single");
@@ -50,6 +76,9 @@
       title.hidden = !d.title;
       desc.textContent = d.desc;
       desc.hidden = !d.desc;
+      mark(0, d.alt);
+      mark(1, d.title);
+      mark(2, d.desc);
       count.textContent = n > 1 ? (cur + 1) + " / " + n : "";
       count.hidden = n < 2;
       if (paper) {
