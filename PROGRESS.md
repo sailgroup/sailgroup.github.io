@@ -258,3 +258,10 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   lab's Korean overview; Chanjoong Kim links chanjoongx.com; after each `main` deploy,
   IndexNow tells Bing and Naver which pages changed. Built and checked on `dev` (CI run
   38355251057 and the full QA sweep); not yet deployed.
+- **Phase 22 (2026-10-13):** Repository settings and pinned actions (D48), on the
+  maintainer's request. The repository has its description, website and topics, secret
+  scanning with push protection, Dependabot security updates and private vulnerability
+  reporting; the unused Wiki and Projects tabs are off. The workflow pins GitHub's own
+  actions to commits and checkout keeps no token; `.github/SECURITY.md` says how to
+  report a problem. Settings applied and read back on 2026-10-13; the workflow change is
+  not yet deployed.

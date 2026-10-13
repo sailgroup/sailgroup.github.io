@@ -1457,3 +1457,34 @@ add their verification meta tags.
   university's departments answer; the lab can at best appear for narrower ones (국민대
   인공지능화학연구실, 국민대 AI 화학). For "네이처 FlowER", Nature, arXiv and MIT News lead;
   the lab's paper page now has "Nature" in its title.
+
+## D48: Repository settings and pinned actions (maintainer's request, 2026-10-13)
+
+- **Asked:** after D47, the maintainer (an admin of this repository) asked for the
+  recommended GitHub settings to be applied.
+- **Applied to the repository on 2026-10-13, each read back after the change:** the
+  description, website (https://sail.kookmin.ac.kr) and topics; secret scanning with push
+  protection (its first scan found no secret, and neither did a search of the whole
+  history for token formats beforehand); Dependabot security updates (no alert was open,
+  so no pull request came); private vulnerability reporting; the Wiki (it had no page)
+  and Projects tabs turned off, which deletes nothing and can be undone. Already in place
+  and left as they were: Dependabot alerts, a read-only default token for workflows, the
+  `protect-main` ruleset, the `github-pages` environment limited to `main`, HTTPS enforced.
+- **Workflow:** GitHub's own actions are pinned to commits, as `ruby/setup-ruby` already
+  was, at the commits their major tags pointed to (checkout v7.0.1, setup-node v7.1.0,
+  upload-pages-artifact v5.0.0, deploy-pages v5.0.1), so what runs is unchanged and a tag
+  moved later cannot change it; Dependabot's monthly update moves the commit and the
+  comment together. Checkout no longer leaves the token in `.git/config`
+  (`persist-credentials: false`); no later step uses it. `.github/SECURITY.md` sends
+  reports to the private form or to the contact in security.txt.
+- **Not done, on purpose:** requiring pinned actions by repository policy (Dependabot
+  already keeps the pins, and the policy would fail a future edit that names a tag);
+  code scanning (the site's own code is a few small scripts, and alerts would need
+  someone to triage them). The organization's settings (a two-factor requirement, the
+  alumni who still have write access) are the PI's, as the organization's owner.
+- **Domain:** the custom domain is set in the Pages settings and its DNS check passes,
+  which is all the site needs. Verifying the domain for the organization (a TXT record
+  from Kookmin's DNS administrators, started by the PI) would add one guard: if the site
+  ever stopped using Pages while Kookmin's DNS still pointed sail.kookmin.ac.kr at GitHub,
+  no other GitHub account could take the name. Without it, the rule is: if Pages is ever
+  turned off or the site moves, ask Kookmin to remove the DNS record at the same time.

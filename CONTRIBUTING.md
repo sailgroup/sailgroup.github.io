@@ -299,7 +299,14 @@ This page is in Korean by request; keep new copy in Korean to match.
   GitHub Actions, the gems, and `sharp`. Merge it when its CI run is green (the
   image step is strict on a pull request, so green includes it). Merging deploys
   `main`; then bring `dev` up to date (`git switch dev`, `git pull --no-rebase
-  origin main`, `git push`), so work on `dev` starts from what is live.
+  origin main`, `git push`), so work on `dev` starts from what is live. Every
+  action in the workflow is pinned to a commit with its release in a comment;
+  Dependabot's pull request changes both. A security fix for a gem or `sharp` can
+  also arrive between the monthly ones (Dependabot security updates); handle it the
+  same way.
+- **Secrets are refused at push.** Secret scanning with push protection is on: a
+  push that contains a token or key is rejected. Take the secret out of the commit
+  instead of bypassing the block, and revoke it if it was ever pushed anywhere.
 - **Docker runs Ruby here** (there is no local Ruby). The commands below work in
   PowerShell and in a Unix shell; in Git Bash on Windows, put `MSYS_NO_PATHCONV=1`
   in front of `docker`.

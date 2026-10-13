@@ -48,6 +48,9 @@ domain `https://sail.kookmin.ac.kr`.
 - `Gemfile.lock` and `.github/scripts/package-lock.json` are committed and CI installs exactly
   what they pin; update them as `CONTRIBUTING.md` ("Build tools") describes. A local build can
   run in Docker (`ruby:3.3`) with the same commands as CI.
+- Every action in the workflow is pinned to a commit with its release in a comment (Dependabot
+  updates both); a new step names a commit, not a tag. Secret scanning with push protection is
+  on (D48).
 
 ## SEO / GEO
 - jekyll-seo-tag emits the core meta; `_plugins/generate_pages.rb` sets a unique `title`/
