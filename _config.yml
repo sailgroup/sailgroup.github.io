@@ -2,10 +2,12 @@
 title: Spectroscopy and AI Lab
 short_name: SAIL
 tagline: SAIL at Kookmin University
+# Within 160 characters: it is also the home page's meta description, and Bing's site
+# scan reports a longer one (Google cuts the snippet near that length).
 description: >-
-  SAIL (Spectroscopy and AI Lab) at Kookmin University, led by Joonyoung F.
-  Joung. We develop machine learning methods for molecular property prediction,
-  chemical reaction prediction, de novo molecular design, and chemical databases.
+  SAIL, the Spectroscopy and AI Lab at Kookmin University led by Joonyoung F.
+  Joung: machine learning for molecular properties, reactions, design, and
+  databases.
 url: "https://sail.kookmin.ac.kr"
 baseurl: ""
 lang: en
