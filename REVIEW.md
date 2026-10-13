@@ -928,3 +928,49 @@ Verified on the CI builds of `dev` (there is no local Ruby), then on the live si
     URLs load;
   - all 69 pages match the build in title, description, visible text and links, and the key
     file is served.
+
+## 23. Design review fixes, citations, figures and checks (2026-10-13, D49, D50, D51)
+
+Verified on a local build of `dev` (Docker `ruby:3.3`, the commands CI runs) and on the CI
+build of `dev` at fbe49ba, against the live site (`main` at d1886d4) at the same viewports.
+
+- **Build and checks:** html-proofer checked 126 internal links and the link targets in 70
+  files (96 files), with no failure. axe-core 4.14.0 (WCAG 2.2 A and AA) found no violation on
+  the 70 pages and the open phone menu, locally and in CI (run 38397550480, whose image step
+  checked 129 images, rewrote 3 and listed 85 smaller copies for 120). No dash in the added
+  lines or in the commit messages.
+- **Menu and header:** links in reach in the open phone menu: at 844x390 and 667x375, 6 of 11
+  before and all 11 now; at 320x256 (400% zoom), 3 before and all 11 now. Keyboard stops that
+  lead to "/" fell from 3 to 2 (1 with D51). With D51 the bar needs 819px instead of about
+  1,080px and shows from 880px.
+- **Footer:** at 390px, 777px tall before, 598px now.
+- **Publications:** author names split over two lines: 50 of 363 at 390px and 101 at 320px
+  before, none now. The first paper on a 390px phone starts at y 423 (was 601). A paper
+  page's English abstract ran 107 characters a line, now 87.
+- **Line length and first screen:** the home research rows ran 105 to 113 characters a line
+  and the PI bio 89; now at most 75 and 71. At 1536x864 the space above the lab line is 56px
+  (was 104) and the home figure's caption ends at 818px (was 866, below the fold); at
+  1024x768 the figure is whole.
+- **Figures and viewer:** paper 37 showed a 360x270 thumbnail in a 444x310 frame; it now
+  shows its 1420x1600 figure at 373x420 under the title, and a click opens it in the viewer.
+  The viewer now closes on a click anywhere on its backdrop: 32 to 73% of the screen, where
+  22 to 24% did before. Each of the 40 larger figures was matched against its thumbnail
+  (aligned score at least 0.88; the two lowest, 21 and 23, also checked by eye).
+- **Photos on phones** (a throttled local run): the first photo 79 KB instead of 172 KB, and
+  the largest paint at 1.6 s instead of 3.9 s.
+- **Logo:** the SVG against the PNG at 224x57 differs by 1.6 of 255 on average; 5,617 bytes.
+- **Scheduled checks, dry runs:** the link check read 80 outside links in 70 s and found none
+  that needs a look (LinkedIn refuses scripts: HTTP 999). The new-paper watch read 50 ORCID
+  works; two are not on the site (an SSRN preprint and a 2019 correction).
+- **Before and after:** 30 views from 320 to 1536px wide (pages, the phone menu, the
+  dropdown, the viewers, the footer), captured on the live site and on the dev build and
+  put side by side on one page for the maintainer.
+- **What the deploy would change** (the live site against the dev build, all 69 sitemap
+  pages): browser titles and meta descriptions on no page; no link removed. Text removed:
+  only the menu's Home, the Members label (now People), the footer's last line and the
+  emblem's name (it left the accessibility tree); the filter's no-result line moved into its
+  count line. Text added: the BibTeX entries (44 papers), the paper count, "BibTeX for all
+  papers", the people line on PI, Members and Alumni, the Korean overview on Research, the
+  viewers' names and "(opens in a new tab)" for screen readers. Links added: the phone
+  number's `tel:`, `/publications.bib`, the home figure and the 40 paper figures. No text the
+  PI wrote changed.

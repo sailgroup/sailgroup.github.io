@@ -33,18 +33,22 @@ domain `https://sail.kookmin.ac.kr`.
   `photos`, `positions` (member/alumni/publication detail pages are generated, not files)
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
   from the build)
-- `.github/workflows/` — CI build (Jekyll + html-proofer) + deploy; `.github/scripts/` — the CI
-  image step (`prepare-images.mjs`, its `sharp` version pinned by `package-lock.json`)
+- `.github/workflows/`: the CI build (Jekyll, html-proofer, axe-core) and deploy, and the
+  scheduled `link-check.yml` (monthly) and `new-papers.yml` (weekly); `.github/scripts/`: the
+  scripts they run (`prepare-images.mjs`, `check-a11y.mjs`, `check-links.mjs`,
+  `check-new-papers.mjs`, `indexnow.mjs`), their packages pinned by `package-lock.json`
 
 ## Build / deploy
 - CI first runs `.github/scripts/prepare-images.mjs` on the checkout (shrinks oversized uploads,
   strips photo metadata, writes smaller renditions for `srcset` and lists them with image sizes in
-  `_data/generated_images.json`; D40), then `bundle exec jekyll build`, then html-proofer over the
-  built site, then deploys to Pages. On `main` the image step may fail without failing the build
-  (pages then use the plain image files); on `dev` and pull requests it is strict (`IMAGES_STRICT`):
-  a failure, or an image that errors while being processed, fails the run (a HEIC, TIFF or DNG
-  upload only warns; D42). Push to `dev` builds only; `main` builds and deploys (D11). Confirm the
-  Actions run is green before treating anything as done.
+  `_data/generated_images.json`; D40), then `bundle exec jekyll build`, then html-proofer and
+  axe-core (`check-a11y.mjs`: WCAG 2.2 A and AA on every page and the open phone menu; D50) over
+  the built site, then deploys to Pages. On `main` the image step may fail without failing the
+  build (pages then use the plain image files) and an axe violation only warns; on `dev` and pull
+  requests both are strict (`IMAGES_STRICT`, `A11Y_STRICT`): a failure, an image that errors
+  while being processed, or an axe violation fails the run (a HEIC, TIFF or DNG upload only
+  warns; D42). Push to `dev` builds only; `main` builds and deploys (D11). Confirm the Actions
+  run is green before treating anything as done.
 - `Gemfile.lock` and `.github/scripts/package-lock.json` are committed and CI installs exactly
   what they pin; update them as `CONTRIBUTING.md` ("Build tools") describes. A local build can
   run in Docker (`ruby:3.3`) with the same commands as CI.
@@ -83,8 +87,19 @@ domain `https://sail.kookmin.ac.kr`.
   default font size; `main.scss` and `nav.js` hold the width, keep them in sync), and the
   footer changes from three columns to two rows at the same width. The footer's links follow
   `navigation.yml`; the home page has no Contact section (the footer carries it, D43).
+- Text colour by role (D49): running text `--ink-2`; headings, names and titles `--ink`;
+  `--muted` only for dates, venues, captions and counts. Prose is capped at 55ch, which keeps a
+  line within about 75 characters in this font; put the cap on the element whose size the `ch`
+  should be measured in (the paper abstracts carry their own). The header logo is
+  `assets/images/sail-logo.svg`, `sail-logo.png` redrawn in outlines (no larger original
+  exists).
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in
   author lists.
+- A paper's larger figure `assets/images/pubs/<image base>-full.jpg` is optional: the paper page
+  shows it under the title and opens it in the viewer (`assets/js/viewer.js`), else it shows the
+  thumbnail. Like the thumbnail, it must be the paper's own published graphical abstract or
+  figure (D15, D50). BibTeX (each paper page and `/publications.bib`) is generated from
+  `publications.yml` for every paper with a DOI (`_plugins/bibtex.rb`).
 - Member/alumni/publication facts are content: never invent a photo, link, date, or fact — leave a
   field blank instead, and record gaps in `CONTENT_INVENTORY.md`.
 

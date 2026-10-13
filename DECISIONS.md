@@ -1488,3 +1488,95 @@ add their verification meta tags.
   ever stopped using Pages while Kookmin's DNS still pointed sail.kookmin.ac.kr at GitHub,
   no other GitHub account could take the name. Without it, the rule is: if Pages is ever
   turned off or the site moves, ask Kookmin to remove the DNS record at the same time.
+
+## D49: Design review fixes (maintainer's request, 2026-10-13)
+
+- **Asked:** after a design review of the live site (HCI and UX/UI, chanjoongx.com as the
+  benchmark, measured at seven viewports including the maintainer's 1536x864 at 125%), the
+  maintainer asked for every finding to be fixed except one: the PI is fine with the home
+  page showing its hero figure twice.
+- **Menu and header:** the open phone menu scrolls on a short screen (links reachable at
+  844x390: 6 of 11, now 11 of 11; at 320x256, 400% zoom: 3, now 11); it closes on a tap
+  outside or when focus leaves it, and the page behind it no longer scrolls. The Members
+  dropdown opens from a button beside the link (Escape, a click outside or focus leaving
+  closes it; `aria-current` only on the current page's own link). The emblem still goes
+  home on a click (D21) but left the tab order and the accessibility tree, so keyboard stops
+  to "/" fell from 3 to 2. Images inside links keep their context menu, phone numbers are
+  `tel:` links, a menu label never breaks inside itself (under text spacing a whole item
+  wraps), and links that open a new tab say so to screen readers. The PI, Members and
+  Alumni pages carry a small line of the three under their heading
+  (`_includes/people-nav.html`).
+- **Footer:** shorter on phones (390px: 777px, now 598px). The base line "Kookmin University
+  · Seoul, Republic of Korea" is gone, which reverses D43's "the base line stays": the
+  address already names Seoul and the country, and "Kookmin University" now appears twice
+  instead of three times.
+- **Type and colour:** text colours by role (running text `--ink-2`; headings, names and
+  titles `--ink`; `--muted` only for dates, venues, captions and counts; the PI's title is
+  no longer in the link orange). Prose is capped at 55ch, measured: the home rows ran 105 to
+  113 characters a line and now at most 75, the PI bio 89 and now at most 71; the paper
+  abstracts' cap is measured in their own size (English 107 a line, now 87) and the English
+  abstract is set at the base size on phones. The Hangul fallback faces no longer name
+  "Noto Sans KR" in full: that name matched the variable Noto Sans KR some Windows PCs carry,
+  which Chrome read before the first paint (/pi/ 314 ms, without it 124 ms). The focus ring
+  is the logo orange on the dark footer and viewer backdrop (2.67:1, now 6.6:1).
+- **Publications:** author names break only between names (390px: 50 of 363 split, now 0;
+  320px: 101, now 0). On phones the text runs at the full width under the thumbnail (D19's
+  thumbnail stays) and the topic chips sit in one row that scrolls sideways, so the first
+  paper starts at y 423 instead of 601 at 390px. The filter shows its count and keeps the
+  topics in `?topic=` (reload, Back and a shared link keep them). Each paper's DOI, preprint,
+  code and data badges point at its title (`aria-describedby`); person pages line titles up
+  whether or not a paper has a thumbnail; "Submitted" is set upright; a paper without a
+  journal logo has its tags at the left.
+- **Home, viewers, figures:** less space above the home title (at 1536x864 the figure's
+  caption now ends above the fold, and at 1024x768 the figure is whole). One viewer serves
+  the covers, the photos and single figures (`assets/js/viewer.js` with
+  `_includes/lightbox.html`, replacing covers.js and photos.js): a named dialog with its
+  controls inside, a polite caption, a swipe on phones, and a click on the backdrop closes
+  it. The home figure and the paper page figure open in it. The paper page shows its figure
+  under the title in a frame that fits it (it was a 360x270 thumbnail in a 444x310 frame).
+  Korean photo captions carry `lang="ko"` (`_plugins/hangul.rb`). People-card icons are
+  24px targets and the card photo left the tab order; the news links point at their news
+  title. Grids no longer leave a lone item at the left of their last row (the covers fill
+  their row, the photos take four columns from 720px, a lone last card is centred); phones
+  draw the photos at 2x (in a throttled local run the lead photo fell from 172 KB to 79 KB).
+- **Logo:** no larger original exists (the Wix site had none, and the PI most likely has
+  none), so the header wordmark was redrawn as `assets/images/sail-logo.svg` from Roboto
+  Black ("SAIL") and Roboto Light (the two lines), found by scoring about 60 typefaces
+  against the PNG: two paths, 5.6 KB, no font file, a mean difference of 1.6 of 255 from
+  the PNG at 224x57, and sharp at 125% and on phones. The logo's orange is #ee964a; the
+  `--orange` token (#f89858) is left as it is.
+- **Not done:** the twelve Korean names inside English news text keep the page's language;
+  the square logo for structured data is unchanged.
+
+## D50: Citations, larger paper figures and automatic checks (maintainer's request, 2026-10-13)
+
+- **BibTeX:** each paper with a DOI shows its entry under a "BibTeX" summary with a Copy
+  button (`assets/js/bibtex.js`), and `/publications.bib` holds all of them, generated by
+  `_plugins/bibtex.rb` from `publications.yml` (44 today). A paper without a DOI (the
+  submitted ones, and 43) gets an entry once its DOI is added.
+- **Larger figures:** 40 papers have `assets/images/pubs/pub-<id>-full.jpg`, a larger copy of
+  the same published graphical abstract or figure D15 used (ACS 17, RSC 9, Nature 5,
+  Elsevier 4, Wiley 3, MDPI 1, OAE 1), each checked against its thumbnail; 3.5 MB in all, at
+  most 1600px. None for 11 and 15 (Wiley publishes only small ones) or 44 and 45 (the PI's
+  own images are already large). The image step gives a `-full` figure a limit of its own
+  (1600px and 600 KB; the thumbnails' 1200px and 400 KB would have shrunk 19 of the 40),
+  makes no smaller copies of it, and records its size for the page's width and height.
+- **Accessibility check in CI:** after html-proofer, `.github/scripts/check-a11y.mjs` runs
+  axe-core (WCAG 2.2 A and AA) on every page and on the open phone menu, in the Chrome the
+  runner carries: strict on `dev` and pull requests, a warning on `main` (like the image
+  step), so a content push always deploys. axe-core 4.14.0 and puppeteer-core 25.12.0 are
+  pinned; the scripts need Node 22.12 or later.
+- **Monthly link check** (`link-check.yml`, the 3rd of each month): the outside links in
+  `_data`, DOIs through doi.org's API and GitHub, ORCID and Figshare through theirs, other
+  hosts by HEAD then GET. While anything needs a look, one issue labelled `link-check` lists
+  it; `link-check-ignore.txt` silences a known false alarm.
+- **Weekly new-paper watch** (`new-papers.yml`, Mondays): the PI's ORCID works against
+  `publications.yml` (twin DOIs, such as Angewandte's German edition or a later ChemRxiv
+  version, count as the same paper); one issue labelled `new-paper`; works the lab does not
+  list go into `new-paper-ignore.txt`. On 2026-10-13 it would list two: an SSRN preprint
+  (10.2139/ssrn.7320216) and a 2019 correction notice (10.1002/adfm.201808562).
+- Both scheduled workflows run only from `main`, grant nothing at the top level, and give
+  their one job `contents: read` and `issues: write`. GitHub pauses a scheduled workflow
+  after 60 days without activity in the repository; "Enable workflow" on the Actions tab
+  restarts it.
+

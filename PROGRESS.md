@@ -266,3 +266,17 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   actions to commits and checkout keeps no token; `.github/SECURITY.md` says how to
   report a problem. Settings applied and read back on 2026-10-13; the workflow change was
   deployed with Phase 21 (main run 38359746272). Results in `REVIEW.md` section 22.
+- **Phase 23 (2026-10-13):** Design review fixes (D49) and citations, larger figures and
+  automatic checks (D50), on the maintainer's request after a design review of the live site
+  (the PI is fine with the home figure that appears twice, so it stays). The open phone menu
+  scrolls and closes on a tap outside; the Members dropdown opens from its own button; author
+  names no longer break inside a name; the publication filter shows its count and keeps the
+  topics in the address; text colours follow their role and prose lines stay within about 75
+  characters; one viewer serves the covers, the photos and the figures; 40 paper pages show a
+  larger published figure, and each paper with a DOI its BibTeX (`/publications.bib` has
+  all); the header logo is an SVG redrawn to match the PNG. CI now checks every page with
+  axe-core, and two scheduled workflows report broken outside links (monthly) and papers on
+  the PI's ORCID that the site does not list (weekly). Two changes are for the PI to confirm
+  (D51): the menu groups the people pages under People (the bar shows from 880px), and
+  Research shows the Korean overview. Built on `dev` (run 38397550480 green; axe: no
+  violation on 70 pages and the phone menu). Results in `REVIEW.md` section 23 (2026-10-13).

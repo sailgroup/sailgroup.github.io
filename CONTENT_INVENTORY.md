@@ -70,6 +70,12 @@ was taken, what was normalized, and what is still open.
   an unpremultiply-from-white pass (it renders identically over white, letterforms
   only over dark), Phase 8 (D19). The white-background original is archived as
   `_source/images/sail-logo-white-bg.png`.
+- **Header wordmark redrawn** (`assets/images/sail-logo.svg`, 2026-10-13, D49): no
+  larger original of the wordmark exists (the Wix site had only the 224×57 PNG), so it
+  was redrawn in outlines from Roboto Black ("SAIL") and Roboto Light (the two lines),
+  the typefaces that matched it best among about 60 tried, with the colours sampled
+  from the PNG (#0d0d0c, #ee964a). It differs from the PNG by 1.6 of 255 on average
+  at 224×57. The header shows the SVG; `sail-logo.png` stays as the reference.
 
 ## Normalizations and corrections (no source facts invented)
 

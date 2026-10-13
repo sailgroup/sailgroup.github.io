@@ -56,6 +56,15 @@ Live: https://sail.kookmin.ac.kr
 > *권* (호), 페이지 형태로 조판됩니다. 예: `vol: 47`, `issue: 3`, `pages: "317-327"` → *47* (3), 317-327.
 > `vol` 이 있으면 `ref` 는 무시되므로 둘 중 하나만 쓰세요.
 
+> **큰 그림(선택):** 논문 페이지는 그 논문의 그림을 제목 아래에 보여 줍니다. 썸네일
+> (`image: "pub-42.jpg"`)보다 큰 그림이 있으면 같은 폴더(`assets/images/pubs/`)에 이름 끝에
+> `-full` 을 붙여 올립니다(예: `pub-42-full.jpg`). 그러면 큰 그림을 보여 주고, 누르면 화면 가득
+> 열립니다. 썸네일처럼 그 논문에 실린 그래픽 초록이나 그림이어야 합니다. 없으면 썸네일을 그대로
+> 보여 줍니다.
+>
+> **BibTeX:** DOI 가 있는 논문은 논문 페이지와 `/publications.bib`(모든 논문)에 BibTeX 항목이
+> 자동으로 만들어집니다. 따로 적을 것은 없습니다.
+
 ### 논문에 코드와 데이터 링크 달기 (GitHub, Figshare 아이콘)
 
 논문마다 코드 저장소 칸 `code: ""` 와 데이터셋 칸 `dataset: ""` 이 있습니다. 공개된 곳이 있으면 따옴표
@@ -212,6 +221,9 @@ sections:
 | 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
 | PI 페이지 구성 | `pi.html` |
 | 홈 화면 구성 (최근 뉴스·연구·저널 표지) | `index.html` |
+| 상단 로고 | `assets/images/sail-logo.svg` (글자를 윤곽선으로 바꾼 그림. `sail-logo.png` 를 그대로 다시 그린 것) |
+| 사진·표지·그림을 크게 보는 창(뷰어) | `assets/js/viewer.js`, `_includes/lightbox.html` |
+| 논문 BibTeX 항목 형식 | `_plugins/bibtex.rb` |
 | 전체 색상·글꼴·간격(디자인 토큰) | `assets/css/main.scss` 맨 위 `:root` |
 
 예) "저널명과 권 사이에 콤마" → `_includes/pub-citation.html` 을 열면 형식 예시와 함께 콤마
@@ -229,6 +241,12 @@ sections:
 - 빌드 도구 버전은 `Gemfile.lock` 과 `.github/scripts/package-lock.json` 으로 고정되어 있고, Dependabot이
   한 달에 한 번 업데이트 PR을 엽니다(CI가 통과하면 병합. PR에서는 이미지 단계도 실패하면 CI가 실패합니다).
   병합하면 `main` 이 배포되므로, 그 뒤 `dev` 에 `main` 을 받아 둡니다. 자세한 내용은 `CONTRIBUTING.md` 의 Build tools.
+- 빌드마다 접근성 검사(axe-core, `.github/scripts/check-a11y.mjs`)가 모든 페이지를 확인합니다. `dev` 와
+  PR 에서는 문제가 있으면 CI 가 실패하고, `main` 에서는 경고만 남기고 배포합니다. 정해진 날에는 두 가지를
+  확인해 GitHub 이슈 하나로 알립니다. 매달 3일에는 데이터에 적힌 바깥 링크(DOI·논문·코드·데이터·개인 링크)를
+  확인하고(라벨 `link-check`), 매주 월요일에는 PI 의 ORCID 에 있지만 사이트에 없는 논문을 찾습니다(라벨
+  `new-paper`). 이슈를 보고 고치거나, 일부러 빼는 논문과 잘못된 경보는 `CONTRIBUTING.md` 의 Checks 에 적힌
+  대로 목록 파일에 넣습니다.
 - 주의: `CNAME`(커스텀 도메인) 파일을 삭제하지 마세요. `baseurl` 은 `""` 로 유지합니다.
 - 주의: 맨 위 폴더의 `4fa521d6cc1d0212aa5696ee0a4b94a8.txt` 도 삭제하지 마세요. `main` 이 배포될 때마다
   바뀐 페이지를 네이버와 빙에 알리는 IndexNow 의 키 파일입니다(공개되어 있는 것이 정상입니다).

@@ -117,6 +117,14 @@ Article"`). Most papers instead use the structured `vol:` / `issue:` / `pages:`,
 which gives an auto-formatted *vol* (issue), pages line; `vol` takes precedence
 over `ref` when both are present.
 
+A larger copy of the paper's figure can sit beside its thumbnail, named after it
+with `-full` (for `pub-42.jpg`, `assets/images/pubs/pub-42-full.jpg`). The paper
+page then shows it under the title, and a click or tap opens it in the viewer;
+without one, the page shows the thumbnail. Like the thumbnail, it must be the
+paper's own published graphical abstract or figure (D15, D50). A paper with a DOI
+also gets a BibTeX entry, on its page and in `/publications.bib`, made from these
+fields when the site is built (`_plugins/bibtex.rb`).
+
 ### Link a paper's code and data (GitHub, Figshare icons)
 
 Every paper has two slots, `code: ""` for its code repository and `dataset: ""` for
@@ -188,7 +196,8 @@ and `/llms-full.txt`, for AI answer engines asked in Korean (D47).
 
 Upload photos as they are. When the site is deployed, the copies served to
 visitors are scaled down automatically (people 800 px, photos 1600 px, paper
-figures 1200 px on the longest side) and recompressed, and camera metadata (such
+figures 1200 px and a paper's `-full` figure 1600 px on the longest side) and
+recompressed, and camera metadata (such
 as the GPS position a phone stores in a photo) is removed. The repository itself
 is public and keeps the file exactly as uploaded, so share a phone photo without
 its location (most phones and photo apps have that option); the build's summary
@@ -197,7 +206,8 @@ as JPG: a HEIC file (the iPhone default) or a TIFF is not processed, so it is
 published with its metadata, and most browsers cannot show it (the summary page
 warns about these too). Gallery photos, paper
 figures, and journal covers also get smaller copies, which the browser uses where
-the image is shown small (the photo grid, the publication list). The originals in
+the image is shown small (the photo grid, the publication list); a paper's `-full`
+figure gets none. The originals in
 the repository are never changed. Only uploads to `people/`, `photos/`, and
 `pubs/` are scaled down, cleaned, and checked for a GPS position: journal covers
 (apart from their smaller copies), logos, and research figures are served as
@@ -268,7 +278,10 @@ This page is in Korean by request; keep new copy in Korean to match.
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `code-badge`,
   `dataset-badge`, `journal-covers`, `news-date`, `social-links`, `icon`,
-  `structured-data`). Edit a pattern in one place.
+  `structured-data`, `people-nav`, `new-tab`, `lightbox`). Edit a pattern in one
+  place. Every image that opens larger (the journal covers, the photos, the home
+  figure, a paper's figure) uses one viewer: `_includes/lightbox.html` with
+  `assets/js/viewer.js`.
 - **Page translation.** Many Korean visitors read the site through Chrome's page
   translation. In templates, a name or Korean text that stands on its own (an author
   list, a journal name, a person's name in a heading or card, a Korean name or the
