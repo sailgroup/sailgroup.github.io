@@ -25,6 +25,7 @@
     });
 
     var img = lb.querySelector(".lightbox__img");
+    var fig = img.parentNode;
     var title = lb.querySelector(".lightbox__title");
     var desc = lb.querySelector(".lightbox__desc");
     var count = lb.querySelector(".lightbox__count");
@@ -44,6 +45,7 @@
       var d = items[cur];
       img.src = d.full;
       img.alt = d.alt;
+      fig.scrollLeft = 0; // a figure wider than a phone starts at its left edge
       title.textContent = d.title;
       title.hidden = !d.title;
       desc.textContent = d.desc;
@@ -56,12 +58,23 @@
       }
     }
 
+    // On a phone a single figure keeps a readable height and scrolls sideways in its box
+    // (main.scss); while it does, the box takes focus, so the arrow keys can move it too.
+    function fit() {
+      if (n > 1) return;
+      if (fig.scrollWidth > fig.clientWidth + 1) fig.tabIndex = 0;
+      else fig.removeAttribute("tabindex");
+    }
+    img.addEventListener("load", fit);
+    window.addEventListener("resize", function () { if (!lb.hidden) fit(); });
+
     function open(i, trigger) {
       lastFocus = trigger;
       down = {};
       start = null;
       show(i);
       lb.hidden = false;
+      fit();
       document.body.classList.add("no-scroll");
       document.addEventListener("keydown", onKey);
       closeBtn.focus();
@@ -81,9 +94,9 @@
       else if (e.key === "Tab") trap(e);
     }
 
-    // Keep Tab inside the dialog, over the controls that are shown.
+    // Keep Tab inside the dialog, over the controls that are shown (and a scrolling figure).
     function trap(e) {
-      var f = Array.prototype.filter.call(lb.querySelectorAll("button, a[href]"), function (x) {
+      var f = Array.prototype.filter.call(lb.querySelectorAll("button, a[href], [tabindex='0']"), function (x) {
         return x.getClientRects().length > 0;
       });
       if (!f.length) return;

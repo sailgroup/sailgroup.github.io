@@ -7,14 +7,19 @@ scripts: [viewer]
     <p class="kicker"><span>Joonyoung F. Joung Lab &middot;</span> <span>Kookmin University</span></p>
     <h1>{{ site.data.home.hero.title }}</h1>
     <p class="lead">{{ site.data.home.hero.lead }}</p>
+    {%- comment -%}On a phone the figure's labels are about 4px tall, so a click or tap opens it in the viewer (viewer.js); the link to the image itself works without JS and for a new tab.{%- endcomment %}
+    {%- assign herofig = '/assets/images/home-architecture.png' | relative_url %}
     <figure class="hero__figure">
-      <img src="{{ '/assets/images/home-architecture.png' | relative_url }}"
-           alt="Generative electron-flow model architecture for chemical reaction prediction"
-           width="1244" height="560" loading="eager" decoding="async" fetchpriority="high">
+      <a class="hero__zoom" href="{{ herofig }}" data-viewer="figure-lightbox" data-full="{{ herofig }}" data-alt="Generative electron-flow model architecture for chemical reaction prediction" aria-label="Enlarge the figure: Generative electron-flow model architecture for chemical reaction prediction">
+        <img src="{{ herofig }}"
+             alt="Generative electron-flow model architecture for chemical reaction prediction"
+             width="1244" height="560" loading="eager" decoding="async" fetchpriority="high">
+      </a>
       <figcaption>Electron-flow matching for reaction prediction, from our work in <a href="https://doi.org/10.1038/s41586-025-09426-9" target="_blank" rel="noopener noreferrer" translate="no">Nature</a> (2025).</figcaption>
     </figure>
   </div>
 </section>
+{% include lightbox.html id="figure-lightbox" label="Figure viewer" %}
 
 {%- assign latest = site.data.news | sort: "date" | reverse -%}
 {%- if latest and latest.size > 0 -%}

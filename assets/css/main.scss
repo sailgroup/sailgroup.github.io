@@ -403,6 +403,8 @@ p { text-wrap: pretty; }
 .hero h1 { margin-top: 0.9rem; }
 .hero .lead { margin-top: 1.25rem; max-width: none; }
 .hero__figure { margin: clamp(2rem, 5vw, 3.75rem) auto 0; max-width: 880px; }
+/* The figure opens large in the viewer (on phones its labels are about 4px tall). */
+.hero__zoom { display: block; border-radius: var(--radius); cursor: zoom-in; }
 .hero__figure img {
   display: block; width: 100%; height: auto;
   border-radius: var(--radius);
@@ -796,6 +798,8 @@ body.no-scroll { overflow: hidden; }
   position: absolute;
   inset: 0;
   display: grid;
+  /* One cell the size of the dialog, so a figure wider than the screen scrolls inside it. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   /* Room at the sides for the previous and next buttons, so they never cover the image. */
   padding: clamp(1rem, 4vw, 3rem) 5rem;
@@ -803,6 +807,8 @@ body.no-scroll { overflow: hidden; }
 }
 .lightbox--single .lightbox__dialog { padding-inline: clamp(1rem, 4vw, 3rem); }
 .lightbox__figure { margin: 0; display: flex; flex-direction: column; align-items: center; max-width: min(1100px, 100%); }
+/* A figure may use the whole width, up to its own size, so its labels are as large as they get. */
+.lightbox--single .lightbox__figure { max-width: 100%; }
 .lightbox__img {
   max-width: 100%;
   max-height: 72vh;
@@ -862,6 +868,11 @@ body.no-scroll { overflow: hidden; }
   .lightbox__nav:active { transform: scale(0.94); }
   .lightbox__nav--prev { left: 1rem; }
   .lightbox__nav--next { right: 1rem; }
+  /* Fitted to a phone's width a wide figure's labels stay about 4px tall, so a single figure
+     keeps its own height (at most 64vh) and a finger moves it sideways; the page above the
+     viewer already shows it whole. */
+  .lightbox--single .lightbox__figure { align-items: flex-start; overflow-x: auto; overscroll-behavior: contain; }
+  .lightbox--single .lightbox__img { max-width: none; }
 }
 
 /* --- Footer --------------------------------------------------------------- */
