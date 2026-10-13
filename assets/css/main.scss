@@ -386,9 +386,11 @@ p { text-wrap: pretty; }
 .subnav a[aria-current="page"] { background: var(--orange-wash); color: var(--orange-deep); }
 
 /* --- Hero ----------------------------------------------------------------- */
+/* Padding sized so the first screen holds the figure and its caption at 1536x864 and the
+   whole figure at 1024x768 (with 6.5rem the caption ended 2px below the fold at 1536x864). */
 .hero {
   position: relative;
-  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  padding-block: clamp(2rem, 4vw, 3.5rem);
   background: var(--bg);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
@@ -396,6 +398,8 @@ p { text-wrap: pretty; }
 /* Hero content uses the standard .container width so its left/right edges line up with
    every other section instead of bleeding to the viewport edge. The description still
    spans that full content width (R1), just matched to the rest of the page. */
+/* Each half of the lab line stays whole, so a narrow screen breaks it only after the dot. */
+.hero .kicker > span { white-space: nowrap; }
 .hero h1 { margin-top: 0.9rem; }
 .hero .lead { margin-top: 1.25rem; max-width: none; }
 .hero__figure { margin: clamp(2rem, 5vw, 3.75rem) auto 0; max-width: 880px; }
