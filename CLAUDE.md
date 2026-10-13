@@ -56,6 +56,15 @@ domain `https://sail.kookmin.ac.kr`.
   is a generated summary for AI answer engines (`/llms-full.txt` the full text); the sitemap
   excludes the noindex redirects. `/.well-known/security.txt` writes its `Expires` at build time.
   Registering in Google Search Console / Naver Search Advisor is a manual (account-based) step.
+- Titles carry Korean names ("Jihwan Kim (김지환)") and a published paper's venue ("(Nature, 2025)");
+  meta descriptions stay within 160 characters. The lab's other names (`alternate_names` in
+  `_config.yml`, e.g. 인공지능화학연구실 from Kookmin's faculty directory) go only into the JSON-LD and
+  llms.txt. After each `main` deploy, IndexNow tells Bing and Naver which pages changed
+  (`.github/scripts/indexnow.mjs` and the workflow; never delete the root key file
+  `4fa521d6cc1d0212aa5696ee0a4b94a8.txt`). D47.
+- Chrome's page translation: names and Korean text that stand alone (author lists, journal names,
+  people's names, Korean abstracts and names, cover captions) carry `translate="no"`; prose does not
+  (CONTRIBUTING, "Page translation").
 - Journal covers open a fullscreen viewer (`assets/js/covers.js`); each cover needs a high-res
   `<base>-full.jpg` beside its thumbnail (the validator fails the build when it is missing).
 

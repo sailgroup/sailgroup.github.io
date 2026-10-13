@@ -1388,3 +1388,69 @@ add their verification meta tags.
   dataset pictures, `dataset-badge.html`) follow. CONTRIBUTING's section is "Link a paper's
   code and data", `dataset-badge` joins its list of includes, and the header comment of
   `publications.yml` names both slots.
+
+## D47: Search (SEO/GEO) and page-translation pass (maintainer's request, 2026-10-13)
+
+- **Asked:** whether anything more should be improved (security, GitHub settings, the UX
+  from an HCI point of view, after the maintainer's own site was remade), and to optimize
+  for searches such as Nature FlowER, 정준영 교수, Joonyoung F. Joung, 국민대 화학, 국민대
+  바이오, 국민대 AI, 김지환, 김찬중 and chanjoongx.
+- **Measured first (2026-10-13):** a web search for "Joonyoung F. Joung Kookmin University"
+  put `/pi/` first. Naver had indexed one page of the site (`site:` search: `/pi/`), and for
+  "정준영 교수 국민대" it showed Kookmin's own pages, both of which still link the old Wix
+  site as the lab's homepage (kookmin.ac.kr's 교수연구 page for 정준영, and the 응용화학부
+  faculty list on cst.kookmin.ac.kr, which names the lab 인공지능화학 연구실). The Wix site
+  is still online, and the PI's GitHub profile links it; ORCID and Google Scholar give
+  sail.kookmin.ac.kr. 51 of the 69 meta descriptions ran past 160 characters. Under Google's
+  page translator (the Translate Element on the live pages, as chanjoongx.com tests its own
+  pages) "Nature" became "자연", "New Journal of Chemistry" "새로운 화학 저널", names were
+  doubled ("김찬중 김찬중"), and the PI's Korean abstracts were re-translated into broken
+  Korean.
+- **Page translation:** `translate="no"` on author lists, journal names, people's names in
+  headings and cards, Korean names, the Korean abstract, the cover captions and the home
+  caption's "Nature". Checked on the built site with the same translator: the abstract stays
+  word for word, "Nature" and the cover captions stay, no name is doubled. Prose (bios,
+  research text, news) is translated as before. Also tried and taken back: the PI's name
+  inside the bio, after which the translator dropped the Korean particle and the space
+  ("Joonyoung F. Joung국민대학교 ..."), worse than its own "정준영 F.는 ...".
+- **Titles and descriptions** (`generate_pages.rb`): a person's and the PI's title carry
+  the Korean name ("Jihwan Kim (김지환)"); a paper with a DOI or preprint adds "(Journal,
+  Year)" to its title (the page heading stays the paper's title); descriptions are cut at
+  160 characters at a word; an alumnus's line says "former"; the site, research and
+  publications descriptions were rewritten to fit (the publications page no longer says
+  "peer-reviewed", since the list holds preprints and submitted work). The PI page's
+  `description_topics` key went with the longer description.
+- **Structured data:** the lab's alternateName lists SAIL, "Joonyoung F. Joung Lab" (the
+  home page's kicker) and 인공지능화학연구실 (the university directory's name for the lab);
+  its sameAs is github.com/sailgroup; Kookmin University carries alternateName 국민대학교.
+  The PI adds the full name, GitHub and alumniOf (the universities of the PI's degrees in
+  pi.yml); each person page's Person has an @id; a paper carries its DOI as identifier. The
+  names are `alternate_names`, `university_ko` and `github_org` in `_config.yml`, used only
+  in metadata: no page shows them.
+- **llms.txt / llms-full.txt:** the other names, Kookmin's Korean name, the GitHub
+  organization, and the lab's own Korean overview (`research.yml` `overview.ko`); the full
+  file also gives each research area's Korean text. Pages still show only the English (D9).
+- **chanjoongx.com:** Chanjoong Kim's own entry gets `website: https://chanjoongx.com` (the
+  site's canonical address). That site links SAIL from its bio and work list, so the two now
+  link each other, and the page's JSON-LD names it in sameAs.
+- **IndexNow:** on `main`, the build job lists the pages whose HTML differs from the live
+  site (plus pages the live sitemap has and the build dropped) with
+  `.github/scripts/indexnow.mjs`; after the deploy, the deploy job sends the list to
+  api.indexnow.org and to Naver's endpoint (Naver's guide: a key file at the root, up to
+  10,000 URLs per request, shared with the other IndexNow engines). Both steps are
+  continue-on-error. Key file: `4fa521d6cc1d0212aa5696ee0a4b94a8.txt`. A dry run against
+  the live site listed 67 of 69 pages (all but News and Positions, which this pass does not
+  touch).
+- **Left for the maintainer or the PI (no change in the repo can do them):** register the
+  site in Naver Search Advisor, Google Search Console and Bing Webmaster Tools and submit
+  the sitemap; ask Kookmin to point the two faculty pages at sail.kookmin.ac.kr; put a
+  "moved" note on the Wix site and later unpublish it; the PI's GitHub profile website; the
+  repository's settings (description, website, topics, secret scanning with push
+  protection, Dependabot security updates, private vulnerability reporting, the unused
+  wiki); the organization's (two-factor requirement, the alumni who still have write
+  access, the Pages domain verification TXT record). Showing the lab's Korean text on the
+  Research page is a design decision for the PI, not taken here.
+- **Limits, stated plainly:** "국민대 바이오" and "국민대 AI" are broad searches that the
+  university's departments answer; the lab can at best appear for narrower ones (국민대
+  인공지능화학연구실, 국민대 AI 화학). For "네이처 FlowER", Nature, arXiv and MIT News lead;
+  the lab's paper page now has "Nature" in its title.

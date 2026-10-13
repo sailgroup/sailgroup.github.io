@@ -181,8 +181,8 @@ page and on the home page, where the figure sits beside the text; the home page
 links each area to its section on `/research/` by title, so renaming an area
 keeps the link working. An area without a figure is shown as text only. The
 Korean texts in the file (`overview.ko`, each area's `title_ko` and `body_ko`)
-are kept from the old site but are not shown anywhere, so editing them does not
-change the site.
+are kept from the old site and shown on no page; they go only into `/llms.txt`
+and `/llms-full.txt`, for AI answer engines asked in Korean (D47).
 
 ## Image sizes
 
@@ -269,7 +269,24 @@ This page is in Korean by request; keep new copy in Korean to match.
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `code-badge`,
   `dataset-badge`, `journal-covers`, `news-date`, `social-links`, `icon`,
   `structured-data`). Edit a pattern in one place.
+- **Page translation.** Many Korean visitors read the site through Chrome's page
+  translation. In templates, a name or Korean text that stands on its own (an author
+  list, a journal name, a person's name in a heading or card, a Korean name or the
+  Korean abstract, a cover caption) carries `translate="no"`, so it stays as written:
+  without it "Nature" became "자연", names were doubled, and the PI's Korean abstracts
+  were re-translated into broken Korean. Prose (bios, research text, news) stays
+  translatable: a name kept inside a sentence made the translator drop the Korean
+  particle after it.
+- **Meta descriptions** stay within 160 characters (Bing's site scan reports longer
+  ones, and Google cuts the snippet near there). A page's front-matter `description:`
+  is written to fit; the generated ones (papers, people, the PI) are cut at a word.
 - Never delete `CNAME` (the custom domain). `baseurl` stays `""`.
+- Never delete `4fa521d6cc1d0212aa5696ee0a4b94a8.txt` at the root: it is the IndexNow
+  key. On `main`, the build job lists the pages whose HTML differs from the live site
+  (`.github/scripts/indexnow.mjs`), and the deploy job sends that list to IndexNow
+  (api.indexnow.org, which shares it with Bing's partners, and Naver) once the pages are
+  live, so those engines recrawl them soon. Neither step can fail a run. The key is
+  public by design: an engine reads the file to check that the list came from the site.
 
 ## Build tools
 
