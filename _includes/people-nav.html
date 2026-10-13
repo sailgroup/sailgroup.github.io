@@ -1,6 +1,8 @@
-{%- comment -%}Small menu of the three people pages, under the heading of /pi/, /members/ and /alumni/: the header's dropdown is not at hand on a touch screen, and /members/ had no link to the other two. The names are the menu's (_data/navigation.yml), so a renamed entry changes here too; the current page carries aria-current.{%- endcomment -%}
+{%- comment -%}Small menu of the three people pages, under the heading of /pi/, /members/ and /alumni/: the header's dropdown is not at hand on a touch screen, and /members/ had no link to the other two. The names are the menu's (_data/navigation.yml), so a renamed entry changes here too, and so is its name for screen readers ("Members pages", like the dropdown's button); the current page carries aria-current.{%- endcomment -%}
 {%- assign people = "/pi/,/members/,/alumni/" | split: "," -%}
-<nav class="people-nav" aria-label="People">
+{%- assign group = "" -%}
+{%- for item in site.data.navigation -%}{%- for c in item.children -%}{%- if c.url == "/members/" -%}{%- assign group = item.name -%}{%- endif -%}{%- endfor -%}{%- endfor -%}
+<nav class="people-nav" aria-label="{{ group }} pages">
   <ul>
     {%- for u in people -%}
       {%- for item in site.data.navigation -%}
