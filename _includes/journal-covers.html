@@ -34,7 +34,7 @@ else 1 (at most 320px). Checked against the drawn width at every viewport width 
           <img src="{{ thumburl }}"{{ srcset }} alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
         </button>
         {%- endif -%}
-        <figcaption>{{ cap }}</figcaption>
+        <figcaption translate="no">{{ cap }}</figcaption>
       </figure>
       {%- endfor -%}
     </div>
@@ -55,7 +55,7 @@ else 1 (at most 320px). Checked against the drawn width at every viewport width 
       <figure class="lightbox__figure">
         <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
         <figcaption class="lightbox__cap">
-          <p class="lightbox__title"></p>
+          <p class="lightbox__title" translate="no"></p>
           <p class="lightbox__count"></p>
           <p class="cover-lightbox__paper"><a href="#">View the paper</a></p>
         </figcaption>

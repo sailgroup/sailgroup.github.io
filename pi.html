@@ -8,7 +8,7 @@ description_topics: "spectroscopy, physical chemistry, and machine learning for 
 ---
 {%- assign pi = site.data.pi -%}
 <div class="container page-head">
-  <h1 class="profile__name">{{ pi.name }} <span class="ko" lang="ko">{{ pi.name_ko }}</span></h1>
+  <h1 class="profile__name" translate="no">{{ pi.name }} <span class="ko" lang="ko">{{ pi.name_ko }}</span></h1>
   <p class="profile__title">{{ pi.title }}, {{ pi.department }}</p>
   <p class="profile__affil">{{ pi.college }}, {{ pi.institution }}</p>
 </div>
@@ -30,7 +30,11 @@ description_topics: "spectroscopy, physical chemistry, and machine learning for 
 
       <div class="profile__main">
         <div class="prose">
-          <p>{{ pi.bio }}</p>
+          {%- comment -%}The PI's name in the bio stays as written under a browser's page translation (Chrome made "Joonyoung F. Joung is ..." into "정준영 F.는 ..."); the rest of the bio is translated as usual.{%- endcomment -%}
+          {%- assign bio = pi.bio -%}
+          {%- if pi.name and pi.name != "" -%}{%- capture keep -%}<span translate="no">{{ pi.name }}</span>{%- endcapture -%}{%- assign bio = bio | replace: pi.name, keep -%}{%- endif -%}
+          {%- if pi.name_full and pi.name_full != "" -%}{%- capture keep -%}<span translate="no">{{ pi.name_full }}</span>{%- endcapture -%}{%- assign bio = bio | replace: pi.name_full, keep -%}{%- endif %}
+          <p>{{ bio }}</p>
         </div>
 
         <div class="cv">

@@ -27,8 +27,8 @@ layout: default
     <div class="paper__head{% if hasimg %} paper__head--figured{% endif %}">
       <div class="paper__head-main">
         <h1 class="paper__title">{{ p.title }}</h1>
-        <p class="paper__meta"><span class="pub__journal">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
-        <p class="paper__authors">{% include pi-authors.html authors=p.authors %}</p>
+        <p class="paper__meta"><span class="pub__journal" translate="no">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
+        <p class="paper__authors" translate="no">{% include pi-authors.html authors=p.authors %}</p>
         {%- if hasdoi or haspre or hascode or hasdataset -%}
         <div class="paper__links">
           {%- if hasdoi -%}
@@ -54,7 +54,7 @@ layout: default
     {%- assign has_ko = false -%}{%- if p.abstract_ko and p.abstract_ko != "" -%}{%- assign has_ko = true -%}{%- endif -%}
     {%- assign has_en = false -%}{%- if p.abstract and p.abstract != "" -%}{%- assign has_en = true -%}{%- endif -%}
     {%- if has_ko -%}
-    <div class="paper__abstract" lang="ko">
+    <div class="paper__abstract" lang="ko" translate="no">
       <h2 class="paper__abstract-label">초록</h2>
       <p>{{ p.abstract_ko }}</p>
     </div>

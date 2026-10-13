@@ -21,8 +21,8 @@ Pass: person (the data object). The card always links to the canonical /people/<
   {%- else -%}
   <div class="person__ph" aria-hidden="true">{{ x.name | slice: 0 }}</div>
   {%- endif -%}
-  <p class="person__name">{%- if x.slug and x.slug != "" -%}<a href="{{ url }}">{{ x.name }}</a>{%- else -%}{{ x.name }}{%- endif -%}</p>
-  <p class="person__ko" lang="ko">{{ x.name_ko }}</p>
+  <p class="person__name" translate="no">{%- if x.slug and x.slug != "" -%}<a href="{{ url }}">{{ x.name }}</a>{%- else -%}{{ x.name }}{%- endif -%}</p>
+  <p class="person__ko" lang="ko" translate="no">{{ x.name_ko }}</p>
   <p class="person__role">{{ x.role }}</p>
   {%- if x.note and x.note != "" -%}<p class="person__note">{{ x.note }}</p>{%- endif -%}
   {%- include social-links.html person=x variant="compact" -%}
