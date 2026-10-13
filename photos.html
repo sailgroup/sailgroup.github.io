@@ -3,7 +3,7 @@ layout: default
 title: Photos
 description: "Life at the Spectroscopy and AI Lab (SAIL), Kookmin University: conferences, poster sessions, and group outings."
 permalink: /photos/
-scripts: [photos, covers]
+scripts: [viewer]
 ---
 {%- comment -%}
 Grid images: each cell shows its photo with object-fit: cover at 4:3, so the grid offers CI's
@@ -24,7 +24,8 @@ there), so it loads at once with high priority; the rest stay lazy.
       {%- for p in site.data.photos -%}
       {%- capture srcset -%}{% include image-srcset.html image=p.image sizes="(min-width: 1140px) 259px, (min-width: 988px) calc(25vw - 26px), (min-width: 749px) calc(33.4vw - 30px), (min-width: 494px) calc(46vw - 7px), 92vw" %}{%- endcapture -%}
       <li>
-        <button class="gallery__item" type="button" data-index="{{ forloop.index0 }}"
+        <button class="gallery__item" type="button" data-viewer="photo-lightbox" data-full="{{ '/assets/images/' | append: p.image | relative_url }}"
+                data-title="{{ p.title | escape }}" data-desc="{{ p.caption | escape }}" data-alt="{{ p.alt | escape }}"
                 aria-label="View larger{% if p.title and p.title != '' %}: {{ p.title | escape }}{% endif %}{% if p.caption and p.caption != '' %}. {{ p.caption | escape }}{% endif %}">
           <img src="{{ '/assets/images/' | append: p.image | relative_url }}"{{ srcset }} alt=""{% if forloop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
           {%- if p.title and p.title != "" -%}<span class="gallery__cap">{{ p.title }}</span>{%- endif -%}
@@ -35,29 +36,6 @@ there), so it loads at once with high priority; the rest stay lazy.
   </div>
 </section>
 
+{% include lightbox.html id="photo-lightbox" label="Photo viewer" noun="photo" %}
+
 {% include journal-covers.html %}
-
-<script id="photos-data" type="application/json">[{%- for p in site.data.photos -%}{"src":{{ '/assets/images/' | append: p.image | relative_url | jsonify }},"title":{{ p.title | default: '' | jsonify }},"caption":{{ p.caption | default: '' | jsonify }},"alt":{{ p.alt | default: '' | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]</script>
-
-<div class="lightbox" id="lightbox" hidden>
-  <div class="lightbox__overlay" data-close></div>
-  <button class="lightbox__close" type="button" data-close aria-label="Close (Esc)">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-  <button class="lightbox__nav lightbox__nav--prev" type="button" data-prev aria-label="Previous photo">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-  </button>
-  <button class="lightbox__nav lightbox__nav--next" type="button" data-next aria-label="Next photo">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
-  </button>
-  <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Photo viewer">
-    <figure class="lightbox__figure">
-      <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-      <figcaption class="lightbox__cap">
-        <p class="lightbox__title"></p>
-        <p class="lightbox__desc"></p>
-        <p class="lightbox__count"></p>
-      </figcaption>
-    </figure>
-  </div>
-</div>

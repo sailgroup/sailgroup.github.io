@@ -1,8 +1,8 @@
 {%- comment -%}Journal-covers highlights section (home + photos pages). Renders nothing when there are no covers.
-Each cover opens a fullscreen viewer (covers.js) that loads a high-res "<base>-full.jpg" rendition; the
-thumbnail stays small for fast loading. Progressive enhancement: the cover is a real link to the paper for
-no-JS users and crawlers, and covers.js intercepts the click to show the full cover (with a paper link inside).
-Pages that include this must load covers.js (front matter: scripts: [covers]).
+Each cover opens a fullscreen viewer (viewer.js, dialog from lightbox.html) that loads a high-res
+"<base>-full.jpg" rendition; the thumbnail stays small for fast loading. Progressive enhancement: the cover
+is a real link to the paper for no-JS users and crawlers, and viewer.js intercepts the click to show the full
+cover (with a paper link inside). Pages that include this must load viewer.js (front matter: scripts: [viewer]).
 The full-size name drops only the LAST extension ("a.v2.jpg" -> "a.v2-full.jpg"), the same rule the
 data validator checks. When CI made a smaller rendition of the thumbnail (see image-srcset.html), the
 browser may pick it; the `sizes` value is the grid cell width: minmax(150px, 1fr) columns with a 20px
@@ -26,11 +26,11 @@ else 1 (at most 320px). Checked against the drawn width at every viewport width 
       {%- if c.publication_id -%}{%- assign paper = '/publications/' | append: c.publication_id | append: '/' | relative_url -%}{%- else -%}{%- assign paper = "" -%}{%- endif -%}
       <figure class="cover">
         {%- if c.publication_id -%}
-        <a class="cover__link" href="{{ paper }}" data-full="{{ fullurl }}" data-caption="{{ cap | escape }}" data-paper="{{ paper }}" aria-label="Enlarge {{ cap | escape }} cover">
+        <a class="cover__link" href="{{ paper }}" data-viewer="cover-lightbox" data-full="{{ fullurl }}" data-title="{{ cap | escape }}" data-paper="{{ paper }}" aria-label="Enlarge {{ cap | escape }} cover">
           <img src="{{ thumburl }}"{{ srcset }} alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
         </a>
         {%- else -%}
-        <button type="button" class="cover__link" data-full="{{ fullurl }}" data-caption="{{ cap | escape }}" data-paper="" aria-label="Enlarge {{ cap | escape }} cover">
+        <button type="button" class="cover__link" data-viewer="cover-lightbox" data-full="{{ fullurl }}" data-title="{{ cap | escape }}" aria-label="Enlarge {{ cap | escape }} cover">
           <img src="{{ thumburl }}"{{ srcset }} alt="{{ c.journal }} cover, {{ c.year }}" width="{{ c.w }}" height="{{ c.h }}" loading="lazy">
         </button>
         {%- endif -%}
@@ -40,27 +40,6 @@ else 1 (at most 320px). Checked against the drawn width at every viewport width 
     </div>
   </div>
 
-  <div class="lightbox" id="cover-lightbox" hidden>
-    <div class="lightbox__overlay" data-close></div>
-    <button class="lightbox__close" type="button" data-close aria-label="Close (Esc)">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <button class="lightbox__nav lightbox__nav--prev" type="button" data-prev aria-label="Previous cover">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-    </button>
-    <button class="lightbox__nav lightbox__nav--next" type="button" data-next aria-label="Next cover">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
-    </button>
-    <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Journal cover viewer">
-      <figure class="lightbox__figure">
-        <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-        <figcaption class="lightbox__cap">
-          <p class="lightbox__title" translate="no"></p>
-          <p class="lightbox__count"></p>
-          <p class="cover-lightbox__paper"><a href="#">View the paper</a></p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
+  {% include lightbox.html id="cover-lightbox" label="Journal cover viewer" noun="cover" paper=true notranslate=true %}
 </section>
 {%- endif -%}

@@ -776,31 +776,33 @@ p { text-wrap: pretty; }
 .gallery__item:focus-visible .gallery__cap { opacity: 1; transform: translateY(0); }
 
 /* --- Lightbox ------------------------------------------------------------- */
+/* The image viewer (assets/js/viewer.js, markup in _includes/lightbox.html). The dialog fills
+   the screen, so its buttons are inside it, and a click on the dark area around the image and
+   its caption closes it. */
 body.no-scroll { overflow: hidden; }
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 300;
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 4vw, 3rem);
-}
-.lightbox[hidden] { display: none; }
-.lightbox__overlay {
-  position: absolute;
-  inset: 0;
   background: rgba(12, 12, 12, 0.88);
   backdrop-filter: blur(4px);
+  /* A one-finger horizontal move is the viewer's (previous, next); vertical moves and pinch
+     zoom stay the browser's. A single figure has no previous or next, so every move is. */
+  touch-action: pan-y pinch-zoom;
 }
+.lightbox--single { touch-action: manipulation; }
+.lightbox [hidden] { display: none; }
 .lightbox__dialog {
-  position: relative;
-  z-index: 1;
-  width: min(1100px, 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  /* Room at the sides for the previous and next buttons, so they never cover the image. */
+  padding: clamp(1rem, 4vw, 3rem) 5rem;
+  overscroll-behavior: contain;
 }
-.lightbox__figure { margin: 0; display: flex; flex-direction: column; align-items: center; max-width: 100%; }
+.lightbox--single .lightbox__dialog { padding-inline: clamp(1rem, 4vw, 3rem); }
+.lightbox__figure { margin: 0; display: flex; flex-direction: column; align-items: center; max-width: min(1100px, 100%); }
 .lightbox__img {
   max-width: 100%;
   max-height: 72vh;
@@ -809,12 +811,14 @@ body.no-scroll { overflow: hidden; }
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
   background: var(--bg-ink);
 }
+/* A figure (a PNG can be transparent) is drawn on white, as on the page. */
+.lightbox--single .lightbox__img { background: #fff; }
 .lightbox__cap { margin-top: var(--space-md); text-align: center; max-width: 62ch; }
 .lightbox__title { font-family: var(--font-serif); font-size: var(--fs-md); font-weight: 600; color: #fff; }
 .lightbox__desc { font-size: var(--fs-sm); color: #d0d0d0; margin-top: 0.35rem; }
 .lightbox__count { font-size: var(--fs-xs); color: #9a9a9a; margin-top: 0.7rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
-.cover-lightbox__paper { margin-top: 0.9rem; }
-.cover-lightbox__paper a {
+.lightbox__paper { margin-top: 0.9rem; }
+.lightbox__paper a {
   display: inline-block;
   padding: 0.5rem 1.15rem;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -824,7 +828,7 @@ body.no-scroll { overflow: hidden; }
   font-weight: 600;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
-.cover-lightbox__paper a:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.65); }
+.lightbox__paper a:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.65); }
 
 .lightbox__close,
 .lightbox__nav {
@@ -847,9 +851,17 @@ body.no-scroll { overflow: hidden; }
 .lightbox__nav--prev { left: clamp(0.5rem, 2vw, 1.5rem); }
 .lightbox__nav--next { right: clamp(0.5rem, 2vw, 1.5rem); }
 
-@media (max-width: 560px) {
-  .lightbox__nav { width: 40px; height: 40px; }
-  .lightbox__img { max-height: 64vh; }
+/* Phones: the image spans the width, and previous and next sit in the bottom corners, below
+   the image and its caption (at the sides they covered the image's edges). */
+@media (max-width: 760px) {
+  .lightbox__dialog { padding: 4.25rem 0 5.5rem; }
+  .lightbox--single .lightbox__dialog { padding: 4.25rem 0; }
+  .lightbox__img { max-height: 64vh; border-radius: 0; }
+  .lightbox__cap { padding-inline: 1rem; }
+  .lightbox__nav { top: auto; bottom: 1rem; transform: none; }
+  .lightbox__nav:active { transform: scale(0.94); }
+  .lightbox__nav--prev { left: 1rem; }
+  .lightbox__nav--next { right: 1rem; }
 }
 
 /* --- Footer --------------------------------------------------------------- */

@@ -68,7 +68,7 @@ domain `https://sail.kookmin.ac.kr`.
 - Chrome's page translation: names and Korean text that stand alone (author lists, journal names,
   people's names, Korean abstracts and names, cover captions) carry `translate="no"`; prose does not
   (CONTRIBUTING, "Page translation").
-- Journal covers open a fullscreen viewer (`assets/js/covers.js`); each cover needs a high-res
+- Journal covers open a fullscreen viewer (`assets/js/viewer.js`); each cover needs a high-res
   `<base>-full.jpg` beside its thumbnail (the validator fails the build when it is missing).
 
 ## Conventions

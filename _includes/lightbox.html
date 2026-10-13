@@ -1,0 +1,39 @@
+{%- comment -%}
+The image viewer's dialog. assets/js/viewer.js fills and opens it, so a page that includes this
+loads that script (front matter: scripts: [viewer]). Its triggers are links or buttons with
+data-viewer="<this id>" and data-full (the image to show), and optionally data-title (the caption,
+which also names the dialog), data-desc, data-alt and data-paper (a page the viewer links to). With
+one trigger (a figure) the viewer shows no previous, next or count.
+The controls are inside the dialog, so a screen reader announces its name and keeps to it; the
+caption and count are a polite live region, so a new image is announced.
+Pass: id; label (read before the caption as the dialog's name, e.g. "Photo viewer"); noun (in the
+previous and next buttons' names, e.g. "photo"); paper=true for a "View the paper" link;
+notranslate=true when the captions are names (journal and year) that page translation must leave.
+{%- endcomment -%}
+<div class="lightbox" id="{{ include.id }}" hidden>
+  <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-labelledby="{{ include.id }}-label {{ include.id }}-title">
+    <span class="visually-hidden" id="{{ include.id }}-label">{{ include.label }}</span>
+    <button class="lightbox__close" type="button" data-close aria-label="Close (Esc)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-prev aria-label="Previous {{ include.noun | default: 'image' }}">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-next aria-label="Next {{ include.noun | default: 'image' }}">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+      <figcaption class="lightbox__cap">
+        <div aria-live="polite">
+          <p class="lightbox__title" id="{{ include.id }}-title"{% if include.notranslate %} translate="no"{% endif %}></p>
+          <p class="lightbox__desc"></p>
+          <p class="lightbox__count"></p>
+        </div>
+        {%- if include.paper %}
+        <p class="lightbox__paper"><a href="#">View the paper</a></p>
+        {%- endif %}
+      </figcaption>
+    </figure>
+  </div>
+</div>
