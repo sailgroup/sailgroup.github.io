@@ -1,7 +1,7 @@
 {
   "name": "sail-site-ci-scripts",
   "private": true,
-  "description": "CI scripts for the SAIL site: the image step (prepare-images.mjs) and the accessibility check (check-a11y.mjs). Not part of the published site.",
+  "description": "CI scripts for the SAIL site: the image step (prepare-images.mjs), the accessibility check (check-a11y.mjs) and the scheduled checks (check-links.mjs). Not part of the published site.",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"
@@ -9,6 +9,7 @@
   "dependencies": {
     "axe-core": "4.14.0",
     "puppeteer-core": "25.12.0",
-    "sharp": "0.35.5"
+    "sharp": "0.35.5",
+    "yaml": "2.9.1"
   }
 }

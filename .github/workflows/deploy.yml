@@ -88,8 +88,8 @@ jobs:
 
       # Fail the build on a broken internal link, image, or script reference
       # (e.g. a typo'd path, or assets/js/*.js accidentally excluded again).
-      # External URLs (DOIs, Scholar, ORCID) are not checked here -- they are
-      # slow/flaky in CI and verified separately.
+      # External URLs (DOIs, Scholar, ORCID) are not checked here, as they are slow
+      # and flaky in CI: the monthly link check (link-check.yml) checks them.
       - name: Check internal links and images
         run: |
           bundle exec htmlproofer _site \

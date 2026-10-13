@@ -1,0 +1,5 @@
+# Addresses the monthly link check skips (.github/scripts/check-links.mjs, run by
+# .github/workflows/link-check.yml). Put a link here when it works in a browser but the
+# check reports it anyway, so it stays out of the "Link check" issue. One address per
+# line, exactly as it is written in the data file; a line ending in * covers every
+# address that starts with it. A # starts a comment: say why beside each entry.
