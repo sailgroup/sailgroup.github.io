@@ -17,6 +17,11 @@ scripts: [pubs]
       <button type="button" class="pub-filter" data-theme="{{ t.name }}" data-theme-slug="{{ t.name | slugify }}" aria-pressed="false"><span class="pub-filter__dot" aria-hidden="true"></span>{{ t.name }}</button>
       {%- endfor -%}
     </div>
+    {%- comment -%}How many papers the list shows; pubs.js keeps it current ("28 of 47 papers"), and role="status" makes screen readers read the new line once per change. The topic filter is AND, so two topics can match no paper: the line then says so, and the button below clears the filter.{%- endcomment %}
+    <p class="pubs-count" role="status">{{ site.data.publications.size }} papers</p>
+    <div class="pubs-empty" hidden>
+      <button type="button" class="btn pubs-empty__reset">Show all papers</button>
+    </div>
 
     {%- assign byyear = site.data.publications | group_by: "year" -%}
     {%- assign years = byyear | sort: "name" | reverse -%}
@@ -27,14 +32,6 @@ scripts: [pubs]
         {%- for p in yr.items -%}{% include pub-item.html p=p show_id=true %}{%- endfor -%}
       </div>
     </section>
-    {%- endfor -%}
-
-    {%- comment -%}The topic filter is AND, so two topics can match no paper. pubs.js then shows this line in place of an empty page; role="status" makes screen readers announce it.{%- endcomment -%}
-    <div role="status">
-      <div class="pubs-empty" hidden>
-        <p>No paper has all the selected topics.</p>
-        <button type="button" class="btn pubs-empty__reset">Show all papers</button>
-      </div>
-    </div>
+    {%- endfor %}
   </div>
 </section>

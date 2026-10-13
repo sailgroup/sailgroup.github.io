@@ -560,7 +560,7 @@ p { text-wrap: pretty; }
 .cv__when { color: var(--muted); font-size: var(--fs-sm); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* --- Publications --------------------------------------------------------- */
-.pub-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--space-lg); }
+.pub-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--space-sm); }
 .pub-filter {
   display: inline-flex;
   align-items: center;
@@ -596,6 +596,8 @@ p { text-wrap: pretty; }
   .pub-filter { flex: none; }
 }
 
+/* Under the chips: how many papers the list shows (pubs.js keeps it current). */
+.pubs-count { margin-bottom: var(--space-lg); font-size: var(--fs-sm); color: var(--muted); }
 .year-group + .year-group { margin-top: var(--space-xl); }
 .year-label {
   font-family: var(--font-serif);
@@ -832,9 +834,8 @@ body.no-scroll { overflow: hidden; }
 /* --- Publication filter states ------------------------------------------- */
 .pub--nofig { grid-template-columns: 1fr; }
 .is-hidden { display: none !important; }
-/* Shown by pubs.js when no paper carries every selected topic. */
-.pubs-empty { padding-block: var(--space-lg) var(--space-xl); color: var(--muted); }
-.pubs-empty .btn { margin-top: var(--space-sm); }
+/* Shown by pubs.js when no paper carries every selected topic; the count line above says so. */
+.pubs-empty { padding-bottom: var(--space-xl); }
 
 /* --- Research areas page -------------------------------------------------- */
 .research-areas {

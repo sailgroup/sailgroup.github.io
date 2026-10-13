@@ -6,12 +6,14 @@
   var buttons = Array.prototype.slice.call(bar.querySelectorAll(".pub-filter"));
   var pubs = document.querySelectorAll(".pub");
   var groups = document.querySelectorAll(".year-group");
-  var empty = document.querySelector(".pubs-empty"); // "no paper has all the selected topics"
+  var count = document.querySelector(".pubs-count"); // role="status": "28 of 47 papers"
+  var empty = document.querySelector(".pubs-empty"); // "Show all papers", when nothing matches
   var active = Object.create(null); // selected theme strings (multi-select, AND)
 
   function apply() {
     var selected = Object.keys(active);
     var none = selected.length === 0;
+    var shownCount = 0;
 
     allBtn.classList.toggle("is-active", none);
     allBtn.setAttribute("aria-pressed", none ? "true" : "false");
@@ -29,15 +31,51 @@
       // AND: a paper shows only if it carries every selected theme.
       var show = none || selected.every(function (t) { return themes.indexOf(t) !== -1; });
       p.classList.toggle("is-hidden", !show);
+      if (show) shownCount++;
     });
 
-    var anyShown = false;
     groups.forEach(function (g) {
-      var shown = !!g.querySelector(".pub:not(.is-hidden)");
-      g.classList.toggle("is-hidden", !shown);
-      if (shown) anyShown = true;
+      g.classList.toggle("is-hidden", !g.querySelector(".pub:not(.is-hidden)"));
     });
-    if (empty) empty.hidden = anyShown;
+    // One text change per filter change, so a screen reader reads the line once.
+    if (count) {
+      count.textContent = shownCount === 0 ? "No paper has all the selected topics."
+        : none ? pubs.length + " papers" : shownCount + " of " + pubs.length + " papers";
+    }
+    if (empty) empty.hidden = shownCount > 0;
+    saveToUrl();
+  }
+
+  // The selection lives in the address as ?topic=<slug>,<slug> (in chip order), so a
+  // reload, a shared link or Back from a paper shows the same list. replaceState keeps
+  // one history entry for the page instead of one per click.
+  function saveToUrl() {
+    var slugs = buttons.filter(function (b) { return active[b.getAttribute("data-theme")]; })
+      .map(function (b) { return b.getAttribute("data-theme-slug"); });
+    var params = new URLSearchParams(location.search);
+    params.delete("topic");
+    var q = params.toString();
+    // Joined by hand: URLSearchParams would write each comma as %2C.
+    if (slugs.length) q += (q ? "&" : "") + "topic=" + slugs.join(",");
+    var url = location.pathname + (q ? "?" + q : "") + location.hash;
+    if (url !== location.pathname + location.search + location.hash) history.replaceState(history.state, "", url);
+  }
+
+  // On load, select the topics the address names; a slug no chip has is ignored (and
+  // dropped from the address). On phones the chips scroll sideways, so the row is
+  // scrolled to the first selected chip (sideways only: the page itself does not move).
+  var query = new URLSearchParams(location.search);
+  if (query.has("topic")) {
+    var wanted = query.get("topic").toLowerCase().split(",").map(function (s) { return s.trim(); });
+    buttons.forEach(function (b) {
+      if (wanted.indexOf(b.getAttribute("data-theme-slug")) !== -1) active[b.getAttribute("data-theme")] = true;
+    });
+    apply();
+    var first = bar.querySelector('.pub-filter.is-active:not([data-theme=""])');
+    if (first && bar.scrollWidth > bar.clientWidth) {
+      var fr = first.getBoundingClientRect(), br = bar.getBoundingClientRect();
+      if (fr.right > br.right) bar.scrollLeft += fr.left - br.left - parseFloat(getComputedStyle(bar).paddingLeft);
+    }
   }
 
   // "Show all papers" in the empty message: same as "All", then focus moves to "All"
