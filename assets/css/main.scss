@@ -619,6 +619,8 @@ p { text-wrap: pretty; }
   font-weight: 600;
   color: var(--ink);
 }
+/* One author name (pi-authors.html): lines break only between names. */
+.author { white-space: nowrap; }
 .pub__meta { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.25rem; }
 .pub__journal { font-style: italic; color: var(--ink-2); }
 .pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.7rem; }

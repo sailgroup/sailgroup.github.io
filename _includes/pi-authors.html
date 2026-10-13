@@ -8,8 +8,11 @@ Scope is deliberate, so the same paper marks a different name per context:
     `author_aliases`, e.g. an abbreviated "H Kim"). Used on a person's own page,
     so each author list marks just the page owner.
 Pass: authors=<string>, optionally person=<people entry>.
+Each name is set in a no-wrap span with the comma outside it, so a line breaks only
+between two names (on phones it split "Joonyoung / F. Joung"); the `*` and `†` marks
+stay with their name. The author strings are "A, B, C", so splitting at the commas and
+joining with ", " gives back the same text.
 {%- endcomment -%}
-{%- assign out = include.authors -%}
 {%- assign names = "" | split: "" -%}
 {%- if include.person -%}
   {%- assign person = include.person -%}
@@ -20,5 +23,9 @@ Pass: authors=<string>, optionally person=<people entry>.
   {%- if site.data.pi.name_full and site.data.pi.name_full != "" -%}{%- assign names = names | push: site.data.pi.name_full -%}{%- endif -%}
 {%- endif -%}
 {%- assign names = names | uniq -%}
-{%- for name in names -%}{%- capture rep -%}<strong class="pi">{{ name }}</strong>{%- endcapture -%}{%- assign out = out | replace: name, rep -%}{%- endfor -%}
-{{ out }}
+{%- assign parts = include.authors | split: "," -%}
+{%- for part in parts -%}
+{%- assign a = part | strip -%}
+{%- for name in names -%}{%- capture rep -%}<strong class="pi">{{ name }}</strong>{%- endcapture -%}{%- assign a = a | replace: name, rep -%}{%- endfor -%}
+<span class="author">{{ a }}</span>{% unless forloop.last %}, {% endunless %}
+{%- endfor -%}
