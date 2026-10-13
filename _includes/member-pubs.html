@@ -27,10 +27,13 @@ Pass the person object: {% include member-pubs.html person=m %}
 {%- for p in mine -%}{%- assign key = p.doi | default: p.title -%}{%- unless seen contains key -%}{%- assign uniq = uniq | push: p -%}{%- assign seen = seen | push: key -%}{%- endunless -%}{%- endfor -%}
 {%- comment -%}Newest year first; for the same year, lab Publications papers (added above, so lower index) stay above the person's own papers. Deterministic -- see _plugins/pub_sort.rb.{%- endcomment -%}
 {%- assign uniq = uniq | sort_member_pubs -%}
+{%- comment -%}When any paper in the list has a thumbnail, every entry keeps the thumbnail column (empty where a paper has none), so all titles start at the same place; a list without any thumbnail needs no column.{%- endcomment -%}
+{%- assign keepcol = false -%}
+{%- for p in uniq -%}{%- if p.image and p.image != "" -%}{%- assign keepcol = true -%}{%- endif -%}{%- endfor -%}
 <div class="member-pubs">
   <h2 class="member-pubs__label">Publications</h2>
   <div class="pub-list">
-    {%- for p in uniq -%}{% include pub-item.html p=p person=person hide_themes=true n=forloop.index %}{%- endfor -%}
+    {%- for p in uniq -%}{% include pub-item.html p=p person=person hide_themes=true n=forloop.index keep_col=keepcol %}{%- endfor -%}
   </div>
 </div>
 {%- endif -%}

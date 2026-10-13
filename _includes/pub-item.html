@@ -10,7 +10,7 @@
 {%- if p.id and p.id != "" -%}{%- assign titleid = 'pub-' | append: p.id | append: '-title' -%}{%- else -%}{%- assign titleid = 'pubx-' | append: include.n | append: '-title' -%}{%- endif -%}
 {%- comment -%}The list thumbnail is an 88x66 box (64x48 on phones), so a large graphical abstract comes with a smaller rendition when CI made one (image-srcset.html).{%- endcomment -%}
 {%- capture figure -%}{%- if hasimg -%}{%- assign figpath = 'pubs/' | append: p.image -%}<img class="pub__figure" src="{{ '/assets/images/' | append: figpath | relative_url }}"{% include image-srcset.html image=figpath sizes="(max-width: 720px) 64px, 88px" %} alt="" loading="lazy">{%- endif -%}{%- endcapture -%}
-<article class="pub{% unless shownum or hasimg %} pub--nofig{% endunless %}" data-themes="{{ p.themes | join: '|' }}" data-year="{{ p.year }}">
+<article class="pub{% unless shownum or hasimg or include.keep_col %} pub--nofig{% endunless %}" data-themes="{{ p.themes | join: '|' }}" data-year="{{ p.year }}">
   {%- if shownum -%}
   <div class="pub__aside"><span class="pub__num">{{ p.id }}</span>{{ figure }}</div>
   {%- else -%}{{ figure }}{%- endif -%}
