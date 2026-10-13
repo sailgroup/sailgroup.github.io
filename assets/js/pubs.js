@@ -63,4 +63,12 @@
     }
     apply();
   });
+
+  // On phones the chips are one row that scrolls sideways (main.scss). Chrome scrolls a
+  // focused chip into view only when none of it shows, so a chip cut at the edge would
+  // keep its focus ring half hidden: bring the whole chip into the row.
+  bar.addEventListener("focusin", function (e) {
+    var b = e.target.closest(".pub-filter");
+    if (b && bar.scrollWidth > bar.clientWidth) b.scrollIntoView({ block: "nearest", inline: "nearest" });
+  });
 })();

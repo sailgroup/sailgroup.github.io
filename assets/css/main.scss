@@ -578,6 +578,23 @@ p { text-wrap: pretty; }
 .pub-filter.is-active { background: var(--ink); color: #fff; border-color: var(--ink); }
 .pub-filter__dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--c, var(--line-2)); flex: none; }
 .pub-filter.is-active .pub-filter__dot { background: currentColor; }
+/* The topic chips in one row that scrolls sideways; the chip cut off at the edge shows
+   there are more. Wrapped, they took 261px at 390px and the first paper started below
+   the first screenful. The row runs to the screen edges with the container's side
+   padding inside it, so the first chip lines up with the text; the block padding
+   keeps the focus ring inside the scroll box. */
+@media (max-width: 720px) {
+  .pub-toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    margin-inline: calc(-1 * clamp(1.1rem, 4vw, 2rem));
+    padding: 0.25rem clamp(1.1rem, 4vw, 2rem);
+    scroll-padding-inline: clamp(1.1rem, 4vw, 2rem);
+  }
+  .pub-filter { flex: none; }
+}
 
 .year-group + .year-group { margin-top: var(--space-xl); }
 .year-label {
