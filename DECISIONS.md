@@ -1546,6 +1546,11 @@ add their verification meta tags.
   `--orange` token (#f89858) is left as it is.
 - **Not done:** the twelve Korean names inside English news text keep the page's language;
   the square logo for structured data is unchanged.
+- **Changed after the deploy** (2026-10-14, the maintainer's request): the members are three
+  to a row again. The four columns that a grid of 3n+1 cards got from 1000px are gone
+  (0e8694e), so the fourth member sits in the middle of the second row; at every width the
+  people grids have the column counts they had before this round (three above 720px, two
+  below).
 
 ## D50: Citations, larger paper figures and automatic checks (maintainer's request, 2026-10-13)
 

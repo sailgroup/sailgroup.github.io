@@ -1002,3 +1002,10 @@ build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same
   - `functional.js` on the live site: 22 of 22 pass (its viewer selectors now those of the
     one viewer; no member has a hover photo at present, so that check finds none);
     `d42-spot.js`: 17 of 17.
+- **Members three to a row again** (after the deploy, on the maintainer's request; 0e8694e,
+  dev run 38483457434, main run 38483628415): /members/ showed its four cards in one row from
+  1000px; now three, then the fourth in the middle of the second row, at every width from
+  721px, and two and two on phones as before. /alumni/ is unchanged (three rows of three; on
+  phones the ninth card centred). Only `main.css` and its map changed, so no page's HTML did
+  and IndexNow sent nothing; the 111 files compared on the live site are byte-identical to
+  the deployed build.
