@@ -1080,12 +1080,20 @@ body.no-scroll { overflow: hidden; }
    leave a 0x0 box until load. max-width: 100% (global img rule) fits it to the column;
    object-fit keeps a tall figure's proportions when max-height caps its box. */
 .paper__figure img { display: inline-block; max-height: 320px; object-fit: contain; }
-.paper__abstract { margin-top: var(--space-xl); max-width: 70ch; }
+/* The line length cap sits on the paragraphs, so `ch` is measured in their own type size:
+   on the containers it was taken at 17px, and the 14.4px English abstract ran 107
+   characters a line. The summary is only as wide as its text. */
+.paper__abstract { margin-top: var(--space-xl); }
 .paper__abstract-label { font-size: var(--fs-md); margin-bottom: 0.6rem; }
-.paper__abstract p { color: var(--ink-2); line-height: 1.85; white-space: pre-line; }
-.paper__abstract-en { margin-top: var(--space-md); max-width: 70ch; }
-.paper__abstract-en summary { cursor: pointer; color: var(--orange-ink); font-size: var(--fs-sm); font-weight: 600; }
-.paper__abstract-en p { margin-top: 0.6rem; color: var(--ink-2); font-size: var(--fs-sm); line-height: 1.7; white-space: pre-line; }
+.paper__abstract p { max-width: 68ch; color: var(--ink-2); line-height: 1.85; white-space: pre-line; }
+.paper__abstract-en { margin-top: var(--space-md); }
+.paper__abstract-en summary { width: fit-content; cursor: pointer; color: var(--orange-ink); font-size: var(--fs-sm); font-weight: 600; }
+.paper__abstract-en p { max-width: 68ch; margin-top: 0.6rem; color: var(--ink-2); font-size: var(--fs-sm); line-height: 1.7; white-space: pre-line; }
+/* A phone's width already keeps the lines short, so the English abstract is read at the
+   base size, like the Korean one. (Here, after the rule above, so it wins.) */
+@media (max-width: 720px) {
+  .paper__abstract-en p { font-size: var(--fs-base); }
+}
 .paper__links { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
 .paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 38px; width: auto; transition: transform 0.15s ease; }
 .paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img, .paper__data:hover img { transform: translateY(-2px); }
