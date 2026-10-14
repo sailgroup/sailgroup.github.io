@@ -935,9 +935,14 @@ body.no-scroll { overflow: hidden; }
    its own size and colour and its top lines up with the Contact and Links titles. */
 .footer-brand .footer-mark { margin-top: 0; font-family: var(--font-serif); font-size: 1.5rem; line-height: 1.2; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
 .footer-mark .hl { color: var(--orange); }
-.footer-kmu { display: inline-block; margin-top: var(--space-md); opacity: 0.85; transition: opacity 0.15s ease; }
-.footer-kmu:hover { opacity: 1; }
+/* The Kookmin emblem and the lab's GitHub organization side by side (D55). The GitHub mark
+   stays white, as GitHub's logo rules ask, and brightens on hover as the emblem does. */
+.footer-orgs { display: flex; align-items: center; gap: var(--space-md); margin-top: var(--space-md); }
+.footer-kmu, .footer-gh { opacity: 0.85; transition: opacity 0.15s ease; }
+.footer-kmu:hover, .footer-gh:hover { opacity: 1; }
 .footer-kmu img { height: 30px; width: auto; display: block; }
+.footer-gh { flex: none; color: #fff; }
+.footer-gh .icon { width: 28px; height: 28px; }
 .footer-title { font-family: var(--font-sans); font-size: var(--fs-sm); color: #9a9a9a; font-weight: 600; margin-bottom: 0.9rem; }
 /* The menu's pages in two columns, top to bottom in menu order; the columns balance
    themselves, so a page added to the menu needs no change here. One column where two would
@@ -965,16 +970,21 @@ body.no-scroll { overflow: hidden; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
 }
-/* Phones: the footer took 92% of a 390px screen. Less padding, the Kookmin wordmark beside
-   the SAIL mark (as the header pairs them) with the lab's line under both at full width, and
-   tighter titles; every fact and link stays. */
+/* Phones: the footer took 92% of a 390px screen. Less padding, the Kookmin wordmark and the
+   GitHub mark beside the SAIL mark (as the header pairs them) with the lab's line under both
+   at full width, and tighter titles; every fact and link stays. */
 @media (max-width: 720px) {
   .site-footer { padding-block: var(--space-xl) var(--space-md); }
   /* One class more specific than the gap set in "Responsive" (720px), which comes later. */
   .site-footer .footer-grid { row-gap: var(--space-md); }
-  .footer-brand { display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: center; }
-  .footer-brand > p:not(.footer-mark) { grid-column: 1 / -1; grid-row: 2; max-width: none; }
-  .footer-kmu { margin-top: 0; }
+  .footer-brand { display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: center; column-gap: var(--space-md); }
+  /* The lab's line spans both columns without sizing them: it used to widen the SAIL
+     column to 158px, which squeezed the Kookmin wordmark sideways at 390px and below. */
+  .footer-brand > p:not(.footer-mark) { grid-column: 1 / -1; grid-row: 2; max-width: none; contain: inline-size; }
+  .footer-orgs { margin-top: 0; }
+  /* At 320px the wordmark shrinks in proportion instead. */
+  .footer-kmu { min-width: 0; }
+  .footer-kmu img { height: auto; max-height: 30px; }
   .footer-title { margin-bottom: 0.6rem; }
   .footer-base { margin-top: var(--space-lg); padding-top: var(--space-sm); }
 }

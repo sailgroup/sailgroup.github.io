@@ -2,16 +2,22 @@
 top menu's (_data/navigation.yml; a menu with sub-pages lists the sub-pages, and Home is the logo),
 so a page added to the menu is listed here too, then Kookmin University (the header's emblem goes
 home at the PI's request, D21, so the university is linked here). Contact comes from
-_data/home.yml.{%- endcomment -%}
+_data/home.yml. Beside the university's emblem, the GitHub mark links the lab's organization
+(site.github_org, D55).{%- endcomment -%}
 <footer class="site-footer"{% if page.lang and page.lang != site.lang %} lang="{{ site.lang }}"{% endif %}>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <p class="footer-mark">S<span class="hl">AI</span>L</p>
         <p>Spectroscopy and AI Lab, Department of Chemistry, Kookmin University.</p>
-        <a class="footer-kmu" href="https://english.kookmin.ac.kr/" target="_blank" rel="noopener noreferrer" aria-label="Kookmin University (opens in a new tab)">
-          <img src="{{ '/assets/images/kookmin-logo.png' | relative_url }}" alt="Kookmin University" width="379" height="56" loading="lazy">
-        </a>
+        <div class="footer-orgs">
+          <a class="footer-kmu" href="https://english.kookmin.ac.kr/" target="_blank" rel="noopener noreferrer" aria-label="Kookmin University (opens in a new tab)">
+            <img src="{{ '/assets/images/kookmin-logo.png' | relative_url }}" alt="Kookmin University" width="379" height="56" loading="lazy">
+          </a>
+          {%- if site.github_org %}
+          <a class="footer-gh" href="{{ site.github_org }}" target="_blank" rel="noopener noreferrer" aria-label="SAIL on GitHub (opens in a new tab)" title="GitHub">{% include icon.html name="github" %}</a>
+          {%- endif %}
+        </div>
       </div>
 
       <nav class="footer-links" aria-label="Footer">

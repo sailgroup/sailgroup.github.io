@@ -11,7 +11,8 @@ alternate_names:
   - 인공지능화학연구실
 # Kookmin University's Korean name, beside the English one in the structured data.
 university_ko: 국민대학교
-# The lab's GitHub organization: the lab itself, so it is the lab's sameAs.
+# The lab's GitHub organization: the lab itself, so it is the lab's sameAs; the footer links it
+# with the GitHub mark (D55).
 github_org: https://github.com/sailgroup
 # Within 160 characters: it is also the home page's meta description, and Bing's site
 # scan reports a longer one (Google cuts the snippet near that length).
