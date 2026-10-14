@@ -1216,12 +1216,13 @@ body.no-scroll { overflow: hidden; }
   margin-bottom: var(--space-lg);
 }
 .paper__logo { height: 44px; width: auto; max-width: 230px; object-fit: contain; }
-/* One column that never grows past the screen (minmax(0, 1fr), not 1fr). The titles are
-   English (none has Hangul), so they take normal line breaks: WebKit (Safari) reads the
-   body's keep-all as "break at spaces only", which kept "naphthoimidazolium-cholesterol"
-   whole and made papers 12, 14 and 16 scroll sideways on phones (D54). */
+/* One column that never grows past the screen (minmax(0, 1fr), not 1fr). WebKit (Safari)
+   reads the body's keep-all as "break at spaces only", in English too, so a long hyphenated
+   name ("naphthoimidazolium-cholesterol") stayed whole and widened a 1fr column: papers 12,
+   14 and 16 scrolled sideways on phones. Now such a word wraps at the column's edge. The
+   titles keep keep-all, so a title translated into Korean still breaks between words (D54). */
 .paper__head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); align-items: start; }
-.paper__title { font-size: var(--fs-xl); margin-bottom: var(--space-sm); word-break: normal; }
+.paper__title { font-size: var(--fs-xl); margin-bottom: var(--space-sm); }
 .paper__meta { color: var(--muted); font-size: var(--fs-sm); }
 .paper__authors { color: var(--ink-2); margin-top: 0.5rem; }
 /* The figure sits under the title, at most 420px tall, framed by a 1px ring on the img
