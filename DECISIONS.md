@@ -1649,3 +1649,27 @@ add their verification meta tags.
 - **Check:** the built site is the same, file for file, in all 492 files but `security.txt`,
   whose `Expires` is written at build time (CI run 38463633407 at ddde611 against run
   38457279655 at 0badb6f), so the text check of D52 holds for ddde611.
+
+## D54: Paper titles break at their hyphens in Safari (WebKit check, 2026-10-14)
+
+- **Found:** the maintainer asked for a run in Safari's engine too. Playwright 1.63.0 with
+  WebKit 26.6 (on Windows) on the live site: papers 12 and 14 scrolled sideways on an
+  iPhone 13 (390px: 32 and 35px), and papers 12, 14 and 16 at 320px (93, 96 and 17px).
+  Everything else passed (`REVIEW.md` section 23).
+- **Cause:** the body's `word-break: keep-all` (D38, so that Korean breaks between words)
+  makes WebKit break lines only at spaces, in English too; Chrome still breaks after a
+  hyphen. A long hyphenated name in a title ("naphthoimidazolium-cholesterol",
+  "2-(Benzothiazol-2-yl)pyren-1-ol,", "Diacetylene-Terthiophene") stayed whole, and the paper
+  head's `1fr` column grew to its width. In place since D38 (2026-09-28), not from this round.
+- **Applied:** e1aadd7. `.paper__title` takes `word-break: normal` (the 47 titles are
+  English; none has Hangul), and `.paper__head` is `minmax(0, 1fr)`, so nothing in it can
+  widen the column. Korean text elsewhere keeps `keep-all`. A Korean title, if one is ever
+  added, would break between syllables; it would then need `lang="ko"` and a `:lang(ko)` rule.
+- **Check:** dev run 38490707993. Only `main.css` (and `security.txt`'s `Expires`) differs
+  from the live site, so no page's text changed (108 of 110 files byte-identical). WebKit on
+  that build, answered under the live origin so that https and the CSP hold: 34 of 34, no page
+  wider than the screen at 1440, 390 or 320px, and the titles break as in Chrome
+  ("naphthoimidazolium- / cholesterol"). Chrome: the 47 titles' lines and head sizes are the
+  same as live at 320, 390 and 1440px (141 of 141); `functional.js` 22 of 22.
+- **Not covered:** WebKit on Windows is Safari's engine, not Safari on an iPhone; iOS
+  scrolling, the toolbar and the system fonts are not reproduced.

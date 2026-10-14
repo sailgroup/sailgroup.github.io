@@ -929,7 +929,7 @@ Verified on the CI builds of `dev` (there is no local Ruby), then on the live si
   - all 69 pages match the build in title, description, visible text and links, and the key
     file is served.
 
-## 23. Design review fixes, citations, figures and checks (2026-10-13 and 2026-10-14, D49, D50, D52, D53)
+## 23. Design review fixes, citations, figures and checks (2026-10-13 and 2026-10-14, D49, D50, D52, D53, D54)
 
 Verified on a local build of `dev` (Docker `ruby:3.3`, the commands CI runs) and on the CI
 build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same viewports.
@@ -1009,3 +1009,19 @@ build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same
   phones the ninth card centred). Only `main.css` and its map changed, so no page's HTML did
   and IndexNow sent nothing; the 111 files compared on the live site are byte-identical to
   the deployed build.
+- **Safari's engine (WebKit)** (2026-10-14, the maintainer's request; Playwright 1.63.0 with
+  WebKit 26.6 on Windows, `.qa/tools/webkit-check.cjs`, gitignored). On the live site:
+  - 69 pages at 1440x900, at 390x664 (an iPhone 13 as Safari shows it, touch) and at
+    320x568: no script error or warning, failed request, broken image or CSP violation;
+  - the phone menu holds the page behind it, reaches all 11 links at 390x664, 750x342,
+    844x390 and 320x256, and closes on a tap below it; the Members dropdown opens from its
+    button and closes on Escape; the bar from 1,101px;
+  - the topic filter (its count, the address, a reload, All); no author name split at 390
+    or 320px; the cover, figure and photo viewers (arrow keys, the next button, a swipe, a
+    tap on the backdrop); BibTeX opens and copies;
+  - members 3+1 and 2+2, alumni 3+3+3 and 2+2+2+2+1, the lone card centred; the footer
+    628px tall at 390px; a missing page answers 404.
+  - One fault: papers 12, 14 and 16 scrolled sideways on phones (a side effect of D38's
+    `keep-all` in WebKit). D54 (e1aadd7, dev run 38490707993) fixes it: on that build WebKit
+    passes 34 of 34 with no page wider than the screen; Chrome is unchanged (the 47 paper
+    heads the same as live at 320, 390 and 1440px; `functional.js` 22 of 22).
