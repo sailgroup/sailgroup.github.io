@@ -1049,3 +1049,7 @@ live site (`main` at 5dc775c) at the same viewports.
   error, failed request or sideways overflow; the footer check included). The brand row
   measures as in Chrome at 1,440, 1,024, 414, 390, 375, 360 and 320px; on the live site WebKit
   squeezes the emblem the same way (ratio 4.44 at 320px against 6.77).
+- **Live** (deployed with D54, main run 38524053641): `livecmp.js` 110 of 110 files
+  byte-identical to the deployed build, 269 image URLs 200; `functional.js` 22 of 22; the
+  footer measures as on the build at 1,440, 1,024, 390, 360 and 320px; `webkit-check.cjs` 34 of
+  34 on the live site (papers 12, 14 and 16 no longer wider than a phone screen, D54).

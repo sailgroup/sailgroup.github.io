@@ -290,4 +290,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   maintainer's request: the GitHub mark beside the Kookmin emblem links
   https://github.com/sailgroup on every page. With it, the phone footer stops squeezing the
   emblem sideways at 390px and below. No shown text changed. Built on `dev` (run 38523187785);
-  results in `REVIEW.md` section 24.
+  deployed with D54 on 2026-10-14 (main run 38524053641; IndexNow 69 pages, Bing 200, Naver 200)
+  and verified live. Results in `REVIEW.md` section 24.

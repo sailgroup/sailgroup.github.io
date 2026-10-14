@@ -1715,3 +1715,7 @@ add their verification meta tags.
   comes after the emblem and before News on the keyboard, with the orange focus ring.
   `functional.js` 22 of 22; `webkit-check.cjs` on the artifact 34 of 34, and WebKit measures
   the brand row as Chrome does.
+- **Deployed** 2026-10-14 with D54: `main` fast-forwarded 5dc775c to 53dd512 (run
+  38524053641; IndexNow sent all 69 pages, since every page's footer changed: Bing 200, Naver
+  200). The live site is the deployed build (110 files byte-identical, 269 image URLs 200);
+  WebKit 34 of 34 on the live site, so D54 holds there too.
