@@ -1022,6 +1022,7 @@ build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same
   - members 3+1 and 2+2, alumni 3+3+3 and 2+2+2+2+1, the lone card centred; the footer
     628px tall at 390px; a missing page answers 404.
   - One fault: papers 12, 14 and 16 scrolled sideways on phones (a side effect of D38's
-    `keep-all` in WebKit). D54 (e1aadd7, dev run 38490707993) fixes it: on that build WebKit
-    passes 34 of 34 with no page wider than the screen; Chrome is unchanged (the 47 paper
-    heads the same as live at 320, 390 and 1440px; `functional.js` 22 of 22).
+    `keep-all` in WebKit). D54 (e1aadd7 and 805f549) fixes it: on the 805f549 build
+    (dev run 38492536108) WebKit passes 34 of 34 with no page wider than the screen, and a
+    Korean title in the h1 still breaks between words; Chrome is unchanged (the 47 paper heads
+    the same as live at 320, 390 and 1440px; `functional.js` 22 of 22).

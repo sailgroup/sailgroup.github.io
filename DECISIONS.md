@@ -1650,7 +1650,7 @@ add their verification meta tags.
   whose `Expires` is written at build time (CI run 38463633407 at ddde611 against run
   38457279655 at 0badb6f), so the text check of D52 holds for ddde611.
 
-## D54: Paper titles break at their hyphens in Safari (WebKit check, 2026-10-14)
+## D54: Paper pages stay within a phone screen in Safari (WebKit check, 2026-10-14)
 
 - **Found:** the maintainer asked for a run in Safari's engine too. Playwright 1.63.0 with
   WebKit 26.6 (on Windows) on the live site: papers 12 and 14 scrolled sideways on an
@@ -1661,15 +1661,19 @@ add their verification meta tags.
   hyphen. A long hyphenated name in a title ("naphthoimidazolium-cholesterol",
   "2-(Benzothiazol-2-yl)pyren-1-ol,", "Diacetylene-Terthiophene") stayed whole, and the paper
   head's `1fr` column grew to its width. In place since D38 (2026-09-28), not from this round.
-- **Applied:** e1aadd7. `.paper__title` takes `word-break: normal` (the 47 titles are
-  English; none has Hangul), and `.paper__head` is `minmax(0, 1fr)`, so nothing in it can
-  widen the column. Korean text elsewhere keeps `keep-all`. A Korean title, if one is ever
-  added, would break between syllables; it would then need `lang="ko"` and a `:lang(ko)` rule.
-- **Check:** dev run 38490707993. Only `main.css` (and `security.txt`'s `Expires`) differs
-  from the live site, so no page's text changed (108 of 110 files byte-identical). WebKit on
-  that build, answered under the live origin so that https and the CSP hold: 34 of 34, no page
-  wider than the screen at 1440, 390 or 320px, and the titles break as in Chrome
-  ("naphthoimidazolium- / cholesterol"). Chrome: the 47 titles' lines and head sizes are the
-  same as live at 320, 390 and 1440px (141 of 141); `functional.js` 22 of 22.
+- **Applied:** `.paper__head` is `minmax(0, 1fr)` (e1aadd7), so nothing in it can widen the
+  column. In Safari such a name now wraps at the column's edge ("naphthoimidazolium-choles /
+  terol" at 390px); Chrome is unchanged.
+- **Taken back:** e1aadd7 also gave `.paper__title` `word-break: normal`, so that Safari would
+  break at the hyphen as Chrome does. Page translation keeps the h1 and puts Korean text in it,
+  and with `normal` that text broke between syllables in Chrome and WebKit alike ("인 / 식을",
+  "나프토이 / 미다졸륨"), on every title: the bug D38 fixed. 805f549 takes it out, so the
+  titles keep `keep-all`.
+- **Check:** dev run 38492536108 (805f549). Only `main.css` (and `security.txt`'s `Expires`)
+  differs from the live site, so no page's text changed (108 of 110 files byte-identical).
+  WebKit on that build, answered under the live origin so that https and the CSP hold: 34 of
+  34, no page wider than the screen at 1440, 390 or 320px. Chrome: the 47 titles' lines and
+  head sizes are the same as live at 320, 390 and 1440px (141 of 141); `functional.js` 22 of
+  22. A Korean title put in the h1 breaks between words in both engines.
 - **Not covered:** WebKit on Windows is Safari's engine, not Safari on an iPhone; iOS
   scrolling, the toolbar and the system fonts are not reproduced.

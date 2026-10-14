@@ -285,4 +285,4 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   After the deploy the members went back to three to a row, on the maintainer's request
   (main run 38483628415). A run in Safari's engine (WebKit) found papers 12, 14 and 16
   scrolling sideways on phones, a side effect of D38's `keep-all`; fixed on `dev` (D54, run
-  38490707993). Results in `REVIEW.md` section 23 (2026-10-13 and 2026-10-14).
+  38492536108). Results in `REVIEW.md` section 23 (2026-10-13 and 2026-10-14).
