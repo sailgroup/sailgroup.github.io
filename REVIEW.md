@@ -1026,3 +1026,26 @@ build of `dev` at 0badb6f, against the live site (`main` at d1886d4) at the same
     (dev run 38492536108) WebKit passes 34 of 34 with no page wider than the screen, and a
     Korean title in the h1 still breaks between words; Chrome is unchanged (the 47 paper heads
     the same as live at 320, 390 and 1440px; `functional.js` 22 of 22).
+
+## 24. GitHub organization in the footer (2026-10-14, D55)
+
+Verified on the CI build of `dev` at c93b97a (run 38523187785), served locally, against the
+live site (`main` at 5dc775c) at the same viewports.
+
+- **Build and text:** the run is green (Jekyll, html-proofer). `text-check.py` over the 69
+  sitemap pages: shown text gone, changed or added 0; screen-reader text added on all 69, the
+  mark's name "SAIL on GitHub (opens in a new tab)" only; text shown after a click unchanged; of
+  the 991 `_data` strings, the 719 the live site shows are all still shown.
+- **Chrome, the home page at 1,440, 1,280, 1,101, 1,100, 1,024, 861, 768, 721, 720, 414, 390,
+  375, 360 and 320px:** no sideways scroll at any width. The mark is 28 by 28px, 20px right of
+  the emblem and centred on it. The emblem keeps its proportions (203 by 30px; 163 by 24 at
+  320px), where the live site squeezes it to 197, 182, 167 and 134px wide at 390, 375, 360 and
+  320px. The footer is as tall as live at 1,101px and up and at 720px and below (1px less at
+  320px), and 9px shorter from 721 to 1,100px (D55). Keyboard: the emblem, the mark, then
+  News; the focus ring is orange. Opacity 0.85, 1 on hover; white.
+- **`functional.js`:** 22 of 22 on the served build.
+- **WebKit** (Playwright 1.63.0, WebKit 26.6, the artifact answered under the live origin):
+  `webkit-check.cjs` 34 of 34 (69 pages at 1440x900, 390x664 and 320x568 with no script
+  error, failed request or sideways overflow; the footer check included). The brand row
+  measures as in Chrome at 1,440, 1,024, 414, 390, 375, 360 and 320px; on the live site WebKit
+  squeezes the emblem the same way (ratio 4.44 at 320px against 6.77).

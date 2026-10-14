@@ -286,3 +286,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   (main run 38483628415). A run in Safari's engine (WebKit) found papers 12, 14 and 16
   scrolling sideways on phones, a side effect of D38's `keep-all`; fixed on `dev` (D54, run
   38492536108). Results in `REVIEW.md` section 23 (2026-10-13 and 2026-10-14).
+- **Phase 24 (2026-10-14):** The lab's GitHub organization in the footer (D55), on the
+  maintainer's request: the GitHub mark beside the Kookmin emblem links
+  https://github.com/sailgroup on every page. With it, the phone footer stops squeezing the
+  emblem sideways at 390px and below. No shown text changed. Built on `dev` (run 38523187785);
+  results in `REVIEW.md` section 24.

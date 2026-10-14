@@ -1677,3 +1677,41 @@ add their verification meta tags.
   22. A Korean title put in the h1 breaks between words in both engines.
 - **Not covered:** WebKit on Windows is Safari's engine, not Safari on an iPhone; iOS
   scrolling, the toolbar and the system fonts are not reproduced.
+
+## D55: The footer links the lab's GitHub organization (maintainer's request, 2026-10-14)
+
+- **Asked:** the maintainer noticed that no page links https://github.com/sailgroup and asked
+  for its icon in the footer or elsewhere.
+- **Before:** D47 named the organization in the lab's JSON-LD `sameAs` and in `llms.txt`, and no
+  page showed it. Papers link their own code (D44, D45; MEMo is in the organization) and the PI
+  page links the PI's account, but nothing led to the lab's organization, whose profile links
+  the site.
+- **Where:** the footer's brand column, to the right of the Kookmin emblem, on every page: the
+  university and the lab's code side by side. Not the header, whose menu is the old site's
+  (D52); not the Links list, which holds the menu's pages and Kookmin University (D43).
+- **Mark:** `icon.html`'s GitHub mark (the one the people pages and the paper code links use),
+  28px, the size of the emblem's round seal. White at the emblem's 85%, full on hover like the
+  emblem, and never orange: GitHub's logo rules ask for the mark in black or white, unchanged.
+  Screen readers get "SAIL on GitHub (opens in a new tab)", as the emblem gives "Kookmin
+  University (opens in a new tab)"; `title="GitHub"` as on the people pages. The address is
+  `github_org` in `_config.yml`; emptied, the mark goes too.
+- **Phones (a fault on the live site, fixed with it):** the brand row puts SAIL left and the
+  emblem right, with the lab's line under both. That line spans both columns and so sized
+  them: SAIL's column was 158px wide for a 53px word, and the emblem's image, held at 30px high
+  under `max-width: 100%`, was squeezed sideways at 390px and below (197px wide instead of 203
+  at 390, 167 at 360, 134 at 320: a third narrower), in Chrome and WebKit alike. In place since
+  the shorter phone footer (976fecf, D49). The line now has `contain: inline-size`, so it no
+  longer sizes the columns, and the image shrinks in proportion where it must: 203 by 30px from
+  360px up, 163 by 24 at 320, with the mark 28px beside it and 20px between SAIL and the
+  emblem.
+- **Side effect:** from 721 to 1,100px the footer is 9px shorter. The emblem was an inline
+  block, so its line kept room for descenders under it; in the flex row it does not.
+- **D52:** no line or link of the footer changes; the mark is a new link that replaces
+  nothing, added on the maintainer's request.
+- **Check:** dev run 38523187785 (c93b97a). The text of the 69 pages against the live site:
+  shown text gone, changed or added 0; screen-reader text added on 69 pages, the mark's name
+  only; the 719 `_data` strings the live site shows are all still shown. Chrome at 14 widths
+  from 1,440 to 320px: no sideways scroll, the emblem in proportion at every width; the mark
+  comes after the emblem and before News on the keyboard, with the orange focus ring.
+  `functional.js` 22 of 22; `webkit-check.cjs` on the artifact 34 of 34, and WebKit measures
+  the brand row as Chrome does.

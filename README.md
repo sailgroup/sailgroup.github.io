@@ -214,6 +214,7 @@ sections:
 | 주제 태그 색·이름·개수·순서 | `_data/themes.yml` |
 | 상단 메뉴(네비) 항목 (푸터의 링크도 이 목록을 따라 함께 바뀜) | `_data/navigation.yml` |
 | 푸터 구성 (연락처 값은 `_data/home.yml` 의 `contact`) | `_includes/footer.html` |
+| 푸터의 GitHub 아이콘이 여는 주소 (연구실 GitHub 조직) | `_config.yml` 의 `github_org` |
 | 논문 목록 한 줄(번호·제목·저자·배지·태그) | `_includes/pub-item.html` |
 | 논문 링크 아이콘 (DOI·arXiv·GitHub·Figshare) 순서 | 목록: `_includes/pub-item.html`, 논문 페이지: `_layouts/publication.html` |
 | 코드 아이콘 그림 (GitHub 로고, 회색 코드 아이콘) | `assets/images/github.svg`, `assets/images/code.svg` 파일을 같은 이름으로 교체 (어느 주소에 어느 그림인지는 `_includes/code-badge.html`) |
