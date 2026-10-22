@@ -1053,3 +1053,29 @@ live site (`main` at 5dc775c) at the same viewports.
   byte-identical to the deployed build, 269 image URLs 200; `functional.js` 22 of 22; the
   footer measures as on the build at 1,440, 1,024, 390, 360 and 320px; `webkit-check.cjs` 34 of
   34 on the live site (papers 12, 14 and 16 no longer wider than a phone screen, D54).
+
+## 25. People grid fills from the left again (2026-10-22, D49 as changed, D18)
+
+The maintainer asked about the fourth member sitting in the middle of the second row of
+/members/. cbd2abe removes the three rules that centred a lone last card (D49), so the people
+grids place their cards as before D49. The PI's two `publications.yml` commits (8a0ff19,
+f57b395, already live) came into `dev` first, by fast-forward.
+
+- **Build** (`dev` run 39779997999, green): `livecmp.js` against the live site, 108 of 110
+  files byte-identical; the two that differ are `main.css` and `security.txt` (its Expires),
+  so no page's HTML or text changed. 269 image URLs 200.
+- **Chrome, card positions on the served build at 1,440, 1,000, 768, 600, 390 and 320px:**
+  /members/ three, then the fourth under the first from 721px (live: in the middle column);
+  two and two on phones as before. /alumni/ three rows of three as before; on phones the
+  ninth card under the first column (live: centred). No sideways scroll.
+- **`functional.js`:** 21 of 22 on the served build; the one miss is the 404 test, because
+  Python's server answers a missing page with its own page (`404.html` is byte-identical to
+  live). 22 of 22 on the live site before and after the deploy.
+- **WebKit:** `webkit-check.cjs` (its people check now expects a lone last card under the
+  first) 34 of 34 on the build: members 3+1 and 2+2, alumni 3+3+3 and 2+2+2+2+1, the lone
+  card at the left.
+- **Live** (main run 39786023302): `livecmp.js` 110 of 110 files byte-identical to the
+  deployed build, 269 image URLs 200; card positions as on the build; `functional.js` 22 of
+  22; `webkit-check.cjs` 34 of 34. IndexNow sent one page (Bing 200, Naver 200) although no
+  page's HTML changed; the script reports a page it cannot fetch from the live site as
+  changed, which is the likely cause.

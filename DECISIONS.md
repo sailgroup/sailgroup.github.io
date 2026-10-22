@@ -1551,6 +1551,14 @@ add their verification meta tags.
   (0e8694e), so the fourth member sits in the middle of the second row; at every width the
   people grids have the column counts they had before this round (three above 720px, two
   below).
+- **Changed again** (2026-10-22, the maintainer's choice): the people grids fill from the
+  left, as in D18. The maintainer asked whether the fourth member had not sat at the left
+  before: the change of 2026-10-14 dropped the four columns but kept the centring of a lone
+  last card. cbd2abe removes that centring, so from 721px the fourth member sits under the
+  first, and on phones the ninth alumni card sits under the first column. Why the left: the
+  centring moved only a last row of one card (four members centred, five at the left, seven
+  centred again), and a card alone in the middle of an ordered list reads as singled out.
+  The covers and photos keep their centred last row (above).
 
 ## D50: Citations, larger paper figures and automatic checks (maintainer's request, 2026-10-13)
 

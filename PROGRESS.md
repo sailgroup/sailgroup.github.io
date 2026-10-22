@@ -292,3 +292,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   emblem sideways at 390px and below. No shown text changed. Built on `dev` (run 38523187785);
   deployed with D54 on 2026-10-14 (main run 38524053641; IndexNow 69 pages, Bing 200, Naver 200)
   and verified live. Results in `REVIEW.md` section 24.
+- **Phase 25 (2026-10-22):** The people grids fill from the left again (D49 as changed, D18), on
+  the maintainer's choice: the fourth member sits under the first, and on phones the ninth
+  alumni card under the first column. CSS only, no shown text changed. Built on `dev` (run
+  39779997999), deployed on 2026-10-22 (main run 39786023302) and verified live. Results in
+  `REVIEW.md` section 25.
