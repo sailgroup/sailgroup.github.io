@@ -530,6 +530,9 @@ p { text-wrap: pretty; }
 }
 
 /* --- People --------------------------------------------------------------- */
+/* The block of columns is centred, but the cards fill from the left, so a short last row
+   starts at the left (the fourth member under the first; D18, and D49 as changed on
+   2026-10-22, the maintainer's choice). */
 .person-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 210px));
@@ -587,20 +590,6 @@ p { text-wrap: pretty; }
 .person__note { font-size: var(--fs-xs); color: var(--muted); margin-top: 0.2rem; line-height: 1.45; }
 /* Balanced lines, so a short last word ("(UROP)") does not sit alone on its own line. */
 .person__role, .person__note { text-wrap: balance; }
-
-/* No card alone at the left of the last row: a lone last card takes the middle of three
-   columns, or is centred across two (alumni on phones: nine cards). The grid stays at three
-   to a row however many cards there are (the four members: three, then one in the middle;
-   the maintainer's choice, D49). */
-@media (min-width: 721px) {
-  .person-grid > :last-child:nth-child(3n+1):not(:first-child) { grid-column: 2; }
-}
-@media (max-width: 720px) {
-  .person-grid > :last-child:nth-child(odd):not(:first-child) { grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--space-lg)) / 2); }
-}
-@media (max-width: 480px) {
-  .person-grid > :last-child:nth-child(odd):not(:first-child) { width: calc((100% - var(--space-md)) / 2); }
-}
 
 /* --- PI profile ----------------------------------------------------------- */
 .profile { display: grid; gap: var(--space-xl); grid-template-columns: 280px 1fr; align-items: start; }
