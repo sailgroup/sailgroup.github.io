@@ -6,6 +6,16 @@
   if (!btn || !nav || !header) return;
   var MENU = "(max-width: 68.75em)"; // the menu breakpoint in main.scss
 
+  // --header-h follows the header bar, which grows past --header-min when the menu wraps
+  // to a second row (a large default text size, wider letter spacing), so the sticky menus
+  // and the scroll offsets in main.scss still clear it.
+  var inner = header.querySelector(".header-inner");
+  if (inner && window.ResizeObserver) {
+    new ResizeObserver(function () {
+      document.documentElement.style.setProperty("--header-h", inner.offsetHeight + "px");
+    }).observe(inner);
+  }
+
   function isOpen() { return btn.getAttribute("aria-expanded") === "true"; }
 
   // While the menu is open the page behind it does not scroll (the menu scrolls on its own);
@@ -54,6 +64,10 @@
     if (!window.matchMedia(MENU).matches) close();
   });
 
+  // A script that follows a menu link within the page (people.js) closes the menus as a
+  // new page would, leaving focus to it.
+  document.addEventListener("sail:closemenus", close);
+
   // Dropdowns above the menu breakpoint (disclosure pattern): the button beside a parent
   // link opens its sub-pages. A mouse opens them on hover as well and closes them on
   // leaving, unless the button was clicked, which keeps them open until a second click.
@@ -92,6 +106,9 @@
     });
     window.addEventListener("resize", function () {
       if (expanded() && window.matchMedia(MENU).matches) set(false);
+    });
+    document.addEventListener("sail:closemenus", function () {
+      if (expanded()) set(false);
     });
   });
 })();

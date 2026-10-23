@@ -74,7 +74,7 @@ const FULL = /-full\.[^./]+$/i; // pubs/pub-37-full.jpg
 // -full figure gets none: it is listed for its pixel size (the page's width and height).
 const RENDITIONS = {
   photos: { widths: [480, 800, 1200], cover4x3: true },
-  pubs: { widths: [480], cover4x3: true },
+  pubs: { widths: [480], cover4x3: false }, // object-fit: contain since D56
   pubsFull: { widths: [], cover4x3: false },
   covers: { widths: [400], cover4x3: false },
 };

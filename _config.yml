@@ -38,6 +38,7 @@ markdown: kramdown
 permalink: pretty
 sass:
   style: compressed
+  sourcemap: never # the published CSS points at no map (the SCSS is in the repository)
 
 # Member, alumni, and publication detail pages are generated from _data/*.yml by
 # _plugins/generate_pages.rb (one YAML entry = one page; no collection stubs).

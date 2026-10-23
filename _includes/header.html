@@ -31,8 +31,9 @@
             {%- assign active = "yes" -%}
           {%- endif -%}
           {%- if item.children -%}
+            {%- comment -%}A person's page is in the people section too.{%- endcomment -%}
             {%- for c in item.children -%}
-              {%- if page.url contains c.url -%}{%- assign active = "yes" -%}{%- endif -%}
+              {%- if page.url contains c.url or page.layout == "person" and c.url == "/members/" -%}{%- assign active = "yes" -%}{%- endif -%}
             {%- endfor -%}
           {%- endif -%}
 
@@ -55,8 +56,9 @@
               <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.name }}{% include icon.html name="external" %}{% include new-tab.html %}</a>
             </li>
           {%- else -%}
-            <li class="nav-item">
-              <a href="{{ item.url | relative_url }}"{% if active != "" %} aria-current="page"{% endif %}>{{ item.name }}</a>
+            {%- comment -%}A page below the item (a paper under Publications) shows the section by the class; aria-current only on the page's own link.{%- endcomment -%}
+            <li class="nav-item{% if active != "" %} is-current{% endif %}">
+              <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.name }}</a>
             </li>
           {%- endif -%}
         {%- endfor -%}

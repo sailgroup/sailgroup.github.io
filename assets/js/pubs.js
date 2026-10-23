@@ -20,12 +20,12 @@
 
   // Lower case without accents, one UTF-16 unit for one, so a match's place in the folded
   // text is its place in the page's text (the search highlight needs it). "Jöung" is found
-  // by "joung".
+  // by "joung". Only the accents go: a Hangul syllable, which also comes apart, stays whole.
   function fold(s) {
     var out = "";
     for (var i = 0; i < s.length; i++) {
       var c = s.charAt(i);
-      var f = c.normalize("NFD").charAt(0).toLowerCase();
+      var f = c.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
       out += f.length === 1 ? f : c;
     }
     return out;

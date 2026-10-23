@@ -11,8 +11,8 @@
   // A text whose first letter is Hangul is Korean, the rule of _plugins/hangul.rb (which
   // marks the gallery's captions): digits before it do not count, and an English caption
   // that ends with Korean names stays English.
-  var LETTER = /[A-Za-zÀ-ɏͰ-Ͽᄀ-ᇿ㄰-㆏가-힣]/;
-  var HANGUL = /[ᄀ-ᇿ㄰-㆏가-힣]/;
+  var LETTER = /\p{L}/u;
+  var HANGUL = /\p{Script=Hangul}/u;
   function korean(s) {
     var m = LETTER.exec(s || "");
     return !!m && HANGUL.test(m[0]);

@@ -17,6 +17,8 @@ photo goes from 172 KB to 79 KB and the first ten from 1609 KB to 999 KB; the di
 sharpness at 2x is hard to see on a phone.
 The first photo is in the first screenful on every layout (on phones it is the largest image
 there), so it loads at once with high priority; the rest stay lazy.
+Each photo links to its full image, which viewer.js opens in the viewer with its caption;
+without scripts the link opens the image itself.
 {%- endcomment -%}
 <div class="container page-head">
   <h1>Photos</h1>
@@ -29,12 +31,12 @@ there), so it loads at once with high priority; the rest stay lazy.
       {%- for p in site.data.photos -%}
       {%- capture srcset -%}{% include image-srcset.html image=p.image sizes="(max-width: 493px) and (min-resolution: 2.5dppx) calc(66.7vw - 23px), (min-width: 1140px) 259px, (min-width: 800px) calc(25vw - 27px), (min-width: 720px) calc(23vw - 11px), (min-width: 494px) calc(46vw - 7px), (min-width: 440px) 92vw, calc(100vw - 35px)" %}{%- endcapture -%}
       <li>
-        <button class="gallery__item" type="button" data-viewer="photo-lightbox" data-full="{{ '/assets/images/' | append: p.image | relative_url }}"
+        <a class="gallery__item" href="{{ '/assets/images/' | append: p.image | relative_url }}" data-viewer="photo-lightbox" data-full="{{ '/assets/images/' | append: p.image | relative_url }}"
                 data-title="{{ p.title | escape }}" data-desc="{{ p.caption | escape }}" data-alt="{{ p.alt | escape }}"
                 aria-label="View larger{% if p.title and p.title != '' %}: {{ p.title | escape }}{% endif %}{% if p.caption and p.caption != '' %}. {{ p.caption | escape }}{% endif %}">
           <img src="{{ '/assets/images/' | append: p.image | relative_url }}"{{ srcset }} alt=""{% if forloop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
           {%- if p.title and p.title != "" -%}{%- assign ko = p.title | korean -%}<span class="gallery__cap"{% if ko %} lang="ko" translate="no"{% endif %}>{{ p.title }}</span>{%- endif -%}
-        </button>
+        </a>
       </li>
       {%- endfor -%}
     </ul>

@@ -60,7 +60,7 @@ scripts: [pubs]
 
   {%- comment -%}Below 68.75em the finder scrolls away with the page, so once a search or a topic is chosen and the finder is out of view, this floating bar (Liquid Glass, D56) keeps the count in sight: a tap on it goes back to the finder, the cross shows every paper again. pubs.js shows it; until then it is inert and invisible.{%- endcomment %}
   <div class="pubs-pill" inert>
-    <button type="button" class="pubs-pill__count" aria-label="Change the search and topics"><span data-pill-count></span></button>
+    <button type="button" class="pubs-pill__count"><span data-pill-count></span><span class="visually-hidden">, change the search and topics</span></button>
     <button type="button" class="pubs-pill__clear" aria-label="Show all papers"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></button>
   </div>
 </section>

@@ -1,6 +1,6 @@
 {%- comment -%}
 /pi/, /members/ and /alumni/ are one document (D57): the PI, then the current members, then
-the alumni. Each address shows all three and opens at its own part (pass start: pi,
+the alumni. Each address shows all three and opens at its own part (the page's people_start: pi,
 members or alumni); the three keep their menu entries, titles, descriptions and structured
 data. The part an address names carries the page's one h1 and the other two an h2 in the
 same style (the PI's Education and Career Summary one level below the PI's name). The
@@ -9,7 +9,7 @@ people.js scrolls to a part instead of loading the page again, and keeps the add
 title and both menus on the part in view; people-start.js opens the page at its part where
 the browser does not (scroll-initial-target, below in main.scss).
 {%- endcomment -%}
-{%- assign start = include.start | default: "pi" -%}
+{%- assign start = page.people_start | default: "pi" -%}
 {%- assign pi = site.data.pi -%}
 {%- assign pih = "h2" -%}{%- assign cvh = "h3" -%}{%- if start == "pi" -%}{%- assign pih = "h1" -%}{%- assign cvh = "h2" -%}{%- endif -%}
 {%- assign memh = "h2" -%}{%- if start == "members" -%}{%- assign memh = "h1" -%}{%- endif -%}
@@ -85,7 +85,7 @@ the browser does not (scroll-initial-target, below in main.scss).
       <div class="container">
         <div class="person-grid">
           {%- assign current = site.data.people | where: "status", "current" -%}
-          {%- for m in current -%}{% include person-card.html person=m %}{%- endfor -%}
+          {%- for m in current -%}{%- assign eager = false -%}{%- if start == "members" and forloop.index <= 3 -%}{%- assign eager = true -%}{%- endif -%}{% include person-card.html person=m eager=eager %}{%- endfor -%}
         </div>
       </div>
     </div>
@@ -100,7 +100,7 @@ the browser does not (scroll-initial-target, below in main.scss).
       <div class="container">
         <div class="person-grid">
           {%- assign grads = site.data.people | where: "status", "alumni" -%}
-          {%- for a in grads -%}{% include person-card.html person=a %}{%- endfor -%}
+          {%- for a in grads -%}{%- assign eager = false -%}{%- if start == "alumni" and forloop.index <= 3 -%}{%- assign eager = true -%}{%- endif -%}{% include person-card.html person=a eager=eager %}{%- endfor -%}
         </div>
       </div>
     </div>

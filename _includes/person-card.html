@@ -2,7 +2,8 @@
 A person card for the Members / Alumni grids. Degrades gracefully: an initials
 disc when there is no photo, a plain name when there is no slug (so a future
 entry without a photo or slug never produces a broken image or link).
-Pass: person (the data object). The card always links to the canonical /people/<slug>/.
+Pass: person (the data object); eager=true for a card in the first screenful, whose photo
+then loads at once instead of lazily. The card always links to the canonical /people/<slug>/.
 {%- endcomment -%}
 {%- assign x = include.person -%}
 {%- assign url = '/people/' | append: x.slug | append: '/' | relative_url -%}
@@ -10,7 +11,7 @@ Pass: person (the data object). The card always links to the canonical /people/<
 {%- assign has_hover = false -%}{%- if x.photo_hover and x.photo_hover != "" -%}{%- assign has_hover = true -%}{%- endif -%}
 <div class="person">
   {%- if x.photo and x.photo != "" -%}
-    {%- capture photo -%}<img class="person__photo" src="{{ '/assets/images/people/' | append: x.photo | relative_url }}" alt="{{ x.name }}" loading="lazy">{%- if has_hover -%}<img class="person__photo person__photo--hover" src="{{ '/assets/images/people/' | append: x.photo_hover | relative_url }}" alt="" aria-hidden="true" loading="lazy">{%- endif -%}{%- endcapture -%}
+    {%- capture photo -%}<img class="person__photo" src="{{ '/assets/images/people/' | append: x.photo | relative_url }}" alt="{{ x.name }}"{% unless include.eager %} loading="lazy"{% endunless %}>{%- if has_hover -%}<img class="person__photo person__photo--hover" src="{{ '/assets/images/people/' | append: x.photo_hover | relative_url }}" alt="" aria-hidden="true" loading="lazy">{%- endif -%}{%- endcapture -%}
     {%- if x.slug and x.slug != "" -%}
     {%- comment -%}The name below links to the same page, so the photo link is for the mouse only: out of the tab order and the accessibility tree (one stop per person).{%- endcomment %}
     <a class="person__figure{% if has_hover %} person__figure--swap{% endif %}" href="{{ url }}" tabindex="-1" aria-hidden="true">{{ photo }}</a>

@@ -11,6 +11,7 @@
 (function () {
   "use strict";
   var bar = document.querySelector(".people-bar");
+  var header = document.querySelector(".site-header");
   var parts = ["pi", "members", "alumni"].map(function (id) { return document.getElementById(id); });
   if (!bar || parts.indexOf(null) !== -1 || !window.history || !history.pushState) return;
 
@@ -52,7 +53,9 @@
   // The part in view: the last whose top has passed a line a quarter of the way down the
   // screen below the menu; at the foot of the page, the last part.
   function inView() {
-    var line = bar.getBoundingClientRect().bottom + (window.innerHeight - bar.getBoundingClientRect().bottom) / 4;
+    // Below the menu, or the header where the menu scrolls with the page (a short screen).
+    var top = Math.max(bar.getBoundingClientRect().bottom, header ? header.getBoundingClientRect().bottom : 0);
+    var line = top + (window.innerHeight - top) / 4;
     var doc = document.documentElement;
     if (window.scrollY + window.innerHeight >= doc.scrollHeight - 2) return parts.length - 1;
     for (var i = parts.length - 1; i > 0; i--) {
@@ -63,8 +66,9 @@
 
   function update() {
     ticking = false;
-    var top = parseFloat(getComputedStyle(bar).top) || 0;
-    bar.classList.toggle("is-stuck", window.scrollY > 0 && bar.getBoundingClientRect().top <= top + 1);
+    var cs = getComputedStyle(bar);
+    var top = parseFloat(cs.top) || 0;
+    bar.classList.toggle("is-stuck", cs.position === "sticky" && window.scrollY > 0 && bar.getBoundingClientRect().top <= top + 1);
     if (paused || loading) return;
     var i = inView();
     if (i !== current) show(i, "replace");
@@ -101,9 +105,9 @@
     var i = partOf(a.pathname);
     if (i === -1) return;
     e.preventDefault();
-    // A dropdown left open by the click closes as it would on a new page (nav.js listens
-    // for Escape); the phone menu has already closed itself.
-    if (a.closest(".site-header")) document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    // A dropdown left open by the click closes as it would on a new page (nav.js); the
+    // phone menu has already closed itself.
+    if (a.closest(".site-header")) document.dispatchEvent(new Event("sail:closemenus"));
     show(i, "push");
     pause();
     // Smooth, unless the reader asks for less motion (main.scss turns smooth scrolling off).

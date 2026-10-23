@@ -39,7 +39,6 @@
 
   /* Typography (the two "Hangul Fallback" faces are defined right after :root) */
   --font-sans:  "Pretendard Variable", Pretendard, "Hangul Fallback Malgun", "Hangul Fallback Noto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", Roboto, Arial, sans-serif;
-  --font-serif: var(--font-sans); /* one friendly sans across the site (was Source Serif 4) */
 
   /* A compact academic scale: 16px text, page titles at most 36px (the home title 46px). */
   --fs-xs:   0.8125rem;
@@ -61,18 +60,23 @@
   --space-3xl: 6rem;
 
   /* Structure */
-  --container: 1140px;
-  --container-narrow: 760px;
+  /* In rem, like the menu breakpoint (68.75em): with a larger default text size the column
+     grows with the text, so the menu still fits beside the logos (1140 and 760px at 16px). */
+  --container: 71.25rem;
+  --gutter: clamp(1.1rem, 4vw, 2rem); /* the container's side padding */
+  --container-narrow: 47.5rem;
   --radius: 12px;
   --radius-sm: 8px;
   --radius-xs: 6px;
   --radius-pill: 999px;
-  --header-h: 72px;
+  /* The header bar is at least --header-min tall; --header-h, which the sticky and scroll
+     offsets use, is its height, measured by nav.js when the menu wraps to a second row
+     (large text, wider letter spacing). */
+  --header-min: 72px;
+  --header-h: var(--header-min);
   /* A card on a grey band: a hairline edge and the faintest shadow; lifted on hover (D38). */
   --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-lift: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.05), 0 14px 32px rgba(0, 0, 0, 0.09);
-  --shadow-md: 0 6px 20px rgba(20, 20, 20, 0.08), 0 2px 6px rgba(20, 20, 20, 0.05);
-  --ring: 0 0 0 3px rgba(248, 152, 88, 0.45);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -185,7 +189,7 @@ strong, b { font-weight: 600; }
 /* Headings in semibold, drawn tighter as they grow, so large type reads crisp rather than
    loud at the compact sizes (D56). */
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.012em;
@@ -278,7 +282,7 @@ p { text-wrap: pretty; }
   width: 100%;
   max-width: var(--container);
   margin-inline: auto;
-  padding-inline: clamp(1.1rem, 4vw, 2rem);
+  padding-inline: var(--gutter);
 }
 .container-narrow { max-width: var(--container-narrow); }
 
@@ -293,7 +297,7 @@ p { text-wrap: pretty; }
 /* When a section-head carries a lead paragraph, match the hero's lead-to-figure
    gap so the two intro blocks on the home page breathe the same way. */
 .section-head:has(.lead) { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
-.section-head .lead { margin-top: 0.75rem; max-width: none; } /* spans full content width, matching the hero lead */
+.section-head .lead { margin-top: 0.75rem; }
 
 /* --- Header / navigation -------------------------------------------------- */
 /* The header stays at the top in Liquid Glass (D56): white where nothing is under it, the
@@ -320,7 +324,7 @@ p { text-wrap: pretty; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: var(--header-h);
+  min-height: var(--header-min);
 }
 /* The logos never shrink: they have a fixed height, so a narrower box would squash them.
    The nav fits beside them above the menu breakpoint (68.75em, below). */
@@ -463,7 +467,7 @@ p { text-wrap: pretty; }
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
-.hero .lead { margin-top: 1.1rem; max-width: none; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
+.hero .lead { margin-top: 1.1rem; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
 .hero__figure { margin: clamp(2.25rem, 5vw, 3.5rem) auto 0; max-width: 880px; }
 /* The figure opens large in the viewer (on phones its labels are about 4px tall); the
    glass magnifier in its corner says so. */
@@ -479,8 +483,8 @@ p { text-wrap: pretty; }
   text-align: center;
   font-size: var(--fs-sm); color: var(--muted);
 }
-.hero__figure figcaption a { color: inherit; text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
-.hero__figure figcaption a:hover { color: var(--orange-ink); }
+.hero__figure figcaption a, .research-area__figure figcaption a { color: inherit; text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
+.hero__figure figcaption a:hover, .research-area__figure figcaption a:hover { color: var(--orange-ink); }
 
 /* The magnifier on a figure that opens in the viewer (zoom-hint.html): a disc of glass. */
 .zoom-hint {
@@ -581,7 +585,6 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 
 .page-head { padding-block: var(--space-xl) var(--space-sm); }
 .page-head h1 { margin-bottom: 0.5rem; }
-.page-head .lead { max-width: none; } /* spans full content width, matching the hero lead */
 
 /* --- Cards / grids -------------------------------------------------------- */
 .card-grid {
@@ -716,7 +719,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   background: var(--bg-alt);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
   color: var(--muted);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.7rem;
   font-weight: 600;
 }
@@ -743,7 +746,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .person__role, .person__note { text-wrap: balance; }
 
 /* --- PI profile ----------------------------------------------------------- */
-.profile { display: grid; gap: 3.5rem; grid-template-columns: 248px 1fr; align-items: start; }
+.profile { display: grid; gap: 3.5rem; grid-template-columns: 248px minmax(0, 1fr); align-items: start; }
 .profile__aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
 .profile__photo { width: 100%; border-radius: 14px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
 .profile__contact { margin-top: var(--space-md); display: grid; gap: 0.55rem; font-size: var(--fs-sm); }
@@ -769,11 +772,13 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .cv { margin-top: var(--space-xl); }
 /* h3 where the PI's name is an h2, on /members/ and /alumni/ (people-page.html, D57). */
 .cv h2, .cv h3 { font-size: var(--fs-base); font-weight: 600; letter-spacing: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line-2); margin-bottom: 0.25rem; }
-.cv__item { display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 1.5rem; padding: 0.75rem 0; }
+.cv__item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.15rem 1.5rem; padding: 0.75rem 0; }
 .cv__item + .cv__item { border-top: 1px solid var(--line); }
 .cv__role { font-weight: 600; color: var(--ink); }
 .cv__org { color: var(--ink-2); margin-top: 0.1rem; }
-.cv__when { color: var(--muted); font-size: var(--fs-sm); white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* The dates keep one line wherever they fit; on a narrow screen at a large text size they
+   break after the dash rather than squeezing the role beside them. */
+.cv__when { color: var(--muted); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
 
 /* --- People pages' sub-navigation ----------------------------------------- */
 /* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): the three pages as a
@@ -875,6 +880,13 @@ html.people-pending, html.people-jump { scroll-behavior: auto; }
 @media (max-width: 21em) {
   html:has(.people) { --people-nav-fs: var(--fs-xs); }
   .people-nav a { padding-inline: 0.5rem; }
+}
+/* On a short screen (a phone held sideways, 200% or 400% zoom) the header and the held menu
+   together covered a third to a half of it, so there the menu scrolls with the page; the
+   header and the menus' marks still follow the part in view. */
+@media (max-height: 31.25em) {
+  html:has(.people) { --people-bar-h: 0px; }
+  .people-bar { position: static; }
 }
 
 /* --- Publications --------------------------------------------------------- */
@@ -1030,7 +1042,7 @@ html.people-pending, html.people-jump { scroll-behavior: auto; }
 /* The list. The count line sits level with the search field. */
 .pubs-count { display: flex; align-items: center; min-height: 2.5rem; font-size: var(--fs-sm); color: var(--muted); }
 .pubs-empty { padding-block: var(--space-sm) var(--space-xl); }
-.year-group { margin-top: var(--space-md); scroll-margin-top: calc(var(--header-h) + 1rem); }
+.year-group { margin-top: var(--space-md); }
 .year-group + .year-group { margin-top: var(--space-xl); }
 /* The year, then a hairline to the end of the row. */
 .year-label {
@@ -1083,7 +1095,8 @@ html.people-pending, html.people-jump { scroll-behavior: auto; }
 }
 .pub__figure { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s var(--ease-out); }
 a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
-.pub__title { font-family: var(--font-serif); font-size: 1.0625rem; line-height: 1.45; font-weight: 600; letter-spacing: -0.01em; }
+/* A long chemical name breaks rather than running past a narrow screen at a large text size. */
+.pub__title { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.45; font-weight: 600; letter-spacing: -0.01em; overflow-wrap: anywhere; }
 .pub__authors { font-size: var(--fs-sm); line-height: 1.55; color: var(--ink-2); margin-top: 0.35rem; }
 .pub__authors .pi,
 .paper__authors .pi {
@@ -1104,7 +1117,7 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
 /* The links (logos) and the topics are two groups, a hairline between them. The topics take
    the rest of the row and wrap inside it, so the hairline stays beside them (a block of
    topics that wrapped as a whole under the logos left the hairline hanging at the left). */
-.pub__foot > .pub__themes { flex: 1 1 12rem; min-width: 0; }
+.pub__foot > .pub__themes { flex: 1 1 12rem; min-width: min-content; }
 .pub__foot > :not(.pub__themes) + .pub__themes { margin-left: 0.25rem; padding-left: 0.75rem; border-left: 1px solid var(--line); }
 /* The link to the BibTeX file of all papers, after the list (publications.html). */
 .pubs-bib { margin-top: var(--space-xl); font-size: var(--fs-sm); }
@@ -1171,9 +1184,9 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scrollbar-width: thin;
-    margin-inline: calc(-1 * clamp(1.1rem, 4vw, 2rem));
-    padding: 0.25rem clamp(1.1rem, 4vw, 2rem);
-    scroll-padding-inline: clamp(1.1rem, 4vw, 2rem);
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 0.25rem var(--gutter);
+    scroll-padding-inline: var(--gutter);
   }
   .pub-filter {
     flex: none;
@@ -1317,7 +1330,7 @@ body.no-scroll { overflow: hidden; }
 /* A figure (a PNG can be transparent) is drawn on white, as on the page. */
 .lightbox--single .lightbox__img { background: #fff; }
 .lightbox__cap { margin-top: var(--space-md); text-align: center; max-width: 62ch; }
-.lightbox__title { font-family: var(--font-serif); font-size: var(--fs-md); font-weight: 600; color: #fff; }
+.lightbox__title { font-family: var(--font-sans); font-size: var(--fs-md); font-weight: 600; color: #fff; }
 .lightbox__desc { font-size: var(--fs-sm); color: #d0d0d0; margin-top: 0.35rem; }
 .lightbox__count { font-size: var(--fs-xs); color: #9a9a9a; margin-top: 0.7rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
 .lightbox__paper { margin-top: 0.9rem; }
@@ -1416,7 +1429,7 @@ body.no-scroll { overflow: hidden; }
 }
 /* After the generic `.footer-brand p` rule and one class more specific, so the mark keeps
    its own size and colour. */
-.footer-brand .footer-mark { margin-top: 0; font-family: var(--font-serif); font-size: 1.625rem; line-height: 1; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
+.footer-brand .footer-mark { margin-top: 0; font-family: var(--font-sans); font-size: 1.625rem; line-height: 1; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
 .footer-mark .hl { color: var(--orange); }
 /* The Kookmin signature and the lab's GitHub organization side by side (D55), at the right
    of the brand row. The GitHub mark stays white, as GitHub's logo rules ask, and both
@@ -1456,7 +1469,6 @@ body.no-scroll { overflow: hidden; }
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem;
   font-size: var(--fs-xs); color: #8f8f8f;
 }
-.footer-base a:hover { color: #fff; }
 /* Where the header shows the menu button (68.75em, see the header): the links and Contact
    side by side under the brand row, the links in two columns. */
 @media (max-width: 68.75em) {
@@ -1468,8 +1480,6 @@ body.no-scroll { overflow: hidden; }
    one under the other; every fact and link stays. */
 @media (max-width: 720px) {
   .site-footer { padding-block: var(--space-xl) var(--space-md); }
-  /* One class more specific than the gap set in "Responsive" (720px), which comes later. */
-  .site-footer .footer-grid { row-gap: var(--space-lg); }
   .footer-brand { grid-template-columns: auto auto; justify-content: space-between; align-items: center; column-gap: var(--space-md); padding-bottom: var(--space-lg); }
   /* The lab's line spans both columns without sizing them: it used to widen the SAIL
      column, which squeezed the Kookmin wordmark sideways at 390px and below. */
@@ -1513,13 +1523,10 @@ body.no-scroll { overflow: hidden; }
   margin-top: 0.6rem; text-align: center;
   font-size: var(--fs-xs); color: var(--muted);
 }
-.research-area__figure figcaption a { color: inherit; text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
-.research-area__figure figcaption a:hover { color: var(--orange-ink); }
 
 /* --- Member personal card ------------------------------------------------- */
 .member-card { text-align: center; }
 .member-card .back-link { margin-bottom: var(--space-lg); }
-.member-card .profile__name { justify-content: center; }
 .member-card__photo {
   width: 160px; height: 160px;
   border-radius: 50%;
@@ -1532,7 +1539,7 @@ body.no-scroll { overflow: hidden; }
 
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 860px) {
-  .profile { grid-template-columns: 1fr; gap: var(--space-xl); }
+  .profile { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
   .profile__aside { position: static; max-width: 320px; }
 }
 /* PI page on tablets: the contact list beside the photo, not below it in a 320px column
@@ -1575,7 +1582,7 @@ body.no-scroll { overflow: hidden; }
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 0.6rem clamp(1.1rem, 4vw, 2rem) 1.1rem;
+    padding: 0.6rem var(--gutter) 1.1rem;
   }
   /* Full-width rows: the divider spans the menu. A parent's sub-pages are always listed
      under it here, so its chevron button is not needed. */
@@ -1640,8 +1647,28 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
+/* Forced colours (Windows contrast themes): the mode clears backgrounds and paints every
+   border, so what those carried is given back in system colours. The menu button's bars
+   are backgrounds; the bar's underline marks only the current section; the chosen part,
+   topic and search field get an edge. The logos and badges keep the plate they were drawn on
+   (dark on white, white on the footer's dark), and the glass layers are opaque. */
+@media (forced-colors: active) {
+  .nav-toggle span { forced-color-adjust: none; background: CanvasText; }
+  .site-header::before, .site-nav, .subnav, .zoom-hint, .pubs-pill, .people-bar.is-stuck .people-nav ul { background: Canvas; }
+  .brand img, .brand-kmu img, .pub-badge img, .paper__logo { forced-color-adjust: none; background: #fff; border-radius: 4px; }
+  .footer-kmu img { forced-color-adjust: none; background: #1f1f1f; border-radius: 4px; }
+  .people-nav a[aria-current="page"], .pub-filter.is-active, .tag.is-on { outline: 2px solid Highlight; outline-offset: -2px; }
+  .pub-search__input { border: 1px solid CanvasText; }
+}
+@media (forced-colors: active) and (min-width: 68.8125em) {
+  .nav-item > a { border-bottom-color: Canvas; }
+  .nav-item > a[aria-current="page"], .nav-item.is-current > a { border-bottom-color: Highlight; }
+}
+
 @media print {
-  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint, .people-bar { display: none; }
+  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint, .people-bar, .skip-link { display: none; }
+  /* A paper, a person, a CV line or a figure is never cut at the foot of a sheet. */
+  .pub, .person, .cv__item, figure { break-inside: avoid; }
   .pubs { display: block; }
   body { font-size: 11pt; }
   a { color: inherit; text-decoration: none; }
@@ -1785,7 +1812,7 @@ body.no-scroll { overflow: hidden; }
 .paper__abstract-label { font-size: var(--fs-md); margin-bottom: 0.6rem; }
 .paper__abstract p { max-width: 68ch; color: var(--ink-2); line-height: 1.85; white-space: pre-line; }
 .paper__abstract-en { margin-top: var(--space-md); }
-.paper__abstract-en summary { width: fit-content; cursor: pointer; color: var(--ink-2); font-size: var(--fs-sm); font-weight: 500; }
+.paper__abstract-en summary, .paper__cite summary { width: fit-content; cursor: pointer; color: var(--ink-2); font-size: var(--fs-sm); font-weight: 500; }
 .paper__abstract-en summary:hover, .paper__cite summary:hover { color: var(--ink); }
 .paper__abstract-en p { max-width: 68ch; margin-top: 0.6rem; color: var(--ink-2); font-size: var(--fs-sm); line-height: 1.7; white-space: pre-line; }
 /* A phone's width already keeps the lines short, so the English abstract is read at the
@@ -1800,7 +1827,6 @@ body.no-scroll { overflow: hidden; }
    abstract's, the box is as wide as the English abstract (68ch at 14.4px) with the
    entry wrapping inside it (no sideways scroll), then the Copy button and its status. */
 .paper__cite { margin-top: var(--space-md); max-width: 68ch; font-size: var(--fs-sm); }
-.paper__cite summary { width: fit-content; cursor: pointer; color: var(--ink-2); font-size: var(--fs-sm); font-weight: 500; }
 .paper__bibtex {
   margin-top: 0.6rem;
   padding: var(--space-sm);

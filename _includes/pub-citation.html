@@ -17,7 +17,7 @@
   ===========================================================================
 {%- endcomment -%}
 {%- assign p = include.p -%}
-{%- if p.vol -%}
+{%- if p.vol and p.vol != "" -%}
 , <strong>{{ p.vol }}</strong>{% if p.issue and p.issue != "" %} ({{ p.issue }}){% endif %}{% if p.pages and p.pages != "" %}, <span class="pub__pages">{{ p.pages }}</span>{% endif %}
 {%- elsif p.ref and p.ref != "" -%}
 , {{ p.ref }}
