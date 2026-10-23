@@ -1727,3 +1727,115 @@ add their verification meta tags.
   38524053641; IndexNow sent all 69 pages, since every page's footer changed: Bing 200, Naver
   200). The live site is the deployed build (110 files byte-identical, 269 image URLs 200);
   WebKit 34 of 34 on the live site, so D54 holds there too.
+
+## D56: A quieter design, a finder on Publications and a News timeline (maintainer's request, 2026-10-23)
+
+- **Asked:** with the PI's Chem. Eng. J. paper accepted, the maintainer found the site loud
+  beside coley.mit.edu and chanjoongx.com: the home page, the menu, the footer, the people
+  pages, and above all the topic tags, whose tinted capsules looked like a stock AI design.
+  The maintainer asked for a plan with before-and-after pictures, approved page by page. A
+  first draft (local only) was turned down in part: the home page keeps its sections and
+  their order, the footer stays dark, the people grids keep three to a row filled from the
+  left (D18, D49), and Publications and News were to be redone. Its header and three changes
+  to the person pages were approved. The second draft, below, was approved on 2026-10-23.
+- **References:** coley.mit.edu (D38's model); Anthropic's frontend-design skill
+  (github.com/anthropics/skills), for its list of stock choices to avoid (tracked capitals,
+  numbered eyebrows, card kits, arrow links); Apple's Liquid Glass ("Meet Liquid Glass",
+  WWDC25): glass for the controls that float over the content, never on the content, never
+  glass on glass; kube.io's notes on building it in CSS.
+- **Type and colour:** a compact academic scale. Text 17 to 16px; page titles at most 36px
+  (were up to 54px), the home title at most 46px; headings weight 600 with slightly tighter
+  tracking. Ink #1a1a1a and #3b3b3b to #1d1d1d and #444444 (16.8:1 and 9.7:1 on white); the
+  grey band #f7f7f7 to #f5f5f5; radii 10 and 6px to 12 and 8px. Controls on the page (the
+  search field, topic capsules, the people pages' links) sit on black at 4.5 to 8% alpha, so
+  they read the same on white and on grey. Colour still comes only from the logo orange and
+  from information (D38). Links in text (`.link`: the supervisor, back links, More news) are
+  ink with an orange underline, orange on hover (were orange text).
+- **Glass:** one Sass mixin, white at 60 to 88% over `saturate(180%) blur()`, used only on the
+  layer that floats over the page: the header, the Members dropdown, the phone menu, the zoom
+  mark on the home and paper figures, the phone's filter capsule on Publications. The
+  header's glass is on a `::before` layer: an element with a backdrop filter becomes the
+  backdrop of its children, which would have clipped the dropdown's own blur to the header.
+  Without `backdrop-filter` the layer is white at 97%; with the reader's "reduce
+  transparency" setting, plain white. Apple's refraction (an SVG displacement filter) is left
+  out: it works in Chrome only. This takes back one line of D38, which removed "a translucent
+  blurred header" as a generated-design default: the maintainer asked for Liquid Glass by
+  name, and it is held to the place Apple gives it, the floating controls: untinted white,
+  the header with a hairline under it, the dropdown, zoom mark and capsule with a light rim
+  and a soft shadow. The rest of D38 stands (no eyebrows, accent
+  bars, glows or figure shadows; the home figure has a 1px hairline edge, no shadow).
+- **Header:** 82 to 72px tall; the page shows through it, blurred, as it scrolls under. The
+  dropdown is a glass popover. The menu's labels, order and the 68.75em switch are unchanged
+  (D52).
+- **Home:** the same sections in the same order (D20, D43). The news cards are white on the
+  grey band with a hairline shadow; the whole card is one link (the title's link stretched
+  over it) and lifts 3px on hover (D38). The figure carries a glass zoom mark (it already
+  opened in the viewer). Buttons are grey capsules.
+- **Publications:** from 1,100px (68.75em, as the header) a finder stays beside the list under
+  the header: a search field (titles, authors, journals; `/` focuses it, Escape clears it),
+  the topics with how many papers each holds, and the years as links that follow the scroll.
+  The list filters as one types; matches are marked with the CSS Custom Highlight API, which
+  leaves the page's markup alone (where it is missing, the list still filters). Topics still
+  combine with AND. The counts follow the search and the other selected topics, so a topic
+  that would empty the list shows 0 and is dimmed. The state is kept in the address
+  (`?topic=a,b&q=...`): a filtered list can be linked, and a paper's topic capsules, in the
+  list and on its page, link to `/publications/?topic=<slug>`; in the list a click filters in
+  place and keeps the clicked paper where it was. A status line reads "47 papers" or "21 of
+  47 papers"; an empty result names what failed and offers "Show all papers". Below 1,100px
+  the topics are one row that scrolls sideways (a selected one filled in ink), and once that
+  row has scrolled away with a filter on, a glass capsule at the bottom shows the count and
+  clears the filter. A thumbnail shows the whole image (`contain` in a 4:3 box), so papers 44
+  and 45 are no longer cropped; papers 46 and 47 are left as they are (maintainer). A chosen
+  topic sits on black at 8% over white, where the muted grey of its count measured 4.47:1, so
+  the count turns to the second ink there.
+- **Topic tags and news categories:** D20's tinted capsules (the name in the topic colour
+  darkened, a tinted fill and border) become neutral grey capsules with a 7px dot in the
+  topic's colour; the name is grey ink. `themes.yml`'s colours, the PI's of 2026-07-22, are
+  unchanged; its comment now says the colour is the dot's. The "All" button's dot shows the
+  seven colours in turn. News categories are drawn the same way.
+- **News:** a timeline: the date and category at the left, a line with a dot in the
+  category's colour, the item at the right; on phones the line runs down the left edge and
+  the date sits above the title. The text keeps the 55ch measure (D49).
+- **People:** three to a row, a short last row from the left, as before; photos at most 168px
+  (were up to 210px) with a faint ring instead of a border, lifting on hover. The links
+  between the three people pages become a segmented control, the current page a white
+  segment on a grey track. Person pages: the name follows the smaller title scale, the icon
+  links' ring is lighter, and the rule under "Publications" is grey and 1px (was orange and
+  2px). The PI page's photo has 14px corners and a ring.
+- **Footer:** dark as before (#1f1f1f, the white Kookmin emblem), laid out anew: the SAIL mark
+  and the lab's line set large across the top, the emblem and the GitHub mark (D55) at the
+  right of that row, a hairline, then the menu's pages in three balanced columns beside
+  Contact, then the base line. Below 1,100px the links and Contact share the width; at 720px
+  and below they stack. No line or link changes (D52); the orange focus ring is kept on the
+  dark ground. It is taller than before (Chrome): 554 against 396px at 1,440px wide, 679
+  against 627 at 390, 864 against 789 at 320.
+- **Covers and viewer:** covers with 4px corners and a soft shadow, lifting 4px on hover; the
+  viewer's buttons in dark glass.
+- **D52 and D20:** no text a page shows is removed, changed or reordered. New text that
+  replaces nothing, on /publications/ only: the search field, the counts, the status line,
+  the year links. D20 dropped the per-year counts at the PI's request; the counts here belong
+  to the filter (how many papers a choice shows), and the maintainer kept them after seeing
+  them. If the PI would rather not have them, deleting the `pub-filter__n` span in
+  `publications.html` removes them.
+- **Accessibility:** the search is a `role="search"` region with a label; the topic buttons
+  keep `aria-pressed`; each count has " papers" for screen readers; the status line is a
+  live region; the years are a navigation named "Years"; the phone capsule is `inert` while
+  hidden; reduced motion turns off the transitions; print leaves out the finder and the
+  capsule.
+- **Check:** dev runs 39913516031 (fcedcbf) and 39914495024 (eb90616), both green (html-proofer
+  over 96 files; the one warning, paper 46's journal "Submitted" without a logo, is as live).
+  On the eb90616 build against the live site: `text-check.py` over the 69 sitemap pages finds
+  shown text changed on /publications/ only, where each of the eight topic buttons reads its
+  name followed by its count (the check sees "All47" in place of "All"), and adds the 11 year
+  links there; screen-reader text is added on that page only; of the 995 `_data` strings, the
+  722 the live site shows are all still shown. `qa-site.js` (70 pages, 152 loads): no
+  problems, after four of its expectations were brought up to date (REVIEW section 26).
+  `functional.js` 21 of 22 (the 404 test on a local server, as in section 25).
+  `webkit-check.cjs` 35 of 35. The checks on fcedcbf found two faults, fixed in eb90616: a
+  chosen topic's count at 4.47:1 (axe), and with the phone menu open on a screen 342px high
+  or less, its last links ending a fraction of a pixel past the edge (WebKit and Chrome), now
+  held off by 12px of scroll padding.
+- **Deployed** 2026-10-23: `main` fast-forwarded 1b1b5e3 to eb90616 (run 39918618477; IndexNow
+  sent the 51 of the 69 pages whose HTML changed, Bing 200, Naver 200). The live site is the
+  deployed build (`livecmp.js` 152 files byte-identical, 270 image URLs 200); on the live site
+  `functional.js` 22 of 22 and `webkit-check.cjs` 35 of 35.

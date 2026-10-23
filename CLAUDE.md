@@ -78,12 +78,18 @@ domain `https://sail.kookmin.ac.kr`.
   or "eyebrow" lines above headings (a plain muted `.kicker` line stays only where it adds what
   the heading lacks: the lab name on the home page, "Error 404"), no decorative accent bars or
   glows; neutral (untinted) greys plus the brand orange; other colour comes only from information
-  (figures, topic tags, news categories, which stay coloured). Hover lifts are kept (maintainer's
-  choice). Never shorten or hide PI-written text to fit a layout; balance a text-heavy block with
-  the lab's own figures. The header switches to the menu button at 68.75em (1100px at the
-  default font size; `main.scss` and `nav.js` hold the width, keep them in sync), and the
-  footer changes from three columns to two rows at the same width. The footer's links follow
-  `navigation.yml`; the home page has no Contact section (the footer carries it, D43). Beside
+  (figures; topic tags and news categories as a dot in their colour inside a neutral capsule,
+  D56). Glass (D56) only on what floats over the page: the header, its dropdown, the phone
+  menu, the figures' zoom mark and the Publications capsule on phones (the white `glass`
+  mixin, plain white where the browser or the reader turns transparency off), and the
+  viewer's buttons (dark); never on content or on other glass. Hover lifts are kept
+  (maintainer's choice). Never shorten or hide PI-written text to fit a layout; balance a
+  text-heavy block with the lab's own figures. The header switches to the menu button at
+  68.75em (1100px at the default font size; `main.scss`, `nav.js` and `pubs.js` hold the
+  width, keep them in sync); at the same width the footer's links and Contact go from three
+  columns to two, and the Publications finder moves from beside the list to above it. The
+  footer's links follow `navigation.yml`; the home page has no Contact section (the footer
+  carries it, D43). Beside
   the footer's Kookmin emblem, the GitHub mark links `github_org` (D55).
 - Text colour by role (D49): running text `--ink-2`; headings, names and titles `--ink`;
   `--muted` only for dates, venues, captions and counts. Prose is capped at 55ch, which keeps a

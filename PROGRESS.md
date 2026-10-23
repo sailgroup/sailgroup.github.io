@@ -297,3 +297,12 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   alumni card under the first column. CSS only, no shown text changed. Built on `dev` (run
   39779997999), deployed on 2026-10-22 (main run 39786023302) and verified live. Results in
   `REVIEW.md` section 25.
+- **Phase 26 (2026-10-23):** A quieter design, a finder on Publications and a News timeline
+  (D56), on the maintainer's request, approved from before-and-after pictures of a second
+  draft: a compact type scale, glass on the header and the controls that float over the page,
+  topic tags and news categories as a coloured dot in a neutral capsule, a search with topic
+  counts and a year index beside the paper list, News as a timeline, and the home page, the
+  people pages and the footer restyled in their existing layouts. No shown text changed; new
+  on /publications/: the search, the counts and the year links. Built on `dev` (runs
+  39913516031 and 39914495024), deployed on 2026-10-23 (main run 39918618477; IndexNow 51
+  pages, Bing 200, Naver 200) and verified live. Results in `REVIEW.md` section 26.

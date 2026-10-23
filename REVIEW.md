@@ -1079,3 +1079,51 @@ f57b395, already live) came into `dev` first, by fast-forward.
   22; `webkit-check.cjs` 34 of 34. IndexNow sent one page (Bing 200, Naver 200) although no
   page's HTML changed; the script reports a page it cannot fetch from the live site as
   changed, which is the likely cause.
+
+## 26. A quieter design, a finder on Publications and a News timeline (2026-10-23, D56)
+
+The maintainer reviewed two drafts as before-and-after pictures and approved the second.
+Built locally in Docker (`ruby:3.3`, the Gemfile.lock versions) while drafting, then on `dev`
+at eb90616 (run 39914495024; the first push, fcedcbf, was run 39913516031), served locally and compared with the live site (`main` at 1b1b5e3).
+
+- **Build and text:** the run is green (images strict, Jekyll, html-proofer over 96 files; the
+  one warning, paper 46's journal "Submitted" without a logo, is the PI's entry as live).
+  `text-check.py` over the 69 sitemap pages: the only page whose shown text differs is
+  /publications/. There the eight topic buttons read "All47", "Spectroscopic analysis28" and
+  so on (each name unchanged, its new count after it, which the check reads as one changed
+  line each), and the 11 year links are new. Screen-reader text added on that page only (" papers" after each
+  count, the names "Years", "Change the search and topics" and "Show all papers");
+  the "/" key hint is new inside the search, which shows once the script runs. Of the 995
+  `_data` strings, the 722 the live site shows are all still shown, and none is newly shown.
+- **`functional.js`:** 21 of 22 on the served build; the one miss is the 404 test, as in
+  section 25 (Python's server answers a missing page with its own page).
+- **`qa-site.js`** (70 pages at 1,440, 768 and 390px, axe-core on the 12 key pages):
+  no problems. Topic tags 8.86:1, a chosen topic 14.1:1.
+  Four expectations were out of date and were brought up to date: from 1,000px a research
+  figure takes what the 55ch text leaves (487px on the live site, 520 here; the check still
+  wanted D42's 208); the cover viewer's paper link is `#cover-lightbox .lightbox__paper a`
+  since D49; the home figure may have a 1px hairline edge (no shadow, D56); a translucent fill
+  is laid over white before its contrast is measured. On fcedcbf, axe found the chosen
+  topic's count at 4.47:1 (the muted grey on black at 8%), fixed in eb90616.
+- **WebKit:** `webkit-check.cjs` (playwright-core 1.61.1, WebKit 26.5; the script's first line
+  still names 1.63.0), the artifact answered under the live origin: 35 of 35, every page at
+  1,440, 390 and 320px with no script error, failed request or sideways scroll. On fcedcbf
+  32 of 35: with the phone menu open at 750x342 (a phone held sideways), 844x390 and 320x256
+  (400% zoom), the Members and Alumni links scrolled into view ended a fraction of a pixel
+  below the screen, being 40.69px tall; Chrome measured the same. eb90616 gives the menu 12px
+  of scroll padding: 11 of 11 links in reach at those three sizes and at 390x664.
+- **Footer:** taller than before (Chrome): 554 against 396px at 1,440px, 679 against 627 at
+  390, 864 against 789 at 320.
+- **Phone width:** no sideways scroll on any page at 390 or 320px (above). A screen-reader word
+  inside the topic row (absolutely placed) widened the phone page to 1,544px until the topic
+  button became its containing block (`position: relative`).
+- **Publications by hand:** "/" focuses the search; "kim" leaves 25 of 47 papers, marks 53
+  matches and writes `?q=kim`; Escape clears both. A topic capsule clicked in the list filters
+  in place (the clicked paper's top 402px before and after) and writes `?topic=`. Reaction
+  pathway prediction with the search "perovskite" gives "No paper matches the search and the
+  selected topics.", and "Show all papers" brings back 47. The keyboard focus ring is the orange one
+  (`#ad4f0a`, 8px corners) on the topic buttons.
+- **Live** (main run 39918618477; IndexNow 51 pages, Bing 200, Naver 200): `livecmp.js` 152 of
+  152 files byte-identical to the deployed build (every text file, the 40 `-full` figures,
+  the SVG logo and `publications.bib`), 270 image URLs 200; `functional.js` 22 of 22;
+  `webkit-check.cjs` 35 of 35; screenshots at 1,440 and 390px match the review pictures.
