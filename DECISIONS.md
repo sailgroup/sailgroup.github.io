@@ -153,6 +153,7 @@ photos. (4) The home hero gains a research figure: panel (c), the model-architec
 Fig. 1 of the lab's FlowER paper (Nature, 2025) and shown as a framed, attributed landscape band under
 the hero actions — a real figure from the group's own flagship work, per the request for a main-screen
 architecture image.
+(Part (2) superseded by D59: the favicon and PWA icons are the SAIL wordmark.)
 
 ## D18 — People grid left-fill, alumni photos + personal pages, research-area figures (revises D17)
 A second refinement round on explicit instruction, in four parts plus a full-codebase review pass.
@@ -2002,3 +2003,30 @@ add their verification meta tags.
   sent 69 pages, Bing 200, Naver 200). The live site is the deployed build (`livecmp.js` 155
   files byte-identical, 270 image URLs 200); `functional.js` 22 of 22, `webkit-check.cjs` 35
   of 35, the people document in Chrome, WebKit and Firefox, the footer labels in Edge.
+
+## D59: The favicon is the SAIL wordmark (maintainer's choice, 2026-10-23)
+Replaces D17 (2), under which the tab and home-screen icons were Kookmin's emblem on a white disc.
+- **Asked:** the maintainer found the emblem icon hard to make out and asked for one as plain
+  as coley.mit.edu's, or one with SAIL in it. coley.mit.edu's tab icon is MIT's logo, five
+  bars that stay clear at 16px; Kookmin's emblem is fine strokes around a small serif "KMU",
+  a grey disc at 16px. Two rounds of mock-ups, each at real size in light and dark tab bars,
+  a Google result and an iPhone home screen (`.qa/favicon-2610/`, outside the repository):
+  SAIL on one line, SA over IL, a spectrum-peak mark, a lone S, and the emblem redrawn from
+  Kookmin's own vector file (`symbol_ai.zip` on kookmin.ac.kr's UI page), framed as before or
+  filling the disc. The maintainer chose SAIL on one line.
+- **What it is:** the header wordmark's S, A, I and L (`sail-logo.svg`'s outlines, unchanged),
+  S and L white and A and I orange (#f89858) as in the logo, across 52 of 64 units of a
+  #1d1d1d tile with rounded corners (radius 14 of 64), which shows on light and dark tab bars.
+  The 16px icon (`favicon-16.png`, the `.ico`'s 16px entry) is drawn on the pixel grid in
+  letters 5 pixels high with 1-pixel strokes: the outlines scaled to 16px are about 4px high
+  and blur on a display at 100%. The 32, 48, 192 and 512px icons are the outlines rendered at
+  that size; `apple-touch-icon.png` (180px) is the full square, as iOS rounds the corners.
+- **Files:** `assets/images/favicon.ico` (16, 32 and 48px) and its copy at `/favicon.ico`,
+  `favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`,
+  all in 32-bit colour (the emblem set was reduced to 256 colours, which stepped its edges).
+  The links in `head.html` and the icons in `site.webmanifest` keep their names.
+- **No SVG icon:** Chrome and Firefox prefer an SVG favicon when one is linked (D58 removed an
+  old one for that reason), so one would put the blurred outlines back in place of the 16px
+  icon drawn on the pixel grid.
+- **Not changed:** the Kookmin emblem in the header and its link (D17, D21), the footer's
+  Kookmin wordmark, the logo in the structured data (`sail-logo-square.png`).

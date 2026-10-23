@@ -44,9 +44,10 @@ was taken, what was normalized, and what is still open.
   `_source/images/photos/`.
 - **Kookmin marks**: `kmu-emblem.png` (transparent emblem extracted from the gray
   signature asset, used in the header beside the SAIL wordmark) and
-  `kookmin-logo.png` (footer wordmark). Favicon/PWA set built from the emblem on a
-  circular white disc: `favicon.ico` (+ root copy), `favicon-16.png`,
-  `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` (D17).
+  `kookmin-logo.png` (footer wordmark). The favicon/PWA set was the emblem on a
+  circular white disc (D17); since D59 it is the SAIL wordmark on an ink tile:
+  `favicon.ico` (+ root copy), `favicon-16.png`, `favicon-32.png`,
+  `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`.
 - **Home architecture figure** (`assets/images/home-architecture.png`): panel (c),
   the model-architecture row, cropped from Fig. 1 of the lab's FlowER paper
   (Nature, 2025, DOI 10.1038/s41586-025-09426-9) for the hero band (D17). Reused on
@@ -115,7 +116,7 @@ was taken, what was normalized, and what is still open.
 - **Kookmin logo**: ~~official dark mark not yet staged~~ **RESOLVED.** The footer
   uses the official Kookmin English wordmark (D14); Phase 6 additionally extracted
   the Kookmin emblem to a transparent PNG for the header and built the circular
-  favicon/PWA icon set from it (D17).
+  favicon/PWA icon set from it (D17; the SAIL wordmark since D59).
 - **Paper abstracts**: ~~not migrated~~ **RESOLVED (Phase 9, D20).** All 41 papers
   now carry a cleaned-English `abstract` and a Korean `abstract_ko`, sourced from
   publisher/aggregator full text (Semantic Scholar, OpenAlex, CrossRef, publisher

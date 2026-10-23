@@ -22,6 +22,7 @@
   {%- comment -%}/pi/, /members/ and /alumni/ open the people document at their own part, or at the part an address's #pi, #members or #alumni names (D57). Chrome does it from the stylesheet (scroll-initial-target); where a browser does not, this script keeps the page hidden until it has scrolled there. It runs before the page is drawn, so it is not deferred.{%- endcomment %}
   <script src="{{ '/assets/js/people-start.js' | relative_url }}"></script>
   {%- endif %}
+  {%- comment -%}The SAIL wordmark on the ink tile (D59). The 16px icon is drawn on the pixel grid, so there is no SVG icon: Chrome and Firefox would take it instead.{%- endcomment %}
   <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
   <link rel="icon" href="{{ '/assets/images/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
   <link rel="icon" href="{{ '/assets/images/favicon-16.png' | relative_url }}" type="image/png" sizes="16x16">
