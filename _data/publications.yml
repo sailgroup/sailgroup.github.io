@@ -49,11 +49,12 @@
   abstract: ""
 
 - id: 46
-  title: "Raman Classification"
-  authors: "Jihwan Kim, ..., Chanjoong Kim, ..., Joonyoung F. Joung*"
+  title: "Wavenumber-Aware Deep Learning for Robust Analysis of Raman Spectra"
+  authors: "Jihwan Kim†, Jaeseong Heo†, Yujin Kim, Sang Bin Yoon, Chanjoong Kim, Kwang-Im Oh, Hyon Bin Na, Kyungwon Kwak*, Myeongkee Park*, Joonyoung F. Joung*"
   journal: "Submitted"
   year: 2026
   doi: ""
+  preprint_url: "https://doi.org/10.48550/arXiv.2610.30746"
   code: "https://github.com/sailgroup/Wavenumber-Aware-Deep-Learning/"
   dataset: ""
   themes:
