@@ -926,7 +926,10 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
-.pub-filter.is-zero { color: var(--muted); }
+/* On the chosen topic's darker fill the muted grey falls just under 4.5:1, so its count
+   (and its name, should it show 0) is in the second ink there. */
+.pub-filter.is-active .pub-filter__n { color: var(--ink-2); }
+.pub-filter.is-zero:not(.is-active) { color: var(--muted); }
 .pub-filter.is-zero .pub-filter__dot { opacity: 0.3; }
 
 /* Years: a small index, four to a row; the year at the top of the screen in ink, underlined
@@ -1485,6 +1488,10 @@ body.no-scroll { overflow: hidden; }
     max-height: calc(100dvh - var(--header-h));
     overflow-y: auto;
     overscroll-behavior: contain;
+    /* A link scrolled or tabbed into view stops short of the menu's edge: flush with it,
+       a link 40.7px tall ended a fraction of a pixel below a 342px-high screen (WebKit
+       check, phone held sideways and 400% zoom). */
+    scroll-padding-block: 0.75rem;
   }
   .site-nav.is-open { display: block; }
   .nav-list {
