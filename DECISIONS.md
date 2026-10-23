@@ -1894,3 +1894,7 @@ add their verification meta tags.
   the first three are fixed above, the last is as described.
 - **Check:** local Docker builds while drafting (`ruby:3.3`, the Gemfile.lock versions); the
   `dev` run's artifact and the live site in `REVIEW.md` section 27.
+- **Deployed** 2026-10-23: `main` fast-forwarded 7bd20c6 to 87af58b (run 39930843253; IndexNow
+  sent 69 pages, Bing 200, Naver 200). The live site is the deployed build (`livecmp.js` 154
+  files byte-identical, 270 image URLs 200); on the live site the people document's checks
+  pass in Chrome, WebKit and Firefox, `functional.js` 22 of 22 and `webkit-check.cjs` 35 of 35.

@@ -306,3 +306,11 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   on /publications/: the search, the counts and the year links. Built on `dev` (runs
   39913516031 and 39914495024), deployed on 2026-10-23 (main run 39918618477; IndexNow 51
   pages, Bing 200, Naver 200) and verified live. Results in `REVIEW.md` section 26.
+- **Phase 27 (2026-10-23):** /pi/, /members/ and /alumni/ as one document (D57), on the
+  maintainer's request, approved from before-and-after pictures: each address shows the PI,
+  the members and the alumni and opens at its own part, the three-part menu stays under the
+  header, and the address, title and menus follow the part in view. A review before the
+  commit fixed the keyboard order, the PI's h3 headings and the menu on small phones. No
+  shown text changed. Built on `dev` (run 39929215435), deployed on 2026-10-23 (main run
+  39930843253; IndexNow 69 pages, Bing 200, Naver 200) and verified live. Results in
+  `REVIEW.md` section 27.

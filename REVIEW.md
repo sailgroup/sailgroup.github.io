@@ -1127,3 +1127,58 @@ at eb90616 (run 39914495024; the first push, fcedcbf, was run 39913516031), serv
   152 files byte-identical to the deployed build (every text file, the 40 `-full` figures,
   the SVG logo and `publications.bib`), 270 image URLs 200; `functional.js` 22 of 22;
   `webkit-check.cjs` 35 of 35; screenshots at 1,440 and 390px match the review pictures.
+
+## 27. /pi/, /members/ and /alumni/ as one document (2026-10-23, D57)
+
+The maintainer reviewed the draft as before-and-after pictures and approved it. Built locally
+in Docker (`ruby:3.3`, the Gemfile.lock versions) while drafting, then on `dev` at 87af58b
+(run 39929215435), served locally and compared with the live site (`main` at 7bd20c6). Before
+the commit a separate review of the change found four faults; three were fixed (below).
+
+- **Build and text:** the run is green (images strict, Jekyll, html-proofer; the one warning, paper 46's journal
+  "Submitted" without a logo, is the PI's entry as live). `text-check.py` over the 69 sitemap pages: no sentence
+  changed or removed on any page. /pi/, /members/ and /alumni/ now show the other two parts
+  as well (148 shown lines and 84 screen-reader texts added there, all of them text the site
+  already shows on another page). On /members/ and /alumni/ the page's own heading and lead
+  now come after the PI's part in the document, which the check counts as four lines gone
+  and added again; the page opens at them. Of the 995 `_data` strings, the 722 the live site
+  shows are all still shown, and none is newly shown.
+- **The people document** (a script of its own, playwright-core 1.61.1 with Edge, WebKit 26.5
+  and Firefox, at 1,440x900 and 390x844, and the menu at 320 to 414px): 64 of 64 in Chrome and
+  Firefox, 59 of 59 in WebKit (whose Tab, like Safari's by default, skips links, so its five
+  keyboard checks are left out). Each address opens
+  at its part, with one h1 (that part's heading) and both menus marking it, and no sideways
+  scroll; the three-part menu, the header's dropdown and the phone menu scroll to a part in
+  place and close; Back returns to the PI at the top and Forward to the part; scrolling to
+  the top or the foot changes the address and title; a reload keeps the place; /members/#alumni,
+  /pi/#members, /alumni/#pi and /pi/#alumni open at the part named (/members/#alumni five
+  times); no script error. From the review: the first Tab on /members/ and /alumni/ goes
+  into that part and the page does not move; the skip link on /alumni/ stays at the alumni;
+  the PI's Education heading is 16px with its rule on /pi/ and on /members/; the menu is
+  one row (under 45px) with the heading clear of it at 320, 360, 375, 390 and 414px. Three faults were found and fixed while drafting: Chrome's
+  `scroll-initial-target` ignored the part's scroll-margin and opened with the heading under
+  the menu (the menu's height moved into the page's scroll-padding); Safari stopped its
+  smooth scroll to a `#part` when the script changed the address during it (the address now
+  waits until the page has loaded and stopped moving); and Safari's own scroll to a `#part`
+  sometimes stopped short on a phone (people-start.js now places it).
+- **`functional.js`:** 21 of 22 on the served artifact; the one miss is the 404 test, as in section 25
+  (Python's server answers a missing page with its own page).
+- **`qa-site.js`** (70 pages at 1,440, 768 and 390px, axe-core on the 12 key pages): no problems.
+- **WebKit:** `webkit-check.cjs`, the artifact answered under the live origin: 35 of 35. Its
+  people-grid count read the page's first grid, which on /alumni/ is now the members'; it
+  reads the grid of the part the address opens at.
+- **Weight** (Edge, the artifact under the live origin against the live site, first view,
+  everything received by load and 1.5 s after): the HTML is 38KB on each address (15.5,
+  18.6 and 22.5KB before) and the received total grows because the browser fetches the
+  lazy photos of the neighbouring parts early: at 1,440px /pi/ 257 to 448KB, /members/ 356
+  to 722KB, /alumni/ 565 to 727KB; at 390px 252 to 357, 356 to 597 and 560 to 704KB.
+- **Not changed:** in WebKit a Tab into the header's buttons from partway down a page
+  scrolls the page up until the button clears the scroll-padding: 68px on any page of the
+  live site, 118px on these three, whose padding includes the menu.
+- **Live:** (main run 39930843253; IndexNow 69 pages, Bing 200, Naver 200): `livecmp.js` 154 of
+  154 files byte-identical to the deployed build, 270 image URLs 200; `functional.js` 22 of
+  22 (the 404 test passes on the live site); `webkit-check.cjs` 35 of 35; the people document's
+  checks 64 of 64 in Chrome and Firefox and 59 of 59 in WebKit; `qa-site.js` over the 70
+  pages, no problems; `d42-spot.js` 17 of 17; the links of the 69 sitemap pages all answer,
+  except LinkedIn, which answers automated requests with its 999; page weight as measured on
+  the artifact above.
