@@ -4,43 +4,51 @@
 
 /* ==========================================================================
    SAIL: Spectroscopy and AI Lab
-   Design system. Neutral greys with the brand orange (#f89858, sampled from
-   the logo, where the "AI" in SAIL is set in orange). Other colour comes only
-   from information: figures, topic tags, news categories.
-   Type: Pretendard, one friendly sans with full Hangul support.
+   Design system (D56). White pages in neutral greys with soft grey bands and the
+   dark footer, type set like an academic site: Pretendard at compact sizes, headings
+   in semibold drawn a little tight. The brand orange (#f89858, sampled from the logo,
+   where the "AI" in SAIL is set in orange) marks the logo, where the reader is (the
+   current menu item and year) and the underline of links. Other colour comes only from
+   information: figures, and the small dots of topics and news categories.
+   Controls that float over the page (the header and its menus, the zoom mark on a
+   figure, the Publications count on phones) are drawn in a light Liquid Glass
+   material, after Apple's guidance to keep glass to the navigation layer and off the
+   content.
    ========================================================================== */
 
 /* --- Design tokens -------------------------------------------------------- */
 :root {
-  /* Ink + neutrals (untinted greys) */
-  --ink:        #1a1a1a;
-  --ink-2:      #3b3b3b;
-  --muted:      #6a6a6a;
+  /* Ink + neutrals (untinted greys): 16.8:1, 9.7:1 and 5.3:1 on white. */
+  --ink:        #1d1d1d;
+  --ink-2:      #444444;
+  --muted:      #6b6b6b;
   --line:       #e6e6e6;
-  --line-2:     #d5d5d5;
+  --line-2:     #d2d2d2;
   --bg:         #ffffff;
-  --bg-alt:     #f7f7f7;
-  --bg-ink:     #1f1f1f;
-  --bg-ink-2:   #333333;
+  --bg-alt:     #f5f5f5;   /* the grey bands: recent news and journal covers on the home page */
+  --bg-ink:     #1f1f1f;   /* the footer, and the image viewer's backdrop behind a photo */
+  /* Neutral fills for controls on the page (search field, topic capsules, segmented
+     tabs): black at a low alpha, so they read the same on white and on grey. */
+  --fill:       rgba(0, 0, 0, 0.045);
+  --fill-2:     rgba(0, 0, 0, 0.08);
 
   /* Brand orange */
   --orange:      #f89858;   /* exact logo accent */
   --orange-2:    #ef8743;   /* slightly deeper, for fills/hover */
-  --orange-ink:  #ad4f0a;   /* AA-contrast orange for text on white and tinted backgrounds */
-  --orange-deep: #9e4a0c;   /* hover for orange text */
-  --orange-wash: #fdf1e7;   /* faint orange tint background */
+  --orange-ink:  #ad4f0a;   /* AA-contrast orange for text on white: hovers and the focus ring */
 
   /* Typography (the two "Hangul Fallback" faces are defined right after :root) */
   --font-sans:  "Pretendard Variable", Pretendard, "Hangul Fallback Malgun", "Hangul Fallback Noto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", Roboto, Arial, sans-serif;
   --font-serif: var(--font-sans); /* one friendly sans across the site (was Source Serif 4) */
 
+  /* A compact academic scale: 16px text, page titles at most 36px (the home title 46px). */
   --fs-xs:   0.8125rem;
-  --fs-sm:   0.9rem;
-  --fs-base: 1.0625rem;
-  --fs-md:   1.1875rem;
-  --fs-lg:   clamp(1.3rem, 1.1rem + 0.9vw, 1.6rem);
-  --fs-xl:   clamp(1.7rem, 1.3rem + 1.8vw, 2.3rem);
-  --fs-2xl:  clamp(2.2rem, 1.6rem + 3vw, 3.4rem);
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-md:   1.125rem;
+  --fs-lg:   clamp(1.1875rem, 1.1rem + 0.35vw, 1.3125rem);
+  --fs-xl:   clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);
+  --fs-2xl:  clamp(1.875rem, 1.55rem + 1.3vw, 2.25rem);
 
   /* Spacing */
   --space-2xs: 0.375rem;
@@ -50,19 +58,47 @@
   --space-lg:  2rem;
   --space-xl:  3rem;
   --space-2xl: 4.5rem;
-  --space-3xl: 7rem;
+  --space-3xl: 6rem;
 
   /* Structure */
   --container: 1140px;
   --container-narrow: 760px;
-  --radius: 10px;
-  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
   --radius-pill: 999px;
-  --header-h: 82px;
-  --shadow-sm: 0 1px 2px rgba(20, 20, 20, 0.05), 0 1px 3px rgba(20, 20, 20, 0.06);
+  --header-h: 72px;
+  /* A card on a grey band: a hairline edge and the faintest shadow; lifted on hover (D38). */
+  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-lift: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.05), 0 14px 32px rgba(0, 0, 0, 0.09);
   --shadow-md: 0 6px 20px rgba(20, 20, 20, 0.08), 0 2px 6px rgba(20, 20, 20, 0.05);
   --ring: 0 0 0 3px rgba(248, 152, 88, 0.45);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* --- Liquid Glass ----------------------------------------------------------- */
+/* The material of the controls that float over the page (D56): white at 60 to 90%
+   over a blur that also lifts the colour of what passes beneath (saturate), a bright
+   rim along the top edge, a hairline outer edge and, where the control floats free, a
+   soft shadow. Apple's glass also bends the light at its edges; on the web that takes
+   an SVG displacement filter that only Chrome applies to a backdrop, so it is left out.
+   Without backdrop-filter the material is near-opaque white, and with the system's
+   "reduce transparency" setting it is plain white. */
+@mixin glass($alpha: 0.72, $blur: 20px) {
+  background: rgba(255, 255, 255, $alpha);
+  -webkit-backdrop-filter: saturate(180%) blur($blur);
+  backdrop-filter: saturate(180%) blur($blur);
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    background: rgba(255, 255, 255, 0.97);
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    background: #fff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+$glass-rim: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+$glass-float: 0 0 0 0.5px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.1);
 
 /* --- Hangul fallback while Pretendard loads -------------------------------- */
 /* Pretendard's Hangul syllables are 0.8643em wide. Until its files arrive, Korean text is
@@ -118,7 +154,7 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: var(--fs-base);
-  line-height: 1.7;
+  line-height: 1.65;
   /* Text colours by role: running text in --ink-2; headings, names and titles in --ink (set
      on the ones that are not headings); --muted only for dates, venues, captions and counts. */
   color: var(--ink-2);
@@ -145,20 +181,20 @@ a { color: inherit; text-decoration: none; }
 strong, b { font-weight: 600; }
 
 /* --- Typography ----------------------------------------------------------- */
+/* Headings in semibold, drawn tighter as they grow, so large type reads crisp rather than
+   loud at the compact sizes (D56). */
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.01em;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
   color: var(--ink);
   text-wrap: balance;
 }
-h1 { font-size: var(--fs-2xl); }
-h2 { font-size: var(--fs-xl); }
+h1 { font-size: var(--fs-2xl); letter-spacing: -0.025em; }
+h2 { font-size: var(--fs-xl); letter-spacing: -0.02em; }
 h3 { font-size: var(--fs-lg); }
 h4 { font-size: var(--fs-md); font-weight: 700; }
-/* Display headings a touch lighter than h3/h4, so large type reads calm rather than heavy. */
-h1, h2 { font-weight: 500; letter-spacing: -0.005em; }
 
 p { text-wrap: pretty; }
 
@@ -181,16 +217,19 @@ p { text-wrap: pretty; }
 .back-link { margin-bottom: var(--space-md); font-size: var(--fs-sm); }
 
 /* --- Links ---------------------------------------------------------------- */
+/* Links in text keep the text's ink with an orange underline, and turn orange on hover: the
+   underline marks them without scattering orange words over the page (D56). */
 .prose a,
 .link {
-  color: var(--orange-ink);
+  color: var(--ink);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-  transition: color 0.15s ease;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
 }
 .prose a:hover,
-.link:hover { color: var(--orange-deep); }
+.link:hover { color: var(--orange-ink); text-decoration-color: currentColor; }
 
 /* --- Accessibility helpers ----------------------------------------------- */
 .skip-link {
@@ -206,6 +245,8 @@ p { text-wrap: pretty; }
 }
 .skip-link:focus { top: 0.75rem; }
 
+/* A component with its own rounding keeps it under the ring: its rule comes later in this
+   file and wins at the same specificity. */
 :focus-visible {
   outline: 2px solid var(--orange-ink);
   outline-offset: 2px;
@@ -241,23 +282,35 @@ p { text-wrap: pretty; }
 .site-main { min-height: 60vh; }
 
 .section { padding-block: var(--space-2xl); }
-.section--alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
+/* A section set apart in a soft grey band (the home page's news and journal covers). */
+.section--alt { background: var(--bg-alt); }
 .section--tight { padding-block: var(--space-xl); }
 
 .section-head { margin-bottom: var(--space-lg); }
 /* When a section-head carries a lead paragraph, match the hero's lead-to-figure
    gap so the two intro blocks on the home page breathe the same way. */
-.section-head:has(.lead) { margin-bottom: clamp(2rem, 5vw, 3.75rem); }
+.section-head:has(.lead) { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
 .section-head .lead { margin-top: 0.75rem; max-width: none; } /* spans full content width, matching the hero lead */
 
-
 /* --- Header / navigation -------------------------------------------------- */
+/* The header stays at the top in Liquid Glass (D56): white where nothing is under it, the
+   page showing through it, blurred, as it scrolls beneath. The material is a layer behind
+   the header's content (::before), not the header itself: an element with a
+   backdrop-filter becomes the backdrop of everything inside it, so the dropdown and the
+   phone menu, which hang below the header, would blur only the header and show the page
+   through them sharp. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
+}
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  @include glass(0.8);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 .header-inner {
   display: flex;
@@ -270,10 +323,10 @@ p { text-wrap: pretty; }
    The nav fits beside them above the menu breakpoint (68.75em, below). */
 .brand-group { display: inline-flex; align-items: center; gap: 0.9rem; flex-shrink: 0; }
 .brand { display: inline-flex; align-items: center; }
-.brand img { height: 56px; width: auto; }
-.brand-sep { width: 1px; height: 38px; background: var(--line-2); flex: none; }
+.brand img { height: 48px; width: auto; }
+.brand-sep { width: 1px; height: 32px; background: var(--line-2); flex: none; }
 .brand-kmu { display: inline-flex; align-items: center; }
-.brand-kmu img { height: 46px; width: auto; transition: opacity 0.15s ease; }
+.brand-kmu img { height: 40px; width: auto; transition: opacity 0.15s ease; }
 .brand-kmu:hover img { opacity: 0.7; }
 
 .nav-toggle {
@@ -313,13 +366,14 @@ p { text-wrap: pretty; }
   white-space: nowrap;
   padding: 0.5rem 0.4rem;
   font-size: var(--fs-sm);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--ink-2);
+  font-weight: 450;
+  color: var(--muted);
   border-bottom: 2px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
-.nav-item > a:hover,
+/* Menu items in grey, the current one in ink over the logo orange: the one place the bar
+   shows the brand colour. A hover only darkens the label. */
+.nav-item > a:hover { color: var(--ink); }
 .nav-item > a[aria-current="page"],
 .nav-item.is-current > a {
   color: var(--ink);
@@ -342,8 +396,8 @@ p { text-wrap: pretty; }
   margin-left: -0.3rem;
   padding-left: 0.2rem;
   font-size: var(--fs-sm);
-  color: var(--ink-2);
-  border-radius: var(--radius-sm);
+  color: var(--muted);
+  border-radius: var(--radius-xs);
 }
 .subnav-toggle:hover { color: var(--ink); }
 .subnav-toggle:focus-visible { outline-offset: -2px; }
@@ -357,42 +411,42 @@ p { text-wrap: pretty; }
   transition: transform 0.16s ease;
 }
 .subnav-toggle[aria-expanded="true"]::before { transform: rotate(225deg) translateY(-1px); }
+/* The panel is a sheet of glass over the page, which shows through it blurred. */
 .subnav {
   position: absolute;
   top: 100%;
-  left: 0;
-  min-width: 220px;
-  padding: 0.4rem;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
+  left: -0.4rem;
+  min-width: 232px;
+  padding: 0.375rem;
+  @include glass(0.8, 24px);
+  border-radius: 14px;
+  box-shadow: $glass-rim, $glass-float;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(6px);
-  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
+  transform: translateY(6px) scale(0.98);
+  transform-origin: 1.5rem 0;
+  transition: opacity 0.18s ease, transform 0.25s var(--ease-out), visibility 0.18s;
 }
 .subnav-toggle[aria-expanded="true"] + .subnav {
-  opacity: 1; visibility: visible; transform: translateY(0);
+  opacity: 1; visibility: visible; transform: none;
 }
 .subnav a {
   display: block;
-  padding: 0.55rem 0.7rem;
+  padding: 0.55rem 0.75rem;
   font-size: var(--fs-sm);
   color: var(--ink-2);
-  border-radius: var(--radius-sm);
+  border-radius: 9px;
+  transition: background 0.12s ease, color 0.12s ease;
 }
 .subnav a:hover,
-.subnav a[aria-current="page"] { background: var(--orange-wash); color: var(--orange-deep); }
+.subnav a[aria-current="page"] { background: var(--fill-2); color: var(--ink); }
 
 /* --- Hero ----------------------------------------------------------------- */
-/* Padding sized so the first screen holds the figure and its caption at 1536x864 and the
-   whole figure at 1024x768 (with 6.5rem the caption ended 2px below the fold at 1536x864). */
+/* The lab's line, name and lead at the full width, then the FlowER figure (D20, D26). */
 .hero {
   position: relative;
-  padding-block: clamp(2rem, 4vw, 3.5rem);
+  padding-block: clamp(2.5rem, 5vw, 4rem) var(--space-2xl);
   background: var(--bg);
-  border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
 /* Hero content uses the standard .container width so its left/right edges line up with
@@ -400,38 +454,67 @@ p { text-wrap: pretty; }
    spans that full content width (R1), just matched to the rest of the page. */
 /* Each half of the lab line stays whole, so a narrow screen breaks it only after the dot. */
 .hero .kicker > span { white-space: nowrap; }
-.hero h1 { margin-top: 0.9rem; }
-.hero .lead { margin-top: 1.25rem; max-width: none; }
-.hero__figure { margin: clamp(2rem, 5vw, 3.75rem) auto 0; max-width: 880px; }
-/* The figure opens large in the viewer (on phones its labels are about 4px tall). */
-.hero__zoom { display: block; border-radius: var(--radius); cursor: zoom-in; }
+.hero h1 {
+  margin-top: 0.75rem;
+  font-size: clamp(2.125rem, 1.55rem + 2.4vw, 2.875rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.hero .lead { margin-top: 1.1rem; max-width: none; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
+.hero__figure { margin: clamp(2.25rem, 5vw, 3.5rem) auto 0; max-width: 880px; }
+/* The figure opens large in the viewer (on phones its labels are about 4px tall); the
+   glass magnifier in its corner says so. */
+.hero__zoom { position: relative; display: block; border-radius: var(--radius); cursor: zoom-in; }
 .hero__figure img {
   display: block; width: 100%; height: auto;
   border-radius: var(--radius);
-  border: 1px solid var(--line);
+  box-shadow: 0 0 0 1px var(--line);
   background: #fff;
 }
 .hero__figure figcaption {
-  margin-top: 0.85rem; text-align: center;
+  margin-top: 0.9rem;
+  text-align: center;
   font-size: var(--fs-sm); color: var(--muted);
 }
-.hero__figure figcaption a { color: var(--orange-ink); text-decoration: underline; }
+.hero__figure figcaption a { color: inherit; text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
+.hero__figure figcaption a:hover { color: var(--orange-ink); }
+
+/* The magnifier on a figure that opens in the viewer (zoom-hint.html): a disc of glass. */
+.zoom-hint {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: var(--ink);
+  @include glass(0.6, 14px);
+  box-shadow: $glass-rim, $glass-float;
+  pointer-events: none;
+  transition: transform 0.3s var(--ease-out);
+}
+.zoom-hint svg { width: 18px; height: 18px; }
+.hero__zoom:hover .zoom-hint,
+.paper__zoom:hover .zoom-hint { transform: scale(1.08); }
 
 /* --- Buttons -------------------------------------------------------------- */
+/* Capsules in a neutral fill; the solid one in ink. */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.62rem 1.15rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 1.2rem;
   font-size: var(--fs-sm);
-  font-weight: 600;
+  font-weight: 500;
   border-radius: var(--radius-pill);
-  border: 1.5px solid var(--ink);
   color: var(--ink);
-  background: transparent;
-  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+  background: var(--fill);
+  transition: background 0.16s ease, color 0.16s ease;
 }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { background: var(--fill-2); }
 .btn--solid { background: var(--ink); color: #fff; }
 .btn--solid:hover { background: #000; }
 
@@ -441,21 +524,48 @@ p { text-wrap: pretty; }
 .positions-req { margin-top: 0.7rem; font-size: var(--fs-sm); color: var(--ink-2); }
 
 /* --- Tags ----------------------------------------------------------------- */
-.tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.tag {
-  display: inline-block;
-  padding: 0.22rem 0.6rem;
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  color: var(--ink-2);
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
+/* A paper's topics and a news item's category: a small capsule in a neutral fill, a dot
+   in the topic's or category's colour beside the name in ink (D56). It was a pill tinted
+   in the topic's colour with coloured text and border, seven hues of them down the list.
+   On the Publications list and a paper's page a topic links to the list filtered by it;
+   a topic chosen in the finder is drawn a step darker on every paper. */
+.tag-list { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.tag,
+.news-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 1.5rem;
+  padding: 0.2rem 0.625rem 0.2rem 0.5rem;
   border-radius: var(--radius-pill);
+  background: var(--fill);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink-2);
   white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+a.tag:hover { background: var(--fill-2); color: var(--ink); }
+.tag.is-on { background: var(--fill-2); color: var(--ink); font-weight: 600; }
+.tag::before,
+.news-tag::before,
+.pub-filter__dot {
+  content: "";
+  flex: none;
+  width: 0.4375rem; height: 0.4375rem;
+  border-radius: 50%;
+  background: var(--c, var(--muted));
+  /* The dot is a colour fill: keep it in print and in forced-colours mode, where the text
+     beside it still names the topic. */
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+  forced-color-adjust: none;
 }
 
 /* Per-topic colors are generated from _data/themes.yml into assets/css/themes.css (a
-   separate stylesheet linked in head.html), so they can be edited without touching SCSS. */
+   separate stylesheet linked in head.html, `--c` per topic), so they can be edited without
+   touching SCSS. */
 
 /* --- Prose ---------------------------------------------------------------- */
 .prose > * + * { margin-top: 1.1rem; }
@@ -466,8 +576,8 @@ p { text-wrap: pretty; }
 .prose ul li { list-style: disc; }
 .prose ol li { list-style: decimal; }
 
-.page-head { padding-block: var(--space-xl) var(--space-md); }
-.page-head h1 { margin-bottom: 0.6rem; }
+.page-head { padding-block: var(--space-xl) var(--space-sm); }
+.page-head h1 { margin-bottom: 0.5rem; }
 .page-head .lead { max-width: none; } /* spans full content width, matching the hero lead */
 
 /* --- Cards / grids -------------------------------------------------------- */
@@ -477,14 +587,35 @@ p { text-wrap: pretty; }
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 .card {
-  padding: var(--space-md);
+  padding: var(--space-md) 1.375rem;
   background: #fff;
-  border: 1px solid var(--line);
   border-radius: var(--radius);
-  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+  box-shadow: var(--shadow-card);
 }
-.card:hover { border-color: var(--line-2); box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .card h3 { font-size: var(--fs-md); margin-bottom: 0.5rem; }
+
+/* Home "Recent news": white cards on the grey band, the date and category over the title.
+   A card with a link is a link as a whole (the title's link covers it, ::after), and
+   lifts a little under the pointer (D38). */
+.news-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.375rem 1.375rem 1.5rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+.news-card:has(.news-card__link):hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+.news-card:has(.news-card__link:focus-visible) { outline: 2px solid var(--orange-ink); outline-offset: 3px; }
+.news-card__meta { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem 0.75rem; flex-wrap: wrap; }
+.news-card__meta .news__date { font-size: var(--fs-xs); font-variant-numeric: tabular-nums; }
+.news-card__title { margin: 0; font-size: 1.0625rem; line-height: 1.45; letter-spacing: -0.01em; }
+.news-card__link { color: inherit; }
+.news-card__link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.news-card__link:focus-visible { outline: none; }
 
 /* Home research rows: each area's figure beside its full title and text (the
    Publications-list pattern). The text is never truncated; the figure links to
@@ -506,17 +637,17 @@ p { text-wrap: pretty; }
   aspect-ratio: 4 / 3;
   padding: 0.5rem;
   background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--line);
   overflow: hidden;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
-.area-row__fig:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.area-row__fig:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0, 0, 0, 0.07); }
 .area-row__fig img { width: 100%; height: 100%; object-fit: contain; }
-.area-row h3 { font-size: var(--fs-md); line-height: 1.32; }
+.area-row h3 { font-size: var(--fs-md); line-height: 1.35; letter-spacing: -0.01em; }
 .area-row__link { color: inherit; transition: color 0.15s ease; }
-.area-row__link:hover { color: var(--orange-deep); }
-.area-row p { margin-top: 0.4rem; color: var(--ink-2); max-width: 55ch; }
+.area-row__link:hover { color: var(--orange-ink); }
+.area-row p { margin-top: 0.45rem; color: var(--ink-2); max-width: 55ch; }
 /* From 1000px the text keeps a reading measure (55ch: 66 to 70 characters a line on
    average and never more than 75 in Pretendard, where 1ch is a digit's width; the whole row
    gave 105 to 113) and the figure column takes the rest of the row. The figure box is as
@@ -530,36 +661,44 @@ p { text-wrap: pretty; }
 }
 
 /* --- People --------------------------------------------------------------- */
-/* The block of columns is centred, but the cards fill from the left, so a short last row
-   starts at the left (the fourth member under the first; D18, and D49 as changed on
-   2026-10-22, the maintainer's choice). */
+/* Three to a row as before (D49): the block of columns is centred, but the cards fill from
+   the left, so a short last row starts at the left (the fourth member under the first; D18,
+   and D49 as changed on 2026-10-22, the maintainer's choice). The photo is a little smaller
+   than its column (168px of 208px), with a hairline ring instead of a border, and lifts
+   under the pointer like the cards (D38). */
 .person-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 210px));
+  grid-template-columns: repeat(3, minmax(0, 13rem));
   justify-content: center;
-  gap: var(--space-2xl) var(--space-xl);
+  gap: 3.5rem var(--space-xl);
   max-width: 820px;
   margin-inline: auto;
 }
-.person { max-width: 210px; text-align: center; }
+.person { max-width: 13rem; text-align: center; }
 .person__photo {
   aspect-ratio: 1;
   width: 100%;
+  max-width: 10.5rem;
+  margin-inline: auto;
   border-radius: 50%;
   object-fit: cover;
   background: var(--bg-alt);
-  border: 1px solid var(--line);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  a.person__figure:hover .person__photo { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 12px 26px rgba(0, 0, 0, 0.12); }
 }
 /* Optional hover photo swap: the second image is stacked over the first and
    crossfades in on hover. Only on real hover devices, so touch users keep the
    default photo. */
 .person__figure { display: block; }
-.person__figure--swap { position: relative; }
+.person__figure--swap { position: relative; max-width: 10.5rem; margin-inline: auto; }
 .person__figure--swap .person__photo--hover {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .person__figure--swap:hover .person__photo--hover { opacity: 1; }
@@ -568,23 +707,32 @@ p { text-wrap: pretty; }
   display: grid;
   place-items: center;
   aspect-ratio: 1;
+  max-width: 10.5rem;
+  margin-inline: auto;
   border-radius: 50%;
-  background: var(--orange-wash);
-  border: 1px solid #f3ddca;
-  color: var(--orange-ink);
+  background: var(--bg-alt);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  color: var(--muted);
   font-family: var(--font-serif);
   font-size: 1.7rem;
   font-weight: 600;
 }
-.person__name { margin-top: 0.8rem; font-size: var(--fs-md); color: var(--ink); }
-.person__name a:hover { color: var(--orange-deep); }
-.person__role { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.15rem; }
-.person__ko { font-size: var(--fs-xs); color: var(--muted); }
+.person__name { margin-top: 1rem; font-size: var(--fs-md); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+.person__name a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s ease;
+}
+.person__name a:hover { text-decoration-color: var(--orange); }
+.person__ko { margin-top: 0.1rem; font-size: var(--fs-xs); color: var(--muted); }
+.person__role { font-size: var(--fs-sm); line-height: 1.45; color: var(--muted); margin-top: 0.35rem; }
 /* Each icon link is a target of at least 24x24px (WCAG 2.5.8) around the same 20px icon; the
    gap and margin are 4px and 2px smaller, so the icons sit where they did. */
-.person__links { margin-top: calc(0.5rem - 2px); display: flex; flex-wrap: wrap; justify-content: center; gap: calc(0.6rem - 4px); }
-.person__links a { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; border-radius: 4px; color: var(--muted); }
-.person__links a:hover { color: var(--orange-ink); }
+.person__links { margin-top: calc(0.6rem - 2px); display: flex; flex-wrap: wrap; justify-content: center; gap: calc(0.6rem - 4px); }
+.person__links a { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; border-radius: var(--radius-xs); color: var(--muted); transition: color 0.15s ease; }
+.person__links a:hover { color: var(--ink); }
 
 /* Note line under a person's role (e.g. alumni exchange-program note) */
 .person__note { font-size: var(--fs-xs); color: var(--muted); margin-top: 0.2rem; line-height: 1.45; }
@@ -592,127 +740,271 @@ p { text-wrap: pretty; }
 .person__role, .person__note { text-wrap: balance; }
 
 /* --- PI profile ----------------------------------------------------------- */
-.profile { display: grid; gap: var(--space-xl); grid-template-columns: 280px 1fr; align-items: start; }
+.profile { display: grid; gap: 3.5rem; grid-template-columns: 248px 1fr; align-items: start; }
 .profile__aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
-.profile__photo { width: 100%; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
-.profile__contact { margin-top: var(--space-md); display: grid; gap: 0.45rem; font-size: var(--fs-sm); }
+.profile__photo { width: 100%; border-radius: 14px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+.profile__contact { margin-top: var(--space-md); display: grid; gap: 0.55rem; font-size: var(--fs-sm); }
 /* Icon beside its text: the global svg { display: block } would otherwise stack the icon above the line. */
-.profile__contact > a, .profile__contact > span { display: flex; align-items: center; gap: 0.55rem; }
-.profile__contact a:hover { color: var(--orange-ink); }
+.profile__contact > a, .profile__contact > span { display: flex; align-items: center; gap: 0.6rem; }
+.profile__contact .icon { color: var(--muted); }
+.profile__contact a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.profile__contact a:hover { color: var(--ink); text-decoration-color: var(--orange); }
 /* The bio keeps a reading measure: 65 characters a line on average, at most 71 (the whole
    column gave 89). */
 .profile__main .prose p { max-width: 55ch; }
 .profile__name { margin-bottom: 0.2rem; }
-.profile__name .ko { color: var(--muted); font-size: 0.6em; font-family: var(--font-sans); font-weight: 500; margin-left: 0.5rem; }
+.profile__name .ko { color: var(--muted); font-size: 0.6em; font-family: var(--font-sans); font-weight: 500; letter-spacing: 0; margin-left: 0.5rem; }
 .profile__title { color: var(--ink-2); font-weight: 500; }
 .profile__affil { color: var(--muted); }
 
-.cv { margin-top: var(--space-lg); }
-.cv h2 { font-size: var(--fs-md); padding-bottom: 0.4rem; border-bottom: 1px solid var(--line); margin-bottom: 0.9rem; }
-.cv__item { display: grid; grid-template-columns: 1fr auto; gap: 0.3rem 1rem; padding: 0.5rem 0; }
-.cv__item + .cv__item { border-top: 1px dashed var(--line); }
+.cv { margin-top: var(--space-xl); }
+.cv h2 { font-size: var(--fs-base); font-weight: 600; letter-spacing: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line-2); margin-bottom: 0.25rem; }
+.cv__item { display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 1.5rem; padding: 0.75rem 0; }
+.cv__item + .cv__item { border-top: 1px solid var(--line); }
 .cv__role { font-weight: 600; color: var(--ink); }
-.cv__org { color: var(--ink-2); }
+.cv__org { color: var(--ink-2); margin-top: 0.1rem; }
 .cv__when { color: var(--muted); font-size: var(--fs-sm); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* --- People pages' sub-navigation ----------------------------------------- */
-/* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): plain text links in
-   the header's colours, the current page underlined in the logo orange like the header's
-   current item, a small drawn dot between them (no text, so screen readers skip it). */
-.people-nav { margin-top: var(--space-sm); font-size: var(--fs-sm); }
-.people-nav ul { display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.7rem; }
-.people-nav li { display: flex; align-items: center; column-gap: 0.7rem; }
-.people-nav li + li::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+/* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): the three pages as a
+   segmented control (D56), the current one raised on white in a neutral track. They were
+   grey text links with a dot between them. */
+.people-nav { margin-top: var(--space-md); font-size: var(--fs-sm); }
+.people-nav ul {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 1.25rem;
+  background: var(--fill);
+}
 .people-nav a {
-  padding-block: 0.2rem;
+  display: block;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
   font-weight: 500;
   color: var(--ink-2);
-  text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  text-decoration-color: transparent;
-  text-underline-offset: 0.4em;
-  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
-.people-nav a:hover,
-.people-nav a[aria-current="page"] { color: var(--ink); text-decoration-color: var(--orange); }
+.people-nav a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.55); }
+.people-nav a[aria-current="page"] {
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
 /* --- Publications --------------------------------------------------------- */
-.pub-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--space-sm); }
+/* Two columns from 68.75em, where the header shows its whole menu (D56): the finder
+   (search, topics, years) stays in view at the left while the papers scroll at the right.
+   Narrower, one column with the finder above the list (see the end of this section). */
+.pubs {
+  display: grid;
+  grid-template-columns: minmax(0, 15.5rem) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+.pubs__rail {
+  position: sticky;
+  top: calc(var(--header-h) + 1.25rem);
+  display: grid;
+  gap: 1.75rem;
+  /* A short window scrolls the finder on its own. The 3px padding keeps focus rings inside
+     its scroll box; the negative margin keeps its contents where they were. */
+  max-height: calc(100vh - var(--header-h) - 2.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding: 3px;
+  margin: -3px;
+}
+.pubs__rail::-webkit-scrollbar { display: none; }
+
+/* Search: a filled field like a system search field, with "/" inside it on a computer
+   (the key that jumps to it, pubs.js) until something is typed. */
+.pub-search { position: relative; }
+.pub-search[hidden] { display: none; }
+.pub-search__icon {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+.pub-search__input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 2.25rem 0 2.2rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--fill);
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+.pub-search__input::placeholder { color: var(--muted); opacity: 1; }
+.pub-search__input:hover { background: var(--fill-2); }
+.pub-search__input:focus { background: #fff; box-shadow: 0 0 0 1px var(--line-2); }
+.pub-search__input:not(:placeholder-shown) { padding-right: 0.7rem; }
+.pub-search__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.4rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%239a9a9a'/%3E%3Cpath d='M5.5 5.5l5 5m0-5-5 5' stroke='%23fff' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  cursor: pointer;
+}
+.pub-search__key {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  padding: 0 0.3rem;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 1px var(--line-2);
+  font-family: inherit;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--muted);
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.pub-search__input:focus ~ .pub-search__key,
+.pub-search__input:not(:placeholder-shown) ~ .pub-search__key { opacity: 0; }
+@media (hover: none), (pointer: coarse) {
+  .pub-search__key { display: none; }
+  .pub-search__input { padding-right: 0.7rem; }
+}
+/* The searched words in the shown papers (pubs.js, CSS Custom Highlight API). */
+::highlight(pub-search) { background-color: rgba(248, 152, 88, 0.32); }
+
+/* Topics: one row each, a dot in the topic's colour, the name, and how many papers it
+   would show. The chosen ones sit on a darker fill in semibold; a topic that would leave
+   no paper is greyed (it can still be chosen). */
+.pub-toolbar { display: grid; gap: 1px; }
+/* position: relative keeps the screen-reader word " papers" (absolutely positioned) inside
+   the button, so the row that scrolls sideways on phones clips it; without it, it widened
+   the phone page to 1544px. */
 .pub-filter {
-  display: inline-flex;
+  position: relative;
+  display: flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.4rem 0.85rem;
+  gap: 0.65rem;
+  width: 100%;
+  min-height: 2.125rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  line-height: 1.3;
+  text-align: left;
+  color: var(--ink-2);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.pub-filter:hover { background: var(--fill); color: var(--ink); }
+.pub-filter.is-active { background: var(--fill-2); color: var(--ink); font-weight: 600; }
+.pub-filter__name { flex: 1 1 auto; min-width: 0; }
+.pub-filter__n {
+  flex: none;
   font-size: var(--fs-xs);
   font-weight: 500;
-  color: var(--ink-2);
-  background: #fff;
-  border: 1px solid var(--line-2);
-  border-radius: var(--radius-pill);
-  transition: all 0.15s ease;
-}
-.pub-filter:hover { border-color: var(--orange); color: var(--orange-deep); }
-.pub-filter.is-active { background: var(--ink); color: #fff; border-color: var(--ink); }
-.pub-filter__dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--c, var(--line-2)); flex: none; }
-.pub-filter.is-active .pub-filter__dot { background: currentColor; }
-/* The topic chips in one row that scrolls sideways; the chip cut off at the edge shows
-   there are more. Wrapped, they took 261px at 390px and the first paper started below
-   the first screenful. The row runs to the screen edges with the container's side
-   padding inside it, so the first chip lines up with the text; the block padding
-   keeps the focus ring inside the scroll box. */
-@media (max-width: 720px) {
-  .pub-toolbar {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scrollbar-width: thin;
-    margin-inline: calc(-1 * clamp(1.1rem, 4vw, 2rem));
-    padding: 0.25rem clamp(1.1rem, 4vw, 2rem);
-    scroll-padding-inline: clamp(1.1rem, 4vw, 2rem);
-  }
-  .pub-filter { flex: none; }
-}
-
-/* Under the chips: how many papers the list shows (pubs.js keeps it current). */
-.pubs-count { margin-bottom: var(--space-lg); font-size: var(--fs-sm); color: var(--muted); }
-.year-group + .year-group { margin-top: var(--space-xl); }
-.year-label {
-  font-family: var(--font-serif);
-  font-size: var(--fs-lg);
-  color: var(--ink);
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--orange);
-  margin-bottom: var(--space-md);
-}
-.pub-list { display: grid; gap: 0.4rem; }
-.pub {
-  display: grid;
-  grid-template-columns: 88px 1fr;
-  gap: var(--space-md);
-  padding: var(--space-md) 0;
-  border-bottom: 1px solid var(--line);
-}
-/* The text always takes the last column: on a person's page a paper without a thumbnail
-   keeps the empty thumbnail column (keep_col), so its title lines up with the others. */
-.pub__body { grid-column: -2; }
-.pub__aside { display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; }
-.pub__num {
-  font-family: var(--font-serif);
-  font-size: var(--fs-md);
-  line-height: 1.32;
-  font-weight: 600;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
-.pub__figure {
-  width: 88px; height: 66px;
-  object-fit: cover;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--line);
-  background: var(--bg-alt);
+.pub-filter.is-zero { color: var(--muted); }
+.pub-filter.is-zero .pub-filter__dot { opacity: 0.3; }
+
+/* Years: a small index, four to a row; the year at the top of the screen in ink, underlined
+   in the logo orange like the menu's current page. */
+.pub-years ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; }
+.pub-years a {
+  display: block;
+  padding: 0.3rem 0;
+  text-align: center;
+  border-radius: var(--radius-xs);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  text-decoration: underline 2px transparent;
+  text-underline-offset: 5px;
+  transition: background 0.15s ease, color 0.15s ease, text-decoration-color 0.15s ease;
 }
-.pub__title { font-family: var(--font-serif); font-size: var(--fs-md); line-height: 1.32; font-weight: 600; }
-.pub__authors { font-size: var(--fs-sm); color: var(--ink-2); margin-top: 0.3rem; }
+.pub-years a:hover { background: var(--fill); color: var(--ink); }
+.pub-years a.is-current { color: var(--ink); font-weight: 600; text-decoration-color: var(--orange); }
+
+/* The list. The count line sits level with the search field. */
+.pubs-count { display: flex; align-items: center; min-height: 2.5rem; font-size: var(--fs-sm); color: var(--muted); }
+.pubs-empty { padding-block: var(--space-sm) var(--space-xl); }
+.year-group { margin-top: var(--space-md); scroll-margin-top: calc(var(--header-h) + 1rem); }
+.year-group + .year-group { margin-top: var(--space-xl); }
+/* The year, then a hairline to the end of the row. */
+.year-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.year-label::after { content: ""; flex: 1 1 auto; height: 1px; background: var(--line); }
+.pub-list { display: grid; }
+/* A paper: the catalogue number and the thumbnail at the left (a person's page has only the
+   thumbnail), the text at the right. Hairlines between the papers shown. */
+.pub {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding-block: 1.375rem;
+}
+.pub:not(.is-hidden) ~ .pub:not(.is-hidden) { border-top: 1px solid var(--line); }
+.pubs__main .pub { grid-template-columns: 9.375rem minmax(0, 1fr); }
+/* The text always takes the last column: on a person's page a paper without a thumbnail
+   keeps the empty thumbnail column (keep_col), so its title lines up with the others. */
+.pub__body { grid-column: -2; }
+.pub__aside { display: grid; grid-template-columns: 1.5rem 7rem; column-gap: 0.875rem; align-items: start; }
+.pub__num {
+  grid-column: 1;
+  text-align: right;
+  font-size: var(--fs-xs);
+  line-height: 1.55rem;
+  font-weight: 500;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.pub__aside .pub__thumb { grid-column: 2; }
+/* The whole figure, on white, in a 4:3 box (44 and 45 are wider than 4:3 and were cropped
+   at both sides by `cover`). On a lab paper it links to the paper's page and grows a
+   little under the pointer. */
+.pub__thumb {
+  display: block;
+  width: 7rem;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+.pub__figure { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s var(--ease-out); }
+a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
+.pub__title { font-family: var(--font-serif); font-size: 1.0625rem; line-height: 1.45; font-weight: 600; letter-spacing: -0.01em; }
+.pub__authors { font-size: var(--fs-sm); line-height: 1.55; color: var(--ink-2); margin-top: 0.35rem; }
 .pub__authors .pi,
 .paper__authors .pi {
   font-weight: 600;
@@ -720,17 +1012,109 @@ p { text-wrap: pretty; }
 }
 /* One author name (pi-authors.html): lines break only between names. */
 .author { white-space: nowrap; }
-.pub__meta { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.25rem; }
+.pub__meta { font-size: var(--fs-sm); color: var(--muted); margin-top: 0.2rem; }
 .pub__pages { white-space: nowrap; }
 .pub__journal { font-style: italic; color: var(--ink-2); }
 /* "Submitted" in the journal field is a status, not a journal name: set upright. */
 .pub__journal--status { font-style: normal; }
-.pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.7rem; }
-.pub-badge { display: inline-flex; }
-.pub-badge img { height: 24px; width: auto; transition: transform 0.15s ease; }
-.pub-badge:hover img { transform: translateY(-2px); }
+.pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.8rem; }
+.pub-badge { display: inline-flex; border-radius: var(--radius-xs); }
+.pub-badge img { height: 22px; width: auto; transition: opacity 0.15s ease; }
+.pub-badge:hover img { opacity: 0.7; }
+/* The links (logos) and the topics are two groups, a hairline between them. The topics take
+   the rest of the row and wrap inside it, so the hairline stays beside them (a block of
+   topics that wrapped as a whole under the logos left the hairline hanging at the left). */
+.pub__foot > .pub__themes { flex: 1 1 12rem; min-width: 0; }
+.pub__foot > :not(.pub__themes) + .pub__themes { margin-left: 0.25rem; padding-left: 0.75rem; border-left: 1px solid var(--line); }
 /* The link to the BibTeX file of all papers, after the list (publications.html). */
-.pubs-bib { margin-top: var(--space-lg); font-size: var(--fs-sm); }
+.pubs-bib { margin-top: var(--space-xl); font-size: var(--fs-sm); }
+
+/* The floating count below 68.75em (publications.html, pubs.js): a capsule of glass at the
+   foot of the screen while a search or topic is chosen and the finder has scrolled away. */
+.pubs-pill {
+  position: fixed;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border-radius: var(--radius-pill);
+  @include glass(0.66, 18px);
+  box-shadow: $glass-rim, $glass-float;
+  opacity: 0;
+  transform: translate(-50%, 0.75rem) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.35s var(--ease-out);
+}
+.pubs-pill.is-shown { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.pubs-pill__count {
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pubs-pill__clear {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--fill-2);
+  transition: background 0.15s ease;
+}
+.pubs-pill__clear:hover { background: rgba(0, 0, 0, 0.13); }
+.pubs-pill__clear svg { width: 16px; height: 16px; }
+@media (min-width: 68.8125em) {
+  .pubs-pill { display: none; }
+}
+
+/* One column below 68.75em: the search, then the topics in one row that scrolls sideways
+   (wrapped, they took 261px at 390px and the first paper started below the first
+   screenful), each a capsule, the chosen ones in ink. The row runs to the screen edges with
+   the container's side padding inside it, so the first capsule lines up with the text;
+   the block padding keeps the focus ring inside the scroll box. The years are left out:
+   the list is short enough to scroll. */
+@media (max-width: 68.75em) {
+  .pubs { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
+  .pubs__rail { position: static; max-height: none; overflow: visible; gap: var(--space-sm); padding: 0; margin: 0; }
+  .pub-search { max-width: 34rem; }
+  .pub-years { display: none; }
+  .pub-toolbar {
+    display: flex;
+    gap: 0.375rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    margin-inline: calc(-1 * clamp(1.1rem, 4vw, 2rem));
+    padding: 0.25rem clamp(1.1rem, 4vw, 2rem);
+    scroll-padding-inline: clamp(1.1rem, 4vw, 2rem);
+  }
+  .pub-filter {
+    flex: none;
+    width: auto;
+    min-height: 2.25rem;
+    gap: 0.45rem;
+    padding: 0.4rem 0.85rem 0.4rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background: var(--fill);
+    font-size: var(--fs-xs);
+  }
+  .pub-filter__name { flex: none; }
+  .pub-filter.is-active { background: var(--ink); color: #fff; }
+  .pub-filter.is-active .pub-filter__n { color: rgba(255, 255, 255, 0.72); }
+  .pub-filter.is-active .pub-filter__dot { box-shadow: 0 0 0 1.5px #fff; }
+  .pubs-count { min-height: 0; padding-top: var(--space-2xs); }
+}
+@media (max-width: 68.75em) and (pointer: coarse) {
+  .pub-toolbar { scrollbar-width: none; }
+  .pub-toolbar::-webkit-scrollbar { display: none; }
+}
 
 /* --- Journal covers ------------------------------------------------------- */
 /* Five covers to a row from 685px (the five fill the row: 199px each at 1440, 125px at 768),
@@ -741,19 +1125,23 @@ p { text-wrap: pretty; }
 @media (max-width: 684px) { .covers { --cols: 3; } }
 @media (max-width: 404px) { .covers { --cols: 2; } }
 .cover { display: block; flex: 0 0 calc((100% - (var(--cols) - 1) * var(--space-md)) / var(--cols) - 0.1px); min-width: 0; }
-.cover__link { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
-/* One 3:4 box for every cover (NJC's image is a little wider), so the captions line up. */
+.cover__link { display: block; width: 100%; padding: 0; border: 0; background: none; border-radius: 4px; cursor: zoom-in; }
+/* One 3:4 box for every cover (NJC's image is a little wider), so the captions line up.
+   Printed covers, so they sit on the grey band with a soft shadow and lift under the
+   pointer (D38). */
 .cover img {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.06), 0 10px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
 }
-.cover:hover img { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.cover figcaption { margin-top: 0.5rem; font-size: var(--fs-xs); color: var(--muted); }
+.cover__link:hover img {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 6px 12px rgba(0, 0, 0, 0.08), 0 22px 44px rgba(0, 0, 0, 0.13);
+}
+.cover figcaption { margin-top: 0.75rem; font-size: var(--fs-xs); color: var(--muted); }
 
 /* --- Photos gallery ------------------------------------------------------- */
 /* Four columns from 720px (31 photos: seven rows of four and one of three; three columns at
@@ -874,8 +1262,11 @@ body.no-scroll { overflow: hidden; }
   width: 46px; height: 46px;
   border-radius: 50%;
   color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Dark glass over the photo or the backdrop (D56). */
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
   transition: background 0.15s ease, transform 0.15s ease;
 }
 .lightbox__close:hover,
@@ -905,84 +1296,115 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* --- Footer --------------------------------------------------------------- */
+/* The dark footer as before, laid out anew (D56): the lab's line set large under the SAIL
+   mark, the Kookmin signature and the GitHub mark at the right of that row, a hairline,
+   then the menu's pages in three columns and the contact, and the base line. The lines
+   and links are the ones the footer had. */
 .site-footer {
   margin-top: var(--space-3xl);
   background: var(--bg-ink);
-  color: #d0d0d0;
-  padding-block: var(--space-2xl) var(--space-lg);
+  color: #bdbdbd;
+  padding-block: 4rem var(--space-lg);
 }
 /* A page that ends with a grey band (the journal covers on the home and Photos pages) meets
    the footer directly, without a white strip between the two. */
 .site-main:has(> section.section--alt:last-of-type) + .site-footer { margin-top: 0; }
 .footer-grid {
   display: grid;
-  gap: var(--space-xl);
-  grid-template-columns: 1.3fr 1.3fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.75rem var(--space-xl);
 }
-.footer-brand p { margin-top: 0.8rem; max-width: 34ch; color: #b5b5b5; font-size: var(--fs-sm); }
+.footer-brand {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0 var(--space-xl);
+  padding-bottom: 2.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-brand p {
+  grid-column: 1;
+  margin-top: 1rem;
+  max-width: 30ch;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: #e6e6e6;
+  text-wrap: balance;
+}
 /* After the generic `.footer-brand p` rule and one class more specific, so the mark keeps
-   its own size and colour and its top lines up with the Contact and Links titles. */
-.footer-brand .footer-mark { margin-top: 0; font-family: var(--font-serif); font-size: 1.5rem; line-height: 1.2; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
+   its own size and colour. */
+.footer-brand .footer-mark { margin-top: 0; font-family: var(--font-serif); font-size: 1.625rem; line-height: 1; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
 .footer-mark .hl { color: var(--orange); }
-/* The Kookmin emblem and the lab's GitHub organization side by side (D55). The GitHub mark
-   stays white, as GitHub's logo rules ask, and brightens on hover as the emblem does. */
-.footer-orgs { display: flex; align-items: center; gap: var(--space-md); margin-top: var(--space-md); }
-.footer-kmu, .footer-gh { opacity: 0.85; transition: opacity 0.15s ease; }
+/* The Kookmin signature and the lab's GitHub organization side by side (D55), at the right
+   of the brand row. The GitHub mark stays white, as GitHub's logo rules ask, and both
+   brighten on hover. */
+.footer-orgs { grid-column: 2; grid-row: 1 / span 2; display: flex; align-items: center; gap: var(--space-md); }
+.footer-kmu, .footer-gh { opacity: 0.8; transition: opacity 0.15s ease; }
 .footer-kmu:hover, .footer-gh:hover { opacity: 1; }
 .footer-kmu img { height: 30px; width: auto; display: block; }
-.footer-gh { flex: none; color: #fff; }
-.footer-gh .icon { width: 28px; height: 28px; }
-.footer-title { font-family: var(--font-sans); font-size: var(--fs-sm); color: #9a9a9a; font-weight: 600; margin-bottom: 0.9rem; }
-/* The menu's pages in two columns, top to bottom in menu order; the columns balance
-   themselves, so a page added to the menu needs no change here. One column where two would
-   wrap the longest label: with "Principal Investigator", two columns need 17.7em (em here is
-   the body text size, 17px by default), so on a narrow phone or with a reader's larger
-   default font, which em follows as the menu breakpoint does. */
-.footer-links { container-type: inline-size; }
-.footer-list { columns: 2; column-gap: var(--space-lg); font-size: var(--fs-sm); }
-.footer-list li { break-inside: avoid; padding-bottom: 0.5rem; }
+.footer-gh { flex: none; color: #fff; border-radius: 50%; }
+.footer-gh .icon { width: 26px; height: 26px; }
+.footer-title { font-family: var(--font-sans); font-size: var(--fs-xs); color: #8f8f8f; font-weight: 600; margin-bottom: 1rem; }
+/* The menu's pages in three columns, top to bottom in menu order; the columns balance
+   themselves, so a page added to the menu needs no change here. Two columns, then one,
+   where three or two would wrap the longest label ("Principal Investigator" needs 17.7em
+   for two; em here is the body text size, so a reader's larger default font counts too). */
+.footer-links { grid-column: span 2; container-type: inline-size; }
+.footer-list { columns: 3; column-gap: var(--space-lg); font-size: var(--fs-sm); }
+.footer-list li { break-inside: avoid; padding-bottom: 0.55rem; }
+@container (max-width: 27em) { .footer-list { columns: 2; } }
 @container (max-width: 18em) { .footer-list { columns: 1; } }
-.footer-list a:hover, .site-footer address a:hover { color: var(--orange); }
-.site-footer address { font-style: normal; font-size: var(--fs-sm); line-height: 1.7; color: #b5b5b5; }
+.footer-list a,
+.site-footer address a {
+  color: #d6d6d6;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.footer-list a:hover,
+.site-footer address a:hover { color: #fff; text-decoration-color: var(--orange); }
+.site-footer address { font-style: normal; font-size: var(--fs-sm); line-height: 1.75; color: #bdbdbd; }
 .footer-base {
-  margin-top: var(--space-xl);
+  margin-top: 3.5rem;
   padding-top: var(--space-md);
-  border-top: 1px solid var(--bg-ink-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem;
-  font-size: var(--fs-xs); color: #8c8c8c;
+  font-size: var(--fs-xs); color: #8f8f8f;
 }
-.footer-base a:hover { color: var(--orange); }
-/* Where the header shows the menu button (68.75em, see the header), three columns leave the
-   links' two columns too narrow ("Principal Investigator" wrapped at 861px): the brand takes
-   its own row, with the links and Contact side by side under it (one column on phones). */
+.footer-base a:hover { color: #fff; }
+/* Where the header shows the menu button (68.75em, see the header): the links and Contact
+   side by side under the brand row, the links in two columns. */
 @media (max-width: 68.75em) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .footer-links { grid-column: auto; }
 }
-/* Phones: the footer took 92% of a 390px screen. Less padding, the Kookmin wordmark and the
-   GitHub mark beside the SAIL mark (as the header pairs them) with the lab's line under both
-   at full width, and tighter titles; every fact and link stays. */
+/* Phones: the SAIL mark with the Kookmin signature and the GitHub mark beside it (as the
+   header pairs them), the lab's line under both at full width, then the links and Contact
+   one under the other; every fact and link stays. */
 @media (max-width: 720px) {
   .site-footer { padding-block: var(--space-xl) var(--space-md); }
   /* One class more specific than the gap set in "Responsive" (720px), which comes later. */
-  .site-footer .footer-grid { row-gap: var(--space-md); }
-  .footer-brand { display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: center; column-gap: var(--space-md); }
+  .site-footer .footer-grid { row-gap: var(--space-lg); }
+  .footer-brand { grid-template-columns: auto auto; justify-content: space-between; align-items: center; column-gap: var(--space-md); padding-bottom: var(--space-lg); }
   /* The lab's line spans both columns without sizing them: it used to widen the SAIL
-     column to 158px, which squeezed the Kookmin wordmark sideways at 390px and below. */
-  .footer-brand > p:not(.footer-mark) { grid-column: 1 / -1; grid-row: 2; max-width: none; contain: inline-size; }
-  .footer-orgs { margin-top: 0; }
+     column, which squeezed the Kookmin wordmark sideways at 390px and below. */
+  .footer-brand > p:not(.footer-mark) { grid-column: 1 / -1; grid-row: 2; max-width: none; contain: inline-size; margin-top: var(--space-sm); font-size: var(--fs-md); }
+  .footer-orgs { grid-column: 2; grid-row: 1; }
   /* At 320px the wordmark shrinks in proportion instead. */
   .footer-kmu { min-width: 0; }
-  .footer-kmu img { height: auto; max-height: 30px; }
-  .footer-title { margin-bottom: 0.6rem; }
+  .footer-kmu img { height: auto; max-height: 28px; }
+  .footer-title { margin-bottom: 0.7rem; }
   .footer-base { margin-top: var(--space-lg); padding-top: var(--space-sm); }
 }
 
 /* --- Publication filter states ------------------------------------------- */
-.pub--nofig { grid-template-columns: 1fr; }
+.pub--nofig { grid-template-columns: minmax(0, 1fr); }
 .is-hidden { display: none !important; }
-/* Shown by pubs.js when no paper carries every selected topic; the count line above says so. */
-.pubs-empty { padding-bottom: var(--space-xl); }
 
 /* --- Research areas page -------------------------------------------------- */
 .research-areas {
@@ -1011,18 +1433,18 @@ body.no-scroll { overflow: hidden; }
   margin-top: 0.6rem; text-align: center;
   font-size: var(--fs-xs); color: var(--muted);
 }
-.research-area__figure figcaption a { color: var(--orange-ink); text-decoration: underline; }
+.research-area__figure figcaption a { color: inherit; text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
+.research-area__figure figcaption a:hover { color: var(--orange-ink); }
 
 /* --- Member personal card ------------------------------------------------- */
 .member-card { text-align: center; }
 .member-card .back-link { margin-bottom: var(--space-lg); }
 .member-card .profile__name { justify-content: center; }
 .member-card__photo {
-  width: 180px; height: 180px;
+  width: 160px; height: 160px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
   margin: 0 auto var(--space-md);
   display: block;
 }
@@ -1030,7 +1452,7 @@ body.no-scroll { overflow: hidden; }
 
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 860px) {
-  .profile { grid-template-columns: 1fr; }
+  .profile { grid-template-columns: 1fr; gap: var(--space-xl); }
   .profile__aside { position: static; max-width: 320px; }
 }
 /* PI page on tablets: the contact list beside the photo, not below it in a 320px column
@@ -1045,16 +1467,16 @@ body.no-scroll { overflow: hidden; }
    narrower one they wrapped "Group Guide" and squeezed the logos. The breakpoint is in
    em, unlike the others, because the items' width follows the reader's font size
    setting: 68.75em is 1100px at the default size (a margin above 1080px), and with a
-   larger default font the menu takes over at a wider window. Keep in sync with nav.js
-   and the footer's query (above), which switches its layout at the same width. */
+   larger default font the menu takes over at a wider window. Keep in sync with nav.js,
+   pubs.js and the footer's and Publications' queries, which switch their layout at the
+   same width. The menu opens as a sheet of glass under the header. */
 @media (max-width: 68.75em) {
   .nav-toggle { display: block; }
   .site-nav {
     position: absolute;
     top: 100%; left: 0; right: 0;
-    background: #fff;
-    border-bottom: 1px solid var(--line);
-    box-shadow: var(--shadow-md);
+    @include glass(0.88, 24px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.08);
     display: none;
     /* The header is sticky, so scrolling the page never brings a long menu into view: on a
        short screen (a phone held sideways, 400% zoom) the menu scrolls on its own instead.
@@ -1073,33 +1495,36 @@ body.no-scroll { overflow: hidden; }
   }
   /* Full-width rows: the divider spans the menu. A parent's sub-pages are always listed
      under it here, so its chevron button is not needed. */
-  .nav-item > a { display: flex; padding: 0.75rem 0.2rem; border-bottom: 1px solid var(--line); }
+  .nav-item > a { display: flex; padding: 0.75rem 0.2rem; border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
   .nav-item.has-children { display: block; margin-right: 0; }
   .subnav-toggle { display: none; }
   .nav-item.has-children .subnav {
     position: static;
     opacity: 1; visibility: visible; transform: none;
-    box-shadow: none; border: 0; padding: 0 0 0.4rem 0.8rem;
+    background: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+    box-shadow: none; border: 0; border-radius: 0; padding: 0 0 0.4rem 0.8rem;
     min-width: 0;
   }
 }
 
 @media (max-width: 720px) {
-  .brand img { height: 44px; }
-  .brand-sep { height: 30px; }
-  .brand-kmu img { height: 36px; }
+  .brand img { height: 40px; }
+  .brand-sep { height: 28px; }
+  .brand-kmu img { height: 34px; }
   .brand-group { gap: 0.7rem; }
-  /* The number and the 64x48 thumbnail float at the left of the title, and the text runs
-     on under them at the full width: in a 64px grid column beside them, titles took 4 to
+  /* The number and the 72x54 thumbnail float at the left of the title, and the text runs
+     on under them at the full width: in a narrow grid column beside them, titles took 4 to
      6 lines at 390px and up to 9 at 320px, with an empty strip under the thumbnail. The
      author list starts below the thumbnail, so its first line is never a short one
      squeezed in beside it. */
   .pub { display: flow-root; }
-  .pub__aside, .pub > .pub__figure { float: left; margin: 0 var(--space-sm) var(--space-2xs) 0; }
+  .pub__aside, .pub > .pub__thumb { float: left; margin: 0 var(--space-sm) var(--space-2xs) 0; }
+  .pub__aside { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .pub__num { text-align: left; line-height: 1.3; }
   .pub__authors { clear: left; }
-  .pub__figure { width: 64px; height: 48px; }
+  .pub__thumb { width: 4.5rem; }
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
-  .person-grid { grid-template-columns: repeat(2, minmax(0, 210px)); gap: var(--space-xl) var(--space-lg); }
+  .person-grid { grid-template-columns: repeat(2, minmax(0, 13rem)); gap: var(--space-xl) var(--space-lg); }
   .research-area--figured { grid-template-columns: 1fr; gap: var(--space-md); }
   .research-area--figured:nth-child(even) .research-area__text { order: 0; }
   .research-area__text p, .research-area p { max-width: none; }
@@ -1132,81 +1557,111 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media print {
-  .site-header, .site-footer, .pub-toolbar { display: none; }
+  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint { display: none; }
+  .pubs { display: block; }
   body { font-size: 11pt; }
   a { color: inherit; text-decoration: none; }
 }
 
 /* --- Publication title link ----------------------------------------------- */
-.pub__link { color: inherit; transition: color 0.15s ease; }
-.pub__link:hover { color: var(--orange-deep); text-decoration: underline; text-underline-offset: 2px; }
+/* In ink, underlined in the logo orange under the pointer, as links in text (D56). */
+.pub__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+.pub__link:hover { text-decoration-color: var(--orange); }
 
 /* --- Social / contact icon links (member + alumni) ------------------------ */
 .icon-links { margin-top: var(--space-md); display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
 .icon-link {
   display: grid; place-items: center;
-  width: 42px; height: 42px;
+  width: 38px; height: 38px;
   border-radius: 50%;
   color: var(--ink-2);
   background: #fff;
-  border: 1px solid var(--line-2);
-  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transition: color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
-.icon-link:hover { color: var(--orange-deep); border-color: var(--orange); background: var(--orange-wash); transform: translateY(-1px); }
+.icon-link:hover { color: var(--ink); background: var(--bg-alt); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14); }
 .icon-link .icon { width: 1.2em; height: 1.2em; vertical-align: 0; }
 
 /* --- Member page sections: About (description) + auto-publications -------- */
 .member-about, .member-pubs { margin-top: var(--space-2xl); text-align: left; }
 .member-about__label, .member-pubs__label {
   font-size: var(--fs-md);
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid var(--orange);
-  margin-bottom: var(--space-md);
+  font-weight: 600;
+  letter-spacing: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line-2);
+  margin-bottom: var(--space-2xs);
 }
 
 /* --- News feed ------------------------------------------------------------ */
-.news { max-width: 820px; }
+/* A timeline (D56): the date at the left, a line down the middle with a dot in the item's
+   category colour on it, the item at the right. The line runs from each dot to the next.
+   The category's name stays under the date, in a neutral capsule (its dot is the one on
+   the line). */
+.news { --date-w: 10rem; --node-w: 3rem; --node-y: 0.92rem; max-width: 54rem; }
 .news__item {
-  display: grid; grid-template-columns: 158px 1fr; gap: var(--space-lg);
-  padding-block: var(--space-lg);
-  border-top: 1px solid var(--line);
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--date-w) var(--node-w) minmax(0, 1fr);
+  padding-bottom: 2.75rem;
 }
-.news__item:first-child { border-top: 0; padding-top: 0; }
-.news__meta { display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; }
-.news__date { font-size: var(--fs-sm); color: var(--muted); }
-.news__title { margin: 0; font-size: var(--fs-lg); line-height: 1.3; }
-.news__text { color: var(--ink-2); margin-top: 0.4rem; line-height: 1.6; }
-.news__link { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.6rem; font-size: var(--fs-sm); font-weight: 600; }
+.news__item:last-child { padding-bottom: 0; }
+.news__item::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--date-w) + var(--node-w) / 2 - 0.5px);
+  top: var(--node-y);
+  bottom: calc(-1 * var(--node-y));
+  width: 1px;
+  background: var(--line-2);
+}
+.news__item:last-child::before { display: none; }
+.news__item::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--date-w) + var(--node-w) / 2 - 5.5px);
+  top: calc(var(--node-y) - 5.5px);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--c, var(--muted));
+  box-shadow: 0 0 0 4px #fff;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+  forced-color-adjust: none;
+}
+.news__meta { grid-column: 1; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; padding-top: 0.2rem; text-align: right; }
+.news__meta .news-tag::before { display: none; }
+.news__meta .news-tag { padding-left: 0.625rem; }
+.news__content { grid-column: 3; min-width: 0; }
+.news__date { font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
+.news__title { margin: 0; font-size: var(--fs-lg); line-height: 1.4; letter-spacing: -0.015em; }
+.news__text { color: var(--ink-2); margin-top: 0.5rem; line-height: 1.65; max-width: 55ch; }
+.news__link { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.7rem; font-size: var(--fs-sm); font-weight: 500; }
 .news__link .icon { width: 1em; height: 1em; }
-.news-tag {
-  display: inline-block; font-size: var(--fs-xs); font-weight: 500;
-  padding: 0.16rem 0.5rem; border-radius: 999px;
-  border: 1px solid var(--line-2); color: var(--muted); background: var(--bg);
-  white-space: nowrap;
-}
-.news-tag--publication { color: var(--orange-ink); border-color: #f3c69e; background: var(--orange-wash); }
-.news-tag--people { color: #2f7d6b; border-color: #bfe0d6; background: #eef7f4; }
-.news-tag--event { color: #3a6ea5; border-color: #c5d8ec; background: #eef3fa; }
-.news-tag--award { color: #8a5f14; border-color: #e7d3a8; background: #faf4e6; }
-.news-tag--talk  { color: #7a5aa6; border-color: #d8cce9; background: #f4f0fa; }
+/* The categories' colours, on the timeline's dot (news.html, data-cat) and the home cards'
+   capsule dot; they keep the hues the old pills had. */
+.news-tag--publication, [data-cat="publication"] { --c: var(--orange-2); }
+.news-tag--people, [data-cat="people"] { --c: #3c9a83; }
+.news-tag--event, [data-cat="event"] { --c: #4a7fbf; }
+.news-tag--award, [data-cat="award"] { --c: #c3922e; }
+.news-tag--talk, [data-cat="talk"] { --c: #8b6bb8; }
+/* Phones: the line at the left edge, the date and category in one row above the title. */
 @media (max-width: 640px) {
-  .news__item { grid-template-columns: 1fr; gap: 0.5rem; }
-  .news__meta { flex-direction: row; align-items: center; gap: 0.7rem; }
+  .news { --date-w: 0px; --node-w: 1.5rem; --node-y: 0.75rem; }
+  .news__item { grid-template-columns: var(--node-w) minmax(0, 1fr); padding-bottom: 2.25rem; }
+  .news__item::before { left: 5px; }
+  .news__item::after { left: 0; }
+  .news__meta { grid-column: 2; grid-row: 1; flex-direction: row; align-items: center; justify-content: flex-start; gap: 0.6rem; padding-top: 0; text-align: left; }
+  .news__content { grid-column: 2; grid-row: 2; margin-top: 0.5rem; }
 }
-/* Home "Recent news" teaser cards */
-.news-card {
-  display: flex; flex-direction: column; gap: 0.55rem;
-  padding: var(--space-md);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
-}
-.news-card:hover { border-color: var(--line-2); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.news-card__meta { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-.news-card__title { margin: 0; font-size: var(--fs-md); line-height: 1.35; }
-.news-card__link { color: inherit; }
-.news-card__link:hover { color: var(--orange-deep); }
 
 /* --- Paper detail page ---------------------------------------------------- */
 .paper__top {
@@ -1238,7 +1693,7 @@ body.no-scroll { overflow: hidden; }
   box-shadow: 0 0 0 1px var(--line);
   background: #fff;
 }
-.paper__zoom { display: block; width: fit-content; max-width: 100%; border-radius: var(--radius); cursor: zoom-in; }
+.paper__zoom { position: relative; display: block; width: fit-content; max-width: 100%; border-radius: var(--radius); cursor: zoom-in; }
 /* The line length cap sits on the paragraphs, so `ch` is measured in their own type size:
    on the containers it was taken at 17px, and the 14.4px English abstract ran 107
    characters a line. The summary is only as wide as its text. */
@@ -1246,7 +1701,8 @@ body.no-scroll { overflow: hidden; }
 .paper__abstract-label { font-size: var(--fs-md); margin-bottom: 0.6rem; }
 .paper__abstract p { max-width: 68ch; color: var(--ink-2); line-height: 1.85; white-space: pre-line; }
 .paper__abstract-en { margin-top: var(--space-md); }
-.paper__abstract-en summary { width: fit-content; cursor: pointer; color: var(--orange-ink); font-size: var(--fs-sm); font-weight: 600; }
+.paper__abstract-en summary { width: fit-content; cursor: pointer; color: var(--ink-2); font-size: var(--fs-sm); font-weight: 500; }
+.paper__abstract-en summary:hover, .paper__cite summary:hover { color: var(--ink); }
 .paper__abstract-en p { max-width: 68ch; margin-top: 0.6rem; color: var(--ink-2); font-size: var(--fs-sm); line-height: 1.7; white-space: pre-line; }
 /* A phone's width already keeps the lines short, so the English abstract is read at the
    base size, like the Korean one. (Here, after the rule above, so it wins.) */
@@ -1254,13 +1710,13 @@ body.no-scroll { overflow: hidden; }
   .paper__abstract-en p { font-size: var(--fs-base); }
 }
 .paper__links { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
-.paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 38px; width: auto; transition: transform 0.15s ease; }
-.paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img, .paper__data:hover img { transform: translateY(-2px); }
+.paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 38px; width: auto; transition: opacity 0.15s ease; }
+.paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img, .paper__data:hover img { opacity: 0.7; }
 /* BibTeX under the abstract (publication.html): the summary looks like the English
    abstract's, the box is as wide as the English abstract (68ch at 14.4px) with the
    entry wrapping inside it (no sideways scroll), then the Copy button and its status. */
 .paper__cite { margin-top: var(--space-md); max-width: 68ch; font-size: var(--fs-sm); }
-.paper__cite summary { width: fit-content; cursor: pointer; color: var(--orange-ink); font-size: var(--fs-sm); font-weight: 600; }
+.paper__cite summary { width: fit-content; cursor: pointer; color: var(--ink-2); font-size: var(--fs-sm); font-weight: 500; }
 .paper__bibtex {
   margin-top: 0.6rem;
   padding: var(--space-sm);

@@ -8,8 +8,8 @@
 {%- assign shownum = false -%}{%- if include.show_id and p.id and p.id != "" -%}{%- assign shownum = true -%}{%- endif -%}
 {%- comment -%}The title's id lets each badge name its paper (aria-describedby): "View at publisher (DOI)" repeats down a list. A lab paper is "pub-<id>-title"; a person's own external paper has no id, so member-pubs.html passes its place in the list (n).{%- endcomment -%}
 {%- if p.id and p.id != "" -%}{%- assign titleid = 'pub-' | append: p.id | append: '-title' -%}{%- else -%}{%- assign titleid = 'pubx-' | append: include.n | append: '-title' -%}{%- endif -%}
-{%- comment -%}The list thumbnail is an 88x66 box (64x48 on phones), so a large graphical abstract comes with a smaller rendition when CI made one (image-srcset.html).{%- endcomment -%}
-{%- capture figure -%}{%- if hasimg -%}{%- assign figpath = 'pubs/' | append: p.image -%}<img class="pub__figure" src="{{ '/assets/images/' | append: figpath | relative_url }}"{% include image-srcset.html image=figpath sizes="(max-width: 720px) 64px, 88px" %} alt="" loading="lazy">{%- endif -%}{%- endcapture -%}
+{%- comment -%}The list thumbnail is a 120x90 box (72x54 on phones), so a large graphical abstract comes with a smaller rendition when CI made one (image-srcset.html). On a lab paper it links to the paper's page like the title, for the mouse only (out of the tab order and the accessibility tree: one stop per paper).{%- endcomment -%}
+{%- capture figure -%}{%- if hasimg -%}{%- assign figpath = 'pubs/' | append: p.image -%}{%- capture figimg -%}<img class="pub__figure" src="{{ '/assets/images/' | append: figpath | relative_url }}"{% include image-srcset.html image=figpath sizes="(max-width: 720px) 72px, 120px" %} alt="" loading="lazy">{%- endcapture -%}{%- if p.id and p.id != "" -%}<a class="pub__thumb" href="{{ '/publications/' | append: p.id | append: '/' | relative_url }}" tabindex="-1" aria-hidden="true">{{ figimg }}</a>{%- else -%}<span class="pub__thumb">{{ figimg }}</span>{%- endif -%}{%- endif -%}{%- endcapture -%}
 <article class="pub{% unless shownum or hasimg or include.keep_col %} pub--nofig{% endunless %}" data-themes="{{ p.themes | join: '|' }}" data-year="{{ p.year }}">
   {%- if shownum -%}
   <div class="pub__aside"><span class="pub__num">{{ p.id }}</span>{{ figure }}</div>
@@ -25,7 +25,8 @@
       {%- if haspre -%}{% include preprint-badge.html url=p.preprint_url class="pub-badge" height="24" describedby=titleid %}{%- endif -%}
       {%- if hascode -%}{% include code-badge.html url=p.code class="pub-badge" height="24" describedby=titleid %}{%- endif -%}
       {%- if hasdataset -%}{% include dataset-badge.html url=p.dataset class="pub-badge" height="24" describedby=titleid %}{%- endif -%}
-      {%- if hastags -%}<div class="tag-list pub__themes">{%- for t in p.themes -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endfor -%}</div>{%- endif -%}
+      {%- comment -%}topic_links (the Publications list): each topic links to the list filtered by it, and pubs.js filters in place instead of reloading.{%- endcomment -%}
+      {%- if hastags -%}<div class="tag-list pub__themes">{%- for t in p.themes -%}{%- if include.topic_links -%}<a class="tag tag--{{ t | slugify }}" href="{{ '/publications/' | relative_url }}?topic={{ t | slugify }}" data-theme="{{ t }}">{{ t }}</a>{%- else -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endif -%}{%- endfor -%}</div>{%- endif -%}
     </div>
     {%- endif -%}
   </div>

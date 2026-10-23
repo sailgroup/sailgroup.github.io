@@ -1,15 +1,15 @@
 # themes.yml
 # ---------------------------------------------------------------------------
 # The research-topic tags used on the Publications page (the filter chips and the
-# colored tags on each paper). This is the single place to edit them.
+# topics listed on each paper). This is the single place to edit them.
 #
 # HOW TO EDIT (no coding needed, edit this file on GitHub):
 #   - Reorder:  move a block up/down; the filter chips follow this order.
 #   - Rename:   change `name`. IMPORTANT: also update that name in every paper's
 #               `themes:` in publications.yml (they must match exactly). The build
 #               will fail with a clear message if a paper uses a name not listed here.
-#   - Recolor:  change `color` to any hex value. Use a reasonably dark color so the
-#               tag text stays readable on its light background.
+#   - Recolor:  change `color` to any hex value. It colours the small dot beside the
+#               topic's name; the name itself stays grey, so any clear colour works.
 #   - Add:      copy a block, give it a new name + color. Then tag papers with it.
 #   - Remove:   delete a block (after removing that name from every paper).
 #

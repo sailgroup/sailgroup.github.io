@@ -15,7 +15,7 @@ permalink: /news/
     <ol class="news">
       {%- for n in items -%}
       {%- assign cat = n.category | default: "event" -%}
-      <li class="news__item">
+      <li class="news__item" data-cat="{{ cat }}">
         <div class="news__meta">
           <span class="news__date">{% include news-date.html n=n %}</span>
           <span class="news-tag news-tag--{{ cat }}">{{ cat | capitalize }}</span>

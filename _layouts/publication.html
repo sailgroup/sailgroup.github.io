@@ -13,14 +13,14 @@ layout: default
   <div class="container">
     <p class="back-link"><a class="link" href="{{ '/publications/' | relative_url }}">Publications</a></p>
 
-    {%- comment -%}Journal logo at the left, topic tags at the right. A paper without a logo (a submitted one) has only the tags, which then start at the left (an empty placeholder used to push them to the far right).{%- endcomment %}
+    {%- comment -%}Journal logo at the left, topic tags at the right; each tag links to the Publications list filtered by that topic. A paper without a logo (a submitted one) has only the tags, which then start at the left (an empty placeholder used to push them to the far right).{%- endcomment %}
     <div class="paper__top">
       {%- if logo and logo != "" -%}
       <img class="paper__logo" src="{{ '/assets/images/journals/' | append: logo | relative_url }}" alt="{{ p.journal }}">
       {%- endif -%}
       {%- if p.themes and p.themes.size > 0 -%}
       <div class="tag-list paper__themes">
-        {%- for t in p.themes -%}<span class="tag tag--{{ t | slugify }}">{{ t }}</span>{%- endfor -%}
+        {%- for t in p.themes -%}<a class="tag tag--{{ t | slugify }}" href="{{ '/publications/' | relative_url }}?topic={{ t | slugify }}">{{ t }}</a>{%- endfor -%}
       </div>
       {%- endif -%}
     </div>
@@ -59,7 +59,7 @@ layout: default
       {%- capture figimg -%}<img src="{{ figurl }}" alt="Graphical abstract for {{ p.title | escape }}"{% if fw %} width="{{ fw }}" height="{{ fh }}"{% endif %} fetchpriority="high">{%- endcapture -%}
       <figure class="paper__figure">
         {%- if fullfile %}
-        <a class="paper__zoom" href="{{ figurl }}" data-viewer="figure-lightbox" data-full="{{ figurl }}" data-alt="Graphical abstract for {{ p.title | escape }}" aria-label="Enlarge the graphical abstract for {{ p.title | escape }}">{{ figimg }}</a>
+        <a class="paper__zoom" href="{{ figurl }}" data-viewer="figure-lightbox" data-full="{{ figurl }}" data-alt="Graphical abstract for {{ p.title | escape }}" aria-label="Enlarge the graphical abstract for {{ p.title | escape }}">{{ figimg }}{% include zoom-hint.html %}</a>
         {%- else %}
         {{ figimg }}
         {%- endif %}

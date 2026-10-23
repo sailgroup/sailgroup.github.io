@@ -10,32 +10,57 @@ scripts: [pubs]
 </div>
 
 <section class="section section--tight">
-  <div class="container">
-    <div class="pub-toolbar" role="group" aria-label="Filter publications by topic">
-      <button type="button" class="pub-filter is-active" data-theme="" aria-pressed="true">All</button>
-      {%- for t in site.data.themes -%}
-      <button type="button" class="pub-filter" data-theme="{{ t.name }}" data-theme-slug="{{ t.name | slugify }}" aria-pressed="false"><span class="pub-filter__dot" aria-hidden="true"></span>{{ t.name }}</button>
-      {%- endfor -%}
-    </div>
-    {%- comment -%}How many papers the list shows; pubs.js keeps it current ("28 of 47 papers"), and role="status" makes screen readers read the new line once per change. The topic filter is AND, so two topics can match no paper: the line then says so, and the button below clears the filter.{%- endcomment %}
-    <p class="pubs-count" role="status">{{ site.data.publications.size }} papers</p>
-    <div class="pubs-empty" hidden>
-      <button type="button" class="btn pubs-empty__reset">Show all papers</button>
+  {%- comment -%}Two columns from 68.75em, where the header shows its whole menu (D56): the finder at the left stays in view while the list scrolls (search, the topics with how many papers each has, the years), the papers at the right. Narrower, the finder is a block above the list and its topics one row that scrolls sideways. The search box needs pubs.js, so it stays hidden without it; the topic buttons and year links are in the page either way.{%- endcomment %}
+  {%- assign byyear = site.data.publications | group_by: "year" -%}
+  {%- assign years = byyear | sort: "name" | reverse -%}
+  <div class="container pubs">
+    <div class="pubs__rail">
+      <div class="pub-search" role="search" hidden>
+        <svg class="pub-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+        <input class="pub-search__input" id="pub-q" type="search" placeholder="Title, author, journal" aria-label="Search publications" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        <kbd class="pub-search__key" aria-hidden="true">/</kbd>
+      </div>
+      {%- comment -%}Each topic shows how many papers in the list carry it; pubs.js keeps the numbers current, so with a topic or a search chosen they say how many papers would remain (a topic at 0 is greyed). "All" carries a dot made of every topic's colour (themes.css).{%- endcomment %}
+      <div class="pub-toolbar" role="group" aria-label="Filter publications by topic">
+        <button type="button" class="pub-filter is-active" data-theme="" aria-pressed="true"><span class="pub-filter__dot pub-filter__dot--all" aria-hidden="true"></span><span class="pub-filter__name">All</span><span class="pub-filter__n"><span data-n>{{ site.data.publications.size }}</span><span class="visually-hidden"> papers</span></span></button>
+        {%- for t in site.data.themes -%}
+        {%- assign tn = site.data.publications | where_exp: "p", "p.themes contains t.name" | size %}
+        <button type="button" class="pub-filter" data-theme="{{ t.name }}" data-theme-slug="{{ t.name | slugify }}" aria-pressed="false"><span class="pub-filter__dot" aria-hidden="true"></span><span class="pub-filter__name">{{ t.name }}</span><span class="pub-filter__n"><span data-n>{{ tn }}</span><span class="visually-hidden"> papers</span></span></button>
+        {%- endfor %}
+      </div>
+      <nav class="pub-years" aria-label="Years">
+        <ol>
+          {%- for yr in years %}
+          <li><a href="#y{{ yr.name }}">{{ yr.name }}</a></li>
+          {%- endfor %}
+        </ol>
+      </nav>
     </div>
 
-    {%- assign byyear = site.data.publications | group_by: "year" -%}
-    {%- assign years = byyear | sort: "name" | reverse -%}
-    {%- for yr in years -%}
-    <section class="year-group">
-      <h2 class="year-label">{{ yr.name }}</h2>
-      <div class="pub-list">
-        {%- for p in yr.items -%}{% include pub-item.html p=p show_id=true %}{%- endfor -%}
+    <div class="pubs__main">
+      {%- comment -%}How many papers the list shows; pubs.js keeps it current ("28 of 47 papers"), and role="status" makes screen readers read the new line once per change. The topic filter is AND, so two topics can match no paper: the line then says so, and the button below clears the filter and the search.{%- endcomment %}
+      <p class="pubs-count" role="status">{{ site.data.publications.size }} papers</p>
+      <div class="pubs-empty" hidden>
+        <button type="button" class="btn pubs-empty__reset">Show all papers</button>
       </div>
-    </section>
-    {%- endfor %}
+
+      {%- for yr in years %}
+      <section class="year-group" id="y{{ yr.name }}" aria-labelledby="y{{ yr.name }}-label">
+        <h2 class="year-label" id="y{{ yr.name }}-label">{{ yr.name }}</h2>
+        <div class="pub-list">
+          {%- for p in yr.items -%}{% include pub-item.html p=p show_id=true topic_links=true %}{%- endfor -%}
+        </div>
+      </section>
+      {%- endfor %}
+
+      {%- comment -%}One BibTeX file with every paper that has a DOI (publications.bib, built from the data by _plugins/bibtex.rb), linked once, after the list.{%- endcomment %}
+      <p class="pubs-bib"><a class="link" href="{{ '/publications.bib' | relative_url }}" download>BibTeX for all papers</a></p>
+    </div>
   </div>
-  {%- comment -%}One BibTeX file with every paper that has a DOI (publications.bib, built from the data by _plugins/bibtex.rb), linked once, after the list.{%- endcomment %}
-  <div class="container">
-    <p class="pubs-bib"><a class="link" href="{{ '/publications.bib' | relative_url }}" download>BibTeX for all papers</a></p>
+
+  {%- comment -%}Below 68.75em the finder scrolls away with the page, so once a search or a topic is chosen and the finder is out of view, this floating bar (Liquid Glass, D56) keeps the count in sight: a tap on it goes back to the finder, the cross shows every paper again. pubs.js shows it; until then it is inert and invisible.{%- endcomment %}
+  <div class="pubs-pill" inert>
+    <button type="button" class="pubs-pill__count" aria-label="Change the search and topics"><span data-pill-count></span></button>
+    <button type="button" class="pubs-pill__clear" aria-label="Show all papers"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></button>
   </div>
 </section>
