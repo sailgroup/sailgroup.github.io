@@ -4,57 +4,9 @@ permalink: /pi/
 # The <title> (the PI's name with the Korean name, like every person page) and the
 # meta description are built from _data/pi.yml by _plugins/generate_pages.rb, so a
 # change there (a new title, say) reaches search results too.
+# /pi/, /members/ and /alumni/ show one document and each opens at its own part (D57,
+# _includes/people-page.html). This one opens at the top, the PI.
+people_start: pi
+scripts: [people]
 ---
-{%- assign pi = site.data.pi -%}
-<div class="container page-head">
-  <h1 class="profile__name" translate="no">{{ pi.name }} <span class="ko" lang="ko">{{ pi.name_ko }}</span></h1>
-  <p class="profile__title">{{ pi.title }}, {{ pi.department }}</p>
-  <p class="profile__affil">{{ pi.college }}, {{ pi.institution }}</p>
-  {% include people-nav.html %}
-</div>
-
-<section class="section section--tight">
-  <div class="container">
-    <div class="profile">
-      <div class="profile__aside">
-        <img class="profile__photo" src="{{ '/assets/images/people/' | append: pi.photo | relative_url }}" alt="{{ pi.name }}" width="354" height="472" fetchpriority="high">
-        <div class="profile__contact">
-          {%- if pi.office -%}<span>{% include icon.html name="pin" %} {{ pi.office }}</span>{%- endif -%}
-          <a href="mailto:{{ pi.email }}">{% include icon.html name="mail" %} {{ pi.email }}</a>
-          <a href="tel:{{ pi.phone | remove: ' ' | remove: '-' }}">{% include icon.html name="phone" %} {{ pi.phone }}</a>
-          <a href="{{ pi.scholar }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="scholar" %} Google Scholar</a>
-          <a href="{{ pi.orcid }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="orcid" %} ORCID</a>
-          {%- if pi.github and pi.github != "" -%}<a href="{{ pi.github }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="github" %} GitHub</a>{%- endif -%}
-        </div>
-      </div>
-
-      <div class="profile__main">
-        <div class="prose">
-          {%- comment -%}The bio is translated whole under a browser's page translation. Keeping the PI's name in it as written (translate="no") was tried: the translator then lost the Korean particle and the space after it ("Joonyoung F. Joung국민대학교 ..."), which reads worse than its own "정준영 F.는 ...". Names are kept only where they stand alone (headings, author lists).{%- endcomment %}
-          <p>{{ pi.bio }}</p>
-        </div>
-
-        {%- comment -%}Each entry's role and place are two blocks, not one line broken by <br>: a browser's page translator then translates each on its own. As one line it ran them together and broke the result at the old place ("고려 / 대학교 물리화학 박사"). They look the same either way.{%- endcomment %}
-        <div class="cv">
-          <h2>Education</h2>
-          {%- for e in pi.education -%}
-          <div class="cv__item">
-            <div><div class="cv__role">{{ e.degree }}</div><div class="cv__org">{{ e.institution }}{% if e.advisor %}, {% include advisor.html advisor=e.advisor labs=pi.related_labs %}{% endif %}</div></div>
-            <span class="cv__when">{{ e.date }}</span>
-          </div>
-          {%- endfor -%}
-        </div>
-
-        <div class="cv">
-          <h2>Career Summary</h2>
-          {%- for a in pi.career -%}
-          <div class="cv__item">
-            <div><div class="cv__role">{{ a.role }}</div><div class="cv__org">{{ a.org }}{% if a.advisor %}, {% include advisor.html advisor=a.advisor labs=pi.related_labs %}{% endif %}</div></div>
-            <span class="cv__when">{{ a.period }}</span>
-          </div>
-          {%- endfor -%}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{% include people-page.html start="pi" %}

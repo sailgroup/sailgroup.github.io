@@ -3,18 +3,9 @@ layout: default
 title: Members
 description: "Current members of the Spectroscopy and AI Lab (SAIL), the Joonyoung F. Joung Lab, Department of Chemistry, Kookmin University."
 permalink: /members/
+# The PI, the members and the alumni are one document; this address opens it at the
+# members (D57, _includes/people-page.html).
+people_start: members
+scripts: [people]
 ---
-<div class="container page-head">
-  <h1>Members</h1>
-  <p class="lead">Current members of the Spectroscopy and AI Lab.</p>
-  {% include people-nav.html %}
-</div>
-
-<section class="section section--tight">
-  <div class="container">
-    <div class="person-grid">
-      {%- assign current = site.data.people | where: "status", "current" -%}
-      {%- for m in current -%}{% include person-card.html person=m %}{%- endfor -%}
-    </div>
-  </div>
-</section>
+{% include people-page.html start="members" %}

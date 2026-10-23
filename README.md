@@ -220,7 +220,7 @@ sections:
 | 코드 아이콘 그림 (GitHub 로고, 회색 코드 아이콘) | `assets/images/github.svg`, `assets/images/code.svg` 파일을 같은 이름으로 교체 (어느 주소에 어느 그림인지는 `_includes/code-badge.html`) |
 | 데이터 아이콘 그림 (Figshare 로고, 회색 데이터 아이콘) | `assets/images/figshare.svg`, `assets/images/data.svg` 파일을 같은 이름으로 교체 (어느 주소에 어느 그림인지는 `_includes/dataset-badge.html`) |
 | 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
-| PI 페이지 구성 | `pi.html` |
+| PI · Members · Alumni 페이지 구성 (세 주소가 한 문서를 함께 쓰고 각자 자기 부분에서 열림, D57) | `_includes/people-page.html` (주소마다 시작 부분만 `pi.html` · `members.html` · `alumni.html`) |
 | 홈 화면 구성 (최근 뉴스·연구·저널 표지) | `index.html` |
 | 상단 로고 | `assets/images/sail-logo.svg` (글자를 윤곽선으로 바꾼 그림. `sail-logo.png` 를 그대로 다시 그린 것) |
 | 사진·표지·그림을 크게 보는 창(뷰어) | `assets/js/viewer.js`, `_includes/lightbox.html` |

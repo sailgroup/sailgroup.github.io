@@ -17,6 +17,10 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   {%- comment -%}Data-driven topic-tag colors, generated from _data/themes.yml as a cacheable stylesheet (not an inline <style>, so the CSP needs no style 'unsafe-inline').{%- endcomment -%}
   <link rel="stylesheet" href="{{ '/assets/css/themes.css' | relative_url }}">
+  {%- if page.people_start -%}
+  {%- comment -%}/pi/, /members/ and /alumni/ open the people document at their own part, or at the part an address's #pi, #members or #alumni names (D57). Chrome does it from the stylesheet (scroll-initial-target); where a browser does not, this script keeps the page hidden until it has scrolled there. It runs before the page is drawn, so it is not deferred.{%- endcomment %}
+  <script src="{{ '/assets/js/people-start.js' | relative_url }}"></script>
+  {%- endif %}
   <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
   <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="icon" href="{{ '/assets/images/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">

@@ -30,7 +30,9 @@ domain `https://sail.kookmin.ac.kr`.
 - `_layouts/` (`default`, `page`, `person`, `publication`), `_includes/` (shared markup),
   `assets/` — templates, partials, styles (`assets/css/main.scss`), JS, images
 - top-level pages — `index.html`, `research`, `pi`/`members`/`alumni`, `publications`, `news`,
-  `photos`, `positions` (member/alumni/publication detail pages are generated, not files)
+  `photos`, `positions` (member/alumni/publication detail pages are generated, not files).
+  `pi`, `members` and `alumni` are one document, `_includes/people-page.html`: each address
+  shows the PI, the members and the alumni and opens at its own part (D57)
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
   from the build)
 - `.github/workflows/`: the CI build (Jekyll, html-proofer) and deploy; `.github/scripts/`: the
@@ -80,9 +82,10 @@ domain `https://sail.kookmin.ac.kr`.
   glows; neutral (untinted) greys plus the brand orange; other colour comes only from information
   (figures; topic tags and news categories as a dot in their colour inside a neutral capsule,
   D56). Glass (D56) only on what floats over the page: the header, its dropdown, the phone
-  menu, the figures' zoom mark and the Publications capsule on phones (the white `glass`
-  mixin, plain white where the browser or the reader turns transparency off), and the
-  viewer's buttons (dark); never on content or on other glass. Hover lifts are kept
+  menu, the figures' zoom mark, the Publications capsule on phones and the people pages'
+  three-part menu while it is held under the header (D57) (the `glass` mixin, white or for
+  that menu light grey, plain where the browser or the reader turns transparency off), and
+  the viewer's buttons (dark); never on content or on other glass. Hover lifts are kept
   (maintainer's choice). Never shorten or hide PI-written text to fit a layout; balance a
   text-heavy block with the lab's own figures. The header switches to the menu button at
   68.75em (1100px at the default font size; `main.scss`, `nav.js` and `pubs.js` hold the

@@ -1839,3 +1839,58 @@ add their verification meta tags.
   sent the 51 of the 69 pages whose HTML changed, Bing 200, Naver 200). The live site is the
   deployed build (`livecmp.js` 152 files byte-identical, 270 image URLs 200); on the live site
   `functional.js` 22 of 22 and `webkit-check.cjs` 35 of 35.
+
+## D57: /pi/, /members/ and /alumni/ are one document (maintainer's request, 2026-10-23)
+
+- **Asked:** after D56 the maintainer asked whether the three people pages could be read as
+  one page, keeping the three menu entries and the three addresses. Two ways were shown: one
+  page at /members/ with the other two addresses sent there, or one document shared by the
+  three addresses, each opening at its own part. The maintainer chose the second, knowing
+  that search engines may then treat the three as one page and show only one of them, and
+  approved the draft from before-and-after pictures. coley.mit.edu's People page (the PI,
+  then each group down to the alumni, on one page) is the model.
+- **Markup:** `_includes/people-page.html` holds the document: the PI's heading, the
+  three-part menu (`people-nav.html`), the PI's profile, then the members and the alumni,
+  each part under a hairline with its heading and lead. `pi.html`, `members.html` and
+  `alumni.html` only pass the part they start at. The part an address names carries the
+  page's one h1, the other two an h2 in the same style (the PI's Education and Career
+  Summary one level below the PI's name, styled alike). Each address keeps its `<title>`,
+  description, canonical URL and JSON-LD; no sentence, name or order changes (D52). On
+  /members/ and /alumni/ the PI's photo loads lazily instead of first.
+- **The menu:** the three-part menu is sticky under the header for the whole document;
+  held there, its track is the glass of D56 in the light grey it has at rest (the `glass`
+  mixin takes a base colour), so the chosen part keeps its raised white. The PI's photo
+  column stops below it. It stays one row at every width, so the space kept for it is
+  right: the segments narrow at 416, 376 and 336px (375 and 360px phones wrapped it to two
+  rows with the full padding), and under a large text setting the track scrolls sideways.
+- **Opening at a part:** `scroll-initial-target: nearest` on the starting part (Chrome and
+  Edge; it reads the page's scroll-padding but not the part's scroll-margin, so on these
+  pages the menu's height is added to the scroll-padding). Safari and Firefox (WebKit 26.5,
+  Firefox 151) lack it: `assets/js/people-start.js`, in the head and not deferred, hides
+  the page (`people-pending`) and shows it once the part is at the top, on a fresh visit
+  only (a reload or Back keeps the reader's place). It also takes an address with
+  `#pi`, `#members` or `#alumni`: Safari scrolls to it smoothly and sometimes stopped short
+  while the page loaded. Without scripts Chrome still opens at the part; Safari and Firefox
+  open at the top, and there the menu's Members and Alumni load their address at the top
+  again (all three parts are on the page; links with `#members` would fix it but show that
+  address to everyone).
+- **Following the part in view:** `assets/js/people.js` sets the address (replaceState),
+  the tab's title and aria-current in both menus to the part in view, after the page has
+  loaded and stopped moving (Safari stops its smooth scroll to a `#part` when the address
+  changes). A link to one of the three addresses (the menu, the header's dropdown, the
+  phone menu, the footer) scrolls to its part as a new history entry, so Back returns to
+  where the reader was; focus moves to the part's heading, and a dropdown or phone menu
+  closes as it would on a new page.
+- **Keyboard:** opened at the members or the alumni, focus rests on that part's heading
+  (`tabindex="-1"`, no ring), so the first Tab goes into the part and a screen reader starts
+  there, as after an address with `#members`; focus and blur left the starting point there
+  in Chrome only. The skip link of /members/ and /alumni/ goes to their part, and the skip
+  link is now `position: fixed` on every page, so focusing it never scrolls (absolute at the
+  top of the document, Firefox took a reader who pressed Tab from the alumni back to the
+  top).
+- **Review before the commit:** a separate review of the change found the keyboard order,
+  the PI's Education and Career Summary unstyled as h3 on /members/ and /alumni/ (21px, no
+  rule), the menu's two rows at 375px and below, and Safari and Firefox without scripts;
+  the first three are fixed above, the last is as described.
+- **Check:** local Docker builds while drafting (`ruby:3.3`, the Gemfile.lock versions); the
+  `dev` run's artifact and the live site in `REVIEW.md` section 27.

@@ -3,18 +3,9 @@ layout: default
 title: Alumni
 description: "Alumni of the Spectroscopy and AI Lab (SAIL) at Kookmin University, and where they are now."
 permalink: /alumni/
+# The PI, the members and the alumni are one document; this address opens it at the
+# alumni (D57, _includes/people-page.html).
+people_start: alumni
+scripts: [people]
 ---
-<div class="container page-head">
-  <h1>Alumni</h1>
-  <p class="lead">Former members of the Spectroscopy and AI Lab at Kookmin University.</p>
-  {% include people-nav.html %}
-</div>
-
-<section class="section section--tight">
-  <div class="container">
-    <div class="person-grid">
-      {%- assign grads = site.data.people | where: "status", "alumni" -%}
-      {%- for a in grads -%}{% include person-card.html person=a %}{%- endfor -%}
-    </div>
-  </div>
-</section>
+{% include people-page.html start="alumni" %}

@@ -83,16 +83,17 @@
    soft shadow. Apple's glass also bends the light at its edges; on the web that takes
    an SVG displacement filter that only Chrome applies to a backdrop, so it is left out.
    Without backdrop-filter the material is near-opaque white, and with the system's
-   "reduce transparency" setting it is plain white. */
-@mixin glass($alpha: 0.72, $blur: 20px) {
-  background: rgba(255, 255, 255, $alpha);
+   "reduce transparency" setting it is plain white. A light grey $base gives the same
+   material in grey (the people pages' three-part menu, D57). */
+@mixin glass($alpha: 0.72, $blur: 20px, $base: #fff) {
+  background: rgba($base, $alpha);
   -webkit-backdrop-filter: saturate(180%) blur($blur);
   backdrop-filter: saturate(180%) blur($blur);
   @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba($base, 0.97);
   }
   @media (prefers-reduced-transparency: reduce) {
-    background: #fff;
+    background: $base;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -232,8 +233,10 @@ p { text-wrap: pretty; }
 .link:hover { color: var(--orange-ink); text-decoration-color: currentColor; }
 
 /* --- Accessibility helpers ----------------------------------------------- */
+/* Fixed, so focusing it never scrolls: /members/ and /alumni/ open partway down the page
+   (D57), and an absolute link at the top of the document took the reader back up. */
 .skip-link {
-  position: absolute;
+  position: fixed;
   left: 0.75rem;
   top: -3rem;
   z-index: 200;
@@ -764,7 +767,8 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .profile__affil { color: var(--muted); }
 
 .cv { margin-top: var(--space-xl); }
-.cv h2 { font-size: var(--fs-base); font-weight: 600; letter-spacing: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line-2); margin-bottom: 0.25rem; }
+/* h3 where the PI's name is an h2, on /members/ and /alumni/ (people-page.html, D57). */
+.cv h2, .cv h3 { font-size: var(--fs-base); font-weight: 600; letter-spacing: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line-2); margin-bottom: 0.25rem; }
 .cv__item { display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 1.5rem; padding: 0.75rem 0; }
 .cv__item + .cv__item { border-top: 1px solid var(--line); }
 .cv__role { font-weight: 600; color: var(--ink); }
@@ -775,18 +779,28 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 /* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): the three pages as a
    segmented control (D56), the current one raised on white in a neutral track. They were
    grey text links with a dot between them. */
-.people-nav { margin-top: var(--space-md); font-size: var(--fs-sm); }
+.people-nav { margin-top: var(--space-md); font-size: var(--people-nav-fs, var(--fs-sm)); }
+/* One row at every width, so the held menu is as tall as --people-bar-h says (D57): the
+   segments narrow on small phones (below), and a menu still too wide, under a large text
+   setting, scrolls sideways inside its track. */
 .people-nav ul {
   display: inline-flex;
-  flex-wrap: wrap;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
   gap: 2px;
   padding: 3px;
   border-radius: 1.25rem;
   background: var(--fill);
 }
+.people-nav ul::-webkit-scrollbar { display: none; }
+/* The track clips what crosses its edge (it scrolls), so the focus ring is drawn inside. */
+.people-nav a:focus-visible { outline-offset: -2px; }
+.people-nav li { flex: none; }
 .people-nav a {
   display: block;
   padding: 0.4rem 1rem;
+  white-space: nowrap;
   border-radius: var(--radius-pill);
   font-weight: 500;
   color: var(--ink-2);
@@ -798,6 +812,69 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   color: var(--ink);
   font-weight: 600;
   box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* --- People document (D57) ------------------------------------------------ */
+/* /pi/, /members/ and /alumni/ show one document (people-page.html): the PI, the members,
+   the alumni, each part under a hairline with its heading in the same style. The
+   three-part menu is held under the header as the page scrolls; held there, its track
+   turns into floating glass (is-stuck, set by people.js). The parts and the PI's photo
+   stop below it. */
+/* A part reached by its address or its link sits just under the menu: the menu's height
+   joins the page's scroll-padding here (a scroll-margin on the part would do the same for
+   links, but Chrome's scroll-initial-target reads only the padding). /members/ and
+   /alumni/ open there (scroll-initial-target; people-start.js where the browser lacks it,
+   hiding the page until then with people-pending). */
+html:has(.people) {
+  --people-nav-fs: var(--fs-sm);
+  --people-bar-h: calc(var(--people-nav-fs) * 1.65 + 0.8rem + 6px);
+  scroll-padding-top: calc(var(--header-h) + 1.5rem + var(--people-bar-h));
+}
+.people__title { font-size: var(--fs-2xl); letter-spacing: -0.025em; }
+/* A part's heading takes focus only from people.js (on opening at the part, after a link
+   to it), never from Tab; it is not a control, so it draws no ring. */
+.people__title:focus { outline: none; }
+.people__head .people__title { margin-bottom: 0.5rem; }
+.people__head--pi { padding-bottom: 0; }
+.people-bar {
+  position: sticky;
+  top: calc(var(--header-h) + 0.75rem);
+  z-index: 50;
+  margin-block: var(--space-md) var(--space-sm);
+  pointer-events: none; /* the empty width beside the menu lets clicks through */
+}
+.people-bar .people-nav { margin-top: 0; }
+.people-bar .people-nav ul {
+  pointer-events: auto;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+/* Held at the top, the track is glass of the same light grey as at rest, so the chosen
+   part keeps its raised white against it. */
+.people-bar.is-stuck .people-nav ul {
+  @include glass(0.78, 20px, #f2f2f2);
+  box-shadow: $glass-rim, $glass-float;
+}
+.people-bar.is-stuck .people-nav a:not([aria-current]):hover { background: var(--fill); }
+.people .profile__aside { top: calc(var(--header-h) + 0.75rem + var(--people-bar-h) + 1.5rem); }
+.people__part > .people__head { padding-top: 0; }
+.people__part > .people__head::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: var(--space-lg);
+  background: var(--line);
+}
+.people__part.is-start { scroll-initial-target: nearest; }
+html.people-pending .site-main { visibility: hidden; }
+html.people-pending, html.people-jump { scroll-behavior: auto; }
+
+/* The three-part menu in one row on small phones: 375px and 360px wide (common Android
+   widths) wrapped it to two rows with the full padding, 320px with the smaller text too. */
+@media (max-width: 26em) { .people-nav a { padding-inline: 0.75rem; } }
+@media (max-width: 23.5em) { .people-nav a { padding-inline: 0.6rem; } }
+@media (max-width: 21em) {
+  html:has(.people) { --people-nav-fs: var(--fs-xs); }
+  .people-nav a { padding-inline: 0.5rem; }
 }
 
 /* --- Publications --------------------------------------------------------- */
@@ -1564,7 +1641,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media print {
-  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint { display: none; }
+  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint, .people-bar { display: none; }
   .pubs { display: block; }
   body { font-size: 11pt; }
   a { color: inherit; text-decoration: none; }

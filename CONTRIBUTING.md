@@ -278,7 +278,7 @@ This page is in Korean by request; keep new copy in Korean to match.
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `code-badge`,
   `dataset-badge`, `journal-covers`, `news-date`, `social-links`, `icon`,
-  `structured-data`, `people-nav`, `new-tab`, `lightbox`). Edit a pattern in one
+  `structured-data`, `people-page`, `people-nav`, `new-tab`, `lightbox`). Edit a pattern in one
   place. Every image that opens larger (the journal covers, the photos, the home
   figure, a paper's figure) uses one viewer: `_includes/lightbox.html` with
   `assets/js/viewer.js`.
