@@ -34,9 +34,10 @@
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
 - id: 47
-  title: "From Molecules to Mixture"
+  title: "Encoding Composition-Dependent Intermolecular Interactions into Learned Molecular Representations"
   authors: "Jihwan Kim, Chanjoong Kim, Joonyoung F. Joung*"
-  journal: "Submitted"
+  journal: "Chem. Eng. J."
+  ref: accepted
   year: 2026
   doi: ""
   code: "https://github.com/sailgroup/MEMo"
