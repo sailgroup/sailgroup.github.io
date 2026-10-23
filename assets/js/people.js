@@ -51,12 +51,16 @@
   }
 
   // The part in view: the last whose top has passed a line a quarter of the way down the
-  // screen below the menu; at the foot of the page, the last part.
+  // screen below the menu; at the foot of the page, the last part. A window as tall as the
+  // page, which scrolls nowhere, keeps the part its address names: a search engine renders
+  // a page in such a window and takes the title the script leaves, so /pi/ could be indexed as
+  // "Alumni".
   function inView() {
+    var doc = document.documentElement;
+    if (doc.scrollHeight <= window.innerHeight + 2) return Math.max(0, partOf(location.pathname));
     // Below the menu, or the header where the menu scrolls with the page (a short screen).
     var top = Math.max(bar.getBoundingClientRect().bottom, header ? header.getBoundingClientRect().bottom : 0);
     var line = top + (window.innerHeight - top) / 4;
-    var doc = document.documentElement;
     if (window.scrollY + window.innerHeight >= doc.scrollHeight - 2) return parts.length - 1;
     for (var i = parts.length - 1; i > 0; i--) {
       if (parts[i].getBoundingClientRect().top <= line) return i;
