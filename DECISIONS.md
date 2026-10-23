@@ -2030,3 +2030,7 @@ Replaces D17 (2), under which the tab and home-screen icons were Kookmin's emble
   icon drawn on the pixel grid.
 - **Not changed:** the Kookmin emblem in the header and its link (D17, D21), the footer's
   Kookmin wordmark, the logo in the structured data (`sail-logo-square.png`).
+- **Check:** `REVIEW.md` section 29.
+- **Deployed** 2026-10-23: `main` fast-forwarded 2650b82 to 5ac0dfe (run 39964709684; IndexNow
+  found no page changed, as only the icons did). The seven icon files on the live site are
+  the committed ones.

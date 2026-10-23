@@ -323,3 +323,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   separate review before the D58 commit found two faults, both fixed. Built on `dev` (runs
   39942855159, 39945201170, 39953553880), deployed (main runs 39944118402, 39945323629,
   39955241670) and verified live. Results in `REVIEW.md` section 28.
+- **Phase 29 (2026-10-23):** the favicon (D59). The maintainer found Kookmin's emblem hard to
+  make out in a tab and, after two rounds of mock-ups, chose the header wordmark's SAIL on the
+  ink tile, with the 16px icon drawn on the pixel grid. Only the icon files changed. Built on
+  `dev` (run 39964410347), deployed (main run 39964709684) and verified live. Results in
+  `REVIEW.md` section 29.

@@ -1258,3 +1258,18 @@ byte the local build's; the HTML differs only by the `srcset` the image step wri
   all answer except LinkedIn's 999 (two images answered 503 in the burst of requests and 200
   when asked again); page weight at 1,440px, first view, /pi/ 455KB, /members/ 730KB,
   /alumni/ 734KB.
+
+## 29. The favicon (2026-10-23, D59)
+
+The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wordmark (5ac0dfe).
+- **Mock-ups:** two rounds at real size, in light and dark tab bars, a Google result and an
+  iPhone home screen, with the 16px icon enlarged pixel for pixel (`.qa/favicon-2610/`).
+- **Local build** (Docker `ruby:3.3`) against one of 2650b82, the live commit: 8 files differ,
+  the seven icons (`favicon.ico` at the root and in `assets/images/`, `favicon-16.png`,
+  `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`), and
+  `.well-known/security.txt`, whose `Expires` is written at build time. No page changed.
+- **Artifact** (`dev` run 39964410347): the seven icons byte for byte the committed files (the
+  image step leaves them as they are).
+- **Live** (main run 39964709684; IndexNow found 0 of 69 pages changed): the seven icons answer
+  200 with their image types and are the committed files; the home page links the same four
+  icons and the manifest, and keeps the Search Console tag.
