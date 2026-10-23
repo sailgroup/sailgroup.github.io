@@ -314,3 +314,12 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   shown text changed. Built on `dev` (run 39929215435), deployed on 2026-10-23 (main run
   39930843253; IndexNow 69 pages, Bing 200, Naver 200) and verified live. Results in
   `REVIEW.md` section 27.
+- **Phase 28 (2026-10-23):** a review of D56 and D57 from every side (3c74f86: the year links,
+  aria-current, the Hangul search, Windows contrast themes, large text, short screens, print,
+  the members' first photos), a fix for search engines that render in a window as tall as the
+  page (73e77c6), then D58 on the maintainer's request (9f67ed7): large monitors, the footer's
+  email, phone and GitHub as icons, nine points of design polish, the maker's credit in the
+  code and /humans.txt, cleaner structured data, and Korean for Naver in the head only. A
+  separate review before the D58 commit found two faults, both fixed. Built on `dev` (runs
+  39942855159, 39945201170, 39953553880), deployed (main runs 39944118402, 39945323629,
+  39955241670) and verified live. Results in `REVIEW.md` section 28.

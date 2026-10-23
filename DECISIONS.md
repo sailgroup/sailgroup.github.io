@@ -1898,6 +1898,10 @@ add their verification meta tags.
   sent 69 pages, Bing 200, Naver 200). The live site is the deployed build (`livecmp.js` 154
   files byte-identical, 270 image URLs 200); on the live site the people document's checks
   pass in Chrome, WebKit and Firefox, `functional.js` 22 of 22 and `webkit-check.cjs` 35 of 35.
+- **After the deploy** (73e77c6, 2026-10-23): a window as tall as the page, in which a search
+  engine renders it, saw the page's foot and so the alumni as the part in view, and the
+  script renamed /pi/ and /members/ "Alumni"; such a window now keeps the part its address
+  names (`REVIEW.md` section 28).
 
 ## D58: Large monitors, footer icons, design polish, credit and search (maintainer's request, 2026-10-23)
 
@@ -1991,4 +1995,8 @@ add their verification meta tags.
 - **Left to the maintainer or the PI:** registering in Google Search Console and Naver
   Search Advisor (the codes, then the sitemap), Bing Webmaster Tools, Kookmin's two faculty
   pages (D47).
-- **Check:** REVIEW.md section 28.
+- **Check:** `REVIEW.md` section 28.
+- **Deployed** 2026-10-23: `main` fast-forwarded 73e77c6 to 9f67ed7 (run 39955241670; IndexNow
+  sent 69 pages, Bing 200, Naver 200). The live site is the deployed build (`livecmp.js` 155
+  files byte-identical, 270 image URLs 200); `functional.js` 22 of 22, `webkit-check.cjs` 35
+  of 35, the people document in Chrome, WebKit and Firefox, the footer labels in Edge.

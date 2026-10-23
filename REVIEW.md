@@ -1182,3 +1182,79 @@ the commit a separate review of the change found four faults; three were fixed (
   pages, no problems; `d42-spot.js` 17 of 17; the links of the 69 sitemap pages all answer,
   except LinkedIn, which answers automated requests with its 999; page weight as measured on
   the artifact above.
+
+## 28. Review of D56 and D57, a fix for search engines, and D58 (2026-10-23)
+
+Three deploys on one evening, each checked on the `dev` run's artifact and then on the live
+site. The tools are those of sections 26 and 27 (`.qa/tools/`, the people document's script),
+with Edge, WebKit 26.5 and Firefox through playwright-core 1.61.1.
+
+**Review of D56 and D57** (3c74f86, on the maintainer's request for a review from every side:
+code, bugs, security, design on phones, desktops and monitors). Fixed: a year link on
+Publications stopped 88px low (scroll-margin on top of scroll-padding); a page under a menu
+item (a paper, a person) carried aria-current; the paper search folded a Hangul syllable to its
+first consonant; an empty volume left a comma; a gallery photo opened nothing without scripts;
+paper thumbnails were cut to 4:3 renditions; Windows contrast themes (the phone menu button,
+the current page, the logos, the glass); a large default text size (the header bar measured,
+the container in rem); short screens (the people menu scrolls with the page below 500px of
+height); print; wider letter spacing; long titles at 320px; the first three photos of the
+members or alumni load at once (phone LCP 2.3 s to 1.5 s); unused rules removed and no source
+map in the published CSS.
+- **Artifact** (`dev` run 39942855159): `qa-site.js` no problems; `text-check.py`, no shown line
+  changed on the 69 pages, one screen-reader name added (the Publications capsule);
+  `functional.js` 21 of 22 (the 404 test, as before); `webkit-check.cjs` 35 of 35; the people
+  document 64 of 64 in Chrome; every year link lands at its year (0 mismatched at 1,440 and
+  390px).
+- **Live** (main run 39944118402; IndexNow 68 pages, Bing 200, Naver 200): `livecmp.js` 154 of
+  154 files identical to the deployed build, 270 image URLs 200; `functional.js` 22 of 22;
+  `webkit-check.cjs` 35 of 35; the people document 64, 59 and 64 (Chrome, WebKit, Firefox);
+  `qa-site.js` no problems; `d42-spot.js` 17 of 17; links all answer except LinkedIn's 999.
+
+**A fix for search engines** (73e77c6). The SEO review found that a renderer whose window is
+as tall as the page (Googlebot renders so) saw the page's foot and so the alumni as the part in
+view: `people.js` renamed /pi/ and /members/ "Alumni" (title and address), the title a search
+engine takes. Such a window now keeps the part the address names. `dev` run 39945201170, main
+run 39945323629; live, 6 of 6 addresses keep their title in a window as tall as the page at
+1,024 and 412px.
+
+**D58** (9f67ed7): large monitors, the footer's icons, the design polish, the credit, the
+search data and the Korean in the head. Built locally while drafting (Docker `ruby:3.3`),
+then on `dev` (run 39953553880): the CSS, llms.txt and humans.txt of the artifact are byte for
+byte the local build's; the HTML differs only by the `srcset` the image step writes in CI.
+- **Text:** `text-check.py` over the 69 pages against the live site: the footer's email and
+  phone lines are no longer shown text (they are the icons' names and, with a mouse, the
+  labels under the icons, which the check still counts as text, so it lists only "GitHub" as
+  added). Of the 995 `_data` strings, the 722 the live site shows are all still shown.
+- **Head:** every meta description within 160 characters; every JSON-LD block on the 96 built
+  HTML files parses; WebSite only on the home page, WebPage on Research, News, Photos and
+  Positions, the PI and the two lists on the three people addresses; paper 46 has no
+  "Submitted" journal anywhere; no `favicon.svg` reference; `main.css` starts with the credit
+  and no byte order mark.
+- **Large monitors:** a build with only the monitor, footer and credit changes put every
+  element of the 70 pages at 1,440 and 390px where it was, except in the footer; at 1,920px
+  the root stays 16px and the container 1,140px; 2,560px gives 18px and a 1,282.5px
+  container, 3,440 and 3,840px 20px and 1,425px, no sideways scroll.
+- **Footer labels** (Edge): each label shows under its icon on hover or focus, stays while the
+  pointer moves onto it and along it, and its text can be selected; a focused icon's label
+  gives way to the hovered one; none shows at 720px and below; no sideways scroll at 1,440,
+  1,100, 1,024, 800, 720 and 640px.
+- **Review before the commit:** a separate review of the whole change found the footer label
+  out of reach of the pointer and the capsule's count button without a pressed state; both
+  fixed, as in D58.
+- **Artifact checks:** `qa-site.js` no problems; `functional.js` 21 of 22 (the 404 test);
+  `webkit-check.cjs` 35 of 35; the people document 64 of 64 in Chrome and Firefox and 59 of 59
+  in WebKit; year links 0 mismatched; the tall window 6 of 6. The modes script (contrast
+  theme, large text, short screens, print, letter spacing) shows only the header's growth
+  under a large default text, as described in D58, and the 21px sideways scroll at a 24px
+  default and 320px on Publications that the live site already had.
+- **Not changed:** Chrome sometimes restores a reload of /members/ to the members' heading
+  instead of the reader's place (1 run in 3 of the people script, on the deployed build of
+  3c74f86 as on this one; 10 of 10 when the case runs alone).
+- **Live** (main run 39955241670; IndexNow 69 pages, Bing 200, Naver 200): `livecmp.js` 155
+  of 155 files identical to the deployed build (`humans.txt` is new), 270 image URLs 200;
+  `functional.js` 22 of 22; `webkit-check.cjs` 35 of 35; the people document 64, 59 and 64
+  (Chrome, WebKit, Firefox); the tall window 6 of 6; the footer labels as above; `qa-site.js`
+  over the 70 pages, no problems; `d42-spot.js` 17 of 17; the links of the 69 sitemap pages
+  all answer except LinkedIn's 999 (two images answered 503 in the burst of requests and 200
+  when asked again); page weight at 1,440px, first view, /pi/ 455KB, /members/ 730KB,
+  /alumni/ 734KB.
