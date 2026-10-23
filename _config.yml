@@ -19,9 +19,10 @@ site_creator: chanjoong-kim
 university_ko: 국민대학교
 # Ownership codes from Google Search Console and Naver Search Advisor (the "HTML tag" method's
 # content="..." value), written into every page's head; removing a code ends that ownership.
-# webmaster_verifications:
-#   google:
-#   naver:
+# google: the property https://sail.kookmin.ac.kr/ (URL prefix), the maintainer's account,
+# 2026-10-23. naver: to come.
+webmaster_verifications:
+  google: "_c_N6GLdF_s0Pl83zPSZfMwsGaH9WiBlbSSz7gmmTmk"
 # The lab's GitHub organization: the lab itself, so it is the lab's sameAs; the footer links it
 # with the GitHub mark (D55).
 github_org: https://github.com/sailgroup

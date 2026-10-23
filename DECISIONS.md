@@ -1986,7 +1986,9 @@ add their verification meta tags.
   - Positions' title "Positions (모집 안내)" (its heading stays "Positions");
   - the lab's knowsAbout lists each research area in English and Korean.
   Search Console and Search Advisor codes go in `_config.yml` `webmaster_verifications`
-  (google through jekyll-seo-tag, naver through `head.html`), none yet.
+  (google through jekyll-seo-tag, naver through `head.html`). Google's went in the same
+  evening (the maintainer's account, a URL-prefix property for https://sail.kookmin.ac.kr/,
+  the "HTML tag" method); Naver's is to come.
 - **Review before the commit:** a separate review of the whole change found no high-severity
   fault and two smaller ones, both fixed: the footer's label vanished when the pointer moved
   toward it, so it could not be selected (it sat to the right of the row, past the other
