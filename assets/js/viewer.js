@@ -1,3 +1,4 @@
+/*! SAIL, Spectroscopy and AI Lab (sail.kookmin.ac.kr). Designed and built by Chanjoong Kim (김찬중, github.com/chanjoongx), https://chanjoongx.com, cj@chanjoongx.com */
 /* Image viewer for gallery photos, journal covers and single figures. Each dialog
    (_includes/lightbox.html) shows the triggers that name it in data-viewer, in page order:
    a link or button with data-full (the image), and optionally data-title, data-desc,

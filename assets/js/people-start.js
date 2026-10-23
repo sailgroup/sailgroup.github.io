@@ -1,3 +1,4 @@
+/*! SAIL, Spectroscopy and AI Lab (sail.kookmin.ac.kr). Designed and built by Chanjoong Kim (김찬중, github.com/chanjoongx), https://chanjoongx.com, cj@chanjoongx.com */
 /* Opens the people document (D57, _includes/people-page.html) at the right part in a
    browser that does not do it from the stylesheet (scroll-initial-target in main.scss:
    Chrome and Edge do; Safari and Firefox did not in 2026-10): /members/ and /alumni/ at

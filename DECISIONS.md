@@ -1898,3 +1898,97 @@ add their verification meta tags.
   sent 69 pages, Bing 200, Naver 200). The live site is the deployed build (`livecmp.js` 154
   files byte-identical, 270 image URLs 200); on the live site the people document's checks
   pass in Chrome, WebKit and Firefox, `functional.js` 22 of 22 and `webkit-check.cjs` 35 of 35.
+
+## D58: Large monitors, footer icons, design polish, credit and search (maintainer's request, 2026-10-23)
+
+- **Asked:** after the review of D56 and D57 the maintainer asked for the site to use large
+  monitors better, the footer's email and phone as icons with the GitHub mark moved beside
+  them, a more refined finish in the spirit of D56 (Liquid Glass, colour), the site's maker
+  named in the code, and a check of search and AI-answer readiness; then, after seeing the
+  changes as before-and-after pictures (`.qa/review-2610c/`), Korean for Naver and Korean
+  searches "as far as it goes" without touching the design. Approved for deploy after a
+  final review.
+- **Large monitors:** `html { font-size: clamp(100%, 62.5% + 0.3125vw, 125%) }`: 16px up to
+  1920px wide, 18px at 2560, 20px from 3200. Desktop sizes moved from px to rem (the header's
+  minimum height, the logos, the hero figure, grid tracks, the profile and member photos, the
+  journal logos and badges, the viewer's figure), equal at 16px; phone-only px stay. The
+  container is 1140px at 1920, 1282.5px at 2560 and 1425px from 3200, with no sideways
+  scroll at any width. A reader whose default text is larger gets the logos and the header
+  scaled with it (90px at a 20px default, 108px at 24px), as browser zoom does.
+- **Footer:** the Contact address keeps its line; under it the email, the phone and the
+  GitHub mark (D55, moved from beside the Kookmin emblem) are round icons in a row (2.5rem,
+  2.75rem at 720px and below, a hairline ring that fills a little on hover; a LinkText ring
+  in a contrast theme). Each link's name is the email, the number or "SAIL on GitHub". With
+  a mouse, the icon pointed at or focused shows its email, number or "GitHub" just below it
+  (`.footer-tip`, hidden from screen readers and, while not shown, from find-in-page). The
+  label belongs to its icon's item and starts at the icon's lower edge, so the pointer can
+  move onto it and select the text (WCAG 1.4.13); a focused icon's label gives way while the
+  pointer is over the row. On touch screens and at 720px and below the row is the icons
+  alone. The email and the number as text stay on the PI's part of the people pages (the
+  email also on Positions). Every page's footer loses the two visible lines (D52, shown to
+  the maintainer).
+- **Design polish** (9 of 12 points from a separate design review):
+  - the header's menu labels `--ink-2` instead of `--muted` (3.5:1 over a dark photo under
+    the glass, now 6.35:1 at worst);
+  - the header's hairline hidden at the top of a page and drawn over the first 24px of
+    scroll (`animation-timeline: scroll()`, where supported; always drawn otherwise and under
+    reduced motion);
+  - floating glass other than the header bar and the phone menu (the dropdown, the zoom mark,
+    the phone capsule) on a light grey base (#f6f6f6) with a brighter rim, so its edge shows
+    over a white page;
+  - the phone menu marks the current page with an orange underline under its label, as the
+    desktop menu does, instead of a rule across the menu;
+  - selected text in light orange (it was the system blue, the only blue on the site) and the
+    search field's caret in orange;
+  - the viewer blurs the page behind it 20px (4px let the text and the orange logo through;
+    plain dark under reduced transparency);
+  - buttons, topic tags, the three-part menu, the capsule's two buttons and the footer icons
+    shrink to 96% while pressed, and the grey tap square of mobile browsers is off on them
+    (`nav.js` adds the empty touchstart listener iOS needs for `:active`);
+  - the favicon SVG (an old Georgia "S" on brown, which Chrome and Firefox preferred) removed,
+    so every browser shows the Kookmin emblem of D17;
+  - `theme-color` white (the phone's browser bar matched the footer, a black band over the
+    white header).
+  Not taken: `scrollbar-gutter` (a white strip beside the dark viewer), one set of motion
+  timings (little visible), the dropdown below the header (it would cover the parent link).
+- **Credit:** an HTML comment at the top of every page, `/humans.txt` (linked from every
+  page's head as `rel="author"`), a `/*! */` first line in `main.css` and in each JS file, and
+  the WebSite node's `creator` (`site_creator` in `_config.yml`, the person page of Chanjoong
+  Kim). Nothing on the pages changes.
+- **Search data:**
+  - jekyll-seo-tag's JSON-LD is cut off in `head.html` (it named the lab as a second
+    organization without an @id); the home page adds a WebSite node (alternateName: SAIL and
+    `alternate_names`) and Research, News, Photos and Positions a WebPage node, both tied to
+    the lab's @id;
+  - /pi/, /members/ and /alumni/ (one document, D57) each carry the PI's Person and the
+    Members and Alumni lists, so whichever address a search engine keeps keeps the PI;
+  - "Submitted" (46) is no longer given as a journal (Scholar meta, JSON-LD, the tab title);
+  - a paper without a volume and abstract has its status in the description ("Chem. Eng. J.,
+    accepted (2026)", 47), as in llms.txt;
+  - link previews and the ScholarlyArticle image use the larger figure where there is one;
+  - llms.txt follows llmstxt.org: the PI and the research areas above the first section,
+    the full text under "Optional", a preprint link where there is no DOI.
+- **Korean for search, in the head only** (D9 and D47 otherwise stand: the pages show the
+  English). Measured before: the home, Research and Publications pages had no Korean in their
+  titles and descriptions and 3 Hangul characters in their text, and Naver had indexed one
+  page (`/pi/`). Now:
+  - the home title "Spectroscopy and AI Lab | SAIL, 국민대학교 인공지능화학연구실" (the tagline;
+    Kookmin's faculty directory names the lab so);
+  - a Korean lead in the descriptions of the home page, Research, Publications, the three
+    people addresses, News and Photos, from the lab's own Korean ("국민대학교 화학부", the
+    overview in `research.yml`) and the research areas' Korean names: "국민대학교 화학부
+    정준영 교수 연구실 논문." and so on, each within 160 characters; /pi/ starts "국민대학교
+    화학부 정준영 교수." (`department_ko` in `pi.yml`, built in `generate_pages.rb`);
+  - Positions' title "Positions (모집 안내)" (its heading stays "Positions");
+  - the lab's knowsAbout lists each research area in English and Korean.
+  Search Console and Search Advisor codes go in `_config.yml` `webmaster_verifications`
+  (google through jekyll-seo-tag, naver through `head.html`), none yet.
+- **Review before the commit:** a separate review of the whole change found no high-severity
+  fault and two smaller ones, both fixed: the footer's label vanished when the pointer moved
+  toward it, so it could not be selected (it sat to the right of the row, past the other
+  icons; now under its icon, as above), and the capsule's count button had lost its tap
+  highlight without a pressed state.
+- **Left to the maintainer or the PI:** registering in Google Search Console and Naver
+  Search Advisor (the codes, then the sitemap), Bing Webmaster Tools, Kookmin's two faculty
+  pages (D47).
+- **Check:** REVIEW.md section 28.

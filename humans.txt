@@ -1,0 +1,21 @@
+---
+permalink: /humans.txt
+---
+/* TEAM */
+Design and development: Chanjoong Kim (김찬중)
+GitHub: https://github.com/chanjoongx
+Site: https://chanjoongx.com
+Contact: cj@chanjoongx.com
+From: Seoul, Republic of Korea
+
+/* LAB */
+SAIL, {{ site.title }}, {{ site.data.pi.department }}, {{ site.data.pi.institution }}
+Principal Investigator: {{ site.data.pi.name }} ({{ site.data.pi.name_ko }})
+Website: {{ site.url }}
+GitHub: {{ site.github_org }}
+
+/* SITE */
+Last update: {{ site.time | date: "%Y-%m-%d" }}
+Language: English, Korean
+Standards: HTML, CSS, JSON-LD, RFC 9116 (/.well-known/security.txt), llms.txt
+Components: Jekyll, Pretendard, GitHub Pages

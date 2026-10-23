@@ -1,3 +1,4 @@
+/*! SAIL, Spectroscopy and AI Lab (sail.kookmin.ac.kr). Designed and built by Chanjoong Kim (김찬중, github.com/chanjoongx), https://chanjoongx.com, cj@chanjoongx.com */
 (function () {
   "use strict";
   var btn = document.querySelector(".nav-toggle");
@@ -15,6 +16,10 @@
       document.documentElement.style.setProperty("--header-h", inner.offsetHeight + "px");
     }).observe(inner);
   }
+
+  // iOS Safari applies :active (the pressed look of the rounded controls in main.scss) only
+  // on a page that listens for touches.
+  document.addEventListener("touchstart", function () {}, { passive: true });
 
   function isOpen() { return btn.getAttribute("aria-expanded") === "true"; }
 

@@ -1,16 +1,27 @@
 # --- Site identity ---------------------------------------------------------
 title: Spectroscopy and AI Lab
 short_name: SAIL
-tagline: SAIL at Kookmin University
+# The home page's <title> is "title | tagline" (jekyll-seo-tag). The tagline carries the Korean name
+# Kookmin's faculty directory gives the lab, for Naver and Korean searches on Google (D58); the
+# pages themselves show only the English (D9).
+tagline: SAIL, 국민대학교 인공지능화학연구실
 # Other names of the lab, for search engines and AI answer engines only (the structured
-# data and llms.txt; no page shows them): the home page's kicker, and the Korean name
+# data and llms.txt, and the Korean one in the home page's title; no page shows them): the home page's kicker, and the Korean name
 # Kookmin University's faculty directory gives the lab (kookmin.ac.kr, 교수연구, 정준영,
 # "연구실/실험실"), so a search by either name finds this site.
 alternate_names:
   - Joonyoung F. Joung Lab
   - 인공지능화학연구실
+# Who designed and built the site: the slug of that person's page in people.yml, named as the
+# WebSite's creator in the structured data (humans.txt and the comment in default.html say it too).
+site_creator: chanjoong-kim
 # Kookmin University's Korean name, beside the English one in the structured data.
 university_ko: 국민대학교
+# Ownership codes from Google Search Console and Naver Search Advisor (the "HTML tag" method's
+# content="..." value), written into every page's head; removing a code ends that ownership.
+# webmaster_verifications:
+#   google:
+#   naver:
 # The lab's GitHub organization: the lab itself, so it is the lab's sameAs; the footer links it
 # with the GitHub mark (D55).
 github_org: https://github.com/sailgroup

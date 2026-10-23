@@ -1,7 +1,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1f1f1f">
+  {%- comment -%}White, as the header: a phone's browser bar and the header read as one surface (it was the footer's #1f1f1f).{%- endcomment %}
+  <meta name="theme-color" content="#ffffff">
   {%- comment -%}"only light": the site has no dark design, and Chrome's automatic dark mode (Android's "darken websites") inverted it and made the black logos nearly vanish; "only" opts the site out of it.{%- endcomment %}
   <meta name="color-scheme" content="only light">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -22,13 +23,20 @@
   <script src="{{ '/assets/js/people-start.js' | relative_url }}"></script>
   {%- endif %}
   <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
-  <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="icon" href="{{ '/assets/images/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
   <link rel="icon" href="{{ '/assets/images/favicon-16.png' | relative_url }}" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
   <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+  {%- comment -%}Who made the site (humanstxt.org).{%- endcomment %}
+  <link rel="author" href="{{ '/humans.txt' | relative_url }}" type="text/plain">
 
-  {%- seo -%}
+  {%- comment -%}jekyll-seo-tag's title, description, canonical and Open Graph tags; its JSON-LD block is cut off (it named the lab as a second organization without an @id), and structured-data.html gives the site's graph.{%- endcomment -%}
+  {%- capture seotag -%}{% seo %}{%- endcapture -%}
+  {{ seotag | split: '<script type="application/ld+json">' | first | strip }}
+  {%- comment -%}Naver Search Advisor's ownership code (jekyll-seo-tag writes Google's from the same _config.yml key).{%- endcomment -%}
+  {%- if site.webmaster_verifications.naver %}
+  <meta name="naver-site-verification" content="{{ site.webmaster_verifications.naver | escape }}">
+  {%- endif %}
   {%- include citation-meta.html -%}
   {%- include structured-data.html -%}
 </head>

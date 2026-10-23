@@ -58,14 +58,19 @@ domain `https://sail.kookmin.ac.kr`.
 ## SEO / GEO
 - jekyll-seo-tag emits the core meta; `_plugins/generate_pages.rb` sets a unique `title`/
   `description` per generated page (else every generated page shares the site title). `_includes/structured-data.html`
-  emits JSON-LD (Organization, Person, ScholarlyArticle, BreadcrumbList, CollectionPage). `/llms.txt`
+  emits JSON-LD (Organization, WebSite, Person, ScholarlyArticle, BreadcrumbList, CollectionPage,
+  WebPage); jekyll-seo-tag's own JSON-LD is cut off in `head.html` (D58). `/llms.txt`
   is a generated summary for AI answer engines (`/llms-full.txt` the full text); the sitemap
   excludes the noindex redirects. `/.well-known/security.txt` writes its `Expires` at build time.
-  Registering in Google Search Console / Naver Search Advisor is a manual (account-based) step.
+  Registering in Google Search Console / Naver Search Advisor is a manual (account-based) step;
+  their "HTML tag" codes go in `_config.yml` `webmaster_verifications` (google, naver).
 - Titles carry Korean names ("Jihwan Kim (김지환)") and a published paper's venue ("(Nature, 2025)");
   meta descriptions stay within 160 characters. The lab's other names (`alternate_names` in
-  `_config.yml`, e.g. 인공지능화학연구실 from Kookmin's faculty directory) go only into the JSON-LD and
-  llms.txt. After each `main` deploy, IndexNow tells Bing and Naver which pages changed
+  `_config.yml`, e.g. 인공지능화학연구실 from Kookmin's faculty directory) go into the JSON-LD and
+  llms.txt. Korean for Naver and Korean searches lives in the head only, never on the page (D9):
+  the home title's tagline, a Korean lead in the main pages' descriptions ("국민대학교 화학부
+  정준영 교수 연구실 ..."), Positions' title, the research areas' Korean names in the lab's
+  knowsAbout (D58). After each `main` deploy, IndexNow tells Bing and Naver which pages changed
   (`.github/scripts/indexnow.mjs` and the workflow; never delete the root key file
   `4fa521d6cc1d0212aa5696ee0a4b94a8.txt`). D47.
 - Chrome's page translation: names and Korean text that stand alone (author lists, journal names,
@@ -92,8 +97,17 @@ domain `https://sail.kookmin.ac.kr`.
   width, keep them in sync); at the same width the footer's links and Contact go from three
   columns to two, and the Publications finder moves from beside the list to above it. The
   footer's links follow `navigation.yml`; the home page has no Contact section (the footer
-  carries it, D43). Beside
-  the footer's Kookmin emblem, the GitHub mark links `github_org` (D55).
+  carries it, D43). Under
+  the footer's Contact address the email, the phone and the GitHub mark (`github_org`, D55)
+  sit in a row as round icons, the email or number shown under its icon on hover or focus
+  (D58).
+- Large monitors (D58): the root font size grows from 100% at 1920px wide to 125% at 3200px
+  (`html` in `main.scss`), so desktop sizes are in rem (logos, figures, grid tracks, the
+  container) and scale with it; phone-only sizes may stay in px. Floating glass other than the
+  header bar and the phone menu takes a light grey base (`glass(…, #f6f6f6)`).
+- Credit (D58): the HTML comment in `_layouts/default.html`, `/humans.txt`, the `/*! */`
+  first line of `main.scss` and each JS file (ASCII only in the CSS one: a non-ASCII character
+  makes Sass write a byte order mark), and the WebSite's `creator` (`site_creator`).
 - Text colour by role (D49): running text `--ink-2`; headings, names and titles `--ink`;
   `--muted` only for dates, venues, captions and counts. Prose is capped at 55ch, which keeps a
   line within about 75 characters in this font; put the cap on the element whose size the `ch`

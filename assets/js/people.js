@@ -1,3 +1,4 @@
+/*! SAIL, Spectroscopy and AI Lab (sail.kookmin.ac.kr). Designed and built by Chanjoong Kim (김찬중, github.com/chanjoongx), https://chanjoongx.com, cj@chanjoongx.com */
 /* The people document (D57, _includes/people-page.html): /pi/, /members/ and /alumni/ are
    one page in three parts, the PI, the members and the alumni.
    - The part in view sets the address (replaceState, no new history entry), the tab's

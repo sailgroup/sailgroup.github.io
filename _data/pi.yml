@@ -5,6 +5,8 @@ name_full: Joonyoung Francis Joung
 name_ko: 정준영
 title: Assistant Professor
 department: Department of Chemistry
+# Korean, for the /pi/ meta description only (D58); the lab's own Korean overview says 화학부.
+department_ko: 화학부
 college: College of Science and Technology
 institution: Kookmin University
 email: jjoung@kookmin.ac.kr

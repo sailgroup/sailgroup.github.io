@@ -19,7 +19,8 @@ may shorten the author list with "...", which must never go out as an author nam
   {%- assign authlist = p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', '' | split: ',' -%}
   {%- for a in authlist -%}{%- assign an = a | strip -%}{%- if an != "" and an != "..." and an != "…" %}
   <meta name="citation_author" content="{{ an | escape }}">{% endif -%}{%- endfor -%}
-  {%- if p.journal and p.journal != "" %}
+  {%- comment -%}"Submitted" is a status, not a journal (a paper under review with a preprint, e.g. 46).{%- endcomment -%}
+  {%- if p.journal and p.journal != "" and p.journal != "Submitted" %}
   <meta name="citation_journal_title" content="{{ p.journal | escape }}">{% endif -%}
   {%- if p.vol %}
   <meta name="citation_volume" content="{{ p.vol }}">{% endif -%}

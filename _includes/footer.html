@@ -2,8 +2,11 @@
 top menu's (_data/navigation.yml; a menu with sub-pages lists the sub-pages, and Home is the logo),
 so a page added to the menu is listed here too, then Kookmin University (the header's emblem goes
 home at the PI's request, D21, so the university is linked here). Contact comes from
-_data/home.yml. Beside the university's emblem, the GitHub mark links the lab's organization
-(site.github_org, D55).{%- endcomment -%}
+_data/home.yml: the address in full, then the email, the phone and the lab's GitHub organization
+(site.github_org, D55) as three marks in a row (D58). The email and the phone keep their text as
+their names for screen readers; with a mouse it shows below its mark while the mark is pointed at
+or focused (.footer-tip), where it can be selected and copied. The PI's part of the people pages
+shows both as text, Positions the email.{%- endcomment -%}
 <footer class="site-footer"{% if page.lang and page.lang != site.lang %} lang="{{ site.lang }}"{% endif %}>
   <div class="container">
     <div class="footer-grid">
@@ -14,9 +17,6 @@ _data/home.yml. Beside the university's emblem, the GitHub mark links the lab's 
           <a class="footer-kmu" href="https://english.kookmin.ac.kr/" target="_blank" rel="noopener noreferrer" aria-label="Kookmin University (opens in a new tab)">
             <img src="{{ '/assets/images/kookmin-logo.png' | relative_url }}" alt="Kookmin University" width="379" height="56" loading="lazy">
           </a>
-          {%- if site.github_org %}
-          <a class="footer-gh" href="{{ site.github_org }}" target="_blank" rel="noopener noreferrer" aria-label="SAIL on GitHub (opens in a new tab)" title="GitHub">{% include icon.html name="github" %}</a>
-          {%- endif %}
         </div>
       </div>
 
@@ -42,9 +42,14 @@ _data/home.yml. Beside the university's emblem, the GitHub mark links the lab's 
       <div class="footer-contact">
         <p class="footer-title">Contact</p>
         <address>
-          {{ site.data.home.contact.address_en }}<br>
-          <a href="mailto:{{ site.data.home.contact.email }}">{{ site.data.home.contact.email }}</a><br>
-          <a href="tel:{{ site.data.home.contact.phone | remove: ' ' | remove: '-' }}">{{ site.data.home.contact.phone }}</a>
+          {{ site.data.home.contact.address_en }}
+          <span class="footer-icons">
+            <span class="footer-icon-item"><a class="footer-icon footer-icon--mail" href="mailto:{{ site.data.home.contact.email }}" aria-label="{{ site.data.home.contact.email }}">{% include icon.html name="mail" %}</a><span class="footer-tip" aria-hidden="true">{{ site.data.home.contact.email }}</span></span>
+            <span class="footer-icon-item"><a class="footer-icon footer-icon--phone" href="tel:{{ site.data.home.contact.phone | remove: ' ' | remove: '-' }}" aria-label="{{ site.data.home.contact.phone }}">{% include icon.html name="phone" %}</a><span class="footer-tip" aria-hidden="true">{{ site.data.home.contact.phone }}</span></span>
+            {%- if site.github_org %}
+            <span class="footer-icon-item"><a class="footer-icon footer-icon--gh" href="{{ site.github_org }}" target="_blank" rel="noopener noreferrer" aria-label="SAIL on GitHub (opens in a new tab)">{% include icon.html name="github" %}</a><span class="footer-tip" aria-hidden="true">GitHub</span></span>
+            {%- endif %}
+          </span>
         </address>
       </div>
     </div>

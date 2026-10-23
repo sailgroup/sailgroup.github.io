@@ -1,3 +1,4 @@
+/*! SAIL, Spectroscopy and AI Lab (sail.kookmin.ac.kr). Designed and built by Chanjoong Kim (김찬중, github.com/chanjoongx), https://chanjoongx.com, cj@chanjoongx.com */
 (function () {
   "use strict";
   var bar = document.querySelector(".pub-toolbar");

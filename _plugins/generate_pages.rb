@@ -22,6 +22,7 @@ module SAIL
     ].freeze
 
     def generate(site)
+      @site = site
       SPECS.each do |spec|
         list = site.data[spec[:data]]
         next unless list.is_a?(Array)
@@ -70,8 +71,16 @@ module SAIL
       end
       nk  = pi["name_ko"].to_s.strip
       who = nk.empty? ? name : "#{name} (#{nk})"
-      desc = "#{who}, #{pi["title"]}, #{pi["department"]}, #{pi["institution"]}. Principal " \
-             "Investigator of the #{site.config["title"]} (#{site.config["short_name"]})."
+      # With the Korean at hand, the description starts with it ("국민대학교 화학부 정준영 교수."),
+      # for Naver and Korean searches (D58), and the English then fits 160 characters.
+      ko = [site.config["university_ko"], pi["department_ko"], nk].map { |v| v.to_s.strip }
+      desc = if ko.none?(&:empty?)
+               "#{ko.join(" ")} 교수. #{name}, #{pi["title"]}, #{pi["department"]}, " \
+               "#{pi["institution"]}, leads the #{site.config["title"]} (#{site.config["short_name"]})."
+             else
+               "#{who}, #{pi["title"]}, #{pi["department"]}, #{pi["institution"]}. Principal " \
+               "Investigator of the #{site.config["title"]} (#{site.config["short_name"]})."
+             end
       page.data["title"] ||= who
       page.data["description"] ||= clip(desc, DESC_MAX)
       # Link previews show the PI's portrait, as every person page shows its own. An
@@ -96,16 +105,27 @@ module SAIL
         title = entry["title"].to_s
         public_version = !entry["doi"].to_s.strip.empty? || !entry["preprint_url"].to_s.strip.empty?
         venue = entry["journal"].to_s.strip
+        venue = "" if venue == "Submitted" # a status (46 has a preprint while under review)
         year  = entry["year"].to_s.strip
         title += " (#{venue}, #{year})" if public_version && !venue.empty? && !year.empty?
         desc = entry["abstract"].to_s.strip
-        desc = "#{entry["journal"]} (#{entry["year"]}). #{strip_markers(entry["authors"])}" if desc.empty?
+        # Without an abstract: the citation as the page shows it, its status included
+        # ("Chem. Eng. J., accepted (2026)" for 47, which has no volume yet).
+        status = entry["vol"].to_s.strip.empty? ? entry["ref"].to_s.strip : ""
+        cited = [entry["journal"].to_s.strip, status].reject(&:empty?).join(", ")
+        desc = "#{cited} (#{entry["year"]}). #{strip_markers(entry["authors"])}" if desc.empty?
         meta = { "title" => title, "description" => clip(desc, DESC_MAX) }
         # Per-paper OG/Twitter image = its graphical abstract, so link previews and
-        # AI/social cards show the figure instead of the generic site banner. Papers
+        # AI/social cards show the figure instead of the generic site banner: the larger
+        # copy <base>-full.jpg where there is one (40 papers; the thumbnails are 360px
+        # wide, under the 600px a large preview needs), as the page shows it. Papers
         # with no image (e.g. the preprint id 43) fall back to the site default.
         img = entry["image"].to_s.strip
-        meta["image"] = "/assets/images/pubs/#{img}" unless img.empty?
+        unless img.empty?
+          full = "#{File.basename(img, File.extname(img))}-full.jpg"
+          img = full if File.exist?(File.join(@site.source, "assets", "images", "pubs", full))
+          meta["image"] = "/assets/images/pubs/#{img}"
+        end
         meta
       when "people"
         # The title carries the Korean name too, "Jihwan Kim (김지환)", as the page's

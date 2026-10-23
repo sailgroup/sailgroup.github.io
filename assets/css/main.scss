@@ -1,6 +1,9 @@
 ---
 # Front matter required so Jekyll compiles this SCSS to CSS.
 ---
+// The ! comment below stays in the compressed CSS. Keep it ASCII: a non-ASCII character makes
+// Sass start the file with a byte order mark.
+/*! SAIL, Spectroscopy and AI Lab (sail.kookmin.ac.kr). Designed and built by Chanjoong Kim (github.com/chanjoongx), https://chanjoongx.com, cj@chanjoongx.com */
 
 /* ==========================================================================
    SAIL: Spectroscopy and AI Lab
@@ -72,7 +75,7 @@
   /* The header bar is at least --header-min tall; --header-h, which the sticky and scroll
      offsets use, is its height, measured by nav.js when the menu wraps to a second row
      (large text, wider letter spacing). */
-  --header-min: 72px;
+  --header-min: 4.5rem;
   --header-h: var(--header-min);
   /* A card on a grey band: a hairline edge and the faintest shadow; lifted on hover (D38). */
   --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -88,7 +91,10 @@
    an SVG displacement filter that only Chrome applies to a backdrop, so it is left out.
    Without backdrop-filter the material is near-opaque white, and with the system's
    "reduce transparency" setting it is plain white. A light grey $base gives the same
-   material in grey (the people pages' three-part menu, D57). */
+   material in grey: the people pages' three-part menu (D57), and the dropdown, the zoom
+   mark and the Publications capsule (D58), whose bright rim never showed on white glass
+   over a white page, so they read as plain cards. The header and the phone menu, bars
+   rather than floating pieces, stay white. */
 @mixin glass($alpha: 0.72, $blur: 20px, $base: #fff) {
   background: rgba($base, $alpha);
   -webkit-backdrop-filter: saturate(180%) blur($blur);
@@ -102,8 +108,8 @@
     backdrop-filter: none;
   }
 }
-$glass-rim: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-$glass-float: 0 0 0 0.5px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.1);
+$glass-rim: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+$glass-float: 0 0 0 0.5px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.1);
 
 /* --- Hangul fallback while Pretendard loads -------------------------------- */
 /* Pretendard's Hangul syllables are 0.8643em wide. Until its files arrive, Korean text is
@@ -151,6 +157,11 @@ $glass-float: 0 0 0 0.5px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06), 0 
 * { margin: 0; }
 
 html {
+  /* Large monitors: from 1920px wide the root size, and with it every rem, grows with the
+     screen, to 125% from 3200px (18px text at 2560px), so the page fills a big screen as it
+     does a laptop. Below 1920px it is the reader's default size; the breakpoints (em and px)
+     do not move. The desktop sizes are in rem for this (the same as their px at 16px). */
+  font-size: clamp(100%, 62.5% + 0.3125vw, 125%);
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 1rem);
@@ -171,6 +182,9 @@ body {
   overflow-wrap: break-word;
   word-break: keep-all; /* break Korean lines between words, not mid-word (no effect on English) */
 }
+/* Selected text in the brand orange's tint (the search highlight's), not the system blue,
+   the one blue on the site; contrast themes keep the system's. */
+::selection { background: rgba(248, 152, 88, 0.3); }
 
 img, picture, svg, video { display: block; max-width: 100%; height: auto; }
 svg { fill: currentColor; }
@@ -319,6 +333,13 @@ p { text-wrap: pretty; }
   @include glass(0.8);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
+/* At the top of a page the bar and the page are one surface: the hairline under the bar
+   fades in over the first 24px of scrolling. Without scroll timelines (Firefox) and with
+   reduced motion (below) it is always there. */
+@supports (animation-timeline: scroll()) {
+  .site-header::before { animation: header-edge linear both; animation-timeline: scroll(root); animation-range: 0 24px; }
+}
+@keyframes header-edge { from { box-shadow: 0 1px 0 transparent; } }
 .header-inner {
   display: flex;
   align-items: center;
@@ -330,10 +351,10 @@ p { text-wrap: pretty; }
    The nav fits beside them above the menu breakpoint (68.75em, below). */
 .brand-group { display: inline-flex; align-items: center; gap: 0.9rem; flex-shrink: 0; }
 .brand { display: inline-flex; align-items: center; }
-.brand img { height: 48px; width: auto; }
-.brand-sep { width: 1px; height: 32px; background: var(--line-2); flex: none; }
+.brand img { height: 3rem; width: auto; }
+.brand-sep { width: 1px; height: 2rem; background: var(--line-2); flex: none; }
 .brand-kmu { display: inline-flex; align-items: center; }
-.brand-kmu img { height: 40px; width: auto; transition: opacity 0.15s ease; }
+.brand-kmu img { height: 2.5rem; width: auto; transition: opacity 0.15s ease; }
 .brand-kmu:hover img { opacity: 0.7; }
 
 .nav-toggle {
@@ -374,12 +395,13 @@ p { text-wrap: pretty; }
   padding: 0.5rem 0.4rem;
   font-size: var(--fs-sm);
   font-weight: 450;
-  color: var(--muted);
+  color: var(--ink-2);
   border-bottom: 2px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
-/* Menu items in grey, the current one in ink over the logo orange: the one place the bar
-   shows the brand colour. A hover only darkens the label. */
+/* Menu items in the running text's grey (--ink-2: --muted fell to 3.5:1 where a dark page
+   passed under the glass), the current one in ink over the logo orange: the one place the
+   bar shows the brand colour. A hover only darkens the label. */
 .nav-item > a:hover { color: var(--ink); }
 .nav-item > a[aria-current="page"],
 .nav-item.is-current > a {
@@ -403,7 +425,7 @@ p { text-wrap: pretty; }
   margin-left: -0.3rem;
   padding-left: 0.2rem;
   font-size: var(--fs-sm);
-  color: var(--muted);
+  color: var(--ink-2);
   border-radius: var(--radius-xs);
 }
 .subnav-toggle:hover { color: var(--ink); }
@@ -423,9 +445,9 @@ p { text-wrap: pretty; }
   position: absolute;
   top: 100%;
   left: -0.4rem;
-  min-width: 232px;
+  min-width: 14.5rem;
   padding: 0.375rem;
-  @include glass(0.8, 24px);
+  @include glass(0.74, 24px, #f6f6f6);
   border-radius: 14px;
   box-shadow: $glass-rim, $glass-float;
   opacity: 0;
@@ -468,7 +490,7 @@ p { text-wrap: pretty; }
   letter-spacing: -0.03em;
 }
 .hero .lead { margin-top: 1.1rem; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
-.hero__figure { margin: clamp(2.25rem, 5vw, 3.5rem) auto 0; max-width: 880px; }
+.hero__figure { margin: clamp(2.25rem, 5vw, 3.5rem) auto 0; max-width: 55rem; }
 /* The figure opens large in the viewer (on phones its labels are about 4px tall); the
    glass magnifier in its corner says so. */
 .hero__zoom { position: relative; display: block; border-radius: var(--radius); cursor: zoom-in; }
@@ -497,12 +519,12 @@ p { text-wrap: pretty; }
   height: 2.25rem;
   border-radius: 50%;
   color: var(--ink);
-  @include glass(0.6, 14px);
+  @include glass(0.6, 14px, #f6f6f6);
   box-shadow: $glass-rim, $glass-float;
   pointer-events: none;
   transition: transform 0.3s var(--ease-out);
 }
-.zoom-hint svg { width: 18px; height: 18px; }
+.zoom-hint svg { width: 1.125rem; height: 1.125rem; }
 .hero__zoom:hover .zoom-hint,
 .paper__zoom:hover .zoom-hint { transform: scale(1.08); }
 
@@ -519,7 +541,7 @@ p { text-wrap: pretty; }
   border-radius: var(--radius-pill);
   color: var(--ink);
   background: var(--fill);
-  transition: background 0.16s ease, color 0.16s ease;
+  transition: background 0.16s ease, color 0.16s ease, transform 0.15s var(--ease-out);
 }
 .btn:hover { background: var(--fill-2); }
 .btn--solid { background: var(--ink); color: #fff; }
@@ -551,7 +573,7 @@ p { text-wrap: pretty; }
   line-height: 1.2;
   color: var(--ink-2);
   white-space: nowrap;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s var(--ease-out);
 }
 a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .tag.is-on { background: var(--fill-2); color: var(--ink); font-weight: 600; }
@@ -590,7 +612,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .card-grid {
   display: grid;
   gap: var(--space-md);
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16.25rem, 1fr));
 }
 .card {
   padding: var(--space-md) 1.375rem;
@@ -629,7 +651,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .area-rows { display: grid; }
 .area-row {
   display: grid;
-  grid-template-columns: 208px minmax(0, 1fr);
+  grid-template-columns: 13rem minmax(0, 1fr);
   gap: var(--space-lg);
   align-items: start;
   padding-block: var(--space-md);
@@ -677,7 +699,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   grid-template-columns: repeat(3, minmax(0, 13rem));
   justify-content: center;
   gap: 3.5rem var(--space-xl);
-  max-width: 820px;
+  max-width: 51.25rem;
   margin-inline: auto;
 }
 .person { max-width: 13rem; text-align: center; }
@@ -746,7 +768,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .person__role, .person__note { text-wrap: balance; }
 
 /* --- PI profile ----------------------------------------------------------- */
-.profile { display: grid; gap: 3.5rem; grid-template-columns: 248px minmax(0, 1fr); align-items: start; }
+.profile { display: grid; gap: 3.5rem; grid-template-columns: 15.5rem minmax(0, 1fr); align-items: start; }
 .profile__aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
 .profile__photo { width: 100%; border-radius: 14px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
 .profile__contact { margin-top: var(--space-md); display: grid; gap: 0.55rem; font-size: var(--fs-sm); }
@@ -809,7 +831,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   border-radius: var(--radius-pill);
   font-weight: 500;
   color: var(--ink-2);
-  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s var(--ease-out);
 }
 .people-nav a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.55); }
 .people-nav a[aria-current="page"] {
@@ -938,6 +960,7 @@ html.people-pending, html.people-jump { scroll-behavior: auto; }
   background: var(--fill);
   font-size: var(--fs-sm);
   color: var(--ink);
+  caret-color: var(--orange-ink);
   -webkit-appearance: none;
   appearance: none;
   transition: background 0.15s ease, box-shadow 0.15s ease;
@@ -1112,7 +1135,7 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
 .pub__journal--status { font-style: normal; }
 .pub__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.8rem; }
 .pub-badge { display: inline-flex; border-radius: var(--radius-xs); }
-.pub-badge img { height: 22px; width: auto; transition: opacity 0.15s ease; }
+.pub-badge img { height: 1.375rem; width: auto; transition: opacity 0.15s ease; }
 .pub-badge:hover img { opacity: 0.7; }
 /* The links (logos) and the topics are two groups, a hairline between them. The topics take
    the rest of the row and wrap inside it, so the hairline stays beside them (a block of
@@ -1134,7 +1157,7 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
   gap: 0.25rem;
   padding: 0.3rem;
   border-radius: var(--radius-pill);
-  @include glass(0.66, 18px);
+  @include glass(0.66, 18px, #f6f6f6);
   box-shadow: $glass-rim, $glass-float;
   opacity: 0;
   transform: translate(-50%, 0.75rem) scale(0.96);
@@ -1150,6 +1173,7 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
   color: var(--ink);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
+  transition: transform 0.15s var(--ease-out);
 }
 .pubs-pill__clear {
   display: grid;
@@ -1159,9 +1183,14 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
   border-radius: 50%;
   color: var(--ink);
   background: var(--fill-2);
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, transform 0.15s var(--ease-out);
 }
 .pubs-pill__clear:hover { background: rgba(0, 0, 0, 0.13); }
+/* Pressed: the small rounded controls sink a little while held (iOS applies :active once a
+   page listens for touches, nav.js), and the browser's grey tap rectangle, which ignored
+   their rounding, is off on them. */
+.btn, a.tag, .people-nav a, .pubs-pill__clear, .pubs-pill__count, .footer-icon { -webkit-tap-highlight-color: transparent; }
+.btn:active, a.tag:active, .people-nav a:active, .pubs-pill__clear:active, .pubs-pill__count:active, .site-footer .footer-icon:active { transform: scale(0.96); }
 .pubs-pill__clear svg { width: 16px; height: 16px; }
 @media (min-width: 68.8125em) {
   .pubs-pill { display: none; }
@@ -1240,7 +1269,7 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
 /* Four columns from 720px (31 photos: seven rows of four and one of three; three columns at
    768 left one photo alone), two from 494px, one below; photos.html's `sizes` follows these
    widths. A photo alone in the last row is centred at the width of one column. */
-.gallery { display: grid; gap: var(--space-sm); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.gallery { display: grid; gap: var(--space-sm); grid-template-columns: repeat(auto-fill, minmax(13.75rem, 1fr)); }
 @media (min-width: 720px) {
   .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .gallery > :last-child:nth-child(4n+1):not(:first-child) { grid-column: 1 / -1; justify-self: center; width: calc((100% - 3 * var(--space-sm)) / 4); }
@@ -1297,7 +1326,15 @@ body.no-scroll { overflow: hidden; }
   inset: 0;
   z-index: 300;
   background: rgba(12, 12, 12, 0.88);
-  backdrop-filter: blur(4px);
+  /* The page behind is a soft haze, not a readable ghost; plain dark with reduced
+     transparency (below). */
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  @media (prefers-reduced-transparency: reduce) {
+    background: #0c0c0c;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
   /* A one-finger horizontal move is the viewer's (previous, next); vertical moves and pinch
      zoom stay the browser's. A single figure has no previous or next, so every move is. */
   touch-action: pan-y pinch-zoom;
@@ -1316,7 +1353,7 @@ body.no-scroll { overflow: hidden; }
   overscroll-behavior: contain;
 }
 .lightbox--single .lightbox__dialog { padding-inline: clamp(1rem, 4vw, 3rem); }
-.lightbox__figure { margin: 0; display: flex; flex-direction: column; align-items: center; max-width: min(1100px, 100%); }
+.lightbox__figure { margin: 0; display: flex; flex-direction: column; align-items: center; max-width: min(68.75rem, 100%); }
 /* A figure may use the whole width, up to its own size, so its labels are as large as they get. */
 .lightbox--single .lightbox__figure { max-width: 100%; }
 .lightbox__img {
@@ -1390,9 +1427,9 @@ body.no-scroll { overflow: hidden; }
 
 /* --- Footer --------------------------------------------------------------- */
 /* The dark footer as before, laid out anew (D56): the lab's line set large under the SAIL
-   mark, the Kookmin signature and the GitHub mark at the right of that row, a hairline,
-   then the menu's pages in three columns and the contact, and the base line. The lines
-   and links are the ones the footer had. */
+   mark, the Kookmin signature at the right of that row, a hairline, then the menu's pages
+   in three columns and the contact (the email, the phone and GitHub as marks, D58), and the
+   base line. */
 .site-footer {
   margin-top: var(--space-3xl);
   background: var(--bg-ink);
@@ -1431,15 +1468,11 @@ body.no-scroll { overflow: hidden; }
    its own size and colour. */
 .footer-brand .footer-mark { margin-top: 0; font-family: var(--font-sans); font-size: 1.625rem; line-height: 1; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
 .footer-mark .hl { color: var(--orange); }
-/* The Kookmin signature and the lab's GitHub organization side by side (D55), at the right
-   of the brand row. The GitHub mark stays white, as GitHub's logo rules ask, and both
-   brighten on hover. */
+/* The Kookmin signature at the right of the brand row; it brightens on hover. */
 .footer-orgs { grid-column: 2; grid-row: 1 / span 2; display: flex; align-items: center; gap: var(--space-md); }
-.footer-kmu, .footer-gh { opacity: 0.8; transition: opacity 0.15s ease; }
-.footer-kmu:hover, .footer-gh:hover { opacity: 1; }
-.footer-kmu img { height: 30px; width: auto; display: block; }
-.footer-gh { flex: none; color: #fff; border-radius: 50%; }
-.footer-gh .icon { width: 26px; height: 26px; }
+.footer-kmu { opacity: 0.8; transition: opacity 0.15s ease; }
+.footer-kmu:hover { opacity: 1; }
+.footer-kmu img { height: 1.875rem; width: auto; display: block; }
 .footer-title { font-family: var(--font-sans); font-size: var(--fs-xs); color: #8f8f8f; font-weight: 600; margin-bottom: 1rem; }
 /* The menu's pages in three columns, top to bottom in menu order; the columns balance
    themselves, so a page added to the menu needs no change here. Two columns, then one,
@@ -1462,6 +1495,44 @@ body.no-scroll { overflow: hidden; }
 .footer-list a:hover,
 .site-footer address a:hover { color: #fff; text-decoration-color: var(--orange); }
 .site-footer address { font-style: normal; font-size: var(--fs-sm); line-height: 1.75; color: #bdbdbd; }
+/* The email, the phone and GitHub under the address (D58): round marks with a hairline
+   ring that fills a little and turns white under the pointer. GitHub's mark stays white or
+   grey, never orange (its logo rules). With a mouse, the mark pointed at or focused shows
+   its email or number just below it (.footer-tip, hidden from screen readers, which hear
+   the link's name), over the empty space above the footer's last line. The label is part of
+   the mark's item and starts at the mark's lower edge, so the pointer can move onto it
+   without it closing and select or copy the text (WCAG 1.4.13). On a touch screen the row is
+   the marks alone. */
+.footer-icons { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+.footer-icon-item { position: relative; display: flex; }
+.site-footer .footer-icon {
+  display: grid; place-items: center;
+  width: 2.5rem; height: 2.5rem;
+  border-radius: 50%;
+  color: #d6d6d6;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s var(--ease-out);
+}
+.site-footer .footer-icon-item:hover > .footer-icon { color: #fff; background: rgba(255, 255, 255, 0.08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34); }
+.footer-icon .icon { width: 1.125rem; height: 1.125rem; }
+.footer-icon--gh .icon { width: 1.25rem; height: 1.25rem; }
+/* A label not shown is also hidden from find-in-page and from a copied selection; it hides
+   after its fade. */
+.footer-tip {
+  position: absolute; top: 100%; left: 0; z-index: 1;
+  padding-top: 0.375rem;
+  color: #d6d6d6; white-space: nowrap;
+  opacity: 0; visibility: hidden; transform: translateY(-0.25rem);
+  transition: opacity 0.15s ease, transform 0.2s var(--ease-out), visibility 0s linear 0.15s;
+}
+/* A focused mark's label gives way while the pointer is over the row, so two never overlap. */
+.footer-icon-item:hover > .footer-tip,
+.footer-icons:not(:hover) .footer-icon:focus-visible + .footer-tip { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+/* On a touch screen, and at the phone layout (720px and below), where the footer's last line
+   comes too close below the row for a label. */
+@media (hover: none), (pointer: coarse), (max-width: 720px) {
+  .footer-tip { display: none; }
+}
 .footer-base {
   margin-top: 3.5rem;
   padding-top: var(--space-md);
@@ -1475,9 +1546,9 @@ body.no-scroll { overflow: hidden; }
   .footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .footer-links { grid-column: auto; }
 }
-/* Phones: the SAIL mark with the Kookmin signature and the GitHub mark beside it (as the
-   header pairs them), the lab's line under both at full width, then the links and Contact
-   one under the other; every fact and link stays. */
+/* Phones: the SAIL mark with the Kookmin signature beside it (as the header pairs them),
+   the lab's line under both at full width, then the links and Contact one under the other;
+   every fact and link stays. */
 @media (max-width: 720px) {
   .site-footer { padding-block: var(--space-xl) var(--space-md); }
   .footer-brand { grid-template-columns: auto auto; justify-content: space-between; align-items: center; column-gap: var(--space-md); padding-bottom: var(--space-lg); }
@@ -1490,6 +1561,7 @@ body.no-scroll { overflow: hidden; }
   .footer-kmu img { height: auto; max-height: 28px; }
   .footer-title { margin-bottom: 0.7rem; }
   .footer-base { margin-top: var(--space-lg); padding-top: var(--space-sm); }
+  .site-footer .footer-icon { width: 2.75rem; height: 2.75rem; }
 }
 
 /* --- Publication filter states ------------------------------------------- */
@@ -1528,7 +1600,7 @@ body.no-scroll { overflow: hidden; }
 .member-card { text-align: center; }
 .member-card .back-link { margin-bottom: var(--space-lg); }
 .member-card__photo {
-  width: 160px; height: 160px;
+  width: 10rem; height: 10rem;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
@@ -1587,6 +1659,15 @@ body.no-scroll { overflow: hidden; }
   /* Full-width rows: the divider spans the menu. A parent's sub-pages are always listed
      under it here, so its chevron button is not needed. */
   .nav-item > a { display: flex; padding: 0.75rem 0.2rem; border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+  /* The current page is underlined on its label; the row's divider stays grey (an orange
+     rule across the whole menu marked a row, not a page). */
+  .nav-item > a[aria-current="page"], .nav-item.is-current > a {
+    border-bottom-color: rgba(0, 0, 0, 0.07);
+    text-decoration-line: underline;
+    text-decoration-color: var(--orange);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.45em;
+  }
   .nav-item.has-children { display: block; margin-right: 0; }
   .subnav-toggle { display: none; }
   .nav-item.has-children .subnav {
@@ -1645,6 +1726,7 @@ body.no-scroll { overflow: hidden; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .site-header::before { animation: none !important; }
 }
 
 /* Forced colours (Windows contrast themes): the mode clears backgrounds and paints every
@@ -1659,6 +1741,7 @@ body.no-scroll { overflow: hidden; }
   .footer-kmu img { forced-color-adjust: none; background: #1f1f1f; border-radius: 4px; }
   .people-nav a[aria-current="page"], .pub-filter.is-active, .tag.is-on { outline: 2px solid Highlight; outline-offset: -2px; }
   .pub-search__input { border: 1px solid CanvasText; }
+  .site-footer .footer-icon { border: 1px solid LinkText; }
 }
 @media (forced-colors: active) and (min-width: 68.8125em) {
   .nav-item > a { border-bottom-color: Canvas; }
@@ -1780,7 +1863,7 @@ body.no-scroll { overflow: hidden; }
   gap: 1rem; flex-wrap: wrap;
   margin-bottom: var(--space-lg);
 }
-.paper__logo { height: 44px; width: auto; max-width: 230px; object-fit: contain; }
+.paper__logo { height: 2.75rem; width: auto; max-width: 14.375rem; object-fit: contain; }
 /* One column that never grows past the screen (minmax(0, 1fr), not 1fr). WebKit (Safari)
    reads the body's keep-all as "break at spaces only", in English too, so a long hyphenated
    name ("naphthoimidazolium-cholesterol") stayed whole and widened a 1fr column: papers 12,
@@ -1821,7 +1904,7 @@ body.no-scroll { overflow: hidden; }
   .paper__abstract-en p { font-size: var(--fs-base); }
 }
 .paper__links { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-xl); }
-.paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 38px; width: auto; transition: opacity 0.15s ease; }
+.paper__doi img, .paper__pre img, .paper__code img, .paper__data img { height: 2.375rem; width: auto; transition: opacity 0.15s ease; }
 .paper__doi:hover img, .paper__pre:hover img, .paper__code:hover img, .paper__data:hover img { opacity: 0.7; }
 /* BibTeX under the abstract (publication.html): the summary looks like the English
    abstract's, the box is as wide as the English abstract (68ch at 14.4px) with the

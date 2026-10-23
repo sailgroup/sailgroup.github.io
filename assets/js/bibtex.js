@@ -1,3 +1,4 @@
+/*! SAIL, Spectroscopy and AI Lab (sail.kookmin.ac.kr). Designed and built by Chanjoong Kim (김찬중, github.com/chanjoongx), https://chanjoongx.com, cj@chanjoongx.com */
 // Copy button for the BibTeX entry on a paper page (_layouts/publication.html). The button
 // is hidden in the HTML and shown here, only where the Clipboard API is available; without
 // it the entry can still be selected and copied by hand.
