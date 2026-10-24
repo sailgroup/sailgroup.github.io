@@ -1354,6 +1354,11 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   pages) falls from 16% to 10% at 1440px and from 14% to 8% at 800px. On the rebuilt site:
   html-proofer passes, the text check is as above, Chrome shows no console error or
   overflow, WebKit passes the switch on both sizes, and `functional.js` passes 22 of 22.
+- **On hold** (DECISIONS D61): with the English page taken out, the local build passes
+  html-proofer; the sitemap, llms.txt, llms-full.txt and /positions/ name no /positions/en/,
+  and /positions/ has no hreflang link or switch. Against the live site (69 pages): no
+  visible line gone, changed or added; for screen readers, " (새 탭에서 열림)" on the three
+  guide links of /positions/. The validator logs only the known warning.
 - **Translation:** an independent check of `positions_en.yml` against `positions.yml`, item
   by item, found it faithful but for one addition (the graduate section had the IDP
   "discussed" before applying; the Korean asks for a consultation, and the guide discusses

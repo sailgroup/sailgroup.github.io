@@ -21,10 +21,8 @@ domain `https://sail.kookmin.ac.kr`.
   (members + alumni in one file; `status:` picks the page), `people_groups.yml` (the Alumni
   page's rows: postdoc, Ph.D., M.S., undergraduate), `pi.yml`, `news.yml`, `research.yml`,
   `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
-  `navigation.yml`, `positions.yml` (Positions page copy in Korean, the default page; each role
-  section may carry an optional `projects` card list), `positions_en.yml` (its English
-  translation, item for item, with the page's own `labels`; D61), `translations.yml` (pages
-  in more than one language, for hreflang and the language switch; D61), and
+  `navigation.yml`, `positions.yml` (Positions page copy, Korean-only; each role
+  section may carry an optional `projects` card list), and
   `member_pubs/<slug>.yml` (a person's long external-paper list)
 - `_plugins/` — `generate_pages.rb` builds every publication/person page (and the legacy
   `/members|/alumni/<slug>/` redirects) from `_data`, so adding one is a single YAML edit;
@@ -34,9 +32,8 @@ domain `https://sail.kookmin.ac.kr`.
 - `_layouts/` (`default`, `page`, `person`, `publication`), `_includes/` (shared markup),
   `assets/` — templates, partials, styles (`assets/css/main.scss`), JS, images
 - top-level pages — `index.html`, `research`, `pi`/`members`/`alumni`, `publications`, `news`,
-  `photos`, `positions` (Korean, /positions/) and `positions-en` (English, /positions/en/), both
-  from `_includes/positions-page.html` (member/alumni/publication detail pages are generated,
-  not files).
+  `photos`, `positions` (its body is `_includes/positions-page.html`; member/alumni/publication
+  detail pages are generated, not files).
   `pi`, `members` and `alumni` are separate pages (D60, which takes back D57's one document);
   Alumni shows a row per group of `_data/people_groups.yml`, the undergraduates' photos smaller
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
@@ -77,10 +74,10 @@ domain `https://sail.kookmin.ac.kr`.
   the home title's tagline, a Korean lead in the main pages' descriptions ("국민대학교 화학부
   정준영 교수 연구실 ..."), Positions' title, the research areas' Korean names in the lab's
   knowsAbout (D58), the lab's fields in English and Korean (`knows_about` in `_config.yml`, D61).
-  Positions is the one page in two languages (D61): Korean at /positions/ (the default and
-  x-default, the menu's link) and English at /positions/en/, joined by hreflang links and a
-  switch under the heading, both from `_data/translations.yml`, which each page names with
-  `translations: positions` (`head.html`, `lang-nav.html`; the validator checks both ways). After each `main` deploy, IndexNow tells Bing and Naver which pages changed
+  An English Positions page (D61) is on hold, so no page is in two languages; `head.html`
+  (hreflang) and `lang-nav.html` (the switch) still read a page's `translations:` group from
+  `_data/translations.yml`, which the validator checks, and DECISIONS D61 says how to bring
+  the page back. After each `main` deploy, IndexNow tells Bing and Naver which pages changed
   (`.github/scripts/indexnow.mjs` and the workflow; never delete the root key file
   `4fa521d6cc1d0212aa5696ee0a4b94a8.txt`). D47.
 - Chrome's page translation: names and Korean text that stand alone (author lists, journal names,

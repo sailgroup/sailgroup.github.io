@@ -1,6 +1,6 @@
-{%- comment -%}The Positions page in one language (D61). positions.html (Korean, the default, from
-_data/positions.yml) and positions-en.html (English, from _data/positions_en.yml) pass their
-text and their own words for:
+{%- comment -%}The Positions page in one language (D61). positions.html (Korean, from
+_data/positions.yml) passes its text and its own words, as an English page would (D61 made
+one from _data/positions_en.yml; it is on hold, see DECISIONS D61):
   p           the page's data (intro, sections)
   phrase      the words in the text that link to the group guide
   button      the guide button's text
@@ -9,7 +9,7 @@ text and their own words for:
   guide_lang  the guide's language where it is not the page's (hreflang on its links)
 Both link to positions.yml's `guide_url`, and the guide's links say for screen readers, in
 the page's language, that they open in a new tab (new-tab.html). The switch (lang-nav.html)
-lists the page's group in _data/translations.yml.{%- endcomment -%}
+lists the page's group in _data/translations.yml, and shows nothing without one.{%- endcomment -%}
 {%- assign p = include.p -%}
 {%- assign guide_url = site.data.positions.guide_url -%}
 {%- capture note -%}{% include new-tab.html lang=page.lang %}{%- endcapture -%}

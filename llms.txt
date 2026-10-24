@@ -24,7 +24,7 @@ Research areas:
 - [Members]({{ site.url }}/members/) and [Alumni]({{ site.url }}/alumni/): lab people, each with a page at {{ site.url }}/people/<slug>/.
 - [Principal Investigator]({{ site.url }}/pi/): {{ site.data.pi.name }}.
 - [News]({{ site.url }}/news/): lab updates and milestones.
-- [Positions]({{ site.url }}/positions/): how to join the lab and how to apply (postdoctoral researcher, graduate student, and undergraduate research), including currently advertised undergraduate projects. Written in Korean; the same page in English: [Positions in English]({{ site.url }}/positions/en/).
+- [Positions]({{ site.url }}/positions/): how to join the lab and how to apply (postdoctoral researcher, graduate student, and undergraduate research), including currently advertised undergraduate projects. Written in Korean.
 
 ## Selected recent publications
 {% comment %}Newest year first and, within a year, in the order of the Publications page (sort_member_pubs keeps the file order on a tie; the built-in sort is unstable, so same-year papers came out in an arbitrary order and the ten listed were not simply the newest). Each entry links its page on this site, in the llms.txt list form "[name](url): notes"; brackets in a title (e.g. [4+2]) are escaped so the link stays intact.{% endcomment -%}

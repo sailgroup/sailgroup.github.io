@@ -2215,4 +2215,12 @@ Changes D60's justified Positions cards.
   gap over three spaces wide (the English "Requirements:" line up to 12), against none in
   either page's prose. The cards are flush left again at every width (`main.scss`); the
   prose stays justified, and no text changed.
+- **On hold** (the maintainer, 2026-10-24, after reading the history above): the English
+  page waits and does not go live. `positions-en.html`, `_data/positions_en.yml` and
+  `_data/translations.yml` come out, and with them the switch, the hreflang links and the
+  English page's lines in llms.txt and llms-full.txt. The Korean page keeps D61's title,
+  description and the guide links' Korean note. What reads those files stays, idle
+  without a `translations:` group: `head.html`, `lang-nav.html`, `positions-page.html`'s
+  parameters, the validator's checks and the `.lang-nav` style. Reverting the commit that
+  took the page out brings it back as it was (the translation is in d35c65f).
 - **Check:** `REVIEW.md` section 31.

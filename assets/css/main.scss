@@ -902,8 +902,9 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 /* --- People pages' sub-navigation ----------------------------------------- */
 /* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): the three pages as a
    segmented control (D56), the current one raised on white in a neutral track. They were
-   grey text links with a dot between them. The Positions page's two languages take the same
-   control (lang-nav.html, D61), between its heading and its lead. */
+   grey text links with a dot between them. A page in two languages takes the same control
+   (lang-nav.html, D61), between its heading and its lead; none has one while the English
+   Positions page is on hold. */
 .people-nav { margin-top: var(--space-md); font-size: var(--fs-sm); }
 .lang-nav { margin-block: var(--space-sm) var(--space-md); font-size: var(--fs-sm); }
 .people-nav ul, .lang-nav ul {

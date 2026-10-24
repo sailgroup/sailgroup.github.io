@@ -584,7 +584,8 @@ module SAIL
     # difference in the number of roles, paragraphs, cards or guide links, or a sub-heading or
     # a card's `requires` on one side only, means one was changed without the other: the build
     # goes on (the English can follow later), and the log says where they part. A missing file
-    # or missing `labels` stops the build, as the page would come out empty or garbled.
+    # or missing `labels` stops the build, as the page would come out empty or garbled. While
+    # the English page is on hold (no positions_en.yml, no /positions/en/), nothing is checked.
     GUIDE_KO = "그룹 가이드" # the Korean page's guide phrase (positions.html)
 
     def compare_positions(site)

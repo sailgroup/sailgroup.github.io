@@ -24,7 +24,6 @@ Live: https://sail.kookmin.ac.kr
 | 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시. 한국어 `overview.ko`·`title_ko`·`body_ko` 는 화면에 표시되지 않고, AI 검색용 `llms.txt`·`llms-full.txt` 에만 들어감) |
 | 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
 | 모집(Positions) | `_data/positions.yml` (박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트) |
-| 모집 영어판(`/positions/en/`) | `_data/positions_en.yml` (한국어판의 번역, [자세히](#모집-영어판-_datapositions_enyml)) |
 
 저자 목록의 PI 이름 `Joonyoung F. Joung` 은 자동으로 굵게 표시됩니다.
 
@@ -270,19 +269,6 @@ sections:
 카드를 추가/삭제하려면 `projects` 아래 블록을 더하거나 지우면 됩니다. (`_data/positions.yml` 의 대학원생
 항목에는 복사해서 바로 쓸 수 있는 주석 예시가 들어 있습니다.) 본문 어디든 `그룹 가이드` 라고 쓰면
 자동으로 그룹 가이드 문서로 링크됩니다.
-
-### 모집 영어판: `_data/positions_en.yml`
-영어판 페이지(`/positions/en/`)는 한국어판을 항목마다 옮긴 번역입니다. 메뉴의 **Positions** 는 지금처럼
-한국어판을 열고, 두 페이지 모두 제목 아래의 `한국어 | English` 단추로 서로 오갑니다. 파일 구조가
-`positions.yml` 과 같으니 같은 자리의 문단이나 카드를 영어로 고치면 됩니다.
-
-- **한국어판을 고치면 영어판의 같은 자리도 같이 고칩니다.** 두 파일의 역할 · 문단 · 카드 수가 다르면 빌드는
-  그대로 되고, Actions 의 빌드 로그에 `Data check: positions_en.yml ...` 경고가 어느 역할인지와 함께 나옵니다.
-- 영어 본문에 `group guide` 라고 쓰면 그룹 가이드 문서로 링크됩니다(한국어판의 `그룹 가이드` 와 같습니다).
-  주소는 `positions.yml` 의 `guide_url` 하나를 같이 씁니다.
-- 가이드 버튼의 글과 카드의 `Requirements:` 같은 말은 파일 맨 위 `labels` 에 있습니다.
-- 두 페이지를 잇는 목록(제목 아래 `한국어 | English` 단추와 검색 엔진에 알리는 언어 정보)은
-  [`_data/translations.yml`](_data/translations.yml) 에 있습니다. 주소를 바꾸거나 언어를 더할 때만 고칩니다.
 
 ---
 
