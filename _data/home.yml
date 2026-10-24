@@ -8,6 +8,17 @@ hero:
     chemical reaction prediction, de novo molecular design, and the construction
     of chemical databases.
 
+# The interview beside the research overview on the home page (D60). The poster is a frame
+# of the video kept in assets/images/, so the page loads nothing from YouTube until the
+# poster is clicked; the video then plays in its place (and opens on YouTube without
+# JavaScript). Remove the whole block to take the video off the page.
+interview:
+  youtube: Jve6-fJS7Oc          # the video's id: youtu.be/<id> or youtube.com/watch?v=<id>
+  title: The Convergence of Chemistry and Artificial Intelligence
+  by: Interview by Kookmin University, October 2025
+  length: "8:26"                # shown on the poster
+  poster: home-interview.jpg    # 16:9, in assets/images/
+
 contact:
   institution: Kookmin University
   department: Department of Chemistry

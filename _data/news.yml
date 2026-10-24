@@ -20,6 +20,14 @@
 #   link         OPTIONAL. A page on this site ("/publications/41/") or a full
 #                URL ("https://..."). Full URLs open in a new tab.
 #   link_text    OPTIONAL. Link label. Defaults to "Details".
+#   links        OPTIONAL. More links on the same line, after `link`: a news story
+#                about the item, press articles. Each one is a `text` and a `url`
+#                (a full URL opens in a new tab, like `link`):
+#                  links:
+#                    - text: "Kookmin University news"
+#                      url: "https://www.kookmin.ac.kr/..."
+#   links_label  OPTIONAL. A word or two shown before `links`, e.g. "In the press"
+#                (the colon is added).
 # ---------------------------------------------------------------------------
 
 - date: "2026-09-10"
@@ -53,7 +61,10 @@
   body:  "Congratulations to Jihwan on receiving the Best Oral Presentation Award at the 149th Physical Chemistry Division Summer Symposium held in Busan! This award recognizes the outstanding quality and clarity of his research presentation. We are proud of his achievement and look forward to his continued contributions!"
   link: "/members/jihwan-kim/"
   link_text: "Member page"
-  
+  links:
+    - text: "Kookmin University news"
+      url: "https://www.kookmin.ac.kr/comm/board/user/be8e117863cfd580d7ed5931a799207c/view.do?dataSeq=1076881"
+
 - date: "2026-06-19"
   display_date: ""
   category: award
@@ -141,7 +152,15 @@
   body: "\"Electron flow matching for generative reaction mechanism prediction.\""
   link: "/publications/37/"
   link_text: "Read the paper"
-  
+  links_label: "In the press"
+  links:
+    - text: "JoongAng Ilbo"
+      url: "https://www.joongang.co.kr/article/25361989"
+    - text: "ChosunBiz"
+      url: "https://biz.chosun.com/science-chosun/science/2025/08/21/WNMXRMJT7RHWNPVHCH6T73HLCA/"
+    - text: "Hankyoreh"
+      url: "https://www.hani.co.kr/arti/economy/biznews/1214373.html"
+
 - date: "2025-07-14"
   display_date: ""
   category: people

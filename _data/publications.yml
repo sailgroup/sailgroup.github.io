@@ -16,6 +16,12 @@
 # Figshare icon to its right (another host: a grey code or dataset icon).
 # Step by step: README, "논문에 코드와 데이터 링크 달기".
 #
+# A formula in a title is written with <sub> and <sup>, as the publisher writes it:
+#   title: "... Pure CO<sub>2</sub> Production ..."   (CO2 with a small 2 below)
+#   title: "... Sensing for Mg<sup>2+</sup> Ion"        (Mg2+ with 2+ above)
+# The page shows them small; the tab title, search results and llms.txt get plain
+# "CO2", and the BibTeX \textsubscript{2}. No other tag is allowed (the build says so).
+#
 # PI name to highlight in the template (bold): "Joonyoung F. Joung"
 #   - also appears once as "Joonyoung Francis Joung" (id 13) -> add as alias.
 # Author markers preserved from source: * = corresponding, † = equal contribution.
@@ -73,7 +79,7 @@
     spectral analysis under variable measurement conditions.
 
 - id: 45
-  title: "Synergistic Ligand and Composition Control for Bright and Stable CsPbBr3/Cs4PbBr6 Core/Shell Colloidal Perovskite Nanocrystals"
+  title: "Synergistic Ligand and Composition Control for Bright and Stable CsPbBr<sub>3</sub>/Cs<sub>4</sub>PbBr<sub>6</sub> Core/Shell Colloidal Perovskite Nanocrystals"
   authors: "Jae Woo Kim, Jigeon Kim, Jihwan Kim, Huieun Kim, Haereum Jo, Wonjong Lee, Jongchul Lim, Joonyoung F. Joung*, Younghoon Kim*"
   journal: "J. Alloys Compd."
   vol: 1080
@@ -126,7 +132,7 @@
     excited-state-to-excited-state transition moments that determine absolute intensities.
   
 - id: 43
-  title: "Continuous Light-Driven Pure CO2 Production by Regenerative Non-Aqueous Amine–Photoacid Cycling"
+  title: "Continuous Light-Driven Pure CO<sub>2</sub> Production by Regenerative Non-Aqueous Amine–Photoacid Cycling"
   authors: "Gi Hyun Byun, Nayeong Kim, Joonyoung F. Joung, Michael Massen-Hane, Betar M. Gallant, Hyowon Seo, T. Alan Hatton*"
   journal: "ChemRxiv"
   ref: "Preprint"
@@ -1584,7 +1590,7 @@
     일어난다.
 
 - id: 13
-  title: "Synthesis, Structure, and Photoluminescence Properties of a Metal-Organic Framework with Hexagonal Channels: Selective Turn-On Sensing for Mg2+ Ion"
+  title: "Synthesis, Structure, and Photoluminescence Properties of a Metal-Organic Framework with Hexagonal Channels: Selective Turn-On Sensing for Mg<sup>2+</sup> Ion"
   authors: "Sunhwi Eom, Sora Park, Jeong Hwa Song, Woo Ram Lee, Han Geul Lee, Dong Won Kang, Joonyoung Francis Joung, Sungnam Park, Dohyun Moon, Chang Seop Hong*"
   journal: "Eur. J. Inorg. Chem."
   vol: 2019

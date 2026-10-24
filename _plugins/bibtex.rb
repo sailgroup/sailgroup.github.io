@@ -17,7 +17,8 @@
 #
 # The fields come from the data as written: authors (the * and dagger marks are notes,
 # not part of a name, so they are dropped), title (in double braces, so a style keeps its
-# capitals), journal, year, vol (volume), issue (number), pages, and the DOI without
+# capitals; a formula's <sub> and <sup> become \textsubscript{} and \textsuperscript{}:
+# CO\textsubscript{2}), journal, year, vol (volume), issue (number), pages, and the DOI without
 # https://doi.org/. A field without a value is left out, and so is a paper without a DOI
 # (a submitted one). BibTeX's special characters & % $ # _ { } ~ ^ and the backslash are
 # escaped; other Unicode is kept as it is. The DOI is written as it is: biblatex reads it
@@ -30,6 +31,7 @@ module Jekyll
   module BibtexFilter
     MARKS = /[*†‡]/ # * corresponding author, dagger and double dagger notes
     ELLIPSIS = /\A(\.\.\.|…)\z/
+    SCRIPTS = { "sub" => "\\textsubscript", "sup" => "\\textsuperscript" }.freeze
     SPECIAL = {
       "\\" => "\\textbackslash{}", "{" => "\\textbraceleft{}", "}" => "\\textbraceright{}",
       "&" => "\\&", "%" => "\\%", "$" => "\\$", "#" => "\\#", "_" => "\\_",
@@ -52,8 +54,7 @@ module Jekyll
         ["pages", paper["pages"]],
       ]
       lines = fields.map { |name, value| [name, value.to_s.strip] }.reject { |_, value| value.empty? }.map do |name, value|
-        value = BibtexFilter.escape(value)
-        name == "title" ? "  title = {{#{value}}}" : "  #{name} = {#{value}}"
+        name == "title" ? "  title = {{#{BibtexFilter.title(value)}}}" : "  #{name} = {#{BibtexFilter.escape(value)}}"
       end
       lines << "  doi = {#{doi}}"
       "@article{#{key},\n#{lines.join(",\n")}\n}"
@@ -82,6 +83,15 @@ module Jekyll
       str.gsub(/[\\{}&%$#_~^]/) { |c| SPECIAL[c] }
     end
 
+    # "CsPbBr<sub>3</sub>" -> "CsPbBr\textsubscript{3}"; the text around is escaped as usual,
+    # and any other tag is dropped.
+    def self.title(str)
+      str.split(%r{(<su[bp]>.*?</su[bp]>)}).map do |part|
+        m = part.match(%r{\A<(su[bp])>(.*?)</su[bp]>\z})
+        m ? "#{SCRIPTS[m[1]]}{#{escape(m[2])}}" : escape(part.gsub(/<[^>]*>/, ""))
+      end.join
+    end
+
     def self.ascii(str)
       str.to_s.unicode_normalize(:nfkd).gsub(/[^\x00-\x7F]/, "")
     end
@@ -89,7 +99,7 @@ module Jekyll
     def self.base_key(paper)
       first = paper["authors"].to_s.gsub(MARKS, "").split(",").first.to_s.strip
       family = ascii(first.split(/\s+/).last).downcase.gsub(/[^a-z0-9]/, "")
-      words = ascii(paper["title"]).split(/[^A-Za-z0-9]+/).select { |w| w.match?(/[A-Za-z]/) }
+      words = ascii(paper["title"].to_s.gsub(/<[^>]*>/, "")).split(/[^A-Za-z0-9]+/).select { |w| w.match?(/[A-Za-z]/) }
       word = words.find { |w| !%w[a an the].include?(w.downcase) }.to_s.downcase
       "#{family.empty? ? "paper" : family}#{paper["year"]}#{word}"
     end

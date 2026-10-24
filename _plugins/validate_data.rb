@@ -29,6 +29,7 @@ module SAIL
       @errors = []
       @warns  = []
 
+      validate_people_groups(site.data["people_groups"])
       validate_people(site.data["people"], "people.yml", "person")
       validate_themes(site.data["themes"])
       validate_publications(site.data["publications"])
@@ -95,6 +96,8 @@ module SAIL
         return
       end
       seen_slugs = {}
+      groups = @site.data["people_groups"]
+      group_keys = Array(groups).select { |g| g.is_a?(Hash) }.map { |g| g["key"].to_s }
       list.each_with_index do |p, i|
         at = "#{file} entry #{i + 1}"
         name = p["name"]
@@ -103,6 +106,13 @@ module SAIL
         err("#{at}: missing required field `role`.") if blank?(p["role"])
         unless %w[current alumni].include?(p["status"])
           err("#{at}: `status` must be `current` or `alumni` (got #{p["status"].inspect}).")
+        end
+        # The Alumni page's rows (people_groups.yml): a `group:` names one of them, and an
+        # alumnus falls in one, by `group:` or by a word of the role (people_groups.rb).
+        if !blank?(p["group"]) && !group_keys.include?(p["group"].to_s.strip)
+          err("#{at}: `group: #{p["group"]}` is not one of #{group_keys.join(", ")} (people_groups.yml).")
+        elsif p["status"] == "alumni" && !blank?(p["role"]) && SAIL::PeopleGroups.key(p, groups).nil?
+          err("#{at}: the Alumni page cannot tell this person's group from the role \"#{p["role"]}\". Add a line `group: ...` with one of #{group_keys.join(", ")}, or a group for this role to people_groups.yml.")
         end
 
         if !blank?(p["photo"]) && !image_exists?(File.join("people", p["photo"]))
@@ -137,6 +147,30 @@ module SAIL
       end
     end
 
+    # --- people groups (the Alumni page's rows) -----------------------------
+    def validate_people_groups(list)
+      return if list.nil?
+      unless list.is_a?(Array)
+        err("people_groups.yml: expected a list of groups.")
+        return
+      end
+      seen = {}
+      list.each_with_index do |g, i|
+        unless g.is_a?(Hash)
+          err("people_groups.yml entry #{i + 1}: expected `key`, `name` and `match`.")
+          next
+        end
+        at = blank?(g["key"]) ? "people_groups.yml entry #{i + 1}" : "people_groups.yml \"#{g["key"]}\""
+        err("#{at}: missing required field `key`.") if blank?(g["key"])
+        err("#{at}: missing required field `name` (the row's heading).") if blank?(g["name"])
+        err("#{at}: `key: #{g["key"]}` must be lowercase letters/numbers/hyphens.") if !blank?(g["key"]) && !(g["key"].to_s =~ SLUG_RE)
+        err("#{at}: `match` must be a list of words, e.g. [Postdoc].") if !g["match"].nil? && !g["match"].is_a?(Array)
+        next if blank?(g["key"])
+        err("#{at}: the key is used twice.") if seen[g["key"]]
+        seen[g["key"]] = true
+      end
+    end
+
     # A member/alumnus may list their own external papers under `publications:`.
     def validate_person_pubs(pubs, at)
       return if pubs.nil?
@@ -149,6 +183,7 @@ module SAIL
         %w[title authors journal year].each do |f|
           err("#{pat}: missing required field `#{f}`.") if blank?(pub[f])
         end
+        check_markup(pub["title"], pat, "title")
         if !blank?(pub["year"]) && !pub["year"].is_a?(Integer)
           err("#{pat}: `year` must be a plain number with no quotes (year: 2023), got #{pub["year"].inspect}.")
         end
@@ -160,6 +195,32 @@ module SAIL
           err("#{pat}: `image: #{pub["image"]}` not found in assets/images/pubs/.")
         end
       end
+    end
+
+    # The only markup a title, an abstract or a news line may carry: <sub> and <sup>, for a
+    # formula (CO<sub>2</sub>, Mg<sup>2+</sup>; D60), each one closed and none inside another,
+    # without attributes. Another tag would show as code or change the page, and a <sub> left
+    # open would set the rest of the page small.
+    def check_markup(text, at, field)
+      return if blank?(text)
+      tags = text.to_s.scan(%r{</?[A-Za-z][^>]*>})
+      bad = tags.reject { |t| t.match?(%r{\A</?su[bp]>\z}) }
+      unless bad.empty?
+        err("#{at}: `#{field}` may use only <sub> and <sup>, for a formula such as CO<sub>2</sub>; found #{bad.uniq.join(" ")}.")
+        return
+      end
+      open = nil
+      tags.each do |t|
+        name = t.delete("</>")
+        if t.start_with?("</")
+          return err("#{at}: `#{field}` has #{t} with no <#{name}> before it.") unless open == name
+          open = nil
+        else
+          return err("#{at}: `#{field}` opens #{t} inside <#{open}>; close <#{open}> first.") if open
+          open = name
+        end
+      end
+      err("#{at}: `#{field}` opens <#{open}> and does not close it; add </#{open}>.") if open
     end
 
     # --- publications -------------------------------------------------------
@@ -186,6 +247,7 @@ module SAIL
         %w[title authors journal year].each do |f|
           err("#{at}: missing required field `#{f}`.") if blank?(p[f])
         end
+        %w[title abstract abstract_ko].each { |f| check_markup(p[f], at, f) }
         # year must be a plain number; a quoted "2026" mixes types with the other
         # (integer) years and breaks the year grouping/sort on the list page.
         if !blank?(p["year"]) && !p["year"].is_a?(Integer)
@@ -288,6 +350,7 @@ module SAIL
         title = n["title"]
         at = blank?(title) ? "news.yml entry #{i + 1}" : "news.yml \"#{title}\""
         err("#{at}: missing required field `title`.") if blank?(title)
+        %w[title body].each { |f| check_markup(n[f], at, f) }
         if blank?(n["date"])
           err("#{at}: missing required field `date` (YYYY-MM-DD).")
         elsif !n["date"].is_a?(String)
@@ -307,6 +370,30 @@ module SAIL
         link = n["link"]
         if !blank?(link) && !link.to_s.start_with?("/") && !link.to_s.start_with?("http")
           err("#{at}: `link: #{link}` must be an internal path (starts with \"/\") or a full URL (http...).")
+        end
+        # `links`: more links on the item's line (D60), each a `text` and a `url` held to the
+        # same rule as `link`.
+        more = n["links"]
+        if !more.nil? && !more.is_a?(Array)
+          err("#{at}: `links` must be a list, each entry a `- text: ...` line with a `url: ...` line under it.")
+        elsif more
+          more.each_with_index do |l, j|
+            lat = "#{at} links entry #{j + 1}"
+            unless l.is_a?(Hash)
+              err("#{lat}: expected `text` and `url`.")
+              next
+            end
+            err("#{lat}: missing `text` (the words of the link).") if blank?(l["text"])
+            u = l["url"].to_s
+            if blank?(l["url"])
+              err("#{lat}: missing `url`.")
+            elsif !u.start_with?("/") && !u.start_with?("http")
+              err("#{lat}: `url: #{u}` must be an internal path (starts with \"/\") or a full URL (http...).")
+            end
+          end
+        end
+        if !blank?(n["links_label"]) && (!more.is_a?(Array) || more.empty?)
+          err("#{at}: `links_label` is set but there are no `links` for it to label.")
         end
       end
     end
@@ -427,6 +514,23 @@ module SAIL
       contact = home["contact"]
       if contact.is_a?(Hash) && !blank?(contact["email"]) && !contact["email"].to_s.include?("@")
         err("home.yml: `contact.email` looks invalid (no '@'): #{contact["email"]}")
+      end
+      # The interview beside the research overview (D60): a YouTube id, the frame's address is
+      # built from it; the poster must exist, or the home page shows a broken image.
+      iv = home["interview"]
+      return if iv.nil?
+      unless iv.is_a?(Hash)
+        err("home.yml: `interview` must have `youtube`, `title` and `poster` under it.")
+        return
+      end
+      unless iv["youtube"].to_s =~ /\A[A-Za-z0-9_-]{11}\z/
+        err("home.yml interview: `youtube` must be the video's 11-character id (in https://youtu.be/Jve6-fJS7Oc it is Jve6-fJS7Oc), got #{iv["youtube"].inspect}.")
+      end
+      err("home.yml interview: missing `title`.") if blank?(iv["title"])
+      if blank?(iv["poster"])
+        err("home.yml interview: missing `poster` (a 16:9 image in assets/images/).")
+      elsif !image_exists?(iv["poster"])
+        err("home.yml interview: `poster: #{iv["poster"]}` not found in assets/images/.")
       end
     end
 

@@ -64,6 +64,12 @@ Live: https://sail.kookmin.ac.kr
 >
 > **BibTeX:** DOI 가 있는 논문은 논문 페이지와 `/publications.bib`(모든 논문)에 BibTeX 항목이
 > 자동으로 만들어집니다. 따로 적을 것은 없습니다.
+>
+> **화학식의 아래첨자 · 위첨자:** 제목이나 초록의 화학식은 출판사 표기처럼 `<sub>` · `<sup>` 로
+> 감쌉니다. `CO<sub>2</sub>` 는 2 가 아래에 작게, `Mg<sup>2+</sup>` 는 2+ 가 위에 작게 보입니다. 탭
+> 제목 · 검색 결과 · llms.txt 에는 `CO2` 처럼 평문으로, BibTeX 에는 `CO\textsubscript{2}` 로
+> 들어갑니다. 쓸 수 있는 태그는 이 둘뿐입니다. 닫지 않은 첨자가 있으면 빌드가 어느 논문인지 알려
+> 주며 멈춥니다.
 
 ### 논문에 코드와 데이터 링크 달기 (GitHub, Figshare 아이콘)
 
@@ -139,6 +145,12 @@ Live: https://sail.kookmin.ac.kr
 > 주소(`/people/<slug>/`)는 그대로라 **뉴스 등 어디서 건 링크가 절대 안 깨집니다** (기존
 > `/members/<slug>/`·`/alumni/<slug>/` 주소도 자동으로 이 페이지로 연결).
 
+> **동문 페이지의 줄**: 동문은 포닥 · 박사과정 · 석사과정 · 학부생 순으로 줄을 나눠 보여 줍니다. 학부생
+> 줄은 사진이 작습니다. 어느 줄에 들어갈지는 `role` 의 낱말로 정합니다(Postdoc · Ph.D. · M.S. ·
+> Undergraduate 또는 UROP, 석박사 통합과정은 박사 줄). 맞지 않을 때(통합과정을 석사로 마친 경우 등)는
+> 그 사람 항목에 `group: ms` 를 적습니다(`postdoc` · `phd` · `ms` · `undergrad`). 줄 이름과 순서는
+> `_data/people_groups.yml` 에 있습니다. 아무도 없는 줄은 보이지 않습니다.
+
 **개인 논문**(랩 논문 목록에 없는, 이전 소속 논문 등)은 그 사람 항목에 `publications:` 로 추가합니다.
 랩 논문과 합쳐 최신순 정렬, 제목은 DOI로 연결, 본인 이름이 굵게 표시됩니다.
 ```yaml
@@ -161,6 +173,10 @@ Live: https://sail.kookmin.ac.kr
   body: "한두 문장 설명."        # 선택
   link: "/publications/41/"    # 선택: 내부 경로 또는 https 주소
   link_text: "자세히"           # 선택: 링크 라벨 (기본값 "Details")
+  links_label: "In the press"  # 선택: 아래 links 앞에 붙는 말 (쌍점은 자동)
+  links:                       # 선택: 같은 줄에 더 붙일 링크 (학교 소식, 언론 기사 등)
+    - text: "JoongAng Ilbo"
+      url: "https://www.joongang.co.kr/article/..."
 ```
 가장 최근 3개는 홈 화면에도 표시됩니다.
 
@@ -220,7 +236,7 @@ sections:
 | 코드 아이콘 그림 (GitHub 로고, 회색 코드 아이콘) | `assets/images/github.svg`, `assets/images/code.svg` 파일을 같은 이름으로 교체 (어느 주소에 어느 그림인지는 `_includes/code-badge.html`) |
 | 데이터 아이콘 그림 (Figshare 로고, 회색 데이터 아이콘) | `assets/images/figshare.svg`, `assets/images/data.svg` 파일을 같은 이름으로 교체 (어느 주소에 어느 그림인지는 `_includes/dataset-badge.html`) |
 | 멤버/동문 개인 페이지 카드 | `_includes/person-profile.html` |
-| PI · Members · Alumni 페이지 구성 (세 주소가 한 문서를 함께 쓰고 각자 자기 부분에서 열림, D57) | `_includes/people-page.html` (주소마다 시작 부분만 `pi.html` · `members.html` · `alumni.html`) |
+| PI · Members · Alumni 페이지 구성 | `pi.html` · `members.html` · `alumni.html` (동문 페이지의 줄 이름과 순서는 `_data/people_groups.yml`) |
 | 홈 화면 구성 (최근 뉴스·연구·저널 표지) | `index.html` |
 | 상단 로고 | `assets/images/sail-logo.svg` (글자를 윤곽선으로 바꾼 그림. `sail-logo.png` 를 그대로 다시 그린 것) |
 | 사진·표지·그림을 크게 보는 창(뷰어) | `assets/js/viewer.js`, `_includes/lightbox.html` |

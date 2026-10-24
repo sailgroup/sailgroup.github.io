@@ -18,7 +18,8 @@ domain `https://sail.kookmin.ac.kr`.
 ## Layout
 - `_config.yml` — site configuration
 - `_data/` — all content lives here: `publications.yml` (authoritative, one entry per paper), `people.yml`
-  (members + alumni in one file; `status:` picks the page), `pi.yml`, `news.yml`, `research.yml`,
+  (members + alumni in one file; `status:` picks the page), `people_groups.yml` (the Alumni
+  page's rows: postdoc, Ph.D., M.S., undergraduate), `pi.yml`, `news.yml`, `research.yml`,
   `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
   `navigation.yml`, `positions.yml` (Positions page copy, Korean-only; each role
   section may carry an optional `projects` card list), and
@@ -26,13 +27,14 @@ domain `https://sail.kookmin.ac.kr`.
 - `_plugins/` — `generate_pages.rb` builds every publication/person page (and the legacy
   `/members|/alumni/<slug>/` redirects) from `_data`, so adding one is a single YAML edit;
   `validate_data.rb` checks the data at build time and fails with a readable message;
-  `pub_sort.rb` orders a person's merged publication list
+  `pub_sort.rb` orders a person's merged publication list; `people_groups.rb` (the `in_group`
+  filter) puts each alumnus in a row by `group:` or else `role`
 - `_layouts/` (`default`, `page`, `person`, `publication`), `_includes/` (shared markup),
   `assets/` — templates, partials, styles (`assets/css/main.scss`), JS, images
 - top-level pages — `index.html`, `research`, `pi`/`members`/`alumni`, `publications`, `news`,
   `photos`, `positions` (member/alumni/publication detail pages are generated, not files).
-  `pi`, `members` and `alumni` are one document, `_includes/people-page.html`: each address
-  shows the PI, the members and the alumni and opens at its own part (D57)
+  `pi`, `members` and `alumni` are separate pages (D60, which takes back D57's one document);
+  Alumni shows a row per group of `_data/people_groups.yml`, the undergraduates' photos smaller
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
   from the build)
 - `.github/workflows/`: the CI build (Jekyll, html-proofer) and deploy; `.github/scripts/`: the
@@ -87,9 +89,8 @@ domain `https://sail.kookmin.ac.kr`.
   glows; neutral (untinted) greys plus the brand orange; other colour comes only from information
   (figures; topic tags and news categories as a dot in their colour inside a neutral capsule,
   D56). Glass (D56) only on what floats over the page: the header, its dropdown, the phone
-  menu, the figures' zoom mark, the Publications capsule on phones and the people pages'
-  three-part menu while it is held under the header (D57) (the `glass` mixin, white or for
-  that menu light grey, plain where the browser or the reader turns transparency off), and
+  menu, the figures' zoom mark and the Publications capsule on phones (the `glass` mixin,
+  white or light grey, plain where the browser or the reader turns transparency off), and
   the viewer's buttons (dark); never on content or on other glass. Hover lifts are kept
   (maintainer's choice). Never shorten or hide PI-written text to fit a layout; balance a
   text-heavy block with the lab's own figures. The header switches to the menu button at

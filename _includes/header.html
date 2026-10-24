@@ -1,8 +1,6 @@
 {%- comment -%}On a page written in another language than the site (the Korean Positions page sets lang: ko), the English skip link, header and footer say they are English, so screen readers switch voice for them.{%- endcomment -%}
 {%- assign chromelang = "" -%}{%- if page.lang and page.lang != site.lang -%}{%- capture chromelang %} lang="{{ site.lang }}"{% endcapture -%}{%- endif -%}
-{%- comment -%}/members/ and /alumni/ open the people document at their own part (D57), so their skip link goes there, not to the PI at the top of <main>.{%- endcomment -%}
-{%- assign skipto = "main" -%}{%- if page.people_start == "members" or page.people_start == "alumni" -%}{%- assign skipto = page.people_start -%}{%- endif %}
-<a class="skip-link" href="#{{ skipto }}"{{ chromelang }}>Skip to content</a>
+<a class="skip-link" href="#main"{{ chromelang }}>Skip to content</a>
 <header class="site-header"{{ chromelang }}>
   <div class="header-inner container">
     <div class="brand-group">

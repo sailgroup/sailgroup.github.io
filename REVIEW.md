@@ -1273,3 +1273,31 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
 - **Live** (main run 39964709684; IndexNow found 0 of 69 pages changed): the seven icons answer
   200 with their image types and are the committed files; the home page links the same four
   icons and the manifest, and keeps the Search Console tag.
+
+## 30. The PI's review (2026-10-24, D60)
+
+- **Local build** (Docker: `node:24` image step, `ruby:3.3` Jekyll build, html-proofer): built
+  in 23 s with the one known warning (46 has no journal logo); html-proofer passed on 96 files
+  and 175 internal links.
+- **Output:** the pages of 45, 43 and 13 show the formulas in their headings and keep them
+  plain in `<title>`, og:title, citation_title, the description, alt texts, the
+  ScholarlyArticle headline and the breadcrumb; no `<sub>` or `<sup>` in any meta tag,
+  JSON-LD block, llms.txt or llms-full.txt; every JSON-LD block on the 96 pages parses.
+  `/publications.bib` writes `CsPbBr\textsubscript{3}/Cs\textsubscript{4}PbBr\textsubscript{6}`
+  and `Mg\textsuperscript{2+}` (43 has no DOI, so no entry). frame-src is youtube-nocookie.com
+  on the home page and `'none'` on the others.
+- **People pages:** /pi/ has the PI only, /members/ 4 cards, /alumni/ 9 cards in one row
+  ("Undergraduate Researchers"), and none has the one-document markup left.
+- **In Chrome** (local serve, 12 pages at 1440 and 390px): no console error, CSP violation or
+  horizontal overflow. A click on the interview's poster puts a focused youtube-nocookie.com
+  frame in its place, and the video plays. The Publications search for cspbbr3, cs4pbbr6,
+  mg2+ and "co2 production" finds one paper each and marks CsPbBr3, Cs4PbBr6, Mg2+ and CO2
+  whole across the `<sub>`/`<sup>`.
+- **Justified text:** word gaps measured on six pages (Home, Research, PI, News, paper 37,
+  Positions): lines with a gap over three spaces, `wrap` 24 of 133 at 1440px, 27 of 139 at
+  1000px, 29 of 159 at 768px, 31, 23 and 26 at 700, 640 and 600px, 40 of 178 at 480px and
+  81 of 232 at 390px; hence justified from 600px, flush left below.
+- **Text against the live site** (`.qa/tools/text-check.py`, 69 pages): no data string the
+  live site shows is missing from the build. The visible lines gone from a page are the parts
+  /pi/, /members/ and /alumni/ no longer share (each is on its own page), and the two BibTeX
+  titles; added: the interview's caption and length, the Alumni row heading, the news links.

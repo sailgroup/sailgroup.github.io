@@ -24,14 +24,37 @@ permalink: /news/
           {%- comment -%}Several links share a label ("Member page"), so each is described by its item's title.{%- endcomment %}
           <h2 class="news__title" id="news-{{ forloop.index }}">{{ n.title }}</h2>
           {%- if n.body and n.body != "" -%}<p class="news__text">{{ n.body }}</p>{%- endif -%}
-          {%- if n.link and n.link != "" -%}
+          {%- assign i = forloop.index -%}
+          {%- assign has_link = false -%}{%- if n.link and n.link != "" -%}{%- assign has_link = true -%}{%- endif -%}
+          {%- assign has_more = false -%}{%- if n.links and n.links.size > 0 -%}{%- assign has_more = true -%}{%- endif -%}
+          {%- if has_link or has_more -%}
+          {%- comment -%}The item's link, then on the same line its other links (`links`: a news story about it, press articles), after `links_label` when there is one.{%- endcomment %}
+          <p class="news__links">
+            {%- if has_link -%}
             {%- assign label = n.link_text | default: "Details" -%}
             {%- if n.link contains "://" -%}
-            <a class="link news__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer" aria-describedby="news-{{ forloop.index }}">{{ label }} {% include icon.html name="external" %}</a>
+            <a class="link news__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer" aria-describedby="news-{{ i }}">{{ label }}{% include new-tab.html %} {% include icon.html name="external" %}</a>
             {%- else -%}
             {%- capture href -%}{% include news-href.html link=n.link %}{%- endcapture -%}
-            <a class="link news__link" href="{{ href | relative_url }}" aria-describedby="news-{{ forloop.index }}">{{ label }}</a>
+            <a class="link news__link" href="{{ href | relative_url }}" aria-describedby="news-{{ i }}">{{ label }}</a>
             {%- endif -%}
+            {%- endif -%}
+            {%- if has_more %}
+            <span class="news__more">
+              {%- if n.links_label and n.links_label != "" -%}<span class="news__label">{{ n.links_label }}:</span>{%- endif -%}
+              {%- for l in n.links -%}
+              {%- comment -%}A space between the label and each link: the flex gap draws it, and the text (read aloud, copied) keeps it.{%- endcomment -%}
+              {{- " " -}}
+              {%- if l.url contains "://" -%}
+              <a class="link news__link" href="{{ l.url }}" target="_blank" rel="noopener noreferrer" aria-describedby="news-{{ i }}">{{ l.text }}{% include new-tab.html %} {% include icon.html name="external" %}</a>
+              {%- else -%}
+              {%- capture href -%}{% include news-href.html link=l.url %}{%- endcapture -%}
+              <a class="link news__link" href="{{ href | relative_url }}" aria-describedby="news-{{ i }}">{{ l.text }}</a>
+              {%- endif -%}
+              {%- endfor -%}
+            </span>
+            {%- endif -%}
+          </p>
           {%- endif -%}
         </div>
       </li>

@@ -328,3 +328,11 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   ink tile, with the 16px icon drawn on the pixel grid. Only the icon files changed. Built on
   `dev` (run 39964410347), deployed (main run 39964709684) and verified live. Results in
   `REVIEW.md` section 29.
+- **Phase 30 (2026-10-24):** the PI's review (D60), passed on by the maintainer. /pi/,
+  /members/ and /alumni/ are three pages again (D57 taken back); Alumni shows a row per
+  degree with smaller undergraduate photos; running text is justified from 600px, headings
+  fill their first line, and the footer puts the department on its own line; titles carry
+  formula subscripts and superscripts (45, 43, 13 and two of Heejeong Kim's), plain in meta
+  and BibTeX's \textsubscript; the PI's interview plays on Home beside the research overview;
+  news items take extra links (Kookmin University's story, three press articles). Checked
+  in a local CI build (Docker); results in `REVIEW.md` section 30.

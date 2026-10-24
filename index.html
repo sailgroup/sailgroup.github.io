@@ -3,7 +3,9 @@ layout: default
 # The home page's meta description: Korean first for Naver and Korean searches (D58), then the
 # site's description without the PI's name (in the Korean), so the two fit 160 characters.
 description: "국민대학교 화학부 정준영 교수 연구실. SAIL, the Spectroscopy and AI Lab at Kookmin University: machine learning for molecular properties, reactions, design, and databases."
-scripts: [viewer]
+scripts: [viewer, video]
+# The interview's frame (youtube-nocookie.com) is allowed on this page only (head.html, D60).
+video: true
 ---
 <section class="hero">
   <div class="container hero__inner">
@@ -54,9 +56,22 @@ scripts: [viewer]
 
 <section class="section">
   <div class="container">
-    <div class="section-head">
-      <h2>Research</h2>
-      <p class="lead">{{ site.data.research.overview.en }}</p>
+    {%- assign iv = site.data.home.interview %}
+    <div class="section-head{% if iv %} section-head--video{% endif %}">
+      <div>
+        <h2>Research</h2>
+        <p class="lead">{{ site.data.research.overview.en }}</p>
+      </div>
+      {%- if iv -%}
+      {%- comment -%}The PI's interview beside the overview (D60, home.yml). The poster links to the video on YouTube, where it opens without JS or on a modified click; video.js plays it in place instead, in a youtube-nocookie.com frame, the one frame this page's CSP allows (head.html, page.video).{%- endcomment %}
+      <figure class="video">
+        <a class="video__play" href="https://www.youtube.com/watch?v={{ iv.youtube }}" target="_blank" rel="noopener noreferrer" data-youtube="{{ iv.youtube }}" data-title="{{ iv.title | escape }}" aria-label="Play the video: {{ iv.title | escape }}{% if iv.length %}, {{ iv.length }}{% endif %} (opens in a new tab)">
+          <img src="{{ '/assets/images/' | append: iv.poster | relative_url }}" alt="" width="800" height="450" loading="lazy" decoding="async">
+          <span class="video__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="12" height="12"><path d="M7 4.5v15l12.5-7.5z"/></svg>{{ iv.length }}</span>
+        </a>
+        <figcaption><span class="video__title">{{ iv.title }}</span>{% if iv.by %} <span class="video__by">{{ iv.by }}</span>{% endif %}</figcaption>
+      </figure>
+      {%- endif %}
     </div>
     {%- comment -%}Each area in full (never truncated), with its figure from research.yml beside it. Title and figure link to the same area on /research/ (id = the slugified title, set in research.html).{%- endcomment -%}
     <div class="area-rows">

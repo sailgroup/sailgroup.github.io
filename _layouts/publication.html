@@ -56,10 +56,10 @@ layout: default
         {%- assign fw = gi.w -%}{%- assign fh = gi.h -%}
         {%- if gi.h > 420 -%}{%- assign fw = gi.w | times: 420.0 | divided_by: gi.h | round -%}{%- assign fh = 420 -%}{%- endif -%}
       {%- endif -%}
-      {%- capture figimg -%}<img src="{{ figurl }}" alt="Graphical abstract for {{ p.title | escape }}"{% if fw %} width="{{ fw }}" height="{{ fh }}"{% endif %} fetchpriority="high">{%- endcapture -%}
+      {%- capture figimg -%}<img src="{{ figurl }}" alt="Graphical abstract for {{ p.title | strip_html | escape }}"{% if fw %} width="{{ fw }}" height="{{ fh }}"{% endif %} fetchpriority="high">{%- endcapture -%}
       <figure class="paper__figure">
         {%- if fullfile %}
-        <a class="paper__zoom" href="{{ figurl }}" data-viewer="figure-lightbox" data-full="{{ figurl }}" data-alt="Graphical abstract for {{ p.title | escape }}" aria-label="Enlarge the graphical abstract for {{ p.title | escape }}">{{ figimg }}{% include zoom-hint.html %}</a>
+        <a class="paper__zoom" href="{{ figurl }}" data-viewer="figure-lightbox" data-full="{{ figurl }}" data-alt="Graphical abstract for {{ p.title | strip_html | escape }}" aria-label="Enlarge the graphical abstract for {{ p.title | strip_html | escape }}">{{ figimg }}{% include zoom-hint.html %}</a>
         {%- else %}
         {{ figimg }}
         {%- endif %}

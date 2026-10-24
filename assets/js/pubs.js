@@ -118,18 +118,31 @@
     papers.forEach(function (p) {
       if (p.el.classList.contains("is-hidden")) return;
       p.fields.forEach(function (f) {
+        // The field's text nodes read as one string, so a word that runs across elements is
+        // found and marked whole: "CsPbBr3" in a title is "CsPbBr", then "3" in a <sub>.
         var walk = document.createTreeWalker(f, NodeFilter.SHOW_TEXT);
+        var nodes = [], starts = [], text = "";
         for (var node = walk.nextNode(); node; node = walk.nextNode()) {
-          var text = fold(node.nodeValue);
-          terms.forEach(function (t) {
-            for (var at = text.indexOf(t); at !== -1; at = text.indexOf(t, at + t.length)) {
-              var r = new Range();
-              r.setStart(node, at);
-              r.setEnd(node, at + t.length);
-              hl.add(r);
-            }
-          });
+          nodes.push(node);
+          starts.push(text.length);
+          text += fold(node.nodeValue);
         }
+        // The text node and offset of a place in that string: a match starts in the node the
+        // place begins, and ends in the node the place closes.
+        function place(pos, end) {
+          var i = nodes.length - 1;
+          while (i > 0 && (starts[i] > pos || (end && starts[i] === pos))) i--;
+          return [nodes[i], pos - starts[i]];
+        }
+        terms.forEach(function (t) {
+          for (var at = text.indexOf(t); at !== -1; at = text.indexOf(t, at + t.length)) {
+            var a = place(at, false), b = place(at + t.length, true);
+            var r = new Range();
+            r.setStart(a[0], a[1]);
+            r.setEnd(b[0], b[1]);
+            hl.add(r);
+          }
+        });
       });
     });
     CSS.highlights.set("pub-search", hl);

@@ -91,9 +91,8 @@
    an SVG displacement filter that only Chrome applies to a backdrop, so it is left out.
    Without backdrop-filter the material is near-opaque white, and with the system's
    "reduce transparency" setting it is plain white. A light grey $base gives the same
-   material in grey: the people pages' three-part menu (D57), and the dropdown, the zoom
-   mark and the Publications capsule (D58), whose bright rim never showed on white glass
-   over a white page, so they read as plain cards. The header and the phone menu, bars
+   material in grey: the dropdown, the zoom mark and the Publications capsule (D58), whose
+   bright rim never showed on white glass over a white page, so they read as plain cards. The header and the phone menu, bars
    rather than floating pieces, stay white. */
 @mixin glass($alpha: 0.72, $blur: 20px, $base: #fff) {
   background: rgba($base, $alpha);
@@ -201,14 +200,16 @@ strong, b { font-weight: 600; }
 
 /* --- Typography ----------------------------------------------------------- */
 /* Headings in semibold, drawn tighter as they grow, so large type reads crisp rather than
-   loud at the compact sizes (D56). */
+   loud at the compact sizes (D56). A long heading fills its first line and goes on in the
+   next, with no single word left alone at the end (D60; `balance` made two lines of equal
+   length, breaking the first halfway across). */
 h1, h2, h3, h4 {
   font-family: var(--font-sans);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.012em;
   color: var(--ink);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 h1 { font-size: var(--fs-2xl); letter-spacing: -0.025em; }
 h2 { font-size: var(--fs-xl); letter-spacing: -0.02em; }
@@ -217,10 +218,36 @@ h4 { font-size: var(--fs-md); font-weight: 700; }
 
 p { text-wrap: pretty; }
 
+/* The figures of a formula in a paper's title (CO<sub>2</sub>, Mg<sup>2+</sup>; D60) sit
+   below or above the line without opening up its spacing. */
+sub, sup { position: relative; font-size: 75%; line-height: 0; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
 .lead {
   font-size: var(--fs-md);
   line-height: 1.6;
   color: var(--ink-2);
+}
+
+/* Running text is justified, as in the PI's own documents (D60): each line of a paragraph
+   but the last ends at the same right edge. Words are never hyphenated, so a chemical name
+   or a formula stays whole, and lines are filled one at a time (`wrap`): `pretty` spread a
+   paragraph's second-to-last line wide to carry a word down to the last. Under 600px a line
+   holds about 40 characters, too few to spread evenly (at 390px a third of the lines had a
+   gap over three spaces wide), so phones keep the text flush left. Headings, captions and
+   centred text keep their own alignment. */
+@media (min-width: 37.5em) {
+  .page-head .lead,
+  .hero .lead,
+  .section-head .lead,
+  .prose p,
+  .card p,
+  .area-row p,
+  .research-area p,
+  .news__text,
+  .paper__abstract p,
+  .paper__abstract-en p { text-align: justify; text-wrap: wrap; }
 }
 
 /* Small plain line above a heading that adds information the heading lacks (the lab
@@ -251,10 +278,8 @@ p { text-wrap: pretty; }
 .link:hover { color: var(--orange-ink); text-decoration-color: currentColor; }
 
 /* --- Accessibility helpers ----------------------------------------------- */
-/* Fixed, so focusing it never scrolls: /members/ and /alumni/ open partway down the page
-   (D57), and an absolute link at the top of the document took the reader back up. */
 .skip-link {
-  position: fixed;
+  position: absolute;
   left: 0.75rem;
   top: -3rem;
   z-index: 200;
@@ -312,6 +337,54 @@ p { text-wrap: pretty; }
    gap so the two intro blocks on the home page breathe the same way. */
 .section-head:has(.lead) { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
 .section-head .lead { margin-top: 0.75rem; }
+
+/* The home page's research overview with the PI's interview beside it (D60): a small
+   poster at the right of the text from 1000px, under the text on narrower screens. */
+.section-head--video { display: grid; gap: var(--space-lg); }
+@media (min-width: 1000px) {
+  .section-head--video { grid-template-columns: minmax(0, 1fr) 19rem; column-gap: var(--space-xl); align-items: start; }
+}
+.video { max-width: 22rem; margin: 0; }
+.video__play,
+.video__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  background: #1f1f1f;
+}
+.video__play {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--line);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+.video__play:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0, 0, 0, 0.1); }
+.video__play img { width: 100%; height: 100%; object-fit: cover; }
+.video__frame { border: 0; }
+/* The play mark with the video's length: a capsule of the figures' glass (zoom-hint, D56). */
+.video__mark {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem 0.3rem 0.55rem;
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  @include glass(0.6, 14px, #f6f6f6);
+  box-shadow: $glass-rim, $glass-float;
+  transition: transform 0.3s var(--ease-out);
+}
+.video__mark svg { width: 0.75rem; height: 0.75rem; }
+.video__play:hover .video__mark { transform: scale(1.05); }
+.video figcaption { margin-top: 0.6rem; font-size: var(--fs-sm); line-height: 1.45; }
+.video__title { display: block; color: var(--ink); font-weight: 500; }
+.video__by { display: block; margin-top: 0.15rem; font-size: var(--fs-xs); color: var(--muted); }
 
 /* --- Header / navigation -------------------------------------------------- */
 /* The header stays at the top in Liquid Glass (D56): white where nothing is under it, the
@@ -767,6 +840,34 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 /* Balanced lines, so a short last word ("(UROP)") does not sit alone on its own line. */
 .person__role, .person__note { text-wrap: balance; }
 
+/* Alumni (alumni.html, D60): a row for each group of people_groups.yml under a hairline,
+   the group's name at the left and its people beside it, filled from the left. The
+   undergraduates' photos are two thirds the size (7rem, not 10.5rem), so five fit a row
+   where three did (the PI's request). On phones the name sits above its people. */
+.people-group {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--line);
+}
+.people-group:first-child { padding-top: var(--space-sm); border-top: 0; }
+.people-group__title { font-size: var(--fs-md); line-height: 1.4; letter-spacing: -0.01em; }
+.people-group .person-grid {
+  grid-template-columns: repeat(auto-fill, 13rem);
+  justify-content: start;
+  max-width: none;
+  margin-inline: 0;
+}
+.people-group .person-grid--small { grid-template-columns: repeat(auto-fill, 9.5rem); gap: 2.75rem 1.25rem; }
+.person-grid--small .person__photo,
+.person-grid--small .person__figure--swap,
+.person-grid--small .person__ph { max-width: 7rem; }
+.person-grid--small .person__ph { font-size: 1.25rem; }
+.person-grid--small .person__name { margin-top: 0.75rem; font-size: var(--fs-base); }
+.person-grid--small .person__role { font-size: var(--fs-xs); }
+
 /* --- PI profile ----------------------------------------------------------- */
 .profile { display: grid; gap: 3.5rem; grid-template-columns: 15.5rem minmax(0, 1fr); align-items: start; }
 .profile__aside { position: sticky; top: calc(var(--header-h) + 1.5rem); }
@@ -783,17 +884,13 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   transition: color 0.15s ease, text-decoration-color 0.15s ease;
 }
 .profile__contact a:hover { color: var(--ink); text-decoration-color: var(--orange); }
-/* The bio keeps a reading measure: 65 characters a line on average, at most 71 (the whole
-   column gave 89). */
-.profile__main .prose p { max-width: 55ch; }
 .profile__name { margin-bottom: 0.2rem; }
 .profile__name .ko { color: var(--muted); font-size: 0.6em; font-family: var(--font-sans); font-weight: 500; letter-spacing: 0; margin-left: 0.5rem; }
 .profile__title { color: var(--ink-2); font-weight: 500; }
 .profile__affil { color: var(--muted); }
 
 .cv { margin-top: var(--space-xl); }
-/* h3 where the PI's name is an h2, on /members/ and /alumni/ (people-page.html, D57). */
-.cv h2, .cv h3 { font-size: var(--fs-base); font-weight: 600; letter-spacing: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line-2); margin-bottom: 0.25rem; }
+.cv h2 { font-size: var(--fs-base); font-weight: 600; letter-spacing: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line-2); margin-bottom: 0.25rem; }
 .cv__item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.15rem 1.5rem; padding: 0.75rem 0; }
 .cv__item + .cv__item { border-top: 1px solid var(--line); }
 .cv__role { font-weight: 600; color: var(--ink); }
@@ -806,28 +903,18 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 /* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): the three pages as a
    segmented control (D56), the current one raised on white in a neutral track. They were
    grey text links with a dot between them. */
-.people-nav { margin-top: var(--space-md); font-size: var(--people-nav-fs, var(--fs-sm)); }
-/* One row at every width, so the held menu is as tall as --people-bar-h says (D57): the
-   segments narrow on small phones (below), and a menu still too wide, under a large text
-   setting, scrolls sideways inside its track. */
+.people-nav { margin-top: var(--space-md); font-size: var(--fs-sm); }
 .people-nav ul {
   display: inline-flex;
-  max-width: 100%;
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex-wrap: wrap;
   gap: 2px;
   padding: 3px;
   border-radius: 1.25rem;
   background: var(--fill);
 }
-.people-nav ul::-webkit-scrollbar { display: none; }
-/* The track clips what crosses its edge (it scrolls), so the focus ring is drawn inside. */
-.people-nav a:focus-visible { outline-offset: -2px; }
-.people-nav li { flex: none; }
 .people-nav a {
   display: block;
   padding: 0.4rem 1rem;
-  white-space: nowrap;
   border-radius: var(--radius-pill);
   font-weight: 500;
   color: var(--ink-2);
@@ -839,76 +926,6 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   color: var(--ink);
   font-weight: 600;
   box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* --- People document (D57) ------------------------------------------------ */
-/* /pi/, /members/ and /alumni/ show one document (people-page.html): the PI, the members,
-   the alumni, each part under a hairline with its heading in the same style. The
-   three-part menu is held under the header as the page scrolls; held there, its track
-   turns into floating glass (is-stuck, set by people.js). The parts and the PI's photo
-   stop below it. */
-/* A part reached by its address or its link sits just under the menu: the menu's height
-   joins the page's scroll-padding here (a scroll-margin on the part would do the same for
-   links, but Chrome's scroll-initial-target reads only the padding). /members/ and
-   /alumni/ open there (scroll-initial-target; people-start.js where the browser lacks it,
-   hiding the page until then with people-pending). */
-html:has(.people) {
-  --people-nav-fs: var(--fs-sm);
-  --people-bar-h: calc(var(--people-nav-fs) * 1.65 + 0.8rem + 6px);
-  scroll-padding-top: calc(var(--header-h) + 1.5rem + var(--people-bar-h));
-}
-.people__title { font-size: var(--fs-2xl); letter-spacing: -0.025em; }
-/* A part's heading takes focus only from people.js (on opening at the part, after a link
-   to it), never from Tab; it is not a control, so it draws no ring. */
-.people__title:focus { outline: none; }
-.people__head .people__title { margin-bottom: 0.5rem; }
-.people__head--pi { padding-bottom: 0; }
-.people-bar {
-  position: sticky;
-  top: calc(var(--header-h) + 0.75rem);
-  z-index: 50;
-  margin-block: var(--space-md) var(--space-sm);
-  pointer-events: none; /* the empty width beside the menu lets clicks through */
-}
-.people-bar .people-nav { margin-top: 0; }
-.people-bar .people-nav ul {
-  pointer-events: auto;
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
-}
-/* Held at the top, the track is glass of the same light grey as at rest, so the chosen
-   part keeps its raised white against it. */
-.people-bar.is-stuck .people-nav ul {
-  @include glass(0.78, 20px, #f2f2f2);
-  box-shadow: $glass-rim, $glass-float;
-}
-.people-bar.is-stuck .people-nav a:not([aria-current]):hover { background: var(--fill); }
-.people .profile__aside { top: calc(var(--header-h) + 0.75rem + var(--people-bar-h) + 1.5rem); }
-.people__part > .people__head { padding-top: 0; }
-.people__part > .people__head::before {
-  content: "";
-  display: block;
-  height: 1px;
-  margin-bottom: var(--space-lg);
-  background: var(--line);
-}
-.people__part.is-start { scroll-initial-target: nearest; }
-html.people-pending .site-main { visibility: hidden; }
-html.people-pending, html.people-jump { scroll-behavior: auto; }
-
-/* The three-part menu in one row on small phones: 375px and 360px wide (common Android
-   widths) wrapped it to two rows with the full padding, 320px with the smaller text too. */
-@media (max-width: 26em) { .people-nav a { padding-inline: 0.75rem; } }
-@media (max-width: 23.5em) { .people-nav a { padding-inline: 0.6rem; } }
-@media (max-width: 21em) {
-  html:has(.people) { --people-nav-fs: var(--fs-xs); }
-  .people-nav a { padding-inline: 0.5rem; }
-}
-/* On a short screen (a phone held sideways, 200% or 400% zoom) the header and the held menu
-   together covered a third to a half of it, so there the menu scrolls with the page; the
-   header and the menus' marks still follow the part in view. */
-@media (max-height: 31.25em) {
-  html:has(.people) { --people-bar-h: 0px; }
-  .people-bar { position: static; }
 }
 
 /* --- Publications --------------------------------------------------------- */
@@ -1456,14 +1473,17 @@ body.no-scroll { overflow: hidden; }
 .footer-brand p {
   grid-column: 1;
   margin-top: 1rem;
-  max-width: 30ch;
   font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
   font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.01em;
   color: #e6e6e6;
-  text-wrap: balance;
 }
+/* The lab's name on one line and the department with the university on the next (D60, the
+   PI's request: "Department" had ended the first line). Where the second line is too long
+   for a phone it breaks once more, after "Chemistry,". */
+.footer-lab > span { display: block; }
+.footer-lab > span > span { display: inline-block; }
 /* After the generic `.footer-brand p` rule and one class more specific, so the mark keeps
    its own size and colour. */
 .footer-brand .footer-mark { margin-top: 0; font-family: var(--font-sans); font-size: 1.625rem; line-height: 1; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
@@ -1574,7 +1594,8 @@ body.no-scroll { overflow: hidden; }
   gap: var(--space-2xl);
 }
 .research-area h2 { font-size: var(--fs-lg); margin-bottom: 0.6rem; }
-.research-area p { color: var(--ink-2); max-width: 58ch; }
+/* The text fills its column (D60): justified, it ends where the figure's column begins. */
+.research-area p { color: var(--ink-2); }
 /* Areas that carry a paper figure: text beside figure, alternating sides. */
 .research-area--figured {
   display: grid;
@@ -1583,7 +1604,6 @@ body.no-scroll { overflow: hidden; }
   align-items: center;
 }
 .research-area--figured:nth-child(even) .research-area__text { order: 2; }
-.research-area__text p { max-width: 48ch; }
 .research-area__figure { margin: 0; }
 .research-area__figure img {
   display: block; width: 100%; height: auto;
@@ -1699,7 +1719,6 @@ body.no-scroll { overflow: hidden; }
   .person-grid { grid-template-columns: repeat(2, minmax(0, 13rem)); gap: var(--space-xl) var(--space-lg); }
   .research-area--figured { grid-template-columns: 1fr; gap: var(--space-md); }
   .research-area--figured:nth-child(even) .research-area__text { order: 0; }
-  .research-area__text p, .research-area p { max-width: none; }
   /* Each figure above its title and text, at its own proportions: in an 88px side column
      the wide figures (up to 4:1) were drawn a few pixels tall. */
   .area-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
@@ -1716,6 +1735,21 @@ body.no-scroll { overflow: hidden; }
   /* Keep the people grid at two-per-row on phones rather than collapsing to one. */
   .person-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl) var(--space-md); max-width: 340px; }
   .person { max-width: none; }
+}
+/* Alumni on phones: each group's name above its people, two to a row as on Members, the
+   undergraduates three to a row (two on the narrowest phones, where "Undergraduate" would
+   no longer fit its column). */
+@media (max-width: 720px) {
+  .people-group { grid-template-columns: minmax(0, 1fr); gap: var(--space-md); padding-block: var(--space-lg); }
+  .people-group .person-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl) var(--space-md); }
+  .people-group .person-grid--small { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-lg) var(--space-sm); }
+  .person-grid--small .person__photo,
+  .person-grid--small .person__figure--swap,
+  .person-grid--small .person__ph { max-width: 5.5rem; }
+  .person-grid--small .person__name { font-size: var(--fs-sm); }
+}
+@media (max-width: 380px) {
+  .people-group .person-grid--small { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* --- Motion / print ------------------------------------------------------- */
@@ -1736,7 +1770,7 @@ body.no-scroll { overflow: hidden; }
    (dark on white, white on the footer's dark), and the glass layers are opaque. */
 @media (forced-colors: active) {
   .nav-toggle span { forced-color-adjust: none; background: CanvasText; }
-  .site-header::before, .site-nav, .subnav, .zoom-hint, .pubs-pill, .people-bar.is-stuck .people-nav ul { background: Canvas; }
+  .site-header::before, .site-nav, .subnav, .zoom-hint, .video__mark, .pubs-pill { background: Canvas; }
   .brand img, .brand-kmu img, .pub-badge img, .paper__logo { forced-color-adjust: none; background: #fff; border-radius: 4px; }
   .footer-kmu img { forced-color-adjust: none; background: #1f1f1f; border-radius: 4px; }
   .people-nav a[aria-current="page"], .pub-filter.is-active, .tag.is-on { outline: 2px solid Highlight; outline-offset: -2px; }
@@ -1749,7 +1783,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media print {
-  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint, .people-bar, .skip-link { display: none; }
+  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint, .video, .skip-link { display: none; }
   /* A paper, a person, a CV line or a figure is never cut at the foot of a sheet. */
   .pub, .person, .cv__item, figure { break-inside: avoid; }
   .pubs { display: block; }
@@ -1838,7 +1872,12 @@ body.no-scroll { overflow: hidden; }
 .news__date { font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
 .news__title { margin: 0; font-size: var(--fs-lg); line-height: 1.4; letter-spacing: -0.015em; }
 .news__text { color: var(--ink-2); margin-top: 0.5rem; line-height: 1.65; max-width: 55ch; }
-.news__link { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.7rem; font-size: var(--fs-sm); font-weight: 500; }
+/* The item's link and its other links in one line (D60): the press articles after their
+   muted label, a little closer together than the groups. */
+.news__links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.5rem; margin-top: 0.7rem; font-size: var(--fs-sm); }
+.news__more { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; }
+.news__label { color: var(--muted); }
+.news__link { display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 500; }
 .news__link .icon { width: 1em; height: 1em; }
 /* The categories' colours, on the timeline's dot (news.html, data-cat) and the home cards'
    capsule dot; they keep the hues the old pills had. */

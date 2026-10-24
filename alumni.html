@@ -3,9 +3,30 @@ layout: default
 title: Alumni
 description: "국민대학교 화학부 정준영 교수 연구실 이전 구성원. Alumni of the Spectroscopy and AI Lab (SAIL) at Kookmin University, and where they are now."
 permalink: /alumni/
-# The PI, the members and the alumni are one document; this address opens it at the
-# alumni (D57, _includes/people-page.html).
-people_start: alumni
-scripts: [people]
 ---
-{% include people-page.html %}
+<div class="container page-head">
+  <h1>Alumni</h1>
+  <p class="lead">Former members of the Spectroscopy and AI Lab at Kookmin University.</p>
+  {% include people-nav.html %}
+</div>
+
+<section class="section section--tight">
+  <div class="container">
+    {%- comment -%}One row for each group of _data/people_groups.yml (postdoctoral researchers, Ph.D. and M.S. students, undergraduates), its name at the left (above the people on a phone); a group with nobody in it is left out. The undergraduates' photos are smaller (`small`). The first three photos are in the first screenful, so they load at once.{%- endcomment %}
+    {%- assign alumni = site.data.people | where: "status", "alumni" -%}
+    {%- assign shown = 0 %}
+    <div class="people-groups">
+      {%- for g in site.data.people_groups -%}
+      {%- assign members = alumni | in_group: g.key -%}
+      {%- if members.size > 0 %}
+      <section class="people-group" aria-labelledby="group-{{ g.key }}">
+        <h2 class="people-group__title" id="group-{{ g.key }}">{{ g.name }}</h2>
+        <div class="person-grid{% if g.small %} person-grid--small{% endif %}">
+          {%- for a in members -%}{%- assign shown = shown | plus: 1 -%}{%- assign eager = false -%}{%- if shown <= 3 -%}{%- assign eager = true -%}{%- endif -%}{% include person-card.html person=a eager=eager %}{%- endfor -%}
+        </div>
+      </section>
+      {%- endif -%}
+      {%- endfor %}
+    </div>
+  </div>
+</section>

@@ -1842,6 +1842,7 @@ add their verification meta tags.
   `functional.js` 22 of 22 and `webkit-check.cjs` 35 of 35.
 
 ## D57: /pi/, /members/ and /alumni/ are one document (maintainer's request, 2026-10-23)
+Taken back by D60 (2026-10-24, the PI's request): the three are separate pages again.
 
 - **Asked:** after D56 the maintainer asked whether the three people pages could be read as
   one page, keeping the three menu entries and the three addresses. Two ways were shown: one
@@ -2034,3 +2035,85 @@ Replaces D17 (2), under which the tab and home-screen icons were Kookmin's emble
 - **Deployed** 2026-10-23: `main` fast-forwarded 2650b82 to 5ac0dfe (run 39964709684; IndexNow
   found no page changed, as only the icons did). The seven icon files on the live site are
   the committed ones.
+
+## D60: The PI's review: three people pages again, justified text, formulas, the interview and press links (the PI's requests through the maintainer, 2026-10-24)
+Takes back D57. Changes D49's measure for the PI's bio and the Research page.
+- **Asked:** the PI read the site, and the maintainer passed on the notes. Lines break
+  oddly: the footer's "Department" ended a line, the PI's bio ends unevenly, and so do the
+  texts and titles on Research; the example given was Word's justify button. Papers 45, 43
+  and 13 need the subscripts and superscripts of their formulas, with a way to write them.
+  Are BibTeX's double braces right? The PI, Members and Alumni pages should be separate
+  again. Alumni should be in rows by degree (postdoc, Ph.D., M.S., undergraduate), the
+  undergraduates' photos smaller, and the maintainer left the structure to us. Then the
+  PI's interview on Kookmin University's YouTube channel, somewhere on Home where it does not
+  stand out too much; Kookmin University's story beside "Member page" on Jihwan's award; and
+  three newspapers' articles on the FlowER item.
+- **People pages (D57 taken back):** `pi.html`, `members.html` and `alumni.html` are pages
+  of their own again, as before D57 (7bd20c6). `people-page.html`, `people.js` and
+  `people-start.js` are gone, and with them the glass menu held under the header, the address
+  that followed the part in view and the script in the head. The three-part menu
+  (`people-nav.html`) is the plain one it was before D57, and each address has its own JSON-LD again
+  (the PI's Person on /pi/, a CollectionPage on /members/ and on /alumni/).
+- **Alumni rows:** `_data/people_groups.yml` lists the rows in order: postdoctoral
+  researchers, Ph.D. students, M.S. students, undergraduates. A person's row is their
+  `group:` in people.yml, or else the first row with one of its words in their `role`
+  ("M.S./Ph.D. Integrated Course" goes to Ph.D.). `_plugins/people_groups.rb` (the
+  `in_group` filter) sorts them, and the validator stops the build for an alumnus who fits
+  no row. A row is its name at the left and its people beside it, filled from the left,
+  under a hairline; on phones the name is above. The undergraduates' photos are 7rem
+  (10.5rem before), five to a row at 1440px where there were three; on phones three to a row
+  (two under 380px), photos 5.5rem. A row with nobody in it is not shown: all nine alumni are
+  undergraduates today, so the page has one row, and a row for another degree appears with
+  its first alumnus. Members keep the grid of D49.
+- **Justified text:** running text is justified from 600px: the leads, prose (the PI's bio,
+  member bios, Positions), the area texts on Home and Research, news texts, abstracts and
+  the Positions cards. Lines are filled one at a time (`text-wrap: wrap`) and never
+  hyphenated, so a formula or a name stays whole. On six pages of the local build, the lines
+  with a gap wider than three spaces were 16 to 21% from 600 to 1440px, 22% at 480px and
+  35% at 390px, so phones keep flush-left text. At 1440px `pretty` gave 31 such lines and
+  `wrap` 24: `pretty` widened a paragraph's second-to-last line to carry a word down.
+- **Measures:** the PI's bio fills its column (at most 89 characters a line, as D49
+  measured), so it ends at the right edge of the Education and Career rows; the Research
+  page's texts fill their column (the 48ch and 58ch caps are gone). Home's area texts (a
+  55ch column), news texts (55ch) and abstracts (68ch) keep their measure, as their whole
+  column would give over 100 characters a line.
+- **Headings:** `text-wrap: pretty` instead of `balance`. A two-line title fills its first
+  line instead of breaking it halfway, and no word is left alone on the last line. Headings
+  are not justified.
+- **Footer:** "Spectroscopy and AI Lab," on one line, "Department of Chemistry, Kookmin
+  University." on the next (on phones a second break after "Chemistry,"). The words are the
+  same; the 30ch cap and `balance` are gone.
+- **Formulas:** a title or abstract writes a formula with `<sub>` and `<sup>`, the markup
+  Crossref uses for 13 and for Heejeong Kim's JACS paper: 45 CsPbBr<sub>3</sub>/
+  Cs<sub>4</sub>PbBr<sub>6</sub>, 43 CO<sub>2</sub>, 13 Mg<sup>2+</sup>, and in
+  `member_pubs/heejeong-kim.yml` O<sub>2</sub>, H<sub>2</sub>O<sub>2</sub> and
+  ONOO<sup>−</sup>. The page sets them at 75% without opening the line spacing. The tab
+  title, the meta tags, citation_title, the JSON-LD, alt texts and llms.txt get plain text
+  (`strip_html`; `plain` in generate_pages.rb); BibTeX writes `\textsubscript{}` and
+  `\textsuperscript{}`; the Publications search finds "CsPbBr3" and marks it whole across
+  the `<sub>` (pubs.js reads a field's text nodes as one string). The validator allows these
+  two tags only, closed and not nested, in titles, abstracts and news texts.
+- **BibTeX's braces:** `title = {{...}}` stays (D50 wrote it so). The inner pair keeps a
+  title's capitals (CsPbBr3, DFT, FlowER) when a style sets titles in lower case; BibTeX and
+  biblatex read the whole as one title.
+- **The interview:** "The Convergence of Chemistry and Artificial Intelligence" (Kookmin
+  University's channel, 2025-10-22, 8:26) sits beside the overview in Home's Research section
+  from 1000px (19rem wide), under it on narrower screens (at most 22rem). Its poster is a
+  frame of the video (YouTube's third frame, 800x450, 17.6 KB, `assets/images/home-interview.jpg`),
+  grey like the site, in place of the video's bright blue thumbnail, with the length in a
+  glass capsule. The poster links to the video on YouTube (without JS, or on a modified
+  click); `video.js` plays it in place in a youtube-nocookie.com frame that it adds on the
+  click. Only the home page's CSP allows that frame (`frame-src https://www.youtube-nocookie.com`
+  for a page with `video: true`); every other page keeps `frame-src 'none'`. The data is
+  `interview:` in `home.yml`; the validator checks the id and the poster.
+- **News links:** a news item may carry `links:` (each a text and a url) and `links_label:`,
+  shown in the row of its link. Jihwan's award has "Kookmin University news" (the story on
+  kookmin.ac.kr; the address the maintainer gave, without its search parameters, opens the
+  same story). FlowER has "In the press:" JoongAng Ilbo, ChosunBiz and Hankyoreh, all of
+  2025-08-21. The ChosunBiz page answered 503 to scripts and to Chrome on 2026-10-24; the
+  Wayback Machine holds it (title "화학반응 예측하는 AI 화학자, 신약 개발 앞당긴다 - 조선비즈").
+  The maintainer's note named 조선일보, and the address is ChosunBiz's (biz.chosun.com), so
+  the link says ChosunBiz.
+- **Not changed:** formulas in abstracts (papers 45, 43, 42, 33, 27, 22, 17, 14, 13) and in
+  the news text of 2026-09-10 stay as written until the maintainer approves them (D52).
+- **Check:** `REVIEW.md` section 30.

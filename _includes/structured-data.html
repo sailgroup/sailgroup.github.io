@@ -2,10 +2,10 @@
 Page-specific JSON-LD (jekyll-seo-tag's own block is left out in head.html: it named the lab
 as a second organization without an @id):
   /                              -> ResearchOrganization (the lab) + WebSite (its creator: _config.yml site_creator)
-  /pi/ /members/ /alumni/        -> Person (the PI) + CollectionPage for the members and the alumni (D57, one document)
+  /pi/                           -> Person (the PI)
   /publications/<id>/            -> ScholarlyArticle (a paper with a DOI or preprint) + BreadcrumbList
   /people/<slug>/                -> Person + BreadcrumbList
-  /publications/                 -> CollectionPage with an ItemList of the papers
+  /publications/ /members/ /alumni/ -> CollectionPage with an ItemList of the collection
   /research/ /news/ /photos/ /positions/ -> WebPage, part of the WebSite
 All values come from the same _data files the pages render from, so the structured
 data cannot drift from the visible content. Invisible to sighted users (metadata).
@@ -37,16 +37,20 @@ Person has its own @id (<page>#person).
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","@id":"{{ site.url }}/#organization","name":{{ site.title | jsonify }},"alternateName":{{ orgnames | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | jsonify }},"logo":{{ site.logo | absolute_url | jsonify }},"email":{{ site.data.home.contact.email | jsonify }},"telephone":{{ site.data.home.contact.phone | jsonify }},"foundingDate":"2025","address":{"@type":"PostalAddress","streetAddress":"77 Jeongneung-ro, Seongbuk-gu","addressLocality":"Seoul","postalCode":"02707","addressCountry":"KR"},{% if site.github_org %}"sameAs":[{{ site.github_org | jsonify }}],{% endif %}"parentOrganization":{{ kmu }},"knowsAbout":{{ topics | jsonify }},"founder":{"@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ pi.name | jsonify }},"url":"{{ site.url }}/pi/","sameAs":{{ pisameas | jsonify }}}}</script>
 {%- assign maker = site.data.people | where: "slug", site.site_creator | first -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"{{ site.url }}/#website","name":{{ site.title | jsonify }},"alternateName":{{ orgnames | jsonify }},"url":"{{ site.url }}/","description":{{ site.description | jsonify }},"inLanguage":["en","ko"],"publisher":{"@id":"{{ site.url }}/#organization"}{% if maker %},"creator":{"@type":"Person","@id":"{{ site.url }}/people/{{ maker.slug }}/#person","name":{{ maker.name | jsonify }}}{% endif %}}</script>
-{%- elsif page.people_start -%}
-{%- comment -%}/pi/, /members/ and /alumni/ are one document (D57), so each of the three addresses carries the PI, the members and the alumni: whichever address a search engine keeps for the document, the PI's Person stays with it.{%- endcomment -%}
+{%- elsif page.url == "/pi/" -%}
 {%- assign pinames = "" | split: "" -%}
 {%- if pi.name_full and pi.name_full != "" and pi.name_full != pi.name -%}{%- assign pinames = pinames | push: pi.name_full -%}{%- endif -%}
 {%- if pi.name_ko and pi.name_ko != "" -%}{%- assign pinames = pinames | push: pi.name_ko -%}{%- endif -%}
 {%- assign schools = pi.education | map: "institution" | compact | uniq -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ pi.name | jsonify }}{% if pinames.size > 0 %},"alternateName":{{ pinames | jsonify }}{% endif %},"jobTitle":{{ site.data.pi.title | jsonify }},"email":{{ "mailto:" | append: site.data.pi.email | jsonify }},"url":"{{ site.url }}/pi/"{% if site.data.pi.photo and site.data.pi.photo != "" %},"image":{{ '/assets/images/people/' | append: site.data.pi.photo | absolute_url | jsonify }}{% endif %},"affiliation":{{ kmu }},"worksFor":{{ orgref }}{% if schools.size > 0 %},"alumniOf":[{% for sc in schools %}{"@type":"CollegeOrUniversity","name":{{ sc | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endif %},"sameAs":{{ pisameas | jsonify }}}</script>
+{%- elsif page.url == "/members/" -%}
 {%- assign current = site.data.people | where: "status", "current" -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Members","url":"{{ site.url }}/members/","mainEntity":{"@type":"ItemList","itemListElement":[{% for m in current %}{"@type":"ListItem","position":{{ forloop.index }},"url":"{{ site.url }}/people/{{ m.slug }}/","name":{{ m.name | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}</script>
-{%- assign grads = site.data.people | where: "status", "alumni" -%}
+{%- elsif page.url == "/alumni/" -%}
+{%- comment -%}In the page's order: group by group (people_groups.yml).{%- endcomment -%}
+{%- assign alumni = site.data.people | where: "status", "alumni" -%}
+{%- assign grads = "" | split: "" -%}
+{%- for g in site.data.people_groups -%}{%- assign rows = alumni | in_group: g.key -%}{%- for a in rows -%}{%- assign grads = grads | push: a -%}{%- endfor -%}{%- endfor -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Alumni","url":"{{ site.url }}/alumni/","mainEntity":{"@type":"ItemList","itemListElement":[{% for a in grads %}{"@type":"ListItem","position":{{ forloop.index }},"url":"{{ site.url }}/people/{{ a.slug }}/","name":{{ a.name | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}</script>
 {%- elsif page.pid -%}
 {%- assign p = site.data.publications | where: "id", page.pid | first -%}
@@ -64,9 +68,9 @@ Person has its own @id (<page>#person).
 {%- comment -%}identifier: the bare DOI ("10.1038/..."), so the paper joins the publisher's record of it.{%- endcomment -%}
 {%- assign doiid = "" -%}{%- if doiurl contains "doi.org/10." -%}{%- assign doiid = doiurl | split: "doi.org/" | last | strip -%}{%- endif -%}
 {%- if citable -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":{{ p.title | jsonify }},"datePublished":"{{ p.year }}","inLanguage":"en",{% if p.journal and p.journal != "" and p.journal != "Submitted" %}"isPartOf":{"@type":"Periodical","name":{{ p.journal | jsonify }}},{% endif %}"url":"{{ site.url }}{{ page.url }}"{%- if p.image and p.image != "" -%},"image":{{ page.image | absolute_url | jsonify }}{%- endif -%},"author":[{%- for n in authnames -%}{%- if n == site.data.pi.name or n == site.data.pi.name_full -%}{"@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ n | jsonify }},"url":"{{ site.url }}/pi/"}{%- else -%}{"@type":"Person","name":{{ n | jsonify }}}{%- endif -%}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- if doiurl != "" -%},"sameAs":{{ doiurl | jsonify }}{%- endif -%}{%- if doiid != "" -%},"identifier":{"@type":"PropertyValue","propertyID":"DOI","value":{{ doiid | jsonify }}}{%- endif -%}{%- if p.abstract and p.abstract != "" -%},"abstract":{{ p.abstract | strip | jsonify }}{%- endif -%}{%- if p.themes and p.themes.size > 0 -%},"keywords":{{ p.themes | join: ", " | jsonify }}{%- endif -%}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":{{ p.title | strip_html | jsonify }},"datePublished":"{{ p.year }}","inLanguage":"en",{% if p.journal and p.journal != "" and p.journal != "Submitted" %}"isPartOf":{"@type":"Periodical","name":{{ p.journal | jsonify }}},{% endif %}"url":"{{ site.url }}{{ page.url }}"{%- if p.image and p.image != "" -%},"image":{{ page.image | absolute_url | jsonify }}{%- endif -%},"author":[{%- for n in authnames -%}{%- if n == site.data.pi.name or n == site.data.pi.name_full -%}{"@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ n | jsonify }},"url":"{{ site.url }}/pi/"}{%- else -%}{"@type":"Person","name":{{ n | jsonify }}}{%- endif -%}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- if doiurl != "" -%},"sameAs":{{ doiurl | jsonify }}{%- endif -%}{%- if doiid != "" -%},"identifier":{"@type":"PropertyValue","propertyID":"DOI","value":{{ doiid | jsonify }}}{%- endif -%}{%- if p.abstract and p.abstract != "" -%},"abstract":{{ p.abstract | strip | jsonify }}{%- endif -%}{%- if p.themes and p.themes.size > 0 -%},"keywords":{{ p.themes | join: ", " | jsonify }}{%- endif -%}}</script>
 {% endif -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Publications","item":"{{ site.url }}/publications/"},{"@type":"ListItem","position":3,"name":{{ p.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"Publications","item":"{{ site.url }}/publications/"},{"@type":"ListItem","position":3,"name":{{ p.title | strip_html | jsonify }},"item":"{{ site.url }}{{ page.url }}"}]}</script>
 {%- endif -%}
 {%- elsif page.slug -%}
 {%- assign person = site.data.people | where: "slug", page.slug | first -%}
@@ -88,9 +92,9 @@ Person has its own @id (<page>#person).
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"},{"@type":"ListItem","position":2,"name":"{{ pcrumbname }}","item":"{{ site.url }}{{ pcrumburl }}"},{"@type":"ListItem","position":3,"name":{{ person.name | jsonify }},"item":"{{ site.url }}{{ page.url }}"}]}</script>
 {%- endif -%}
 {%- elsif page.url == "/publications/" -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Publications","url":"{{ site.url }}/publications/","mainEntity":{"@type":"ItemList","numberOfItems":{{ site.data.publications | size }},"itemListElement":[{% for p in site.data.publications %}{"@type":"ListItem","position":{{ forloop.index }},"url":"{{ site.url }}/publications/{{ p.id }}/","name":{{ p.title | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Publications","url":"{{ site.url }}/publications/","mainEntity":{"@type":"ItemList","numberOfItems":{{ site.data.publications | size }},"itemListElement":[{% for p in site.data.publications %}{"@type":"ListItem","position":{{ forloop.index }},"url":"{{ site.url }}/publications/{{ p.id }}/","name":{{ p.title | strip_html | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}</script>
 {%- endif -%}
 {%- comment -%}A page without a node of its own above (Research, News, Photos, Positions) is a WebPage of the site, published by the lab.{%- endcomment -%}
-{%- unless page.url == "/" or page.people_start or page.pid or page.slug or page.url == "/publications/" or page.noindex -%}
+{%- unless page.url == "/" or page.url == "/pi/" or page.url == "/members/" or page.url == "/alumni/" or page.pid or page.slug or page.url == "/publications/" or page.noindex -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"{{ site.url }}{{ page.url }}#webpage","name":{{ page.title | default: site.title | jsonify }},"url":"{{ site.url }}{{ page.url }}"{% if page.description and page.description != "" %},"description":{{ page.description | jsonify }}{% endif %},"inLanguage":{{ page.lang | default: site.lang | default: "en" | jsonify }},"isPartOf":{"@id":"{{ site.url }}/#website"},"publisher":{"@id":"{{ site.url }}/#organization"}}</script>
 {%- endunless -%}

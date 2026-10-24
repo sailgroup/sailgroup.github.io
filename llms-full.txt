@@ -19,7 +19,7 @@ In Korean{% if a.title_ko and a.title_ko != "" %} ({{ a.title_ko }}){% endif %}:
 {% endif %}{% endfor %}
 ## Publications ({{ site.data.publications | size }}, newest first)
 {% assign pubs = site.data.publications | sort: "id" | reverse -%}
-{% for p in pubs %}### [{{ p.id }}] {{ p.title }}
+{% for p in pubs %}### [{{ p.id }}] {{ p.title | strip_html }}
 Authors: {{ p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', '' }}
 Venue: {{ p.journal }}{% if p.vol %}, {{ p.vol }}{% if p.issue and p.issue != "" %} ({{ p.issue }}){% endif %}{% if p.pages and p.pages != "" %}, {{ p.pages }}{% endif %}{% elsif p.ref and p.ref != "" %}, {{ p.ref }}{% endif %} ({{ p.year }}){% if p.doi and p.doi != "" %}
 DOI: {{ p.doi }}{% endif %}{% if p.preprint_url and p.preprint_url != "" %}
@@ -57,8 +57,9 @@ See {{ site.url }}/positions/ (Korean) for how to apply as a postdoctoral resear
 ## News (newest first)
 {% comment %}Every item on /news/, in its order. A link to this site is printed as an absolute URL (news-href.html gives the address the News page links to).{% endcomment -%}
 {% assign items = site.data.news | sort: "date" | reverse -%}
-{% for n in items %}### {% include news-date.html n=n %}: {{ n.title }}
+{% for n in items %}### {% include news-date.html n=n %}: {{ n.title | strip_html }}
 {% if n.body and n.body != "" %}{{ n.body | strip_html | normalize_whitespace }}
 {% endif %}{% if n.link and n.link != "" %}{% if n.link contains "://" %}Link: {{ n.link }}{% else %}{% capture href %}{% include news-href.html link=n.link %}{% endcapture %}Link: {{ href | absolute_url }}{% endif %}
-{% endif %}
+{% endif %}{% for l in n.links %}{{ n.links_label | default: "Also" }}: {{ l.text }}, {% if l.url contains "://" %}{{ l.url }}{% else %}{% capture href %}{% include news-href.html link=l.url %}{% endcapture %}{{ href | absolute_url }}{% endif %}
+{% endfor %}
 {% endfor %}

@@ -90,6 +90,11 @@ was taken, what was normalized, and what is still open.
 - **Overview copy**: source marketing phrasing ("pioneering", "complex
   problems") dropped; factual wording with the same meaning. Research-area
   bodies kept verbatim.
+- **Formulas in titles (D60, 2026-10-24, the PI's request)**: the same words with the
+  publisher's subscripts and superscripts: 45 CsPbBr<sub>3</sub>/Cs<sub>4</sub>PbBr<sub>6</sub>,
+  43 CO<sub>2</sub>, 13 Mg<sup>2+</sup>; in `member_pubs/heejeong-kim.yml` O<sub>2</sub>,
+  H<sub>2</sub>O<sub>2</sub> and ONOO<sup>−</sup>. Formulas in abstracts and in the news text
+  of 2026-09-10 are unchanged until approved.
 
 ## Open items / flags (carried to later phases)
 

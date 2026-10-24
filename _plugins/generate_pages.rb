@@ -102,13 +102,13 @@ module SAIL
         # Only for a paper with a public version (a DOI or a preprint), the rule
         # citation-meta.html and structured-data.html use: "Submitted" is not a venue.
         # The page's own heading stays the paper's title.
-        title = entry["title"].to_s
+        title = plain(entry["title"])
         public_version = !entry["doi"].to_s.strip.empty? || !entry["preprint_url"].to_s.strip.empty?
         venue = entry["journal"].to_s.strip
         venue = "" if venue == "Submitted" # a status (46 has a preprint while under review)
         year  = entry["year"].to_s.strip
         title += " (#{venue}, #{year})" if public_version && !venue.empty? && !year.empty?
-        desc = entry["abstract"].to_s.strip
+        desc = plain(entry["abstract"]).strip
         # Without an abstract: the citation as the page shows it, its status included
         # ("Chem. Eng. J., accepted (2026)" for 47, which has no volume yet).
         status = entry["vol"].to_s.strip.empty? ? entry["ref"].to_s.strip : ""
@@ -155,6 +155,12 @@ module SAIL
 
     def strip_markers(str)
       str.to_s.gsub(/[*†‡]/, "").gsub(/\s+/, " ").strip
+    end
+
+    # A title or abstract as plain text: the <sub> and <sup> of a formula ("CO<sub>2</sub>")
+    # are for the page; the tab title, the description and link previews get "CO2".
+    def plain(str)
+      str.to_s.gsub(/<[^>]*>/, "")
     end
 
     # At most n characters with the "…", cut at a word and without a dangling comma.

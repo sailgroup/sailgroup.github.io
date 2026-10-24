@@ -19,6 +19,10 @@
 # affiliation, and is omitted entirely when not set. `description` is a short
 # intro paragraph shown on the personal page above the publication list; write
 # it as `description: >` with the text indented on the following lines.
+# The Alumni page shows its people in rows (postdoc, Ph.D., M.S., undergraduate),
+# read from `role`; `group:` (postdoc, phd, ms or undergrad) sets the row when the
+# role does not fit, e.g. `group: ms` for an integrated-course student who left
+# with an M.S. (the rows are in people_groups.yml).
 # See CONTRIBUTING.md.
 # ---------------------------------------------------------------------------
 - name: Heejeong Kim

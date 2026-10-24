@@ -69,10 +69,6 @@
     if (!window.matchMedia(MENU).matches) close();
   });
 
-  // A script that follows a menu link within the page (people.js) closes the menus as a
-  // new page would, leaving focus to it.
-  document.addEventListener("sail:closemenus", close);
-
   // Dropdowns above the menu breakpoint (disclosure pattern): the button beside a parent
   // link opens its sub-pages. A mouse opens them on hover as well and closes them on
   // leaving, unless the button was clicked, which keeps them open until a second click.
@@ -111,9 +107,6 @@
     });
     window.addEventListener("resize", function () {
       if (expanded() && window.matchMedia(MENU).matches) set(false);
-    });
-    document.addEventListener("sail:closemenus", function () {
-      if (expanded()) set(false);
     });
   });
 })();

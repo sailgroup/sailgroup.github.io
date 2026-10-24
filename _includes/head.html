@@ -9,8 +9,8 @@
   {%- if page.noindex %}
   <meta name="robots" content="noindex">
   {%- endif %}
-  {%- comment -%}CSP via meta (GitHub Pages can't set response headers). Every CSS/JS/font/image is same-origin (Pretendard is self-hosted), so this is a strict same-origin policy with NO external origins. script-src 'self' + no inline script blocks injected code; require-trusted-types-for hardens DOM-XSS sinks (the site's JS uses none, so it does not break).{%- endcomment -%}
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
+  {%- comment -%}CSP via meta (GitHub Pages can't set response headers). Every CSS/JS/font/image is same-origin (Pretendard is self-hosted), so this is a strict same-origin policy with NO external origins. The one exception is a frame: a page with `video: true` (the home page's interview, D60) allows youtube-nocookie.com frames, and video.js adds that frame only when the video is played. script-src 'self' + no inline script blocks injected code; require-trusted-types-for hardens DOM-XSS sinks (the site's JS uses none, so it does not break).{%- endcomment -%}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src {% if page.video %}https://www.youtube-nocookie.com{% else %}'none'{% endif %}; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
 
   {%- comment -%}Pretendard is self-hosted (assets/fonts/pretendard/) so the site has zero external origins. Its CSS lazy-loads only the woff2 subsets a page actually needs (92 unicode-range chunks), with font-display:swap.{%- endcomment -%}
   <link rel="stylesheet" href="{{ '/assets/fonts/pretendard/pretendard.css' | relative_url }}">
@@ -18,10 +18,6 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   {%- comment -%}Data-driven topic-tag colors, generated from _data/themes.yml as a cacheable stylesheet (not an inline <style>, so the CSP needs no style 'unsafe-inline').{%- endcomment -%}
   <link rel="stylesheet" href="{{ '/assets/css/themes.css' | relative_url }}">
-  {%- if page.people_start -%}
-  {%- comment -%}/pi/, /members/ and /alumni/ open the people document at their own part, or at the part an address's #pi, #members or #alumni names (D57). Chrome does it from the stylesheet (scroll-initial-target); where a browser does not, this script keeps the page hidden until it has scrolled there. It runs before the page is drawn, so it is not deferred.{%- endcomment %}
-  <script src="{{ '/assets/js/people-start.js' | relative_url }}"></script>
-  {%- endif %}
   {%- comment -%}The SAIL wordmark on the ink tile (D59). The 16px icon is drawn on the pixel grid, so there is no SVG icon: Chrome and Firefox would take it instead.{%- endcomment %}
   <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
   <link rel="icon" href="{{ '/assets/images/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">

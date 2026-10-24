@@ -1,0 +1,35 @@
+# people_groups.yml
+# ---------------------------------------------------------------------------
+# The groups of the Alumni page (/alumni/), in the order the page shows them: each group
+# is a row under a thin line, its name at the left (above the people on a phone).
+#
+# A person's group is their `group:` in people.yml when it is set. Without it, it is the
+# first group below with one of its `match` words in the person's `role` (capitals do not
+# matter): "Postdoctoral Researcher" is postdoc, "M.S./Ph.D. Integrated Course" is phd
+# (Ph.D. comes before M.S. here), "Undergraduate Researcher (UROP)" is undergrad. Someone
+# who left the integrated course with an M.S. gets `group: ms` in people.yml.
+#
+#   key    the name people.yml's `group:` uses
+#   name   the heading of the row
+#   match  words of a `role` that put a person in this group
+#   small  true: smaller photos, more of them to a row (the undergraduates)
+#
+# A group with nobody in it is not shown. An alumnus who fits no group stops the build
+# with a message that says so (_plugins/validate_data.rb).
+# ---------------------------------------------------------------------------
+- key: postdoc
+  name: Postdoctoral Researchers
+  match: [Postdoc]
+
+- key: phd
+  name: Ph.D. Students
+  match: [Ph.D., PhD]
+
+- key: ms
+  name: M.S. Students
+  match: [M.S., Master]
+
+- key: undergrad
+  name: Undergraduate Researchers
+  match: [Undergraduate, UROP, B.S.]
+  small: true

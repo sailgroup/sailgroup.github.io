@@ -62,6 +62,15 @@ default photo always shows. This works for any person the same way.
 old `/members/<slug>/` and `/alumni/<slug>/` addresses keep redirecting to it), so
 you never have to update news links.
 
+**The rows of the Alumni page.** Alumni are shown in a row per group, in this order:
+postdoctoral researchers, Ph.D. students, M.S. students, undergraduates (smaller photos). The
+`role` decides the row: a role with "Postdoc" goes to the first, "Ph.D." to the second,
+"M.S." to the third, "Undergraduate" or "UROP" to the last, and "M.S./Ph.D. Integrated
+Course" to Ph.D. When the role does not fit (someone who left the integrated course with an
+M.S.), add `group: ms` to the person (or `postdoc`, `phd`, `undergrad`). The headings, the
+order and the words are in `_data/people_groups.yml`. A row with nobody in it is not shown,
+and an alumnus who fits no row stops the build with a message that says what to add.
+
 **A person's own papers from elsewhere** (not on the lab Publications page, e.g.
 a postdoc's prior work): add a `publications:` list to their entry. They show on
 their page, merged with any lab papers that match their name, newest first; the
@@ -125,6 +134,12 @@ paper's own published graphical abstract or figure (D15, D50). A paper with a DO
 also gets a BibTeX entry, on its page and in `/publications.bib`, made from these
 fields when the site is built (`_plugins/bibtex.rb`).
 
+A formula in a title or an abstract is written with `<sub>` and `<sup>`, as publishers
+write it: `CO<sub>2</sub>`, `Mg<sup>2+</sup>`. The page sets the figures small below or
+above the line; the tab title, search results and llms.txt get plain `CO2`, and BibTeX
+`CO\textsubscript{2}`. These are the only two tags allowed, and one left open stops the
+build with the paper's id.
+
 ### Link a paper's code and data (GitHub, Figshare icons)
 
 Every paper has two slots, `code: ""` for its code repository and `dataset: ""` for
@@ -163,6 +178,10 @@ Minimum:
   body: "One or two sentences." # optional
   link: "/publications/41/"    # optional; internal path or full https URL
   link_text: "Read more"       # optional; link label (defaults to "Details")
+  links_label: "In the press"  # optional; shown before `links` (the colon is added)
+  links:                       # optional; more links on the same line (a news story, press)
+    - text: "JoongAng Ilbo"
+      url: "https://www.joongang.co.kr/article/..."
 ```
 
 The three newest items also show on the home page.
@@ -278,7 +297,7 @@ This page is in Korean by request; keep new copy in Korean to match.
 - Shared rendering lives in `_includes/` (`person-card`, `person-profile`,
   `member-pubs`, `pub-item`, `pi-authors`, `preprint-badge`, `code-badge`,
   `dataset-badge`, `journal-covers`, `news-date`, `social-links`, `icon`,
-  `structured-data`, `people-page`, `people-nav`, `new-tab`, `lightbox`). Edit a pattern in one
+  `structured-data`, `people-nav`, `new-tab`, `lightbox`). Edit a pattern in one
   place. Every image that opens larger (the journal covers, the photos, the home
   figure, a paper's figure) uses one viewer: `_includes/lightbox.html` with
   `assets/js/viewer.js`.
