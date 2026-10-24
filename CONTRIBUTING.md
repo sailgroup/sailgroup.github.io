@@ -69,8 +69,9 @@ postdoctoral researchers, Ph.D. students, M.S. students, undergraduates (smaller
 Course" to Ph.D. A word counts at the start of a word of the role ("Postdoc" fits
 "Postdoctoral", "UROP" does not fit inside "European"). When the role does not fit (someone who left the integrated course with an
 M.S.), add `group: ms` to the person (or `postdoc`, `phd`, `undergrad`). The headings, the
-order and the words are in `_data/people_groups.yml`. A row with nobody in it is not shown,
-and an alumnus who fits no row stops the build with a message that says what to add.
+order and the words are in `_data/people_groups.yml`. A row with nobody in it yet still
+shows its name, with "None yet." beside it, and an alumnus who fits no row stops the build
+with a message that says what to add.
 
 **A person's own papers from elsewhere** (not on the lab Publications page, e.g.
 a postdoc's prior work): add a `publications:` list to their entry. They show on

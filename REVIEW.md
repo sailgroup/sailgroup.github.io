@@ -1371,3 +1371,25 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   "when" for "if", "vacation" for 방학, "Background:" for 필요 지식). All were taken.
 - **Writing:** the English text of the page (645 words) and the added doc lines have no em
   or en dash; the lint gives RULE 0, TELL 0 and DENS 0 on both.
+
+## 32. Every Alumni row; the interview larger, with its own thumbnail (2026-10-24, D62)
+
+- **Local build** (Docker, as CI): the image step, Jekyll and html-proofer pass.
+- **Text against the live site** (`text-check.py`, 69 pages): no visible or screen-reader
+  line gone or changed on any page. Added, on /alumni/ only: the names of the three empty
+  rows (Postdoctoral Researchers, Ph.D. Students, M.S. Students, in `people_groups.yml`
+  since D60) and "None yet." under each. No data string the live site shows is missing.
+- **Home in Chrome** (local serve): at 1440 and 1920px the overview is 520px wide (3 lines,
+  about 62 characters each) and the poster 524x295, its left edge at the first research
+  row's text (x 734 at 1440px); at 1100px 480px (4 lines, about 47) and 524x295, the edges
+  again in line; at 1000 and 800px one column, the overview 576px (3 lines) above a 576x324
+  poster; at 390px the poster is 355x200. No sideways overflow at any of the six widths.
+  A click plays the video in place in a 524x295 youtube-nocookie.com frame, focused.
+- **Alumni in Chrome:** at 1440px the empty rows are 85, 68 and 68px tall, "None yet." on
+  the baseline of its row's name (x 390, the people's column); at 800px the same; at 390px
+  under the name, the rows 90 to 97px. The undergraduates' first photo is at 595px from the
+  top at 1440px (339px live). No overflow.
+- **No errors** (`runtime.js`: twelve pages at 1440 and 390px): no console error, CSP
+  violation or overflow; the formula search still marks CsPbBr3, Cs4PbBr6, Mg2+ and CO2
+  whole. `functional.js` 22 of 22. WebKit (`webkit-check.cjs` over the build under the
+  site's address) 35 of 35.

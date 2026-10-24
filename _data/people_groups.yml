@@ -15,8 +15,9 @@
 #   match  words of a `role` that put a person in this group
 #   small  true: smaller photos, more of them to a row (the undergraduates)
 #
-# A group with nobody in it is not shown. An alumnus who fits no group stops the build
-# with a message that says so (_plugins/validate_data.rb).
+# A group with nobody in it yet still has its row, a short one that says "None yet." (D62).
+# An alumnus who fits no group stops the build with a message that says so
+# (_plugins/validate_data.rb).
 # ---------------------------------------------------------------------------
 - key: postdoc
   name: Postdoctoral Researchers

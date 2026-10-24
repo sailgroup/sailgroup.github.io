@@ -2229,3 +2229,40 @@ Changes D60's justified Positions cards.
   Naver, both HTTP 200). Verified live: the Korean Positions title and no switch,
   /positions/en/ answers 404, the new descriptions and JSON-LD, the cards flush left, and
   the text of all 69 pages as built; WebKit 35 of 35, `functional.js` 22 of 22.
+
+## D62: Every Alumni row shown; the interview larger, with its own thumbnail (maintainer's request, 2026-10-24)
+Changes D60's Alumni rows and its interview.
+- **Asked:** after D61 went live, the maintainer asked what we thought of showing the
+  postdoc, Ph.D. and M.S. rows on Alumni while nobody is in them, found Home's interview
+  too small (about three to four times the size, and at least as large as the video a
+  YouTube channel plays for visitors who have not subscribed) and its thumbnail odd.
+- **Alumni rows:** every group of `people_groups.yml` has its row. A group with nobody in
+  it yet gets a short row (1.25rem above and below, not 3rem) with "None yet." beside its
+  name, on the same baseline, in the grey of counts; on phones the line is under the name.
+  At 1440px the three empty rows are 85, 68 and 68px tall, so the undergraduates start 222px
+  lower. The PI asked in D60 for a row per degree; with only the undergraduates' row the
+  rows did not show, and the page now shows them all before the first postdoc or graduate
+  alumnus. "None yet." is new text (three times today), waiting for the maintainer's word.
+- **The interview's size:** Kookmin University's channel (youtube.com/@KMU1010) plays its
+  featured video at 424x238 at 1280, 1440 and 1920px; Home's poster was 304x171. From
+  1100px (68.75em, where the header switches) the overview and the poster take the columns
+  of the research rows below them (`minmax(0, 1fr) minmax(0, 55ch)`, the same 2rem gap):
+  the overview the figures' column and the poster the texts', 524x295 at 1440 and 1920px,
+  about three times the area it had and half again the channel's, its left edge on the
+  area texts' edge. The overview is 520px wide there (3 lines, about 62 characters each),
+  480px at 1100px (4 lines, about 47). Narrower, the two are one column at most 36rem wide:
+  the poster 576x324 at 1000 and 800px and 355x200 at 390px, and the overview at most 576px
+  (at 800px it had run 736px wide). The frame that plays the video takes the poster's
+  size. The play capsule is a step larger (`--fs-sm`, 0.75rem from the corner).
+- **The thumbnail:** the poster is the video's own thumbnail on YouTube
+  (`maxresdefault.jpg`, 1280x720, 104 KB, kept as YouTube serves it; a second JPEG encoding
+  saved 22%), in place of D60's frame (YouTube's third frame, cropped close on the PI). It is
+  the cover Kookmin University made for the video, as a paper's thumbnail is its publisher's
+  graphical abstract (D15, D50); D60 had passed it over for its bright blue. Its lettering is
+  the video's own, in Korean, and names the department as 응용화학부 나노소재전공; the site's
+  own text says Department of Chemistry. The README says where to save the thumbnail of
+  another video.
+- **Not done:** a smaller copy of the poster for srcset. The image step makes copies for
+  gallery photos, papers and covers only; the poster loads lazily, below the first screen,
+  and a phone at 3x draws the 355px poster with 1065 pixels, close to the file's 1280.
+- **Check:** `REVIEW.md` section 32.

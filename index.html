@@ -66,11 +66,11 @@ video: true
         <p class="lead">{{ site.data.research.overview.en }}</p>
       </div>
       {%- if iv -%}
-      {%- comment -%}The PI's interview beside the overview (D60, home.yml). The poster links to the video on YouTube, where it opens without JS or on a modified click; video.js plays it in place instead, in a youtube-nocookie.com frame, the one frame this page's CSP allows (head.html, page.video).{%- endcomment %}
+      {%- comment -%}The PI's interview beside the overview (D60, D62; home.yml). The poster is the video's own thumbnail on YouTube, 1280x720. It links to the video on YouTube, where it opens without JS or on a modified click; video.js plays it in place instead, in a youtube-nocookie.com frame, the one frame this page's CSP allows (head.html, page.video).{%- endcomment %}
       <figure class="video">
         <a class="video__play" href="https://www.youtube.com/watch?v={{ iv.youtube }}" target="_blank" rel="noopener noreferrer" data-youtube="{{ iv.youtube }}" data-title="{{ iv.title | escape }}" aria-label="Play the video: {{ iv.title | escape }}{% if iv.length %}, {{ iv.length }}{% endif %} (opens in a new tab)">
-          <img src="{{ '/assets/images/' | append: iv.poster | relative_url }}" alt="" width="800" height="450" loading="lazy" decoding="async">
-          <span class="video__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="12" height="12"><path d="M7 4.5v15l12.5-7.5z"/></svg>{{ iv.length }}</span>
+          <img src="{{ '/assets/images/' | append: iv.poster | relative_url }}" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="video__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M7 4.5v15l12.5-7.5z"/></svg>{{ iv.length }}</span>
         </a>
         <figcaption><span class="video__title">{{ iv.title }}</span>{% if iv.by %} <span class="video__by">{{ iv.by }}</span>{% endif %}</figcaption>
       </figure>

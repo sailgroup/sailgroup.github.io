@@ -35,7 +35,8 @@ domain `https://sail.kookmin.ac.kr`.
   `photos`, `positions` (its body is `_includes/positions-page.html`; member/alumni/publication
   detail pages are generated, not files).
   `pi`, `members` and `alumni` are separate pages (D60, which takes back D57's one document);
-  Alumni shows a row per group of `_data/people_groups.yml`, the undergraduates' photos smaller
+  Alumni shows a row per group of `_data/people_groups.yml`, the undergraduates' photos smaller,
+  and a group with nobody in it yet as a short row that says "None yet." (D62)
 - `_source/` — local archive of scraped Wix content + staged original images (gitignored, excluded
   from the build)
 - `.github/workflows/`: the CI build (Jekyll, html-proofer) and deploy; `.github/scripts/`: the

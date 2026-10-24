@@ -12,20 +12,22 @@ permalink: /alumni/
 
 <section class="section section--tight">
   <div class="container">
-    {%- comment -%}One row for each group of _data/people_groups.yml (postdoctoral researchers, Ph.D. and M.S. students, undergraduates), its name at the left (above the people on a phone); a group with nobody in it is left out. The undergraduates' photos are smaller (`small`). The first ten photos load at once: on a desktop, two rows of the small photos are in the first screenful.{%- endcomment %}
+    {%- comment -%}One row for each group of _data/people_groups.yml (postdoctoral researchers, Ph.D. and M.S. students, undergraduates), its name at the left (above the people on a phone). A group with nobody in it yet keeps its row, a short one that says "None yet." (D62). The undergraduates' photos are smaller (`small`). The first ten photos load at once: on a desktop, the first row of the small photos and the top of the second are in the first screenful.{%- endcomment %}
     {%- assign alumni = site.data.people | where: "status", "alumni" -%}
     {%- assign shown = 0 %}
     <div class="people-groups">
       {%- for g in site.data.people_groups -%}
-      {%- assign members = alumni | in_group: g.key -%}
-      {%- if members.size > 0 %}
-      <section class="people-group" aria-labelledby="group-{{ g.key }}">
+      {%- assign members = alumni | in_group: g.key %}
+      <section class="people-group{% if members.size == 0 %} people-group--empty{% endif %}" aria-labelledby="group-{{ g.key }}">
         <h2 class="people-group__title" id="group-{{ g.key }}">{{ g.name }}</h2>
+        {%- if members.size > 0 %}
         <div class="person-grid{% if g.small %} person-grid--small{% endif %}">
           {%- for a in members -%}{%- assign shown = shown | plus: 1 -%}{%- assign eager = false -%}{%- if shown <= 10 -%}{%- assign eager = true -%}{%- endif -%}{% include person-card.html person=a eager=eager %}{%- endfor -%}
         </div>
+        {%- else %}
+        <p class="people-group__none">None yet.</p>
+        {%- endif %}
       </section>
-      {%- endif -%}
       {%- endfor %}
     </div>
   </div>
