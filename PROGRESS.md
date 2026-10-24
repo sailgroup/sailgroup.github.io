@@ -354,3 +354,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   from 1100px (524x295 at 1440px, from 304x171) and its poster is the video's own YouTube
   thumbnail. Built on `dev` (run 40095404007), deployed (main run 40096521714) and verified
   live. Results in `REVIEW.md` section 32.
+- **Phase 33 (2026-10-24):** two calls the maintainer left to us (D63): the empty Alumni rows
+  keep "None yet.", and a person's website link shows a house in place of a chain. Results
+  in `REVIEW.md` section 33.

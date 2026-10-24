@@ -2274,3 +2274,20 @@ Changes D60's Alumni rows and its interview.
   main.css is the build's, /alumni/ has the three short rows, Home's sizes are the build's at
   1440, 1100, 1000 and 390px, the video plays in place at 524x295, and the text of all 69
   pages is as built; WebKit 35 of 35, `functional.js` 22 of 22.
+
+## D63: A house for a person's website; "None yet." stays (maintainer's questions, 2026-10-24)
+- **Asked:** after D62 went live, the maintainer left two calls to us: "None yet." in the
+  empty Alumni rows or nothing at all, and a home icon in place of the link icon for
+  https://chanjoongx.com.
+- **"None yet." stays:** a row with its name and nothing beside it looks like something
+  that did not load (on a phone the name stands alone over a gap), and a screen reader goes
+  from one row's heading straight to the next. The muted line says the row is empty on
+  purpose and costs one short line.
+- **The website's icon is a house:** every icon in a person's row is a link, so the chain
+  told nothing; beside email, LinkedIn, GitHub and ORCID a house reads as the person's own
+  homepage. It is drawn like the mail icon (stroke 1.8, 18 units wide, so the row keeps its
+  weight); a first try 16 wide looked smaller than its neighbours. `website:` was the chain's
+  only use, so `icon.html` has `home` in place of `link`. Chanjoong Kim is today the one
+  person with a website (his card on /alumni/ and his page). The link's name for screen
+  readers ("... website") and its tooltip ("Website") are unchanged.
+- **Check:** `REVIEW.md` section 33.

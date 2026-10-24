@@ -33,7 +33,7 @@ links that exist; never invents a profile. Pass:
   <a {{ la }}href="{{ person.orcid }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} ORCID" title="ORCID">{% include icon.html name="orcid" %}</a>
   {%- endif -%}
   {%- if person.website and person.website != "" -%}
-  <a {{ la }}href="{{ person.website }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} website" title="Website">{% include icon.html name="link" %}</a>
+  <a {{ la }}href="{{ person.website }}" target="_blank" rel="noopener noreferrer" aria-label="{{ person.name }} website" title="Website">{% include icon.html name="home" %}</a>
   {%- endif -%}
 {%- if compact -%}</p>{%- else -%}</div>{%- endif -%}
 {%- endif -%}

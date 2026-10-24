@@ -1403,3 +1403,17 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   `text-check.py` against the build: no line gone, changed or added on any of the 69 pages.
   `runtime.js`: no console error, CSP violation or overflow. WebKit 35 of 35,
   `functional.js` 22 of 22.
+- **The records deploy** (main run 40097038700, docs only): IndexNow listed /publications/32/
+  as changed. The live page and the build are the same file byte for byte, so the check most
+  likely could not reach the page at that moment (the script reports such a page as
+  changed); one extra notice, nothing changed on the site.
+
+## 33. A house for a person's website (2026-10-24, D63)
+
+- **Local build** (Docker, as CI): the image step, Jekyll and html-proofer pass. The house is
+  on two pages (/alumni/ and /people/chanjoong-kim/), the chain on none.
+- **Text against the live site** (`text-check.py`, 69 pages): no visible or screen-reader
+  line gone, changed or added.
+- **In Chrome at 2x** (Chanjoong Kim's card at 1440 and 390px, his page's buttons): the house
+  sits in the row at the mail icon's width; the card's link box is 24x24 and the page's
+  button 38x38, as before.
