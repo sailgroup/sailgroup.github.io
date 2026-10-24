@@ -122,7 +122,8 @@ domain `https://sail.kookmin.ac.kr`.
   line within about 75 characters in this font; put the cap on the element whose size the `ch`
   should be measured in (the paper abstracts carry their own). The PI's bio and the
   Research page's texts fill their column instead (D60). From 600px running text is
-  justified, never hyphenated; headings use `text-wrap: pretty` (D60). The header logo is
+  justified, never hyphenated, except in a column as narrow as a phone's (the Positions
+  cards, D61); headings use `text-wrap: pretty` (D60). The header logo is
   `assets/images/sail-logo.svg`, `sail-logo.png` redrawn in outlines (no larger original
   exists).
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in

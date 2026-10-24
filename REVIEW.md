@@ -1347,6 +1347,13 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   The real tree logs only the known warning (paper 46, "Submitted", has no journal logo).
 - **Code review** before the commit: ten findings, eight taken (DECISIONS D61, "Review
   before deploy"). The build, the text check and both browsers ran again after the fixes.
+- **Word gaps in the cards** (measured as in D60, after the screenshots showed wide gaps): at
+  1440px, lines with a gap over three spaces were 38% of the Korean cards' and 29% of the
+  English, none in either page's prose. With the cards flush left (DECISIONS D61), the
+  share over eight pages (Home, Research, PI, Members, News, a paper and both Positions
+  pages) falls from 16% to 10% at 1440px and from 14% to 8% at 800px. On the rebuilt site:
+  html-proofer passes, the text check is as above, Chrome shows no console error or
+  overflow, WebKit passes the switch on both sizes, and `functional.js` passes 22 of 22.
 - **Translation:** an independent check of `positions_en.yml` against `positions.yml`, item
   by item, found it faithful but for one addition (the graduate section had the IDP
   "discussed" before applying; the Korean asks for a consultation, and the guide discusses

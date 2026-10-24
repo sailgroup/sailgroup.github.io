@@ -235,14 +235,14 @@ sub { bottom: -0.25em; }
    or a formula stays whole, and lines are filled one at a time (`wrap`): `pretty` spread a
    paragraph's second-to-last line wide to carry a word down to the last. Under 600px a line
    holds about 40 characters, too few to spread evenly (at 390px a third of the lines had a
-   gap over three spaces wide), so phones keep the text flush left. Headings, captions and
-   centred text keep their own alignment. */
+   gap over three spaces wide), so phones keep the text flush left. So do the Positions
+   cards at every width: a card's line is no longer than a phone's (D61). Headings, captions
+   and centred text keep their own alignment. */
 @media (min-width: 37.5em) {
   .page-head .lead,
   .hero .lead,
   .section-head .lead,
   .prose p,
-  .card p,
   .area-row p,
   .research-area p,
   .news__text,

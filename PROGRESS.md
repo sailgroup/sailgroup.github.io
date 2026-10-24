@@ -345,5 +345,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   switch and hreflang links (`_data/translations.yml`). The heads of Home, Research and
   Positions carry the lab's Korean name and its own Korean sentence, and the structured data
   adds the lab's fields and its department. A code review before the commit found ten
-  points, eight taken. Checked in a local CI build (Docker); results in `REVIEW.md` section
-  31.
+  points, eight taken. The Positions cards are flush left again: justified, their narrow
+  lines opened wide gaps between words. Checked in a local CI build (Docker); results in
+  `REVIEW.md` section 31.

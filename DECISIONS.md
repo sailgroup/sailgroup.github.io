@@ -2135,6 +2135,7 @@ Takes back D57. Changes D49's measure for the PI's bio and the Research page.
   formulas in titles and in the Publications search; WebKit 35 of 35.
 
 ## D61: Positions in English beside the Korean page; search in Korean and English (maintainer's request, 2026-10-24)
+Changes D60's justified Positions cards.
 
 - **Request:** an English version of Positions, with the Korean page kept as the default,
   and a site that Google finds in Korean and in English searches (the maintainer named
@@ -2207,4 +2208,11 @@ Takes back D57. Changes D49's measure for the PI's bio and the Research page.
   as they are: the Korean labels stay in `positions.html`, where they were before D61,
   rather than in the PI's `positions.yml`; and the switch shares the people pages' rules
   by listing both selectors, so each property is still written once.
+- **The cards, flush left** (changes D60; seen in the screenshots before the deploy): D60
+  justified the Positions cards with the rest of the running text, but a card's text is
+  294px wide on a desktop, narrower than a phone's column, which D60 keeps flush left for
+  that reason. At 1440px, 38% of the Korean cards' lines and 29% of the English had a word
+  gap over three spaces wide (the English "Requirements:" line up to 12), against none in
+  either page's prose. The cards are flush left again at every width (`main.scss`); the
+  prose stays justified, and no text changed.
 - **Check:** `REVIEW.md` section 31.
