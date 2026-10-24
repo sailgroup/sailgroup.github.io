@@ -342,9 +342,9 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
 - **Phase 31 (2026-10-24):** searches in Korean and English (D61), on the maintainer's
   request. An English Positions page beside the Korean one was made and checked, then put
   on hold before the deploy at the maintainer's word (it stays in the history, d35c65f).
-  The heads of Home, Research and
-  Positions carry the lab's Korean name and its own Korean sentence, and the structured data
-  adds the lab's fields and its department. A code review before the commit found ten
-  points, eight taken. The Positions cards are flush left again: justified, their narrow
-  lines opened wide gaps between words. Checked in a local CI build (Docker); results in
-  `REVIEW.md` section 31.
+  The heads of Home, Research and Positions carry the lab's Korean name and its own Korean
+  sentence, and the structured data adds the lab's fields and its department. A code review
+  before the commit found ten points, eight taken. The Positions cards are flush left again:
+  justified, their narrow lines opened wide gaps between words. Built on `dev` (runs
+  40090907264, 40091640450, 40093191574), deployed (main run 40093449809) and verified live.
+  Results in `REVIEW.md` section 31.

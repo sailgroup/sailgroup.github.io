@@ -2224,3 +2224,8 @@ Changes D60's justified Positions cards.
   parameters, the validator's checks and the `.lang-nav` style. Reverting the commit that
   took the page out brings it back as it was (the translation is in d35c65f).
 - **Check:** `REVIEW.md` section 31.
+- **Deployed** 2026-10-24 without the English page: `main` fast-forwarded 2405ad0 to 193ac91
+  (run 40093449809; IndexNow sent /, /positions/ and /research/ to api.indexnow.org and to
+  Naver, both HTTP 200). Verified live: the Korean Positions title and no switch,
+  /positions/en/ answers 404, the new descriptions and JSON-LD, the cards flush left, and
+  the text of all 69 pages as built; WebKit 35 of 35, `functional.js` 22 of 22.

@@ -1359,6 +1359,11 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   and /positions/ has no hreflang link or switch. Against the live site (69 pages): no
   visible line gone, changed or added; for screen readers, " (새 탭에서 열림)" on the three
   guide links of /positions/. The validator logs only the known warning.
+- **Live** (main run 40093449809, 2026-10-24): /positions/ has the Korean title, no hreflang
+  link and no switch, and /positions/en/ answers 404. Home's description, the lab's 17
+  knowsAbout entries and its department are in the head; the cards are no longer in the
+  justified list of main.css. `text-check.py` against the build: no line gone, changed or
+  added on any of the 69 pages. WebKit 35 of 35, `functional.js` 22 of 22.
 - **Translation:** an independent check of `positions_en.yml` against `positions.yml`, item
   by item, found it faithful but for one addition (the graduate section had the IDP
   "discussed" before applying; the Korean asks for a consultation, and the guide discusses
