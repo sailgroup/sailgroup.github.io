@@ -12,7 +12,7 @@ permalink: /alumni/
 
 <section class="section section--tight">
   <div class="container">
-    {%- comment -%}One row for each group of _data/people_groups.yml (postdoctoral researchers, Ph.D. and M.S. students, undergraduates), its name at the left (above the people on a phone); a group with nobody in it is left out. The undergraduates' photos are smaller (`small`). The first three photos are in the first screenful, so they load at once.{%- endcomment %}
+    {%- comment -%}One row for each group of _data/people_groups.yml (postdoctoral researchers, Ph.D. and M.S. students, undergraduates), its name at the left (above the people on a phone); a group with nobody in it is left out. The undergraduates' photos are smaller (`small`). The first ten photos load at once: on a desktop, two rows of the small photos are in the first screenful.{%- endcomment %}
     {%- assign alumni = site.data.people | where: "status", "alumni" -%}
     {%- assign shown = 0 %}
     <div class="people-groups">
@@ -22,7 +22,7 @@ permalink: /alumni/
       <section class="people-group" aria-labelledby="group-{{ g.key }}">
         <h2 class="people-group__title" id="group-{{ g.key }}">{{ g.name }}</h2>
         <div class="person-grid{% if g.small %} person-grid--small{% endif %}">
-          {%- for a in members -%}{%- assign shown = shown | plus: 1 -%}{%- assign eager = false -%}{%- if shown <= 3 -%}{%- assign eager = true -%}{%- endif -%}{% include person-card.html person=a eager=eager %}{%- endfor -%}
+          {%- for a in members -%}{%- assign shown = shown | plus: 1 -%}{%- assign eager = false -%}{%- if shown <= 10 -%}{%- assign eager = true -%}{%- endif -%}{% include person-card.html person=a eager=eager %}{%- endfor -%}
         </div>
       </section>
       {%- endif -%}

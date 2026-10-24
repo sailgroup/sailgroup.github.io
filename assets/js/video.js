@@ -11,9 +11,11 @@
   Array.prototype.forEach.call(document.querySelectorAll("a[data-youtube]"), function (a) {
     var id = a.getAttribute("data-youtube");
     if (!ID.test(id)) return;
-    // It plays here now, not in a new tab: the name says so.
+    // It plays here now, not in a new tab: the name says so. (index.html ends the name with
+    // " (opens in a new tab)", as new-tab.html asks of a link named by aria-label.)
     a.removeAttribute("target");
-    a.setAttribute("aria-label", a.getAttribute("aria-label").replace(" (opens in a new tab)", ""));
+    var name = a.getAttribute("aria-label");
+    if (name) a.setAttribute("aria-label", name.replace(/ \(opens in a new tab\)$/, ""));
 
     a.addEventListener("click", function (e) {
       if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;

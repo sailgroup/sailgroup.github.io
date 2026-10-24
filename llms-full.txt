@@ -60,6 +60,6 @@ See {{ site.url }}/positions/ (Korean) for how to apply as a postdoctoral resear
 {% for n in items %}### {% include news-date.html n=n %}: {{ n.title | strip_html }}
 {% if n.body and n.body != "" %}{{ n.body | strip_html | normalize_whitespace }}
 {% endif %}{% if n.link and n.link != "" %}{% if n.link contains "://" %}Link: {{ n.link }}{% else %}{% capture href %}{% include news-href.html link=n.link %}{% endcapture %}Link: {{ href | absolute_url }}{% endif %}
-{% endif %}{% for l in n.links %}{{ n.links_label | default: "Also" }}: {{ l.text }}, {% if l.url contains "://" %}{{ l.url }}{% else %}{% capture href %}{% include news-href.html link=l.url %}{% endcapture %}{{ href | absolute_url }}{% endif %}
+{% endif %}{% for l in n.links %}{{ n.links_label | default: "Link" }}: {{ l.text }}, {% if l.url contains "://" %}{{ l.url }}{% else %}{% capture href %}{% include news-href.html link=l.url %}{% endcapture %}{{ href | absolute_url }}{% endif %}
 {% endfor %}
 {% endfor %}

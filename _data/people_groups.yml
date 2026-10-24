@@ -4,10 +4,11 @@
 # is a row under a thin line, its name at the left (above the people on a phone).
 #
 # A person's group is their `group:` in people.yml when it is set. Without it, it is the
-# first group below with one of its `match` words in the person's `role` (capitals do not
-# matter): "Postdoctoral Researcher" is postdoc, "M.S./Ph.D. Integrated Course" is phd
-# (Ph.D. comes before M.S. here), "Undergraduate Researcher (UROP)" is undergrad. Someone
-# who left the integrated course with an M.S. gets `group: ms` in people.yml.
+# first group below with one of its `match` words at the start of a word of the person's
+# `role` (capitals do not matter): "Postdoctoral Researcher" is postdoc, "M.S./Ph.D.
+# Integrated Course" is phd (Ph.D. comes before M.S. here), "Undergraduate Researcher
+# (UROP)" is undergrad, and "European" is not UROP. Someone who left the integrated course
+# with an M.S. gets `group: ms` in people.yml.
 #
 #   key    the name people.yml's `group:` uses
 #   name   the heading of the row

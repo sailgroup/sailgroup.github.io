@@ -1301,3 +1301,8 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   live site shows is missing from the build. The visible lines gone from a page are the parts
   /pi/, /members/ and /alumni/ no longer share (each is on its own page), and the two BibTeX
   titles; added: the interview's caption and length, the Alumni row heading, the news links.
+- **Code review of the commit** (ab0aaf6 against d156e48): ten findings, seven fixed and
+  three left with their reasons (D60, "Review before deploy"). After the fixes the local
+  build, html-proofer, the Chrome checks and the text check give the results above again,
+  and the row rule passes 14 roles in Ruby ("Postdoctoral Researcher" postdoc, "M.S./Ph.D.
+  Integrated Course" phd, "Master's student" ms, "European" and "Webmaster" no row).

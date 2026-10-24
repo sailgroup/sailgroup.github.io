@@ -2056,8 +2056,9 @@ Takes back D57. Changes D49's measure for the PI's bio and the Research page.
   (the PI's Person on /pi/, a CollectionPage on /members/ and on /alumni/).
 - **Alumni rows:** `_data/people_groups.yml` lists the rows in order: postdoctoral
   researchers, Ph.D. students, M.S. students, undergraduates. A person's row is their
-  `group:` in people.yml, or else the first row with one of its words in their `role`
-  ("M.S./Ph.D. Integrated Course" goes to Ph.D.). `_plugins/people_groups.rb` (the
+  `group:` in people.yml, or else the first row with one of its words at the start of a
+  word of their `role` ("M.S./Ph.D. Integrated Course" goes to Ph.D.; "European" is not
+  UROP). `_plugins/people_groups.rb` (the
   `in_group` filter) sorts them, and the validator stops the build for an alumnus who fits
   no row. A row is its name at the left and its people beside it, filled from the left,
   under a hairline; on phones the name is above. The undergraduates' photos are 7rem
@@ -2116,4 +2117,15 @@ Takes back D57. Changes D49's measure for the PI's bio and the Research page.
   the link says ChosunBiz.
 - **Not changed:** formulas in abstracts (papers 45, 43, 42, 33, 27, 22, 17, 14, 13) and in
   the news text of 2026-09-10 stay as written until the maintainer approves them (D52).
+- **Review before deploy** (a code review of the commit, 2026-10-24): the ScholarlyArticle
+  `abstract` gets `strip_html` like its headline; a row's words count only at the start of
+  a word of the role (`UROP` had matched inside "European"); video.js no longer stops on a
+  poster without `aria-label`; the home page allows the YouTube frame only while home.yml
+  has an `interview`; the first ten Alumni photos load at once (all nine today, two rows of
+  the small photos at desktop widths); llms-full.txt writes "Link:" for a news link without
+  `links_label` (it made up "Also:"); CLAUDE.md's 55ch rule names D60's exceptions. Left as
+  they are: D57's #pi, #members and #alumni addresses (D57's people.js always rewrote the
+  address to /pi/, /members/ or /alumni/, so no such link was handed out), and two
+  cleanups (one filter for the alumni order that the page and its JSON-LD share, one helper
+  for the three tag-stripping regexes).
 - **Check:** `REVIEW.md` section 30.

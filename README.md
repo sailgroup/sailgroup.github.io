@@ -16,8 +16,10 @@ Live: https://sail.kookmin.ac.kr
 | --- | --- |
 | 논문 | `_data/publications.yml` |
 | 논문 코드·데이터 링크 (GitHub, Figshare 아이콘) | `_data/publications.yml` 에서 그 논문의 `code: ""`(코드 저장소)·`dataset: ""`(데이터셋) 따옴표 안에 주소 ([자세히](#논문에-코드와-데이터-링크-달기-github-figshare-아이콘)) |
-| 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`) |
+| 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`, [추가 · 졸업 처리](#새-멤버-추가하기)) |
+| 동문 페이지의 줄 (포닥 · 박사 · 석사 · 학부생) | `_data/people_groups.yml` ([자세히](#졸업-처리-동문으로-옮기기)) |
 | 뉴스 | `_data/news.yml` |
+| 홈 화면 인터뷰 영상 | `_data/home.yml` 의 `interview` ([자세히](#홈-화면-인터뷰-영상-_datahomeyml-의-interview)) |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
 | 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시. 한국어 `overview.ko`·`title_ko`·`body_ko` 는 화면에 표시되지 않고, AI 검색용 `llms.txt`·`llms-full.txt` 에만 들어감) |
 | 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
@@ -136,20 +138,54 @@ Live: https://sail.kookmin.ac.kr
 소셜 링크는 실제 URL이 있을 때만: `linkedin:` `github:` `scholar:` `orcid:` `website:`. 논문 저자명이
 `name` 과 다르면 `author_aliases: ["다른 표기"]`. 동문은 `note:` 로 한 줄 비고 추가 가능.
 
+#### 새 멤버 추가하기
+
+1. 사진을 [`assets/images/people/` 업로드 화면](https://github.com/sailgroup/sailgroup.github.io/upload/main/assets/images/people)에
+   끌어다 놓고 **Commit changes** 를 누릅니다. 파일 이름은 영문 소문자와 `-` 로 씁니다(예: `gildong-hong.jpg`).
+   정사각형 JPG 를 권장합니다.
+2. [`_data/people.yml` 편집 화면](https://github.com/sailgroup/sailgroup.github.io/edit/main/_data/people.yml)을
+   열고 위 예시를 복사해 붙여 넣은 뒤 칸을 채웁니다. `photo:` 에는 1번에서 올린 파일 이름만 적습니다.
+3. 오른쪽 위 초록색 **Commit changes...** 를 누르고, 뜨는 창에서 다시 **Commit changes** 를 누릅니다. 1~3분 뒤
+   Members 페이지와 개인 페이지에 나타납니다.
+
+Members 페이지는 이 파일에 적힌 순서대로 보여 줍니다. 앞에 보이게 하려면 그 사람의 블록을 위쪽에 둡니다.
+
+#### 졸업 처리: 동문으로 옮기기
+
+1. `_data/people.yml` 편집 화면에서 `Ctrl+F`(Mac은 `⌘+F`)로 그 사람의 이름을 찾습니다.
+2. `status: current` 를 `status: alumni` 로 바꿉니다. 블록을 옮기거나 지울 필요는 없습니다.
+3. `role` 이 마친 과정을 가리키는지 봅니다(예: `M.S. Student`, `Undergraduate Researcher (UROP)`). 동문 페이지의
+   어느 줄에 들어갈지가 이 낱말로 정해집니다(아래 표).
+4. 지금 소속처럼 남길 말이 있으면 `note:` 에 한 줄로 적습니다(예: `note: "Ph.D. student, KAIST"`). 카드의 역할
+   아래에 작게 보입니다.
+5. **Commit changes** 를 누릅니다.
+
+개인 페이지 주소(`/people/<slug>/`)는 그대로라 **뉴스 등 어디서 건 링크가 깨지지 않습니다**(예전
+`/members/<slug>/`·`/alumni/<slug>/` 주소도 이 페이지로 연결됩니다).
+
+**동문 페이지의 줄.** 동문은 아래 표의 순서로 줄을 나눠 보여 줍니다. 아무도 없는 줄은 보이지 않고(지금은 학부생
+줄만 있습니다), 줄 안의 순서는 `people.yml` 에 적힌 순서입니다.
+
+| `role` 에 들어 있는 낱말 | 들어가는 줄 | 직접 정할 때 |
+| --- | --- | --- |
+| `Postdoc` (예: Postdoctoral Researcher) | Postdoctoral Researchers | `group: postdoc` |
+| `Ph.D.` 또는 `PhD` (예: Ph.D. Student, M.S./Ph.D. Integrated Course) | Ph.D. Students | `group: phd` |
+| `M.S.` 또는 `Master` (예: M.S. Student) | M.S. Students | `group: ms` |
+| `Undergraduate`, `UROP`, `B.S.` (예: Undergraduate Researcher (UROP)) | Undergraduate Researchers (사진이 작음) | `group: undergrad` |
+
+- 표의 위쪽 줄부터 맞춰 봅니다. 그래서 석박사 통합과정(`M.S./Ph.D. Integrated Course`)은 박사 줄에 들어갑니다.
+  통합과정을 석사로 마쳤다면 그 사람 항목에 `group: ms` 를 적습니다. 대소문자는 가리지 않습니다.
+- 낱말은 `role` 속 단어의 앞부분과 맞춰 봅니다. `Postdoc` 은 `Postdoctoral` 에 맞고, 단어 중간에 든
+  글자(`European` 속의 `urop`)는 맞지 않습니다.
+- 표의 낱말이 하나도 없으면(예: `role: Visiting Student`) 빌드가 멈추고, Actions 의 **Annotations** 에 그 사람과
+  고칠 방법이 나옵니다. `group:` 을 적거나 `role` 을 고치면 됩니다. 고칠 때까지 사이트는 이전 상태 그대로입니다.
+- 줄 이름 · 순서 · 낱말은 [`_data/people_groups.yml`](_data/people_groups.yml) 에서 바꿉니다. `small: true` 인 줄은
+  사진이 작아 한 줄에 더 많이 들어갑니다.
+
 > **마우스를 올리면 사진이 바뀌게 하기(선택):** `photo_hover:` 에 두 번째 사진 파일명을 적고 그 사진을
 > `assets/images/people/` 에 함께 올리면, 멤버 그리드에서 카드 사진에 마우스를 올렸을 때 두 번째 사진으로
 > 부드럽게 바뀝니다(예: 증명사진과 캐주얼 사진). 두 번째 사진이 없으면 이 줄을 안 적으면 그만이고,
 > 터치 기기(휴대폰 등)에서는 기본 사진만 보입니다. 어느 멤버에게나 같은 방식으로 쓸 수 있습니다.
-
-> **졸업 처리**: 그 사람의 `status` 를 `current` → `alumni` 로 바꾸기만 하면 됩니다. 개인 페이지
-> 주소(`/people/<slug>/`)는 그대로라 **뉴스 등 어디서 건 링크가 절대 안 깨집니다** (기존
-> `/members/<slug>/`·`/alumni/<slug>/` 주소도 자동으로 이 페이지로 연결).
-
-> **동문 페이지의 줄**: 동문은 포닥 · 박사과정 · 석사과정 · 학부생 순으로 줄을 나눠 보여 줍니다. 학부생
-> 줄은 사진이 작습니다. 어느 줄에 들어갈지는 `role` 의 낱말로 정합니다(Postdoc · Ph.D. · M.S. ·
-> Undergraduate 또는 UROP, 석박사 통합과정은 박사 줄). 맞지 않을 때(통합과정을 석사로 마친 경우 등)는
-> 그 사람 항목에 `group: ms` 를 적습니다(`postdoc` · `phd` · `ms` · `undergrad`). 줄 이름과 순서는
-> `_data/people_groups.yml` 에 있습니다. 아무도 없는 줄은 보이지 않습니다.
 
 **개인 논문**(랩 논문 목록에 없는, 이전 소속 논문 등)은 그 사람 항목에 `publications:` 로 추가합니다.
 랩 논문과 합쳐 최신순 정렬, 제목은 DOI로 연결, 본인 이름이 굵게 표시됩니다.
@@ -178,7 +214,24 @@ Live: https://sail.kookmin.ac.kr
     - text: "JoongAng Ilbo"
       url: "https://www.joongang.co.kr/article/..."
 ```
-가장 최근 3개는 홈 화면에도 표시됩니다.
+가장 최근 3개는 홈 화면에도 표시됩니다. `links` 의 링크는 `link` 옆 같은 줄에 붙고, `https://` 주소는 새 탭에서
+열립니다.
+
+### 홈 화면 인터뷰 영상: `_data/home.yml` 의 `interview`
+홈 화면 Research 소개 문단 옆의 영상입니다. 페이지를 열 때는 저장해 둔 사진만 보이고 YouTube 는 부르지 않습니다.
+사진을 누르면 그 자리에서 영상이 재생됩니다.
+```yaml
+interview:
+  youtube: Jve6-fJS7Oc          # 필수: 영상 주소 https://youtu.be/Jve6-fJS7Oc 의 마지막 11자리
+  title: The Convergence of Chemistry and Artificial Intelligence   # 필수: 사진 아래 첫 줄
+  by: Interview by Kookmin University, October 2025                # 선택: 둘째 줄
+  length: "8:26"                # 선택: 사진 위에 보이는 영상 길이
+  poster: home-interview.jpg    # 필수: assets/images/ 에 올린 16:9 사진
+```
+- 다른 영상으로 바꾸려면 `youtube` 와 `poster` 를 함께 바꿉니다. 사진은 그 영상의 한 장면을 가로 800px 정도의
+  16:9 JPG 로 `assets/images/` 에 올립니다.
+- 블록 전체를 지우면 홈 화면에서 영상이 빠집니다.
+- `youtube` 가 11자리가 아니거나 사진 파일이 없으면 빌드가 멈추고 무엇이 틀렸는지 알려 줍니다.
 
 ### 사진: `_data/photos.yml` (최신 항목을 위에)
 ```yaml
