@@ -1,5 +1,6 @@
 # Positions / 모집 안내 페이지(/positions/)의 모든 문구. Coley 그룹의 /positions 페이지를
-# 본떴습니다. 한국어 전용입니다(요청). positions.html 이 이 파일로 페이지를 만듭니다.
+# 본떴습니다. positions.html 이 이 파일로 페이지를 만듭니다. 이 한국어판이 기본이고, 영어판
+# (/positions/en/)은 positions_en.yml 에 있는 번역입니다(D61). 여기를 고치면 영어판도 같이 고쳐 주세요.
 #
 # 구조
 #   intro      : 페이지 맨 위 소개글

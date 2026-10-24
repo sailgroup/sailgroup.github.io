@@ -52,7 +52,7 @@ Career:
 {% for c in pi.career %}- {{ c.role }}, {{ c.org }}{% if c.advisor %} (advisor: {{ c.advisor }}){% endif %}, {{ c.period }}
 {% endfor %}
 ## Joining the lab
-See {{ site.url }}/positions/ (Korean) for how to apply as a postdoctoral researcher, PhD student, or undergraduate researcher, including currently advertised undergraduate projects.
+See {{ site.url }}/positions/ (Korean) or {{ site.url }}/positions/en/ (English) for how to apply as a postdoctoral researcher, graduate student, or undergraduate researcher, including currently advertised undergraduate projects.
 
 ## News (newest first)
 {% comment %}Every item on /news/, in its order. A link to this site is printed as an absolute URL (news-href.html gives the address the News page links to).{% endcomment -%}

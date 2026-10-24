@@ -273,7 +273,17 @@ list. To advertise or retire a project, add or remove one block.
 
 The "대학원생" entry in `_data/positions.yml` has a ready-to-uncomment example.
 Writing `그룹 가이드` anywhere in the text auto-links to the group guide document.
-This page is in Korean by request; keep new copy in Korean to match.
+The Korean page is the source: write new copy in Korean first.
+
+**The English page** (`/positions/en/`, D61) translates the Korean one, item for item, in
+`_data/positions_en.yml` (same structure). The menu's Positions opens the Korean page, and
+each page links to the other under its heading. When you change `positions.yml`, change the
+same place in `positions_en.yml`: if the two differ in the number of roles, paragraphs or
+cards, the build goes on and its log says where (`Data check: positions_en.yml ...`). In the
+English text `group guide` links to the guide, as `그룹 가이드` does in the Korean; the page's
+other words (the guide button, the cards' `Requirements:`) are the file's `labels`. The
+list that joins the two pages (the switch and the hreflang links) is
+`_data/translations.yml`; change it only to move a page or add a language.
 
 ---
 

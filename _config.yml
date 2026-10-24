@@ -17,6 +17,20 @@ alternate_names:
 site_creator: chanjoong-kim
 # Kookmin University's Korean name, beside the English one in the structured data.
 university_ko: 국민대학교
+# The fields the lab works in, for the structured data's knowsAbout beside the research areas
+# (search engines only, D61). Each comes from the lab's own words: its name (spectroscopy, AI),
+# its department (chemistry), the site's description (machine learning), positions.yml
+# (AI for Chemistry, 머신러닝, 인공지능, 화학) and its Korean name (인공지능화학연구실).
+knows_about:
+  - Artificial intelligence
+  - Machine learning
+  - Chemistry
+  - Spectroscopy
+  - AI for Chemistry
+  - 인공지능
+  - 화학
+  - 머신러닝
+  - 인공지능 화학
 # Ownership codes from Google Search Console and Naver Search Advisor (the "HTML tag" method's
 # content="..." value), written into every page's head; removing a code ends that ownership.
 # google: the property https://sail.kookmin.ac.kr/ (URL prefix), the maintainer's account,

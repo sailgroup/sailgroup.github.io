@@ -42,6 +42,10 @@ module SAIL
       validate_pi(site.data["pi"])
       validate_home(site.data["home"])
       validate_positions(site.data["positions"])
+      validate_positions(site.data["positions_en"], "positions_en.yml")
+      compare_positions(site)
+      validate_translations(site)
+      check_overview_quote(site)
       validate_journal_logos(site.data["journal_logos"])
       warn_unused_themes(site.data["themes"], site.data["publications"])
 
@@ -539,23 +543,23 @@ module SAIL
     # iterates ZERO times over a scalar -- so a `paragraphs:` written as one value,
     # or a mis-nested `projects:`, would silently drop that text / those cards with
     # a green build. Validate the shape so that mistake fails loudly instead.
-    def validate_positions(pos)
+    def validate_positions(pos, file = "positions.yml")
       return if pos.nil?
       unless pos.is_a?(Hash)
-        err("positions.yml: expected a single record (key: value lines).")
+        err("#{file}: expected a single record (key: value lines).")
         return
       end
       if !blank?(pos["guide_url"]) && !pos["guide_url"].to_s.start_with?("http")
-        err("positions.yml: `guide_url` should be a full URL (http...), got: #{pos["guide_url"]}")
+        err("#{file}: `guide_url` should be a full URL (http...), got: #{pos["guide_url"]}")
       end
       secs = pos["sections"]
       return if secs.nil?
       unless secs.is_a?(Array)
-        err("positions.yml: `sections` must be a list (each role starts with `-`).")
+        err("#{file}: `sections` must be a list (each role starts with `-`).")
         return
       end
       secs.each_with_index do |s, i|
-        at = blank?(s["title"]) ? "positions.yml section #{i + 1}" : "positions.yml \"#{s["title"]}\""
+        at = blank?(s["title"]) ? "#{file} section #{i + 1}" : "#{file} \"#{s["title"]}\""
         err("#{at}: missing required field `title`.") if blank?(s["title"])
         paras = s["paragraphs"]
         if paras.nil?
@@ -573,6 +577,122 @@ module SAIL
           pat = "#{at} project #{j + 1}"
           %w[title body].each { |f| err("#{pat}: missing required field `#{f}`.") if blank?(pr[f]) }
         end
+      end
+    end
+
+    # The English page (positions_en.yml, D61) translates the Korean one item for item. A
+    # difference in the number of roles, paragraphs, cards or guide links, or a sub-heading or
+    # a card's `requires` on one side only, means one was changed without the other: the build
+    # goes on (the English can follow later), and the log says where they part. A missing file
+    # or missing `labels` stops the build, as the page would come out empty or garbled.
+    GUIDE_KO = "그룹 가이드" # the Korean page's guide phrase (positions.html)
+
+    def compare_positions(site)
+      ko = site.data["positions"]
+      en = site.data["positions_en"]
+      if site.pages.any? { |pg| pg.url == "/positions/en/" } && !en.is_a?(Hash)
+        err("positions_en.yml is missing or is not a record (key: value lines), but positions-en.html builds /positions/en/ from it.")
+        return
+      end
+      return unless en.is_a?(Hash)
+      labels = en["labels"]
+      unless labels.is_a?(Hash) && %w[guide_phrase guide_button requires].all? { |f| !blank?(labels[f]) }
+        err("positions_en.yml: `labels` needs `guide_phrase`, `guide_button` and `requires` (the page's own words).")
+        return
+      end
+      return unless ko.is_a?(Hash)
+      lag = "update positions_en.yml to match positions.yml (the English page translates the Korean)"
+      text = lambda do |d|
+        [d["intro"], *Array(d["sections"]).flat_map { |x| x.is_a?(Hash) ? Array(x["paragraphs"]) : [] }].join("\n")
+      end
+      a = text.call(ko).scan(GUIDE_KO).size
+      b = text.call(en).scan(labels["guide_phrase"].to_s).size
+      warn("positions_en.yml links the guide #{b} times (\"#{labels["guide_phrase"]}\"), positions.yml #{a} times (\"#{GUIDE_KO}\"): #{lag}.") if a != b
+      ks = Array(ko["sections"])
+      es = Array(en["sections"])
+      if ks.size != es.size
+        warn("positions_en.yml has #{es.size} roles and positions.yml #{ks.size}: #{lag}.")
+        return
+      end
+      ks.zip(es).each_with_index do |(k, e), i|
+        next unless k.is_a?(Hash) && e.is_a?(Hash)
+        at = "role #{i + 1} (#{k["title"]} / #{e["title"]})"
+        %w[paragraphs projects].each do |f|
+          n = Array(k[f]).size
+          m = Array(e[f]).size
+          warn("positions_en.yml #{at}: #{m} #{f}, positions.yml #{n}: #{lag}.") if n != m
+        end
+        if blank?(k["projects_title"]) != blank?(e["projects_title"])
+          warn("positions_en.yml #{at}: `projects_title` on one side only: #{lag}.")
+        end
+        Array(k["projects"]).zip(Array(e["projects"])).each_with_index do |(kp, ep), j|
+          next unless kp.is_a?(Hash) && ep.is_a?(Hash)
+          if blank?(kp["requires"]) != blank?(ep["requires"])
+            warn("positions_en.yml #{at} card #{j + 1}: `requires` on one side only: #{lag}.")
+          end
+        end
+      end
+    end
+
+    # --- translations (pages in more than one language, D61) -------------------
+    # head.html writes each group as hreflang links. Search engines drop a group whose pages
+    # do not all point at each other, so every version needs a language code, a locale, a
+    # name and an address, and the page there must name the group back (and say its language).
+    def validate_translations(site)
+      groups = site.data["translations"]
+      named = site.pages.select { |pg| pg.data["translations"] }
+      return if groups.nil? && named.empty?
+      unless groups.is_a?(Hash)
+        err("translations.yml: expected groups (a name, then its list of versions).")
+        return
+      end
+      groups.each do |key, list|
+        unless list.is_a?(Array) && list.size > 1
+          err("translations.yml `#{key}`: list at least two versions (each starts with `-`).")
+          next
+        end
+        list.each_with_index do |v, i|
+          at = "translations.yml `#{key}` version #{i + 1}"
+          unless v.is_a?(Hash)
+            err("#{at}: expected `lang`, `locale`, `name` and `url`.")
+            next
+          end
+          err("#{at}: `lang` should be a language code such as ko or en, got #{v["lang"].inspect}.") unless v["lang"].to_s.match?(/\A[a-z]{2,3}(-[A-Za-z0-9]{2,8})*\z/)
+          err("#{at}: `locale` should look like ko_KR or en_US, got #{v["locale"].inspect}.") unless v["locale"].to_s.match?(/\A[a-z]{2,3}_[A-Z]{2}\z/)
+          err("#{at}: missing `name` (the language's name in that language).") if blank?(v["name"])
+          pg = site.pages.find { |x| x.url == v["url"].to_s }
+          if pg.nil?
+            err("#{at}: no page has the address #{v["url"].inspect}.")
+          elsif pg.data["translations"].to_s != key.to_s
+            err("#{at}: #{pg.name} (#{v["url"]}) needs `translations: #{key}` in its front matter.")
+          elsif (pg.data["lang"] || site.config["lang"]).to_s != v["lang"].to_s
+            err("#{at}: #{pg.name} is `lang: #{pg.data["lang"] || site.config["lang"]}`, but the list says #{v["lang"]}.")
+          end
+        end
+      end
+      named.each do |pg|
+        g = pg.data["translations"].to_s
+        list = groups[g]
+        if !list.is_a?(Array)
+          err("#{pg.name}: `translations: #{g}` names no group in translations.yml.")
+        elsif list.none? { |v| v.is_a?(Hash) && v["url"].to_s == pg.url }
+          err("#{pg.name}: its group `#{g}` in translations.yml does not list its address #{pg.url}.")
+        end
+      end
+    end
+
+    # The home and Positions meta descriptions quote the lab's Korean overview
+    # (research.yml overview.ko) after its subject, "...은 " (D61). When the PI rewrites
+    # that sentence, the descriptions should follow: the log says which page still has the old.
+    def check_overview_quote(site)
+      ko = site.data.dig("research", "overview", "ko").to_s.gsub(/\s+/, " ").strip
+      said = ko.split(/[은는] /, 2)[1].to_s.strip
+      return if said.empty?
+      ["/", "/positions/"].each do |u|
+        pg = site.pages.find { |x| x.url == u }
+        next unless pg
+        next if pg.data["description"].to_s.gsub(/\s+/, " ").include?(said)
+        warn("#{pg.name}: its description no longer quotes research.yml overview.ko (\"#{said}\"); bring it up to date.")
       end
     end
 

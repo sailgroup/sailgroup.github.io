@@ -1,0 +1,56 @@
+{%- comment -%}The Positions page in one language (D61). positions.html (Korean, the default, from
+_data/positions.yml) and positions-en.html (English, from _data/positions_en.yml) pass their
+text and their own words for:
+  p           the page's data (intro, sections)
+  phrase      the words in the text that link to the group guide
+  button      the guide button's text
+  requires    the label before a card's `requires`
+  lang_label  the name of the language switch, for screen readers
+  guide_lang  the guide's language where it is not the page's (hreflang on its links)
+Both link to positions.yml's `guide_url`, and the guide's links say for screen readers, in
+the page's language, that they open in a new tab (new-tab.html). The switch (lang-nav.html)
+lists the page's group in _data/translations.yml.{%- endcomment -%}
+{%- assign p = include.p -%}
+{%- assign guide_url = site.data.positions.guide_url -%}
+{%- capture note -%}{% include new-tab.html lang=page.lang %}{%- endcapture -%}
+{%- capture guide_link -%}<a href="{{ guide_url }}" target="_blank" rel="noopener noreferrer"{% if include.guide_lang %} hreflang="{{ include.guide_lang }}"{% endif %}>{{ include.phrase }}{{ note }}</a>{%- endcapture -%}
+<div class="container container-narrow page-head">
+  <h1 lang="en">Positions</h1>
+  {%- include lang-nav.html label=include.lang_label %}
+  <p class="lead">{{ p.intro | replace: include.phrase, guide_link }}</p>
+  <p class="positions-cta">
+    <a class="btn btn--solid" href="{{ guide_url }}" target="_blank" rel="noopener noreferrer"{% if include.guide_lang %} hreflang="{{ include.guide_lang }}"{% endif %}>{{ include.button }} {% include icon.html name="external" %}{{ note }}</a>
+    <a class="btn" href="mailto:{{ site.data.pi.email }}">{% include icon.html name="mail" %} {{ site.data.pi.email }}</a>
+  </p>
+</div>
+
+<section class="section section--tight">
+  <div class="container container-narrow">
+    {%- for s in p.sections -%}
+    <div class="prose">
+      <h2>{{ s.title }}</h2>
+      {%- for para in s.paragraphs -%}
+      <p>{{ para | replace: include.phrase, guide_link }}</p>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Optional project cards for this role (works under any section). {%- endcomment -%}
+    {%- if s.projects and s.projects.size > 0 -%}
+    {%- if s.projects_title and s.projects_title != "" -%}
+    <h2 class="positions-projects__title">{{ s.projects_title }}</h2>
+    {%- endif -%}
+    <div class="card-grid">
+      {%- for proj in s.projects -%}
+      <article class="card">
+        <h3>{{ forloop.index }}. {{ proj.title }}</h3>
+        <p>{{ proj.body }}</p>
+        {%- if proj.requires and proj.requires != "" -%}
+        <p class="positions-req"><strong>{{ include.requires }}</strong> {{ proj.requires }}</p>
+        {%- endif -%}
+      </article>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>

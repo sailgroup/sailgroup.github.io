@@ -339,3 +339,11 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   explains adding members and moving them to the alumni. Built on `dev` (runs 40083618665,
   40087554358), deployed (main run 40087604973) and verified live. Results in `REVIEW.md`
   section 30.
+- **Phase 31 (2026-10-24):** Positions in English, and searches in Korean and English (D61),
+  on the maintainer's request. The Korean page stays the default at /positions/; the English
+  translation is a page of its own at /positions/en/, joined to it by a 한국어 | English
+  switch and hreflang links (`_data/translations.yml`). The heads of Home, Research and
+  Positions carry the lab's Korean name and its own Korean sentence, and the structured data
+  adds the lab's fields and its department. A code review before the commit found ten
+  points, eight taken. Checked in a local CI build (Docker); results in `REVIEW.md` section
+  31.

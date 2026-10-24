@@ -1312,3 +1312,45 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   in place; the Publications search marks CsPbBr3, Cs4PbBr6, Mg2+ and CO2 whole. In Chrome
   no console error, CSP violation or horizontal overflow; WebKit (`.qa/tools/webkit-check.cjs`)
   35 passed, 0 failed.
+
+## 31. Positions in English; Korean and English searches (2026-10-24, D61)
+
+- **Local build** (Docker, as CI), before and after the review fixes below: html-proofer
+  passes; every JSON-LD block on the built pages parses (130).
+- **The two pages:** /positions/ is `lang="ko"` with the title "모집 안내 (Positions):
+  국민대학교 인공지능화학연구실 | Spectroscopy and AI Lab"; /positions/en/ is `lang="en"`,
+  "Positions at SAIL, Kookmin University | Spectroscopy and AI Lab". Each has its own
+  canonical, hreflang links for ko, en and x-default (the Korean page) and
+  og:locale:alternate for the other; the WebPage JSON-LD says `inLanguage` ko and en. The
+  English guide links carry `hreflang="ko"` and the new-tab note; on the Korean page the
+  note is in Korean. The sitemap lists /positions/en/.
+- **Text against the live site** (`.qa/tools/text-check.py`, 70 pages; it now counts a page
+  that is not live yet as all added): no visible or screen-reader line gone or changed on
+  any page; added: on /positions/ the switch's 한국어 and English and its name 언어, and for
+  screen readers " (새 탭에서 열림)" on the three guide links (the live page has no note
+  there); and the new /positions/en/. No data string the live site shows is missing from
+  the build.
+- **In Chrome** (local serve, both pages at 1440 and 390px): no console error or horizontal
+  overflow; the switch sits between the heading and the lead, the current language raised;
+  the header marks the Positions section on both pages.
+- **WebKit** (Playwright's WebKit, the build served at the site's own address): on an iPhone
+  13 and at 1440px the switch is a segmented control, and a tap on English opens
+  /positions/en/ with English marked and its four cards; `webkit-check.cjs` over the build,
+  35 passed, 0 failed.
+- **Validator** (two broken copies of the build folder): with `lang: english` in
+  `translations.yml`, one English paragraph and one guide link gone, and 융합하여 changed in
+  `overview.ko`, the build stopped on the language code and on the page's `lang` not
+  matching it, and the log named the paragraphs (1 against 2), the guide links (1 against
+  2) and both descriptions (Home, Positions) that no longer quote the overview. With no
+  `positions_en.yml` and `translations: position` in `positions.html`, it stopped on all
+  three (the English data, the page not naming its group, a group that does not exist).
+  The real tree logs only the known warning (paper 46, "Submitted", has no journal logo).
+- **Code review** before the commit: ten findings, eight taken (DECISIONS D61, "Review
+  before deploy"). The build, the text check and both browsers ran again after the fixes.
+- **Translation:** an independent check of `positions_en.yml` against `positions.yml`, item
+  by item, found it faithful but for one addition (the graduate section had the IDP
+  "discussed" before applying; the Korean asks for a consultation, and the guide discusses
+  the IDP after admission) and a few shifts in wording (a request read as a description,
+  "when" for "if", "vacation" for 방학, "Background:" for 필요 지식). All were taken.
+- **Writing:** the English text of the page (645 words) and the added doc lines have no em
+  or en dash; the lint gives RULE 0, TELL 0 and DENS 0 on both.

@@ -2133,3 +2133,78 @@ Takes back D57. Changes D49's measure for the PI's bio and the Research page.
   sent 69 addresses to api.indexnow.org and to Naver, both HTTP 200). Verified live: the
   three people pages, the Alumni row, the interview playing in place, the press links, the
   formulas in titles and in the Publications search; WebKit 35 of 35.
+
+## D61: Positions in English beside the Korean page; search in Korean and English (maintainer's request, 2026-10-24)
+
+- **Request:** an English version of Positions, with the Korean page kept as the default,
+  and a site that Google finds in Korean and in English searches (the maintainer named
+  "ai 화학", "화학 인공지능", "ai 화학 에이전트" and "sail").
+- **History:** D34 made Positions bilingual on one page (a toggle, the English a draft), and
+  D35 took that back on the PI's instruction. This time the Korean page stays where and as
+  it was (/positions/, the menu's link), and the English is a page of its own at
+  /positions/en/.
+- **The English page:** `_data/positions_en.yml` translates `positions.yml` item for item
+  (the same roles, paragraphs and cards), with `labels` for the page's own words ("group
+  guide" in the text links to the guide, the button "Group guide (in Korean)", the cards'
+  "Requirements:"). Both pages come from `_includes/positions-page.html`; the Korean page's
+  markup and text are as before apart from the switch. Both link to `positions.yml`'s
+  `guide_url`; on the English page the guide's links carry `hreflang="ko"` and say they open
+  in a new tab, and the button says the guide is in Korean (it is: 12,813 Hangul characters
+  on 2026-10-24). The PI has not reviewed the English; the Korean stays the source.
+  인공지능 소재화학 is given as "the AI Materials Chemistry course" (no official English name
+  on record), 유기소재분광학 as "spectroscopy of organic materials", IDP spelled out as the
+  guide does ("Individual Development Plan"). An independent check of the English against
+  the Korean found one addition (the IDP to be "discussed" before applying; the Korean asks
+  for a consultation) and a few shifts in wording, all taken.
+- **The switch:** under the heading of both pages, 한국어 and English as a segmented control
+  like the people pages' (D56), each name in its own language (`lang`, `translate="no"`),
+  the current page marked (`lang-nav.html`). The header shows the Positions section as
+  current on both pages.
+- **For search engines:** `_data/translations.yml` lists the two versions (Korean first,
+  the default), and each page names that list with `translations: positions`; `head.html`
+  writes hreflang links for ko, en and x-default (the Korean page) and
+  og:locale:alternate, and the switch reads the same list. Titles: "모집 안내 (Positions):
+  국민대학교 인공지능화학연구실" and "Positions at SAIL, Kookmin University", each followed by
+  the site's name; descriptions 118 and 144 characters. The sitemap lists /positions/en/,
+  and llms.txt and llms-full.txt point to it.
+- **Validator:** `positions_en.yml` gets the checks of `positions.yml`. When the two differ
+  in the number of roles, paragraphs, cards or guide links, or a sub-heading or a card's
+  `requires` is on one side only, the build goes on and its log says where (the English can
+  follow later); a missing `positions_en.yml` or missing `labels` stop the build. Every
+  version in `translations.yml` needs a language code, a locale, a name and a page that
+  names the group back in its own language, or the build stops. The home and Positions
+  descriptions quote `overview.ko`; the log warns when that sentence changes and they do
+  not.
+- **Korean and English searches, in the head only (D9):**
+  - Home's description begins with the lab's own Korean sentence (research.yml
+    `overview.ko`: "인공지능과 화학을 융합하여 화학 반응 예측과 신소재 개발을 연구합니다"),
+    after "국민대학교 화학부 정준영 교수 연구실", then "Machine learning for chemistry at Kookmin
+    University." (150 characters).
+  - Research's description names the lab by its Korean name, 인공지능화학연구실(SAIL).
+  - The lab's knowsAbout adds the fields it works in, in English and Korean (`knows_about`
+    in `_config.yml`: Artificial intelligence, Machine learning, Chemistry, Spectroscopy,
+    AI for Chemistry, 인공지능, 화학, 머신러닝, 인공지능 화학), each from the lab's own words.
+  - The lab's parentOrganization is its department ("Department of Chemistry, Kookmin
+    University", 국민대학교 화학부), within Kookmin University.
+- **Not done:** "AI 화학 에이전트": nothing on the site or in the lab's papers is about AI
+  agents (the nearest is the LLM data-extraction project for undergraduates), so no title or
+  tag claims it. No Korean on the English pages (D9) and no meta keywords (Google ignores
+  them). "sail" alone is a common word and the name of other organizations; the searches
+  this site can lead are "SAIL 국민대", "SAIL Kookmin", "Spectroscopy and AI Lab" and
+  "국민대 인공지능화학연구실".
+- **Left for the maintainer** (accounts and other sites): submitting the sitemap and asking
+  for indexing in Search Console; Naver Search Advisor (its code goes in `_config.yml`);
+  Kookmin University's faculty pages, which still link the Wix site; the Wix site, still
+  live (a link to this site, then unpublished or hidden from search); the Scholar and ORCID
+  homepage fields.
+- **Review before deploy** (a code review of the change, 2026-10-24): ten findings, eight
+  taken. The language list was copied into both pages' front matter; it is now one list
+  in `translations.yml`, checked as above. The validator now also stops on a missing
+  `positions_en.yml` (the page would ship empty) and compares guide links, sub-headings and
+  `requires`. The department node needs a department in `pi.yml`. The Korean page's guide
+  links now tell screen readers, in Korean, that they open in a new tab (" (새 탭에서
+  열림)", `new-tab.html` with `lang="ko"`; the header and footer there stay English). Left
+  as they are: the Korean labels stay in `positions.html`, where they were before D61,
+  rather than in the PI's `positions.yml`; and the switch shares the people pages' rules
+  by listing both selectors, so each property is still written once.
+- **Check:** `REVIEW.md` section 31.

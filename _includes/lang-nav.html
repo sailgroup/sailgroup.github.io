@@ -1,0 +1,13 @@
+{%- comment -%}The page's versions in other languages (D61, Positions), under its heading as a segmented control like people-nav.html: each version named in its own language, the current one marked. From the page's group in _data/translations.yml (its `translations:`), which head.html also writes as hreflang links. Pass: label, the control's name for screen readers in the page's language.{%- endcomment -%}
+{%- if page.translations -%}
+{%- assign versions = site.data.translations[page.translations] -%}
+{%- if versions.size > 1 %}
+  <nav class="lang-nav" aria-label="{{ include.label | default: 'Language' }}" translate="no">
+    <ul>
+      {%- for a in versions %}
+      <li><a href="{{ a.url | relative_url }}" lang="{{ a.lang }}" hreflang="{{ a.lang }}"{% if a.url == page.url %} aria-current="page"{% endif %}>{{ a.name }}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+{%- endif -%}
+{%- endif -%}

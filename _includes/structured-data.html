@@ -6,7 +6,7 @@ as a second organization without an @id):
   /publications/<id>/            -> ScholarlyArticle (a paper with a DOI or preprint) + BreadcrumbList
   /people/<slug>/                -> Person + BreadcrumbList
   /publications/ /members/ /alumni/ -> CollectionPage with an ItemList of the collection
-  /research/ /news/ /photos/ /positions/ -> WebPage, part of the WebSite
+  /research/ /news/ /photos/ /positions/ /positions/en/ -> WebPage, part of the WebSite
 All values come from the same _data files the pages render from, so the structured
 data cannot drift from the visible content. Invisible to sighted users (metadata).
 The lab and the PI carry stable "@id"s (<site>/#organization, <site>/pi/#person), and
@@ -34,7 +34,13 @@ Person has its own @id (<page>#person).
 {%- comment -%}The research areas in English and in the lab's own Korean (title_ko), for Korean searches too (D58).{%- endcomment -%}
 {%- assign topics = "" | split: "" -%}
 {%- for a in site.data.research.areas -%}{%- assign topics = topics | push: a.title -%}{%- if a.title_ko and a.title_ko != "" -%}{%- assign topics = topics | push: a.title_ko -%}{%- endif -%}{%- endfor -%}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","@id":"{{ site.url }}/#organization","name":{{ site.title | jsonify }},"alternateName":{{ orgnames | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | jsonify }},"logo":{{ site.logo | absolute_url | jsonify }},"email":{{ site.data.home.contact.email | jsonify }},"telephone":{{ site.data.home.contact.phone | jsonify }},"foundingDate":"2025","address":{"@type":"PostalAddress","streetAddress":"77 Jeongneung-ro, Seongbuk-gu","addressLocality":"Seoul","postalCode":"02707","addressCountry":"KR"},{% if site.github_org %}"sameAs":[{{ site.github_org | jsonify }}],{% endif %}"parentOrganization":{{ kmu }},"knowsAbout":{{ topics | jsonify }},"founder":{"@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ pi.name | jsonify }},"url":"{{ site.url }}/pi/","sameAs":{{ pisameas | jsonify }}}}</script>
+{%- comment -%}Then the fields the lab works in, in English and Korean (_config.yml knows_about, D61).{%- endcomment -%}
+{%- for k in site.knows_about -%}{%- assign topics = topics | push: k -%}{%- endfor -%}
+{%- comment -%}The lab's parent is its department, part of Kookmin University (pi.yml department, department_ko; D61).{%- endcomment -%}
+{%- if site.data.pi.department and site.data.pi.department != "" -%}
+{%- capture dept -%}{"@type":"Organization","name":{{ site.data.pi.department | append: ", Kookmin University" | jsonify }}{% if site.data.pi.department_ko and site.data.pi.department_ko != "" and site.university_ko %},"alternateName":{{ site.university_ko | append: " " | append: site.data.pi.department_ko | jsonify }}{% endif %},"parentOrganization":{{ kmu }}}{%- endcapture -%}
+{%- else -%}{%- assign dept = kmu -%}{%- endif -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","@id":"{{ site.url }}/#organization","name":{{ site.title | jsonify }},"alternateName":{{ orgnames | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | jsonify }},"logo":{{ site.logo | absolute_url | jsonify }},"email":{{ site.data.home.contact.email | jsonify }},"telephone":{{ site.data.home.contact.phone | jsonify }},"foundingDate":"2025","address":{"@type":"PostalAddress","streetAddress":"77 Jeongneung-ro, Seongbuk-gu","addressLocality":"Seoul","postalCode":"02707","addressCountry":"KR"},{% if site.github_org %}"sameAs":[{{ site.github_org | jsonify }}],{% endif %}"parentOrganization":{{ dept }},"knowsAbout":{{ topics | jsonify }},"founder":{"@type":"Person","@id":"{{ site.url }}/pi/#person","name":{{ pi.name | jsonify }},"url":"{{ site.url }}/pi/","sameAs":{{ pisameas | jsonify }}}}</script>
 {%- assign maker = site.data.people | where: "slug", site.site_creator | first -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"{{ site.url }}/#website","name":{{ site.title | jsonify }},"alternateName":{{ orgnames | jsonify }},"url":"{{ site.url }}/","description":{{ site.description | jsonify }},"inLanguage":["en","ko"],"publisher":{"@id":"{{ site.url }}/#organization"}{% if maker %},"creator":{"@type":"Person","@id":"{{ site.url }}/people/{{ maker.slug }}/#person","name":{{ maker.name | jsonify }}}{% endif %}}</script>
 {%- elsif page.url == "/pi/" -%}

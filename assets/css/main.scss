@@ -902,9 +902,11 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 /* --- People pages' sub-navigation ----------------------------------------- */
 /* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): the three pages as a
    segmented control (D56), the current one raised on white in a neutral track. They were
-   grey text links with a dot between them. */
+   grey text links with a dot between them. The Positions page's two languages take the same
+   control (lang-nav.html, D61), between its heading and its lead. */
 .people-nav { margin-top: var(--space-md); font-size: var(--fs-sm); }
-.people-nav ul {
+.lang-nav { margin-block: var(--space-sm) var(--space-md); font-size: var(--fs-sm); }
+.people-nav ul, .lang-nav ul {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 2px;
@@ -912,7 +914,7 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   border-radius: 1.25rem;
   background: var(--fill);
 }
-.people-nav a {
+.people-nav a, .lang-nav a {
   display: block;
   padding: 0.4rem 1rem;
   border-radius: var(--radius-pill);
@@ -920,8 +922,8 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
   color: var(--ink-2);
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s var(--ease-out);
 }
-.people-nav a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.55); }
-.people-nav a[aria-current="page"] {
+.people-nav a:hover, .lang-nav a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.55); }
+.people-nav a[aria-current="page"], .lang-nav a[aria-current="page"] {
   background: #fff;
   color: var(--ink);
   font-weight: 600;
@@ -1206,8 +1208,8 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
 /* Pressed: the small rounded controls sink a little while held (iOS applies :active once a
    page listens for touches, nav.js), and the browser's grey tap rectangle, which ignored
    their rounding, is off on them. */
-.btn, a.tag, .people-nav a, .pubs-pill__clear, .pubs-pill__count, .footer-icon { -webkit-tap-highlight-color: transparent; }
-.btn:active, a.tag:active, .people-nav a:active, .pubs-pill__clear:active, .pubs-pill__count:active, .site-footer .footer-icon:active { transform: scale(0.96); }
+.btn, a.tag, .people-nav a, .lang-nav a, .pubs-pill__clear, .pubs-pill__count, .footer-icon { -webkit-tap-highlight-color: transparent; }
+.btn:active, a.tag:active, .people-nav a:active, .lang-nav a:active, .pubs-pill__clear:active, .pubs-pill__count:active, .site-footer .footer-icon:active { transform: scale(0.96); }
 .pubs-pill__clear svg { width: 16px; height: 16px; }
 @media (min-width: 68.8125em) {
   .pubs-pill { display: none; }
@@ -1773,7 +1775,7 @@ body.no-scroll { overflow: hidden; }
   .site-header::before, .site-nav, .subnav, .zoom-hint, .video__mark, .pubs-pill { background: Canvas; }
   .brand img, .brand-kmu img, .pub-badge img, .paper__logo { forced-color-adjust: none; background: #fff; border-radius: 4px; }
   .footer-kmu img { forced-color-adjust: none; background: #1f1f1f; border-radius: 4px; }
-  .people-nav a[aria-current="page"], .pub-filter.is-active, .tag.is-on { outline: 2px solid Highlight; outline-offset: -2px; }
+  .people-nav a[aria-current="page"], .lang-nav a[aria-current="page"], .pub-filter.is-active, .tag.is-on { outline: 2px solid Highlight; outline-offset: -2px; }
   .pub-search__input { border: 1px solid CanvasText; }
   .site-footer .footer-icon { border: 1px solid LinkText; }
 }

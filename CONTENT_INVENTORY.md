@@ -140,12 +140,19 @@ was taken, what was normalized, and what is still open.
   source, so she has no "joins the lab" news entry; add one if a date is provided.
   Award and talk categories exist in the template but have no entries yet (none on
   record). Nothing in the feed was invented.
-- **Positions page (D33; Korean-only again per D35)**: new content (not migrated from
-  Wix). The Korean copy in `_data/positions.yml` was supplied verbatim by the PI; shown
-  at `/positions/`. The English toggle added in D34 was removed at the PI's request. The
-  advertised-project cards are now an optional `projects` list on any role section
-  (PI-maintained, changes over time). The contact CTA reuses the PI email from `pi.yml`;
-  nothing on the page was invented.
+- **Positions page (D33; Korean-only again per D35; an English page beside it per D61)**:
+  new content (not migrated from Wix). The Korean copy in `_data/positions.yml` was
+  supplied verbatim by the PI; shown at `/positions/`. The English toggle added in D34 was
+  removed at the PI's request. The advertised-project cards are now an optional
+  `projects` list on any role section (PI-maintained, changes over time). The contact CTA
+  reuses the PI email from `pi.yml`; nothing on the page was invented.
+- **Positions in English (D61, the maintainer's request, 2026-10-24)**: `/positions/en/`,
+  a translation of the Korean in `_data/positions_en.yml`, item for item; the Korean page
+  stays the default and the source. Not yet reviewed by the PI. Words of its own: the
+  guide button says the guide is in Korean (the document is), 인공지능 소재화학 is "the AI
+  Materials Chemistry course" (a 2026 course, code 1666801, with no English title on
+  record) and 유기소재분광학 "spectroscopy of organic materials"; IDP is spelled out as the
+  guide does. Nothing added that the Korean does not say.
 - **Yunhee Choi (added by the PI, 2026-07-13)**: visiting undergraduate student from
   EPFL. Photo uploaded by the PI (`yunhee-choi.png`, 824x1094, 1.0 MB), recompressed to
   `assets/images/people/yunhee-choi.jpg` (600px, 40 KB; original in git history). Her
