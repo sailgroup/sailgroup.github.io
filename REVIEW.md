@@ -1417,3 +1417,20 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
 - **In Chrome at 2x** (Chanjoong Kim's card at 1440 and 390px, his page's buttons): the house
   sits in the row at the mail icon's width; the card's link box is 24x24 and the page's
   button 38x38, as before.
+- **CI** (dev run 40097521650): green, with only the known warning. Its artifact is the
+  local build but for security.txt's date; the main run's artifact is the dev run's.
+- **Full review of the live site** (main run 40097608919, 2026-10-24):
+  - `livecmp.js` with the deployed artifact (extras: the 40 `-full` figures, the covers'
+    5 `-full` copies, the SVG logo, the home poster, `publications.bib`): 160 files
+    identical, 271 image URLs 200.
+  - `qa-site.js`: 70 pages (the sitemap's 69 and the 404), 152 loads at 1440, 768 and
+    390px: NO PROBLEMS (status, console errors and CSP, failed requests, overflow, broken
+    images, `lang`, the footer, the research rows word for word, the English abstracts).
+  - `text-check.py` against the build: no line gone, changed or added on any of the 69
+    pages, and no data string missing.
+  - `functional.js` 22 of 22; WebKit 35 of 35; `runtime.js`: no console error, CSP
+    violation or overflow on twelve pages at two widths, the video plays in place, and the
+    formula search marks CsPbBr3, Cs4PbBr6, Mg2+ and CO2 whole.
+  - The sitemap, robots.txt, llms.txt, llms-full.txt, publications.bib, security.txt,
+    humans.txt and the IndexNow key answer 200, an unknown address the site's 404. The
+    house is on /alumni/ and /people/chanjoong-kim/, the chain nowhere.

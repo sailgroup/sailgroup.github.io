@@ -355,5 +355,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   thumbnail. Built on `dev` (run 40095404007), deployed (main run 40096521714) and verified
   live. Results in `REVIEW.md` section 32.
 - **Phase 33 (2026-10-24):** two calls the maintainer left to us (D63): the empty Alumni rows
-  keep "None yet.", and a person's website link shows a house in place of a chain. Results
-  in `REVIEW.md` section 33.
+  keep "None yet.", and a person's website link shows a house in place of a chain. Built on
+  `dev` (run 40097521650), deployed (main run 40097608919), then a full review of the live
+  site: no problem found. Results in `REVIEW.md` section 33.

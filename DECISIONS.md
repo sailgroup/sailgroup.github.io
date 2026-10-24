@@ -2291,3 +2291,7 @@ Changes D60's Alumni rows and its interview.
   person with a website (his card on /alumni/ and his page). The link's name for screen
   readers ("... website") and its tooltip ("Website") are unchanged.
 - **Check:** `REVIEW.md` section 33.
+- **Deployed** 2026-10-24 at the maintainer's word ("배포 후 전체 검토"): `main`
+  fast-forwarded 518f212 to 7959e44 (run 40097608919; IndexNow sent /alumni/ and Chanjoong
+  Kim's page to both endpoints, HTTP 200). A full review of the live site followed (REVIEW
+  section 33): every file as deployed, every page at three widths, both browsers.
