@@ -352,5 +352,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   maintainer's request. The postdoc, Ph.D. and M.S. rows show while nobody is in them, as
   short rows that say "None yet."; Home's interview takes the research rows' text column
   from 1100px (524x295 at 1440px, from 304x171) and its poster is the video's own YouTube
-  thumbnail. Built and checked locally; waiting for the maintainer's word before the
-  deploy. Results in `REVIEW.md` section 32.
+  thumbnail. Built on `dev` (run 40095404007), deployed (main run 40096521714) and verified
+  live. Results in `REVIEW.md` section 32.

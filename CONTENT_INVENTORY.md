@@ -97,7 +97,8 @@ was taken, what was normalized, and what is still open.
   of 2026-09-10 are unchanged until approved.
 - **Alumni rows with nobody in them (D62, 2026-10-24, the maintainer's request)**: the
   Postdoctoral Researchers, Ph.D. Students and M.S. Students rows show with "None yet."
-  beside their names. New text, not from the PI; waiting for the maintainer's approval.
+  beside their names. New text, not from the PI; the maintainer approved it with the deploy
+  (2026-10-24).
 - **Interview poster (D62)**: the video's own thumbnail on YouTube (1280x720, as YouTube
   serves it) in place of D60's frame. Its Korean lettering is Kookmin University's and names
   the department as 응용화학부 나노소재전공.

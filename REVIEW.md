@@ -1393,3 +1393,13 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   violation or overflow; the formula search still marks CsPbBr3, Cs4PbBr6, Mg2+ and CO2
   whole. `functional.js` 22 of 22. WebKit (`webkit-check.cjs` over the build under the
   site's address) 35 of 35.
+- **CI** (dev run 40095404007): green, with only the known warning (paper 46 has no journal
+  logo). Its artifact is the local build file for file but for security.txt's date;
+  `functional.js` on the artifact 22 of 22.
+- **Live** (main run 40096521714, 2026-10-24): the poster has the same bytes as YouTube's
+  thumbnail and main.css those of the build; /alumni/ shows "None yet." three times. In
+  Chrome the sizes match the build (524x295 at 1440 and 1100px, edges on the research rows'
+  text; 576x324 at 1000px; 355x200 at 390px) and the video plays in place at 524x295.
+  `text-check.py` against the build: no line gone, changed or added on any of the 69 pages.
+  `runtime.js`: no console error, CSP violation or overflow. WebKit 35 of 35,
+  `functional.js` 22 of 22.

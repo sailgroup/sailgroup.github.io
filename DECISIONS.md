@@ -2242,7 +2242,8 @@ Changes D60's Alumni rows and its interview.
   At 1440px the three empty rows are 85, 68 and 68px tall, so the undergraduates start 222px
   lower. The PI asked in D60 for a row per degree; with only the undergraduates' row the
   rows did not show, and the page now shows them all before the first postdoc or graduate
-  alumnus. "None yet." is new text (three times today), waiting for the maintainer's word.
+  alumnus. "None yet." is new text (three times today); the maintainer approved it with the
+  deploy.
 - **The interview's size:** Kookmin University's channel (youtube.com/@KMU1010) plays its
   featured video at 424x238 at 1280, 1440 and 1920px; Home's poster was 304x171. From
   1100px (68.75em, where the header switches) the overview and the poster take the columns
@@ -2266,3 +2267,10 @@ Changes D60's Alumni rows and its interview.
   gallery photos, papers and covers only; the poster loads lazily, below the first screen,
   and a phone at 3x draws the 355px poster with 1065 pixels, close to the file's 1280.
 - **Check:** `REVIEW.md` section 32.
+- **Deployed** 2026-10-24: the maintainer took all three as built ("None yet.", the poster in
+  the texts' column, YouTube's thumbnail) and asked for the deploy. `main` fast-forwarded
+  e437b21 to 5e5e2ed (run 40096521714; IndexNow sent / and /alumni/ to api.indexnow.org and
+  to Naver, both HTTP 200). Verified live: the poster is YouTube's file byte for byte,
+  main.css is the build's, /alumni/ has the three short rows, Home's sizes are the build's at
+  1440, 1100, 1000 and 390px, the video plays in place at 524x295, and the text of all 69
+  pages is as built; WebKit 35 of 35, `functional.js` 22 of 22.
