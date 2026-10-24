@@ -2129,3 +2129,7 @@ Takes back D57. Changes D49's measure for the PI's bio and the Research page.
   cleanups (one filter for the alumni order that the page and its JSON-LD share, one helper
   for the three tag-stripping regexes).
 - **Check:** `REVIEW.md` section 30.
+- **Deployed** 2026-10-24: `main` fast-forwarded d156e48 to 16f5428 (run 40087604973; IndexNow
+  sent 69 addresses to api.indexnow.org and to Naver, both HTTP 200). Verified live: the
+  three people pages, the Alumni row, the interview playing in place, the press links, the
+  formulas in titles and in the Publications search; WebKit 35 of 35.

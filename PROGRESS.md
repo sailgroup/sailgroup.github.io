@@ -334,5 +334,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   fill their first line, and the footer puts the department on its own line; titles carry
   formula subscripts and superscripts (45, 43, 13 and two of Heejeong Kim's), plain in meta
   and BibTeX's \textsubscript; the PI's interview plays on Home beside the research overview;
-  news items take extra links (Kookmin University's story, three press articles). Checked
-  in a local CI build (Docker); results in `REVIEW.md` section 30.
+  news items take extra links (Kookmin University's story, three press articles). A code
+  review before the deploy found seven faults, all fixed (16f5428), and the README now
+  explains adding members and moving them to the alumni. Built on `dev` (runs 40083618665,
+  40087554358), deployed (main run 40087604973) and verified live. Results in `REVIEW.md`
+  section 30.

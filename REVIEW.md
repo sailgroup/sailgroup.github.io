@@ -1306,3 +1306,9 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   build, html-proofer, the Chrome checks and the text check give the results above again,
   and the row rule passes 14 roles in Ruby ("Postdoctoral Researcher" postdoc, "M.S./Ph.D.
   Integrated Course" phd, "Master's student" ms, "European" and "Webmaster" no row).
+- **Live** (2026-10-24, after main run 40087604973): 16 addresses answer 200, CNAME and the
+  IndexNow key among them. /alumni/ has its one row with the small photos; Home's CSP allows
+  youtube-nocookie.com frames (`'none'` elsewhere) and a click on the poster plays the video
+  in place; the Publications search marks CsPbBr3, Cs4PbBr6, Mg2+ and CO2 whole. In Chrome
+  no console error, CSP violation or horizontal overflow; WebKit (`.qa/tools/webkit-check.cjs`)
+  35 passed, 0 failed.
