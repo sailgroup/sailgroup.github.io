@@ -367,7 +367,13 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   request through the maintainer after the PI rewrote `research.yml` (ec91eed): an English
   and 한국어 switch under the heading, hreflang links, the home and Positions descriptions
   brought up to the new Korean overview, and the area texts flush left beside their figures
-  from 721px to 1023px. Built on `dev`. Results in `REVIEW.md` section 35.
+  from 721px to 1023px. Deployed with D66 (main run 40205679840). Results in `REVIEW.md`
+  sections 35 and 37.
 - **Phase 36 (2026-10-25):** the home page in Korean at /ko/ (D66), on the maintainer's
   request, for Korean searches: linked from no page, joined to / by hreflang, with the PI's
-  Korean overview and areas. Built on `dev`. Results in `REVIEW.md` section 36.
+  Korean overview and areas. Deployed with D65 (main run 40205679840). Results in
+  `REVIEW.md` sections 36 and 37.
+- **Phase 37 (2026-10-26):** before the deploy, the maintainer kept the Korean pages' figures
+  (description, caption, the home figure's viewer) in the site's English, where the PI wrote
+  no Korean; `research.yml` is again the PI's file. D65 and D66 deployed together (main run
+  40205679840) and verified live. Results in `REVIEW.md` section 37.

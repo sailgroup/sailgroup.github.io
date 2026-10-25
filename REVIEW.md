@@ -1531,3 +1531,31 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   interview plays in place (youtube-nocookie.com), no console message. `text-check.py`
   against the live site (71 pages): no line gone or changed on any page; lines are added on
   /ko/, /research/ko/ and /research/ (the switch) only.
+
+## 37. The Korean pages' figures in English, and the deploy (2026-10-26, D65, D66)
+
+- **Local build** (Docker, as CI): Jekyll and html-proofer pass, with only the known
+  warning (the build no longer asks for `figure_alt_ko`). Against the D66 build only /ko/,
+  /research/ko/ and security.txt differ: on /ko/ the hero figure is `lang="en"` with the
+  English home's description, caption and aria-label, and its viewer is `lang="en"` with
+  "Figure viewer" and "Close (Esc)"; on /research/ko/ each figure is `lang="en"` with
+  `figure_alt` and "From our work in <journal> (<year>).". Every English page is byte for
+  byte as before. `research.yml` equals ec91eed's. On the main text of /ko/, 정준영 now
+  appears once, in the kicker.
+- **CI** (dev run 40204863327, 83e3a86): green, with only the known warning; its artifact
+  equals the local build but for security.txt and humans.txt (the build date).
+- **The dev artifact before the deploy:** `qa-site.js`: 72 pages, 158 loads, NO PROBLEMS.
+  WebKit 35 of 35 (`SITE_DIR`). `functional.js` 21 of 22, the one failure the local python
+  server's own 404 page. On /ko/ in Chrome: the figure viewer opens as "Figure viewer" with
+  the focus on "Close (Esc)" (both inside `lang="en"`), Escape closes it and returns the
+  focus to the figure, no console message; no image on /research/ko/ has a Korean alt.
+  `text-check.py` against the live site (D64's deploy): no line gone or changed on any page;
+  lines are added on /ko/, /research/ko/ and /research/ (the switch) only; no data string
+  the live site shows is missing.
+- **Live** (main run 40205679840, 2026-10-26, ec91eed to 83e3a86): `livecmp.js` with the
+  deployed artifact: 114 files identical, 271 image URLs 200. `qa-site.js`: NO PROBLEMS;
+  `functional.js` 22 of 22; WebKit 35 of 35; `text-check.py` against the deployed artifact:
+  no line gone, changed or added. The /ko/ figure and viewer check above passes live.
+  /ko/, /research/ko/, /llms.txt, the sitemap (which lists /ko/ and /research/ko/),
+  robots.txt, security.txt and the IndexNow key answer 200, an unknown address the site's
+  404; the live home's head lists hreflang en (/), ko (/ko/) and x-default (/).

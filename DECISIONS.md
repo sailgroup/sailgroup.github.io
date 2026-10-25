@@ -2408,7 +2408,10 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Left as written:** the PI's text keeps its four en dashes (U+2013, between Woodward and
   Fieser in both languages, chromophore and solvent, 발색단 and 용매) and "10^60" in plain
   text; a superscript waits for approval like the abstracts' formulas (D60).
-- **Check:** `REVIEW.md` section 35.
+- **Deployed** 2026-10-26 with D66 at the maintainer's word ("배포 진행해줘"), the figures
+  kept in English first: `main` fast-forwarded ec91eed to 83e3a86 (run 40205679840; IndexNow
+  sent /, /ko/, /positions/, /research/ and /research/ko/ to both endpoints, HTTP 200).
+- **Check:** `REVIEW.md` sections 35 and 37.
 
 ## D66: Home in Korean at /ko/, linked from no page (the maintainer's request, 2026-10-25)
 
@@ -2450,4 +2453,7 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   and the title adds "(AI)" after 인공지능.
 - **The English home:** its body is byte for byte as before; its head gains the hreflang
   links and `og:locale:alternate`. Its Korean title tagline and description (D58) stay.
-- **Check:** `REVIEW.md` section 36.
+- **Deployed** 2026-10-26 with D65 (main run 40205679840, ec91eed to 83e3a86). After the
+  deploy, /ko/ can be put forward for indexing in Google Search Console (URL inspection), a
+  step in the maintainer's account.
+- **Check:** `REVIEW.md` sections 36 and 37.
