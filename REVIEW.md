@@ -1434,3 +1434,25 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   - The sitemap, robots.txt, llms.txt, llms-full.txt, publications.bib, security.txt,
     humans.txt and the IndexNow key answer 200, an unknown address the site's 404. The
     house is on /alumni/ and /people/chanjoong-kim/, the chain nowhere.
+
+## 34. BibTeX for a paper with only a preprint (2026-10-25, D64)
+
+- **Local build** (Docker, as CI, without the image step): Jekyll and html-proofer pass, with
+  only the known warning (46's "Submitted" has no logo). `/publications.bib` against the live
+  file: its first comment line and two new entries (kim2026wavenumber, byun2026continuous);
+  the 44 entries already there are the same byte for byte.
+- **The rule in Ruby** (`cite`, eleven cases): doi.org/10.48550/arXiv, arxiv.org/abs with a
+  version, arxiv.org/pdf and a four-digit number give `@misc` with `howpublished =
+  {arXiv:<n>}` (a DOI only for the DOI link); a ChemRxiv DOI gives `@article` with `journal =
+  {ChemRxiv}`; a paper's own DOI wins over its preprint; bioRxiv, another site, an empty or
+  missing field and a look-alike domain give no entry.
+- **In LaTeX** (tectonic, eight styles: plainnat, unsrt, achemso, rsc, elsarticle-num,
+  naturemag, IEEEtran, apsrev4-2): the built entry of 46 prints "arXiv:2610.30746" in all
+  eight; that of 43 prints "ChemRxiv" in all eight and its DOI in the four that print or link
+  a journal paper's DOI. The forms compared are listed in D64.
+- **Text against the live site** (`text-check.py`, 69 pages): no line gone or changed. Lines
+  are added on /publications/43/ and /publications/46/ only (the "BibTeX" summary, the
+  entry's lines, and the Copy button inside it); no data string missing.
+- **In Chrome** (46, 43 and 45 at 1440 and 390px, served locally): the entry opens, Copy says
+  "Copied" and the clipboard holds the entry exactly; no console error, no sideways scroll.
+  47 has no BibTeX block, as before.

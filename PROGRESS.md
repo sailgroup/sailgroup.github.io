@@ -358,3 +358,7 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   keep "None yet.", and a person's website link shows a house in place of a chain. Built on
   `dev` (run 40097521650), deployed (main run 40097608919), then a full review of the live
   site: no problem found. Results in `REVIEW.md` section 33.
+- **Phase 34 (2026-10-25):** BibTeX for a paper with only a preprint (D64), on the PI's
+  request through the maintainer: 46 (arXiv) and 43 (ChemRxiv) have entries on their pages
+  and in `/publications.bib`, in the forms eight LaTeX styles print the preprint by. Built
+  and checked locally; results in `REVIEW.md` section 34.

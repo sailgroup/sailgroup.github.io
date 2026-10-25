@@ -53,7 +53,7 @@ scripts: [pubs]
       </section>
       {%- endfor %}
 
-      {%- comment -%}One BibTeX file with every paper that has a DOI (publications.bib, built from the data by _plugins/bibtex.rb), linked once, after the list.{%- endcomment %}
+      {%- comment -%}One BibTeX file with every paper that has a DOI or a preprint (publications.bib, built from the data by _plugins/bibtex.rb), linked once, after the list.{%- endcomment %}
       <p class="pubs-bib"><a class="link" href="{{ '/publications.bib' | relative_url }}" download>BibTeX for all papers</a></p>
     </div>
   </div>

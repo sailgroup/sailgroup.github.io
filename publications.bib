@@ -3,8 +3,8 @@ layout: null
 permalink: /publications.bib
 sitemap: false
 ---
-{%- comment -%}Every paper in _data/publications.yml that has a DOI, newest first, as one BibTeX file; linked from /publications/. The entries are written by _plugins/bibtex.rb, which also gives each paper page its entry.{%- endcomment -%}
-% Spectroscopy and AI Lab (SAIL), Kookmin University: papers with a DOI, newest first.
+{%- comment -%}Every paper in _data/publications.yml that has a DOI, or else an arXiv or ChemRxiv preprint, newest first, as one BibTeX file; linked from /publications/. The entries are written by _plugins/bibtex.rb, which also gives each paper page its entry.{%- endcomment -%}
+% Spectroscopy and AI Lab (SAIL), Kookmin University: papers with a DOI or a preprint, newest first.
 % {{ site.url }}/publications/
 
 {{ site.data.publications | bibtex_all }}

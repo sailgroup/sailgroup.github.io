@@ -65,7 +65,8 @@ Live: https://sail.kookmin.ac.kr
 > 보여 줍니다.
 >
 > **BibTeX:** DOI 가 있는 논문은 논문 페이지와 `/publications.bib`(모든 논문)에 BibTeX 항목이
-> 자동으로 만들어집니다. 따로 적을 것은 없습니다.
+> 자동으로 만들어집니다. DOI 가 아직 없어도 `preprint_url` 이 arXiv 링크나 ChemRxiv DOI 링크면
+> 프리프린트 항목이 만들어지고, `doi` 를 채우면 저널 항목으로 바뀝니다. 따로 적을 것은 없습니다.
 >
 > **화학식의 아래첨자 · 위첨자:** 제목이나 초록의 화학식은 출판사 표기처럼 `<sub>` · `<sup>` 로
 > 감쌉니다. `CO<sub>2</sub>` 는 2 가 아래에 작게, `Mg<sup>2+</sup>` 는 2+ 가 위에 작게 보입니다. 탭

@@ -130,7 +130,8 @@ domain `https://sail.kookmin.ac.kr`.
   shows it under the title and opens it in the viewer (`assets/js/viewer.js`), else it shows the
   thumbnail. Like the thumbnail, it must be the paper's own published graphical abstract or
   figure (D15, D50). BibTeX (each paper page and `/publications.bib`) is generated from
-  `publications.yml` for every paper with a DOI (`_plugins/bibtex.rb`).
+  `publications.yml` for every paper with a DOI, and for a paper without one from its arXiv
+  or ChemRxiv preprint (D64; `_plugins/bibtex.rb`).
 - Member/alumni/publication facts are content: never invent a photo, link, date, or fact — leave a
   field blank instead, and record gaps in `CONTENT_INVENTORY.md`.
 - What the site says stays as written (D52): never reword, shorten, hide or reorder what the

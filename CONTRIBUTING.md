@@ -134,7 +134,9 @@ page then shows it under the title, and a click or tap opens it in the viewer;
 without one, the page shows the thumbnail. Like the thumbnail, it must be the
 paper's own published graphical abstract or figure (D15, D50). A paper with a DOI
 also gets a BibTeX entry, on its page and in `/publications.bib`, made from these
-fields when the site is built (`_plugins/bibtex.rb`).
+fields when the site is built (`_plugins/bibtex.rb`). A paper without a DOI gets one
+for its preprint when `preprint_url` is an arXiv link or a ChemRxiv DOI link (D64);
+once `doi` is filled in, the entry is the journal's.
 
 A formula in a title or an abstract is written with `<sub>` and `<sup>`, as publishers
 write it: `CO<sub>2</sub>`, `Mg<sup>2+</sup>`. The page sets the figures small below or
