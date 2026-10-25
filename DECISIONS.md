@@ -2401,3 +2401,42 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   Fieser in both languages, chromophore and solvent, 발색단 and 용매) and "10^60" in plain
   text; a superscript waits for approval like the abstracts' formulas (D60).
 - **Check:** `REVIEW.md` section 35.
+
+## D66: Home in Korean at /ko/, linked from no page (the maintainer's request, 2026-10-25)
+
+- **Asked:** after D65, the maintainer asked for a Korean version of the home page alone,
+  for Google and Korean searches such as "ai 화학": the page exists at /ko/, and the English
+  home gets no switch or button for it.
+- **What it changes for search:** a search engine ranks a page by the text it shows, and the
+  English home shows no Korean (0 Hangul in its main text; its Korean is in the head only,
+  D9, D58). /ko/ shows the PI's own Korean (2,087 Hangul against 554 Latin letters in its
+  main text) under a Korean title and description. It serves searches that name the lab, the
+  school or the PI in Korean ("국민대 인공지능화학연구실", "정준영 교수 연구실"). Broad terms such as "ai 화학" or
+  "화학 인공지능" are held by sites with far more links to them; the page makes the lab a
+  candidate for them and does not by itself put it on their first page. Links to the site
+  count more there, and Kookmin University's faculty pages still link the Wix site. Google
+  Search Console has the site's ownership tag (D58), where /ko/ can be put forward for
+  indexing; Naver Search Advisor is not set up yet.
+- **Found without a link:** both homes' heads list each other as hreflang (en /, ko /ko/,
+  x-default /), the sitemap lists /ko/, and IndexNow sends it to Bing and Naver on the deploy.
+  Google also recommends a visible link between language versions; the maintainer chose
+  none on the English home. With hreflang, Google may show /ko/ in place of / to a searcher
+  whose language is Korean, also for a search in the lab's English name.
+- **The page:** the home page, in Korean where `research.yml` has Korean, from the same
+  include as the English home (`_includes/home-page.html`, `index-ko.html`): the kicker "정준영
+  교수 연구실 · 국민대학교" (pi.yml `name_ko`, `_config.yml` `university_ko`), the hero's lead
+  the first sentence of `overview.ko`, the figure's description and caption in Korean ("반응
+  예측을 위한 전자 흐름 매칭, 우리 연구실의 Nature (2025) 논문에서."), the figure viewer's name
+  and close button in Korean, and the Research section's overview and four areas in the PI's
+  Korean, linking /research/ko/. In English, marked `lang="en"`: the lab's name (the
+  heading), the section headings and links, the news, the interview and the covers. The
+  header shows Home as current. The hero's sentence is the overview's first, so it is read
+  again where the Research section begins.
+- **For search engines:** title "국민대학교 인공지능화학연구실 SAIL: 화학을 위한 인공지능(AI) 연구",
+  description 145 characters (the overview's first sentence and the areas' Korean names; the
+  build warns when either changes and it does not), a WebPage node with `inLanguage: ko`,
+  llms.txt lists it. "AI 화학" itself appears nowhere: the PI's text says 인공지능, AI and 화학,
+  and the title adds "(AI)" after 인공지능.
+- **The English home:** its body is byte for byte as before; its head gains the hreflang
+  links and `og:locale:alternate`. Its Korean title tagline and description (D58) stay.
+- **Check:** `REVIEW.md` section 36.

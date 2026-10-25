@@ -368,3 +368,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   and 한국어 switch under the heading, hreflang links, the home and Positions descriptions
   brought up to the new Korean overview, and the area texts flush left beside their figures
   from 721px to 1023px. Built on `dev`. Results in `REVIEW.md` section 35.
+- **Phase 36 (2026-10-25):** the home page in Korean at /ko/ (D66), on the maintainer's
+  request, for Korean searches: linked from no page, joined to / by hreflang, with the PI's
+  Korean overview and areas. Built on `dev`. Results in `REVIEW.md` section 36.

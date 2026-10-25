@@ -32,10 +32,12 @@ domain `https://sail.kookmin.ac.kr`.
   filter) puts each alumnus in a row by `group:` or else `role`
 - `_layouts/` (`default`, `page`, `person`, `publication`), `_includes/` (shared markup),
   `assets/` — templates, partials, styles (`assets/css/main.scss`), JS, images
-- top-level pages: `index.html`, `research` and `research-ko` (/research/ko/, the same page in
-  Korean; both bodies are `_includes/research-page.html`, D65), `pi`/`members`/`alumni`,
-  `publications`, `news`, `photos`, `positions` (its body is `_includes/positions-page.html`;
-  member/alumni/publication detail pages are generated, not files).
+- top-level pages: `index.html` and `index-ko` (/ko/, the home in Korean that no page links;
+  both bodies are `_includes/home-page.html`, D66), `research` and `research-ko`
+  (/research/ko/, the same page in Korean; both bodies are `_includes/research-page.html`,
+  D65), `pi`/`members`/`alumni`, `publications`, `news`, `photos`, `positions` (its body is
+  `_includes/positions-page.html`; member/alumni/publication detail pages are generated, not
+  files).
   `pi`, `members` and `alumni` are separate pages (D60, which takes back D57's one document);
   Alumni shows a row per group of `_data/people_groups.yml`, the undergraduates' photos smaller,
   and a group with nobody in it yet as a short row that says "None yet." (D62)
@@ -83,8 +85,11 @@ domain `https://sail.kookmin.ac.kr`.
   `_data/translations.yml`; `head.html` writes it as hreflang links, `lang-nav.html` as the
   English / 한국어 switch under the heading, and the validator checks both ways. The Korean
   page carries the Korean title and description, so the English page's description is
-  English only. An English Positions page (D61) is on hold; DECISIONS D61 says how to bring
-  it back. After each `main` deploy, IndexNow tells Bing and Naver which pages changed
+  English only. The home is in Korean too, at /ko/ (D66, the maintainer's request, for
+  Korean searches): no page links it and the English home has no switch, so search engines
+  find it by the `home` group's hreflang links, the sitemap and IndexNow. An English
+  Positions page (D61) is on hold; DECISIONS D61 says how to bring it back. After each
+  `main` deploy, IndexNow tells Bing and Naver which pages changed
   (`.github/scripts/indexnow.mjs` and the workflow; never delete the root key file
   `4fa521d6cc1d0212aa5696ee0a4b94a8.txt`). D47.
 - Chrome's page translation: names and Korean text that stand alone (author lists, journal names,

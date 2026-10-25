@@ -689,29 +689,34 @@ module SAIL
       end
     end
 
-    # The home and Positions meta descriptions quote the first sentence of the lab's Korean
-    # overview (research.yml overview.ko) after its subject, "...은 " (D61; the first
-    # sentence only since the overview grew to a paragraph, D65). When the PI rewrites that
+    # The meta descriptions of both homes (/ and /ko/) and of Positions quote the first
+    # sentence of the lab's Korean overview (research.yml overview.ko) after its subject,
+    # "...은 " (D61; the first sentence only since the overview grew to a paragraph, D65). When the PI rewrites that
     # sentence, the descriptions should follow: the log says which page still has the old.
-    # The Korean Research page's description names the areas by their Korean names (D65).
+    # The Korean Research page's and the Korean home's descriptions name the areas by their
+    # Korean names (D65, D66).
     def check_overview_quote(site)
       ko = site.data.dig("research", "overview", "ko").to_s.gsub(/\s+/, " ").strip
       rest = ko.split(/[은는] /, 2)[1].to_s.strip
       said = rest[/\A.*?다\./] || rest
       unless said.empty?
-        ["/", "/positions/"].each do |u|
+        ["/", "/ko/", "/positions/"].each do |u|
           pg = site.pages.find { |x| x.url == u }
           next unless pg
           next if pg.data["description"].to_s.gsub(/\s+/, " ").include?(said)
           warn("#{pg.name}: its description no longer quotes research.yml overview.ko (\"#{said}\"); bring it up to date.")
         end
       end
-      pg = site.pages.find { |x| x.url == "/research/ko/" }
       areas = site.data.dig("research", "areas")
-      return unless pg && areas.is_a?(Array)
-      desc = pg.data["description"].to_s.gsub(/\s+/, " ")
-      gone = areas.map { |a| a["title_ko"].to_s.gsub(/\s+/, " ").strip }.reject { |t| t.empty? || desc.include?(t) }
-      warn("#{pg.name}: its description does not name #{gone.join(", ")} (research.yml title_ko); bring it up to date.") unless gone.empty?
+      return unless areas.is_a?(Array)
+      names = areas.map { |a| a["title_ko"].to_s.gsub(/\s+/, " ").strip }.reject(&:empty?)
+      ["/research/ko/", "/ko/"].each do |u|
+        pg = site.pages.find { |x| x.url == u }
+        next unless pg
+        desc = pg.data["description"].to_s.gsub(/\s+/, " ")
+        gone = names.reject { |t| desc.include?(t) }
+        warn("#{pg.name}: its description does not name #{gone.join(", ")} (research.yml title_ko); bring it up to date.") unless gone.empty?
+      end
     end
 
     # --- journal logos ------------------------------------------------------

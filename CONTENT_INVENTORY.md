@@ -102,6 +102,13 @@ was taken, what was normalized, and what is still open.
 - **Interview poster (D62)**: the video's own thumbnail on YouTube (1280x720, as YouTube
   serves it) in place of D60's frame. Its Korean lettering is Kookmin University's and names
   the department as 응용화학부 나노소재전공.
+- **Home in Korean (D66, 2026-10-25, the maintainer's request)**: `/ko/`, linked from no
+  page, shows research.yml's Korean overview and areas as the PI wrote them; the hero's lead
+  is the overview's first sentence. New text, not the PI's: the kicker "정준영 교수 연구실 ·
+  국민대학교" (from pi.yml and _config.yml), the hero figure's Korean description and caption
+  "반응 예측을 위한 전자 흐름 매칭, 우리 연구실의 Nature (2025) 논문에서.", the viewer's "그림
+  보기" and "닫기 (Esc)", and the page's title and description. Everything else on it is the
+  English home's text.
 - **Research in Korean (D65, 2026-10-25, the PI's request through the maintainer)**:
   `/research/ko/` shows research.yml's own Korean (`overview.ko`, `title_ko`, `body_ko`), as
   the PI wrote it. New text, not from the PI: the figures' Korean descriptions

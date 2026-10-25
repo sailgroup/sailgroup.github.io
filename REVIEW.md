@@ -1503,3 +1503,21 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   against the live site: no line gone or changed on any page; added are the new page
   (/research/ko/) and, on /research/, the switch's two names and its label "Language"; no
   data string the live site shows is missing.
+
+## 36. Home in Korean (2026-10-25, D66)
+
+- **Local build** (Docker, as CI): Jekyll and html-proofer pass, with only the known
+  warning. Against the D65 build, the files that differ are /index.html, /ko/ (new),
+  llms.txt, the sitemap and security.txt. /index.html differs in its head only (the hreflang
+  links en, ko and x-default and `og:locale:alternate`); its body is byte for byte the same,
+  and /photos/ (which shares the covers include) is unchanged.
+- **The built /ko/:** `lang="ko"`, its own canonical, hreflang as on /, og:locale ko_KR,
+  frame-src for the interview as on /. The hero's lead is overview.ko's first sentence, the
+  four area rows are research.yml's Korean and link /research/ko/#<the English id>; the
+  heading, the section headings and links, the news, the interview and the covers carry
+  `lang="en"` (the header and footer already did on a Korean page). The header marks Home.
+  No page's HTML links /ko/ (only the heads' hreflang, the sitemap and llms.txt).
+- **In Chrome** (local build, 9 widths from 1920 to 320px, / and /ko/): no sideways scroll,
+  broken image or console message. Lines with a gap over three spaces in the justified text
+  of /ko/: 0% to 2% from 1000px, 6% at 768px and 12% at 721px (the English home 10% at both),
+  flush left on phones.

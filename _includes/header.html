@@ -24,7 +24,8 @@
         {%- for item in site.data.navigation -%}
           {%- assign active = "" -%}
           {%- if item.url == "/" -%}
-            {%- if page.url == "/" -%}{%- assign active = "yes" -%}{%- endif -%}
+            {%- comment -%}The Korean home (/ko/, D66) is Home too.{%- endcomment -%}
+            {%- if page.url == "/" or page.translations == "home" -%}{%- assign active = "yes" -%}{%- endif -%}
           {%- elsif page.url contains item.url -%}
             {%- assign active = "yes" -%}
           {%- endif -%}

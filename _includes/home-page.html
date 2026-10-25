@@ -1,0 +1,133 @@
+{%- comment -%}The home page in one language (D66). index.html (English, the default, at /) and
+index-ko.html (Korean, at /ko/) both show it; nothing on the site links /ko/, which search
+engines find through the hreflang links in both pages' heads (head.html, translations.yml).
+Pass ko=true on the Korean page: the kicker, the hero's lead, figure description and caption,
+the research overview and areas are then in Korean (research.yml's own Korean: the hero's lead
+is the first sentence of overview.ko, the areas link /research/ko/), and what has no Korean (the
+site's headings and links, the news, the interview, the covers) stays English, marked lang="en".
+An area without its Korean shows the English there, as on /research/ko/.{%- endcomment -%}
+{%- assign ko = include.ko -%}
+{%- assign r = site.data.research -%}
+{%- assign en_attr = ' lang="en"' -%}
+{%- assign en_mark = "" -%}{%- if ko -%}{%- assign en_mark = en_attr -%}{%- endif -%}
+{%- assign herolead = site.data.home.hero.lead -%}{%- assign herolead_lang = "" -%}
+{%- assign overview = r.overview.en -%}{%- assign overview_lang = "" -%}
+{%- assign figalt = "Generative electron-flow model architecture for chemical reaction prediction" -%}
+{%- assign figzoom = "Enlarge the figure: " -%}
+{%- assign research_url = '/research/' -%}
+{%- if ko -%}
+{%- assign research_url = '/research/ko/' -%}
+{%- assign figalt = "화학 반응 예측을 위한 생성형 전자 흐름 모델의 구조" -%}
+{%- assign figzoom = "그림 크게 보기: " -%}
+{%- if r.overview.ko and r.overview.ko != "" -%}
+{%- assign overview = r.overview.ko -%}
+{%- assign ov = r.overview.ko | normalize_whitespace -%}
+{%- if ov contains "다. " -%}{%- assign herolead = ov | split: "다. " | first | append: "다." -%}{%- else -%}{%- assign herolead = ov -%}{%- endif -%}
+{%- else -%}
+{%- assign overview_lang = en_attr -%}{%- assign herolead_lang = en_attr -%}
+{%- endif -%}
+{%- endif -%}
+<section class="hero">
+  <div class="container hero__inner">
+    {%- if ko %}
+    <p class="kicker"><span>{{ site.data.pi.name_ko }} 교수 연구실 &middot;</span> <span>{{ site.university_ko }}</span></p>
+    {%- else %}
+    <p class="kicker"><span>Joonyoung F. Joung Lab &middot;</span> <span>Kookmin University</span></p>
+    {%- endif %}
+    <h1{{ en_mark }}>{{ site.data.home.hero.title }}</h1>
+    <p class="lead"{{ herolead_lang }}>{{ herolead }}</p>
+    {%- comment -%}On a phone the figure's labels are about 4px tall, so a click or tap opens it in the viewer (viewer.js); the link to the image itself works without JS and for a new tab.{%- endcomment %}
+    {%- assign herofig = '/assets/images/home-architecture.png' | relative_url %}
+    <figure class="hero__figure">
+      <a class="hero__zoom" href="{{ herofig }}" data-viewer="figure-lightbox" data-full="{{ herofig }}" data-alt="{{ figalt }}" aria-label="{{ figzoom }}{{ figalt }}">
+        <img src="{{ herofig }}"
+             alt="{{ figalt }}"
+             width="1244" height="560" loading="eager" decoding="async" fetchpriority="high">
+        {%- include zoom-hint.html %}
+      </a>
+      {%- capture nature -%}<a href="https://doi.org/10.1038/s41586-025-09426-9" target="_blank" rel="noopener noreferrer" translate="no">Nature</a>{%- endcapture -%}
+      {%- if ko %}
+      <figcaption>반응 예측을 위한 전자 흐름 매칭, 우리 연구실의 {{ nature }} (2025) 논문에서.</figcaption>
+      {%- else %}
+      <figcaption>Electron-flow matching for reaction prediction, from our work in {{ nature }} (2025).</figcaption>
+      {%- endif %}
+    </figure>
+  </div>
+</section>
+{% if ko %}{% include lightbox.html id="figure-lightbox" label="그림 보기" close="닫기 (Esc)" %}{% else %}{% include lightbox.html id="figure-lightbox" label="Figure viewer" %}{% endif %}
+
+{%- assign latest = site.data.news | sort: "date" | reverse -%}
+{%- if latest and latest.size > 0 -%}
+<section class="section section--alt"{{ en_mark }}>
+  <div class="container">
+    <div class="section-head"><h2>Recent news</h2></div>
+    <div class="card-grid">
+      {%- for n in latest limit: 3 -%}
+      {%- assign cat = n.category | default: "event" -%}
+      <article class="news-card">
+        <div class="news-card__meta">
+          <span class="news__date">{% include news-date.html n=n %}</span>
+          <span class="news-tag news-tag--{{ cat }}">{{ cat | capitalize }}</span>
+        </div>
+        <h3 class="news-card__title">
+          {%- if n.link and n.link != "" -%}
+            {%- if n.link contains "://" -%}<a class="news-card__link" href="{{ n.link }}" target="_blank" rel="noopener noreferrer">{{ n.title }}</a>
+            {%- else -%}{%- capture href -%}{% include news-href.html link=n.link %}{%- endcapture -%}<a class="news-card__link" href="{{ href | relative_url }}">{{ n.title }}</a>{%- endif -%}
+          {%- else -%}{{ n.title }}{%- endif -%}
+        </h3>
+      </article>
+      {%- endfor -%}
+    </div>
+    <p class="u-mt-lg"><a class="link" href="{{ '/news/' | relative_url }}">More news</a></p>
+  </div>
+</section>
+{%- endif -%}
+
+<section class="section">
+  <div class="container">
+    {%- assign iv = site.data.home.interview %}
+    <div class="section-head{% if iv %} section-head--video{% endif %}">
+      <div>
+        <h2{{ en_mark }}>Research</h2>
+        <p class="lead"{{ overview_lang }}>{{ overview }}</p>
+      </div>
+      {%- if iv -%}
+      {%- comment -%}The PI's interview beside the overview (D60, D62; home.yml). The poster is the video's own thumbnail on YouTube, 1280x720. It links to the video on YouTube, where it opens without JS or on a modified click; video.js plays it in place instead, in a youtube-nocookie.com frame, the one frame this page's CSP allows (head.html, page.video).{%- endcomment %}
+      <figure class="video"{{ en_mark }}>
+        <a class="video__play" href="https://www.youtube.com/watch?v={{ iv.youtube }}" target="_blank" rel="noopener noreferrer" data-youtube="{{ iv.youtube }}" data-title="{{ iv.title | escape }}" aria-label="Play the video: {{ iv.title | escape }}{% if iv.length %}, {{ iv.length }}{% endif %} (opens in a new tab)">
+          <img src="{{ '/assets/images/' | append: iv.poster | relative_url }}" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="video__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M7 4.5v15l12.5-7.5z"/></svg>{{ iv.length }}</span>
+        </a>
+        <figcaption><span class="video__title">{{ iv.title }}</span>{% if iv.by %} <span class="video__by">{{ iv.by }}</span>{% endif %}</figcaption>
+      </figure>
+      {%- endif %}
+    </div>
+    {%- comment -%}Each area in full (never truncated), with its figure from research.yml beside it. Title and figure link to the same area on /research/ or, on the Korean page, /research/ko/ (id = the slugified English title, set in research-page.html).{%- endcomment -%}
+    <div class="area-rows">
+      {%- for area in site.data.research.areas -%}
+      {%- assign has_fig = false -%}
+      {%- if area.figure and area.figure != "" -%}{%- assign has_fig = true -%}{%- endif -%}
+      {%- assign title = area.title -%}{%- assign title_lang = "" -%}
+      {%- assign body = area.body -%}{%- assign body_lang = "" -%}
+      {%- if ko -%}
+      {%- if area.title_ko and area.title_ko != "" -%}{%- assign title = area.title_ko -%}{%- else -%}{%- assign title_lang = en_attr -%}{%- endif -%}
+      {%- if area.body_ko and area.body_ko != "" -%}{%- assign body = area.body_ko -%}{%- else -%}{%- assign body_lang = en_attr -%}{%- endif -%}
+      {%- endif -%}
+      <article class="area-row{% unless has_fig %} area-row--nofig{% endunless %}">
+        {%- if has_fig -%}
+        <a class="area-row__fig" href="{{ research_url | relative_url }}#{{ area.title | slugify }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/images/' | append: area.figure | relative_url }}" alt="" width="{{ area.figure_w }}" height="{{ area.figure_h }}" loading="lazy">
+        </a>
+        {%- endif -%}
+        <div>
+          <h3{{ title_lang }}><a class="area-row__link" href="{{ research_url | relative_url }}#{{ area.title | slugify }}">{{ title }}</a></h3>
+          <p{{ body_lang }}>{{ body }}</p>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+    <p class="u-mt-lg"><a class="link" href="{{ research_url | relative_url }}"{{ en_mark }}>More about our research</a></p>
+  </div>
+</section>
+
+{% if ko %}{% include journal-covers.html lang="en" %}{% else %}{% include journal-covers.html %}{% endif -%}

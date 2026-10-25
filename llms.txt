@@ -19,6 +19,7 @@ Research areas:
 {% for a in site.data.research.areas %}- {{ a.title }}: {{ a.body | strip_html | normalize_whitespace }}
 {% endfor %}
 ## Key pages
+- [Home in Korean]({{ site.url }}/ko/): the home page with the lab's own Korean overview and research areas.
 - [Research]({{ site.url }}/research/): the lab's research directions, each with a figure from the lab's own papers. The same page in Korean, in the lab's own words: [Research in Korean]({{ site.url }}/research/ko/).
 - [Publications]({{ site.url }}/publications/): {{ site.data.publications | size }} papers; each has a detail page at {{ site.url }}/publications/<id>/ with its citation, and its abstract and DOI where it has them.
 - [Members]({{ site.url }}/members/) and [Alumni]({{ site.url }}/alumni/): lab people, each with a page at {{ site.url }}/people/<slug>/.

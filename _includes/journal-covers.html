@@ -8,10 +8,11 @@ data validator checks. When CI made a smaller rendition of the thumbnail (see im
 browser may pick it; the `sizes` value is the cover's width: five to a row from 685px, three from
 405px, two below, with a 20px gap inside .container (1140px max, side padding clamp(1.1rem, 4vw,
 2rem)), so 199px from 1140px. Checked against the drawn width at every viewport width from 320 to
-1600px.{%- endcomment -%}
+1600px. Pass lang="en" on a page in another language (the Korean home, D66): the section and its
+viewer are English.{%- endcomment -%}
 {%- assign covers = site.data.covers -%}
 {%- if covers and covers.size > 0 -%}
-<section class="section section--alt">
+<section class="section section--alt"{% if include.lang %} lang="{{ include.lang }}"{% endif %}>
   <div class="container">
     <div class="section-head"><h2>Journal covers</h2></div>
     <div class="covers">

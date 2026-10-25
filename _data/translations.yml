@@ -1,9 +1,10 @@
 # translations.yml
 # ---------------------------------------------------------------------------
-# Pages that exist in more than one language (D61, D65). Each group lists its versions, the
+# Pages that exist in more than one language (D61, D65, D66). Each group lists its versions, the
 # default first: the menu links that one, and search engines get it as x-default. A page
 # joins its group with `translations: <group>` in its front matter (research.html and
-# research-ko.html: `translations: research`). head.html writes the group as hreflang
+# research-ko.html: `translations: research`; index.html and index-ko.html: `translations:
+# home`, the Korean home that no page links, D66). head.html writes the group as hreflang
 # links, and lang-nav.html as the switch under the page's heading. The build stops when a
 # version's page is missing or does not name the group back.
 #
@@ -21,3 +22,12 @@ research:
     locale: ko_KR
     name: 한국어
     url: /research/ko/
+home:
+  - lang: en
+    locale: en_US
+    name: English
+    url: /
+  - lang: ko
+    locale: ko_KR
+    name: 한국어
+    url: /ko/
