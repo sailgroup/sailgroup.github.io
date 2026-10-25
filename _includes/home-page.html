@@ -1,24 +1,21 @@
 {%- comment -%}The home page in one language (D66). index.html (English, the default, at /) and
 index-ko.html (Korean, at /ko/) both show it; nothing on the site links /ko/, which search
 engines find through the hreflang links in both pages' heads (head.html, translations.yml).
-Pass ko=true on the Korean page: the kicker, the hero's lead, figure description and caption,
-the research overview and areas are then in Korean (research.yml's own Korean: the hero's lead
-is the first sentence of overview.ko, the areas link /research/ko/), and what has no Korean (the
-site's headings and links, the news, the interview, the covers) stays English, marked lang="en".
-An area without its Korean shows the English there, as on /research/ko/.{%- endcomment -%}
+Pass ko=true on the Korean page: the kicker (from pi.yml and _config.yml), the hero's lead, the
+research overview and areas are then in Korean (research.yml's own Korean: the hero's lead is
+the first sentence of overview.ko, the areas link /research/ko/), and what has no Korean (the
+site's headings and links, the hero figure with its caption and viewer, the news, the
+interview, the covers) stays English, marked lang="en". An area without its Korean shows the
+English there, as on /research/ko/.{%- endcomment -%}
 {%- assign ko = include.ko -%}
 {%- assign r = site.data.research -%}
 {%- assign en_attr = ' lang="en"' -%}
 {%- assign en_mark = "" -%}{%- if ko -%}{%- assign en_mark = en_attr -%}{%- endif -%}
 {%- assign herolead = site.data.home.hero.lead -%}{%- assign herolead_lang = "" -%}
 {%- assign overview = r.overview.en -%}{%- assign overview_lang = "" -%}
-{%- assign figalt = "Generative electron-flow model architecture for chemical reaction prediction" -%}
-{%- assign figzoom = "Enlarge the figure: " -%}
 {%- assign research_url = '/research/' -%}
 {%- if ko -%}
 {%- assign research_url = '/research/ko/' -%}
-{%- assign figalt = "화학 반응 예측을 위한 생성형 전자 흐름 모델의 구조" -%}
-{%- assign figzoom = "그림 크게 보기: " -%}
 {%- if r.overview.ko and r.overview.ko != "" -%}
 {%- assign overview = r.overview.ko -%}
 {%- assign ov = r.overview.ko | normalize_whitespace -%}
@@ -38,23 +35,18 @@ An area without its Korean shows the English there, as on /research/ko/.{%- endc
     <p class="lead"{{ herolead_lang }}>{{ herolead }}</p>
     {%- comment -%}On a phone the figure's labels are about 4px tall, so a click or tap opens it in the viewer (viewer.js); the link to the image itself works without JS and for a new tab.{%- endcomment %}
     {%- assign herofig = '/assets/images/home-architecture.png' | relative_url %}
-    <figure class="hero__figure">
-      <a class="hero__zoom" href="{{ herofig }}" data-viewer="figure-lightbox" data-full="{{ herofig }}" data-alt="{{ figalt }}" aria-label="{{ figzoom }}{{ figalt }}">
+    <figure class="hero__figure"{{ en_mark }}>
+      <a class="hero__zoom" href="{{ herofig }}" data-viewer="figure-lightbox" data-full="{{ herofig }}" data-alt="Generative electron-flow model architecture for chemical reaction prediction" aria-label="Enlarge the figure: Generative electron-flow model architecture for chemical reaction prediction">
         <img src="{{ herofig }}"
-             alt="{{ figalt }}"
+             alt="Generative electron-flow model architecture for chemical reaction prediction"
              width="1244" height="560" loading="eager" decoding="async" fetchpriority="high">
         {%- include zoom-hint.html %}
       </a>
-      {%- capture nature -%}<a href="https://doi.org/10.1038/s41586-025-09426-9" target="_blank" rel="noopener noreferrer" translate="no">Nature</a>{%- endcapture -%}
-      {%- if ko %}
-      <figcaption>반응 예측을 위한 전자 흐름 매칭, 우리 연구실의 {{ nature }} (2025) 논문에서.</figcaption>
-      {%- else %}
-      <figcaption>Electron-flow matching for reaction prediction, from our work in {{ nature }} (2025).</figcaption>
-      {%- endif %}
+      <figcaption>Electron-flow matching for reaction prediction, from our work in <a href="https://doi.org/10.1038/s41586-025-09426-9" target="_blank" rel="noopener noreferrer" translate="no">Nature</a> (2025).</figcaption>
     </figure>
   </div>
 </section>
-{% if ko %}{% include lightbox.html id="figure-lightbox" label="그림 보기" close="닫기 (Esc)" %}{% else %}{% include lightbox.html id="figure-lightbox" label="Figure viewer" %}{% endif %}
+{% if ko %}{% include lightbox.html id="figure-lightbox" label="Figure viewer" lang="en" %}{% else %}{% include lightbox.html id="figure-lightbox" label="Figure viewer" %}{% endif %}
 
 {%- assign latest = site.data.news | sort: "date" | reverse -%}
 {%- if latest and latest.size > 0 -%}

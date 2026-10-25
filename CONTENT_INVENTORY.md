@@ -105,17 +105,18 @@ was taken, what was normalized, and what is still open.
 - **Home in Korean (D66, 2026-10-25, the maintainer's request)**: `/ko/`, linked from no
   page, shows research.yml's Korean overview and areas as the PI wrote them; the hero's lead
   is the overview's first sentence. New text, not the PI's: the kicker "정준영 교수 연구실 ·
-  국민대학교" (from pi.yml and _config.yml), the hero figure's Korean description and caption
-  "반응 예측을 위한 전자 흐름 매칭, 우리 연구실의 Nature (2025) 논문에서.", the viewer's "그림
-  보기" and "닫기 (Esc)", and the page's title and description. Everything else on it is the
-  English home's text.
+  국민대학교" (from pi.yml and _config.yml) and the page's title and description. Everything
+  else on it is the English home's text, the hero figure's description, caption and viewer
+  included: the maintainer kept those in the site's English before the deploy (2026-10-25)
+  over the Korean first written for them.
 - **Research in Korean (D65, 2026-10-25, the PI's request through the maintainer)**:
   `/research/ko/` shows research.yml's own Korean (`overview.ko`, `title_ko`, `body_ko`), as
-  the PI wrote it. New text, not from the PI: the figures' Korean descriptions
-  (`figure_alt_ko`, translated from `figure_alt`, which is ours too), the caption "우리
-  연구실의 <journal> (<year>) 논문에서." for "From our work in <journal> (<year>).", the
-  switch's names English and 한국어 (as in D61), and the Korean page's title and
-  description. The heading stays "Research". The PI's text keeps, as written, its four en
+  the PI wrote it. New text, not from the PI: the switch's names English and 한국어 (as in
+  D61), and the Korean page's title and description. The heading stays "Research", and the
+  figures keep their English description and caption "From our work in <journal> (<year>).":
+  the maintainer kept the site's English there before the deploy (2026-10-25), and the
+  Korean first written for them (`figure_alt_ko` in research.yml and a Korean caption) is
+  gone. The PI's text keeps, as written, its four en
   dashes (U+2013: between Woodward and Fieser in both languages, chromophore and solvent,
   발색단 and 용매) and "10^60" in plain text.
 

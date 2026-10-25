@@ -211,10 +211,10 @@ one of the lab's papers (`figure:` a file in `assets/images/`, `figure_w` /
 page and on the home page, where the figure sits beside the text; the home page
 links each area to its section on `/research/` by title, so renaming an area
 keeps the link working. An area without a figure is shown as text only. The
-Korean texts in the file (`overview.ko`, each area's `title_ko`, `body_ko` and
-`figure_alt_ko`, the figure's description) are the Korean Research page,
-`/research/ko/` (D65); where one is empty that page shows the English, and the
-build log says where. The Korean page's search description
+Korean texts in the file (`overview.ko`, each area's `title_ko` and `body_ko`)
+are the Korean Research page, `/research/ko/` (D65); where one is empty that
+page shows the English, and the build log says where. The figures keep their
+English description and caption there. The Korean page's search description
 (`research-ko.html`) names the areas by `title_ko`, and the build log says when
 an area is renamed and that line is not.
 

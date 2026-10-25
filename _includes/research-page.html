@@ -1,8 +1,10 @@
 {%- comment -%}The Research page in one language (D65). research.html (English, the default, at
 /research/) and research-ko.html (Korean, at /research/ko/) both show _data/research.yml: the
-English page its `overview.en`, `title`, `body` and `figure_alt`, the Korean page `overview.ko`,
-`title_ko`, `body_ko` and `figure_alt_ko`. Where the Korean is missing, the Korean page shows
-the English, marked lang="en" (the build log says where). Pass:
+English page its `overview.en`, `title` and `body`, the Korean page `overview.ko`, `title_ko`
+and `body_ko`. Where the Korean is missing, the Korean page shows the English, marked
+lang="en" (the build log says where). The figures keep their English description and caption
+on both pages, marked lang="en" on the Korean one: the PI wrote no Korean for them, and the
+maintainer kept the site's English there (2026-10-25). Pass:
   ko          true on the Korean page
   lang_label  the name of the language switch, for screen readers
 The heading is "Research" on both, as Positions keeps its heading in English (D61). An area's
@@ -27,11 +29,9 @@ are the same area; the home page's research rows link the English page.{%- endco
       {%- if area.figure and area.figure != "" -%}{%- assign has_fig = true -%}{%- endif -%}
       {%- assign title = area.title -%}{%- assign title_lang = "" -%}
       {%- assign body = area.body -%}{%- assign body_lang = "" -%}
-      {%- assign alt = area.figure_alt -%}{%- assign alt_lang = "" -%}
       {%- if ko -%}
       {%- if area.title_ko and area.title_ko != "" -%}{%- assign title = area.title_ko -%}{%- else -%}{%- assign title_lang = en_attr -%}{%- endif -%}
       {%- if area.body_ko and area.body_ko != "" -%}{%- assign body = area.body_ko -%}{%- else -%}{%- assign body_lang = en_attr -%}{%- endif -%}
-      {%- if area.figure_alt_ko and area.figure_alt_ko != "" -%}{%- assign alt = area.figure_alt_ko -%}{%- else -%}{%- assign alt_lang = en_attr -%}{%- endif -%}
       {%- endif -%}
       {%- comment -%}id = the slugified English title; the home page research rows link here (/research/#<id>).{%- endcomment -%}
       <article class="research-area{% if has_fig %} research-area--figured{% endif %}" id="{{ area.title | slugify }}">
@@ -40,15 +40,10 @@ are the same area; the home page's research rows link the English page.{%- endco
           <p{{ body_lang }}>{{ body }}</p>
         </div>
         {%- if has_fig -%}
-        <figure class="research-area__figure">
-          <img src="{{ '/assets/images/' | append: area.figure | relative_url }}" alt="{{ alt | normalize_whitespace }}"{{ alt_lang }} width="{{ area.figure_w }}" height="{{ area.figure_h }}" loading="lazy">
+        <figure class="research-area__figure"{% if ko %} lang="en"{% endif %}>
+          <img src="{{ '/assets/images/' | append: area.figure | relative_url }}" alt="{{ area.figure_alt | normalize_whitespace }}" width="{{ area.figure_w }}" height="{{ area.figure_h }}" loading="lazy">
           {%- if area.figure_journal and area.figure_doi -%}
-          {%- capture paper -%}<a href="https://doi.org/{{ area.figure_doi }}" target="_blank" rel="noopener noreferrer">{{ area.figure_journal }}</a>{%- endcapture -%}
-          {%- if ko -%}
-          <figcaption>우리 연구실의 {{ paper }} ({{ area.figure_year }}) 논문에서.</figcaption>
-          {%- else -%}
-          <figcaption>From our work in {{ paper }} ({{ area.figure_year }}).</figcaption>
-          {%- endif -%}
+          <figcaption>From our work in <a href="https://doi.org/{{ area.figure_doi }}" target="_blank" rel="noopener noreferrer">{{ area.figure_journal }}</a> ({{ area.figure_year }}).</figcaption>
           {%- endif -%}
         </figure>
         {%- endif -%}

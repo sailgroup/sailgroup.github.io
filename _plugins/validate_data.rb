@@ -445,7 +445,6 @@ module SAIL
         err("#{at}: missing required field `body`.") if blank?(a["body"])
         %w[title_ko body_ko].each { |f| warn("#{at}: missing `#{f}`; #{ko_lag}.") if blank?(a[f]) }
         next if blank?(a["figure"])
-        warn("#{at}: missing `figure_alt_ko` (the figure's description in Korean); #{ko_lag}.") if blank?(a["figure_alt_ko"])
         err("#{at}: `figure: #{a["figure"]}` not found in assets/images/.") unless image_exists?(a["figure"])
         %w[figure_w figure_h].each do |dim|
           warn("#{at}: `#{dim}` should be the figure's pixel size (a number) for layout stability.") unless a[dim].is_a?(Integer)

@@ -2369,10 +2369,18 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **The switch:** "English" and "한국어" under the heading, the segmented control of D61
   (`lang-nav.html`), each name in its own language, the current page marked. The header
   shows Research as current on both pages.
-- **New text, not the PI's** (listed in `CONTENT_INVENTORY.md`): the figures' Korean
-  descriptions (`figure_alt_ko`, translated from our `figure_alt`), the Korean caption "우리
-  연구실의 <journal> (<year>) 논문에서." for "From our work in <journal> (<year>).", and the
-  Korean page's title "연구 분야 (Research): 국민대학교 인공지능화학연구실" and description.
+- **New text, not the PI's** (listed in `CONTENT_INVENTORY.md`): the Korean page's title
+  "연구 분야 (Research): 국민대학교 인공지능화학연구실" and description.
+- **The figures stay English** (the maintainer, before the deploy, 2026-10-25): the first
+  build gave the Korean page Korean figure descriptions (`figure_alt_ko`, which we had added
+  to `research.yml`) and a Korean caption ("우리 연구실의 <journal> (<year>) 논문에서.").
+  The PI wrote neither, and the maintainer preferred the site's English to a translation
+  where one is not needed. The Korean page now shows each figure's `figure_alt` and "From
+  our work in <journal> (<year>).", the figure marked `lang="en"`; `research.yml` is again
+  the PI's file as committed in ec91eed, and the build no longer asks for `figure_alt_ko`.
+  The rule for both Korean pages (D66 too): Korean where the PI wrote it or the site's data
+  already has it (the Korean names in `pi.yml` and `_config.yml`), and in the head's title
+  and description; elsewhere the site's English as it stands.
 - **For search engines:** `_data/translations.yml` lists the two (English first, the
   default); `head.html` writes hreflang en, ko and x-default (/research/) and
   og:locale:alternate; the Korean page's WebPage node says `inLanguage: ko`; the sitemap lists
@@ -2424,14 +2432,17 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   whose language is Korean, also for a search in the lab's English name.
 - **The page:** the home page, in Korean where `research.yml` has Korean, from the same
   include as the English home (`_includes/home-page.html`, `index-ko.html`): the kicker "정준영
-  교수 연구실 · 국민대학교" (pi.yml `name_ko`, `_config.yml` `university_ko`), the hero's lead
-  the first sentence of `overview.ko`, the figure's description and caption in Korean ("반응
-  예측을 위한 전자 흐름 매칭, 우리 연구실의 Nature (2025) 논문에서."), the figure viewer's name
-  and close button in Korean, and the Research section's overview and four areas in the PI's
-  Korean, linking /research/ko/. In English, marked `lang="en"`: the lab's name (the
-  heading), the section headings and links, the news, the interview and the covers. The
-  header shows Home as current. The hero's sentence is the overview's first, so it is read
-  again where the Research section begins.
+  교수 연구실 · 국민대학교" (pi.yml `name_ko`, `_config.yml` `university_ko`; the only place the
+  page shows the PI's Korean name), the hero's lead the first sentence of `overview.ko`, and
+  the Research section's overview and four areas in the PI's Korean, linking /research/ko/.
+  In English, marked `lang="en"`: the lab's name (the heading), the hero figure with its
+  description, caption and viewer, the section headings and links, the news, the interview
+  and the covers. The header shows Home as current. The hero's sentence is the overview's
+  first, so it is read again where the Research section begins.
+- **The figure stays English** (the maintainer, before the deploy, 2026-10-25): the first
+  build translated the hero figure's caption ("반응 예측을 위한 전자 흐름 매칭, 우리 연구실의
+  Nature (2025) 논문에서."), its description and the viewer's name and close button. The
+  maintainer kept the site's English there, by the rule D65 states for both Korean pages.
 - **For search engines:** title "국민대학교 인공지능화학연구실 SAIL: 화학을 위한 인공지능(AI) 연구",
   description 145 characters (the overview's first sentence and the areas' Korean names; the
   build warns when either changes and it does not), a WebPage node with `inLanguage: ko`,

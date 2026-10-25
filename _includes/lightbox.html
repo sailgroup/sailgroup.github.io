@@ -9,13 +9,12 @@ caption and count are a polite live region, so a new image is announced.
 Pass: id; label (read before the caption as the dialog's name, e.g. "Photo viewer"); noun (in the
 previous and next buttons' names, e.g. "photo"); paper=true for a "View the paper" link;
 notranslate=true when the captions are names (journal and year) that page translation must leave;
-close, the close button's name in the page's language (default "Close (Esc)"; the Korean home's
-figure, D66).
+lang="en" on a page in another language (the Korean home's figure, D66): the viewer stays English.
 {%- endcomment -%}
-<div class="lightbox" id="{{ include.id }}" hidden>
+<div class="lightbox" id="{{ include.id }}"{% if include.lang %} lang="{{ include.lang }}"{% endif %} hidden>
   <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-labelledby="{{ include.id }}-label {{ include.id }}-title">
     <span class="visually-hidden" id="{{ include.id }}-label">{{ include.label }}</span>
-    <button class="lightbox__close" type="button" data-close aria-label="{{ include.close | default: 'Close (Esc)' }}">
+    <button class="lightbox__close" type="button" data-close aria-label="Close (Esc)">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <button class="lightbox__nav lightbox__nav--prev" type="button" data-prev aria-label="Previous {{ include.noun | default: 'image' }}">
