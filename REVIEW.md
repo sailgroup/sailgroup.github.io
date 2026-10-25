@@ -1494,3 +1494,12 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   phones as before.
 - **Home:** not changed in this round. It shows the PI's new English since ec91eed; its
   rows measure 3% to 4% of lines over three spaces (10% at 721 to 768px).
+- **CI** (dev run 40201558825, f174b70): green, with only the known warning. Its artifact
+  equals the local build but for security.txt's `Expires`.
+- **The dev artifact before a deploy:** `qa-site.js` over the 70 sitemap pages and the 404
+  (it now expects `lang="ko"` on /research/ko/ too): NO PROBLEMS, the four area anchors
+  clear of the header. WebKit 35 of 35 (`SITE_DIR`). `functional.js` 21 of 22, the one
+  failure the local python server's own 404 page, as in section 34. `text-check.py`
+  against the live site: no line gone or changed on any page; added are the new page
+  (/research/ko/) and, on /research/, the switch's two names and its label "Language"; no
+  data string the live site shows is missing.
