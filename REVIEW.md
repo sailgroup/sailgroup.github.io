@@ -1521,3 +1521,13 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   broken image or console message. Lines with a gap over three spaces in the justified text
   of /ko/: 0% to 2% from 1000px, 6% at 768px and 12% at 721px (the English home 10% at both),
   flush left on phones.
+- **CI** (dev run 40203551259, 0b39f2f): green, with only the known warning; its artifact
+  equals the local build but for security.txt's `Expires`.
+- **The dev artifact before a deploy:** `qa-site.js` (now expecting `lang="ko"` on /ko/ too):
+  72 pages, 158 loads, NO PROBLEMS. WebKit 35 of 35 (71 pages at 1440, 390 and 320px, no
+  error and no sideways scroll). `functional.js` 21 of 22, the one failure the local python
+  server's own 404 page. On /ko/ in Chrome: the figure viewer opens as "그림 보기" with the
+  focus on "닫기 (Esc)", Escape closes it and returns the focus to the figure, and the
+  interview plays in place (youtube-nocookie.com), no console message. `text-check.py`
+  against the live site (71 pages): no line gone or changed on any page; lines are added on
+  /ko/, /research/ko/ and /research/ (the switch) only.
