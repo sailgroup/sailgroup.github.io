@@ -1,0 +1,23 @@
+# translations.yml
+# ---------------------------------------------------------------------------
+# Pages that exist in more than one language (D61, D65). Each group lists its versions, the
+# default first: the menu links that one, and search engines get it as x-default. A page
+# joins its group with `translations: <group>` in its front matter (research.html and
+# research-ko.html: `translations: research`). head.html writes the group as hreflang
+# links, and lang-nav.html as the switch under the page's heading. The build stops when a
+# version's page is missing or does not name the group back.
+#
+#   lang    the language code, as in the page's `lang` (en, ko)
+#   locale  the Open Graph locale (en_US, ko_KR)
+#   name    the language's name in that language, shown in the switch
+#   url     the page's address
+# ---------------------------------------------------------------------------
+research:
+  - lang: en
+    locale: en_US
+    name: English
+    url: /research/
+  - lang: ko
+    locale: ko_KR
+    name: 한국어
+    url: /research/ko/

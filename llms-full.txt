@@ -12,6 +12,8 @@ The Spectroscopy and AI Lab (SAIL), led by {{ site.data.pi.name }} ({{ site.data
 In Korean, in the lab's own words: {{ site.data.research.overview.ko | normalize_whitespace }}
 {% endif %}
 ## Research areas
+The same page in Korean: {{ site.url }}/research/ko/
+
 {% for a in site.data.research.areas %}### {{ a.title }}
 {{ a.body | strip_html | normalize_whitespace }}
 {% if a.body_ko and a.body_ko != "" %}

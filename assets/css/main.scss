@@ -911,8 +911,8 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 /* Under the heading of /pi/, /members/ and /alumni/ (people-nav.html): the three pages as a
    segmented control (D56), the current one raised on white in a neutral track. They were
    grey text links with a dot between them. A page in two languages takes the same control
-   (lang-nav.html, D61), between its heading and its lead; none has one while the English
-   Positions page is on hold. */
+   (lang-nav.html, D61), between its heading and its lead: Research in English and Korean
+   (D65). */
 .people-nav { margin-top: var(--space-md); font-size: var(--fs-sm); }
 .lang-nav { margin-block: var(--space-sm) var(--space-md); font-size: var(--fs-sm); }
 .people-nav ul, .lang-nav ul {
@@ -1605,8 +1605,15 @@ body.no-scroll { overflow: hidden; }
   gap: var(--space-2xl);
 }
 .research-area h2 { font-size: var(--fs-lg); margin-bottom: 0.6rem; }
-/* The text fills its column (D60): justified, it ends where the figure's column begins. */
+/* The text fills its column (D60): justified, it ends where the figure's column begins.
+   Beside the figure on a tablet the column is as narrow as a phone's (323px at 768px), and
+   justified it spread words apart: a gap over three spaces wide in 30% of the English lines
+   and 22% of the Korean, up to nine spaces. From 721px, where text and figure sit side by
+   side, to 1023px the text is flush left, as on phones and in the Positions cards (D61,
+   D65); from 1024px its column is at least 447px. The bound is the window's, not the
+   column's, so all four areas change together (the even areas' column is 4% wider). */
 .research-area p { color: var(--ink-2); }
+@media (min-width: 721px) and (max-width: 1023px) { .research-area p { text-align: start; } }
 /* Areas that carry a paper figure: text beside figure, alternating sides. */
 .research-area--figured {
   display: grid;

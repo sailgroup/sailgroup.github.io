@@ -1,36 +1,10 @@
 ---
 layout: default
 title: Research
-description: "국민대학교 화학부 인공지능화학연구실(SAIL)의 연구 분야: 물리화학적 특성 예측, 화학 반응 예측, De Novo 분자 설계, 데이터베이스 구축. Machine learning for molecular properties, reactions, design, and databases."
+# In English: the Korean page (/research/ko/) carries the Korean for Korean searches (D65).
+description: "Research at SAIL, Kookmin University: AI for chemistry, from spectra and properties to reaction mechanisms, molecular design and chemical databases."
 permalink: /research/
+# The page in English (the default) and in Korean: _data/translations.yml (D65).
+translations: research
 ---
-<div class="container page-head">
-  <h1>Research</h1>
-  <p class="lead">{{ site.data.research.overview.en }}</p>
-</div>
-
-<section class="section section--tight">
-  <div class="container">
-    <div class="research-areas">
-      {%- for area in site.data.research.areas -%}
-      {%- assign has_fig = false -%}
-      {%- if area.figure and area.figure != "" -%}{%- assign has_fig = true -%}{%- endif -%}
-      {%- comment -%}id = the slugified title; the home page research rows link here (/research/#<id>).{%- endcomment -%}
-      <article class="research-area{% if has_fig %} research-area--figured{% endif %}" id="{{ area.title | slugify }}">
-        <div class="research-area__text">
-          <h2>{{ area.title }}</h2>
-          <p>{{ area.body }}</p>
-        </div>
-        {%- if has_fig -%}
-        <figure class="research-area__figure">
-          <img src="{{ '/assets/images/' | append: area.figure | relative_url }}" alt="{{ area.figure_alt | normalize_whitespace }}" width="{{ area.figure_w }}" height="{{ area.figure_h }}" loading="lazy">
-          {%- if area.figure_journal and area.figure_doi -%}
-          <figcaption>From our work in <a href="https://doi.org/{{ area.figure_doi }}" target="_blank" rel="noopener noreferrer">{{ area.figure_journal }}</a> ({{ area.figure_year }}).</figcaption>
-          {%- endif -%}
-        </figure>
-        {%- endif -%}
-      </article>
-      {%- endfor -%}
-    </div>
-  </div>
-</section>
+{% include research-page.html lang_label="Language" %}

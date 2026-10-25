@@ -1471,3 +1471,26 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   no line gone, changed or added; the Copy check on 46, 43 and 45 at both widths passes.
   /publications.bib, /llms.txt, the sitemap, robots.txt, security.txt and the IndexNow key
   answer 200, an unknown address the site's 404.
+
+## 35. Research in Korean (2026-10-25, D65)
+
+- **Local build** (Docker, as CI): Jekyll and html-proofer pass (internal links and hashes
+  in 71 files). The only warning is the known one (46's "Submitted" has no logo); the two
+  that ec91eed's build gave for the home and Positions descriptions are gone.
+- **The built head:** /research/ is `lang="en"`, /research/ko/ `lang="ko"`. Both list
+  hreflang en (/research/), ko (/research/ko/) and x-default (/research/), and name the
+  other's locale in og:locale:alternate; each is its own canonical. Titles "Research | ..."
+  and "연구 분야 (Research): 국민대학교 인공지능화학연구실 | ..."; the Korean page's WebPage
+  node says `inLanguage: ko`. The sitemap, llms.txt and llms-full.txt list /research/ko/.
+- **The Korean page's text:** the lead, the four headings and bodies are `research.yml`'s
+  Korean; the figures' descriptions are `figure_alt_ko`; no element is marked `lang="en"`
+  but the heading "Research" (no Korean field is empty). The area ids are the English
+  page's.
+- **In Chrome** (local build, 13 widths from 1920 to 320px, both pages): no sideways
+  scroll, broken image or console message; the switch marks the page it is on, and the
+  header marks Research on both. Word gaps in the area texts (lines with a gap over three
+  spaces): before the change 30% (English) and 22% (Korean) at 768px; after it 0% from 721
+  to 1023px, 3% to 7% from 1024px, 0% to 3% at 600 and 720px (one column), flush left on
+  phones as before.
+- **Home:** not changed in this round. It shows the PI's new English since ec91eed; its
+  rows measure 3% to 4% of lines over three spaces (10% at 721 to 768px).

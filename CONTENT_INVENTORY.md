@@ -14,7 +14,7 @@ was taken, what was normalized, and what is still open.
 | `pi.yml` | PI profile, CV, links | Joonyoung F. Joung. Education, appointments, Scholar, ORCID. |
 | `members.yml` | 5 current members | Name, role, email, photo, slug only. No bios/links on source. Each entry's `/members/<slug>/` page is generated from this file (Phase 11, D22) — no stub file. |
 | `alumni.yml` | 6 alumni | All UROP undergraduates at Kookmin. Real ID photo + slug for each (harvested from the live `/alumni-1` page, Phase 7); each `/alumni/<slug>/` page is generated from this file (Phase 11, D22). |
-| `research.yml` | Overview + 4 areas | Area bodies verbatim (EN + KO); overview factualized. |
+| `research.yml` | Overview + 4 areas | Area bodies verbatim (EN + KO); overview factualized. Rewritten by the PI on 2026-10-25 (ec91eed, English and Korean); the Korean is shown at `/research/ko/` (D65). |
 | `covers.yml` | 4 journal covers | Mapped to publication ids 17, 25, 30, 35. |
 | `home.yml` | Hero + contact block | Factual hero copy; KR + EN address. |
 
@@ -102,6 +102,15 @@ was taken, what was normalized, and what is still open.
 - **Interview poster (D62)**: the video's own thumbnail on YouTube (1280x720, as YouTube
   serves it) in place of D60's frame. Its Korean lettering is Kookmin University's and names
   the department as 응용화학부 나노소재전공.
+- **Research in Korean (D65, 2026-10-25, the PI's request through the maintainer)**:
+  `/research/ko/` shows research.yml's own Korean (`overview.ko`, `title_ko`, `body_ko`), as
+  the PI wrote it. New text, not from the PI: the figures' Korean descriptions
+  (`figure_alt_ko`, translated from `figure_alt`, which is ours too), the caption "우리
+  연구실의 <journal> (<year>) 논문에서." for "From our work in <journal> (<year>).", the
+  switch's names English and 한국어 (as in D61), and the Korean page's title and
+  description. The heading stays "Research". The PI's text keeps, as written, its four en
+  dashes (U+2013: between Woodward and Fieser in both languages, chromophore and solvent,
+  발색단 and 용매) and "10^60" in plain text.
 
 ## Open items / flags (carried to later phases)
 

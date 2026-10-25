@@ -75,6 +75,8 @@ areas:
     figure_alt: >-
       Deep learning model relating chromophore and solvent structure to optical
       properties
+    figure_alt_ko: >-
+      발색단과 용매의 구조로부터 광학 특성을 예측하는 딥러닝 모델
     figure_journal: JACS Au
     figure_year: 2021
     figure_doi: 10.1021/jacsau.1c00035
@@ -124,6 +126,8 @@ areas:
     figure_h: 560
     figure_alt: >-
       Electron-flow matching model architecture for reaction mechanism prediction
+    figure_alt_ko: >-
+      반응 메커니즘을 예측하는 전자 흐름 매칭 모델의 구조
     figure_journal: Nature
     figure_year: 2025
     figure_doi: 10.1038/s41586-025-09426-9
@@ -168,6 +172,8 @@ areas:
     figure_h: 479
     figure_alt: >-
       Generative deep learning model that designs molecules for target properties
+    figure_alt_ko: >-
+      목표 특성을 갖는 분자를 설계하는 생성형 딥러닝 모델
     figure_journal: ACS Cent. Sci.
     figure_year: 2025
     figure_doi: 10.1021/acscentsci.4c00656
@@ -213,6 +219,8 @@ areas:
     figure_h: 249
     figure_alt: >-
       Experimental optical-property data: absorption, emission, and lifetime
+    figure_alt_ko: >-
+      유기 화합물 광학 특성 실험 데이터: 흡수, 발광, 수명
     figure_journal: Sci. Data
     figure_year: 2020
     figure_doi: 10.1038/s41597-020-00634-8

@@ -2342,3 +2342,62 @@ Changes D60's Alumni rows and its interview.
   `main` fast-forwarded aec86db to 39d7e03 (run 40189870706; IndexNow sent /publications/43/
   and /publications/46/ to both endpoints, HTTP 200), after the full checks of the dev build
   (REVIEW section 34).
+
+## D65: Research in Korean at /research/ko/ (the PI's request through the maintainer, 2026-10-25)
+Changes D9 for one page: the Research page's Korean is shown on a page of its own.
+
+- **Asked:** the PI rewrote `research.yml` in English and Korean on `main` (ec91eed,
+  2026-10-25, deployed by run 40199466772) and asked through the maintainer for the Korean
+  to be shown too. The maintainer: English as the default, a button to switch to Korean,
+  and an address with /ko/.
+- **History:** D9 kept Korean in the head only, and `research.yml`'s Korean (kept from the
+  old site) was shown on no page; D52 made showing it the PI's call, which this request is.
+  D34 put a language toggle on one page (Positions) and D35 took it back on the PI's
+  instruction; D61 then gave each language a page of its own (/positions/en/, on hold).
+  This follows D61.
+- **The pages:** /research/ stays English and stays the menu's link. /research/ko/ shows
+  `overview.ko`, each area's `title_ko` and `body_ko` as the PI wrote them, with the same
+  figures. The heading is "Research" on both, as the Korean Positions page keeps
+  "Positions". An area's id is its English title, slugified, on both pages, so
+  /research/#reaction-prediction-and-discovery and /research/ko/#reaction-prediction-and-discovery
+  name the same area. Both pages come from `_includes/research-page.html`; where a Korean
+  field is empty the Korean page shows the English there, marked `lang="en"`, and the build
+  log says where.
+- **The address:** /research/ko/, the page's address and then its language, as
+  /positions/en/ (D61); Home's Korean, if there were one, would be /ko/ by the same rule.
+  The maintainer chose it over /ko/research/ (2026-10-25).
+- **The switch:** "English" and "한국어" under the heading, the segmented control of D61
+  (`lang-nav.html`), each name in its own language, the current page marked. The header
+  shows Research as current on both pages.
+- **New text, not the PI's** (listed in `CONTENT_INVENTORY.md`): the figures' Korean
+  descriptions (`figure_alt_ko`, translated from our `figure_alt`), the Korean caption "우리
+  연구실의 <journal> (<year>) 논문에서." for "From our work in <journal> (<year>).", and the
+  Korean page's title "연구 분야 (Research): 국민대학교 인공지능화학연구실" and description.
+- **For search engines:** `_data/translations.yml` lists the two (English first, the
+  default); `head.html` writes hreflang en, ko and x-default (/research/) and
+  og:locale:alternate; the Korean page's WebPage node says `inLanguage: ko`; the sitemap lists
+  it, and llms.txt and llms-full.txt point to it. The Korean page's description names the
+  areas in Korean (99 characters), and the build warns when an area's `title_ko` changes
+  and that line does not. With a Korean page to carry the Korean, the English page's
+  description is English only (148 characters; it had led with the Korean, D58).
+- **The PI's rewrite and the descriptions:** `overview.ko` is now a paragraph. The home and
+  Positions descriptions quote its first sentence after the subject, "화학을 위한 인공지능을
+  연구합니다.", in place of the old one (ec91eed's build warned for both), and the D61 check
+  now compares that first sentence.
+- **Narrow columns flush left:** the PI's area texts are 3.2 (English) and 3.6 (Korean)
+  times as long as before. On the local build, where text and figure sit side by side on a
+  tablet, the justified text spread words apart: at 768px (a 323px column) 30% of the
+  English lines and 22% of the Korean had a gap over three spaces wide, up to nine spaces.
+  From 721px to 1023px the area texts are now flush left (0% at 768, 900 and 1000px), as on
+  phones and in the Positions cards; from 1024px (columns of at least 447px) they stay
+  justified, 3% to 7% of lines over three spaces. The bound is the window's width, so all
+  four areas change together (a column query split them at 1000px: the even areas' column is
+  4% wider).
+- **Home:** unchanged. It reads `research.yml` and has shown the PI's new English since
+  ec91eed; the maintainer confirmed that was the change wanted there (no Korean on Home,
+  2026-10-25). Its rows measure 3% to 4% of lines over three spaces (10% at 721 to 768px)
+  and stay justified.
+- **Left as written:** the PI's text keeps its four en dashes (U+2013, between Woodward and
+  Fieser in both languages, chromophore and solvent, 발색단 and 용매) and "10^60" in plain
+  text; a superscript waits for approval like the abstracts' formulas (D60).
+- **Check:** `REVIEW.md` section 35.

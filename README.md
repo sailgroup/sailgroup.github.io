@@ -21,7 +21,7 @@ Live: https://sail.kookmin.ac.kr
 | 뉴스 | `_data/news.yml` |
 | 홈 화면 인터뷰 영상 | `_data/home.yml` 의 `interview` ([자세히](#홈-화면-인터뷰-영상-_datahomeyml-의-interview)) |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
-| 연구 분야 | `_data/research.yml` (연구 페이지와 홈 화면에 제목·본문 전문·그림이 함께 표시. 한국어 `overview.ko`·`title_ko`·`body_ko` 는 화면에 표시되지 않고, AI 검색용 `llms.txt`·`llms-full.txt` 에만 들어감) |
+| 연구 분야 | `_data/research.yml` (영어 연구 페이지 `/research/` 와 홈 화면에 제목·본문 전문·그림이 함께 표시. 한국어 `overview.ko`·`title_ko`·`body_ko`·`figure_alt_ko` 는 한국어 연구 페이지 `/research/ko/` 에 표시되고, 비어 있는 항목은 그 자리에 영어가 나옴. D65) |
 | 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
 | 모집(Positions) | `_data/positions.yml` (박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트) |
 

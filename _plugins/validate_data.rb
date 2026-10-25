@@ -429,8 +429,13 @@ module SAIL
     end
 
     # --- research figures ---------------------------------------------------
+    # The Korean page (/research/ko/, D65) shows the Korean fields; where one is missing it
+    # shows the English, so the build goes on and the log says where.
     def validate_research(data)
       return if data.nil?
+      ko_lag = "the Korean page (/research/ko/) shows the English there"
+      ov = data["overview"]
+      warn("research.yml: missing `overview.ko`; #{ko_lag}.") unless ov.is_a?(Hash) && !blank?(ov["ko"])
       areas = data["areas"]
       return unless areas.is_a?(Array)
       areas.each_with_index do |a, i|
@@ -438,7 +443,9 @@ module SAIL
         at = "#{at} (#{a["title"]})" unless blank?(a["title"])
         err("#{at}: missing required field `title`.") if blank?(a["title"])
         err("#{at}: missing required field `body`.") if blank?(a["body"])
+        %w[title_ko body_ko].each { |f| warn("#{at}: missing `#{f}`; #{ko_lag}.") if blank?(a[f]) }
         next if blank?(a["figure"])
+        warn("#{at}: missing `figure_alt_ko` (the figure's description in Korean); #{ko_lag}.") if blank?(a["figure_alt_ko"])
         err("#{at}: `figure: #{a["figure"]}` not found in assets/images/.") unless image_exists?(a["figure"])
         %w[figure_w figure_h].each do |dim|
           warn("#{at}: `#{dim}` should be the figure's pixel size (a number) for layout stability.") unless a[dim].is_a?(Integer)
@@ -682,19 +689,29 @@ module SAIL
       end
     end
 
-    # The home and Positions meta descriptions quote the lab's Korean overview
-    # (research.yml overview.ko) after its subject, "...은 " (D61). When the PI rewrites
-    # that sentence, the descriptions should follow: the log says which page still has the old.
+    # The home and Positions meta descriptions quote the first sentence of the lab's Korean
+    # overview (research.yml overview.ko) after its subject, "...은 " (D61; the first
+    # sentence only since the overview grew to a paragraph, D65). When the PI rewrites that
+    # sentence, the descriptions should follow: the log says which page still has the old.
+    # The Korean Research page's description names the areas by their Korean names (D65).
     def check_overview_quote(site)
       ko = site.data.dig("research", "overview", "ko").to_s.gsub(/\s+/, " ").strip
-      said = ko.split(/[은는] /, 2)[1].to_s.strip
-      return if said.empty?
-      ["/", "/positions/"].each do |u|
-        pg = site.pages.find { |x| x.url == u }
-        next unless pg
-        next if pg.data["description"].to_s.gsub(/\s+/, " ").include?(said)
-        warn("#{pg.name}: its description no longer quotes research.yml overview.ko (\"#{said}\"); bring it up to date.")
+      rest = ko.split(/[은는] /, 2)[1].to_s.strip
+      said = rest[/\A.*?다\./] || rest
+      unless said.empty?
+        ["/", "/positions/"].each do |u|
+          pg = site.pages.find { |x| x.url == u }
+          next unless pg
+          next if pg.data["description"].to_s.gsub(/\s+/, " ").include?(said)
+          warn("#{pg.name}: its description no longer quotes research.yml overview.ko (\"#{said}\"); bring it up to date.")
+        end
       end
+      pg = site.pages.find { |x| x.url == "/research/ko/" }
+      areas = site.data.dig("research", "areas")
+      return unless pg && areas.is_a?(Array)
+      desc = pg.data["description"].to_s.gsub(/\s+/, " ")
+      gone = areas.map { |a| a["title_ko"].to_s.gsub(/\s+/, " ").strip }.reject { |t| t.empty? || desc.include?(t) }
+      warn("#{pg.name}: its description does not name #{gone.join(", ")} (research.yml title_ko); bring it up to date.") unless gone.empty?
     end
 
     # --- journal logos ------------------------------------------------------

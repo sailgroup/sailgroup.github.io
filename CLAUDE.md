@@ -19,8 +19,9 @@ domain `https://sail.kookmin.ac.kr`.
 - `_config.yml` — site configuration
 - `_data/` — all content lives here: `publications.yml` (authoritative, one entry per paper), `people.yml`
   (members + alumni in one file; `status:` picks the page), `people_groups.yml` (the Alumni
-  page's rows: postdoc, Ph.D., M.S., undergraduate), `pi.yml`, `news.yml`, `research.yml`,
-  `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
+  page's rows: postdoc, Ph.D., M.S., undergraduate), `pi.yml`, `news.yml`, `research.yml`
+  (English and Korean: its `*_ko` fields are the Korean Research page, D65), `translations.yml`
+  (a page's versions in other languages), `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
   `navigation.yml`, `positions.yml` (Positions page copy, Korean-only; each role
   section may carry an optional `projects` card list), and
   `member_pubs/<slug>.yml` (a person's long external-paper list)
@@ -31,9 +32,10 @@ domain `https://sail.kookmin.ac.kr`.
   filter) puts each alumnus in a row by `group:` or else `role`
 - `_layouts/` (`default`, `page`, `person`, `publication`), `_includes/` (shared markup),
   `assets/` — templates, partials, styles (`assets/css/main.scss`), JS, images
-- top-level pages — `index.html`, `research`, `pi`/`members`/`alumni`, `publications`, `news`,
-  `photos`, `positions` (its body is `_includes/positions-page.html`; member/alumni/publication
-  detail pages are generated, not files).
+- top-level pages: `index.html`, `research` and `research-ko` (/research/ko/, the same page in
+  Korean; both bodies are `_includes/research-page.html`, D65), `pi`/`members`/`alumni`,
+  `publications`, `news`, `photos`, `positions` (its body is `_includes/positions-page.html`;
+  member/alumni/publication detail pages are generated, not files).
   `pi`, `members` and `alumni` are separate pages (D60, which takes back D57's one document);
   Alumni shows a row per group of `_data/people_groups.yml`, the undergraduates' photos smaller,
   and a group with nobody in it yet as a short row that says "None yet." (D62)
@@ -71,14 +73,18 @@ domain `https://sail.kookmin.ac.kr`.
 - Titles carry Korean names ("Jihwan Kim (김지환)") and a published paper's venue ("(Nature, 2025)");
   meta descriptions stay within 160 characters. The lab's other names (`alternate_names` in
   `_config.yml`, e.g. 인공지능화학연구실 from Kookmin's faculty directory) go into the JSON-LD and
-  llms.txt. Korean for Naver and Korean searches lives in the head only, never on the page (D9):
-  the home title's tagline, a Korean lead in the main pages' descriptions ("국민대학교 화학부
-  정준영 교수 연구실 ..."), Positions' title, the research areas' Korean names in the lab's
-  knowsAbout (D58), the lab's fields in English and Korean (`knows_about` in `_config.yml`, D61).
-  An English Positions page (D61) is on hold, so no page is in two languages; `head.html`
-  (hreflang) and `lang-nav.html` (the switch) still read a page's `translations:` group from
-  `_data/translations.yml`, which the validator checks, and DECISIONS D61 says how to bring
-  the page back. After each `main` deploy, IndexNow tells Bing and Naver which pages changed
+  llms.txt. On the English pages, Korean for Naver and Korean searches lives in the head only,
+  never on the page (D9): the home title's tagline, a Korean lead in the main pages'
+  descriptions ("국민대학교 화학부 정준영 교수 연구실 ..."), Positions' title, the research areas'
+  Korean names in the lab's knowsAbout (D58), the lab's fields in English and Korean
+  (`knows_about` in `_config.yml`, D61).
+  Research is in two languages (D65, the PI's request): English at /research/ (the default,
+  the menu's link) and Korean at /research/ko/, joined by the `research` group in
+  `_data/translations.yml`; `head.html` writes it as hreflang links, `lang-nav.html` as the
+  English / 한국어 switch under the heading, and the validator checks both ways. The Korean
+  page carries the Korean title and description, so the English page's description is
+  English only. An English Positions page (D61) is on hold; DECISIONS D61 says how to bring
+  it back. After each `main` deploy, IndexNow tells Bing and Naver which pages changed
   (`.github/scripts/indexnow.mjs` and the workflow; never delete the root key file
   `4fa521d6cc1d0212aa5696ee0a4b94a8.txt`). D47.
 - Chrome's page translation: names and Korean text that stand alone (author lists, journal names,
@@ -121,7 +127,7 @@ domain `https://sail.kookmin.ac.kr`.
   should be measured in (the paper abstracts carry their own). The PI's bio and the
   Research page's texts fill their column instead (D60). From 600px running text is
   justified, never hyphenated, except in a column as narrow as a phone's (the Positions
-  cards, D61); headings use `text-wrap: pretty` (D60). The header logo is
+  cards, D61; the Research areas beside their figures from 721px to 1023px, D65); headings use `text-wrap: pretty` (D60). The header logo is
   `assets/images/sail-logo.svg`, `sail-logo.png` redrawn in outlines (no larger original
   exists).
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in

@@ -363,3 +363,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   and in `/publications.bib`, in the forms eight LaTeX styles print the preprint by. Built
   on `dev` (run 40188916651), deployed (main run 40189870706) and verified live. Results in
   `REVIEW.md` section 34.
+- **Phase 35 (2026-10-25):** the Research page in Korean at /research/ko/ (D65), on the PI's
+  request through the maintainer after the PI rewrote `research.yml` (ec91eed): an English
+  and 한국어 switch under the heading, hreflang links, the home and Positions descriptions
+  brought up to the new Korean overview, and the area texts flush left beside their figures
+  from 721px to 1023px. Built on `dev`. Results in `REVIEW.md` section 35.
