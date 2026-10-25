@@ -2310,7 +2310,8 @@ Changes D60's Alumni rows and its interview.
   issue or pages; 46's journal field says "Submitted", which is not a venue and is not used.
   Authors, title, year and the key are made as in D50 (kim2026wavenumber for 46,
   byun2026continuous for 43); the 44 existing entries are unchanged, keys included. Once the
-  PI fills in the journal's DOI, the paper's entry is the journal's, with no other edit.
+  PI fills in the journal's DOI (with its journal, volume and pages, as for any published
+  paper), the paper's entry is the journal's; nothing in the code changes.
 - **Why these forms:** arXiv, DataCite and Crossref each write a preprint's BibTeX
   differently, so the forms were chosen by what LaTeX prints. Five arXiv forms and two
   ChemRxiv forms were run through eight styles (tectonic, 2026-10-25: plainnat, unsrt,
@@ -2319,8 +2320,9 @@ Changes D60's Alumni rows and its interview.
   (elsarticle-num, naturemag, apsrev4-2; plainnat, achemso, rsc and IEEEtran printed only the
   URL, unsrt nothing), and with `eprint` and `doi` alone five of the eight printed neither
   number nor DOI.
-  `howpublished = {arXiv:<n>}` was printed by all eight. Adding `eprint` beside it would make
-  biblatex print the number twice, so it is left out. Google Scholar's form (`@article`,
+  `howpublished = {arXiv:<n>}` was printed by all eight. `eprint` is left out beside it:
+  biblatex's standard styles print both fields, so the number would appear twice (biblatex
+  was not run here, for want of biber). Google Scholar's form (`@article`,
   `journal = {arXiv preprint arXiv:<n>}`) is printed by all eight too, but calls a preprint a
   journal article. For ChemRxiv, `@misc` with `howpublished = {ChemRxiv}` printed the DOI in
   elsarticle-num only; `@article` prints it in the four styles that print or link a journal
@@ -2336,3 +2338,7 @@ Changes D60's Alumni rows and its interview.
   give the same authors, title and year as `publications.yml`; neither lists a published
   version yet.
 - **Check:** `REVIEW.md` section 34.
+- **Deployed** 2026-10-25 at the maintainer's word ("전체 검토 후 문제 없으면 배포까지 진행해줘"):
+  `main` fast-forwarded aec86db to 39d7e03 (run 40189870706; IndexNow sent /publications/43/
+  and /publications/46/ to both endpoints, HTTP 200), after the full checks of the dev build
+  (REVIEW section 34).

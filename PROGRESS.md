@@ -361,4 +361,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
 - **Phase 34 (2026-10-25):** BibTeX for a paper with only a preprint (D64), on the PI's
   request through the maintainer: 46 (arXiv) and 43 (ChemRxiv) have entries on their pages
   and in `/publications.bib`, in the forms eight LaTeX styles print the preprint by. Built
-  and checked locally; results in `REVIEW.md` section 34.
+  on `dev` (run 40188916651), deployed (main run 40189870706) and verified live. Results in
+  `REVIEW.md` section 34.

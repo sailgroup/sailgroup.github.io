@@ -1456,3 +1456,18 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
 - **In Chrome** (46, 43 and 45 at 1440 and 390px, served locally): the entry opens, Copy says
   "Copied" and the clipboard holds the entry exactly; no console error, no sideways scroll.
   47 has no BibTeX block, as before.
+- **CI** (dev run 40188916651): green, with only the known warning. Against the live site,
+  its artifact differs in five files: /publications/43/ and /publications/46/ (the BibTeX
+  block added), `publications.bib` (byte for byte the local build's), and the build dates in
+  security.txt and humans.txt; 149 files identical, 271 image URLs 200.
+- **The dev artifact before the deploy:** `qa-site.js` 70 pages, 152 loads: NO PROBLEMS;
+  WebKit 35 of 35 (`SITE_DIR`); `functional.js` 21 of 22, the one failure the local python
+  server's own 404 page (WebKit's 404 check, under the live origin, passes); `text-check.py`
+  as for the local build; the Copy check as above.
+- **Live** (main run 40189870706, 2026-10-25): `livecmp.js` with the deployed artifact (the
+  extras as in section 33 and `publications.bib`): 154 files identical, 271 image URLs 200;
+  43, 46 and `publications.bib` are the dev artifact's bytes. `qa-site.js`: NO PROBLEMS;
+  `functional.js` 22 of 22; WebKit 35 of 35; `text-check.py` against the deployed artifact:
+  no line gone, changed or added; the Copy check on 46, 43 and 45 at both widths passes.
+  /publications.bib, /llms.txt, the sitemap, robots.txt, security.txt and the IndexNow key
+  answer 200, an unknown address the site's 404.
