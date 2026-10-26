@@ -1,11 +1,3 @@
-# Research overview and four areas. Source: live lab site /research, fetched
-# Phase 0. Area bodies are reproduced verbatim (English and Korean). The overview
-# is stated factually (the source's "pioneering / complex problems" marketing
-# phrasing is dropped per the copy guidelines); meaning is preserved.
-#
-# figure / figure_* (added Phase 7): each area carries a real figure from one of
-# the lab's own papers (publisher of record by DOI), not invented art. Caption
-# links the paper. Reaction reuses the FlowER figure also shown on the home page.
 # Research overview and four areas (English and Korean).
 # Written for undergraduate readers: each area explains why the problem matters,
 # what makes it interesting, and what SAIL has actually done about it.
@@ -189,8 +181,7 @@ areas:
       identity. We also think about the question that comes before data: what
       chemical problems are actually well-posed for AI, and how should success
       be measured? That is the subject of our work on defining chemical
-      problems for AI models and of community efforts such as the KRICT
-      ChemDX hackathon. Students in this area learn data curation, chemical
+      problems for AI models. Students in this area learn data curation, chemical
       informatics, and the judgment to tell a meaningful benchmark from a
       misleading one, skills that are in demand everywhere AI meets science.
     body_ko: >-
@@ -204,8 +195,7 @@ areas:
       아니라 전자의 움직임을 배울 수 있도록 대규모 메커니즘 데이터셋을 구축했습니다.
       데이터보다 앞서는 질문도 고민합니다. 어떤 화학 문제가 실제로 AI에 적합하게
       정의된 문제인지, 성공은 어떻게 측정해야 하는지 하는 질문인데, AI 모델을 위한
-      화학 문제 정의에 관한 연구와 KRICT ChemDX 해커톤 같은 커뮤니티 활동이 그
-      주제입니다. 이 분야의 학생들은 데이터 큐레이션과 화학정보학, 그리고 의미 있는
+      화학 문제 정의에 관한 연구가 바로 그 주제입니다. 이 분야의 학생들은 데이터 큐레이션과 화학정보학, 그리고 의미 있는
       벤치마크와 오해를 부르는 벤치마크를 구별하는 안목을 배우는데, 이는 AI가 과학과
       만나는 모든 곳에서 필요한 역량입니다.
     figure: research-database.jpg
