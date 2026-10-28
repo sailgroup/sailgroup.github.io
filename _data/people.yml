@@ -47,9 +47,10 @@
   photo: jihwan-kim.jpg
   slug: jihwan-kim
   joined: "2025-09-11"
-  github: https://github.com/jihwan020
-  orcid: https://orcid.org/0009-0005-0693-9590
   website: https://jihwan020.github.io/
+  orcid: https://orcid.org/0009-0005-0693-9590
+  github: https://github.com/jihwan020
+
   
 - name: Seonbin Kim
   status: current
@@ -119,10 +120,10 @@
   note: Global PBL program, Irvine, CA
   photo: chanjoong-kim.jpg
   slug: chanjoong-kim
+  website: https://chanjoongx.com
+  orcid: https://orcid.org/0009-0009-9566-5403
   linkedin: https://www.linkedin.com/in/chanjoong/
   github: https://github.com/chanjoongx
-  orcid: https://orcid.org/0009-0009-9566-5403
-  website: https://chanjoongx.com
 
 - name: Yongpyo Cho
   status: alumni
