@@ -380,4 +380,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
 - **Phase 38 (2026-10-30):** the lab's people linked from author lists (D67), on the
   maintainer's request: the PI's name to /pi/ and a member's or alumnus's to their page, in
   the lab's papers on the Publications list, the paper pages and the person pages. At rest
-  the lists look as before. Results in `REVIEW.md` section 38.
+  the lists look as before. Deployed (main run 40989773093) and verified live. Results in
+  `REVIEW.md` section 38.

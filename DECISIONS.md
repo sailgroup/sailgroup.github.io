@@ -2485,4 +2485,6 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Structured data:** a member's or alumnus's entry in a paper's author list carries the
   `@id` and URL of their page, as the PI's does (D40). A ScholarlyArticle is written only for
   a paper with a DOI or a preprint, so today this reaches Jihwan Kim on paper 45.
+- **Deployed** 2026-10-30 as built, the maintainer choosing the look above over an underline
+  at rest (main run 40989773093, 0939e96 to 41c6d8c). IndexNow sent the 50 changed pages.
 - **Check:** `REVIEW.md` section 38.

@@ -1590,3 +1590,8 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   `functional.js` 22 of 22, on a local server that answers an unknown path with the site's
   404 page. WebKit 35 of 35 (`SITE_DIR`). `text-check.py` against the live site (71 pages):
   no line gone, changed or added, and no data string the live site shows is missing.
+- **Live** (main run 40989773093, 2026-10-30, 0939e96 to 41c6d8c): IndexNow sent 50 URLs,
+  Bing 200, Naver 200. `livecmp.js` with the deployed artifact: 114 files identical, 271
+  image URLs 200. `qa-site.js`: 72 pages, 158 loads, NO PROBLEMS. `functional.js` 22 of 22;
+  WebKit 35 of 35; the 14 link checks above pass on the live site; `text-check.py` against
+  the deployed artifact: no line gone, changed or added.
