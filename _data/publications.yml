@@ -43,9 +43,9 @@
   title: "Encoding Composition-Dependent Intermolecular Interactions into Learned Molecular Representations"
   authors: "Jihwan Kim, Chanjoong Kim, Joonyoung F. Joung*"
   journal: "Chem. Eng. J."
-  ref: accepted
+  pages: "183472"
   year: 2026
-  doi: ""
+  doi: "https://doi.org/10.1016/j.cej.2026.183472"
   code: "https://github.com/sailgroup/MEMo"
   dataset: ""
   themes:
@@ -53,7 +53,17 @@
     - "Representation learning"
     - "Experimental dataset"
   image: ""
-  abstract: ""
+  abstract: >
+    The properties of liquid mixtures are governed by intermolecular interactions. 
+    The strength and character of these interactions change continuously with composition. 
+    Machine learning models, however, typically represent mixtures as composition-weighted averages of molecules encoded in isolation. 
+    All interaction chemistry is deferred to a downstream prediction network. Here we introduce MEMo 
+    (Mixture Embedding via Mole Fraction), which conditions graph-based molecular representations on composition during encoding. 
+    Intermolecular interactions can be learned as functions of how much of each partner is present. We evaluate MEMo on 
+    five open benchmarks curated from over 860,000 experimental measurements in the NIST/TRC ThermoML archive, covering density, 
+    speed of sound, vapor pressure, refractive index, and surface tension. MEMo achieves the highest accuracy for four of the five properties. 
+    Gains are largest for ionic and hydrogen-bonded mixtures and for mixtures containing molecules never seen during training. 
+    Composition-conditioned representations thus provide a general route to predicting multicomponent chemical systems.
 
 - id: 46
   title: "Wavenumber-Aware Deep Learning for Robust Analysis of Raman Spectra"
