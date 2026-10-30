@@ -25,7 +25,8 @@ Live: https://sail.kookmin.ac.kr
 | 주제(테마) | `_data/themes.yml` (필터 칩의 개수·색·이름·순서를 한 곳에서 편집) |
 | 모집(Positions) | `_data/positions.yml` (박사후연구원·대학원생·학부 연구생 안내, 학부 모집 프로젝트) |
 
-저자 목록의 PI 이름 `Joonyoung F. Joung` 은 자동으로 굵게 표시됩니다.
+저자 목록의 PI 이름 `Joonyoung F. Joung` 은 자동으로 굵게 표시됩니다. 랩 논문의 저자 목록에 있는 PI·멤버·동문의
+이름은 각자의 페이지(`/pi/`, `/people/<slug>/`)로 연결됩니다(D67).
 
 사진(`people/`·`photos/`·`pubs/`)은 원본 크기 그대로 올려도 됩니다. 배포할 때 사이트에 올라가는 사본만
 웹용 크기로 자동으로 줄여지고(인물 800px, 사진 1600px, 논문 그림 1200px), 저장소의 원본은 그대로 남습니다.

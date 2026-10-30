@@ -2457,3 +2457,32 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   deploy, /ko/ can be put forward for indexing in Google Search Console (URL inspection), a
   step in the maintainer's account.
 - **Check:** `REVIEW.md` sections 36 and 37.
+
+## D67: The lab's people link from author lists (the maintainer's request, 2026-10-30)
+
+- **Asked:** the maintainer asked for the lab's people on the Publications list to be links,
+  for the lab's own people only: the PI's name to /pi/, Jihwan Kim's to /people/jihwan-kim/
+  and Chanjoong Kim's to /people/chanjoong-kim/.
+- **Who:** anyone with a page on the site. That is the PI (pi.yml `name`, `name_full`) and
+  every member and alumnus (`name`, `author_aliases`), matched exactly on a name in a lab
+  paper's author list once its `*`, `†` and `‡` marks are off. These are the names that put
+  a paper on that person's page (`member-pubs.html`, which matches by substring); on the
+  current data the two give the same papers. Today the PI is linked on all 47 papers, Jihwan
+  Kim on 45, 46 and 47, Chanjoong Kim on 46 and 47.
+- **Where:** the Publications list, each paper's page and the lab papers on a person's page.
+  A page never links to itself, so on a person's page their own name stays bold and
+  unlinked (the PI's page lists no papers). A person's papers from elsewhere
+  (`publications:`, `member_pubs/`) link nobody: a common name there may be someone else.
+- **How it looks:** as a paper's title does, in the list's ink, with an orange underline
+  under the pointer and the focus ring from the keyboard. At rest the lists look as before.
+  D27 took back the marking of every member's name at the PI's request, so that the
+  Publications list marks only the PI; an underline at rest would mark the members again.
+  It would also tell readers who never hover, on a phone for instance, that the names are
+  links. It is one rule in `main.scss` (`.author a`) if the maintainer wants it.
+- **Paper 45:** its Jihwan Kim is the member. The publisher's record (Crossref) gives that
+  author the ORCID on his page, 0009-0005-0693-9590. OpenAlex gives the name another ORCID,
+  that of a researcher in Portugal with the same name.
+- **Structured data:** a member's or alumnus's entry in a paper's author list carries the
+  `@id` and URL of their page, as the PI's does (D40). A ScholarlyArticle is written only for
+  a paper with a DOI or a preprint, so today this reaches Jihwan Kim on paper 45.
+- **Check:** `REVIEW.md` section 38.

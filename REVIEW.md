@@ -1559,3 +1559,15 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   /ko/, /research/ko/, /llms.txt, the sitemap (which lists /ko/ and /research/ko/),
   robots.txt, security.txt and the IndexNow key answer 200, an unknown address the site's
   404; the live home's head lists hreflang en (/), ko (/ko/) and x-default (/).
+
+## 38. The lab's people linked from author lists (2026-10-30, D67)
+
+- **Data, before the build:** in `publications.yml`, exact names (the `*`, `†` and `‡` marks
+  off) link the PI on 47 papers, Jihwan Kim on 45, 46 and 47 and Chanjoong Kim on 46 and 47,
+  the papers the substring match of `member-pubs.html` already puts on their pages. Every
+  entry of the PI is exactly `name` or `name_full`, so bolding by exact name marks what the
+  substring replace marked. The papers from elsewhere (Heejeong Kim's 37, Seonbin Kim's 1)
+  hold no lab person's name but the page owner's. No author string holds HTML.
+- **Paper 45:** Crossref gives its Jihwan Kim the ORCID 0009-0005-0693-9590, the one on his
+  page. The ORCID OpenAlex attaches (0000-0001-6112-3213) is a researcher of the same name at
+  IPMA, Portugal.

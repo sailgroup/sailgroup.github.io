@@ -4,6 +4,8 @@
 {%- assign haspre = false -%}{%- if p.preprint_url and p.preprint_url != "" -%}{%- assign haspre = true -%}{%- endif -%}
 {%- assign hascode = false -%}{%- if p.code and p.code != "" -%}{%- assign hascode = true -%}{%- endif -%}
 {%- assign hasdataset = false -%}{%- if p.dataset and p.dataset != "" -%}{%- assign hasdataset = true -%}{%- endif -%}
+{%- comment -%}A lab paper (it has an id) links the lab's people in its author list; a person's own paper from elsewhere links nobody (pi-authors.html, D67).{%- endcomment -%}
+{%- assign islab = false -%}{%- if p.id and p.id != "" -%}{%- assign islab = true -%}{%- endif -%}
 {%- comment -%}show_id is passed ONLY by the Publications listing (publications.html): it puts the paper's catalogue number (p.id) at the top of the left column, on the title's line, with the thumbnail below. Member/alumni pages (member-pubs.html) do not pass it, so the markup below the number is the same as before.{%- endcomment -%}
 {%- assign shownum = false -%}{%- if include.show_id and p.id and p.id != "" -%}{%- assign shownum = true -%}{%- endif -%}
 {%- comment -%}The title's id lets each badge name its paper (aria-describedby): "View at publisher (DOI)" repeats down a list. A lab paper is "pub-<id>-title"; a person's own external paper has no id, so member-pubs.html passes its place in the list (n).{%- endcomment -%}
@@ -16,7 +18,7 @@
   {%- else -%}{{ figure }}{%- endif -%}
   <div class="pub__body">
     <h3 class="pub__title" id="{{ titleid }}">{% if p.id and p.id != "" %}<a class="pub__link" href="{{ '/publications/' | append: p.id | append: '/' | relative_url }}">{{ p.title }}</a>{% elsif p.doi and p.doi != "" %}<a class="pub__link" href="{{ p.doi }}" target="_blank" rel="noopener noreferrer">{{ p.title }}{% include new-tab.html %}</a>{% else %}{{ p.title }}{% endif %}</h3>
-    <p class="pub__authors" translate="no">{% include pi-authors.html authors=p.authors person=include.person %}</p>
+    <p class="pub__authors" translate="no">{% include pi-authors.html authors=p.authors person=include.person link=islab %}</p>
     <p class="pub__meta"><span class="pub__journal{% if p.journal == 'Submitted' %} pub__journal--status{% endif %}" translate="no">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
     {%- assign hastags = false -%}{%- unless include.hide_themes -%}{%- if p.themes and p.themes.size > 0 -%}{%- assign hastags = true -%}{%- endif -%}{%- endunless -%}
     {%- if hasdoi or haspre or hascode or hasdataset or hastags -%}

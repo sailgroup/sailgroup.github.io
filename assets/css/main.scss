@@ -1811,8 +1811,11 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* --- Publication title link ----------------------------------------------- */
-/* In ink, underlined in the logo orange under the pointer, as links in text (D56). */
-.pub__link {
+/* In ink, underlined in the logo orange under the pointer, as links in text (D56). A lab
+   person's name in an author list links the same way (D67): at rest it looks like the other
+   names, so the list still marks only the PI (D27). */
+.pub__link,
+.author a {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -1820,7 +1823,8 @@ body.no-scroll { overflow: hidden; }
   text-underline-offset: 3px;
   transition: text-decoration-color 0.15s ease;
 }
-.pub__link:hover { text-decoration-color: var(--orange); }
+.pub__link:hover,
+.author a:hover { text-decoration-color: var(--orange); }
 
 /* --- Social / contact icon links (member + alumni) ------------------------ */
 .icon-links { margin-top: var(--space-md); display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }

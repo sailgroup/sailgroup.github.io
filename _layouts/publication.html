@@ -29,7 +29,7 @@ layout: default
       <div class="paper__head-main">
         <h1 class="paper__title">{{ p.title }}</h1>
         <p class="paper__meta"><span class="pub__journal{% if p.journal == 'Submitted' %} pub__journal--status{% endif %}" translate="no">{{ p.journal }}</span>{% include pub-citation.html p=p %} ({{ p.year }})</p>
-        <p class="paper__authors" translate="no">{% include pi-authors.html authors=p.authors %}</p>
+        <p class="paper__authors" translate="no">{% include pi-authors.html authors=p.authors link=true %}</p>
         {%- if hasdoi or haspre or hascode or hasdataset -%}
         <div class="paper__links">
           {%- if hasdoi -%}

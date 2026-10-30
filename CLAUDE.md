@@ -136,7 +136,10 @@ domain `https://sail.kookmin.ac.kr`.
   `assets/images/sail-logo.svg`, `sail-logo.png` redrawn in outlines (no larger original
   exists).
 - Publications: bold the PI name **Joonyoung F. Joung** (alias **Joonyoung Francis Joung**) in
-  author lists.
+  author lists. In a lab paper's author list the name of anyone with a page on the site links
+  to it (the PI to /pi/, a member or alumnus to /people/<slug>/), matched exactly on `name` or
+  `author_aliases`; at rest the links look like the other names, so the list still marks only
+  the PI (D27, D67). A person's papers from elsewhere link nobody (`_includes/pi-authors.html`).
 - A paper's larger figure `assets/images/pubs/<image base>-full.jpg` is optional: the paper page
   shows it under the title and opens it in the viewer (`assets/js/viewer.js`), else it shows the
   thumbnail. Like the thumbnail, it must be the paper's own published graphical abstract or

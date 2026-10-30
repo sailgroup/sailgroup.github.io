@@ -49,7 +49,7 @@ intro paragraph, like the example above) appears on the personal page as an "Abo
 (same heading style as the Publications section) above the person's publication list.
 Alumni may add a one-line `note:`. If a lab paper
 lists this person under a different spelling (e.g. "H Kim" vs "Heejeong Kim"), add
-`author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them. Keep an alias distinctive (a surname plus an initial like `"H Kim"`, not a bare `"Kim"`): matching is by substring, so a too-common alias can pull unrelated papers onto their page.
+`author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them and that spelling in the paper's author list links to their page (D67). Keep an alias distinctive (a surname plus an initial like `"H Kim"`, not a bare `"Kim"`): matching is by substring, so a too-common alias can pull unrelated papers onto their page.
 
 **A second photo on hover** (optional): set `photo_hover:` to a second image in
 `assets/images/people/` (e.g. `gil-dong-hong-hover.jpg`) and it cross-fades in when
@@ -106,7 +106,7 @@ current member's name, shows up on that member's page too, all automatically.
 ```yaml
 - id: 42                       # required, a new unique number; shown on the list
   title: "Paper title"         # required
-  authors: "Joonyoung F. Joung*, A. Other"  # required; PI name is auto-bolded
+  authors: "Joonyoung F. Joung*, A. Other"  # required; PI name is auto-bolded, lab people's names link to their pages
   journal: "Nature"            # required; map a logo in _data/journal_logos.yml
   ref: "12, 345"               # optional volume/page
   year: 2026                   # required
