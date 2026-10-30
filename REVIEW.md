@@ -1571,3 +1571,22 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
 - **Paper 45:** Crossref gives its Jihwan Kim the ORCID 0009-0005-0693-9590, the one on his
   page. The ORCID OpenAlex attaches (0000-0001-6112-3213) is a researcher of the same name at
   IPMA, Portugal.
+- **CI** (dev run 40987897887, e6177d1): green; Jekyll and html-proofer pass.
+- **The dev artifact against the live site** (0939e96): of 115 files 62 are byte for byte the
+  same. 50 differ only by the links in their author lists and, on paper 45, by Jihwan Kim's
+  JSON-LD author entry: the Publications list, the 47 paper pages, /people/jihwan-kim/ and
+  /people/chanjoong-kim/. The other 3 are main.css (the `.author a` selectors), security.txt's
+  `Expires` and humans.txt. On /publications/ 47 links go to /pi/ (the bold name inside, as
+  before), 3 to Jihwan Kim and 2 to Chanjoong Kim, and the paper pages carry the same; a
+  person's page links the PI and the other member, never its owner. Every JSON-LD block on
+  the 50 pages parses.
+- **Behaviour** (Chrome on the artifact served locally, 14 checks): at rest a linked name has
+  the list's ink and weight and a transparent underline; under the pointer the underline is
+  the logo orange; Tab from paper 47's title lands on "Jihwan Kim" with the focus ring; the
+  PI's link holds the bold name and leaves the `*` outside; the finder's "chanjoong" shows 2
+  papers and marks the name in both; a click opens /people/jihwan-kim/; Heejeong Kim's papers
+  from elsewhere have no links; no sideways scroll at 390px; no console message.
+- **The usual checks:** `qa-site.js` 72 pages, 158 loads, NO PROBLEMS (axe included).
+  `functional.js` 22 of 22, on a local server that answers an unknown path with the site's
+  404 page. WebKit 35 of 35 (`SITE_DIR`). `text-check.py` against the live site (71 pages):
+  no line gone, changed or added, and no data string the live site shows is missing.
