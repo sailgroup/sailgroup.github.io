@@ -2521,3 +2521,48 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Deployed** 2026-10-31 at the maintainer's word (main run 41166000941, e2e70f7 to c7a118d).
   IndexNow sent /pi/, the one changed page.
 - **Check:** `REVIEW.md` section 39.
+
+## D69: Guards and guides for editing on GitHub (the maintainer's request, 2026-10-31)
+
+- **Asked:** after the photo of D68, the maintainer asked for the README and the other guides
+  to keep the PI and anyone else out of trouble when they edit on GitHub.
+- **What went wrong before:** each failed `main` run of the PI's whose log remains was
+  stopped by the validator with a message the PI then acted on: image names with typos
+  (`pub-425gif`, `pub-434.png`, 2026-09-07) and themes renamed in one file only
+  (2026-07-22). The photo of D68 was not stopped: the file existed, so the build passed and
+  published two bytes.
+- **An image must be an image:** the validator reads the first bytes of every image the data
+  points to (people, papers, covers, research figures, photos, the PI, the interview poster)
+  and stops the build when they match no image format (JPEG, PNG, GIF, WebP, AVIF or HEIC,
+  SVG, BMP, ICO, TIFF). An emptied file now counts as a missing one, which already stopped
+  the build. HEIC still passes and gets its warning (D42). All 203 images in the repository
+  pass.
+- **Dates on /pi/:** an education or award `date` or a career `period` written without
+  quotes stops the build. YAML reads `2026.10` as the number 2026.1, and the page would
+  show that.
+- **YAML mistakes:** Jekyll stops on them before the validator runs, and the run's page said
+  only "exit code 1". On GitHub Actions a hook now parses each `_data` file first and writes
+  its file and line as an annotation, with a hint about quotes and indents. It only parses,
+  so it cannot fail a build Jekyll would pass. For an indent out of step the line is where
+  the list begins; Psych gives no closer place.
+- **Guides:** README (Korean, the PI's) has new parts: checking a change (Actions,
+  Annotations, the browser cache and the viewer), writing YAML, `pi.yml`, the rule against
+  renaming an uploaded image, and the steps to add a photo. CONTRIBUTING says the same in
+  English.
+- **Tested** in Docker (ruby:3.3, the repository's Gemfile.lock): the tree builds; a two-byte
+  photo and an unquoted award date stop it with the two messages; a colon in a value, an
+  indent one space short and a tab each give a `YAML` annotation with the file and line.
+- **Check:** `REVIEW.md` section 40.
+
+## D70: The lab's room on /pi/ (the PI's request through the maintainer, 2026-10-31)
+
+- **Asked:** under "Rm 229, College of Law" in the PI page's contact block, the lab's room,
+  "Rm 501, College of Science", with an Erlenmeyer flask for its icon.
+- **Data:** `pi.yml` `lab`, as the PI wrote it.
+- **Icon:** a flask drawn for the site in the contact icons' style (24-unit grid, 1.8 stroke,
+  round ends, muted grey): a neck with a lip, a cone with rounded feet and a line for the
+  liquid. A version with two bubbles was tried and dropped; at the icons' 17px they read as
+  a smudge.
+- **Screen readers:** the pin and the flask tell the office and the lab apart on screen, and
+  hidden words ("Office:", "Lab:") do it for a screen reader. They replace nothing.
+- **Check:** `REVIEW.md` section 40.

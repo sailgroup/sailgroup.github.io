@@ -386,3 +386,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   PI's request through the maintainer. The 80th anniversary photo, emptied by a rename on
   GitHub, was uploaded again by the PI (e2e70f7). Deployed (main run 41166000941) and
   verified live. Results in `REVIEW.md` section 39.
+- **Phase 40 (2026-10-31):** guards and guides for editing on GitHub (D69), the maintainer's
+  request: the build stops on an image file that is not an image and on an unquoted date on
+  /pi/, a YAML slip is named with its file and line, and README and CONTRIBUTING say how to
+  check a change, write YAML and add a photo. The lab's room under the office on /pi/, with
+  a flask (D70), the PI's request. Results in `REVIEW.md` section 40.

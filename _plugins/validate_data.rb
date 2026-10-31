@@ -22,12 +22,16 @@ module SAIL
     NEWS_CATS = %w[people publication award talk event].freeze
     # A paper's link fields (the DOI, preprint, code and dataset icons).
     LINK_FIELDS = %w[doi preprint_url code dataset].freeze
+    # How an image file starts: JPEG, PNG, GIF, BMP, ICO, TIFF (WebP, AVIF and SVG in check_image_files).
+    IMAGE_MAGIC = ["\xFF\xD8\xFF".b, "\x89PNG\r\n\x1A\n".b, "GIF8".b, "BM".b, "\x00\x00\x01\x00".b,
+                   "II*\x00".b, "MM\x00*".b].freeze
 
     def generate(site)
       @site   = site
       @src    = site.source
       @errors = []
       @warns  = []
+      @images = [] # every image path the data points to and that exists (image_exists?)
 
       validate_people_groups(site.data["people_groups"])
       validate_people(site.data["people"], "people.yml", "person")
@@ -59,6 +63,7 @@ module SAIL
         end
         validate_person_pubs(pubs, "member_pubs/#{slug}.yml")
       end
+      check_image_files
 
       @warns.each { |w| Jekyll.logger.warn "Data check:", w }
       return if @errors.empty?
@@ -89,7 +94,26 @@ module SAIL
     end
 
     def image_exists?(rel)
-      File.file?(File.join(@src, "assets", "images", rel))
+      found = File.file?(File.join(@src, "assets", "images", rel))
+      @images << rel if found
+      found
+    end
+
+    # Every image the data points to must be one a browser can show. On 2026-10-31 a photo
+    # renamed in GitHub's editor kept only a line break (two bytes); the build passed and the
+    # Photos page showed a broken image (D69). The first bytes decide, as browsers do, so a
+    # JPEG saved as .png passes. HEIC passes here and gets prepare-images' warning (D42).
+    def check_image_files
+      @images.uniq.each do |rel|
+        path = File.join(@src, "assets", "images", rel)
+        head = File.binread(path, 1024) || "".b
+        next if IMAGE_MAGIC.any? { |m| head.start_with?(m) }
+        next if head.start_with?("RIFF".b) && head[8, 4] == "WEBP".b # WebP
+        next if head[4, 4] == "ftyp".b                               # AVIF, HEIC
+        next if head.include?("<svg".b)                              # SVG
+        err("assets/images/#{rel} is not an image a browser can show (#{File.size(path)} bytes). " \
+            "Upload the file again under the same name. Renaming an uploaded image in GitHub's editor can empty it.")
+      end
     end
 
     # --- members / alumni ---------------------------------------------------
@@ -516,6 +540,15 @@ module SAIL
       %w[scholar orcid github].each do |f|
         err("pi.yml: `#{f}` should be a full URL (http...), got: #{pi[f]}") if !blank?(pi[f]) && !pi[f].to_s.start_with?("http")
       end
+      # The dates on /pi/ are text. Without quotes YAML reads 2026.10 as the number 2026.1 and
+      # the page shows that (D69).
+      { "education" => "date", "career" => "period", "awards" => "date" }.each do |list, f|
+        next unless pi[list].is_a?(Array)
+        pi[list].each_with_index do |e, i|
+          next unless e.is_a?(Hash) && e[f].is_a?(Float)
+          err("pi.yml #{list} entry #{i + 1}: put `#{f}` in quotes (#{f}: \"2026.10\"); without them it is read as the number #{e[f]} and shown that way.")
+        end
+      end
       # Awards on /pi/ (D68). pi.html loops over the list, and Liquid loops zero times over a
       # single value, so a wrong shape would drop the awards with a green build.
       awards = pi["awards"]
@@ -748,5 +781,25 @@ module SAIL
         end
       end
     end
+  end
+end
+
+# A YAML mistake in _data (a colon inside an unquoted value, a line indented out of step)
+# stops Jekyll while it reads the files, before the validator runs, and the run's page then
+# says only "exit code 1". On GitHub Actions, name the file and line there first (D69).
+# Parsing only, so this can never fail a build that Jekyll itself would pass.
+Jekyll::Hooks.register :site, :after_reset do |site|
+  next unless ENV["GITHUB_ACTIONS"] == "true"
+  Dir.glob(File.join(site.source, "_data", "**", "*.{yml,yaml}")).sort.each do |f|
+    Psych.parse_file(f)
+  rescue Psych::SyntaxError => e
+    rel = f.delete_prefix(site.source + "/")
+    # A parser error (an indent out of step) gives the line where that list or block begins.
+    where = e.context.to_s.start_with?("while parsing") ? " in the list or block that begins there" : ""
+    $stdout.puts "::error file=#{rel},line=#{e.line},title=YAML::#{rel} line #{e.line}: #{e.problem}#{where}. " \
+                 "A value with \": \" or \" #\" in it needs quotes, and each line keeps the indent of the lines around it."
+    $stdout.flush
+  rescue StandardError
+    next
   end
 end

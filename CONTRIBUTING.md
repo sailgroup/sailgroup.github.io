@@ -5,9 +5,25 @@ Every change below is a single edit to one file on **github.com** (use the penci
 When you commit, GitHub rebuilds and publishes the site
 (`https://sail.kookmin.ac.kr`) in about a minute.
 
-If you make a mistake (a missing required field, a typo'd image name, a bad
-date), the build **fails with a clear message naming the file and the fix**, and
-the live site is left untouched, so you cannot break the site by editing data.
+If you make a mistake (a missing required field, a typo'd image name, an empty
+or broken image file, a bad date, a YAML slip), the build **fails with a clear
+message naming the file and the fix**, and the live site is left untouched, so
+you cannot break the site by editing data.
+
+**Checking a change.** Open the repository's **Actions** tab; the top run is your
+commit (yellow dot: running, green check: live, red X: failed). On a red X, open
+the run: **Annotations** lists each problem, `Data check` for content (a missing
+field, a wrong file name, an image that is not an image) and `YAML` for the
+file's form, with the file and line. Fix it and commit again. If the run is green
+but a page looks old, your browser kept the old file: reload with Ctrl+Shift+R
+(⌘+Shift+R). An image opened in the viewer can stay old even then; wait about ten
+minutes or use a private window (GitHub Pages lets browsers keep a file that long).
+
+**Writing YAML.** Indent with spaces, in line with the entries above and below;
+one space off stops the build. Put a value in double quotes when it holds `: `
+(the build stops otherwise) or ` #` (the rest is read as a comment and dropped
+without a word). Quote a date with a dot, `"2026.10"`, or it is read as the
+number 2026.1; leave fields marked "plain number" (a paper's `year`) unquoted.
 
 > Bold the PI name **Joonyoung F. Joung** in author lists. House style: no em
 > dashes, plain factual wording. Never invent a photo, link, date, or fact;
@@ -201,14 +217,19 @@ awards:
     date: "2025.09"                                            # shown at the right as written
 ```
 
-The build stops with a message if `awards` is not a list or an entry has no `name` (D68).
+The build stops with a message if `awards` is not a list or an entry has no `name` (D68),
+or if a date on the page (`education` and `awards` `date`, `career` `period`) has no
+quotes and so would show as a number (D69). The same file holds the contact block's
+`office` (pin icon) and `lab` (flask icon, D70).
 
 ## Add a photo  →  upload an image + add one line to `_data/photos.yml`
 
 1. Upload your image to `assets/images/photos/` (e.g. `photo-26.jpg`; any size is fine)
-   under the name it will keep. A photo renamed on GitHub on 2026-10-31 became a two-byte
-   file and the Photos page showed a broken image; to rename, upload it again under the new
-   name, point `photos.yml` to it and delete the old file.
+   with **Add file → Upload files**, under the name it will keep. A photo renamed in
+   GitHub's editor on 2026-10-31 kept two bytes and the Photos page showed a broken image.
+   To rename, upload it again under the new name, point `photos.yml` to it and delete the
+   old file. The build now stops on an image the data points to that is empty or not an
+   image (D69).
 2. Add a block to `_data/photos.yml` (newest first):
 
    ```yaml
@@ -307,7 +328,10 @@ This page is in Korean by request; keep new copy in Korean to match.
   deploy; `main` deploys (D11).
 - All content lives in `_data/*.yml`. `_plugins/generate_pages.rb` turns each
   member/alumnus/paper entry into its page; `_plugins/validate_data.rb` checks
-  the data at build time and fails with a readable message on a mistake. CI also
+  the data at build time and fails with a readable message on a mistake, including
+  an image the data points to whose first bytes are no image format (D69). On
+  GitHub Actions it also names a YAML syntax error's file and line as an
+  annotation, which Jekyll alone leaves deep in the log (D69). CI also
   runs html-proofer over the built site to catch a broken internal link/image.
   Before the build, `.github/scripts/prepare-images.mjs` works on CI's copy of
   the images (never the repository): it shrinks oversized uploads, removes camera

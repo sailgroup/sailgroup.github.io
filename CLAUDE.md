@@ -20,7 +20,7 @@ domain `https://sail.kookmin.ac.kr`.
 - `_data/` — all content lives here: `publications.yml` (authoritative, one entry per paper), `people.yml`
   (members + alumni in one file; `status:` picks the page), `people_groups.yml` (the Alumni
   page's rows: postdoc, Ph.D., M.S., undergraduate), `pi.yml` (its `awards` show on /pi/
-  under Career Summary, D68), `news.yml`, `research.yml`
+  under Career Summary, D68; `lab` under `office` in the contact block, D70), `news.yml`, `research.yml`
   (English and Korean: its `*_ko` fields are the Korean Research page, D65), `translations.yml`
   (a page's versions in other languages), `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
   `navigation.yml`, `positions.yml` (Positions page copy, Korean-only; each role
@@ -28,7 +28,9 @@ domain `https://sail.kookmin.ac.kr`.
   `member_pubs/<slug>.yml` (a person's long external-paper list)
 - `_plugins/` — `generate_pages.rb` builds every publication/person page (and the legacy
   `/members|/alumni/<slug>/` redirects) from `_data`, so adding one is a single YAML edit;
-  `validate_data.rb` checks the data at build time and fails with a readable message;
+  `validate_data.rb` checks the data at build time and fails with a readable message (also
+  on an image file that is not an image, and on Actions it names a YAML syntax error's file
+  and line; D69);
   `pub_sort.rb` orders a person's merged publication list; `people_groups.rb` (the `in_group`
   filter) puts each alumnus in a row by `group:` or else `role`
 - `_layouts/` (`default`, `page`, `person`, `publication`), `_includes/` (shared markup),

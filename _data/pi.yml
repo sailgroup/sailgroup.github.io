@@ -12,6 +12,8 @@ institution: Kookmin University
 email: jjoung@kookmin.ac.kr
 phone: "+82-2-910-4731"
 office: Rm 229, College of Law
+# The lab's room, shown under the office with a flask (D70).
+lab: Rm 501, College of Science
 photo: pi.jpg
 scholar: https://scholar.google.com/citations?user=0uuwTRQAAAAJ
 orcid: https://orcid.org/0000-0002-5976-2048
@@ -52,7 +54,7 @@ career:
     period: 2020.09–2022.07
 
 # Shown on /pi/ under Career Summary (D68), in this order, newest first.
-# Each award: name, org (optional), date.
+# Each award: name, org (optional), date in quotes ("2026.10").
 awards:
   - name: "Faculty Merit Award (Outstanding Paper)"
     org: Kookmin University (80th Anniversary)
