@@ -30,6 +30,14 @@
 #                (the colon is added).
 # ---------------------------------------------------------------------------
 
+- date: "2026-10-30"
+  display_date: ""
+  category: publication
+  title: "Jihwan's MEMo paper published in Chemical Engineering Journal"
+  body: "Congratulations to Jihwan and Chanjoong on the publication of MEMo (Mixture Embedding via Mole Fraction), a graph-based model that conditions molecular representations on mixture composition during encoding to predict the properties of liquid mixtures. Jihwan led this work as first author, and Chanjoong contributed to the machine learning methodology."
+  link: "/publications/47/"
+  link_text: "Read the paper"
+  
 - date: "2026-09-10"
   display_date: ""
   category: publication
