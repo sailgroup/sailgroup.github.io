@@ -1595,3 +1595,23 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   image URLs 200. `qa-site.js`: 72 pages, 158 loads, NO PROBLEMS. `functional.js` 22 of 22;
   WebKit 35 of 35; the 14 link checks above pass on the live site; `text-check.py` against
   the deployed artifact: no line gone, changed or added.
+
+## 39. The PI's awards under Career Summary (2026-10-31, D68)
+
+- **Data:** `pi.yml` `awards` parsed equals the seven entries the PI sent, in the same order.
+- **CI:** dev run 41164940362 (3e840c3) and dev run 41165022943 (6271494, after the merge of
+  the PI's e2e70f7): green; the validator, Jekyll and html-proofer pass.
+- **The artifact** (6271494): /pi/ has the headings Education, Career Summary and Awards in
+  that order and seven award rows with the PI's names, places and dates. The PI's Person
+  JSON-LD parses and carries seven `award` strings ("name, org, date"); `llms-full.txt` lists
+  the same seven after Career.
+- **Looks** (Chrome on the artifact, 1440, 768 and 390 px): the award rows have the career
+  rows' type: names 16px 600 in `--ink`, places 16px in `--ink-2`, dates 14px in `--muted`;
+  the heading has the same computed style. No sideways scroll, no console message. At 390 px
+  three long names take two lines, as long career roles do.
+- **The usual checks:** `functional.js` 22 of 22 on a local server that answers an unknown
+  path with the 404 page; WebKit 35 of 35 (`SITE_DIR`). `text-check.py` against the live site
+  (71 pages; the data dump made with PyYAML, Docker not running): no line gone or changed;
+  22 lines added, all on /pi/: the heading "Awards" and the seven awards' names, places and
+  dates. No data string the live site shows is missing.
+  `qa-site.js` on the artifact: NO PROBLEMS (axe included).
