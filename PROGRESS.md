@@ -384,4 +384,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   `REVIEW.md` section 38.
 - **Phase 39 (2026-10-31):** the PI's seven awards on /pi/ under Career Summary (D68), the
   PI's request through the maintainer. The 80th anniversary photo, emptied by a rename on
-  GitHub, was uploaded again by the PI (e2e70f7). Results in `REVIEW.md` section 39.
+  GitHub, was uploaded again by the PI (e2e70f7). Deployed (main run 41166000941) and
+  verified live. Results in `REVIEW.md` section 39.

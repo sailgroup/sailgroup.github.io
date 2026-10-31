@@ -2512,4 +2512,12 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   again at 12:31 (e2e70f7, the same blob as 812490d), which fixed the live page. On dev,
   9ee96b1 had put back the same blob, and the merge 5f5352c joins the two without a change.
   README and CONTRIBUTING now say to upload a photo under its final name.
+- **The viewer after the fix:** at 12:39 the PI saw the grid's photo but a broken image in
+  the viewer, also after Ctrl+Shift+R. Their browser still held the two-byte file it fetched
+  at 12:29 (Pages sends `max-age=600`). The grid shows the new renditions (`-480w` and up),
+  URLs the broken build never had, while the viewer loads the full-size URL by script after
+  the page has loaded, which a hard reload does not fetch again. A fresh Chrome opened it at
+  1600x1067 (174,302 bytes); nothing on the site needed a change.
+- **Deployed** 2026-10-31 at the maintainer's word (main run 41166000941, e2e70f7 to c7a118d).
+  IndexNow sent /pi/, the one changed page.
 - **Check:** `REVIEW.md` section 39.

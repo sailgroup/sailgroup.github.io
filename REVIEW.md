@@ -1615,3 +1615,11 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   22 lines added, all on /pi/: the heading "Awards" and the seven awards' names, places and
   dates. No data string the live site shows is missing.
   `qa-site.js` on the artifact: NO PROBLEMS (axe included).
+- **Live** (main run 41166000941, 2026-10-31, e2e70f7 to c7a118d): IndexNow sent /pi/, the one
+  changed page; Bing 200, Naver 200. `livecmp.js` with the deployed artifact: 114 files
+  identical, 275 image URLs 200. /pi/ shows 13 rows (2 education, 4 career, 7 awards).
+  `text-check.py` against the deployed artifact: no line gone, changed or added.
+  `functional.js` 22 of 22, WebKit 35 of 35, `qa-site.js` NO PROBLEMS.
+- **The photo viewer** (the PI's 12:39 message): in a fresh Chrome, at 1440 and 390 px, the
+  first photo opens in the viewer at 1600x1067 (174,302 bytes, `max-age=600`). The PI's
+  broken image was the two-byte file cached at 12:29 (D68).
