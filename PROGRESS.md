@@ -390,4 +390,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   request: the build stops on an image file that is not an image and on an unquoted date on
   /pi/, a YAML slip is named with its file and line, and README and CONTRIBUTING say how to
   check a change, write YAML and add a photo. The lab's room under the office on /pi/, with
-  a flask (D70), the PI's request. Results in `REVIEW.md` section 40.
+  a flask (D70), the PI's request. Deployed (main run 41167941250) and verified live.
+  Results in `REVIEW.md` section 40.

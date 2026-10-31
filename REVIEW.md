@@ -1623,3 +1623,30 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
 - **The photo viewer** (the PI's 12:39 message): in a fresh Chrome, at 1440 and 390 px, the
   first photo opens in the viewer at 1600x1067 (174,302 bytes, `max-age=600`). The PI's
   broken image was the two-byte file cached at 12:29 (D68).
+
+## 40. Guards and guides for editing on GitHub; the lab's room (2026-10-31, D69, D70)
+
+- **Before:** the PI's failed `main` runs whose logs remain (2026-09-07 twice, 2026-07-22)
+  were all stopped by the validator with a message the PI acted on (image names with
+  typos, themes renamed in one file). The emptied photo of D68 passed the build.
+- **The new checks, in Docker** (ruby:3.3, the locked gems, `GITHUB_ACTIONS=true`): the tree
+  builds. A two-byte photo and `date: 2026.10` without quotes stop the build with two
+  annotations: "assets/images/photos/261016_개교80주년_기념식.jpg is not an image a browser
+  can show (2 bytes)..." and "pi.yml awards entry 1: put `date` in quotes...; without them it
+  is read as the number 2026.1". `name: Award: Pioneering` gives a `YAML` annotation for
+  `_data/pi.yml` line 60 (the line), a tab gives line 2 of its file (the line), and an indent
+  one space short gives line 57, where the awards list begins, worded so. Every one of the
+  203 files in `assets/images/` starts like an image.
+- **CI** (dev run 41167505367, 1f3c948): green; no annotation on the clean tree.
+- **The artifact** (1f3c948): the contact block reads Rm 229, College of Law; Rm 501,
+  College of Science; the email; the phone; Scholar, ORCID, GitHub. The flask is 16px in
+  the icons' grey, rows 9px apart, the text of the first four rows starts at one x, at
+  1440, 900 and 390 px; no sideways scroll, no console message. `text-check.py` against the
+  live site: the contact line gains "Rm 501, College of Science" (nothing removed), and a
+  screen reader gains "Office:" and "Lab:". `functional.js` 22 of 22, WebKit 35 of 35,
+  `qa-site.js` 72 pages, 158 loads, NO PROBLEMS.
+- **Live** (main run 41167941250, 3d53a9c to 1f3c948): IndexNow sent /pi/; Bing 200, Naver
+  200. `livecmp.js`: 114 files identical, 275 image URLs 200. `text-check.py` against the
+  deployed artifact: no line gone, changed or added. `functional.js` 22 of 22, WebKit 35 of
+  35, `qa-site.js` 72 pages, 158 loads, NO PROBLEMS. The README on GitHub shows the new
+  sections.

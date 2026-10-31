@@ -2552,6 +2552,7 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Tested** in Docker (ruby:3.3, the repository's Gemfile.lock): the tree builds; a two-byte
   photo and an unquoted award date stop it with the two messages; a colon in a value, an
   indent one space short and a tab each give a `YAML` annotation with the file and line.
+- **Deployed** 2026-10-31 with D70 (main run 41167941250, 3d53a9c to 1f3c948).
 - **Check:** `REVIEW.md` section 40.
 
 ## D70: The lab's room on /pi/ (the PI's request through the maintainer, 2026-10-31)
@@ -2565,4 +2566,5 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   a smudge.
 - **Screen readers:** the pin and the flask tell the office and the lab apart on screen, and
   hidden words ("Office:", "Lab:") do it for a screen reader. They replace nothing.
+- **Deployed** 2026-10-31 with D69 (main run 41167941250); IndexNow sent /pi/.
 - **Check:** `REVIEW.md` section 40.
