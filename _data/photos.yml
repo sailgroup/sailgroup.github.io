@@ -3,6 +3,11 @@
 # Images re-fetched through Wix's fit transform (bounded <=1600px) for the web; originals
 # remain on Wix. Order matches the live gallery (newest first). No captions invented.
 
+- image: photos/261016_개교80주년_기념식.jpg
+  title: "2026.10.16. 정준영 교수 공로상 수상"
+  caption: "정준영 교수 공로상(우수논문) 수상 - 국민대학교 개교 80주년 기념식"
+  alt: "2026.10.16. 정준영 교수 공로상 수상"
+
 - image: photos/260623_물리화학분과_김지환수상2.jpg
   title: "2026.06.24. 지환 우수구두발표상 수상"
   caption: "지환 우수구두발표상 수상 - 제149차 물리화학분과 여름심포지엄 @ Busan"
