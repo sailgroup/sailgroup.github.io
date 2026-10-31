@@ -1909,6 +1909,7 @@ body.no-scroll { overflow: hidden; }
 .news-tag--event, [data-cat="event"] { --c: #4a7fbf; }
 .news-tag--award, [data-cat="award"] { --c: #c3922e; }
 .news-tag--talk, [data-cat="talk"] { --c: #8b6bb8; }
+.news-tag--media, [data-cat="media"] { --c: #c25e7c; }
 /* Phones: the line at the left edge, the date and category in one row above the title. */
 @media (max-width: 640px) {
   .news { --date-w: 0px; --node-w: 1.5rem; --node-y: 0.75rem; }

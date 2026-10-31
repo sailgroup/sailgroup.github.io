@@ -2568,3 +2568,22 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   hidden words ("Office:", "Lab:") do it for a screen reader. They replace nothing.
 - **Deployed** 2026-10-31 with D69 (main run 41167941250); IndexNow sent /pi/.
 - **Check:** `REVIEW.md` section 40.
+
+## D71: Two Chemworld articles on News (the PI's request through the maintainer, 2026-11-01)
+
+- **Asked:** the PI sent two articles from Chemworld (화학세계, the Korean Chemical Society's
+  magazine) and asked where they go, since they are not papers. The PI and the maintainer
+  settled on News: a lab profile, "화학의 바다를 항해하는 SAIL 연구실" (May 2026 issue, posted
+  2026-05-01, the column where lab members introduce their lab), and "생성물 예측에서 불순물
+  예측까지: AI 기반 유기반응 예측의 발전" by Heejeong Kim, Seonbin Kim, Jihwan Kim and the PI
+  (August 2026 issue, posted 2026-07-28, Research section).
+- **Not Publications:** the PI said they are not publications, so they stay off
+  `publications.yml` and the people's paper lists. Research was ruled out by the PI.
+- **Category `media`:** a new news category for an article about the lab or by it in a
+  magazine or newspaper. "Publication" would call them papers, "event" fits neither. Its dot
+  is a muted rose, `#c25e7c`, apart from the five hues and about 4:1 on white. The tag shows
+  "Media". The validator, `news.yml`'s header, README and CONTRIBUTING list it.
+- **Text:** English titles and bodies written for the site (new text, for the maintainer's
+  approval); each says the article is in Korean. Dates are the posts' dates; the body names
+  the issue. The links are the URLs the PI sent.
+- **Home:** shows the three newest items, so neither appears there.

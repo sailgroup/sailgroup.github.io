@@ -14,7 +14,9 @@
 #                part and set display_date so the guess is not shown.
 #   display_date OPTIONAL. Shown in place of date when set, e.g. "March 2025"
 #                or "2026". Leave "" to show the full date.
-#   category     one of: people | publication | award | talk | event
+#   category     one of: people | publication | award | talk | event | media
+#                (media: an article about the lab, or one the lab wrote,
+#                in a magazine or newspaper; not a paper)
 #   title        REQUIRED. One line.
 #   body         OPTIONAL. A sentence or two of detail. Leave "" to omit.
 #   link         OPTIONAL. A page on this site ("/publications/41/") or a full
@@ -62,6 +64,14 @@
   link: "/members/yeonju-yoo/"
   link_text: "Member page"
 
+- date: "2026-07-28"
+  display_date: ""
+  category: media
+  title: "Article on AI-based organic reaction prediction in Chemworld"
+  body: "Heejeong, Seonbin, Jihwan and Prof. Joung wrote an article for the Research section of the August 2026 issue of Chemworld, the Korean Chemical Society's magazine. It traces AI-based organic reaction prediction from product prediction to impurity prediction. The article is in Korean."
+  link: "https://chemworld.kcsnet.or.kr/post/%EC%83%9D%EC%84%B1%EB%AC%BC-%EC%98%88%EC%B8%A1%EC%97%90%EC%84%9C-%EB%B6%88%EC%88%9C%EB%AC%BC-%EC%98%88%EC%B8%A1%EA%B9%8C%EC%A7%80-ai-%EA%B8%B0%EB%B0%98-%EC%9C%A0%EA%B8%B0%EB%B0%98%EC%9D%91-%EC%98%88%EC%B8%A1%EC%9D%98-%EB%B0%9C%EC%A0%84"
+  link_text: "Read the article"
+
 - date: "2026-07-13"
   display_date: ""
   category: people
@@ -105,6 +115,14 @@
   link: "/publications/41/"
   link_text: "Read the paper"
   
+- date: "2026-05-01"
+  display_date: ""
+  category: media
+  title: "SAIL introduced in Chemworld"
+  body: "The May 2026 issue of Chemworld, the Korean Chemical Society's magazine, carries a piece on SAIL in its column where members of a lab introduce their own lab. It covers the lab's research and life in the lab. The article is in Korean."
+  link: "https://chemworld.kcsnet.or.kr/post/%EA%B5%AD%EB%AF%BC%EB%8C%80%ED%95%99%EA%B5%90-%ED%99%94%ED%95%99%EA%B3%BC%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%ED%99%94%ED%95%99-%EC%97%B0%EA%B5%AC%EC%8B%A4"
+  link_text: "Read the article"
+
 - date: "2026-03-08"
   display_date: ""
   category: award

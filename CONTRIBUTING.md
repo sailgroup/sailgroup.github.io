@@ -193,7 +193,7 @@ Minimum:
 ```yaml
 - date: "2026-06-20"           # required, YYYY-MM-DD (controls the order)
   display_date: ""             # optional; shown instead of date, e.g. "March 2025" or "2026"
-  category: award              # people | publication | award | talk | event
+  category: award              # people | publication | award | talk | event | media (magazine or newspaper article, not a paper)
   title: "Best poster award"   # required
   body: "One or two sentences." # optional
   link: "/publications/41/"    # optional; internal path or full https URL

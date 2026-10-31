@@ -242,7 +242,7 @@ awards:
 ```yaml
 - date: "2026-06-20"           # 필수: YYYY-MM-DD (최신순 정렬 기준)
   display_date: ""             # 선택: 날짜 대신 표시할 문구 (예: "March 2025", "2026")
-  category: award              # people | publication | award | talk | event
+  category: award              # people | publication | award | talk | event | media (잡지 · 신문 기사, 논문 아님)
   title: "최우수 포스터상 수상"  # 필수
   body: "한두 문장 설명."        # 선택
   link: "/publications/41/"    # 선택: 내부 경로 또는 https 주소

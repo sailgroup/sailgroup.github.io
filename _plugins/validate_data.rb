@@ -19,7 +19,7 @@ module SAIL
 
     DATE_RE  = /\A\d{4}-\d{2}-\d{2}\z/
     SLUG_RE  = /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/
-    NEWS_CATS = %w[people publication award talk event].freeze
+    NEWS_CATS = %w[people publication award talk event media].freeze
     # A paper's link fields (the DOI, preprint, code and dataset icons).
     LINK_FIELDS = %w[doi preprint_url code dataset].freeze
     # How an image file starts: JPEG, PNG, GIF, BMP, ICO, TIFF (WebP, AVIF and SVG in check_image_files).
