@@ -11,7 +11,7 @@ was taken, what was normalized, and what is still open.
 | File | Content | Notes |
 |------|---------|-------|
 | `publications.yml` | 41 papers (id 1–41), newest first | Provided list, authoritative. Fields are display-ready; `themes` are SAIL tags; `image` set for all 41 to the paper's own graphical abstract (`pub-<id>.jpg`, see D15); `abstract` (cleaned English) and `abstract_ko` (Korean) set for all 41 (D20), shown on the per-paper detail pages. |
-| `pi.yml` | PI profile, CV, links | Joonyoung F. Joung. Education, appointments, Scholar, ORCID. |
+| `pi.yml` | PI profile, CV, links | Joonyoung F. Joung. Education, appointments, Scholar, ORCID. Awards (7) added 2026-10-31 as the PI sent them (KakaoTalk), shown under Career Summary (D68). |
 | `members.yml` | 5 current members | Name, role, email, photo, slug only. No bios/links on source. Each entry's `/members/<slug>/` page is generated from this file (Phase 11, D22) — no stub file. |
 | `alumni.yml` | 6 alumni | All UROP undergraduates at Kookmin. Real ID photo + slug for each (harvested from the live `/alumni-1` page, Phase 7); each `/alumni/<slug>/` page is generated from this file (Phase 11, D22). |
 | `research.yml` | Overview + 4 areas | Area bodies verbatim (EN + KO); overview factualized. Rewritten by the PI on 2026-10-25 (ec91eed, English and Korean); the Korean is shown at `/research/ko/` (D65). |

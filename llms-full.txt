@@ -52,7 +52,10 @@ Education:
 {% endfor %}
 Career:
 {% for c in pi.career %}- {{ c.role }}, {{ c.org }}{% if c.advisor %} (advisor: {{ c.advisor }}){% endif %}, {{ c.period }}
-{% endfor %}
+{% endfor %}{% if pi.awards and pi.awards.size > 0 %}
+Awards:
+{% for w in pi.awards %}- {{ w.name }}{% if w.org and w.org != "" %}, {{ w.org }}{% endif %}{% if w.date and w.date != "" %}, {{ w.date }}{% endif %}
+{% endfor %}{% endif %}
 ## Joining the lab
 See {{ site.url }}/positions/ (Korean) for how to apply as a postdoctoral researcher, graduate student, or undergraduate researcher, including currently advertised undergraduate projects.
 

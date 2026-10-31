@@ -382,3 +382,6 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   the lab's papers on the Publications list, the paper pages and the person pages. At rest
   the lists look as before. Deployed (main run 40989773093) and verified live. Results in
   `REVIEW.md` section 38.
+- **Phase 39 (2026-10-31):** the PI's seven awards on /pi/ under Career Summary (D68), the
+  PI's request through the maintainer, and the 80th anniversary photo restored after a rename
+  on GitHub left an empty file in its place. Results in `REVIEW.md` section 39.

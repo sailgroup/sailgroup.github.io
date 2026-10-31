@@ -18,6 +18,7 @@ Live: https://sail.kookmin.ac.kr
 | 논문 코드·데이터 링크 (GitHub, Figshare 아이콘) | `_data/publications.yml` 에서 그 논문의 `code: ""`(코드 저장소)·`dataset: ""`(데이터셋) 따옴표 안에 주소 ([자세히](#논문에-코드와-데이터-링크-달기-github-figshare-아이콘)) |
 | 멤버·동문 | `_data/people.yml` (`status: current` 또는 `alumni`, [추가 · 졸업 처리](#새-멤버-추가하기)) |
 | 동문 페이지의 줄 (포닥 · 박사 · 석사 · 학부생) | `_data/people_groups.yml` ([자세히](#졸업-처리-동문으로-옮기기)) |
+| PI 페이지의 수상 내역 (Career Summary 아래) | `_data/pi.yml` 의 `awards` (최신 항목을 위에. 항목마다 `name` · `org` · `date`, `org` 는 생략 가능. D68) |
 | 뉴스 | `_data/news.yml` |
 | 홈 화면 인터뷰 영상 | `_data/home.yml` 의 `interview` ([자세히](#홈-화면-인터뷰-영상-_datahomeyml-의-interview)) |
 | 사진 | `assets/images/photos/` 에 이미지 업로드 후 `_data/photos.yml` |
@@ -242,6 +243,9 @@ interview:
   title: "2026.06.20. 워크숍"   # 선택
   caption: "한 줄 설명"         # 선택
 ```
+사진은 처음부터 쓸 파일 이름으로 올려 주세요. 2026-10-31 GitHub 에서 이름을 바꾼 사진이 내용 없는
+2바이트 파일로 저장되어 사진 페이지에 깨진 그림이 떴습니다. 이름을 바꿔야 하면 새 이름으로 다시 올리고
+`photos.yml` 을 고친 뒤 옛 파일을 지웁니다.
 
 ### 모집: `_data/positions.yml`
 모집 안내 페이지(`/positions/`)의 모든 문구가 이 파일에 있습니다(한국어). `intro`(소개글)와

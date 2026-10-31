@@ -19,7 +19,8 @@ domain `https://sail.kookmin.ac.kr`.
 - `_config.yml` — site configuration
 - `_data/` — all content lives here: `publications.yml` (authoritative, one entry per paper), `people.yml`
   (members + alumni in one file; `status:` picks the page), `people_groups.yml` (the Alumni
-  page's rows: postdoc, Ph.D., M.S., undergraduate), `pi.yml`, `news.yml`, `research.yml`
+  page's rows: postdoc, Ph.D., M.S., undergraduate), `pi.yml` (its `awards` show on /pi/
+  under Career Summary, D68), `news.yml`, `research.yml`
   (English and Korean: its `*_ko` fields are the Korean Research page, D65), `translations.yml`
   (a page's versions in other languages), `covers.yml`, `photos.yml`, `themes.yml` (topic-tag chips), `journal_logos.yml`, `home.yml`,
   `navigation.yml`, `positions.yml` (Positions page copy, Korean-only; each role

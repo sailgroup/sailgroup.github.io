@@ -190,9 +190,25 @@ Minimum:
 
 The three newest items also show on the home page.
 
+## Add an award to the PI page  →  `_data/pi.yml`
+
+The `awards` list shows on /pi/ under Career Summary, in the file's order (newest first):
+
+```yaml
+awards:
+  - name: Pioneering Award                                     # required
+    org: College of Science and Technology, Kookmin University # optional
+    date: "2025.09"                                            # shown at the right as written
+```
+
+The build stops with a message if `awards` is not a list or an entry has no `name` (D68).
+
 ## Add a photo  →  upload an image + add one line to `_data/photos.yml`
 
-1. Upload your image to `assets/images/photos/` (e.g. `photo-26.jpg`; any size is fine).
+1. Upload your image to `assets/images/photos/` (e.g. `photo-26.jpg`; any size is fine)
+   under the name it will keep. A photo renamed on GitHub on 2026-10-31 became a two-byte
+   file and the Photos page showed a broken image; to rename, upload it again under the new
+   name, point `photos.yml` to it and delete the old file.
 2. Add a block to `_data/photos.yml` (newest first):
 
    ```yaml

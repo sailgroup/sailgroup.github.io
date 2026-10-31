@@ -2488,3 +2488,28 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Deployed** 2026-10-30 as built, the maintainer choosing the look above over an underline
   at rest (main run 40989773093, 0939e96 to 41c6d8c). IndexNow sent the 50 changed pages.
 - **Check:** `REVIEW.md` section 38.
+
+## D68: The PI's awards on /pi/ (the PI's request through the maintainer, 2026-10-31)
+
+- **Asked:** the PI sent seven awards written as `pi.yml` lines (KakaoTalk, 2026-10-31) and
+  asked for them to show under Career Summary on the PI page.
+- **Data:** `pi.yml` `awards`, entered as sent: the same names, places, dates and order,
+  newest first. The two Graduate Student Outstanding Research Paper Awards (2017.03 and
+  2016.03) are both kept. A two-line comment above the list says where it shows and what an
+  entry holds (`name`, `org` optional, `date`).
+- **How it looks:** a third block after Education and Career Summary, in the same rows: the
+  award in bold, its place under it, the date at the right in small muted type. No new CSS.
+  The heading "Awards" is new text, not the PI's; it is the word of the PI's own key, and
+  the message says 상.
+- **Derived:** the PI's Person JSON-LD on /pi/ carries `award`, one "name, org, date" string
+  per entry, and `llms-full.txt` lists them after Career in the same form.
+- **Validator:** `awards` must be a list whose entries each have a `name`. Liquid loops zero
+  times over a single value, so a wrong shape would otherwise drop the block with a green
+  build.
+- **The 80th anniversary photo:** the PI uploaded the award ceremony photo (812490d) and
+  renamed it on GitHub (69ad7d0). The renamed file held two bytes, a line break, and the live
+  Photos page showed a broken image from main run 41164461728. The upload from 812490d is
+  back under the new name (9ee96b1); `photos.yml` already pointed to it. The dev build's
+  image step is strict and would have failed on the empty file. README and CONTRIBUTING now
+  say to upload a photo under its final name.
+- **Check:** `REVIEW.md` section 39.

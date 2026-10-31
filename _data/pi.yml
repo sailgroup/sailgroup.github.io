@@ -51,6 +51,31 @@ career:
     org: Research Institute for Natural Science, Korea University
     period: 2020.09–2022.07
 
+# Shown on /pi/ under Career Summary (D68), in this order, newest first.
+# Each award: name, org (optional), date.
+awards:
+  - name: "Faculty Merit Award (Outstanding Paper)"
+    org: Kookmin University (80th Anniversary)
+    date: "2026.10"
+  - name: Pioneering Award
+    org: College of Science and Technology, Kookmin University
+    date: "2025.09"
+  - name: RINS Fellow
+    org: Research Institute for Natural Science, Korea University
+    date: "2020.03"
+  - name: Best TA Award (2017)
+    org: Department of Chemistry, Korea University
+    date: "2018.03"
+  - name: Outstanding Poster Award
+    org: 119th General Meeting of the Korean Chemical Society
+    date: "2017.04"
+  - name: Graduate Student Outstanding Research Paper Award
+    org: Research Institute for Natural Science, Korea University
+    date: "2017.03"
+  - name: Graduate Student Outstanding Research Paper Award
+    org: Research Institute for Natural Science, Korea University
+    date: "2016.03"
+
 related_labs:
   - name: Coley Research Group, MIT
     url: https://coley.mit.edu/

@@ -516,6 +516,22 @@ module SAIL
       %w[scholar orcid github].each do |f|
         err("pi.yml: `#{f}` should be a full URL (http...), got: #{pi[f]}") if !blank?(pi[f]) && !pi[f].to_s.start_with?("http")
       end
+      # Awards on /pi/ (D68). pi.html loops over the list, and Liquid loops zero times over a
+      # single value, so a wrong shape would drop the awards with a green build.
+      awards = pi["awards"]
+      return if awards.nil?
+      unless awards.is_a?(Array)
+        err("pi.yml: `awards` must be a list, one `- name: ...` entry per award.")
+        return
+      end
+      awards.each_with_index do |a, i|
+        at = "pi.yml awards entry #{i + 1}"
+        unless a.is_a?(Hash)
+          err("#{at}: expected `name`, `org` and `date` under the `-`.")
+          next
+        end
+        err("#{at}: missing `name`.") if blank?(a["name"])
+      end
     end
 
     # --- home (hero + contact block) ----------------------------------------

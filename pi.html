@@ -54,6 +54,19 @@ permalink: /pi/
           </div>
           {%- endfor -%}
         </div>
+
+        {%- comment -%}Awards (D68, the PI's request): pi.yml `awards` in its order, laid out as the rows above.{%- endcomment -%}
+        {%- if pi.awards and pi.awards.size > 0 %}
+        <div class="cv">
+          <h2>Awards</h2>
+          {%- for w in pi.awards -%}
+          <div class="cv__item">
+            <div><div class="cv__role">{{ w.name }}</div>{% if w.org and w.org != "" %}<div class="cv__org">{{ w.org }}</div>{% endif %}</div>
+            <span class="cv__when">{{ w.date }}</span>
+          </div>
+          {%- endfor -%}
+        </div>
+        {%- endif %}
       </div>
     </div>
   </div>
