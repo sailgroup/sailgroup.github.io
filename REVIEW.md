@@ -1650,3 +1650,17 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   deployed artifact: no line gone, changed or added. `functional.js` 22 of 22, WebKit 35 of
   35, `qa-site.js` 72 pages, 158 loads, NO PROBLEMS. The README on GitHub shows the new
   sections.
+
+## 41. Two Chemworld articles on News (2026-11-01, D71)
+
+- **CI** (dev run 41212808897, cb65664): green.
+- **The artifact** (cb65664): `text-check.py` against the live site changes /news/ only, out
+  of 71 pages: no line gone or changed; added are the two items (date, "Media", title, body,
+  "Read the article") and twice "(opens in a new tab)" for a screen reader. Each article link
+  opens in a new tab with the external mark. At 1440 and 390 px the two items read in full
+  with the rose dot on the timeline. `llms-full.txt` lists both with their links. Served
+  locally, `functional.js` 22 of 22.
+- **Live** (main run 41213213903, 3169dfc to cb65664): IndexNow sent /news/; Bing 200, Naver
+  200. `livecmp.js`: 114 files identical, 275 image URLs 200. `text-check.py` against the
+  deployed artifact: no line gone, changed or added. `functional.js` 22 of 22. The live CSS
+  carries the Media colour.

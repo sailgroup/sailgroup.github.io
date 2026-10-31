@@ -392,3 +392,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   check a change, write YAML and add a photo. The lab's room under the office on /pi/, with
   a flask (D70), the PI's request. Deployed (main run 41167941250) and verified live.
   Results in `REVIEW.md` section 40.
+- **Phase 41 (2026-11-01):** two Chemworld articles on News (D71), the PI's request through
+  the maintainer: the lab profile in the May 2026 issue and the lab's article on AI-based
+  organic reaction prediction in the August 2026 issue, under a new news category, Media
+  (the maintainer's choice). Deployed (main run 41213213903) and verified live. Results in
+  `REVIEW.md` section 41.

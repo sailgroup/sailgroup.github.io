@@ -2583,7 +2583,9 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   magazine or newspaper. "Publication" would call them papers, "event" fits neither. Its dot
   is a muted rose, `#c25e7c`, apart from the five hues and about 4:1 on white. The tag shows
   "Media". The validator, `news.yml`'s header, README and CONTRIBUTING list it.
-- **Text:** English titles and bodies written for the site (new text, for the maintainer's
-  approval); each says the article is in Korean. Dates are the posts' dates; the body names
-  the issue. The links are the URLs the PI sent.
+- **Text:** English titles and bodies written for the site (new text; the maintainer
+  approved the category's name, Media, and the deploy); each says the article is in
+  Korean. Dates are the posts' dates; the body names the issue. The links are the URLs the PI sent.
 - **Home:** shows the three newest items, so neither appears there.
+- **Deployed** 2026-11-01 (main run 41213213903, 3169dfc to cb65664); IndexNow sent /news/.
+- **Check:** `REVIEW.md` section 41.
