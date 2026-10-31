@@ -2508,8 +2508,8 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   build.
 - **The 80th anniversary photo:** the PI uploaded the award ceremony photo (812490d) and
   renamed it on GitHub (69ad7d0). The renamed file held two bytes, a line break, and the live
-  Photos page showed a broken image from main run 41164461728. The upload from 812490d is
-  back under the new name (9ee96b1); `photos.yml` already pointed to it. The dev build's
-  image step is strict and would have failed on the empty file. README and CONTRIBUTING now
-  say to upload a photo under its final name.
+  Photos page showed a broken image from main run 41164461728. The PI uploaded the same file
+  again at 12:31 (e2e70f7, the same blob as 812490d), which fixed the live page. On dev,
+  9ee96b1 had put back the same blob, and the merge 5f5352c joins the two without a change.
+  README and CONTRIBUTING now say to upload a photo under its final name.
 - **Check:** `REVIEW.md` section 39.
