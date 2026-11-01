@@ -44,6 +44,7 @@
   authors: "Jihwan Kim, Chanjoong Kim, Joonyoung F. Joung*"
   journal: "Chem. Eng. J."
   year: 2026
+  vol: 550
   pages: "183472"
   doi: "https://doi.org/10.1016/j.cej.2026.183472"
   code: "https://github.com/sailgroup/MEMo"
