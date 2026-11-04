@@ -39,11 +39,13 @@
 #   3. id 39 preprint URL on Wix was malformed ("https://10.26434/...");
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
+
+
 - id: 48
   title: "Metal- and photocatalyst-free aerobic dehydrogenation of N-heterocycles under visible light via substrate self-association"
   authors: "Mincheol Park, Hyena Suh, Jun-Young Cho, Junghoon Noh , Sohyeon Kim, Yeonjin Ko, Joonyoung F. Joung*, and Boyoung Y. Park*"
   journal: "Green Chem."
-  ref: "accepted
+  ref: "accepted"
   doi: ""
   code: ""
   dataset: ""
@@ -51,8 +53,6 @@
     - "Quantum chemical modeling"
   image: ""
   abstract: ""
-
-
 
 - id: 47
   title: "Encoding Composition-Dependent Intermolecular Interactions into Learned Molecular Representations"
