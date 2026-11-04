@@ -69,7 +69,7 @@
     - "Molecular property prediction"
     - "Representation learning"
     - "Experimental dataset"
-  image: ""
+  image: "pub-47.png"
   abstract: >
     The properties of liquid mixtures are governed by intermolecular interactions. 
     The strength and character of these interactions change continuously with composition. 
