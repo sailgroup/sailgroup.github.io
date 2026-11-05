@@ -47,13 +47,25 @@
   journal: "Green Chem."
   year: 2026
   ref: "accepted"
-  doi: ""
+  doi: "https://doi.org/10.1039/D6GC04811K"
   code: ""
   dataset: ""
   themes:
     - "Quantum chemical modeling"
   image: ""
-  abstract: ""
+  abstract: >
+    Oxidative dehydrogenation of N-heterocycles often relies on transition-metal catalysts, photocatalysts, biocatalysts, or stoichiometric 
+    oxidants, increasing material inputs and downstream separation requirements. Here we show that the reaction proceeds under visible light 
+    with molecular oxygen as the terminal oxidant, without an added metal catalyst or photocatalyst. The required photoactivity comes from 
+    the substrates themselves. Concentration-dependent UV–vis and photoluminescence spectra, together with site-specific 1H NMR shifts, are 
+    consistent with intermolecular association, while early-time product yields were highest at intermediate concentrations. Dynamic light 
+    scattering gave no evidence of persistent colloidal-scale aggregates within the accessible size range. Quantum-chemical calculations identify 
+    charge-transfer-enriched excited states among sampled self-associated configurations. EPR spectroscopy, radical inhibition, and oxygen-derived 
+    product analyses are consistent with an O2-dependent radical pathway involving photoinduced single-electron transfer. The method furnished 
+    quinoline, indole, quinoxaline, and dihydroisoquinoline products in 38–94% isolated yields. At a cumulative 10 mmol substrate throughput, 
+    continuous flow gave ethyl indole-2-carboxylate in 96.5% isolated yield, with a normalised reaction-stage E-factor of 12, and a 21-fold higher 
+    space–time yield than the corresponding batch experiment. Representative substrates also reacted under natural sunlight in air without an 
+    artificial light source. This substrate-driven photoactivation removes the need for catalyst preparation, immobilisation, and recovery.
 
 - id: 47
   title: "Encoding Composition-Dependent Intermolecular Interactions into Learned Molecular Representations"
