@@ -39,6 +39,14 @@
   body: "Congratulations to Jihwan and Chanjoong on the publication of MEMo (Mixture Embedding via Mole Fraction), a graph-based model that conditions molecular representations on mixture composition during encoding to predict the properties of liquid mixtures. Jihwan led this work as first author, and Chanjoong contributed to the machine learning methodology."
   link: "/publications/47/"
   link_text: "Read the paper"
+  links_label: "In the press"
+  links:
+    - text: "Seoul Shinmun"
+      url: "https://www.seoul.co.kr/news/society/2026/11/05/20261105500036"
+    - text: "Edaily"
+      url: "https://www.edaily.co.kr/News/Read?newsId=05067606645642768&mediaCodeNo=257"
+    - text: "Financial News"
+      url: "https://www.fnnews.com/news/202611051721205228"
   
 - date: "2026-10-16"
   display_date: ""

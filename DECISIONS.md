@@ -2589,3 +2589,24 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Home:** shows the three newest items, so neither appears there.
 - **Deployed** 2026-11-01 (main run 41213213903, 3169dfc to cb65664); IndexNow sent /news/.
 - **Check:** `REVIEW.md` section 41.
+
+## D72: Press articles on MEMo under its News item (the maintainer's request, 2026-11-05)
+
+- **Asked:** after Kookmin's press release on MEMo (paper 47), the maintainer asked for the
+  three most credible articles to add to News.
+- **Found:** eight articles of 2026-11-05: Seoul Shinmun (09:55), Edaily (14:22), Financial
+  News (17:22), 한국대학신문 (09:44), 베리타스알파 (11:07, its press-release section),
+  뉴스티앤티 (14:24, a regional site's institution notices), 스마트경제 (16:21, http only) and
+  Aju Press (16:44, the only one in English).
+- **Chosen:** Seoul Shinmun, Edaily and Financial News, the three that Naver and Daum carry
+  in full as their news partners (the rest appear there as links out, or not at all). Each
+  has a named reporter, and their facts match the paper: over 860,000 NIST/TRC measurements,
+  four of five properties, code released. 한국대학신문 and 베리타스알파 print the release as
+  sent; 스마트경제 adds claims the paper does not make ("압도", "훨씬 뛰어난"). Aju Press is
+  the strongest of the rest and the one to add if an English article is wanted.
+- **Where:** `links` with `links_label: "In the press"` on the 2026-10-30 MEMo item, as
+  FlowER has (D60). The articles follow the paper's news; a Media item (D71) would put
+  MEMo twice among the home page's three newest. The labels are the outlets' English
+  names, in the order the articles ran; the URLs are the canonical ones, without Naver's
+  tracking parameters.
+- **Text:** no line changes; the item's link row adds "In the press:" and the three names.
