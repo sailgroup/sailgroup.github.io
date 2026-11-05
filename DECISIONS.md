@@ -2596,12 +2596,13 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   three most credible articles to add to News.
 - **Found:** eight articles of 2026-11-05: Seoul Shinmun (09:55), Edaily (14:22), Financial
   News (17:22), 한국대학신문 (09:44), 베리타스알파 (11:07, its press-release section),
-  뉴스티앤티 (14:24, a regional site's institution notices), 스마트경제 (16:21, http only) and
+  뉴스티앤티 (14:24, a regional site's institution notices), 스마트경제 (16:21) and
   Aju Press (16:44, the only one in English).
 - **Chosen:** Seoul Shinmun, Edaily and Financial News, the three that Naver and Daum carry
   in full as their news partners (the rest appear there as links out, or not at all). Each
-  has a named reporter, and their facts match the paper: over 860,000 NIST/TRC measurements,
-  four of five properties, code released. 한국대학신문 and 베리타스알파 print the release as
+  has a named reporter, and what each reports matches the paper: about 860,000 NIST
+  measurements, four of five properties; Seoul Shinmun and Financial News add that the
+  code is public. 한국대학신문 and 베리타스알파 print the release as
   sent; 스마트경제 adds claims the paper does not make ("압도", "훨씬 뛰어난"). Aju Press is
   the strongest of the rest and the one to add if an English article is wanted.
 - **Where:** `links` with `links_label: "In the press"` on the 2026-10-30 MEMo item, as
@@ -2612,3 +2613,23 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Text:** no line changes; the item's link row adds "In the press:" and the three names.
 - **Deployed** 2026-11-05 (main run 42012761561, 4a45755 to f172698); IndexNow sent /news/.
 - **Check:** `REVIEW.md` section 42.
+
+## D73: The "and" before paper 48's last author in BibTeX, Scholar tags and JSON-LD (the maintainer's request, 2026-11-05)
+
+- **Found** in the review of D72: the PI wrote paper 48's authors as "..., Joonyoung F.
+  Joung*, and Boyoung Y. Park*". The page shows that as written, but BibTeX, Google
+  Scholar's `citation_author` tags and the JSON-LD cut the string at commas only, so the
+  last author came out as "and Boyoung Y. Park", and `/publications.bib` read "Joonyoung F.
+  Joung and and Boyoung Y. Park", a doubled "and" that BibTeX reads as an empty author.
+- **The PI's intent:** eight authors, the last Boyoung Y. Park, as the publisher's record at
+  Crossref lists them. README and CONTRIBUTING show authors as "A, B", and no other entry
+  in `_data` has an "and" in its authors.
+- **Fix:** where a name is taken from the string (`_plugins/bibtex.rb`,
+  `_includes/citation-meta.html`, `_includes/structured-data.html`), an "and " at its start
+  is dropped. Only at the start, so a name with "and" inside it (Ferdinand) stays whole.
+  `publications.yml` and the page's author line are unchanged (D52): the PI's "and" still
+  shows, and an "and" written the same way later comes out right too.
+- **Not changed:** the space in "Junghoon Noh ," (every output already trims it). A list
+  with "and" and no comma before it ("B and C") would still join two names; no entry has one.
+- **Outside the site:** Crossref lists the PI on this paper as "Joonyoung Francis Francis
+  Joung", the publisher's slip; reported to the maintainer.

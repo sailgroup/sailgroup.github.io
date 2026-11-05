@@ -17,7 +17,8 @@ may shorten the author list with "...", which must never go out as an author nam
 {%- if p and citable -%}
   <meta name="citation_title" content="{{ p.title | strip_html | escape }}">
   {%- assign authlist = p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', '' | split: ',' -%}
-  {%- for a in authlist -%}{%- assign an = a | strip -%}{%- if an != "" and an != "..." and an != "…" %}
+  {%- comment -%}An "and" before the last name ("A, B, and C", paper 48) joins the list; the name starts after it (D73).{%- endcomment -%}
+  {%- for a in authlist -%}{%- assign an = a | strip -%}{%- assign auth_head = an | slice: 0, 4 -%}{%- if auth_head == "and " -%}{%- assign an = an | remove_first: "and " | strip -%}{%- endif -%}{%- if an != "" and an != "..." and an != "…" %}
   <meta name="citation_author" content="{{ an | escape }}">{% endif -%}{%- endfor -%}
   {%- comment -%}"Submitted" is a status, not a journal (a paper under review with a preprint, e.g. 46).{%- endcomment -%}
   {%- if p.journal and p.journal != "" and p.journal != "Submitted" %}

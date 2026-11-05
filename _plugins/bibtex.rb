@@ -110,9 +110,10 @@ module Jekyll
     end
 
     # "A, B*, C" -> "A and B and C". A "..." standing for left-out names becomes "others"
-    # at the end, BibTeX's word for a list that is not complete.
+    # at the end, BibTeX's word for a list that is not complete. An "and" before the last
+    # name ("A, B, and C", paper 48) joins the list; the name starts after it (D73).
     def self.authors(str)
-      names = str.to_s.gsub(MARKS, "").split(",").map(&:strip).reject(&:empty?)
+      names = str.to_s.gsub(MARKS, "").split(",").map { |n| n.strip.sub(/\Aand\s+/, "") }.reject(&:empty?)
       cut = names.any? { |n| n.match?(ELLIPSIS) }
       names = names.reject { |n| n.match?(ELLIPSIS) }
       names << "others" if cut

@@ -72,7 +72,8 @@ D67).
 {%- if p.preprint_url and p.preprint_url != "" -%}{%- assign citable = true -%}{%- endif -%}
 {%- assign rawnames = p.authors | replace: '*', '' | replace: '†', '' | replace: '‡', '' | split: ',' -%}
 {%- assign authnames = "" | split: "" -%}
-{%- for a in rawnames -%}{%- assign an = a | strip -%}{%- if an != "" and an != "..." and an != "…" -%}{%- assign authnames = authnames | push: an -%}{%- endif -%}{%- endfor -%}
+{%- comment -%}An "and" before the last name ("A, B, and C", paper 48) joins the list; the name starts after it (D73).{%- endcomment -%}
+{%- for a in rawnames -%}{%- assign an = a | strip -%}{%- assign auth_head = an | slice: 0, 4 -%}{%- if auth_head == "and " -%}{%- assign an = an | remove_first: "and " | strip -%}{%- endif -%}{%- if an != "" and an != "..." and an != "…" -%}{%- assign authnames = authnames | push: an -%}{%- endif -%}{%- endfor -%}
 {%- comment -%}sameAs: the paper's DOI, or for a preprint entry without one (e.g. 43, ChemRxiv) the preprint's own doi.org link. image: the graphical abstract, the larger copy where there is one, as in og:image (page.image, set by generate_pages.rb).{%- endcomment -%}
 {%- assign doiurl = "" -%}
 {%- if p.doi and p.doi != "" -%}{%- assign doiurl = p.doi -%}{%- elsif p.preprint_url contains "doi.org/10." -%}{%- assign doiurl = p.preprint_url -%}{%- endif -%}
