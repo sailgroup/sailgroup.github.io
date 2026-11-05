@@ -1664,3 +1664,20 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   200. `livecmp.js`: 114 files identical, 275 image URLs 200. `text-check.py` against the
   deployed artifact: no line gone, changed or added. `functional.js` 22 of 22. The live CSS
   carries the Media colour.
+
+## 42. Press articles on MEMo under its News item (2026-11-05, D72)
+
+- **Before:** `origin/main` had moved from 3552c0b to 4a45755 with the PI's seven commits
+  (paper 48; paper 47's volume and figure), each deployed by its own run, the last
+  41980407740. `dev` fast-forwarded to it, and f172698 went on top.
+- **CI** (dev run 42012266465, f172698): green.
+- **The artifact** (f172698): `text-check.py` against the live site changes /news/ only, out
+  of 72 pages: no line gone or changed; added is "In the press: Seoul Shinmun Edaily
+  Financial News" on the MEMo item's link row, with "(opens in a new tab)" for a screen
+  reader. No sideways overflow at 1440, 768, 390 or 320 px; from 390 px down the row wraps
+  as FlowER's does. `llms-full.txt` lists the three. Served locally, `functional.js` 22 of
+  22. The `_data` dump for `text-check.py` came from PyYAML (Docker was not running).
+- **Live** (main run 42012761561, 4a45755 to f172698): IndexNow sent /news/; Bing 200, Naver
+  200. `livecmp.js` (pub-47.png as an extra): 115 files identical, 277 image URLs 200.
+  `text-check.py` against the deployed artifact: no line gone, changed or added.
+  `functional.js` 22 of 22.

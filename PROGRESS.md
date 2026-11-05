@@ -397,3 +397,7 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   organic reaction prediction in the August 2026 issue, under a new news category, Media
   (the maintainer's choice). Deployed (main run 41213213903) and verified live. Results in
   `REVIEW.md` section 41.
+- **Phase 42 (2026-11-05):** press articles on the MEMo paper under its News item (D72), the
+  maintainer's request: Seoul Shinmun, Edaily and Financial News, "In the press", as on
+  FlowER's item. Deployed (main run 42012761561) and verified live. Results in `REVIEW.md`
+  section 42.

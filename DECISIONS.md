@@ -2610,3 +2610,5 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   names, in the order the articles ran; the URLs are the canonical ones, without Naver's
   tracking parameters.
 - **Text:** no line changes; the item's link row adds "In the press:" and the three names.
+- **Deployed** 2026-11-05 (main run 42012761561, 4a45755 to f172698); IndexNow sent /news/.
+- **Check:** `REVIEW.md` section 42.
