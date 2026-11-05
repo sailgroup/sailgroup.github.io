@@ -1683,3 +1683,21 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   200. `livecmp.js` (pub-47.png as an extra): 115 files identical, 277 image URLs 200.
   `text-check.py` against the deployed artifact: no line gone, changed or added.
   `functional.js` 22 of 22.
+
+## 43. The "and" before paper 48's last author (2026-11-05, D73)
+
+- **Intent:** Crossref lists the paper's eight authors with Boyoung Y. Park last; no other
+  entry in `_data` has an "and" in its authors.
+- **CI** (dev run 42027431910, 513ee56): green.
+- **The artifact** (513ee56) against the live site: two files differ, `security.txt` (its
+  Expires) and /publications/48/, where the last `citation_author` and the last JSON-LD
+  author lose "and " and the BibTeX shown on the page reads "Joonyoung F. Joung and Boyoung
+  Y. Park"; the rest of its ScholarlyArticle is unchanged. `/publications.bib` changes in
+  that one line. `text-check.py`: the one visible line changed is that BibTeX line; the
+  author line above it still reads as the PI wrote it. Served locally, `functional.js` 22
+  of 22.
+- **Live** (main run 42027795344, 49b70f6 to 513ee56): IndexNow sent /publications/48/; Bing
+  200, Naver 200. `livecmp.js`: 115 files identical, 277 image URLs 200; `/publications.bib`
+  equals the deployed one (its one "and and" is inside paper 45's title, "Ligand and
+  Composition"). `text-check.py` against the deployed artifact: no line gone, changed or
+  added. `functional.js` 22 of 22.

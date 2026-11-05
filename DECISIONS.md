@@ -2633,3 +2633,6 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   with "and" and no comma before it ("B and C") would still join two names; no entry has one.
 - **Outside the site:** Crossref lists the PI on this paper as "Joonyoung Francis Francis
   Joung", the publisher's slip; reported to the maintainer.
+- **Deployed** 2026-11-05 (main run 42027795344, 49b70f6 to 513ee56); IndexNow sent
+  /publications/48/.
+- **Check:** `REVIEW.md` section 43.

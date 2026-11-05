@@ -401,3 +401,7 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   maintainer's request: Seoul Shinmun, Edaily and Financial News, "In the press", as on
   FlowER's item. Deployed (main run 42012761561) and verified live. Results in `REVIEW.md`
   section 42.
+- **Phase 43 (2026-11-05):** the "and" before paper 48's last author stays out of the name in
+  BibTeX, the Scholar tags and the JSON-LD (D73), found in the review of D72; the page keeps
+  the authors as the PI wrote them. Deployed (main run 42027795344) and verified live.
+  Results in `REVIEW.md` section 43.
