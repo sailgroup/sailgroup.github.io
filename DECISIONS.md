@@ -2636,3 +2636,27 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Deployed** 2026-11-05 (main run 42027795344, 49b70f6 to 513ee56); IndexNow sent
   /publications/48/.
 - **Check:** `REVIEW.md` section 43.
+
+## D74: Kookmin University's story on MEMo under its News item (the PI's request through the maintainer, 2026-11-09)
+
+- **Asked:** the PI sent the university's post on MEMo (paper 47) to be placed on the lab's
+  site, since the school links it ("학교에 링크된거니까"); the press articles were already
+  there (D72).
+- **The post:** "국민대 정준영 교수 연구팀, 화학물질 배합 비율에 따른 성질 예측하는 AI 개발",
+  dated 2026-11-06 on kookmin.ac.kr's board 국민인!국민인!!, the board of Jihwan's award
+  story (D60). Its title and its nine paragraphs are the press release of 11-05, word for
+  word as Hankyoreh printed it; the post adds a subtitle and two photos (the model's
+  outline; the PI, Jihwan and Chanjoong).
+- **Where:** first among the MEMo item's `links`, as "Kookmin University news", the words
+  Jihwan's item uses. The university's page is where the release comes from, so it goes
+  before the three articles, which keep the order they ran (D72). The address is the
+  post's without the board's paging and search parameters (`view.do?dataSeq=1077214`), as
+  on Jihwan's item; both open the same post.
+- **Not done:** a group of its own before "In the press:", the way the story stands alone on
+  Jihwan's item, would need a new field read by the page, `llms-full.txt`, the validator
+  and both guides, for one row. A Media item would put MEMo twice among the home page's
+  three newest (D72).
+- **Also found:** the same board has FlowER's story (2025-08-21, `dataSeq=1076282`), which
+  FlowER's item does not link. Reported to the maintainer, not added.
+- **Text:** no line changes; the item's link row gains "Kookmin University news".
+- **Check:** `REVIEW.md` section 44.
