@@ -2612,6 +2612,8 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   tracking parameters.
 - **Text:** no line changes; the item's link row adds "In the press:" and the three names.
 - **Deployed** 2026-11-05 (main run 42012761561, 4a45755 to f172698); IndexNow sent /news/.
+- **Changed after the deploy** (2026-11-09, D75): Edaily left the row, so that it stays on
+  one line with the university's story added (D74).
 - **Check:** `REVIEW.md` section 42.
 
 ## D73: The "and" before paper 48's last author in BibTeX, Scholar tags and JSON-LD (the maintainer's request, 2026-11-05)
@@ -2659,6 +2661,9 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Also found:** the same board has FlowER's story (2025-08-21, `dataSeq=1076282`), which
   FlowER's item does not link. Reported to the maintainer, not added.
 - **Text:** no line changes; the item's link row gains "Kookmin University news".
+- **Deployed** 2026-11-09 (main run 42580591655, c158508 to d29b898); IndexNow sent /news/.
+- **Changed after the deploy** (2026-11-09, D75): the link reads "Kookmin University", and
+  Edaily left the row, to keep it on one line.
 - **Check:** `REVIEW.md` section 44.
 
 ## D75: The MEMo item's links on one line (the maintainer's choice, 2026-11-09)
@@ -2680,4 +2685,5 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   it, keeps "Kookmin University news".
 - **Text:** the row reads "In the press:" Kookmin University, Seoul Shinmun, Financial News;
   nothing else changes.
+- **Deployed** 2026-11-09 (main run 42581593758, d29b898 to e1dc876); IndexNow sent /news/.
 - **Check:** `REVIEW.md` section 44.

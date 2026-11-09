@@ -1701,3 +1701,37 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   equals the deployed one (its one "and and" is inside paper 45's title, "Ligand and
   Composition"). `text-check.py` against the deployed artifact: no line gone, changed or
   added. `functional.js` 22 of 22.
+
+## 44. Kookmin University's story on MEMo, and its row on one line (2026-11-09, D74, D75)
+
+- **Before:** `origin/main` had moved from 9fbca45 to c158508 with the PI's two commits of
+  2026-11-06 (the OPRD-Imp entry). The run of 5c79969 failed and deployed nothing; the run
+  of c158508 (42159533068) deployed it. `dev` fast-forwarded to it, and d29b898 went on top.
+- **The post:** the PI's address (with the board's paging and search parameters) and
+  `view.do?dataSeq=1077214` both answer 200 with the same post. Its nine paragraphs equal,
+  one by one, the release as Hankyoreh printed it (1286199).
+- **D74, CI** (dev run 42579962518, d29b898): green.
+- **D74, the artifact:** `text-check.py` against the live site changes /news/ only, out of
+  73 pages: the MEMo row's one line gains "Kookmin University news", and a screen reader
+  one "(opens in a new tab)". The link opens in a new tab with the external mark;
+  `llms-full.txt` lists it. No sideways overflow at 1440, 768, 390 or 320px; the row took
+  two lines on desktops ("Read the paper" alone, then the four links), three at 768px,
+  four at 390 and five at 320. Served locally, `functional.js` 22 of 22.
+- **D74, live** (main run 42580591655, c158508 to d29b898): IndexNow sent /news/; Bing 200,
+  Naver 200. `livecmp.js` (pub-47.png as an extra): 117 files identical, 277 image URLs
+  200. `text-check.py` against the deployed artifact: no line gone, changed or added.
+- **D75, measured first** on the live page, the row changed in Chrome, lines at 1920, 1536,
+  1440, 1366, 1280, 1024, 768, 390 and 360px: as D74 went live 2 2 2 2 2 2 3 4 4; without
+  Edaily 2 2 2 2 2 2 3 3 3; without Edaily and with "Kookmin University" 1 1 1 1 1 1 3 3 3;
+  without Seoul Shinmun 1 1 1 1 1 1 2 3 3; the university's story beside "Read the paper"
+  and the three articles under it 2 2 2 2 2 2 2 3 4.
+- **D75, CI** (dev run 42581341591, e1dc876): green.
+- **D75, the artifact:** `text-check.py` against the live site: the same line now reads "In
+  the press: Kookmin University Seoul Shinmun Financial News", and a screen reader hears one
+  "(opens in a new tab)" fewer; nothing else changes on the 73 pages. The row takes one
+  line at 1920, 1440, 1280 and 1024px and three at 768, 390, 360 and 320px, with no
+  sideways overflow and no console message. Served locally, `functional.js` 22 of 22.
+- **D75, live** (main run 42581593758, d29b898 to e1dc876): IndexNow sent /news/; Bing 200,
+  Naver 200. `livecmp.js` (pub-47.png as an extra): 117 files identical, 277 image URLs
+  200. `text-check.py` against the deployed artifact: no line gone, changed or added. The
+  live row has the same line counts at those eight widths. `functional.js` 22 of 22.

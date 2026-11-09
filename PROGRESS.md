@@ -405,3 +405,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   BibTeX, the Scholar tags and the JSON-LD (D73), found in the review of D72; the page keeps
   the authors as the PI wrote them. Deployed (main run 42027795344) and verified live.
   Results in `REVIEW.md` section 43.
+- **Phase 44 (2026-11-09):** Kookmin University's own story on MEMo under its News item
+  (D74), the PI's request through the maintainer, first under "In the press". The same day
+  the row went back to one line on desktops (D75), the maintainer's choice: Edaily left it
+  and the university's link reads "Kookmin University". Both deployed (main runs
+  42580591655 and 42581593758) and verified live. Results in `REVIEW.md` section 44.
