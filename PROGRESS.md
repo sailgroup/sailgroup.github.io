@@ -410,3 +410,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   the row went back to one line on desktops (D75), the maintainer's choice: Edaily left it
   and the university's link reads "Kookmin University". Both deployed (main runs
   42580591655 and 42581593758) and verified live. Results in `REVIEW.md` section 44.
+- **Phase 45 (2026-11-09):** the old person addresses redirect without noindex (D76), the
+  maintainer's request after Search Console's mails of the day: the 26 pages keep their
+  canonical and instant meta refresh, now to the absolute address, and no sitemap page
+  changes. Deployed (main run 42605983448) and verified live. Results in `REVIEW.md`
+  section 45.

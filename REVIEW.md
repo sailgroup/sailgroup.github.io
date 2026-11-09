@@ -1735,3 +1735,26 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   Naver 200. `livecmp.js` (pub-47.png as an extra): 117 files identical, 277 image URLs
   200. `text-check.py` against the deployed artifact: no line gone, changed or added. The
   live row has the same line counts at those eight widths. `functional.js` 22 of 22.
+
+## 45. The old person addresses redirect without noindex (2026-11-09, D76)
+
+- **Before:** the live site's 73 sitemap pages answered 200, indexable, each with its own
+  canonical, and a crawl from the home and the sitemap (154 URLs) found no link to an old
+  address; each of the 26 old addresses carried noindex beside its canonical and refresh.
+  In the repository the old addresses' noindex was the only one the site served from D25
+  until D42 gave the 404 page its own.
+- **CI** (dev run 42601301003, 804f98e): green.
+- **The artifact** (804f98e) against the live site: of 116 text files, 89 identical; the 26
+  old addresses differ exactly by the noindex gone and the refresh made absolute (each
+  checked against the markup expected for its slug), and `security.txt` by its Expires.
+  The sitemap lists no old address, and noindex is left on the 404 page alone. Every
+  sitemap page is byte for byte the live one, so `text-check.py` had nothing to compare.
+  Served locally, the 26 old addresses open in Chrome on their own /people/<slug>/ page,
+  titled, with no console error; `functional.js` 22 of 22.
+- **Live** (main run 42605983448, 70f4eac to 804f98e): IndexNow listed 0 of 73 sitemap
+  pages and sent nothing. `livecmp.js`: 116 files identical, 277 image URLs 200. The 26 old
+  addresses: none with noindex, each refreshing to its own absolute address, and in Chrome
+  each lands on its page, titled, with no console error. `functional.js` 22 of 22. A crawl
+  of the live site: the 73 sitemap pages as before, no internal link to an old address.
+- **Left to the maintainer:** in Search Console, URL inspection of /people/hyojin-lee/ and
+  Request indexing, then Validate fix on "Excluded by 'noindex' tag".

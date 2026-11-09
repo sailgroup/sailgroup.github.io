@@ -2728,4 +2728,6 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   added that the data does not hold (D52). "Discovered, currently not indexed" (one URL)
   is a page Google has not fetched yet.
 - **Text:** no sitemap page changes; the 26 old-address pages change in their head only.
+- **Deployed** 2026-11-09 (main run 42605983448, 70f4eac to 804f98e); no sitemap page
+  changed, so IndexNow sent nothing.
 - **Check:** `REVIEW.md` section 45.
