@@ -72,11 +72,13 @@
   --radius-sm: 8px;
   --radius-xs: 6px;
   --radius-pill: 999px;
-  /* The header bar is at least --header-min tall; --header-h, which the sticky and scroll
-     offsets use, is its height, measured by nav.js when the menu wraps to a second row
-     (large text, wider letter spacing). */
+  /* The header is its bar, at least --header-min tall, under a gap of --header-gap where
+     the bar floats as a capsule of glass (D77). --header-h, which the sticky and scroll
+     offsets use, is the two together, measured by nav.js (the bar grows when the menu
+     wraps to a second row: large text, wider letter spacing). Phones narrow both. */
   --header-min: 4.5rem;
-  --header-h: var(--header-min);
+  --header-gap: 0.625rem;
+  --header-h: calc(var(--header-min) + var(--header-gap));
   /* A card on a grey band: a hairline edge and the faintest shadow; lifted on hover (D38). */
   --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-lift: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.05), 0 14px 32px rgba(0, 0, 0, 0.09);
@@ -84,20 +86,25 @@
 }
 
 /* --- Liquid Glass ----------------------------------------------------------- */
-/* The material of the controls that float over the page (D56): white at 60 to 90%
-   over a blur that also lifts the colour of what passes beneath (saturate), a bright
-   rim along the top edge, a hairline outer edge and, where the control floats free, a
-   soft shadow. Apple's glass also bends the light at its edges; on the web that takes
-   an SVG displacement filter that only Chrome applies to a backdrop, so it is left out.
-   Without backdrop-filter the material is near-opaque white, and with the system's
-   "reduce transparency" setting it is plain white. A light grey $base gives the same
-   material in grey: the dropdown, the zoom mark and the Publications capsule (D58), whose
-   bright rim never showed on white glass over a white page, so they read as plain cards. The header and the phone menu, bars
-   rather than floating pieces, stay white. */
-@mixin glass($alpha: 0.72, $blur: 20px, $base: #fff) {
-  background: rgba($base, $alpha);
-  -webkit-backdrop-filter: saturate(180%) blur($blur);
-  backdrop-filter: saturate(180%) blur($blur);
+/* The material of the controls that float over the page (D56, D77): light grey glass
+   over a blur that also lifts the colour and the light of what passes beneath (saturate,
+   brightness), lighter at the top (the sheen), with a bright rim, a hairline outer edge
+   and a soft shadow. The page is mostly white, and white glass over it read as a plain
+   white bar (D77); the grey base lets the rim show. How clear a piece is follows what it
+   carries. The header, its dropdown and the phone menu hold the menu's labels in
+   --ink-2, so their base keeps those at 4.5:1 or more even over black. The zoom mark, the
+   video's mark and the Publications capsule, a mark or a short label in --ink, are
+   clearer (a 3 or 4px blur), so the figure or the text under them shows through. Apple's
+   glass also bends the light at its edges; on the web that takes an SVG displacement
+   filter that only Chromium applies to a backdrop, so it is left out. Without
+   backdrop-filter the material is its base, near opaque, and with the system's "reduce
+   transparency" setting the plain base. The defaults are the small pieces'. */
+@mixin glass($alpha, $blur, $base: #ececec, $sheen: 0.45, $sheen-end: 0.12, $sheen-stop: 100%, $lift: 1.08) {
+  background:
+    linear-gradient(rgba(#fff, $sheen), rgba(#fff, $sheen-end) $sheen-stop),
+    rgba($base, $alpha);
+  -webkit-backdrop-filter: blur($blur) saturate(200%) brightness($lift);
+  backdrop-filter: blur($blur) saturate(200%) brightness($lift);
   @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     background: rgba($base, 0.97);
   }
@@ -107,8 +114,24 @@
     backdrop-filter: none;
   }
 }
-$glass-rim: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255, 255, 255, 0.7);
-$glass-float: 0 0 0 0.5px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.1);
+/* The rim (light along the top and bottom edges, a faint line all round, a glow inside the
+   edge), then the hairline outer edge and the shadow of a piece that floats free. */
+$glass-rim: inset 0 1px 1px rgba(#fff, 0.95), inset 0 -1px 1px rgba(#fff, 0.45), inset 0 0 0 0.5px rgba(#fff, 0.5), inset 0 0 12px rgba(#fff, 0.3);
+$glass-float: 0 0 0 0.5px rgba(#000, 0.13), 0 1px 3px rgba(#000, 0.07), 0 8px 24px rgba(#000, 0.11);
+/* A 1px ring over the edge of a piece (its ::after; the piece is positioned), brightest at
+   the top left and the bottom right, where light would catch the rim. */
+@mixin glass-edge {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(to bottom right, #fff, rgba(#fff, 0.3) 30%, rgba(#fff, 0) 50%, rgba(#fff, 0.3) 75%, rgba(#fff, 0.85));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
 
 /* --- Hangul fallback while Pretendard loads -------------------------------- */
 /* Pretendard's Hangul syllables are 0.8643em wide. Until its files arrive, Korean text is
@@ -366,7 +389,8 @@ sub { bottom: -0.25em; }
 .video__play:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0, 0, 0, 0.1); }
 .video__play img { width: 100%; height: 100%; object-fit: cover; }
 .video__frame { border: 0; }
-/* The play mark with the video's length: a capsule of the figures' glass (zoom-hint, D56). */
+/* The play mark with the video's length: a capsule of the figures' glass (zoom-hint, D56,
+   D77). */
 .video__mark {
   position: absolute;
   left: 0.75rem;
@@ -380,10 +404,11 @@ sub { bottom: -0.25em; }
   font-size: var(--fs-sm);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  @include glass(0.6, 14px, #f6f6f6);
+  @include glass(0.5, 4px);
   box-shadow: $glass-rim, $glass-float;
   transition: transform 0.3s var(--ease-out);
 }
+.video__mark::after { @include glass-edge; }
 .video__mark svg { width: 0.875rem; height: 0.875rem; }
 .video__play:hover .video__mark { transform: scale(1.05); }
 .video figcaption { margin-top: 0.6rem; font-size: var(--fs-sm); line-height: 1.45; }
@@ -391,32 +416,47 @@ sub { bottom: -0.25em; }
 .video__by { display: block; margin-top: 0.15rem; font-size: var(--fs-xs); color: var(--muted); }
 
 /* --- Header / navigation -------------------------------------------------- */
-/* The header stays at the top in Liquid Glass (D56): white where nothing is under it, the
-   page showing through it, blurred, as it scrolls beneath. The material is a layer behind
-   the header's content (::before), not the header itself: an element with a
-   backdrop-filter becomes the backdrop of everything inside it, so the dropdown and the
-   phone menu, which hang below the header, would blur only the header and show the page
-   through them sharp. */
+/* The header's bar floats as a capsule of Liquid Glass (D56, D77): --header-gap below the
+   top of the window and as wide as the content column (never closer than the gap to the
+   window's sides), so the page passes sharp above and beside it and blurred through it.
+   At the top of a page nothing is under it yet, and the bar and the page are one surface:
+   the capsule fades in over the first 32px of scrolling. Without scroll timelines or their
+   ranges (Firefox), with reduced motion (below) and on a page too short to scroll (its
+   timeline is then inactive) it is always there. The material is a layer
+   behind the header's content (::before, its ring ::after), not the header itself: an
+   element with a backdrop-filter becomes the backdrop of everything inside it, so the
+   dropdown and the phone menu, which hang below the header, would blur only the header
+   and show the page through them sharp. Clicks in the gap above the capsule go through to
+   the page. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
+  padding-top: var(--header-gap);
+  pointer-events: none;
 }
+.site-header > * { pointer-events: auto; }
 .site-header::before {
   content: "";
   position: absolute;
-  inset: 0;
   z-index: -1;
-  @include glass(0.8);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+  @include glass(0.74, 12px, #f2f2f2, $sheen-end: 0, $sheen-stop: 60%, $lift: 1.04);
+  box-shadow: inset 0 1px 1px rgba(#fff, 0.95), inset 0 -1px 1px rgba(#fff, 0.5), inset 0 0 18px rgba(#fff, 0.35), 0 0 0 0.5px rgba(#000, 0.12), 0 1px 3px rgba(#000, 0.06), 0 10px 30px rgba(#000, 0.1);
 }
-/* At the top of a page the bar and the page are one surface: the hairline under the bar
-   fades in over the first 24px of scrolling. Without scroll timelines (Firefox) and with
-   reduced motion (below) it is always there. */
-@supports (animation-timeline: scroll()) {
-  .site-header::before { animation: header-edge linear both; animation-timeline: scroll(root); animation-range: 0 24px; }
+.site-header::after { @include glass-edge; z-index: -1; }
+.site-header::before,
+.site-header::after {
+  inset: var(--header-gap) max(var(--header-gap), (100% - var(--container)) / 2) 0;
+  border-radius: var(--radius-pill);
 }
-@keyframes header-edge { from { box-shadow: 0 1px 0 transparent; } }
+/* Both conditions, and the same in the dropdown's block below, so the capsule and the panel
+   change together: a browser with the timeline but not its range would run the fade over
+   the whole page. */
+@supports (animation-timeline: scroll()) and (animation-range: 0 32px) {
+  .site-header::before,
+  .site-header::after { animation: header-glass linear both; animation-timeline: scroll(root); animation-range: 0 32px; }
+}
+@keyframes header-glass { from { opacity: 0; } }
 .header-inner {
   display: flex;
   align-items: center;
@@ -517,15 +557,19 @@ sub { bottom: -0.25em; }
   transition: transform 0.16s ease;
 }
 .subnav-toggle[aria-expanded="true"]::before { transform: rotate(225deg) translateY(-1px); }
-/* The panel is a sheet of glass over the page, which shows through it blurred. */
+/* The panel is a sheet of glass over the page, which shows through it blurred. It hangs
+   --header-gap below the capsule (D77): the item sits in the middle of the bar, so the
+   capsule's lower edge is half the item and half the bar below the item's top. A strip
+   under the item bridges the gap (below). (In the phone menu the panel is a plain list,
+   without its ring.) */
 .subnav {
   position: absolute;
-  top: 100%;
+  top: calc(50% + var(--header-min) / 2 + var(--header-gap));
   left: -0.4rem;
   min-width: 14.5rem;
   padding: 0.375rem;
-  @include glass(0.74, 24px, #f6f6f6);
-  border-radius: 14px;
+  @include glass(0.66, 16px, #f2f2f2, 0.4, 0.2, $lift: 1.06);
+  border-radius: 16px;
   box-shadow: $glass-rim, $glass-float;
   opacity: 0;
   visibility: hidden;
@@ -536,12 +580,36 @@ sub { bottom: -0.25em; }
 .subnav-toggle[aria-expanded="true"] + .subnav {
   opacity: 1; visibility: visible; transform: none;
 }
+.subnav::after { @include glass-edge; }
+/* While the panel is open, a strip under the item (::after) spans the gap down to it, so a
+   mouse on its way down never leaves the item. Its percentages are the item's: it runs from
+   the item's foot to the panel's top whatever the item's height, and every link in the bar
+   is as tall as the item, so it covers none of them. As wide as the panel's least width.
+   (Not set from 68.8125em: with a 20px default font that query starts at 1376.25px, and a
+   1376px window, where the bar is already shown, got the panel without its bridge.) */
+.nav-item.has-children:has(> .subnav-toggle[aria-expanded="true"])::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -0.4rem;
+  width: 14.5rem;
+  height: calc(var(--header-min) / 2 + var(--header-gap) - 50%);
+}
+/* At the top of a page, where the capsule is not shown yet, the panel hangs from the item
+   itself, as before D77, with no bridge; it moves down under the capsule as the capsule
+   fades in. Where the capsule is always there, so is this place. */
+@supports (animation-timeline: scroll()) and (animation-range: 0 32px) {
+  .subnav { animation: subnav-drop linear both; animation-timeline: scroll(root); animation-range: 0 32px; }
+  .nav-item.has-children::after { animation: subnav-bridge linear both; animation-timeline: scroll(root); animation-range: 0 32px; }
+}
+@keyframes subnav-drop { from { top: 100%; } }
+@keyframes subnav-bridge { from { height: 0; } }
 .subnav a {
   display: block;
   padding: 0.55rem 0.75rem;
   font-size: var(--fs-sm);
   color: var(--ink-2);
-  border-radius: 9px;
+  border-radius: 10px;
   transition: background 0.12s ease, color 0.12s ease;
 }
 .subnav a:hover,
@@ -596,11 +664,12 @@ sub { bottom: -0.25em; }
   height: 2.25rem;
   border-radius: 50%;
   color: var(--ink);
-  @include glass(0.6, 14px, #f6f6f6);
+  @include glass(0.42, 3px);
   box-shadow: $glass-rim, $glass-float;
   pointer-events: none;
   transition: transform 0.3s var(--ease-out);
 }
+.zoom-hint::after { @include glass-edge; }
 .zoom-hint svg { width: 1.125rem; height: 1.125rem; }
 .hero__zoom:hover .zoom-hint,
 .paper__zoom:hover .zoom-hint { transform: scale(1.08); }
@@ -1185,13 +1254,14 @@ a.pub__thumb:hover .pub__figure { transform: scale(1.05); }
   gap: 0.25rem;
   padding: 0.3rem;
   border-radius: var(--radius-pill);
-  @include glass(0.66, 18px, #f6f6f6);
+  @include glass(0.5, 3px);
   box-shadow: $glass-rim, $glass-float;
   opacity: 0;
   transform: translate(-50%, 0.75rem) scale(0.96);
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.35s var(--ease-out);
 }
+.pubs-pill::after { @include glass-edge; }
 .pubs-pill.is-shown { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
 .pubs-pill__count {
   padding: 0.5rem 0.5rem 0.5rem 1rem;
@@ -1666,20 +1736,33 @@ body.no-scroll { overflow: hidden; }
    setting: 68.75em is 1100px at the default size (a margin above 1080px), and with a
    larger default font the menu takes over at a wider window. Keep in sync with nav.js,
    pubs.js and the footer's and Publications' queries, which switch their layout at the
-   same width. The menu opens as a sheet of glass under the header. */
+   same width. The menu opens as a sheet of glass that floats under the header's capsule
+   (D77), and the page behind it dims a little. */
 @media (max-width: 68.75em) {
+  :root { --header-gap: 0.5rem; }
+  /* The bar's box is the capsule's, so a tap beside the capsule reaches the page (and closes
+     an open menu); the logo and the menu button stay where they were, clear of its round
+     ends. */
+  .site-header > .header-inner {
+    width: auto;
+    margin-inline: var(--header-gap);
+    padding-inline: max(var(--gutter) - var(--header-gap), 1.125rem);
+  }
   .nav-toggle { display: block; }
   .site-nav {
     position: absolute;
-    top: 100%; left: 0; right: 0;
-    @include glass(0.88, 24px);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.08);
+    top: calc(100% + var(--header-gap));
+    left: var(--header-gap); right: var(--header-gap);
+    border-radius: 1.5rem;
+    @include glass(0.86, 22px, #f6f6f6, 0.5, 0, 40%, 1.04);
+    box-shadow: inset 0 1px 1px rgba(#fff, 0.95), inset 0 -1px 1px rgba(#fff, 0.6), inset 0 0 0 0.5px rgba(#fff, 0.5), inset 0 0 20px rgba(#fff, 0.35), 0 0 0 0.5px rgba(#000, 0.12), 0 2px 6px rgba(#000, 0.06), 0 18px 44px rgba(#000, 0.14);
     display: none;
     /* The header is sticky, so scrolling the page never brings a long menu into view: on a
-       short screen (a phone held sideways, 400% zoom) the menu scrolls on its own instead.
-       dvh follows the phone's toolbars; vh is the fallback. */
-    max-height: calc(100vh - var(--header-h));
-    max-height: calc(100dvh - var(--header-h));
+       short screen (a phone held sideways, 400% zoom) the menu scrolls on its own instead,
+       its foot a gap above the screen's. dvh follows the phone's toolbars; vh is the
+       fallback. */
+    max-height: calc(100vh - var(--header-h) - 2 * var(--header-gap));
+    max-height: calc(100dvh - var(--header-h) - 2 * var(--header-gap));
     overflow-y: auto;
     overscroll-behavior: contain;
     /* A link scrolled or tabbed into view stops short of the menu's edge: flush with it,
@@ -1688,15 +1771,29 @@ body.no-scroll { overflow: hidden; }
     scroll-padding-block: 0.75rem;
   }
   .site-nav.is-open { display: block; }
+  /* The open menu hangs from the capsule, so the capsule shows even at the top of a page. */
+  .site-header:has(.site-nav.is-open)::before,
+  .site-header:has(.site-nav.is-open)::after { animation: none; }
+  /* Taps on the dimmed page still reach it, and close the menu (nav.js), as before. */
+  body:has(.site-nav.is-open)::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.14);
+    pointer-events: none;
+  }
   .nav-list {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 0.6rem var(--gutter) 1.1rem;
+    padding: 0.5rem 1.25rem 0.75rem;
   }
   /* Full-width rows: the divider spans the menu. A parent's sub-pages are always listed
      under it here, so its chevron button is not needed. */
   .nav-item > a { display: flex; padding: 0.75rem 0.2rem; border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+  /* None under the last row: the sheet's own edge closes the list. */
+  .nav-list > .nav-item:last-child > a { border-bottom: 0; }
   /* The current page is underlined on its label; the row's divider stays grey (an orange
      rule across the whole menu marked a row, not a page). */
   .nav-item > a[aria-current="page"], .nav-item.is-current > a {
@@ -1714,10 +1811,14 @@ body.no-scroll { overflow: hidden; }
     background: none; -webkit-backdrop-filter: none; backdrop-filter: none;
     box-shadow: none; border: 0; border-radius: 0; padding: 0 0 0.4rem 0.8rem;
     min-width: 0;
+    animation: none;
   }
+  .nav-item.has-children .subnav::after { content: none; }
 }
 
 @media (max-width: 720px) {
+  /* A 64px bar for the 40px logo, so with the gap above it the header stays 72px (D77). */
+  :root { --header-min: 4rem; }
   .brand img { height: 40px; }
   .brand-sep { height: 28px; }
   .brand-kmu img { height: 34px; }
@@ -1779,17 +1880,19 @@ body.no-scroll { overflow: hidden; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .site-header::before { animation: none !important; }
+  .site-header::before, .site-header::after, .subnav, .nav-item.has-children::after { animation: none !important; }
 }
 
 /* Forced colours (Windows contrast themes): the mode clears backgrounds and paints every
    border, so what those carried is given back in system colours. The menu button's bars
    are backgrounds; the bar's underline marks only the current section; the chosen part,
    topic and search field get an edge. The logos and badges keep the plate they were drawn on
-   (dark on white, white on the footer's dark), and the glass layers are opaque. */
+   (dark on white, white on the footer's dark), and the glass layers are opaque, without
+   their rings or the dimming behind the phone menu. */
 @media (forced-colors: active) {
   .nav-toggle span { forced-color-adjust: none; background: CanvasText; }
   .site-header::before, .site-nav, .subnav, .zoom-hint, .video__mark, .pubs-pill { background: Canvas; }
+  .site-header::after, .subnav::after, .zoom-hint::after, .video__mark::after, .pubs-pill::after, body::after { display: none; }
   .brand img, .brand-kmu img, .pub-badge img, .paper__logo { forced-color-adjust: none; background: #fff; border-radius: 4px; }
   .footer-kmu img { forced-color-adjust: none; background: #1f1f1f; border-radius: 4px; }
   .people-nav a[aria-current="page"], .lang-nav a[aria-current="page"], .pub-filter.is-active, .tag.is-on { outline: 2px solid Highlight; outline-offset: -2px; }
@@ -1802,7 +1905,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media print {
-  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint, .video, .skip-link { display: none; }
+  .site-header, .site-footer, .pubs__rail, .pubs-pill, .zoom-hint, .video, .skip-link, body::after { display: none; }
   /* A paper, a person, a CV line or a figure is never cut at the foot of a sheet. */
   .pub, .person, .cv__item, figure { break-inside: avoid; }
   .pubs { display: block; }

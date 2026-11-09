@@ -109,10 +109,12 @@ domain `https://sail.kookmin.ac.kr`.
   the heading lacks: the lab name on the home page, "Error 404"), no decorative accent bars or
   glows; neutral (untinted) greys plus the brand orange; other colour comes only from information
   (figures; topic tags and news categories as a dot in their colour inside a neutral capsule,
-  D56). Glass (D56) only on what floats over the page: the header, its dropdown, the phone
-  menu, the figures' zoom mark and the Publications capsule on phones (the `glass` mixin,
-  white or light grey, plain where the browser or the reader turns transparency off), and
-  the viewer's buttons (dark); never on content or on other glass. Hover lifts are kept
+  D56). Glass (D56, D77) only on what floats over the page: the header (a capsule under a
+  gap at the top of the window, shown once the page scrolls, D77), its dropdown, the phone
+  menu, the figures' zoom mark, the home video's play mark and the Publications capsule on
+  phones (the `glass` mixin, light grey with a white rim, plain where the browser or the
+  reader turns transparency off), and the viewer's buttons (dark); never on content or on
+  other glass. Hover lifts are kept
   (maintainer's choice). Never shorten or hide PI-written text to fit a layout; balance a
   text-heavy block with the lab's own figures. The header switches to the menu button at
   68.75em (1100px at the default font size; `main.scss`, `nav.js` and `pubs.js` hold the
@@ -125,8 +127,9 @@ domain `https://sail.kookmin.ac.kr`.
   (D58).
 - Large monitors (D58): the root font size grows from 100% at 1920px wide to 125% at 3200px
   (`html` in `main.scss`), so desktop sizes are in rem (logos, figures, grid tracks, the
-  container) and scale with it; phone-only sizes may stay in px. Floating glass other than the
-  header bar and the phone menu takes a light grey base (`glass(…, #f6f6f6)`).
+  container) and scale with it; phone-only sizes may stay in px. All glass takes a light grey
+  base, a shade darker than the page so its rim shows (D77): the small pieces the mixin's
+  default (#ececec), the header's capsule and its dropdown #f2f2f2, the phone menu #f6f6f6.
 - Credit (D58): the HTML comment in `_layouts/default.html`, `/humans.txt`, the `/*! */`
   first line of `main.scss` and each JS file (ASCII only in the CSS one: a non-ASCII character
   makes Sass write a byte order mark), and the WebSite's `creator` (`site_creator`).

@@ -2731,3 +2731,67 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Deployed** 2026-11-09 (main run 42605983448, 70f4eac to 804f98e); no sitemap page
   changed, so IndexNow sent nothing.
 - **Check:** `REVIEW.md` section 45.
+
+## D77: The header floats as a capsule of glass once the page scrolls (the maintainer's request, 2026-11-09)
+
+- **Asked:** the maintainer found that the Liquid Glass of D56 did not feel like glass and
+  asked whether the design could do better. Shown screenshots of three ways (the same bar
+  with a stronger material; a capsule that always floats; the bar plain at the top of a page
+  and a floating capsule from the first scroll), the maintainer chose the third, the one
+  recommended, and asked for it to be applied, checked for errors and deployed.
+- **Found:** white glass over a white page reads as white. The D56 header was a bar of white
+  at 80% across the window with a hairline under it: at the top of a page and over the white
+  page it looked like a plain white bar, and its blur showed only over a figure. More blur,
+  saturation and sheen on the same bar gave screenshots that could not be told from the live
+  site. What reads as glass is a thing that floats, with the page passing sharp around it, a
+  base a shade darker than the page so a white rim shows on it, and a rim that catches the
+  light at its corners.
+- **Why the third:** the lab's look stays quiet (D38). At the top of a page nothing is under
+  the header yet, and the bar and the page are one surface, as before; the capsule comes
+  when there is page under it to blur.
+- **Fix:**
+  - The header's bar floats as a capsule `--header-gap` below the top of the window (10px on
+    desktops, 8px at 1,100px and under), as wide as the content column and never closer than
+    the gap to the window's sides. Its material, a light grey (#f2f2f2 at 74%, blurred 12px),
+    is the header's ::before and its rim a ring on ::after, so the dropdown and the phone
+    menu still blur the page and not the header. It fades in over the first 32px of
+    scrolling (a scroll timeline, used only where the browser also knows its range, so the
+    fade never runs over the whole page); without them (Firefox) and with reduced motion it
+    is always there. Clicks in the gap above it reach the page.
+  - `--header-h` is the bar and the gap: 82px on desktops (72px before), 80px from 721px to
+    1,100px (72px before) and 72px on phones, where the bar is 64px. `nav.js` measures the
+    header's border box, so a bar that wraps to a second row still counts.
+  - The dropdown hangs the gap below the capsule. At the top of a page it hangs from its item
+    as before and moves down as the capsule fades in. While it is open, a strip under the
+    item bridges the gap, so a mouse on its way down never leaves the item. The strip is
+    sized by the item's own height, and every link in the bar is as tall as the item, so it
+    covers none of them.
+  - Under the menu breakpoint the menu opens as a rounded sheet of glass (#f6f6f6 at 86%) the
+    gap below the capsule and inside the window's sides. The capsule shows while it is open,
+    even at the top of a page. The page behind dims (black at 14%), and a tap on it still
+    reaches the page and closes the menu, as before. The bar's box there is the capsule's, so
+    this holds beside the capsule too, with the logo and the menu button where they were.
+    The last row has no divider under it.
+  - The small pieces are clearer and have the same rim, on a grey (#ececec): the figures'
+    zoom mark (42%, blurred 3px), the home video's play mark (50%, 4px) and the Publications
+    capsule on phones (50%, 3px).
+  - The `glass` mixin takes its sheen and its brightness as keyword arguments (a list read
+    with `nth` uses a global function that Sass deprecates). Refraction, an SVG displacement
+    filter on the backdrop, is left out: only Chromium applies one.
+  - Forced colours hide the rims and the dimming; print hides the dimming as well.
+- **Contrast** (the worst pixel under each label across the page, the label hidden, before
+  and after): the menu's labels 6.32 and 4.95:1, the dropdown's 5.10 and 5.00, the menu over
+  the footer in a 1280x560 window 6.44 and 5.13, the video's mark 6.68 and 6.68, the
+  Publications capsule 7.51 and 6.68, the phone menu 9.41 and 8.47.
+- **Edge cases:** with a 20px default font the bar shows from 1,376px, while a query from
+  68.8125em starts at 1,376.25px; nothing of D77 hangs on that query (the strip follows the
+  dropdown's state), so a 1,376px window gets the strip too. The WCAG text spacing (letters
+  0.12em, words 0.16em) wraps the bar to two rows at some widths: the header grows,
+  `--header-h` follows, and the open dropdown overlaps the capsule's lower edge by about 12px
+  (before D77 it hung from its item, 39px into the bar). On a page too short to scroll at all
+  the timeline is inactive and the capsule is there from the start, as in Firefox: the 404
+  page in a 1440x1900 window, for one; no page at 1440x900, 1920x1080, 2560x1440, 390x844 or
+  768x1024. A page that scrolls less than 32px stops partway through the fade. Left as
+  they are.
+- **Text:** none changed (`main.scss` and `nav.js` only).
+- **Check:** `REVIEW.md` section 46.

@@ -7,14 +7,14 @@
   if (!btn || !nav || !header) return;
   var MENU = "(max-width: 68.75em)"; // the menu breakpoint in main.scss
 
-  // --header-h follows the header bar, which grows past --header-min when the menu wraps
-  // to a second row (a large default text size, wider letter spacing), so the sticky menus
-  // and the scroll offsets in main.scss still clear it.
-  var inner = header.querySelector(".header-inner");
-  if (inner && window.ResizeObserver) {
+  // --header-h follows the header: its bar and the gap above it, where the bar floats
+  // (D77). The bar grows past --header-min when the menu wraps to a second row (a large
+  // default text size, wider letter spacing), so the sticky menus and the scroll offsets in
+  // main.scss still clear it. The border box, so a change of the gap alone counts too.
+  if (window.ResizeObserver) {
     new ResizeObserver(function () {
-      document.documentElement.style.setProperty("--header-h", inner.offsetHeight + "px");
-    }).observe(inner);
+      document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+    }).observe(header, { box: "border-box" });
   }
 
   // iOS Safari applies :active (the pressed look of the rounded controls in main.scss) only
