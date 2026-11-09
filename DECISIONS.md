@@ -2687,3 +2687,45 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   nothing else changes.
 - **Deployed** 2026-11-09 (main run 42581593758, d29b898 to e1dc876); IndexNow sent /news/.
 - **Check:** `REVIEW.md` section 44.
+
+## D76: The old person addresses redirect without noindex (the maintainer's request, 2026-11-09)
+
+- **Asked:** Google Search Console sent the maintainer two mails on 2026-11-09 (its report
+  of 2026-11-06): pages in the sitemap not indexed for a new reason, "Excluded by
+  'noindex' tag", and pages of the site for another, "Alternate page with proper canonical
+  tag". The maintainer asked whether anything was wrong and, if so, to fix it.
+- **Found:** four of the five noindex URLs are old person addresses, /members/jihwan-kim/,
+  /members/heejeong-kim/, /alumni/jinwoo-lee/ and /alumni/hyojin-lee/ (last crawled
+  2026-11-03, 07-18, 07-03 and 07-02). `generate_pages.rb` writes both for every person
+  (D25) with noindex, a canonical to /people/<slug>/ and an instant meta refresh there.
+  Until D40 the News items linked them as `news.yml` writes them, which is how Google
+  found them. The fifth, the one in the sitemap, is /people/hyojin-lee/, last crawled
+  2026-07-02, the day Google also crawled /alumni/hyojin-lee/. That page has never carried
+  noindex: on that day the only noindex the site served was the old addresses' (the 404
+  page's came with D42). Today it answers 200, indexable, its canonical its own, as do the
+  other 72 sitemap pages, and no page links an old address.
+- **Why:** Google reads an instant meta refresh as a permanent redirect, and its example
+  of the tag has no noindex (developers.google.com/search/docs/crawling-indexing/
+  301-redirects); the canonical names the same page. The noindex said the opposite of
+  both. John Mueller in 2014: "you should not combine the noindex with a rel-canonical
+  pointing at an indexable URL. I'd pick one, but not both." How Google settles the two
+  is not documented, and the record of /people/hyojin-lee/ suggests the noindex reached
+  the page the canonical names.
+- **Fix:** the old addresses keep the canonical and the instant meta refresh, now to the
+  absolute address as in Google's example, and lose the noindex. They stay out of the
+  sitemap (D31) and of IndexNow, which reports sitemap pages only. Their line,
+  "Redirecting to /people/<slug>/…", is unchanged. The comment in `news-href.html` now
+  says a redirect hop.
+- **In Search Console:** as Google crawls them again, the old addresses move from
+  "Excluded by 'noindex' tag" to "Page with redirect", which Google may mail as one more
+  new reason; that is where they belong. /people/hyojin-lee/ leaves the list once crawled
+  again: URL inspection and Request indexing, then Validate fix on the noindex reason.
+- **Left as they are:** "Alternate page with proper canonical tag" is the topic filter's
+  /publications/?topic=<slug>, whose canonical is /publications/, as meant. "Crawled,
+  currently not indexed" (papers 18 and 46; Hanbyul Baik, Seonbin Kim, Siyeol In) is
+  Google's own choice: those pages answer 200, indexable, with their own canonical, in the
+  sitemap. Two of the people pages show a name, a role and the lab alone, and nothing is
+  added that the data does not hold (D52). "Discovered, currently not indexed" (one URL)
+  is a page Google has not fetched yet.
+- **Text:** no sitemap page changes; the 26 old-address pages change in their head only.
+- **Check:** `REVIEW.md` section 45.

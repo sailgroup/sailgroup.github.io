@@ -185,7 +185,10 @@ module SAIL
     end
   end
 
-  # A static /<dir>/<slug>/ page that immediately redirects to `target`.
+  # A static /<dir>/<slug>/ page that immediately redirects to `target`: an instant meta
+  # refresh (Google reads it as a permanent redirect) and a canonical, both to the same
+  # absolute address. Never noindex (D76): it contradicts both, and Google may carry it
+  # over to the page they point to.
   class RedirectPage < Jekyll::Page
     def initialize(site, dir, slug, target)
       @site = site
@@ -194,12 +197,11 @@ module SAIL
       @name = "index.html"
       process(@name)
       @data = { "sitemap" => false }
-      # The canonical is absolute, like every other page's (seo-tag writes site url + path).
+      # Absolute, like every other page's canonical (seo-tag writes site url + path).
       canonical = site.config["url"].to_s.chomp("/") + target
       @content = %(<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">) +
         %(<title>Redirecting&hellip;</title><link rel="canonical" href="#{canonical}">) +
-        %(<meta name="robots" content="noindex">) +
-        %(<meta http-equiv="refresh" content="0; url=#{target}"></head>) +
+        %(<meta http-equiv="refresh" content="0; url=#{canonical}"></head>) +
         %(<body>Redirecting to <a href="#{target}">#{target}</a>&hellip;</body></html>)
     end
   end

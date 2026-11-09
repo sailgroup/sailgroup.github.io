@@ -72,7 +72,8 @@ domain `https://sail.kookmin.ac.kr`.
   emits JSON-LD (Organization, WebSite, Person, ScholarlyArticle, BreadcrumbList, CollectionPage,
   WebPage); jekyll-seo-tag's own JSON-LD is cut off in `head.html` (D58). `/llms.txt`
   is a generated summary for AI answer engines (`/llms-full.txt` the full text); the sitemap
-  excludes the noindex redirects. `/.well-known/security.txt` writes its `Expires` at build time.
+  excludes the old-address redirects, which carry no noindex (D76). `/.well-known/security.txt`
+  writes its `Expires` at build time.
   Registering in Google Search Console / Naver Search Advisor is a manual (account-based) step;
   their "HTML tag" codes go in `_config.yml` `webmaster_verifications` (google, naver).
 - Titles carry Korean names ("Jihwan Kim (김지환)") and a published paper's venue ("(Nature, 2025)");

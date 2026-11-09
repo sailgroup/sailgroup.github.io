@@ -1,7 +1,7 @@
 {%- comment -%}
 The address a news item's `link` should point to. An old person address,
 /members/<slug>/ or /alumni/<slug>/, still works (it is a redirect page), but it
-costs readers an extra page load and search engines a noindex hop, so it is printed as
+costs readers an extra page load and search engines a redirect hop, so it is printed as
 the person's own page /people/<slug>/ when that slug is in people.yml. news.yml itself
 is not changed, and every other link (lists like /members/, papers, full URLs) is
 returned exactly as written. Used by index.html, news.html, and llms-full.txt.
