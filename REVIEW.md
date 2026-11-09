@@ -1758,3 +1758,51 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   of the live site: the 73 sitemap pages as before, no internal link to an old address.
 - **Left to the maintainer:** in Search Console, URL inspection of /people/hyojin-lee/ and
   Request indexing, then Validate fix on "Excluded by 'noindex' tag".
+
+## 46. The header floats as a capsule of glass (2026-11-09, D77)
+
+- **Before** (a local build: the D76 artifact 804f98e with the new `main.css`, compiled with
+  Dart Sass 1.105.0 as CI does, and the new `nav.js`):
+  - `qa-site.js`: 74 pages, 162 loads, NO PROBLEMS. `functional.js` 22 of 22.
+    `webkit-check.cjs` (`SITE_DIR`) 35 of 35, once its topic check stopped expecting 47
+    papers (it now counts `_data/publications.yml`: 49).
+  - A D77 check in Chrome, 224 of 224 with no console error, at five desktop widths from
+    1,101px to 2,560px and eight phone and tablet sizes: the header's height and
+    `--header-h`; the capsule's place, hidden at the top, half faded at 16px, shown at 400px;
+    the logo and the last link inside its round ends; a click in the gap above it and a tap
+    beside it reach the page; the dropdown hanging from its item at the top and the gap below
+    the capsule once scrolled, the strip from the item's foot to the panel (off by 0.00px),
+    mouse paths from the label into the panel that keep it open, the other links clickable
+    while it is open; the keyboard (open, Tab in, Escape back); an anchor on /research/ 16px
+    under the header, the /pi/ aside 24px and the /publications/ rail 20px; the phone sheet
+    the gap under the capsule, the capsule shown while it is open, the page dimmed, the last
+    link in reach, a tap below the sheet or beside the capsule closing it; reduced motion,
+    reduced transparency and forced colours.
+  - WebKit 26.6 knows the timeline and its range, and the capsule, the dropdown and the phone
+    menu behave as in Chrome (10 of 10).
+  - Larger text: with a 20px default font the bar shows from 1,376px and the strip is there
+    too; with the WCAG text spacing the bar wraps to two rows at 1,101px, 1,280px and 1,440px
+    (the case left in D77).
+  - Contrast, the worst pixel under each label: the menu 4.95:1, the dropdown 5.00, the menu
+    over the footer 5.13, the video's mark 6.68, the Publications capsule 6.68, the phone
+    menu 8.47.
+  - The header at 13 widths from 320px to 2,560px, scrolled over the home figure: the
+    capsule clear of the window's sides, nothing outside it, no sideways scroll.
+  - An independent read of the diff found no serious defect. From its points the
+    `@supports` now asks for the timeline's range as well, and under the menu breakpoint the
+    bar's box is the capsule's (a tap beside the capsule had reached the header and left an
+    open menu open). A page too short to scroll shows the capsule at once (D77).
+- **CI** (dev run 42625087139, b4f5077): green.
+- **The artifact** (b4f5077) against the live site: of 116 text files, 113 identical;
+  `main.css`, `nav.js` and `security.txt` (its Expires) differ. Every page's HTML is byte
+  for byte the live one, so no line of text changed (D52) and `text-check.py` had nothing to
+  compare. Its `main.css` is byte for byte the local compile, and the whole build is the
+  tested local one but for `security.txt`. Served locally: `functional.js` 22 of 22, the D77
+  check 224 of 224; `webkit-check.cjs` (`SITE_DIR`) 35 of 35.
+- **Live** (main run 42626910371, d5a0115 to b4f5077): IndexNow listed 0 of 73 sitemap
+  pages and sent nothing. `main.css` and `nav.js` byte for byte the build. `livecmp.js`, run
+  twice: every text file identical but `security.txt`, and 277 image URLs 200; each run had
+  one 503 in the minutes after the deploy (photo-04-1200w.jpg, then
+  /alumni/chanjoong-kim/), each 200 three times when asked again, the page identical to the
+  build. `functional.js` 22 of 22. The D77 check 224 of 224. `webkit-check.cjs` 35 of 35, and
+  the capsule in WebKit 10 of 10.

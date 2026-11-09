@@ -415,3 +415,9 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   canonical and instant meta refresh, now to the absolute address, and no sitemap page
   changes. Deployed (main run 42605983448) and verified live. Results in `REVIEW.md`
   section 45.
+- **Phase 46 (2026-11-09):** the header floats as a capsule of glass once the page scrolls
+  (D77), the maintainer's request after D56's glass did not read as glass: plain at the top
+  of a page as before, a light grey capsule with a white rim from the first scroll, the
+  dropdown and the phone menu floating under it, the page dimmed behind the phone menu, and
+  the small glass pieces clearer. Deployed (main run 42626910371) and verified live. Results
+  in `REVIEW.md` section 46.

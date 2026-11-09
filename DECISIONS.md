@@ -2794,4 +2794,6 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   768x1024. A page that scrolls less than 32px stops partway through the fade. Left as
   they are.
 - **Text:** none changed (`main.scss` and `nav.js` only).
+- **Deployed** 2026-11-09 (main run 42626910371, d5a0115 to b4f5077); no sitemap page
+  changed, so IndexNow sent nothing.
 - **Check:** `REVIEW.md` section 46.
