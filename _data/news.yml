@@ -41,12 +41,10 @@
   link_text: "Read the paper"
   links_label: "In the press"
   links:
-    - text: "Kookmin University news"
+    - text: "Kookmin University"
       url: "https://www.kookmin.ac.kr/comm/board/user/be8e117863cfd580d7ed5931a799207c/view.do?dataSeq=1077214"
     - text: "Seoul Shinmun"
       url: "https://www.seoul.co.kr/news/society/2026/11/05/20261105500036"
-    - text: "Edaily"
-      url: "https://www.edaily.co.kr/News/Read?newsId=05067606645642768&mediaCodeNo=257"
     - text: "Financial News"
       url: "https://www.fnnews.com/news/202611051721205228"
   

@@ -2660,3 +2660,24 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   FlowER's item does not link. Reported to the maintainer, not added.
 - **Text:** no line changes; the item's link row gains "Kookmin University news".
 - **Check:** `REVIEW.md` section 44.
+
+## D75: The MEMo item's links on one line (the maintainer's choice, 2026-11-09)
+
+- **Asked:** with D74 live, the maintainer found the row unattractive. Four links no longer
+  fit beside "Read the paper", so it stood alone on its line at every desktop width and
+  the links took the next; phones took four lines. The maintainer asked whether to drop
+  one outlet or keep the row as it was.
+- **Measured** on the live page, the row changed in Chrome at nine widths from 360 to
+  1920px: dropping Edaily alone still leaves two lines on desktops. Dropping it and naming
+  the university's link "Kookmin University" gives one line from 1024 to 1920px (D74: two),
+  three on phones at 390 and 360 (D74: four) and three at 768 (as with D74). Dropping
+  Seoul Shinmun instead would also fit, but its article is one of the two that mention the
+  public code. The university's story beside "Read the paper", with the three articles on
+  the next line, keeps every link but needs the new field D74 did not add.
+- **Chosen** by the maintainer: Edaily leaves the row, the one of D72's three that does not
+  mention the public code, and the university's link reads "Kookmin University", a
+  publisher's name like the two beside it. Jihwan's item, whose link has no label before
+  it, keeps "Kookmin University news".
+- **Text:** the row reads "In the press:" Kookmin University, Seoul Shinmun, Financial News;
+  nothing else changes.
+- **Check:** `REVIEW.md` section 44.
