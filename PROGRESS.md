@@ -424,5 +424,5 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
 - **Phase 47 (2026-11-15):** where each alumnus is now, the PI's request through the
   maintainer (D78): on the Alumni card the role in grey and the place now in black under it,
   and on an alumnus's page the same with no "Former member, ..." line. Every undergraduate's
-  role now reads "UROP" (Yunhee Choi's "Visiting UROP"). Deployed (main run 43720121238)
-  and verified live. Results in `REVIEW.md` section 47.
+  role now reads "UROP" (Yunhee Choi's "Visiting UROP"). Deployed (main runs 43720121238
+  and 43721698292, the second for Siyeol In's department name) and verified live. Results in `REVIEW.md` section 47.

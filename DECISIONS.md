@@ -2867,5 +2867,6 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   "Department of Chemistry", while the students' line says Applied Chemistry, the PI's
   응용화학부.
 - **Deployed** 2026-11-15 (main run 43720121238, 1f566c1 to 66d7f9c); IndexNow sent the 12
-  changed pages (Bing 200, Naver 200).
+  changed pages (Bing 200, Naver 200). Siyeol In's line as Kookmin's list of departments
+  names it: main run 43721698292 (ee24ab6 to a4edc61), IndexNow 2 pages.
 - **Check:** `REVIEW.md` section 47.

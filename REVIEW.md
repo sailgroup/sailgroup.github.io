@@ -1831,6 +1831,16 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   Naver 200. `livecmp.js`: 116 of 116 text files identical, 277 image URLs 200.
   `text-check.py` against the deployed artifact: 0 lines gone or changed, 0 added.
   `functional.js` 22 of 22.
+- **Kookmin's names, checked after the deploy:** english.kookmin.ac.kr, Academics, College of
+  Science and Technology lists "Department of Applied Chemistry" and "Department of Nano and
+  Electronic Physics"; chem.kookmin.ac.kr (응용화학부) says "Dept of Applied Chemistry";
+  moip.go.kr/en is titled "Ministry of Intellectual Property". Siyeol In's line was
+  "Nanoelectronic Physics" (a Kookmin news story) and now follows the list. Dev run
+  43721515149 (a4edc61): `text-check.py` only that line on /alumni/ and his page,
+  `functional.js` 22 of 22 served locally, no sideways scroll from 1,440px to 320px; the
+  line takes three lines on a desktop card, and the row 701px. Main run 43721698292:
+  IndexNow 2 pages (Bing 200, Naver 200); live `livecmp.js` 116 of 116 identical, 277 image
+  URLs 200; `text-check.py` 0 and 0; `functional.js` 22 of 22.
 - **Open:** Siyeol In's department is as the PI remembered it ("인가"); Yeonju Yoo, a current
   member, reads "UROP" as the PI's "every undergraduate" has it. Either is one line of
   people.yml if the PI says otherwise.
