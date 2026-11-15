@@ -2815,7 +2815,10 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   ("당연히 맴버엿으니까"); the cards stay as they are. The maintainer asked for "current :" or
   something better. A minute later (22:22) the PI asked for every undergraduate's position
   to read "UROP", short, and Yunhee Choi's "Visiting UROP" ("학부생 전부 포지션 UROP으로
-  통일하자 / 최윤희는 Visiting UROP 하구 / 짧게").
+  통일하자 / 최윤희는 Visiting UROP 하구 / 짧게"). Shown that build (22:31), the PI dropped the
+  "Now" too ("Now도 빼지뭐") and kept "UROP" short ("Undergraduate Student (UROP)" would
+  make the Alumni page too long); the maintainer asked for the page to show the past light
+  and the present dark, as the first build's card did.
 - **Data:** `note`, which README already called the place an alumnus is now, holds it.
   "Ministry of Intellectual Property" for Chanjoong Kim, in place of "Global PBL program,
   Irvine, CA" (the News item of that program stays); "EPFL" for Yunhee Choi; "Applied
@@ -2839,12 +2842,12 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   an undergraduate card on a desktop is a line shorter than Chanjoong Kim's was. A screen
   reader hears "Now:" before the place (visually hidden, alumni only).
 - **Personal page:** the alumnus's page has no lab line under the role (a member's keeps
-  "Spectroscopy and AI Lab, ... Joined <month>"). The note is the last line, 0.75rem below
-  the lines above, in `--ink` at weight 500 and 16px (`member-card__now`), after "Now" in
-  `--muted` at weight 400 on the same line. "Now" over "Current:": one short word with no
-  colon, as alumni lists on lab sites say it ("now at"); the grey keeps it from reading as
-  part of the name. Chosen from three shots (no word, "Now" at the place's size, a smaller
-  "Now").
+  "Spectroscopy and AI Lab, ... Joined <month>"). The role is in `--muted` at weight 400
+  (`profile__title--past`; a member's and the PI's stay `--ink-2` at 500), the department
+  line grey as before, and the note the last line, 0.75rem below, in `--ink` at weight 500
+  and 16px (`member-card__now`): the card's grey and black. No visible word: a grey "Now"
+  before the place, shown for a few minutes on dev, went at the PI's word; "Now:" stays
+  for screen readers.
 - **Also:** llms-full.txt's alumni lines end "; now <note>". The people.yml header, README
   and CONTRIBUTING say what `note` is and to keep it to the place's name.
 - **Text:** /alumni/ and the nine alumni pages gain the place (on the pages after "Now");

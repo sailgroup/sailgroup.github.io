@@ -194,7 +194,7 @@ was taken, what was normalized, and what is still open.
   the departments are Kookmin's (english.kookmin.ac.kr). Siyeol In's department is as the PI
   remembered it ("인가"), not yet confirmed. On the PI's word the alumni pages no longer
   show "Former member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin
-  University", and the place there follows a grey "Now" (new UI text, not the PI's). The
+  University"; the role there is grey and the place black, with no word between. The
   PI also had every undergraduate's role read "UROP" (Yeonju Yoo's on Members too) and
   Yunhee Choi's "Visiting UROP", back to the Wix site's word (see Roles above).
 - **Data corrections, 2026-09-28 (D39, maintainer's instruction)**: paper 44 `ref`

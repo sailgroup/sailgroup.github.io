@@ -21,7 +21,7 @@
 # it as `description: >` with the text indented on the following lines.
 # `note` is where an alumnus is now (e.g. "University of British Columbia"): on the
 # Alumni card it sits under the role in black, the role staying grey, and on the
-# personal page it is the last line under the name, after a grey "Now". Keep it short, the name of the
+# personal page it is the last line, in black under the grey role. Keep it short, the name of the
 # place without the person's title, so the card stays short (D78).
 # The Alumni page shows its people in rows (postdoc, Ph.D., M.S., undergraduate),
 # read from `role`; `group:` (postdoc, phd, ms or undergrad) sets the row when the

@@ -1719,10 +1719,11 @@ body.no-scroll { overflow: hidden; }
   display: block;
 }
 .member-card__meta { color: var(--muted); font-size: var(--fs-sm); margin-top: 0.4rem; }
-/* An alumnus's place now (D78): the last line, a gap above it to part it from the lines
-   above, in black at the size of the role after a grey "Now" (the PI's request). */
+/* An alumnus's page (D78): the role, a past one, in grey like the lines under it, and the
+   place now as the last line in black at the role's size, a gap above it. No word marks
+   either (the PI's request); the colours do, as on the Alumni card. */
+.profile__title--past { color: var(--muted); font-weight: 400; }
 .member-card__now { color: var(--ink); font-size: var(--fs-base); font-weight: 500; margin-top: 0.75rem; }
-.member-card__now-label { color: var(--muted); font-weight: 400; margin-right: 0.2em; }
 
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 860px) {
