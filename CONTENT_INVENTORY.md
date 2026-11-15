@@ -187,6 +187,13 @@ was taken, what was normalized, and what is still open.
   `assets/images/people/` as an opt-in placeholder (`photo: anonymous.png`); nothing
   references it by default. All other people photos moved unchanged into
   `assets/images/people/` (D36).
+- **Where alumni are now (D78, 2026-11-15, the PI's request on KakaoTalk)**: each alumnus's
+  `note`: Chanjoong Kim "Ministry of Intellectual Property" (was "Global PBL program, Irvine,
+  CA"), Yunhee Choi "EPFL" (her role now "Visiting Undergraduate Student", the "(EPFL)" of
+  D36 moved to the note), six UROP alumni "Applied Chemistry, Kookmin University", Siyeol In
+  "Nanoelectronic Physics, Kookmin University". The places are the PI's; the English names of
+  the departments are Kookmin's (english.kookmin.ac.kr). Siyeol In's department is as the PI
+  remembered it ("인가"), not yet confirmed.
 - **Data corrections, 2026-09-28 (D39, maintainer's instruction)**: paper 44 `ref`
   "Early veiw" to "Early View" and its DOI to https; paper 42 title matched to the
   published title (no "Efficient") and the Hyung Min Kim corresponding mark placed on

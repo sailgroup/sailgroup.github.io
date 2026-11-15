@@ -2797,3 +2797,41 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
 - **Deployed** 2026-11-09 (main run 42626910371, d5a0115 to b4f5077); no sitemap page
   changed, so IndexNow sent nothing.
 - **Check:** `REVIEW.md` section 46.
+
+## D78: Where an alumnus is now shows under the role, in black (the PI's request, 2026-11-15)
+
+- **Asked:** the PI, on KakaoTalk to the maintainer (2026-11-15, 21:43 to 21:49), asked the
+  Alumni page to say what each alumnus was in the lab and where they are now, "UROP 했다가 현재
+  지식재산처에서 일하는 중 이런식으로": Chanjoong Kim, Undergraduate Researcher (UROP) > 지재처;
+  Yunhee Choi, "Visiting undergrad > EPFL"; the others, Undergraduate Researcher (UROP) > 국민대
+  응용화학부; Siyeol In, 나노전자물리학과 (the PI added "인가", so not certain). On the card the
+  two should read apart with no word such as 연구실 or 현재 between them: the role in its grey,
+  the place now in black. The PI found the card already a little tall, and said the personal
+  page may show more. Heejeong Kim stays a current member as she is (her post at the
+  University of British Columbia starts in January); the PI will move her then.
+- **Data:** `note`, which README already called the place an alumnus is now, holds it.
+  "Ministry of Intellectual Property" for Chanjoong Kim, in place of "Global PBL program,
+  Irvine, CA" (the News item of that program stays); "EPFL" for Yunhee Choi; "Applied
+  Chemistry, Kookmin University" for Hyejeong Jeon, Yongpyo Cho, Jinwoo Lee, Hanbyul Baik,
+  Hyojin Lee and Yumin Kim; "Nanoelectronic Physics, Kookmin University" for Siyeol In.
+  Yunhee Choi's role is "Visiting Undergraduate Student": D36 put "(EPFL)" into it so that EPFL
+  showed on the grid, and the note shows it now, as the PI's line has it. The department
+  names are Kookmin's own English (english.kookmin.ac.kr: "Professor Joung Joonyoung,
+  Department of Applied Chemistry"; "Department of Nanoelectronic Physics, College of Science
+  and Technology"), without "Department of" so the line takes two lines on a desktop card, as
+  the role does. The ministry is named as on the maintainer's LinkedIn. No titles (intern,
+  student), as in the PI's lines.
+- **Card:** the note is in `--ink` at weight 500 and at the role's size (13px in the
+  undergraduate row, 14px in the others); the role stays `--muted`. The undergraduate cards
+  on a desktop are as tall as Chanjoong Kim's was (two lines of role, two of place). A screen
+  reader hears "Now:" before the place (visually hidden, alumni only).
+- **Personal page:** the note is the last line, 0.75rem below the lab's lines, in `--ink` at
+  weight 500 and 16px (`member-card__now`), with the same "Now:" for screen readers.
+- **Also:** llms-full.txt's alumni lines end "; now <note>". The people.yml header, README
+  and CONTRIBUTING say what `note` is and to keep it to the place's name.
+- **Text:** /alumni/ and the nine alumni pages gain the place; Chanjoong Kim's loses "Global
+  PBL program, Irvine, CA"; Yunhee Choi's role loses "(EPFL)".
+- **Not changed:** the roles of Siyeol In and Hyejeong Jeon ("Undergraduate Researcher", no
+  "(UROP)"); Heejeong Kim's entry. The site keeps the lab's department as the PI set it,
+  "Department of Chemistry", while the students' line says Applied Chemistry, the PI's
+  응용화학부.

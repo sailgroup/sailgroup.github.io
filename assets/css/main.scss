@@ -908,8 +908,10 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .person__links a { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; border-radius: var(--radius-xs); color: var(--muted); transition: color 0.15s ease; }
 .person__links a:hover { color: var(--ink); }
 
-/* Note line under a person's role (e.g. alumni exchange-program note) */
-.person__note { font-size: var(--fs-xs); color: var(--muted); margin-top: 0.2rem; line-height: 1.45; }
+/* Where an alumnus is now (`note`, D78), under the role and at its size: the role stays grey
+   and this is in the black of names, a little heavier, so the role in the lab and the place
+   now read apart without a word between them (the PI's request). */
+.person__note { font-size: var(--fs-sm); color: var(--ink); font-weight: 500; margin-top: 0.2rem; line-height: 1.45; }
 /* Balanced lines, so a short last word ("(UROP)") does not sit alone on its own line. */
 .person__role, .person__note { text-wrap: balance; }
 
@@ -943,7 +945,8 @@ a.tag:hover { background: var(--fill-2); color: var(--ink); }
 .person-grid--small .person__ph { max-width: 7rem; }
 .person-grid--small .person__ph { font-size: 1.25rem; }
 .person-grid--small .person__name { margin-top: 0.75rem; font-size: var(--fs-base); }
-.person-grid--small .person__role { font-size: var(--fs-xs); }
+.person-grid--small .person__role,
+.person-grid--small .person__note { font-size: var(--fs-xs); }
 
 /* --- PI profile ----------------------------------------------------------- */
 .profile { display: grid; gap: 3.5rem; grid-template-columns: 15.5rem minmax(0, 1fr); align-items: start; }
@@ -1716,6 +1719,9 @@ body.no-scroll { overflow: hidden; }
   display: block;
 }
 .member-card__meta { color: var(--muted); font-size: var(--fs-sm); margin-top: 0.4rem; }
+/* An alumnus's place now (D78): the last line, a gap above it to part it from the lab's
+   lines, in black at the size of the role. */
+.member-card__now { color: var(--ink); font-size: var(--fs-base); font-weight: 500; margin-top: 0.75rem; }
 
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 860px) {

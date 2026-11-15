@@ -1,8 +1,8 @@
 {%- comment -%}
 Personal page card for a member or alumnus. Both pages are the same card; the
-only differences are the back-link, the affiliation line, and (alumni only) a
-note. Pass: person (the data object), kind ("member" | "alumnus"), body (the
-optional prose body from the page, usually empty).
+only differences are the back-link, the affiliation line, and (alumni only)
+where they are now (`note`). Pass: person (the data object), kind ("member" |
+"alumnus"), body (the optional prose body from the page, usually empty).
 {%- endcomment -%}
 {%- assign x = include.person -%}
 <section class="section section--tight">
@@ -24,7 +24,8 @@ optional prose body from the page, usually empty).
     {%- endif -%}
     {%- comment -%}Optional: the person's own school/department (e.g. a UROP whose home department differs from the lab's). Omitted when not set.{%- endcomment -%}
     {%- if x.department and x.department != "" -%}<p class="member-card__meta">{{ x.department }}</p>{%- endif -%}
-    {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__meta">{{ x.note }}</p>{%- endif -%}
+    {%- comment -%}Where an alumnus is now (D78): the last line, set apart from the lab's lines above it and in black.{%- endcomment -%}
+    {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__now"><span class="visually-hidden">Now: </span>{{ x.note }}</p>{%- endif -%}
     {%- include social-links.html person=x -%}
     {%- comment -%}Optional short bio (`description:` in people.yml): an "About" section styled like the Publications section below it (same label + rule), shown above the publication list.{%- endcomment -%}
     {%- if x.description and x.description != "" -%}

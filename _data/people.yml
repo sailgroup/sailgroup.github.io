@@ -19,6 +19,10 @@
 # affiliation, and is omitted entirely when not set. `description` is a short
 # intro paragraph shown on the personal page above the publication list; write
 # it as `description: >` with the text indented on the following lines.
+# `note` is where an alumnus is now (e.g. "University of British Columbia"): on the
+# Alumni card it sits under the role in black, the role staying grey, and on the
+# personal page it is the last line under the name. Keep it short, the name of the
+# place without the person's title, so the card stays short (D78).
 # The Alumni page shows its people in rows (postdoc, Ph.D., M.S., undergraduate),
 # read from `role`; `group:` (postdoc, phd, ms or undergrad) sets the row when the
 # role does not fit, e.g. `group: ms` for an integrated-course student who left
@@ -80,6 +84,7 @@
   status: alumni
   name_ko: 인시열
   role: Undergraduate Researcher
+  note: Nanoelectronic Physics, Kookmin University
   email: insy13@naver.com
   photo: siyeol-in.jpg
   slug: siyeol-in
@@ -90,6 +95,7 @@
   status: alumni
   name_ko: 전혜정
   role: Undergraduate Researcher
+  note: Applied Chemistry, Kookmin University
   email: jeonhyejeong@kookmin.ac.kr
   photo: hyejeong-jeon.jpg
   slug: hyejeong-jeon
@@ -99,7 +105,8 @@
 - name: Yunhee Choi
   status: alumni
   name_ko: 최윤희
-  role: Visiting Undergraduate Student (EPFL)
+  role: Visiting Undergraduate Student
+  note: EPFL
   email: yunhee.choi@epfl.ch
   photo: yunhee-choi.jpg
   slug: yunhee-choi
@@ -117,7 +124,7 @@
   role: Undergraduate Researcher (UROP)
   department: School of Artificial Intelligence
   email: chanjoongkim@kookmin.ac.kr
-  note: Global PBL program, Irvine, CA
+  note: Ministry of Intellectual Property
   photo: chanjoong-kim.jpg
   slug: chanjoong-kim
   website: https://chanjoongx.com
@@ -129,6 +136,7 @@
   status: alumni
   name_ko: 조용표
   role: Undergraduate Researcher (UROP)
+  note: Applied Chemistry, Kookmin University
   email: lulischo@kookmin.ac.kr
   photo: yongpyo-cho.jpg
   slug: yongpyo-cho
@@ -137,6 +145,7 @@
   status: alumni
   name_ko: 이진우
   role: Undergraduate Researcher (UROP)
+  note: Applied Chemistry, Kookmin University
   email: jinwoo2657@kookmin.ac.kr
   photo: jinwoo-lee.jpg
   slug: jinwoo-lee
@@ -145,6 +154,7 @@
   status: alumni
   name_ko: 백한별
   role: Undergraduate Researcher (UROP)
+  note: Applied Chemistry, Kookmin University
   email: hanbyurii@kookmin.ac.kr
   photo: hanbyul-baik.jpg
   slug: hanbyul-baik
@@ -153,6 +163,7 @@
   status: alumni
   name_ko: 이효진
   role: Undergraduate Researcher (UROP)
+  note: Applied Chemistry, Kookmin University
   email: aquarius8139@kookmin.ac.kr
   photo: hyojin-lee.jpg
   slug: hyojin-lee
@@ -161,6 +172,7 @@
   status: alumni
   name_ko: 김유민
   role: Undergraduate Researcher (UROP)
+  note: Applied Chemistry, Kookmin University
   email: kyukmin@kookmin.ac.kr
   photo: yumin-kim.jpg
   slug: yumin-kim

@@ -26,6 +26,7 @@ then loads at once instead of lazily. The card always links to the canonical /pe
   <p class="person__name" translate="no">{%- if x.slug and x.slug != "" -%}<a href="{{ url }}">{{ x.name }}</a>{%- else -%}{{ x.name }}{%- endif -%}</p>
   <p class="person__ko" lang="ko" translate="no">{{ x.name_ko }}</p>
   <p class="person__role">{{ x.role }}</p>
-  {%- if x.note and x.note != "" -%}<p class="person__note">{{ x.note }}</p>{%- endif -%}
+  {%- comment -%}Where an alumnus is now (`note`, D78): under the role, in black where the role is grey, so the two read apart without a word between them; a screen reader hears "Now:" first.{%- endcomment -%}
+  {%- if x.note and x.note != "" -%}<p class="person__note">{% if x.status == "alumni" %}<span class="visually-hidden">Now: </span>{% endif %}{{ x.note }}</p>{%- endif -%}
   {%- include social-links.html person=x variant="compact" -%}
 </div>

@@ -161,7 +161,7 @@ YAML 형식 오류 등)에는 빌드 단계에서 검증되어 무엇을 고쳐�
 ```
 개인 페이지(`/people/gildong-hong/`)와, `status` 에 맞는 그리드(Members 또는 Alumni)에 자동 등록됩니다.
 소셜 링크는 실제 URL이 있을 때만: `linkedin:` `github:` `scholar:` `orcid:` `website:`. 논문 저자명이
-`name` 과 다르면 `author_aliases: ["다른 표기"]`. 동문은 `note:` 로 한 줄 비고 추가 가능.
+`name` 과 다르면 `author_aliases: ["다른 표기"]`. 동문은 `note:` 에 지금 있는 곳을 적습니다(아래 졸업 처리 4번).
 
 #### 새 멤버 추가하기
 
@@ -181,8 +181,9 @@ Members 페이지는 이 파일에 적힌 순서대로 보여 줍니다. 앞에 
 2. `status: current` 를 `status: alumni` 로 바꿉니다. 블록을 옮기거나 지울 필요는 없습니다.
 3. `role` 이 마친 과정을 가리키는지 봅니다(예: `M.S. Student`, `Undergraduate Researcher (UROP)`). 동문 페이지의
    어느 줄에 들어갈지가 이 낱말로 정해집니다(아래 표).
-4. 지금 소속처럼 남길 말이 있으면 `note:` 에 한 줄로 적습니다(예: `note: "Ph.D. student, KAIST"`). 카드의 역할
-   아래에 작게 보입니다.
+4. 지금 있는 곳을 `note:` 에 한 줄로 적습니다(예: `note: University of British Columbia`). 동문 카드에서는 회색
+   역할 아래에 검은 글씨로, 개인 페이지에서는 맨 아래 줄에 보입니다. 카드가 길어지지 않게 직함은 빼고 기관이나
+   학과 이름만 적습니다(예: `Applied Chemistry, Kookmin University`).
 5. **Commit changes** 를 누릅니다.
 
 개인 페이지 주소(`/people/<slug>/`)는 그대로라 **뉴스 등 어디서 건 링크가 깨지지 않습니다**(예전

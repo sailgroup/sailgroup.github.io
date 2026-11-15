@@ -63,7 +63,9 @@ Intelligence`) shows the person's own school/department on a line under the lab 
 useful when their home department differs from the lab's. An optional `description:` (a short
 intro paragraph, like the example above) appears on the personal page as an "About" section
 (same heading style as the Publications section) above the person's publication list.
-Alumni may add a one-line `note:`. If a lab paper
+Alumni may add a one-line `note:`, where they are now (e.g. `University of British
+Columbia`): on the Alumni card it shows in black under the grey role, and on the personal page
+as the last line. Give the place only, without a title, so the card stays short (D78). If a lab paper
 lists this person under a different spelling (e.g. "H Kim" vs "Heejeong Kim"), add
 `author_aliases: ["H Kim"]` so the auto-link from the Publications page still finds them and that spelling in the paper's author list links to their page (D67). Keep an alias distinctive (a surname plus an initial like `"H Kim"`, not a bare `"Kim"`): matching is by substring, so a too-common alias can pull unrelated papers onto their page.
 

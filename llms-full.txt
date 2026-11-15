@@ -39,7 +39,7 @@ Page: {{ site.url }}/publications/{{ p.id }}/
 {% endfor %}
 ### Alumni
 {% assign al = site.data.people | where: "status", "alumni" -%}
-{% for a in al %}- {{ a.name }}{% if a.name_ko and a.name_ko != "" %} ({{ a.name_ko }}){% endif %}, {{ a.role }}{% if a.slug and a.slug != "" %}. {{ site.url }}/people/{{ a.slug }}/{% endif %}
+{% for a in al %}- {{ a.name }}{% if a.name_ko and a.name_ko != "" %} ({{ a.name_ko }}){% endif %}, {{ a.role }}{% if a.note and a.note != "" %}; now {{ a.note }}{% endif %}{% if a.slug and a.slug != "" %}. {{ site.url }}/people/{{ a.slug }}/{% endif %}
 {% endfor %}
 ## Principal investigator
 {% assign pi = site.data.pi -%}
