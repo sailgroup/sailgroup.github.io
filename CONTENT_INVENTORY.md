@@ -193,7 +193,9 @@ was taken, what was normalized, and what is still open.
   D36 moved to the note), six UROP alumni "Applied Chemistry, Kookmin University", Siyeol In
   "Nanoelectronic Physics, Kookmin University". The places are the PI's; the English names of
   the departments are Kookmin's (english.kookmin.ac.kr). Siyeol In's department is as the PI
-  remembered it ("인가"), not yet confirmed.
+  remembered it ("인가"), not yet confirmed. On the PI's word the alumni pages no longer
+  show "Former member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin
+  University", and the place there follows a grey "Now" (new UI text, not the PI's).
 - **Data corrections, 2026-09-28 (D39, maintainer's instruction)**: paper 44 `ref`
   "Early veiw" to "Early View" and its DOI to https; paper 42 title matched to the
   published title (no "Efficient") and the Hyung Min Kim corresponding mark placed on

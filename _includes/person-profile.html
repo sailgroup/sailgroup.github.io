@@ -1,7 +1,8 @@
 {%- comment -%}
 Personal page card for a member or alumnus. Both pages are the same card; the
-only differences are the back-link, the affiliation line, and (alumni only)
-where they are now (`note`). Pass: person (the data object), kind ("member" |
+only differences are the back-link, the lab line under the role (members only;
+an alumnus's page leaves it out, D78), and (alumni only) where they are now
+(`note`). Pass: person (the data object), kind ("member" |
 "alumnus"), body (the optional prose body from the page, usually empty).
 {%- endcomment -%}
 {%- assign x = include.person -%}
@@ -17,15 +18,14 @@ where they are now (`note`). Pass: person (the data object), kind ("member" |
     {%- endif -%}
     <h1 class="profile__name" translate="no">{{ x.name }}{% if x.name_ko %} <span class="ko" lang="ko">{{ x.name_ko }}</span>{% endif %}</h1>
     <p class="profile__title">{{ x.role }}</p>
-    {%- if include.kind == "alumnus" -%}
-    <p class="member-card__meta">Former member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin University</p>
-    {%- else -%}
+    {%- comment -%}The lab line is a member's only: on an alumnus's page "Former member, ..." went without saying, and the PI had it taken out (D78).{%- endcomment -%}
+    {%- unless include.kind == "alumnus" -%}
     <p class="member-card__meta">Spectroscopy and AI Lab, Department of Chemistry, Kookmin University{% if x.joined %} &middot; Joined {{ x.joined | date: "%B %Y" }}{% endif %}</p>
-    {%- endif -%}
+    {%- endunless -%}
     {%- comment -%}Optional: the person's own school/department (e.g. a UROP whose home department differs from the lab's). Omitted when not set.{%- endcomment -%}
     {%- if x.department and x.department != "" -%}<p class="member-card__meta">{{ x.department }}</p>{%- endif -%}
-    {%- comment -%}Where an alumnus is now (D78): the last line, set apart from the lab's lines above it and in black.{%- endcomment -%}
-    {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__now"><span class="visually-hidden">Now: </span>{{ x.note }}</p>{%- endif -%}
+    {%- comment -%}Where an alumnus is now (D78): the last line, set apart from the lines above it, a grey "Now" and the place in black.{%- endcomment -%}
+    {%- if include.kind == "alumnus" and x.note and x.note != "" -%}<p class="member-card__now"><span class="member-card__now-label">Now</span> {{ x.note }}</p>{%- endif -%}
     {%- include social-links.html person=x -%}
     {%- comment -%}Optional short bio (`description:` in people.yml): an "About" section styled like the Publications section below it (same label + rule), shown above the publication list.{%- endcomment -%}
     {%- if x.description and x.description != "" -%}

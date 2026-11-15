@@ -2808,7 +2808,12 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   two should read apart with no word such as 연구실 or 현재 between them: the role in its grey,
   the place now in black. The PI found the card already a little tall, and said the personal
   page may show more. Heejeong Kim stays a current member as she is (her post at the
-  University of British Columbia starts in January); the PI will move her then.
+  University of British Columbia starts in January); the PI will move her then. Shown the
+  first build (22:19 to 22:21), the PI asked for the personal page to say that the place is
+  the present one ("개인페이지엔 현재? 라는거 써도될것같은데") and to drop the line "Former
+  member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin University" there
+  ("당연히 맴버엿으니까"); the cards stay as they are. The maintainer asked for "current :" or
+  something better.
 - **Data:** `note`, which README already called the place an alumnus is now, holds it.
   "Ministry of Intellectual Property" for Chanjoong Kim, in place of "Global PBL program,
   Irvine, CA" (the News item of that program stays); "EPFL" for Yunhee Choi; "Applied
@@ -2825,12 +2830,19 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   undergraduate row, 14px in the others); the role stays `--muted`. The undergraduate cards
   on a desktop are as tall as Chanjoong Kim's was (two lines of role, two of place). A screen
   reader hears "Now:" before the place (visually hidden, alumni only).
-- **Personal page:** the note is the last line, 0.75rem below the lab's lines, in `--ink` at
-  weight 500 and 16px (`member-card__now`), with the same "Now:" for screen readers.
+- **Personal page:** the alumnus's page has no lab line under the role (a member's keeps
+  "Spectroscopy and AI Lab, ... Joined <month>"). The note is the last line, 0.75rem below
+  the lines above, in `--ink` at weight 500 and 16px (`member-card__now`), after "Now" in
+  `--muted` at weight 400 on the same line. "Now" over "Current:": one short word with no
+  colon, as alumni lists on lab sites say it ("now at"); the grey keeps it from reading as
+  part of the name. Chosen from three shots (no word, "Now" at the place's size, a smaller
+  "Now").
 - **Also:** llms-full.txt's alumni lines end "; now <note>". The people.yml header, README
   and CONTRIBUTING say what `note` is and to keep it to the place's name.
-- **Text:** /alumni/ and the nine alumni pages gain the place; Chanjoong Kim's loses "Global
-  PBL program, Irvine, CA"; Yunhee Choi's role loses "(EPFL)".
+- **Text:** /alumni/ and the nine alumni pages gain the place (on the pages after "Now");
+  the nine pages lose "Former member, Spectroscopy and AI Lab, Department of Chemistry,
+  Kookmin University"; Chanjoong Kim's loses "Global PBL program, Irvine, CA"; Yunhee Choi's
+  role loses "(EPFL)".
 - **Not changed:** the roles of Siyeol In and Hyejeong Jeon ("Undergraduate Researcher", no
   "(UROP)"); Heejeong Kim's entry. The site keeps the lab's department as the PI set it,
   "Department of Chemistry", while the students' line says Applied Chemistry, the PI's
