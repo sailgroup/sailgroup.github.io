@@ -2818,7 +2818,11 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   통일하자 / 최윤희는 Visiting UROP 하구 / 짧게"). Shown that build (22:31), the PI dropped the
   "Now" too ("Now도 빼지뭐") and kept "UROP" short ("Undergraduate Student (UROP)" would
   make the Alumni page too long); the maintainer asked for the page to show the past light
-  and the present dark, as the first build's card did.
+  and the present dark, as the first build's card did. Seeing only Chanjoong Kim's page
+  (22:36), the PI wondered whether the others should have a department line too
+  ("그 너만 인공지능학부잇는데 / 다른애들도 뜨게해야겟다"). They have it already: the six and
+  Siyeol In are still in that department, so their place now is it. A grey line of its own
+  would say the same department twice; shown both, the maintainer kept the pages as built.
 - **Data:** `note`, which README already called the place an alumnus is now, holds it.
   "Ministry of Intellectual Property" for Chanjoong Kim, in place of "Global PBL program,
   Irvine, CA" (the News item of that program stays); "EPFL" for Yunhee Choi; "Applied
@@ -2858,3 +2862,6 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   Researchers". The site keeps the lab's department as the PI set it,
   "Department of Chemistry", while the students' line says Applied Chemistry, the PI's
   응용화학부.
+- **Deployed** 2026-11-15 (main run 43720121238, 1f566c1 to 66d7f9c); IndexNow sent the 12
+  changed pages (Bing 200, Naver 200).
+- **Check:** `REVIEW.md` section 47.

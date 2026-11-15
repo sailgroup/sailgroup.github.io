@@ -1806,3 +1806,31 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
   /alumni/chanjoong-kim/), each 200 three times when asked again, the page identical to the
   build. `functional.js` 22 of 22. The D77 check 224 of 224. `webkit-check.cjs` 35 of 35, and
   the capsule in WebKit 10 of 10.
+
+## 47. Where alumni are now; undergraduates' roles read "UROP" (2026-11-15, D78)
+
+- **Rounds on dev, each shown to the PI through the maintainer:** 71051e3 (the place under
+  the role, black; the page's last line), cefc64c (no "Former member" line; a grey "Now"
+  before the place), c37d536 (roles "UROP"), 66d7f9c (no "Now"; the alumnus's role grey).
+  Before the first, the colours were tried on the live pages in Chrome with the new notes
+  put in (three greys for the place, two sizes on the page); after cefc64c, three shots of
+  the page's line (no word, "Now" at the place's size, a smaller "Now").
+- **CI** (dev run 43719620687, 66d7f9c): green.
+- **The artifact** (66d7f9c) against the live site, `text-check.py` on 73 pages: only
+  /alumni/, /members/ and the ten undergraduates' pages change. Gone or changed: the roles
+  "Undergraduate Researcher (UROP)" (12), "Undergraduate Researcher" (6), "Visiting
+  Undergraduate Student (EPFL)" (2); "Former member, Spectroscopy and AI Lab, Department of
+  Chemistry, Kookmin University" (9); "Global PBL program, Irvine, CA" (2). Added: "UROP"
+  (18), "Visiting UROP" (2) and the places (18 lines); for screen readers "Now:" (18). Every
+  data string the live site shows, the build shows. Served locally: `functional.js` 22 of 22;
+  /alumni/ at 1,440, 1,024, 768, 390 and 320px and three alumni pages at 1,440 and 390px with
+  no sideways scroll; computed colours: the place #1d1d1d at 500, the role #6b6b6b, on the
+  page the place 16px with a 12px gap above. The undergraduate row at 1,440px is 682px tall
+  (678px on the live site before).
+- **Live** (main run 43720121238, 1f566c1 to 66d7f9c): IndexNow sent 12 pages, Bing 200,
+  Naver 200. `livecmp.js`: 116 of 116 text files identical, 277 image URLs 200.
+  `text-check.py` against the deployed artifact: 0 lines gone or changed, 0 added.
+  `functional.js` 22 of 22.
+- **Open:** Siyeol In's department is as the PI remembered it ("인가"); Yeonju Yoo, a current
+  member, reads "UROP" as the PI's "every undergraduate" has it. Either is one line of
+  people.yml if the PI says otherwise.

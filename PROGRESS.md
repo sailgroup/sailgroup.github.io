@@ -421,3 +421,8 @@ Status: live. Phase 8 (mobile / SEO / security polish) complete; site deployed t
   dropdown and the phone menu floating under it, the page dimmed behind the phone menu, and
   the small glass pieces clearer. Deployed (main run 42626910371) and verified live. Results
   in `REVIEW.md` section 46.
+- **Phase 47 (2026-11-15):** where each alumnus is now, the PI's request through the
+  maintainer (D78): on the Alumni card the role in grey and the place now in black under it,
+  and on an alumnus's page the same with no "Former member, ..." line. Every undergraduate's
+  role now reads "UROP" (Yunhee Choi's "Visiting UROP"). Deployed (main run 43720121238)
+  and verified live. Results in `REVIEW.md` section 47.
