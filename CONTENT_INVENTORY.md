@@ -196,7 +196,9 @@ was taken, what was normalized, and what is still open.
   show "Former member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin
   University"; the role there is grey and the place black, with no word between. The
   PI also had every undergraduate's role read "UROP" (Yeonju Yoo's on Members too) and
-  Yunhee Choi's "Visiting UROP", back to the Wix site's word (see Roles above).
+  Yunhee Choi's "Visiting UROP", back to the Wix site's word (see Roles above). Kookmin
+  renames both departments for students entering in 2027 (REVIEW §47, "2027 names"); the
+  notes keep today's names until that is checked in March 2027.
 - **Data corrections, 2026-09-28 (D39, maintainer's instruction)**: paper 44 `ref`
   "Early veiw" to "Early View" and its DOI to https; paper 42 title matched to the
   published title (no "Efficient") and the Hyung Min Kim corresponding mark placed on

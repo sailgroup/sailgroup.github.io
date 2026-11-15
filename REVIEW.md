@@ -1844,3 +1844,9 @@ The tab, home-screen and app icons changed from Kookmin's emblem to the SAIL wor
 - **Open:** Siyeol In's department is as the PI remembered it ("인가"); Yeonju Yoo, a current
   member, reads "UROP" as the PI's "every undergraduate" has it. Either is one line of
   people.yml if the PI says otherwise.
+- **2027 names (checked 2026-11-16):** Kookmin's 2027 정시 admissions guide ("학칙 개정에
+  따른 모집단위 변경") renames both departments for students entering in 2027: 나노전자물리학과
+  becomes 양자융합공학과, and 응용화학부's 바이오의약전공 and 나노소재전공 become 바이오의과학과
+  and 에너지반도체화학공학과 (new colleges 바이오융합대학 and 양자융합대학). The notes keep
+  today's names: the change is for new students, and whether students already enrolled move
+  is not known. In March 2027 look at english.kookmin.ac.kr's list again.
