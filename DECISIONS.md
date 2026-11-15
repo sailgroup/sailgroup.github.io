@@ -2813,22 +2813,30 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   the present one ("개인페이지엔 현재? 라는거 써도될것같은데") and to drop the line "Former
   member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin University" there
   ("당연히 맴버엿으니까"); the cards stay as they are. The maintainer asked for "current :" or
-  something better.
+  something better. A minute later (22:22) the PI asked for every undergraduate's position
+  to read "UROP", short, and Yunhee Choi's "Visiting UROP" ("학부생 전부 포지션 UROP으로
+  통일하자 / 최윤희는 Visiting UROP 하구 / 짧게").
 - **Data:** `note`, which README already called the place an alumnus is now, holds it.
   "Ministry of Intellectual Property" for Chanjoong Kim, in place of "Global PBL program,
   Irvine, CA" (the News item of that program stays); "EPFL" for Yunhee Choi; "Applied
   Chemistry, Kookmin University" for Hyejeong Jeon, Yongpyo Cho, Jinwoo Lee, Hanbyul Baik,
   Hyojin Lee and Yumin Kim; "Nanoelectronic Physics, Kookmin University" for Siyeol In.
-  Yunhee Choi's role is "Visiting Undergraduate Student": D36 put "(EPFL)" into it so that EPFL
-  showed on the grid, and the note shows it now, as the PI's line has it. The department
+  Yunhee Choi's role loses "(EPFL)": D36 put it there so that EPFL showed on the grid, and
+  the note shows it now, as the PI's line has it. The department
   names are Kookmin's own English (english.kookmin.ac.kr: "Professor Joung Joonyoung,
   Department of Applied Chemistry"; "Department of Nanoelectronic Physics, College of Science
   and Technology"), without "Department of" so the line takes two lines on a desktop card, as
   the role does. The ministry is named as on the maintainer's LinkedIn. No titles (intern,
   student), as in the PI's lines.
+- **Roles:** all ten undergraduates' roles read "UROP" ("Undergraduate Researcher (UROP)"
+  for six, "Undergraduate Researcher" for Siyeol In, Hyejeong Jeon and Yeonju Yoo before) and
+  Yunhee Choi's "Visiting UROP". Yeonju Yoo is a current member: the PI said every
+  undergraduate, so Members and Alumni say it alike. The Wix site had said "UROP", which the
+  migration wrote out as "Undergraduate Researcher (UROP)" (CONTENT_INVENTORY,
+  Normalizations). Both words still put a person in the undergraduate row (`match` UROP).
 - **Card:** the note is in `--ink` at weight 500 and at the role's size (13px in the
-  undergraduate row, 14px in the others); the role stays `--muted`. The undergraduate cards
-  on a desktop are as tall as Chanjoong Kim's was (two lines of role, two of place). A screen
+  undergraduate row, 14px in the others); the role stays `--muted`. With the role on one line,
+  an undergraduate card on a desktop is a line shorter than Chanjoong Kim's was. A screen
   reader hears "Now:" before the place (visually hidden, alumni only).
 - **Personal page:** the alumnus's page has no lab line under the role (a member's keeps
   "Spectroscopy and AI Lab, ... Joined <month>"). The note is the last line, 0.75rem below
@@ -2841,9 +2849,9 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   and CONTRIBUTING say what `note` is and to keep it to the place's name.
 - **Text:** /alumni/ and the nine alumni pages gain the place (on the pages after "Now");
   the nine pages lose "Former member, Spectroscopy and AI Lab, Department of Chemistry,
-  Kookmin University"; Chanjoong Kim's loses "Global PBL program, Irvine, CA"; Yunhee Choi's
-  role loses "(EPFL)".
-- **Not changed:** the roles of Siyeol In and Hyejeong Jeon ("Undergraduate Researcher", no
-  "(UROP)"); Heejeong Kim's entry. The site keeps the lab's department as the PI set it,
+  Kookmin University"; Chanjoong Kim's loses "Global PBL program, Irvine, CA"; every
+  undergraduate's role reads "UROP" (Members too) and Yunhee Choi's "Visiting UROP".
+- **Not changed:** Heejeong Kim's entry; the Alumni row's heading "Undergraduate
+  Researchers". The site keeps the lab's department as the PI set it,
   "Department of Chemistry", while the students' line says Applied Chemistry, the PI's
   응용화학부.

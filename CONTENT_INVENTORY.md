@@ -189,13 +189,14 @@ was taken, what was normalized, and what is still open.
   `assets/images/people/` (D36).
 - **Where alumni are now (D78, 2026-11-15, the PI's request on KakaoTalk)**: each alumnus's
   `note`: Chanjoong Kim "Ministry of Intellectual Property" (was "Global PBL program, Irvine,
-  CA"), Yunhee Choi "EPFL" (her role now "Visiting Undergraduate Student", the "(EPFL)" of
-  D36 moved to the note), six UROP alumni "Applied Chemistry, Kookmin University", Siyeol In
+  CA"), Yunhee Choi "EPFL" (the "(EPFL)" D36 put in her role moved to the note), six UROP alumni "Applied Chemistry, Kookmin University", Siyeol In
   "Nanoelectronic Physics, Kookmin University". The places are the PI's; the English names of
   the departments are Kookmin's (english.kookmin.ac.kr). Siyeol In's department is as the PI
   remembered it ("인가"), not yet confirmed. On the PI's word the alumni pages no longer
   show "Former member, Spectroscopy and AI Lab, Department of Chemistry, Kookmin
-  University", and the place there follows a grey "Now" (new UI text, not the PI's).
+  University", and the place there follows a grey "Now" (new UI text, not the PI's). The
+  PI also had every undergraduate's role read "UROP" (Yeonju Yoo's on Members too) and
+  Yunhee Choi's "Visiting UROP", back to the Wix site's word (see Roles above).
 - **Data corrections, 2026-09-28 (D39, maintainer's instruction)**: paper 44 `ref`
   "Early veiw" to "Early View" and its DOI to https; paper 42 title matched to the
   published title (no "Efficient") and the Hyung Min Kim corresponding mark placed on

@@ -71,7 +71,7 @@
 - name: Yeonju Yoo
   status: current
   name_ko: 유연주
-  role: Undergraduate Researcher
+  role: UROP
   email: jujoo05@kookmin.ac.kr
   photo: YOOYEONJU.jpg
   slug: yeonju-yoo
@@ -83,7 +83,7 @@
 - name: Siyeol In
   status: alumni
   name_ko: 인시열
-  role: Undergraduate Researcher
+  role: UROP
   note: Nanoelectronic Physics, Kookmin University
   email: insy13@naver.com
   photo: siyeol-in.jpg
@@ -94,7 +94,7 @@
 - name: Hyejeong Jeon
   status: alumni
   name_ko: 전혜정
-  role: Undergraduate Researcher
+  role: UROP
   note: Applied Chemistry, Kookmin University
   email: jeonhyejeong@kookmin.ac.kr
   photo: hyejeong-jeon.jpg
@@ -105,7 +105,7 @@
 - name: Yunhee Choi
   status: alumni
   name_ko: 최윤희
-  role: Visiting Undergraduate Student
+  role: Visiting UROP
   note: EPFL
   email: yunhee.choi@epfl.ch
   photo: yunhee-choi.jpg
@@ -121,7 +121,7 @@
 - name: Chanjoong Kim
   status: alumni
   name_ko: 김찬중
-  role: Undergraduate Researcher (UROP)
+  role: UROP
   department: School of Artificial Intelligence
   email: chanjoongkim@kookmin.ac.kr
   note: Ministry of Intellectual Property
@@ -135,7 +135,7 @@
 - name: Yongpyo Cho
   status: alumni
   name_ko: 조용표
-  role: Undergraduate Researcher (UROP)
+  role: UROP
   note: Applied Chemistry, Kookmin University
   email: lulischo@kookmin.ac.kr
   photo: yongpyo-cho.jpg
@@ -144,7 +144,7 @@
 - name: Jinwoo Lee
   status: alumni
   name_ko: 이진우
-  role: Undergraduate Researcher (UROP)
+  role: UROP
   note: Applied Chemistry, Kookmin University
   email: jinwoo2657@kookmin.ac.kr
   photo: jinwoo-lee.jpg
@@ -153,7 +153,7 @@
 - name: Hanbyul Baik
   status: alumni
   name_ko: 백한별
-  role: Undergraduate Researcher (UROP)
+  role: UROP
   note: Applied Chemistry, Kookmin University
   email: hanbyurii@kookmin.ac.kr
   photo: hanbyul-baik.jpg
@@ -162,7 +162,7 @@
 - name: Hyojin Lee
   status: alumni
   name_ko: 이효진
-  role: Undergraduate Researcher (UROP)
+  role: UROP
   note: Applied Chemistry, Kookmin University
   email: aquarius8139@kookmin.ac.kr
   photo: hyojin-lee.jpg
@@ -171,7 +171,7 @@
 - name: Yumin Kim
   status: alumni
   name_ko: 김유민
-  role: Undergraduate Researcher (UROP)
+  role: UROP
   note: Applied Chemistry, Kookmin University
   email: kyukmin@kookmin.ac.kr
   photo: yumin-kim.jpg

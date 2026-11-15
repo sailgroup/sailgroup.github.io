@@ -179,7 +179,7 @@ Members 페이지는 이 파일에 적힌 순서대로 보여 줍니다. 앞에 
 
 1. `_data/people.yml` 편집 화면에서 `Ctrl+F`(Mac은 `⌘+F`)로 그 사람의 이름을 찾습니다.
 2. `status: current` 를 `status: alumni` 로 바꿉니다. 블록을 옮기거나 지울 필요는 없습니다.
-3. `role` 이 마친 과정을 가리키는지 봅니다(예: `M.S. Student`, `Undergraduate Researcher (UROP)`). 동문 페이지의
+3. `role` 이 마친 과정을 가리키는지 봅니다(예: `M.S. Student`, `UROP`). 동문 페이지의
    어느 줄에 들어갈지가 이 낱말로 정해집니다(아래 표).
 4. 지금 있는 곳을 `note:` 에 한 줄로 적습니다(예: `note: University of British Columbia`). 동문 카드에서는 회색
    역할 아래에 검은 글씨로, 개인 페이지에서는 맨 아래 줄에 회색 `Now` 와 함께 보입니다. 카드가 길어지지 않게 직함은 빼고 기관이나
@@ -197,7 +197,7 @@ Members 페이지는 이 파일에 적힌 순서대로 보여 줍니다. 앞에 
 | `Postdoc` (예: Postdoctoral Researcher) | Postdoctoral Researchers | `group: postdoc` |
 | `Ph.D.` 또는 `PhD` (예: Ph.D. Student, M.S./Ph.D. Integrated Course) | Ph.D. Students | `group: phd` |
 | `M.S.` 또는 `Master` (예: M.S. Student) | M.S. Students | `group: ms` |
-| `Undergraduate`, `UROP`, `B.S.` (예: Undergraduate Researcher (UROP)) | Undergraduate Researchers (사진이 작음) | `group: undergrad` |
+| `Undergraduate`, `UROP`, `B.S.` (예: UROP, Visiting UROP) | Undergraduate Researchers (사진이 작음) | `group: undergrad` |
 
 - 표의 위쪽 줄부터 맞춰 봅니다. 그래서 석박사 통합과정(`M.S./Ph.D. Integrated Course`)은 박사 줄에 들어갑니다.
   통합과정을 석사로 마쳤다면 그 사람 항목에 `group: ms` 를 적습니다. 대소문자는 가리지 않습니다.
