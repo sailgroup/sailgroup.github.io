@@ -2827,13 +2827,17 @@ Changes D9 for one page: the Research page's Korean is shown on a page of its ow
   "Ministry of Intellectual Property" for Chanjoong Kim, in place of "Global PBL program,
   Irvine, CA" (the News item of that program stays); "EPFL" for Yunhee Choi; "Applied
   Chemistry, Kookmin University" for Hyejeong Jeon, Yongpyo Cho, Jinwoo Lee, Hanbyul Baik,
-  Hyojin Lee and Yumin Kim; "Nanoelectronic Physics, Kookmin University" for Siyeol In.
+  Hyojin Lee and Yumin Kim; "Nano and Electronic Physics, Kookmin University" for Siyeol In.
   Yunhee Choi's role loses "(EPFL)": D36 put it there so that EPFL showed on the grid, and
   the note shows it now, as the PI's line has it. The department
-  names are Kookmin's own English (english.kookmin.ac.kr: "Professor Joung Joonyoung,
-  Department of Applied Chemistry"; "Department of Nanoelectronic Physics, College of Science
-  and Technology"), without "Department of" so the line takes two lines on a desktop card, as
-  the role does. The ministry is named as on the maintainer's LinkedIn. No titles (intern,
+  names are those of Kookmin's list of departments (english.kookmin.ac.kr, Academics, College
+  of Science and Technology: "Department of Applied Chemistry", "Department of Nano and
+  Electronic Physics"; the department's own site, chem.kookmin.ac.kr, says "Dept of Applied
+  Chemistry"), without "Department of" to keep the card short. The first build had
+  "Nanoelectronic Physics", from a Kookmin news story and the college's summary; the list
+  of departments was checked after the deploy and the line follows it (a second deploy, the
+  same evening). The ministry is named as on its English site (moip.go.kr/en) and the
+  maintainer's LinkedIn. No titles (intern,
   student), as in the PI's lines.
 - **Roles:** all ten undergraduates' roles read "UROP" ("Undergraduate Researcher (UROP)"
   for six, "Undergraduate Researcher" for Siyeol In, Hyejeong Jeon and Yeonju Yoo before) and
