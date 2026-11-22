@@ -106,12 +106,13 @@
   status: alumni
   name_ko: 최윤희
   role: Visiting UROP
-  note: EPFL
+  note: Chemistry & Chemical Engineering @ EPFL
   email: yunhee.choi@epfl.ch
   photo: yunhee-choi.jpg
   slug: yunhee-choi
   joined: "2026-07-13"
   github: https://github.com/ynhchoi
+  linkedin: https://www.linkedin.com/in/yunhee-choi-938b43372/
   description: >
     Yunhee is a visiting undergraduate student from EPFL, studying Chemistry
     and Chemical Engineering. She is broadly interested in machine learning
