@@ -40,6 +40,24 @@
 #      corrected here to a proper doi.org link. Verify.
 # ---------------------------------------------------------------------------
 
+- id: 51
+  title: "One-pot Synthesis of Indoloquinoline Derivatives via Friedel-Crafts Alkylation and Copper/O<sub>2</sub>-Mediated Cyclization"
+  authors: "Eun Ji Bang, Joonyoung F. Joung*, Haye Min Ko*"
+  journal: "Adv. Synth. Catal."
+  ref: "Accepted"
+  vol:  
+  issue:  
+  pages: ""
+  year: 2026
+  doi: ""
+  preprint_url: ""
+  code: ""
+  dataset: ""
+  themes:
+    - "Quantum chemical modeling"
+  image: ""
+  abstract: ""
+  
 
 - id: 50
   title: "Raman Spectroscopy and Artificial Intelligence for Bacterial Identification: Measurement, Interpretation, and Validation"
